@@ -28,16 +28,16 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.operator.slice.AnnotateSlice;
 import edu.toronto.cs.se.mmint.operator.slice.Slice.SliceType;
-import edu.toronto.cs.se.modelepedia.gsn.ASILDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
+import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
-import edu.toronto.cs.se.modelepedia.gsn.SupportConnector;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
+import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 import edu.toronto.cs.se.modelepedia.gsn.operator.GSNSlice.GSNSliceType;
 
 public class GSNAnnotateSlice extends AnnotateSlice {
@@ -140,37 +140,26 @@ public class GSNAnnotateSlice extends AnnotateSlice {
             var supportableCur = new HashSet<Supportable>();
             var supportableNext = new HashSet<Supportable>();
             var supportableAll = new HashSet<Supportable>();
-            for (SupportedBy rel: ((Goal) gsnModelObj).getSupports()) {
+            for (SupportedBy rel : ((Goal) gsnModelObj).getSupports()) {
               supportableCur.add(rel.getSource());
               supportableAll.add(rel.getSource());
             }
             while (!supportableCur.isEmpty()) {
-              for (Supportable curElem: supportableCur) {
-                if (curElem instanceof SupportConnector) {
-                  for (SupportedBy rel: curElem.getSupports()) {
+              for (Supportable curElem : supportableCur) {
+                if (curElem instanceof RelationshipDecorator) {
+                  for (SupportedBy rel : ((Supporter) curElem.eContainer()).getSupports()) {
                     supportableNext.add(rel.getSource());
                   }
                 }
               }
               supportableCur.clear();
-              for (Supportable nextElem: supportableNext) {
+              for (Supportable nextElem : supportableNext) {
                 if (!supportableAll.contains(nextElem)) {
                   supportableAll.add(nextElem);
                   supportableCur.add(nextElem);
                 }
               }
               supportableNext.clear();
-            }
-            // Check if any parent is an ASIL decomposition strategy.
-            var supportsAsilDecomp = false;
-            for (Supportable curElem: supportableAll) {
-              if  (curElem instanceof ASILDecompositionStrategy) {
-                supportsAsilDecomp = true;
-              }
-            }
-            if (supportsAsilDecomp) {
-              annotation.setType(ImpactType.RECHECK_CONTENT);
-              annotation.setSource(((ArgumentElement) gsnModelObj).getStatus().getSource());
             }
           }
         }

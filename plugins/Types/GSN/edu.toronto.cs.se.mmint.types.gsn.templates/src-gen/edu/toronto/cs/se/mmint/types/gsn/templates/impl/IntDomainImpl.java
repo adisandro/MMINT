@@ -120,8 +120,9 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
   public void setLowerBound(int newLowerBound) {
     var oldLowerBound = this.lowerBound;
     this.lowerBound = newLowerBound;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.INT_DOMAIN__LOWER_BOUND, oldLowerBound, this.lowerBound));
+    }
   }
 
   /**
@@ -143,8 +144,9 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
   public void setUpperBound(int newUpperBound) {
     var oldUpperBound = this.upperBound;
     this.upperBound = newUpperBound;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.INT_DOMAIN__UPPER_BOUND, oldUpperBound, this.upperBound));
+    }
   }
 
   /**
@@ -221,7 +223,9 @@ public class IntDomainImpl extends DomainImpl implements IntDomain {
    * @generated
    */
   public String toStringGen() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (lowerBound: ");

@@ -110,16 +110,6 @@ public class TemplateItemProvider
   }
 
   /**
-   * This returns Template.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Object getImageGen(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/Template"));
-  }
-
-  /**
    * @generated NOT
    */
   @Override

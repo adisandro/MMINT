@@ -29,7 +29,7 @@ import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
 import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
+import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
@@ -79,9 +79,9 @@ public class GSNBuilder {
     support.setTarget(supporter);
   }
 
-  public void addInContextOf(DecomposableCoreElement contextualized, ContextualElement context) {
+  public void addInContextOf(ContextualizableElement contextualizable, ContextualElement context) {
     var inContext = this.factory.createInContextOf();
-    inContext.setContextOf(contextualized);
+    inContext.setContextOf(contextualizable);
     inContext.setContext(context);
   }
 

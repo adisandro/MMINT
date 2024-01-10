@@ -149,7 +149,9 @@ public class EnumDomainImpl extends DomainImpl implements EnumDomain {
    * @generated
    */
   public String toStringGen() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (values: ");

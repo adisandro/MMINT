@@ -119,7 +119,12 @@ public class PropertyDecompositionStrategyImpl extends StrategyImpl implements P
     this.property = newProperty;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY, oldProperty, newProperty);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      if (msgs == null) {
+        msgs = notification;
+      }
+      else {
+        msgs.add(notification);
+      }
     }
     return msgs;
   }
@@ -133,15 +138,20 @@ public class PropertyDecompositionStrategyImpl extends StrategyImpl implements P
   public void setProperty(Property newProperty) {
     if (newProperty != this.property) {
       NotificationChain msgs = null;
-      if (this.property != null)
+      if (this.property != null) {
         msgs = ((InternalEObject)this.property).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY, null, msgs);
-      if (newProperty != null)
+      }
+      if (newProperty != null) {
         msgs = ((InternalEObject)newProperty).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY, null, msgs);
+      }
       msgs = basicSetProperty(newProperty, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null) {
+        msgs.dispatch();
+      }
     }
-    else if (eNotificationRequired())
+    else if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__PROPERTY, newProperty, newProperty));
+    }
   }
 
   /**
@@ -163,8 +173,9 @@ public class PropertyDecompositionStrategyImpl extends StrategyImpl implements P
   public void setReasonerName(String newReasonerName) {
     var oldReasonerName = this.reasonerName;
     this.reasonerName = newReasonerName;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY__REASONER_NAME, oldReasonerName, this.reasonerName));
+    }
   }
 
   /**
@@ -288,7 +299,9 @@ public class PropertyDecompositionStrategyImpl extends StrategyImpl implements P
    */
   @Override
   public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (reasonerName: ");

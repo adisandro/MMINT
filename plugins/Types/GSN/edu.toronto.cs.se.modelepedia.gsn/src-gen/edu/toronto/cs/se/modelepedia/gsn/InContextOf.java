@@ -66,15 +66,16 @@ public interface InContextOf extends EObject {
    * @model opposite="inContextOf" required="true" transient="false"
    * @generated
    */
-  DecomposableCoreElement getContextOf();
+  ContextualizableElement getContextOf();
 
   /**
    * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.InContextOf#getContextOf <em>Context Of</em>}' container reference.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @param value the new value of the '<em>Context Of</em>' container reference.
    * @see #getContextOf()
    * @generated
    */
-  void setContextOf(DecomposableCoreElement value);
+  void setContextOf(ContextualizableElement value);
 
 } // InContextOf

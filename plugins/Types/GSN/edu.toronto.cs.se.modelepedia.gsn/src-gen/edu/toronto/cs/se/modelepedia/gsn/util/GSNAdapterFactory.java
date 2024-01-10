@@ -19,36 +19,29 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.modelepedia.gsn.ASIL;
-import edu.toronto.cs.se.modelepedia.gsn.ASILDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
-import edu.toronto.cs.se.modelepedia.gsn.AndSupporter;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Assumption;
 import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
 import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.CoreElement;
-import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
+import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
-import edu.toronto.cs.se.modelepedia.gsn.IndependenceGoal;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
-import edu.toronto.cs.se.modelepedia.gsn.MofNSupporter;
-import edu.toronto.cs.se.modelepedia.gsn.OrSupporter;
+import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Solution;
-import edu.toronto.cs.se.modelepedia.gsn.StatefulElement;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
-import edu.toronto.cs.se.modelepedia.gsn.SupportConnector;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.Undeveloped;
-import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code>
@@ -109,32 +102,36 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
         return createArgumentElementAdapter();
       }
       @Override
-      public Adapter caseStatefulElement(StatefulElement object) {
-        return createStatefulElementAdapter();
+      public Adapter caseDecoratable(Decoratable object) {
+        return createDecoratableAdapter();
       }
       @Override
-      public Adapter caseASILfulElement(ASILfulElement object) {
-        return createASILfulElementAdapter();
+      public Adapter caseSupportable(Supportable object) {
+        return createSupportableAdapter();
       }
       @Override
-      public Adapter caseCoreElement(CoreElement object) {
-        return createCoreElementAdapter();
-      }
-      @Override
-      public Adapter caseDecomposableCoreElement(DecomposableCoreElement object) {
-        return createDecomposableCoreElementAdapter();
-      }
-      @Override
-      public Adapter caseContextualElement(ContextualElement object) {
-        return createContextualElementAdapter();
+      public Adapter caseSupporter(Supporter object) {
+        return createSupporterAdapter();
       }
       @Override
       public Adapter caseSupportedBy(SupportedBy object) {
         return createSupportedByAdapter();
       }
       @Override
+      public Adapter caseContextualizableElement(ContextualizableElement object) {
+        return createContextualizableElementAdapter();
+      }
+      @Override
+      public Adapter caseContextualElement(ContextualElement object) {
+        return createContextualElementAdapter();
+      }
+      @Override
       public Adapter caseInContextOf(InContextOf object) {
         return createInContextOfAdapter();
+      }
+      @Override
+      public Adapter caseASILfulElement(ASILfulElement object) {
+        return createASILfulElementAdapter();
       }
       @Override
       public Adapter caseGoal(Goal object) {
@@ -145,20 +142,12 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
         return createBasicGoalAdapter();
       }
       @Override
-      public Adapter caseIndependenceGoal(IndependenceGoal object) {
-        return createIndependenceGoalAdapter();
-      }
-      @Override
       public Adapter caseStrategy(Strategy object) {
         return createStrategyAdapter();
       }
       @Override
       public Adapter caseBasicStrategy(BasicStrategy object) {
         return createBasicStrategyAdapter();
-      }
-      @Override
-      public Adapter caseASILDecompositionStrategy(ASILDecompositionStrategy object) {
-        return createASILDecompositionStrategyAdapter();
       }
       @Override
       public Adapter caseSolution(Solution object) {
@@ -177,6 +166,10 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
         return createAssumptionAdapter();
       }
       @Override
+      public Adapter caseUndeveloped(Undeveloped object) {
+        return createUndevelopedAdapter();
+      }
+      @Override
       public Adapter caseASIL(ASIL object) {
         return createASILAdapter();
       }
@@ -185,40 +178,12 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
         return createImpactAnnotationAdapter();
       }
       @Override
-      public Adapter caseSupportable(Supportable object) {
-        return createSupportableAdapter();
-      }
-      @Override
-      public Adapter caseSupporter(Supporter object) {
-        return createSupporterAdapter();
-      }
-      @Override
-      public Adapter caseSupportConnector(SupportConnector object) {
-        return createSupportConnectorAdapter();
-      }
-      @Override
-      public Adapter caseAndSupporter(AndSupporter object) {
-        return createAndSupporterAdapter();
-      }
-      @Override
-      public Adapter caseOrSupporter(OrSupporter object) {
-        return createOrSupporterAdapter();
-      }
-      @Override
-      public Adapter caseXorSupporter(XorSupporter object) {
-        return createXorSupporterAdapter();
-      }
-      @Override
-      public Adapter caseMofNSupporter(MofNSupporter object) {
-        return createMofNSupporterAdapter();
-      }
-      @Override
       public Adapter caseTemplate(Template object) {
         return createTemplateAdapter();
       }
       @Override
-      public Adapter caseUndeveloped(Undeveloped object) {
-        return createUndevelopedAdapter();
+      public Adapter caseRelationshipDecorator(RelationshipDecorator object) {
+        return createRelationshipDecoratorAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object) {
@@ -263,14 +228,16 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.StatefulElement <em>Stateful Element</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
-   * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.Decoratable <em>Decoratable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.StatefulElement
+   * @see edu.toronto.cs.se.modelepedia.gsn.Decoratable
    * @generated
    */
-  public Adapter createStatefulElementAdapter() {
+  public Adapter createDecoratableAdapter() {
     return null;
   }
 
@@ -283,31 +250,6 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createASILfulElementAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.CoreElement <em>Core Element</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
-   * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.CoreElement
-   * @generated
-   */
-  public Adapter createCoreElementAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement <em>Decomposable Core Element</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-   * end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement
-   * @generated
-   */
-  public Adapter createDecomposableCoreElementAdapter() {
     return null;
   }
 
@@ -333,6 +275,20 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createSupportedByAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement <em>Contextualizable Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement
+   * @generated
+   */
+  public Adapter createContextualizableElementAdapter() {
     return null;
   }
 
@@ -374,19 +330,6 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.IndependenceGoal <em>Independence Goal</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can
-   * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-   * end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.IndependenceGoal
-   * @generated
-   */
-  public Adapter createIndependenceGoalAdapter() {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.Strategy <em>Strategy</em>}'.
    * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
    * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
@@ -407,19 +350,6 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createBasicStrategyAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.ASILDecompositionStrategy <em>ASIL Decomposition Strategy</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we
-   * can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-   * end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ASILDecompositionStrategy
-   * @generated
-   */
-  public Adapter createASILDecompositionStrategyAdapter() {
     return null;
   }
 
@@ -521,66 +451,6 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.SupportConnector <em>Support Connector</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
-   * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.SupportConnector
-   * @generated
-   */
-  public Adapter createSupportConnectorAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.AndSupporter <em>And Supporter</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
-   * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.AndSupporter
-   * @generated
-   */
-  public Adapter createAndSupporterAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.OrSupporter <em>Or Supporter</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
-   * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.OrSupporter
-   * @generated
-   */
-  public Adapter createOrSupporterAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.XorSupporter <em>Xor Supporter</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
-   * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.XorSupporter
-   * @generated
-   */
-  public Adapter createXorSupporterAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.MofNSupporter <em>Mof NSupporter</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
-   * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.MofNSupporter
-   * @generated
-   */
-  public Adapter createMofNSupporterAdapter() {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.Template <em>Template</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -591,6 +461,20 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createTemplateAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator <em>Relationship Decorator</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator
+   * @generated
+   */
+  public Adapter createRelationshipDecoratorAdapter() {
     return null;
   }
 

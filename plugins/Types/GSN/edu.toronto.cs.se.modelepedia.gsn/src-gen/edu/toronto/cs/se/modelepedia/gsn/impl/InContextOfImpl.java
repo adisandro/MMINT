@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
+import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 
@@ -140,28 +140,30 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
    * @generated
    */
   @Override
-  public DecomposableCoreElement getContextOf() {
+  public ContextualizableElement getContextOf() {
     if (eContainerFeatureID() != GSNPackage.IN_CONTEXT_OF__CONTEXT_OF) {
       return null;
     }
-    return (DecomposableCoreElement)eInternalContainer();
+    return (ContextualizableElement)eInternalContainer();
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetContextOf(DecomposableCoreElement newContextOf, NotificationChain msgs) {
+  public NotificationChain basicSetContextOf(ContextualizableElement newContextOf, NotificationChain msgs) {
     msgs = eBasicSetContainer((InternalEObject)newContextOf, GSNPackage.IN_CONTEXT_OF__CONTEXT_OF, msgs);
     return msgs;
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public void setContextOf(DecomposableCoreElement newContextOf) {
+  public void setContextOf(ContextualizableElement newContextOf) {
     if (newContextOf != eInternalContainer() || (eContainerFeatureID() != GSNPackage.IN_CONTEXT_OF__CONTEXT_OF && newContextOf != null)) {
       if (EcoreUtil.isAncestor(this, newContextOf)) {
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -171,7 +173,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
         msgs = eBasicRemoveFromContainer(msgs);
       }
       if (newContextOf != null) {
-        msgs = ((InternalEObject)newContextOf).eInverseAdd(this, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF, DecomposableCoreElement.class, msgs);
+        msgs = ((InternalEObject)newContextOf).eInverseAdd(this, GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF, ContextualizableElement.class, msgs);
       }
       msgs = basicSetContextOf(newContextOf, msgs);
       if (msgs != null) {
@@ -199,7 +201,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
         if (eInternalContainer() != null) {
           msgs = eBasicRemoveFromContainer(msgs);
         }
-        return basicSetContextOf((DecomposableCoreElement)otherEnd, msgs);
+        return basicSetContextOf((ContextualizableElement)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -227,7 +229,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
     switch (eContainerFeatureID()) {
       case GSNPackage.IN_CONTEXT_OF__CONTEXT_OF:
-        return eInternalContainer().eInverseRemove(this, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF, DecomposableCoreElement.class, msgs);
+        return eInternalContainer().eInverseRemove(this, GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF, ContextualizableElement.class, msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
   }
@@ -261,7 +263,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
         setContext((ContextualElement)newValue);
         return;
       case GSNPackage.IN_CONTEXT_OF__CONTEXT_OF:
-        setContextOf((DecomposableCoreElement)newValue);
+        setContextOf((ContextualizableElement)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -278,7 +280,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
         setContext((ContextualElement)null);
         return;
       case GSNPackage.IN_CONTEXT_OF__CONTEXT_OF:
-        setContextOf((DecomposableCoreElement)null);
+        setContextOf((ContextualizableElement)null);
         return;
     }
     super.eUnset(featureID);

@@ -18,9 +18,8 @@ package edu.toronto.cs.se.modelepedia.gsn;
  *
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getSolution()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SolutionSupporter SolutionContext'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot SolutionSupporter='self.oclAsType(DecomposableCoreElement).oclIsInvalid()' SolutionContext='self.oclAsType(DecomposableCoreElement).oclIsInvalid()'"
+ * @model
  * @generated
  */
-public interface Solution extends CoreElement, StatefulElement {
+public interface Solution extends Supporter {
 } // Solution

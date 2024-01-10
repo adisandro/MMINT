@@ -13,18 +13,26 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.modelepedia.gsn.ASIL;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
+import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
-import edu.toronto.cs.se.modelepedia.gsn.StatefulElement;
-import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
+import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
+import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
+import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Goal</b></em>'. <!-- end-user-doc -->
@@ -32,32 +40,33 @@ import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl#getStateValidity <em>State Validity</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl#getSupports <em>Supports</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl#getInContextOf <em>In Context Of</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl#getAsil <em>Asil</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class GoalImpl extends DecomposableCoreElementImpl implements Goal {
+public abstract class GoalImpl extends SupportableImpl implements Goal {
   /**
-   * The default value of the '{@link #getStateValidity() <em>State Validity</em>}' attribute.
+   * The cached value of the '{@link #getSupports() <em>Supports</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getStateValidity()
+   * @see #getSupports()
    * @generated
    * @ordered
    */
-  protected static final ValidityValue STATE_VALIDITY_EDEFAULT = ValidityValue.INVALID;
+  protected EList<SupportedBy> supports;
 
   /**
-   * The cached value of the '{@link #getStateValidity() <em>State Validity</em>}' attribute.
+   * The cached value of the '{@link #getInContextOf() <em>In Context Of</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getStateValidity()
+   * @see #getInContextOf()
    * @generated
    * @ordered
    */
-  protected ValidityValue stateValidity = GoalImpl.STATE_VALIDITY_EDEFAULT;
+  protected EList<InContextOf> inContextOf;
 
   /**
    * The cached value of the '{@link #getAsil() <em>Asil</em>}' containment reference.
@@ -87,25 +96,29 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public ValidityValue getStateValidity() {
-    return this.stateValidity;
+  public EList<SupportedBy> getSupports() {
+    if (this.supports == null) {
+      this.supports = new EObjectWithInverseResolvingEList<>(SupportedBy.class, this, GSNPackage.GOAL__SUPPORTS, GSNPackage.SUPPORTED_BY__TARGET);
+    }
+    return this.supports;
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public void setStateValidity(ValidityValue newStateValidity) {
-    var oldStateValidity = this.stateValidity;
-    this.stateValidity = newStateValidity == null ? GoalImpl.STATE_VALIDITY_EDEFAULT : newStateValidity;
-    if (eNotificationRequired()) {
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.GOAL__STATE_VALIDITY, oldStateValidity, this.stateValidity));
+  public EList<InContextOf> getInContextOf() {
+    if (this.inContextOf == null) {
+      this.inContextOf = new EObjectContainmentWithInverseEList<>(InContextOf.class, this, GSNPackage.GOAL__IN_CONTEXT_OF, GSNPackage.IN_CONTEXT_OF__CONTEXT_OF);
     }
+    return this.inContextOf;
   }
 
   /**
@@ -164,9 +177,14 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
+      case GSNPackage.GOAL__SUPPORTS:
+        return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupports()).basicAdd(otherEnd, msgs);
+      case GSNPackage.GOAL__IN_CONTEXT_OF:
+        return ((InternalEList<InternalEObject>)(InternalEList<?>)getInContextOf()).basicAdd(otherEnd, msgs);
       case GSNPackage.GOAL__ASIL:
         if (this.asil != null) {
           msgs = ((InternalEObject)this.asil).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.GOAL__ASIL, null, msgs);
@@ -183,6 +201,10 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
+      case GSNPackage.GOAL__SUPPORTS:
+        return ((InternalEList<?>)getSupports()).basicRemove(otherEnd, msgs);
+      case GSNPackage.GOAL__IN_CONTEXT_OF:
+        return ((InternalEList<?>)getInContextOf()).basicRemove(otherEnd, msgs);
       case GSNPackage.GOAL__ASIL:
         return basicSetAsil(null, msgs);
     }
@@ -196,8 +218,10 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNPackage.GOAL__STATE_VALIDITY:
-        return getStateValidity();
+      case GSNPackage.GOAL__SUPPORTS:
+        return getSupports();
+      case GSNPackage.GOAL__IN_CONTEXT_OF:
+        return getInContextOf();
       case GSNPackage.GOAL__ASIL:
         return getAsil();
     }
@@ -208,11 +232,17 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNPackage.GOAL__STATE_VALIDITY:
-        setStateValidity((ValidityValue)newValue);
+      case GSNPackage.GOAL__SUPPORTS:
+        getSupports().clear();
+        getSupports().addAll((Collection<? extends SupportedBy>)newValue);
+        return;
+      case GSNPackage.GOAL__IN_CONTEXT_OF:
+        getInContextOf().clear();
+        getInContextOf().addAll((Collection<? extends InContextOf>)newValue);
         return;
       case GSNPackage.GOAL__ASIL:
         setAsil((ASIL)newValue);
@@ -228,8 +258,11 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNPackage.GOAL__STATE_VALIDITY:
-        setStateValidity(GoalImpl.STATE_VALIDITY_EDEFAULT);
+      case GSNPackage.GOAL__SUPPORTS:
+        getSupports().clear();
+        return;
+      case GSNPackage.GOAL__IN_CONTEXT_OF:
+        getInContextOf().clear();
         return;
       case GSNPackage.GOAL__ASIL:
         setAsil((ASIL)null);
@@ -245,8 +278,10 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNPackage.GOAL__STATE_VALIDITY:
-        return this.stateValidity != GoalImpl.STATE_VALIDITY_EDEFAULT;
+      case GSNPackage.GOAL__SUPPORTS:
+        return this.supports != null && !this.supports.isEmpty();
+      case GSNPackage.GOAL__IN_CONTEXT_OF:
+        return this.inContextOf != null && !this.inContextOf.isEmpty();
       case GSNPackage.GOAL__ASIL:
         return this.asil != null;
     }
@@ -259,9 +294,15 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
    */
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-    if (baseClass == StatefulElement.class) {
+    if (baseClass == Supporter.class) {
       return switch (derivedFeatureID) {
-      case GSNPackage.GOAL__STATE_VALIDITY -> GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY;
+      case GSNPackage.GOAL__SUPPORTS -> GSNPackage.SUPPORTER__SUPPORTS;
+      default -> -1;
+      };
+    }
+    if (baseClass == ContextualizableElement.class) {
+      return switch (derivedFeatureID) {
+      case GSNPackage.GOAL__IN_CONTEXT_OF -> GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF;
       default -> -1;
       };
     }
@@ -280,9 +321,15 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
    */
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-    if (baseClass == StatefulElement.class) {
+    if (baseClass == Supporter.class) {
       return switch (baseFeatureID) {
-      case GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY -> GSNPackage.GOAL__STATE_VALIDITY;
+      case GSNPackage.SUPPORTER__SUPPORTS -> GSNPackage.GOAL__SUPPORTS;
+      default -> -1;
+      };
+    }
+    if (baseClass == ContextualizableElement.class) {
+      return switch (baseFeatureID) {
+      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF -> GSNPackage.GOAL__IN_CONTEXT_OF;
       default -> -1;
       };
     }
@@ -293,23 +340,6 @@ public abstract class GoalImpl extends DecomposableCoreElementImpl implements Go
       };
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString() {
-    if (eIsProxy()) {
-      return super.toString();
-    }
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (stateValidity: ");
-    result.append(this.stateValidity);
-    result.append(')');
-    return result.toString();
   }
 
 } // GoalImpl

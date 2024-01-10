@@ -29,13 +29,12 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase#getContexts <em>Contexts</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase#getJustifications <em>Justifications</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase#getAssumptions <em>Assumptions</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase#getConnectors <em>Connectors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase#getTemplates <em>Templates</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getSafetyCase()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SingleRoot'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot SingleRoot='Supporter.allInstances() -&gt; \n\t\t\tselect(d | d.supports.source -&gt; isEmpty()) -&gt; size() = 1'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SingleGoalRoot'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot SingleGoalRoot='let root : Set(OclAny) = Supporter.allInstances()-&gt;select(s | s.supports-&gt;isEmpty()) in\n  root-&gt;size() = 1 and root-&gt;forAll(g | g.oclIsKindOf(gsn::Goal))'"
  * @generated
  */
 public interface SafetyCase extends EObject {
@@ -104,17 +103,6 @@ public interface SafetyCase extends EObject {
    * @generated
    */
   EList<Assumption> getAssumptions();
-
-  /**
-   * Returns the value of the '<em><b>Connectors</b></em>' containment reference list.
-   * The list contents are of type {@link edu.toronto.cs.se.modelepedia.gsn.SupportConnector}.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the value of the '<em>Connectors</em>' containment reference list.
-   * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getSafetyCase_Connectors()
-   * @model containment="true"
-   * @generated
-   */
-  EList<SupportConnector> getConnectors();
 
   /**
    * Returns the value of the '<em><b>Templates</b></em>' containment reference list.

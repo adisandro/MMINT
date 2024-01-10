@@ -26,20 +26,15 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
-import edu.toronto.cs.se.modelepedia.gsn.AndSupporter;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.CoreElement;
-import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
+import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
-import edu.toronto.cs.se.modelepedia.gsn.MofNSupporter;
-import edu.toronto.cs.se.modelepedia.gsn.OrSupporter;
+import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
 import edu.toronto.cs.se.modelepedia.gsn.Solution;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
-import edu.toronto.cs.se.modelepedia.gsn.SupportConnector;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
-import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 
 public class GSNSlice extends Slice {
 
@@ -72,7 +67,7 @@ public class GSNSlice extends Slice {
   //TODO MMINT[GSN] Review, it has a view of alreadySliced at the time it's invoked
   private boolean isSupported(Supportable elem, Set<EObject> alreadySliced) {
     // If a core element is impacted, then its parents are also impacted.
-    if (elem instanceof CoreElement) {
+    if (elem instanceof Goal || elem instanceof Strategy || elem instanceof Solution) {
       return true;
     }
     // Count the number of children impacted.
@@ -85,33 +80,31 @@ public class GSNSlice extends Slice {
       if (alreadySliced.contains(target)) {
         impactCount += 1;
       }
-      else if (target instanceof SupportConnector) {
-        if (isSupported((SupportConnector) target, alreadySliced)) {
+      else if (target instanceof RelationshipDecorator decorator) {
+        if (isSupported(decorator, alreadySliced)) {
           impactCount += 1;
         }
       }
     }
-    // If an AND-connector or an XOR-connector is impacted, then its parents are
-    // impacted if any of its children are impacted.
-    if ((elem instanceof AndSupporter) || (elem instanceof XorSupporter)) {
-      if (impactCount >= 1) {
-        isPropagated = true;
-      }
-    }
-    // If an OR-connector is impacted, then its parents are
-    // impacted if all its children are impacted.
-    else if (elem instanceof OrSupporter) {
-      if (impactCount == totalCount) {
-        isPropagated = true;
-      }
-    }
-    // If an M-of-N connector is impacted, then its parents are
-    // impacted if more than (N-M) children are impacted.
-    else if (elem instanceof MofNSupporter) {
-      var target = ((MofNSupporter) elem).getTarget();
-      if (impactCount > totalCount - target) {
-        isPropagated = true;
-      }
+    if (elem instanceof RelationshipDecorator decorator) {
+      isPropagated = switch (decorator.getType()) {
+        // If an AND-connector is impacted, then its parents are
+        // impacted if any of its children are impacted.
+        case MULTIPLE -> {
+          yield (impactCount >= 1) ? true : false;
+        }
+        // If an OR-connector is impacted, then its parents are
+        // impacted if all its children are impacted.
+        case OPTIONAL -> {
+          yield (impactCount == totalCount) ? true : false;
+        }
+        // If an M-of-N connector is impacted, then its parents are
+        // impacted if more than (N-M) children are impacted.
+        case CHOICE -> {
+          yield (impactCount > (totalCount - decorator.getCardinality())) ? true : false;
+        }
+        default -> false;
+      };
     }
 
     return isPropagated;
@@ -119,7 +112,7 @@ public class GSNSlice extends Slice {
 
   /**
    * Assure18 rules: V1.parents, V2.1, V4, C1, C2.
-   * Content: visit supported (parent) connectors, slice supported strategies.
+   * Content: visit supported (parent) decorators, slice supported strategies.
    * State: visit supported (parent) elements, slice supported goals.
    */
   private SliceStep ruleSupports(Supporter modelObj, SliceInfo info) {
@@ -134,9 +127,14 @@ public class GSNSlice extends Slice {
       if (!isSupported(supported, this.allSliced.keySet())) {
         continue;
       }
-      if (!this.allVisited.containsKey(supported) && (
-            info.rule().equals("supportsState") || supported instanceof SupportConnector)) {
-        visited.merge(supported, newInfo, this.typesOrder);
+      if (!this.allVisited.containsKey(supported)) {
+        if (info.rule().equals("supportsState")) {
+          visited.merge(supported, newInfo, this.typesOrder);
+        }
+        else if (supported instanceof RelationshipDecorator decorator) {
+          visited.merge(supported, newInfo, this.typesOrder);
+          visited.merge(supported.eContainer(), newInfo, this.typesOrder);
+        }
       }
       if (!this.allSliced.containsKey(supported) && (
             (info.rule().equals("supportsState") && supported instanceof Goal) ||
@@ -150,7 +148,7 @@ public class GSNSlice extends Slice {
 
   /**
    * Assure18 rules: V1.children, V2.2.
-   * Visit supporting (children) connectors, slice supporting core elements.
+   * Visit supporting (children) decorators, slice supporting elements.
    */
   private SliceStep ruleSupportedBy(Supportable modelObj, SliceInfo info) {
     var newInfo = new SliceInfo(GSNSliceType.RECHECK_CONTENT, modelObj, "supportedBy");
@@ -159,11 +157,13 @@ public class GSNSlice extends Slice {
 
     for (var supportedBy : modelObj.getSupportedBy()) {
       var supporting = supportedBy.getTarget();
-      if (!this.allVisited.containsKey(supporting) && supporting instanceof SupportConnector) {
-        visited.merge(supporting, newInfo, this.typesOrder);
-      }
-      if (!this.allSliced.containsKey(supporting) && supporting instanceof CoreElement) {
+      if (!this.allSliced.containsKey(supporting)) {
         sliced.merge(supporting, newInfo, this.typesOrder);
+      }
+    }
+    for (var decorator : modelObj.getDecorators()) {
+      if (!this.allVisited.containsKey(decorator)) {
+        visited.merge(decorator, newInfo, this.typesOrder);
       }
     }
 
@@ -182,7 +182,7 @@ public class GSNSlice extends Slice {
       .filter(s -> !this.allSliced.containsKey(s))
       .collect(Collectors.toMap(s -> (EObject) s, s -> newInfo, this.typesOrder));
 
-    return new SliceStep(sliced, new HashMap<EObject, SliceInfo>());
+    return new SliceStep(sliced, new HashMap<>());
   }
 
   /**
@@ -211,9 +211,9 @@ public class GSNSlice extends Slice {
 
   /**
    * Assure18 rule: V3.2.
-   * Visit supporting (children) elements, slice supporting core elements and attached contexts.
+   * Visit supporting (children) elements, slice supporting elements and attached contexts.
    */
-  private SliceStep ruleSupportedByContextOf(DecomposableCoreElement modelObj, SliceInfo info) {
+  private SliceStep ruleSupportedByContextOf(Supportable modelObj, SliceInfo info) {
     var newInfo = new SliceInfo(GSNSliceType.RECHECK_CONTENT, modelObj, "supportedByContextOf");
     var visited = new HashMap<EObject, SliceInfo>();
     var sliced = new HashMap<EObject, SliceInfo>();
@@ -223,13 +223,18 @@ public class GSNSlice extends Slice {
       if (!this.allVisited.containsKey(supporting)) {
         visited.merge(supporting, newInfo, this.typesOrder);
       }
-      if (!this.allSliced.containsKey(supporting) && supporting instanceof CoreElement) {
+      if (!this.allSliced.containsKey(supporting)) {
         sliced.merge(supporting, newInfo, this.typesOrder);
-        if (supporting instanceof DecomposableCoreElement) {
-          for (var inContextOf : ((DecomposableCoreElement) supporting).getInContextOf()) {
+        if (supporting instanceof ContextualizableElement contextualizable) {
+          for (var inContextOf : contextualizable.getInContextOf()) {
             sliced.merge(inContextOf.getContext(), newInfo, this.typesOrder);
           }
         }
+      }
+    }
+    for (var decorator : modelObj.getDecorators()) {
+      if (!this.allVisited.containsKey(decorator)) {
+        visited.merge(decorator, newInfo, this.typesOrder);
       }
     }
 
@@ -242,9 +247,8 @@ public class GSNSlice extends Slice {
       case "contextOf" -> ruleContextOf((ContextualElement) modelObj, info);
       case "inContextOf" -> ruleInContextOf((Strategy) modelObj, info);
       case "supportedBy" -> ruleSupportedBy((Supportable) modelObj, info);
-      case "supportedByContextOf" -> ruleSupportedByContextOf((DecomposableCoreElement) modelObj, info);
+      case "supportedByContextOf" -> ruleSupportedByContextOf((Supportable) modelObj, info);
       case "supportsContent", "supportsState" -> ruleSupports((Supporter) modelObj, info);
-      //TODO MMINT[GSN] To add: if at the end an ASIL decomposition strategy is impacted, then its independence goal among all children is also impacted
       default -> new SliceStep();
     };
 

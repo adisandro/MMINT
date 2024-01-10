@@ -15,16 +15,22 @@ package edu.toronto.cs.se.modelepedia.gsn.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
+import edu.toronto.cs.se.modelepedia.gsn.Undeveloped;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Supportable</b></em>'. <!-- end-user-doc -->
@@ -32,12 +38,24 @@ import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportableImpl#getDecorators <em>Decorators</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportableImpl#getSupportedBy <em>Supported By</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportableImpl#getUndeveloped <em>Undeveloped</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class SupportableImpl extends SupporterImpl implements Supportable {
+public abstract class SupportableImpl extends ArgumentElementImpl implements Supportable {
+  /**
+   * The cached value of the '{@link #getDecorators() <em>Decorators</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDecorators()
+   * @generated
+   * @ordered
+   */
+  protected EList<RelationshipDecorator> decorators;
+
   /**
    * The cached value of the '{@link #getSupportedBy() <em>Supported By</em>}' containment reference list. <!--
    * begin-user-doc --> <!-- end-user-doc -->
@@ -47,6 +65,16 @@ public abstract class SupportableImpl extends SupporterImpl implements Supportab
    * @ordered
    */
   protected EList<SupportedBy> supportedBy;
+
+  /**
+   * The cached value of the '{@link #getUndeveloped() <em>Undeveloped</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getUndeveloped()
+   * @generated
+   * @ordered
+   */
+  protected Undeveloped undeveloped;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -66,6 +94,19 @@ public abstract class SupportableImpl extends SupporterImpl implements Supportab
   }
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<RelationshipDecorator> getDecorators() {
+    if (this.decorators == null) {
+      this.decorators = new EObjectContainmentEList<>(RelationshipDecorator.class, this, GSNPackage.SUPPORTABLE__DECORATORS);
+    }
+    return this.decorators;
+  }
+
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
@@ -75,6 +116,61 @@ public abstract class SupportableImpl extends SupporterImpl implements Supportab
       this.supportedBy = new EObjectContainmentWithInverseEList<>(SupportedBy.class, this, GSNPackage.SUPPORTABLE__SUPPORTED_BY, GSNPackage.SUPPORTED_BY__SOURCE);
     }
     return this.supportedBy;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Undeveloped getUndeveloped() {
+    return this.undeveloped;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetUndeveloped(Undeveloped newUndeveloped, NotificationChain msgs) {
+    var oldUndeveloped = this.undeveloped;
+    this.undeveloped = newUndeveloped;
+    if (eNotificationRequired()) {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.SUPPORTABLE__UNDEVELOPED, oldUndeveloped, newUndeveloped);
+      if (msgs == null) {
+        msgs = notification;
+      }
+      else {
+        msgs.add(notification);
+      }
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setUndeveloped(Undeveloped newUndeveloped) {
+    if (newUndeveloped != this.undeveloped) {
+      NotificationChain msgs = null;
+      if (this.undeveloped != null) {
+        msgs = ((InternalEObject)this.undeveloped).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.SUPPORTABLE__UNDEVELOPED, null, msgs);
+      }
+      if (newUndeveloped != null) {
+        msgs = ((InternalEObject)newUndeveloped).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNPackage.SUPPORTABLE__UNDEVELOPED, null, msgs);
+      }
+      msgs = basicSetUndeveloped(newUndeveloped, msgs);
+      if (msgs != null) {
+        msgs.dispatch();
+      }
+    }
+    else if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.SUPPORTABLE__UNDEVELOPED, newUndeveloped, newUndeveloped));
+    }
   }
 
   /**
@@ -98,8 +194,12 @@ public abstract class SupportableImpl extends SupporterImpl implements Supportab
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
+      case GSNPackage.SUPPORTABLE__DECORATORS:
+        return ((InternalEList<?>)getDecorators()).basicRemove(otherEnd, msgs);
       case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
         return ((InternalEList<?>)getSupportedBy()).basicRemove(otherEnd, msgs);
+      case GSNPackage.SUPPORTABLE__UNDEVELOPED:
+        return basicSetUndeveloped(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -111,8 +211,12 @@ public abstract class SupportableImpl extends SupporterImpl implements Supportab
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
+      case GSNPackage.SUPPORTABLE__DECORATORS:
+        return getDecorators();
       case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
         return getSupportedBy();
+      case GSNPackage.SUPPORTABLE__UNDEVELOPED:
+        return getUndeveloped();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -125,9 +229,16 @@ public abstract class SupportableImpl extends SupporterImpl implements Supportab
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
+      case GSNPackage.SUPPORTABLE__DECORATORS:
+        getDecorators().clear();
+        getDecorators().addAll((Collection<? extends RelationshipDecorator>)newValue);
+        return;
       case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
         getSupportedBy().clear();
         getSupportedBy().addAll((Collection<? extends SupportedBy>)newValue);
+        return;
+      case GSNPackage.SUPPORTABLE__UNDEVELOPED:
+        setUndeveloped((Undeveloped)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -140,8 +251,14 @@ public abstract class SupportableImpl extends SupporterImpl implements Supportab
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
+      case GSNPackage.SUPPORTABLE__DECORATORS:
+        getDecorators().clear();
+        return;
       case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
         getSupportedBy().clear();
+        return;
+      case GSNPackage.SUPPORTABLE__UNDEVELOPED:
+        setUndeveloped((Undeveloped)null);
         return;
     }
     super.eUnset(featureID);
@@ -154,10 +271,46 @@ public abstract class SupportableImpl extends SupporterImpl implements Supportab
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
+      case GSNPackage.SUPPORTABLE__DECORATORS:
+        return this.decorators != null && !this.decorators.isEmpty();
       case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
         return this.supportedBy != null && !this.supportedBy.isEmpty();
+      case GSNPackage.SUPPORTABLE__UNDEVELOPED:
+        return this.undeveloped != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+    if (baseClass == Decoratable.class) {
+      return switch (derivedFeatureID) {
+      case GSNPackage.SUPPORTABLE__DECORATORS -> GSNPackage.DECORATABLE__DECORATORS;
+      default -> -1;
+      };
+    }
+    return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+    if (baseClass == Decoratable.class) {
+      return switch (baseFeatureID) {
+      case GSNPackage.DECORATABLE__DECORATORS -> GSNPackage.SUPPORTABLE__DECORATORS;
+      default -> -1;
+      };
+    }
+    return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }
 
 } // SupportableImpl

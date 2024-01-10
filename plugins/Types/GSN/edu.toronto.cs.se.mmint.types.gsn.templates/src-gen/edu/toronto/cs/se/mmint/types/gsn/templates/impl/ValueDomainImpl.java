@@ -94,8 +94,9 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
   public void setValue(String newValue) {
     var oldValue = this.value;
     this.value = newValue;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.VALUE_DOMAIN__VALUE, oldValue, this.value));
+    }
   }
 
   /**
@@ -162,7 +163,9 @@ public class ValueDomainImpl extends DomainImpl implements ValueDomain {
    * @generated
    */
   public String toStringGen() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (value: ");

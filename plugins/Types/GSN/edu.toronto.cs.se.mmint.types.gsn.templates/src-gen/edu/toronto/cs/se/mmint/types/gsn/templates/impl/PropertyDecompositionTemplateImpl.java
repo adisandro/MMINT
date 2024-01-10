@@ -46,7 +46,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.util.DecompositionUtils;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
-import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
+import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
@@ -94,7 +94,7 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
   /**
    * @generated NOT
    */
-  private void createQueryContext(DecomposableCoreElement contextualized, String query, String id, int numCtx,
+  private void createQueryContext(ContextualizableElement contextualizable, String query, String id, int numCtx,
                                   Map<String, Context> contexts, EList<ArgumentElement> templateElems,
                                   GSNTemplatesBuilder builder) {
     var context = contexts.get(query);
@@ -111,7 +111,7 @@ public class PropertyDecompositionTemplateImpl extends DecompositionTemplateImpl
       templateElems.add(context);
       contexts.put(query, context);
     }
-    builder.addInContextOf(contextualized, context);
+    builder.addInContextOf(contextualizable, context);
   }
 
   /**

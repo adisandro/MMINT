@@ -62,28 +62,12 @@ public interface GSNFactory extends EFactory {
   BasicGoal createBasicGoal();
 
   /**
-   * Returns a new object of class '<em>Independence Goal</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return a new object of class '<em>Independence Goal</em>'.
-   * @generated
-   */
-  IndependenceGoal createIndependenceGoal();
-
-  /**
    * Returns a new object of class '<em>Basic Strategy</em>'.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @return a new object of class '<em>Basic Strategy</em>'.
    * @generated
    */
   BasicStrategy createBasicStrategy();
-
-  /**
-   * Returns a new object of class '<em>ASIL Decomposition Strategy</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return a new object of class '<em>ASIL Decomposition Strategy</em>'.
-   * @generated
-   */
-  ASILDecompositionStrategy createASILDecompositionStrategy();
 
   /**
    * Returns a new object of class '<em>Solution</em>'.
@@ -134,38 +118,6 @@ public interface GSNFactory extends EFactory {
   ImpactAnnotation createImpactAnnotation();
 
   /**
-   * Returns a new object of class '<em>And Supporter</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return a new object of class '<em>And Supporter</em>'.
-   * @generated
-   */
-  AndSupporter createAndSupporter();
-
-  /**
-   * Returns a new object of class '<em>Or Supporter</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return a new object of class '<em>Or Supporter</em>'.
-   * @generated
-   */
-  OrSupporter createOrSupporter();
-
-  /**
-   * Returns a new object of class '<em>Xor Supporter</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return a new object of class '<em>Xor Supporter</em>'.
-   * @generated
-   */
-  XorSupporter createXorSupporter();
-
-  /**
-   * Returns a new object of class '<em>Mof NSupporter</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return a new object of class '<em>Mof NSupporter</em>'.
-   * @generated
-   */
-  MofNSupporter createMofNSupporter();
-
-  /**
    * Returns a new object of class '<em>Template</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -173,6 +125,15 @@ public interface GSNFactory extends EFactory {
    * @generated
    */
   Template createTemplate();
+
+  /**
+   * Returns a new object of class '<em>Relationship Decorator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Relationship Decorator</em>'.
+   * @generated
+   */
+  RelationshipDecorator createRelationshipDecorator();
 
   /**
    * Returns a new object of class '<em>Undeveloped</em>'.

@@ -19,7 +19,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -38,7 +37,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Supporter;
  *
  * @generated
  */
-public abstract class SupporterImpl extends MinimalEObjectImpl.Container implements Supporter {
+public abstract class SupporterImpl extends ArgumentElementImpl implements Supporter {
   /**
    * The cached value of the '{@link #getSupports() <em>Supports</em>}' reference list.
    * <!-- begin-user-doc --> <!--

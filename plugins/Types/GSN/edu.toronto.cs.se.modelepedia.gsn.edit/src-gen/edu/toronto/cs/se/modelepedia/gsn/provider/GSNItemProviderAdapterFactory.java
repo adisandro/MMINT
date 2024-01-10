@@ -182,28 +182,6 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.IndependenceGoal} instances.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected IndependenceGoalItemProvider independenceGoalItemProvider;
-
-  /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.IndependenceGoal}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createIndependenceGoalAdapter() {
-    if (this.independenceGoalItemProvider == null) {
-      this.independenceGoalItemProvider = new IndependenceGoalItemProvider(this);
-    }
-
-    return this.independenceGoalItemProvider;
-  }
-
-  /**
    * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.BasicStrategy} instances.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -223,29 +201,6 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
     }
 
     return this.basicStrategyItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.ASILDecompositionStrategy} instances.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   */
-  protected ASILDecompositionStrategyItemProvider asilDecompositionStrategyItemProvider;
-
-  /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.ASILDecompositionStrategy}. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @generated
-   */
-  @Override
-  public Adapter createASILDecompositionStrategyAdapter() {
-    if (this.asilDecompositionStrategyItemProvider == null) {
-      this.asilDecompositionStrategyItemProvider = new ASILDecompositionStrategyItemProvider(this);
-    }
-
-    return this.asilDecompositionStrategyItemProvider;
   }
 
   /**
@@ -384,94 +339,6 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.AndSupporter} instances.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected AndSupporterItemProvider andSupporterItemProvider;
-
-  /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.AndSupporter}.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createAndSupporterAdapter() {
-    if (this.andSupporterItemProvider == null) {
-      this.andSupporterItemProvider = new AndSupporterItemProvider(this);
-    }
-
-    return this.andSupporterItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.OrSupporter} instances.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected OrSupporterItemProvider orSupporterItemProvider;
-
-  /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.OrSupporter}.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createOrSupporterAdapter() {
-    if (this.orSupporterItemProvider == null) {
-      this.orSupporterItemProvider = new OrSupporterItemProvider(this);
-    }
-
-    return this.orSupporterItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.XorSupporter} instances.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected XorSupporterItemProvider xorSupporterItemProvider;
-
-  /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.XorSupporter}.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createXorSupporterAdapter() {
-    if (this.xorSupporterItemProvider == null) {
-      this.xorSupporterItemProvider = new XorSupporterItemProvider(this);
-    }
-
-    return this.xorSupporterItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.MofNSupporter} instances.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected MofNSupporterItemProvider mofNSupporterItemProvider;
-
-  /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.MofNSupporter}.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createMofNSupporterAdapter() {
-    if (this.mofNSupporterItemProvider == null) {
-      this.mofNSupporterItemProvider = new MofNSupporterItemProvider(this);
-    }
-
-    return this.mofNSupporterItemProvider;
-  }
-
-  /**
    * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.Template} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -492,6 +359,29 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
     }
 
     return this.templateItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected RelationshipDecoratorItemProvider relationshipDecoratorItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createRelationshipDecoratorAdapter() {
+    if (this.relationshipDecoratorItemProvider == null) {
+      this.relationshipDecoratorItemProvider = new RelationshipDecoratorItemProvider(this);
+    }
+
+    return this.relationshipDecoratorItemProvider;
   }
 
   /**
@@ -656,14 +546,8 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
     if (this.basicGoalItemProvider != null) {
       this.basicGoalItemProvider.dispose();
     }
-    if (this.independenceGoalItemProvider != null) {
-      this.independenceGoalItemProvider.dispose();
-    }
     if (this.basicStrategyItemProvider != null) {
       this.basicStrategyItemProvider.dispose();
-    }
-    if (this.asilDecompositionStrategyItemProvider != null) {
-      this.asilDecompositionStrategyItemProvider.dispose();
     }
     if (this.solutionItemProvider != null) {
       this.solutionItemProvider.dispose();
@@ -677,29 +561,20 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
     if (this.assumptionItemProvider != null) {
       this.assumptionItemProvider.dispose();
     }
+    if (this.undevelopedItemProvider != null) {
+      this.undevelopedItemProvider.dispose();
+    }
     if (this.asilItemProvider != null) {
       this.asilItemProvider.dispose();
     }
     if (this.impactAnnotationItemProvider != null) {
       this.impactAnnotationItemProvider.dispose();
     }
-    if (this.andSupporterItemProvider != null) {
-      this.andSupporterItemProvider.dispose();
-    }
-    if (this.orSupporterItemProvider != null) {
-      this.orSupporterItemProvider.dispose();
-    }
-    if (this.xorSupporterItemProvider != null) {
-      this.xorSupporterItemProvider.dispose();
-    }
-    if (this.mofNSupporterItemProvider != null) {
-      this.mofNSupporterItemProvider.dispose();
-    }
     if (this.templateItemProvider != null) {
       this.templateItemProvider.dispose();
     }
-    if (this.undevelopedItemProvider != null) {
-      this.undevelopedItemProvider.dispose();
+    if (this.relationshipDecoratorItemProvider != null) {
+      this.relationshipDecoratorItemProvider.dispose();
     }
   }
 

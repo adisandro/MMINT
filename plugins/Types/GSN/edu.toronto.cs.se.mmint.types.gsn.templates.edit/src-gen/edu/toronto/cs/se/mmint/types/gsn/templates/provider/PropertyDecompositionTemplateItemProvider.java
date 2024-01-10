@@ -55,17 +55,6 @@ public class PropertyDecompositionTemplateItemProvider extends DecompositionTemp
   }
 
   /**
-   * This returns PropertyDecompositionTemplate.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object getImageGen(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyDecompositionTemplate"));
-  }
-
-  /**
    * @generated NOT
    */
   @Override

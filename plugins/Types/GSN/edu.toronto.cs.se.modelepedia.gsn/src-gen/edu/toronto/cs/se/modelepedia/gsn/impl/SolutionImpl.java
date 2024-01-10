@@ -13,47 +13,17 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Solution;
-import edu.toronto.cs.se.modelepedia.gsn.StatefulElement;
-import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Solution</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SolutionImpl#getStateValidity <em>State Validity</em>}</li>
- * </ul>
  *
  * @generated
  */
-public class SolutionImpl extends CoreElementImpl implements Solution {
-  /**
-   * The default value of the '{@link #getStateValidity() <em>State Validity</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getStateValidity()
-   * @generated
-   * @ordered
-   */
-  protected static final ValidityValue STATE_VALIDITY_EDEFAULT = ValidityValue.INVALID;
-
-  /**
-   * The cached value of the '{@link #getStateValidity() <em>State Validity</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getStateValidity()
-   * @generated
-   * @ordered
-   */
-  protected ValidityValue stateValidity = SolutionImpl.STATE_VALIDITY_EDEFAULT;
-
+public class SolutionImpl extends SupporterImpl implements Solution {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -69,129 +39,6 @@ public class SolutionImpl extends CoreElementImpl implements Solution {
   @Override
   protected EClass eStaticClass() {
     return GSNPackage.Literals.SOLUTION;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ValidityValue getStateValidity() {
-    return this.stateValidity;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setStateValidity(ValidityValue newStateValidity) {
-    var oldStateValidity = this.stateValidity;
-    this.stateValidity = newStateValidity == null ? SolutionImpl.STATE_VALIDITY_EDEFAULT : newStateValidity;
-    if (eNotificationRequired()) {
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.SOLUTION__STATE_VALIDITY, oldStateValidity, this.stateValidity));
-    }
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType) {
-    switch (featureID) {
-      case GSNPackage.SOLUTION__STATE_VALIDITY:
-        return getStateValidity();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eSet(int featureID, Object newValue) {
-    switch (featureID) {
-      case GSNPackage.SOLUTION__STATE_VALIDITY:
-        setStateValidity((ValidityValue)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID) {
-    switch (featureID) {
-      case GSNPackage.SOLUTION__STATE_VALIDITY:
-        setStateValidity(SolutionImpl.STATE_VALIDITY_EDEFAULT);
-        return;
-    }
-    super.eUnset(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID) {
-    switch (featureID) {
-      case GSNPackage.SOLUTION__STATE_VALIDITY:
-        return this.stateValidity != SolutionImpl.STATE_VALIDITY_EDEFAULT;
-    }
-    return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-    if (baseClass == StatefulElement.class) {
-      return switch (derivedFeatureID) {
-      case GSNPackage.SOLUTION__STATE_VALIDITY -> GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY;
-      default -> -1;
-      };
-    }
-    return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-    if (baseClass == StatefulElement.class) {
-      return switch (baseFeatureID) {
-      case GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY -> GSNPackage.SOLUTION__STATE_VALIDITY;
-      default -> -1;
-      };
-    }
-    return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString() {
-    if (eIsProxy()) {
-      return super.toString();
-    }
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (stateValidity: ");
-    result.append(this.stateValidity);
-    result.append(')');
-    return result.toString();
   }
 
 } // SolutionImpl

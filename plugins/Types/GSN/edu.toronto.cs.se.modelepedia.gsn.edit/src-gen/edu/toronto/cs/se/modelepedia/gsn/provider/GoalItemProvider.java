@@ -21,7 +21,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
@@ -34,7 +33,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Goal;
  * --> <!-- end-user-doc -->
  * @generated
  */
-public class GoalItemProvider extends DecomposableCoreElementItemProvider {
+public class GoalItemProvider extends SupportableItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -54,28 +53,29 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
     if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addStateValidityPropertyDescriptor(object);
+      addSupportsPropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the State Validity feature.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This adds a property descriptor for the Supports feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  protected void addStateValidityPropertyDescriptor(Object object) {
+  protected void addSupportsPropertyDescriptor(Object object) {
     this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_StatefulElement_stateValidity_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_StatefulElement_stateValidity_feature", "_UI_StatefulElement_type"),
-         GSNPackage.Literals.STATEFUL_ELEMENT__STATE_VALIDITY,
+         getString("_UI_Supporter_supports_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Supporter_supports_feature", "_UI_Supporter_type"),
+         GSNPackage.Literals.SUPPORTER__SUPPORTS,
          true,
          false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         true,
+         null,
          null,
          null));
   }
@@ -92,6 +92,7 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
+      this.childrenFeatures.add(GSNPackage.Literals.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF);
       this.childrenFeatures.add(GSNPackage.Literals.ASI_LFUL_ELEMENT__ASIL);
     }
     return this.childrenFeatures;
@@ -143,9 +144,7 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
     updateChildren(notification);
 
     switch (notification.getFeatureID(Goal.class)) {
-      case GSNPackage.GOAL__STATE_VALIDITY:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-        return;
+      case GSNPackage.GOAL__IN_CONTEXT_OF:
       case GSNPackage.GOAL__ASIL:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
@@ -162,6 +161,11 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
+
+    newChildDescriptors.add
+      (createChildParameter
+        (GSNPackage.Literals.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF,
+         GSNFactory.eINSTANCE.createInContextOf()));
 
     newChildDescriptors.add
       (createChildParameter

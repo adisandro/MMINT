@@ -37,10 +37,8 @@ import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.CoreElement;
-import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
+import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
-import edu.toronto.cs.se.modelepedia.gsn.StatefulElement;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
@@ -106,141 +104,243 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
       case GSNTemplatesPackage.DECOMPOSITION_TEMPLATE: {
         var decompositionTemplate = (DecompositionTemplate)theEObject;
         var result = caseDecompositionTemplate(decompositionTemplate);
-        if (result == null) result = caseTemplate(decompositionTemplate);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseTemplate(decompositionTemplate);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNTemplatesPackage.DOMAIN: {
         var domain = (Domain)theEObject;
         var result = caseDomain(domain);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNTemplatesPackage.INT_DOMAIN: {
         var intDomain = (IntDomain)theEObject;
         var result = caseIntDomain(intDomain);
-        if (result == null) result = caseDomain(intDomain);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseDomain(intDomain);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNTemplatesPackage.REAL_DOMAIN: {
         var realDomain = (RealDomain)theEObject;
         var result = caseRealDomain(realDomain);
-        if (result == null) result = caseDomain(realDomain);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseDomain(realDomain);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNTemplatesPackage.ENUM_DOMAIN: {
         var enumDomain = (EnumDomain)theEObject;
         var result = caseEnumDomain(enumDomain);
-        if (result == null) result = caseDomain(enumDomain);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseDomain(enumDomain);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNTemplatesPackage.VALUE_DOMAIN: {
         var valueDomain = (ValueDomain)theEObject;
         var result = caseValueDomain(valueDomain);
-        if (result == null) result = caseDomain(valueDomain);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseDomain(valueDomain);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_ELEMENT: {
         var domainDecompositionElement = (DomainDecompositionElement)theEObject;
         var result = caseDomainDecompositionElement(domainDecompositionElement);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY: {
         var domainDecompositionStrategy = (DomainDecompositionStrategy)theEObject;
         var result = caseDomainDecompositionStrategy(domainDecompositionStrategy);
-        if (result == null) result = caseStrategy(domainDecompositionStrategy);
-        if (result == null) result = caseDomainDecompositionElement(domainDecompositionStrategy);
-        if (result == null) result = caseDecomposableCoreElement(domainDecompositionStrategy);
-        if (result == null) result = caseCoreElement(domainDecompositionStrategy);
-        if (result == null) result = caseSupportable(domainDecompositionStrategy);
-        if (result == null) result = caseArgumentElement(domainDecompositionStrategy);
-        if (result == null) result = caseSupporter(domainDecompositionStrategy);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseStrategy(domainDecompositionStrategy);
+        }
+        if (result == null) {
+          result = caseDomainDecompositionElement(domainDecompositionStrategy);
+        }
+        if (result == null) {
+          result = caseSupportable(domainDecompositionStrategy);
+        }
+        if (result == null) {
+          result = caseSupporter(domainDecompositionStrategy);
+        }
+        if (result == null) {
+          result = caseContextualizableElement(domainDecompositionStrategy);
+        }
+        if (result == null) {
+          result = caseArgumentElement(domainDecompositionStrategy);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNTemplatesPackage.DOMAIN_GOAL: {
         var domainGoal = (DomainGoal)theEObject;
         var result = caseDomainGoal(domainGoal);
-        if (result == null) result = caseGoal(domainGoal);
-        if (result == null) result = caseDomainDecompositionElement(domainGoal);
-        if (result == null) result = caseDecomposableCoreElement(domainGoal);
-        if (result == null) result = caseStatefulElement(domainGoal);
-        if (result == null) result = caseASILfulElement(domainGoal);
-        if (result == null) result = caseCoreElement(domainGoal);
-        if (result == null) result = caseSupportable(domainGoal);
-        if (result == null) result = caseArgumentElement(domainGoal);
-        if (result == null) result = caseSupporter(domainGoal);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseGoal(domainGoal);
+        }
+        if (result == null) {
+          result = caseDomainDecompositionElement(domainGoal);
+        }
+        if (result == null) {
+          result = caseSupportable(domainGoal);
+        }
+        if (result == null) {
+          result = caseSupporter(domainGoal);
+        }
+        if (result == null) {
+          result = caseContextualizableElement(domainGoal);
+        }
+        if (result == null) {
+          result = caseASILfulElement(domainGoal);
+        }
+        if (result == null) {
+          result = caseArgumentElement(domainGoal);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNTemplatesPackage.DOMAIN_DECOMPOSITION_TEMPLATE: {
         var domainDecompositionTemplate = (DomainDecompositionTemplate)theEObject;
         var result = caseDomainDecompositionTemplate(domainDecompositionTemplate);
-        if (result == null) result = caseDecompositionTemplate(domainDecompositionTemplate);
-        if (result == null) result = caseTemplate(domainDecompositionTemplate);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseDecompositionTemplate(domainDecompositionTemplate);
+        }
+        if (result == null) {
+          result = caseTemplate(domainDecompositionTemplate);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNTemplatesPackage.PROPERTY: {
         var property = (Property)theEObject;
         var result = caseProperty(property);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_ELEMENT: {
         var propertyDecompositionElement = (PropertyDecompositionElement)theEObject;
         var result = casePropertyDecompositionElement(propertyDecompositionElement);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_STRATEGY: {
         var propertyDecompositionStrategy = (PropertyDecompositionStrategy)theEObject;
         var result = casePropertyDecompositionStrategy(propertyDecompositionStrategy);
-        if (result == null) result = caseStrategy(propertyDecompositionStrategy);
-        if (result == null) result = casePropertyDecompositionElement(propertyDecompositionStrategy);
-        if (result == null) result = caseDecomposableCoreElement(propertyDecompositionStrategy);
-        if (result == null) result = caseCoreElement(propertyDecompositionStrategy);
-        if (result == null) result = caseSupportable(propertyDecompositionStrategy);
-        if (result == null) result = caseArgumentElement(propertyDecompositionStrategy);
-        if (result == null) result = caseSupporter(propertyDecompositionStrategy);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseStrategy(propertyDecompositionStrategy);
+        }
+        if (result == null) {
+          result = casePropertyDecompositionElement(propertyDecompositionStrategy);
+        }
+        if (result == null) {
+          result = caseSupportable(propertyDecompositionStrategy);
+        }
+        if (result == null) {
+          result = caseSupporter(propertyDecompositionStrategy);
+        }
+        if (result == null) {
+          result = caseContextualizableElement(propertyDecompositionStrategy);
+        }
+        if (result == null) {
+          result = caseArgumentElement(propertyDecompositionStrategy);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNTemplatesPackage.PROPERTY_GOAL: {
         var propertyGoal = (PropertyGoal)theEObject;
         var result = casePropertyGoal(propertyGoal);
-        if (result == null) result = caseGoal(propertyGoal);
-        if (result == null) result = casePropertyDecompositionElement(propertyGoal);
-        if (result == null) result = caseDecomposableCoreElement(propertyGoal);
-        if (result == null) result = caseStatefulElement(propertyGoal);
-        if (result == null) result = caseASILfulElement(propertyGoal);
-        if (result == null) result = caseCoreElement(propertyGoal);
-        if (result == null) result = caseSupportable(propertyGoal);
-        if (result == null) result = caseArgumentElement(propertyGoal);
-        if (result == null) result = caseSupporter(propertyGoal);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseGoal(propertyGoal);
+        }
+        if (result == null) {
+          result = casePropertyDecompositionElement(propertyGoal);
+        }
+        if (result == null) {
+          result = caseSupportable(propertyGoal);
+        }
+        if (result == null) {
+          result = caseSupporter(propertyGoal);
+        }
+        if (result == null) {
+          result = caseContextualizableElement(propertyGoal);
+        }
+        if (result == null) {
+          result = caseASILfulElement(propertyGoal);
+        }
+        if (result == null) {
+          result = caseArgumentElement(propertyGoal);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_TEMPLATE: {
         var propertyDecompositionTemplate = (PropertyDecompositionTemplate)theEObject;
         var result = casePropertyDecompositionTemplate(propertyDecompositionTemplate);
-        if (result == null) result = caseDecompositionTemplate(propertyDecompositionTemplate);
-        if (result == null) result = caseTemplate(propertyDecompositionTemplate);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseDecompositionTemplate(propertyDecompositionTemplate);
+        }
+        if (result == null) {
+          result = caseTemplate(propertyDecompositionTemplate);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case GSNTemplatesPackage.FILES_CONTEXT: {
         var filesContext = (FilesContext)theEObject;
         var result = caseFilesContext(filesContext);
-        if (result == null) result = caseContext(filesContext);
-        if (result == null) result = caseContextualElement(filesContext);
-        if (result == null) result = caseArgumentElement(filesContext);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null) {
+          result = caseContext(filesContext);
+        }
+        if (result == null) {
+          result = caseContextualElement(filesContext);
+        }
+        if (result == null) {
+          result = caseArgumentElement(filesContext);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       default: return defaultCase(theEObject);
@@ -503,6 +603,21 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Contextualizable Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Contextualizable Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseContextualizableElement(ContextualizableElement object) {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Supportable</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -533,36 +648,6 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Core Element</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Core Element</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseCoreElement(CoreElement object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Decomposable Core Element</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Decomposable Core Element</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDecomposableCoreElement(DecomposableCoreElement object) {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Strategy</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -574,21 +659,6 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseStrategy(Strategy object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Stateful Element</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Stateful Element</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseStatefulElement(StatefulElement object) {
     return null;
   }
 

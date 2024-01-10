@@ -38,10 +38,8 @@ import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.CoreElement;
-import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
+import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
-import edu.toronto.cs.se.modelepedia.gsn.StatefulElement;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
@@ -176,28 +174,20 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
         return createArgumentElementAdapter();
       }
       @Override
-      public Adapter caseSupporter(Supporter object) {
-        return createSupporterAdapter();
-      }
-      @Override
-      public Adapter caseCoreElement(CoreElement object) {
-        return createCoreElementAdapter();
-      }
-      @Override
       public Adapter caseSupportable(Supportable object) {
         return createSupportableAdapter();
       }
       @Override
-      public Adapter caseDecomposableCoreElement(DecomposableCoreElement object) {
-        return createDecomposableCoreElementAdapter();
+      public Adapter caseSupporter(Supporter object) {
+        return createSupporterAdapter();
+      }
+      @Override
+      public Adapter caseContextualizableElement(ContextualizableElement object) {
+        return createContextualizableElementAdapter();
       }
       @Override
       public Adapter caseStrategy(Strategy object) {
         return createStrategyAdapter();
-      }
-      @Override
-      public Adapter caseStatefulElement(StatefulElement object) {
-        return createStatefulElementAdapter();
       }
       @Override
       public Adapter caseASILfulElement(ASILfulElement object) {
@@ -474,6 +464,20 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement <em>Contextualizable Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement
+   * @generated
+   */
+  public Adapter createContextualizableElementAdapter() {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.Supportable <em>Supportable</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -502,34 +506,6 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.CoreElement <em>Core Element</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.CoreElement
-   * @generated
-   */
-  public Adapter createCoreElementAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement <em>Decomposable Core Element</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement
-   * @generated
-   */
-  public Adapter createDecomposableCoreElementAdapter() {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.Strategy <em>Strategy</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -540,20 +516,6 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createStrategyAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.StatefulElement <em>Stateful Element</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.StatefulElement
-   * @generated
-   */
-  public Adapter createStatefulElementAdapter() {
     return null;
   }
 

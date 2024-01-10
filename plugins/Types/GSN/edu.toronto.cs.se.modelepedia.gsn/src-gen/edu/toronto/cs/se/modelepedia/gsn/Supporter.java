@@ -14,7 +14,6 @@
 package edu.toronto.cs.se.modelepedia.gsn;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Supporter</b></em>'. <!-- end-user-doc -->
@@ -28,11 +27,9 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getSupporter()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='GoalRoot'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot GoalRoot='self.supports.source -&gt; isEmpty() implies self.oclIsTypeOf(BasicGoal)'"
  * @generated
  */
-public interface Supporter extends EObject {
+public interface Supporter extends ArgumentElement {
   /**
    * Returns the value of the '<em><b>Supports</b></em>' reference list.
    * The list contents are of type {@link edu.toronto.cs.se.modelepedia.gsn.SupportedBy}.

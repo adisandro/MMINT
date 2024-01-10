@@ -31,7 +31,6 @@ import edu.toronto.cs.se.modelepedia.gsn.Justification;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Solution;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
-import edu.toronto.cs.se.modelepedia.gsn.SupportConnector;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 
 /**
@@ -46,7 +45,6 @@ import edu.toronto.cs.se.modelepedia.gsn.Template;
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SafetyCaseImpl#getContexts <em>Contexts</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SafetyCaseImpl#getJustifications <em>Justifications</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SafetyCaseImpl#getAssumptions <em>Assumptions</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SafetyCaseImpl#getConnectors <em>Connectors</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SafetyCaseImpl#getTemplates <em>Templates</em>}</li>
  * </ul>
  *
@@ -112,16 +110,6 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
    * @ordered
    */
   protected EList<Assumption> assumptions;
-
-  /**
-   * The cached value of the '{@link #getConnectors() <em>Connectors</em>}' containment reference list. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @see #getConnectors()
-   * @generated
-   * @ordered
-   */
-  protected EList<SupportConnector> connectors;
 
   /**
    * The cached value of the '{@link #getTemplates() <em>Templates</em>}' containment reference list.
@@ -223,18 +211,6 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EList<SupportConnector> getConnectors() {
-    if (this.connectors == null) {
-      this.connectors = new EObjectContainmentEList<>(SupportConnector.class, this, GSNPackage.SAFETY_CASE__CONNECTORS);
-    }
-    return this.connectors;
-  }
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -266,8 +242,6 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
         return ((InternalEList<?>)getJustifications()).basicRemove(otherEnd, msgs);
       case GSNPackage.SAFETY_CASE__ASSUMPTIONS:
         return ((InternalEList<?>)getAssumptions()).basicRemove(otherEnd, msgs);
-      case GSNPackage.SAFETY_CASE__CONNECTORS:
-        return ((InternalEList<?>)getConnectors()).basicRemove(otherEnd, msgs);
       case GSNPackage.SAFETY_CASE__TEMPLATES:
         return ((InternalEList<?>)getTemplates()).basicRemove(otherEnd, msgs);
     }
@@ -293,8 +267,6 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
         return getJustifications();
       case GSNPackage.SAFETY_CASE__ASSUMPTIONS:
         return getAssumptions();
-      case GSNPackage.SAFETY_CASE__CONNECTORS:
-        return getConnectors();
       case GSNPackage.SAFETY_CASE__TEMPLATES:
         return getTemplates();
     }
@@ -333,10 +305,6 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
         getAssumptions().clear();
         getAssumptions().addAll((Collection<? extends Assumption>)newValue);
         return;
-      case GSNPackage.SAFETY_CASE__CONNECTORS:
-        getConnectors().clear();
-        getConnectors().addAll((Collection<? extends SupportConnector>)newValue);
-        return;
       case GSNPackage.SAFETY_CASE__TEMPLATES:
         getTemplates().clear();
         getTemplates().addAll((Collection<? extends Template>)newValue);
@@ -370,9 +338,6 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
       case GSNPackage.SAFETY_CASE__ASSUMPTIONS:
         getAssumptions().clear();
         return;
-      case GSNPackage.SAFETY_CASE__CONNECTORS:
-        getConnectors().clear();
-        return;
       case GSNPackage.SAFETY_CASE__TEMPLATES:
         getTemplates().clear();
         return;
@@ -399,8 +364,6 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
         return this.justifications != null && !this.justifications.isEmpty();
       case GSNPackage.SAFETY_CASE__ASSUMPTIONS:
         return this.assumptions != null && !this.assumptions.isEmpty();
-      case GSNPackage.SAFETY_CASE__CONNECTORS:
-        return this.connectors != null && !this.connectors.isEmpty();
       case GSNPackage.SAFETY_CASE__TEMPLATES:
         return this.templates != null && !this.templates.isEmpty();
     }

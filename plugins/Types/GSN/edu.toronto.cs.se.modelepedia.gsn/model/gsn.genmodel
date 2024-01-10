@@ -16,16 +16,16 @@
       <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ASILLevel/A"/>
       <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ASILLevel/QM"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="gsn.ecore#//ValidityValue">
-      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ValidityValue/Invalid"/>
-      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ValidityValue/Valid"/>
-      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ValidityValue/Undetermined"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="gsn.ecore#//ImpactType">
       <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ImpactType/Revise"/>
       <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ImpactType/RecheckContent"/>
       <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ImpactType/RecheckState"/>
       <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ImpactType/Reuse"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="gsn.ecore#//DecoratorType">
+      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//DecoratorType/MULTIPLE"/>
+      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//DecoratorType/OPTIONAL"/>
+      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//DecoratorType/CHOICE"/>
     </genEnums>
     <genDataTypes ecoreDataType="gsn.ecore#//Exception"/>
     <genDataTypes ecoreDataType="gsn.ecore#//GSNBuilder"/>
@@ -36,7 +36,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/contexts"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/justifications"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/assumptions"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/connectors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/templates"/>
     </genClasses>
     <genClasses image="false" ecoreClass="gsn.ecore#//ArgumentElement">
@@ -48,38 +47,42 @@
       <genOperations ecoreOperation="gsn.ecore#//ArgumentElement/validate"/>
       <genOperations ecoreOperation="gsn.ecore#//ArgumentElement/instantiate"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="gsn.ecore#//StatefulElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//StatefulElement/stateValidity"/>
+    <genClasses image="false" ecoreClass="gsn.ecore#//Decoratable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//Decoratable/decorators"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="gsn.ecore#//ASILfulElement">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//ASILfulElement/asil"/>
+    <genClasses ecoreClass="gsn.ecore#//Supportable">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//Supportable/supportedBy"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//Supportable/undeveloped"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="gsn.ecore#//CoreElement"/>
-    <genClasses image="false" ecoreClass="gsn.ecore#//DecomposableCoreElement">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//DecomposableCoreElement/inContextOf"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//DecomposableCoreElement/undeveloped"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="gsn.ecore#//ContextualElement">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//ContextualElement/contextOf"/>
+    <genClasses ecoreClass="gsn.ecore#//Supporter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//Supporter/supports"/>
     </genClasses>
     <genClasses ecoreClass="gsn.ecore#//SupportedBy">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference gsn.ecore#//SupportedBy/source"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//SupportedBy/target"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="gsn.ecore#//ContextualizableElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//ContextualizableElement/inContextOf"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="gsn.ecore#//ContextualElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//ContextualElement/contextOf"/>
+    </genClasses>
     <genClasses ecoreClass="gsn.ecore#//InContextOf">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//InContextOf/context"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference gsn.ecore#//InContextOf/contextOf"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="gsn.ecore#//ASILfulElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//ASILfulElement/asil"/>
+    </genClasses>
     <genClasses ecoreClass="gsn.ecore#//Goal"/>
     <genClasses ecoreClass="gsn.ecore#//BasicGoal"/>
-    <genClasses ecoreClass="gsn.ecore#//IndependenceGoal"/>
     <genClasses ecoreClass="gsn.ecore#//Strategy"/>
     <genClasses ecoreClass="gsn.ecore#//BasicStrategy"/>
-    <genClasses ecoreClass="gsn.ecore#//ASILDecompositionStrategy"/>
     <genClasses ecoreClass="gsn.ecore#//Solution"/>
     <genClasses ecoreClass="gsn.ecore#//Context"/>
     <genClasses ecoreClass="gsn.ecore#//Justification"/>
     <genClasses ecoreClass="gsn.ecore#//Assumption"/>
+    <genClasses ecoreClass="gsn.ecore#//Undeveloped"/>
     <genClasses ecoreClass="gsn.ecore#//ASIL">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//ASIL/value"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference gsn.ecore#//ASIL/target"/>
@@ -88,19 +91,6 @@
     <genClasses ecoreClass="gsn.ecore#//ImpactAnnotation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//ImpactAnnotation/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//ImpactAnnotation/source"/>
-    </genClasses>
-    <genClasses ecoreClass="gsn.ecore#//Supportable">
-      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//Supportable/supportedBy"/>
-    </genClasses>
-    <genClasses ecoreClass="gsn.ecore#//Supporter">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//Supporter/supports"/>
-    </genClasses>
-    <genClasses ecoreClass="gsn.ecore#//SupportConnector"/>
-    <genClasses ecoreClass="gsn.ecore#//AndSupporter"/>
-    <genClasses ecoreClass="gsn.ecore#//OrSupporter"/>
-    <genClasses ecoreClass="gsn.ecore#//XorSupporter"/>
-    <genClasses ecoreClass="gsn.ecore#//MofNSupporter">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//MofNSupporter/target"/>
     </genClasses>
     <genClasses image="false" ecoreClass="gsn.ecore#//Template">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//Template/elements"/>
@@ -111,6 +101,9 @@
       </genOperations>
       <genOperations ecoreOperation="gsn.ecore#//Template/instantiate"/>
     </genClasses>
-    <genClasses ecoreClass="gsn.ecore#//Undeveloped"/>
+    <genClasses ecoreClass="gsn.ecore#//RelationshipDecorator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//RelationshipDecorator/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//RelationshipDecorator/cardinality"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

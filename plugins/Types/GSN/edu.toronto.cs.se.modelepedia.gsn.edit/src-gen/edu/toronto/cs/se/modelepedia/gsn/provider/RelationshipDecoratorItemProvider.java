@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017, 2024 Alessio Di Sandro, Nick Fung.
+ * Copyright (c) 2024, 2024 Alessio Di Sandro.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,9 +9,9 @@
  *
  * Contributors:
  *     Alessio Di Sandro - Implementation
- *     Nick Fung - Implementation
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.provider;
+
 
 import java.util.Collection;
 import java.util.List;
@@ -21,31 +21,34 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.Strategy;
+import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.Strategy} object. <!--
- * begin-user-doc --> <!-- end-user-doc -->
- *
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator} object.
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * @generated
  */
-public class StrategyItemProvider extends SupportableItemProvider {
+public class RelationshipDecoratorItemProvider extends SupportableItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  public StrategyItemProvider(AdapterFactory adapterFactory) {
+  public RelationshipDecoratorItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
   /**
    * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -53,29 +56,52 @@ public class StrategyItemProvider extends SupportableItemProvider {
     if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addSupportsPropertyDescriptor(object);
+      addTypePropertyDescriptor(object);
+      addCardinalityPropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Supports feature.
+   * This adds a property descriptor for the Type feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addSupportsPropertyDescriptor(Object object) {
+  protected void addTypePropertyDescriptor(Object object) {
     this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_Supporter_supports_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Supporter_supports_feature", "_UI_Supporter_type"),
-         GSNPackage.Literals.SUPPORTER__SUPPORTS,
+         getString("_UI_RelationshipDecorator_type_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_RelationshipDecorator_type_feature", "_UI_RelationshipDecorator_type"),
+         GSNPackage.Literals.RELATIONSHIP_DECORATOR__TYPE,
          true,
          false,
-         true,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
          null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Cardinality feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addCardinalityPropertyDescriptor(Object object) {
+    this.itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_RelationshipDecorator_cardinality_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_RelationshipDecorator_cardinality_feature", "_UI_RelationshipDecorator_type"),
+         GSNPackage.Literals.RELATIONSHIP_DECORATOR__CARDINALITY,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
          null,
          null));
   }
@@ -111,40 +137,48 @@ public class StrategyItemProvider extends SupportableItemProvider {
   }
 
   /**
-   * This returns Strategy.gif.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This returns RelationshipDecorator.gif.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/Strategy"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/RelationshipDecorator"));
   }
 
   /**
    * This returns the label text for the adapted class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public String getText(Object object) {
-    var label = ((Strategy)object).getId();
+    var label = ((RelationshipDecorator)object).getId();
     return label == null || label.length() == 0 ?
-      getString("_UI_Strategy_type") :
-      getString("_UI_Strategy_type") + " " + label;
+      getString("_UI_RelationshipDecorator_type") :
+      getString("_UI_RelationshipDecorator_type") + " " + label;
   }
+
 
   /**
    * This handles model notifications by calling {@link #updateChildren} to update any cached
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(Strategy.class)) {
-      case GSNPackage.STRATEGY__IN_CONTEXT_OF:
+    switch (notification.getFeatureID(RelationshipDecorator.class)) {
+      case GSNPackage.RELATIONSHIP_DECORATOR__TYPE:
+      case GSNPackage.RELATIONSHIP_DECORATOR__CARDINALITY:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        return;
+      case GSNPackage.RELATIONSHIP_DECORATOR__IN_CONTEXT_OF:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
     }
@@ -154,7 +188,8 @@ public class StrategyItemProvider extends SupportableItemProvider {
   /**
    * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
    * that can be created under this object.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override

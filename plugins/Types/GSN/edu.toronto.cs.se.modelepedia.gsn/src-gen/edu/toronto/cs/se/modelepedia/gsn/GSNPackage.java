@@ -130,22 +130,13 @@ public interface GSNPackage extends EPackage {
   int SAFETY_CASE__ASSUMPTIONS = 5;
 
   /**
-   * The feature id for the '<em><b>Connectors</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SAFETY_CASE__CONNECTORS = 6;
-
-  /**
    * The feature id for the '<em><b>Templates</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SAFETY_CASE__TEMPLATES = 7;
+  int SAFETY_CASE__TEMPLATES = 6;
 
   /**
    * The number of structural features of the '<em>Safety Case</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -154,7 +145,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SAFETY_CASE_FEATURE_COUNT = 8;
+  int SAFETY_CASE_FEATURE_COUNT = 7;
 
   /**
    * The number of operations of the '<em>Safety Case</em>' class.
@@ -252,38 +243,41 @@ public interface GSNPackage extends EPackage {
   int ARGUMENT_ELEMENT_OPERATION_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.StatefulElementImpl <em>Stateful Element</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.StatefulElementImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getStatefulElement()
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecoratableImpl <em>Decoratable</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.DecoratableImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDecoratable()
    * @generated
    */
-  int STATEFUL_ELEMENT = 2;
+  int DECORATABLE = 2;
 
   /**
-   * The feature id for the '<em><b>State Validity</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The feature id for the '<em><b>Decorators</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STATEFUL_ELEMENT__STATE_VALIDITY = 0;
+  int DECORATABLE__DECORATORS = 0;
 
   /**
-   * The number of structural features of the '<em>Stateful Element</em>' class.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The number of structural features of the '<em>Decoratable</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STATEFUL_ELEMENT_FEATURE_COUNT = 1;
+  int DECORATABLE_FEATURE_COUNT = 1;
 
   /**
-   * The number of operations of the '<em>Stateful Element</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The number of operations of the '<em>Decoratable</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STATEFUL_ELEMENT_OPERATION_COUNT = 0;
+  int DECORATABLE_OPERATION_COUNT = 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ASILfulElementImpl <em>ASI Lful Element</em>}' class.
@@ -292,127 +286,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getASILfulElement()
    * @generated
    */
-  int ASI_LFUL_ELEMENT = 3;
-
-  /**
-   * The feature id for the '<em><b>Asil</b></em>' containment reference.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASI_LFUL_ELEMENT__ASIL = 0;
-
-  /**
-   * The number of structural features of the '<em>ASI Lful Element</em>' class.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASI_LFUL_ELEMENT_FEATURE_COUNT = 1;
-
-  /**
-   * The number of operations of the '<em>ASI Lful Element</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASI_LFUL_ELEMENT_OPERATION_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.CoreElementImpl <em>Core Element</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.CoreElementImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getCoreElement()
-   * @generated
-   */
-  int CORE_ELEMENT = 4;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CORE_ELEMENT__ID = GSNPackage.ARGUMENT_ELEMENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CORE_ELEMENT__DESCRIPTION = GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int CORE_ELEMENT__STATUS = GSNPackage.ARGUMENT_ELEMENT__STATUS;
-
-  /**
-   * The feature id for the '<em><b>Templates</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CORE_ELEMENT__TEMPLATES = GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
-
-  /**
-   * The feature id for the '<em><b>Valid</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CORE_ELEMENT__VALID = GSNPackage.ARGUMENT_ELEMENT__VALID;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CORE_ELEMENT__SUPPORTS = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Core Element</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int CORE_ELEMENT_FEATURE_COUNT = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 1;
-
-  /**
-   * The operation id for the '<em>Validate</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CORE_ELEMENT___VALIDATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE;
-
-  /**
-   * The operation id for the '<em>Instantiate</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CORE_ELEMENT___INSTANTIATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE;
-
-  /**
-   * The number of operations of the '<em>Core Element</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CORE_ELEMENT_OPERATION_COUNT = GSNPackage.ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
+  int ASI_LFUL_ELEMENT = 9;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupporterImpl <em>Supporter</em>}' class.
@@ -421,7 +295,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getSupporter()
    * @generated
    */
-  int SUPPORTER = 22;
+  int SUPPORTER = 4;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportableImpl <em>Supportable</em>}' class.
@@ -430,41 +304,34 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getSupportable()
    * @generated
    */
-  int SUPPORTABLE = 21;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecomposableCoreElementImpl <em>Decomposable Core Element</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.DecomposableCoreElementImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDecomposableCoreElement()
-   * @generated
-   */
-  int DECOMPOSABLE_CORE_ELEMENT = 5;
+  int SUPPORTABLE = 3;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT__ID = GSNPackage.CORE_ELEMENT__ID;
+  int SUPPORTABLE__ID = GSNPackage.ARGUMENT_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION = GSNPackage.CORE_ELEMENT__DESCRIPTION;
+  int SUPPORTABLE__DESCRIPTION = GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
+   * The feature id for the '<em><b>Status</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT__STATUS = GSNPackage.CORE_ELEMENT__STATUS;
+  int SUPPORTABLE__STATUS = GSNPackage.ARGUMENT_ELEMENT__STATUS;
 
   /**
    * The feature id for the '<em><b>Templates</b></em>' reference list.
@@ -473,7 +340,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT__TEMPLATES = GSNPackage.CORE_ELEMENT__TEMPLATES;
+  int SUPPORTABLE__TEMPLATES = GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -482,78 +349,16 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT__VALID = GSNPackage.CORE_ELEMENT__VALID;
+  int SUPPORTABLE__VALID = GSNPackage.ARGUMENT_ELEMENT__VALID;
 
   /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DECOMPOSABLE_CORE_ELEMENT__SUPPORTS = GSNPackage.CORE_ELEMENT__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY = GSNPackage.CORE_ELEMENT_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF = GSNPackage.CORE_ELEMENT_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
+   * The feature id for the '<em><b>Decorators</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED = GSNPackage.CORE_ELEMENT_FEATURE_COUNT + 2;
-
-  /**
-   * The number of structural features of the '<em>Decomposable Core Element</em>' class.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT = GSNPackage.CORE_ELEMENT_FEATURE_COUNT + 3;
-
-  /**
-   * The operation id for the '<em>Validate</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DECOMPOSABLE_CORE_ELEMENT___VALIDATE = GSNPackage.CORE_ELEMENT___VALIDATE;
-
-  /**
-   * The operation id for the '<em>Instantiate</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DECOMPOSABLE_CORE_ELEMENT___INSTANTIATE = GSNPackage.CORE_ELEMENT___INSTANTIATE;
-
-  /**
-   * The number of operations of the '<em>Decomposable Core Element</em>' class.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DECOMPOSABLE_CORE_ELEMENT_OPERATION_COUNT = GSNPackage.CORE_ELEMENT_OPERATION_COUNT + 0;
+  int SUPPORTABLE__DECORATORS = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualElementImpl <em>Contextual Element</em>}' class.
@@ -562,7 +367,399 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getContextualElement()
    * @generated
    */
-  int CONTEXTUAL_ELEMENT = 6;
+  int CONTEXTUAL_ELEMENT = 7;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportedByImpl <em>Supported By</em>}' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.SupportedByImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getSupportedBy()
+   * @generated
+   */
+  int SUPPORTED_BY = 5;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableElementImpl <em>Contextualizable Element</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableElementImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getContextualizableElement()
+   * @generated
+   */
+  int CONTEXTUALIZABLE_ELEMENT = 6;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.InContextOfImpl <em>In Context Of</em>}' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.InContextOfImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getInContextOf()
+   * @generated
+   */
+  int IN_CONTEXT_OF = 8;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl <em>Goal</em>}' class. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getGoal()
+   * @generated
+   */
+  int GOAL = 10;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.BasicGoalImpl <em>Basic Goal</em>}' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.BasicGoalImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getBasicGoal()
+   * @generated
+   */
+  int BASIC_GOAL = 11;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl <em>Strategy</em>}' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getStrategy()
+   * @generated
+   */
+  int STRATEGY = 12;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.BasicStrategyImpl <em>Basic Strategy</em>}' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.BasicStrategyImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getBasicStrategy()
+   * @generated
+   */
+  int BASIC_STRATEGY = 13;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SolutionImpl <em>Solution</em>}' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.SolutionImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getSolution()
+   * @generated
+   */
+  int SOLUTION = 14;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextImpl <em>Context</em>}' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.ContextImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getContext()
+   * @generated
+   */
+  int CONTEXT = 15;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.JustificationImpl <em>Justification</em>}' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.JustificationImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getJustification()
+   * @generated
+   */
+  int JUSTIFICATION = 16;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.AssumptionImpl <em>Assumption</em>}' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.AssumptionImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getAssumption()
+   * @generated
+   */
+  int ASSUMPTION = 17;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ASILImpl <em>ASIL</em>}' class. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   *
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.ASILImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getASIL()
+   * @generated
+   */
+  int ASIL = 19;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ImpactAnnotationImpl <em>Impact Annotation</em>}' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.ImpactAnnotationImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getImpactAnnotation()
+   * @generated
+   */
+  int IMPACT_ANNOTATION = 20;
+
+  /**
+   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
+   * <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTABLE__SUPPORTED_BY = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTABLE__UNDEVELOPED = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Supportable</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
+   *
+   * @generated
+   * @ordered
+   */
+  int SUPPORTABLE_FEATURE_COUNT = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 3;
+
+  /**
+   * The operation id for the '<em>Validate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTABLE___VALIDATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE;
+
+  /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTABLE___INSTANTIATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE;
+
+  /**
+   * The number of operations of the '<em>Supportable</em>' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTABLE_OPERATION_COUNT = GSNPackage.ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTER__ID = GSNPackage.ARGUMENT_ELEMENT__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTER__DESCRIPTION = GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Status</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTER__STATUS = GSNPackage.ARGUMENT_ELEMENT__STATUS;
+
+  /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTER__TEMPLATES = GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
+
+  /**
+   * The feature id for the '<em><b>Valid</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTER__VALID = GSNPackage.ARGUMENT_ELEMENT__VALID;
+
+  /**
+   * The feature id for the '<em><b>Supports</b></em>' reference list.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTER__SUPPORTS = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Supporter</em>' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTER_FEATURE_COUNT = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The operation id for the '<em>Validate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTER___VALIDATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE;
+
+  /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTER___INSTANTIATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE;
+
+  /**
+   * The number of operations of the '<em>Supporter</em>' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTER_OPERATION_COUNT = GSNPackage.ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Source</b></em>' container reference.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTED_BY__SOURCE = 0;
+
+  /**
+   * The feature id for the '<em><b>Target</b></em>' reference.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTED_BY__TARGET = 1;
+
+  /**
+   * The number of structural features of the '<em>Supported By</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
+   *
+   * @generated
+   * @ordered
+   */
+  int SUPPORTED_BY_FEATURE_COUNT = 2;
+
+  /**
+   * The number of operations of the '<em>Supported By</em>' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTED_BY_OPERATION_COUNT = 0;
+
+  /**
+   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXTUALIZABLE_ELEMENT__ID = GSNPackage.ARGUMENT_ELEMENT__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXTUALIZABLE_ELEMENT__DESCRIPTION = GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Status</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXTUALIZABLE_ELEMENT__STATUS = GSNPackage.ARGUMENT_ELEMENT__STATUS;
+
+  /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXTUALIZABLE_ELEMENT__TEMPLATES = GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
+
+  /**
+   * The feature id for the '<em><b>Valid</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXTUALIZABLE_ELEMENT__VALID = GSNPackage.ARGUMENT_ELEMENT__VALID;
+
+  /**
+   * The feature id for the '<em><b>Decorators</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXTUALIZABLE_ELEMENT__DECORATORS = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Contextualizable Element</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXTUALIZABLE_ELEMENT_FEATURE_COUNT = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 2;
+
+  /**
+   * The operation id for the '<em>Validate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXTUALIZABLE_ELEMENT___VALIDATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE;
+
+  /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXTUALIZABLE_ELEMENT___INSTANTIATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE;
+
+  /**
+   * The number of operations of the '<em>Contextualizable Element</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXTUALIZABLE_ELEMENT_OPERATION_COUNT = GSNPackage.ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -651,57 +848,6 @@ public interface GSNPackage extends EPackage {
   int CONTEXTUAL_ELEMENT_OPERATION_COUNT = GSNPackage.ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportedByImpl <em>Supported By</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.SupportedByImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getSupportedBy()
-   * @generated
-   */
-  int SUPPORTED_BY = 7;
-
-  /**
-   * The feature id for the '<em><b>Source</b></em>' container reference.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUPPORTED_BY__SOURCE = 0;
-
-  /**
-   * The feature id for the '<em><b>Target</b></em>' reference.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUPPORTED_BY__TARGET = 1;
-
-  /**
-   * The number of structural features of the '<em>Supported By</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int SUPPORTED_BY_FEATURE_COUNT = 2;
-
-  /**
-   * The number of operations of the '<em>Supported By</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUPPORTED_BY_OPERATION_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.InContextOfImpl <em>In Context Of</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.InContextOfImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getInContextOf()
-   * @generated
-   */
-  int IN_CONTEXT_OF = 8;
-
-  /**
    * The feature id for the '<em><b>Context</b></em>' reference.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -736,14 +882,29 @@ public interface GSNPackage extends EPackage {
   int IN_CONTEXT_OF_OPERATION_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl <em>Goal</em>}' class. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getGoal()
+   * The feature id for the '<em><b>Asil</b></em>' containment reference.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
+   * @ordered
    */
-  int GOAL = 9;
+  int ASI_LFUL_ELEMENT__ASIL = 0;
+
+  /**
+   * The number of structural features of the '<em>ASI Lful Element</em>' class.
+   * <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASI_LFUL_ELEMENT_FEATURE_COUNT = 1;
+
+  /**
+   * The number of operations of the '<em>ASI Lful Element</em>' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASI_LFUL_ELEMENT_OPERATION_COUNT = 0;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -751,7 +912,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL__ID = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__ID;
+  int GOAL__ID = GSNPackage.SUPPORTABLE__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -759,7 +920,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL__DESCRIPTION = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION;
+  int GOAL__DESCRIPTION = GSNPackage.SUPPORTABLE__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -768,7 +929,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL__STATUS = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS;
+  int GOAL__STATUS = GSNPackage.SUPPORTABLE__STATUS;
 
   /**
    * The feature id for the '<em><b>Templates</b></em>' reference list.
@@ -777,7 +938,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL__TEMPLATES = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__TEMPLATES;
+  int GOAL__TEMPLATES = GSNPackage.SUPPORTABLE__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -786,15 +947,16 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL__VALID = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__VALID;
+  int GOAL__VALID = GSNPackage.SUPPORTABLE__VALID;
 
   /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The feature id for the '<em><b>Decorators</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GOAL__SUPPORTS = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTS;
+  int GOAL__DECORATORS = GSNPackage.SUPPORTABLE__DECORATORS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -803,16 +965,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL__SUPPORTED_BY = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY;
-
-  /**
-   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int GOAL__IN_CONTEXT_OF = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF;
+  int GOAL__SUPPORTED_BY = GSNPackage.SUPPORTABLE__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
@@ -821,15 +974,24 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL__UNDEVELOPED = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED;
+  int GOAL__UNDEVELOPED = GSNPackage.SUPPORTABLE__UNDEVELOPED;
 
   /**
-   * The feature id for the '<em><b>State Validity</b></em>' attribute.
+   * The feature id for the '<em><b>Supports</b></em>' reference list.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GOAL__STATE_VALIDITY = GSNPackage.DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 0;
+  int GOAL__SUPPORTS = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
+   * <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GOAL__IN_CONTEXT_OF = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Asil</b></em>' containment reference.
@@ -837,7 +999,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL__ASIL = GSNPackage.DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 1;
+  int GOAL__ASIL = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Goal</em>' class.
@@ -845,7 +1007,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL_FEATURE_COUNT = GSNPackage.DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 2;
+  int GOAL_FEATURE_COUNT = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 3;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -854,7 +1016,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL___VALIDATE = GSNPackage.DECOMPOSABLE_CORE_ELEMENT___VALIDATE;
+  int GOAL___VALIDATE = GSNPackage.SUPPORTABLE___VALIDATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -863,7 +1025,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL___INSTANTIATE = GSNPackage.DECOMPOSABLE_CORE_ELEMENT___INSTANTIATE;
+  int GOAL___INSTANTIATE = GSNPackage.SUPPORTABLE___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Goal</em>' class.
@@ -871,16 +1033,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL_OPERATION_COUNT = GSNPackage.DECOMPOSABLE_CORE_ELEMENT_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.BasicGoalImpl <em>Basic Goal</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.BasicGoalImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getBasicGoal()
-   * @generated
-   */
-  int BASIC_GOAL = 10;
+  int GOAL_OPERATION_COUNT = GSNPackage.SUPPORTABLE_OPERATION_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -926,12 +1079,13 @@ public interface GSNPackage extends EPackage {
   int BASIC_GOAL__VALID = GSNPackage.GOAL__VALID;
 
   /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The feature id for the '<em><b>Decorators</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BASIC_GOAL__SUPPORTS = GSNPackage.GOAL__SUPPORTS;
+  int BASIC_GOAL__DECORATORS = GSNPackage.GOAL__DECORATORS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -943,15 +1097,6 @@ public interface GSNPackage extends EPackage {
   int BASIC_GOAL__SUPPORTED_BY = GSNPackage.GOAL__SUPPORTED_BY;
 
   /**
-   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BASIC_GOAL__IN_CONTEXT_OF = GSNPackage.GOAL__IN_CONTEXT_OF;
-
-  /**
    * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -961,12 +1106,21 @@ public interface GSNPackage extends EPackage {
   int BASIC_GOAL__UNDEVELOPED = GSNPackage.GOAL__UNDEVELOPED;
 
   /**
-   * The feature id for the '<em><b>State Validity</b></em>' attribute.
+   * The feature id for the '<em><b>Supports</b></em>' reference list.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BASIC_GOAL__STATE_VALIDITY = GSNPackage.GOAL__STATE_VALIDITY;
+  int BASIC_GOAL__SUPPORTS = GSNPackage.GOAL__SUPPORTS;
+
+  /**
+   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
+   * <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASIC_GOAL__IN_CONTEXT_OF = GSNPackage.GOAL__IN_CONTEXT_OF;
 
   /**
    * The feature id for the '<em><b>Asil</b></em>' containment reference.
@@ -1011,21 +1165,12 @@ public interface GSNPackage extends EPackage {
   int BASIC_GOAL_OPERATION_COUNT = GSNPackage.GOAL_OPERATION_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.IndependenceGoalImpl <em>Independence Goal</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.IndependenceGoalImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getIndependenceGoal()
-   * @generated
-   */
-  int INDEPENDENCE_GOAL = 11;
-
-  /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL__ID = GSNPackage.GOAL__ID;
+  int STRATEGY__ID = GSNPackage.SUPPORTABLE__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1033,7 +1178,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL__DESCRIPTION = GSNPackage.GOAL__DESCRIPTION;
+  int STRATEGY__DESCRIPTION = GSNPackage.SUPPORTABLE__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1042,7 +1187,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL__STATUS = GSNPackage.GOAL__STATUS;
+  int STRATEGY__STATUS = GSNPackage.SUPPORTABLE__STATUS;
 
   /**
    * The feature id for the '<em><b>Templates</b></em>' reference list.
@@ -1051,7 +1196,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL__TEMPLATES = GSNPackage.GOAL__TEMPLATES;
+  int STRATEGY__TEMPLATES = GSNPackage.SUPPORTABLE__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -1060,15 +1205,16 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL__VALID = GSNPackage.GOAL__VALID;
+  int STRATEGY__VALID = GSNPackage.SUPPORTABLE__VALID;
 
   /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The feature id for the '<em><b>Decorators</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL__SUPPORTS = GSNPackage.GOAL__SUPPORTS;
+  int STRATEGY__DECORATORS = GSNPackage.SUPPORTABLE__DECORATORS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -1077,16 +1223,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL__SUPPORTED_BY = GSNPackage.GOAL__SUPPORTED_BY;
-
-  /**
-   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INDEPENDENCE_GOAL__IN_CONTEXT_OF = GSNPackage.GOAL__IN_CONTEXT_OF;
+  int STRATEGY__SUPPORTED_BY = GSNPackage.SUPPORTABLE__SUPPORTED_BY;
 
   /**
    * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
@@ -1095,110 +1232,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INDEPENDENCE_GOAL__UNDEVELOPED = GSNPackage.GOAL__UNDEVELOPED;
-
-  /**
-   * The feature id for the '<em><b>State Validity</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INDEPENDENCE_GOAL__STATE_VALIDITY = GSNPackage.GOAL__STATE_VALIDITY;
-
-  /**
-   * The feature id for the '<em><b>Asil</b></em>' containment reference.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INDEPENDENCE_GOAL__ASIL = GSNPackage.GOAL__ASIL;
-
-  /**
-   * The number of structural features of the '<em>Independence Goal</em>' class.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INDEPENDENCE_GOAL_FEATURE_COUNT = GSNPackage.GOAL_FEATURE_COUNT + 0;
-
-  /**
-   * The operation id for the '<em>Validate</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INDEPENDENCE_GOAL___VALIDATE = GSNPackage.GOAL___VALIDATE;
-
-  /**
-   * The operation id for the '<em>Instantiate</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INDEPENDENCE_GOAL___INSTANTIATE = GSNPackage.GOAL___INSTANTIATE;
-
-  /**
-   * The number of operations of the '<em>Independence Goal</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INDEPENDENCE_GOAL_OPERATION_COUNT = GSNPackage.GOAL_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl <em>Strategy</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getStrategy()
-   * @generated
-   */
-  int STRATEGY = 12;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRATEGY__ID = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRATEGY__DESCRIPTION = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int STRATEGY__STATUS = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__STATUS;
-
-  /**
-   * The feature id for the '<em><b>Templates</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRATEGY__TEMPLATES = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__TEMPLATES;
-
-  /**
-   * The feature id for the '<em><b>Valid</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRATEGY__VALID = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__VALID;
+  int STRATEGY__UNDEVELOPED = GSNPackage.SUPPORTABLE__UNDEVELOPED;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -1206,16 +1240,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STRATEGY__SUPPORTS = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRATEGY__SUPPORTED_BY = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY;
+  int STRATEGY__SUPPORTS = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -1224,16 +1249,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STRATEGY__IN_CONTEXT_OF = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF;
-
-  /**
-   * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRATEGY__UNDEVELOPED = GSNPackage.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED;
+  int STRATEGY__IN_CONTEXT_OF = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Strategy</em>' class.
@@ -1241,7 +1257,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STRATEGY_FEATURE_COUNT = GSNPackage.DECOMPOSABLE_CORE_ELEMENT_FEATURE_COUNT + 0;
+  int STRATEGY_FEATURE_COUNT = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -1250,7 +1266,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STRATEGY___VALIDATE = GSNPackage.DECOMPOSABLE_CORE_ELEMENT___VALIDATE;
+  int STRATEGY___VALIDATE = GSNPackage.SUPPORTABLE___VALIDATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1259,7 +1275,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STRATEGY___INSTANTIATE = GSNPackage.DECOMPOSABLE_CORE_ELEMENT___INSTANTIATE;
+  int STRATEGY___INSTANTIATE = GSNPackage.SUPPORTABLE___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Strategy</em>' class.
@@ -1267,16 +1283,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STRATEGY_OPERATION_COUNT = GSNPackage.DECOMPOSABLE_CORE_ELEMENT_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.BasicStrategyImpl <em>Basic Strategy</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.BasicStrategyImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getBasicStrategy()
-   * @generated
-   */
-  int BASIC_STRATEGY = 13;
+  int STRATEGY_OPERATION_COUNT = GSNPackage.SUPPORTABLE_OPERATION_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1322,12 +1329,13 @@ public interface GSNPackage extends EPackage {
   int BASIC_STRATEGY__VALID = GSNPackage.STRATEGY__VALID;
 
   /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The feature id for the '<em><b>Decorators</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BASIC_STRATEGY__SUPPORTS = GSNPackage.STRATEGY__SUPPORTS;
+  int BASIC_STRATEGY__DECORATORS = GSNPackage.STRATEGY__DECORATORS;
 
   /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
@@ -1339,15 +1347,6 @@ public interface GSNPackage extends EPackage {
   int BASIC_STRATEGY__SUPPORTED_BY = GSNPackage.STRATEGY__SUPPORTED_BY;
 
   /**
-   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BASIC_STRATEGY__IN_CONTEXT_OF = GSNPackage.STRATEGY__IN_CONTEXT_OF;
-
-  /**
    * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1355,6 +1354,23 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int BASIC_STRATEGY__UNDEVELOPED = GSNPackage.STRATEGY__UNDEVELOPED;
+
+  /**
+   * The feature id for the '<em><b>Supports</b></em>' reference list.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASIC_STRATEGY__SUPPORTS = GSNPackage.STRATEGY__SUPPORTS;
+
+  /**
+   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
+   * <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASIC_STRATEGY__IN_CONTEXT_OF = GSNPackage.STRATEGY__IN_CONTEXT_OF;
 
   /**
    * The number of structural features of the '<em>Basic Strategy</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1392,21 +1408,12 @@ public interface GSNPackage extends EPackage {
   int BASIC_STRATEGY_OPERATION_COUNT = GSNPackage.STRATEGY_OPERATION_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ASILDecompositionStrategyImpl <em>ASIL Decomposition Strategy</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.ASILDecompositionStrategyImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getASILDecompositionStrategy()
-   * @generated
-   */
-  int ASIL_DECOMPOSITION_STRATEGY = 14;
-
-  /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ASIL_DECOMPOSITION_STRATEGY__ID = GSNPackage.STRATEGY__ID;
+  int SOLUTION__ID = GSNPackage.SUPPORTER__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1414,7 +1421,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASIL_DECOMPOSITION_STRATEGY__DESCRIPTION = GSNPackage.STRATEGY__DESCRIPTION;
+  int SOLUTION__DESCRIPTION = GSNPackage.SUPPORTER__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1423,7 +1430,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASIL_DECOMPOSITION_STRATEGY__STATUS = GSNPackage.STRATEGY__STATUS;
+  int SOLUTION__STATUS = GSNPackage.SUPPORTER__STATUS;
 
   /**
    * The feature id for the '<em><b>Templates</b></em>' reference list.
@@ -1432,7 +1439,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASIL_DECOMPOSITION_STRATEGY__TEMPLATES = GSNPackage.STRATEGY__TEMPLATES;
+  int SOLUTION__TEMPLATES = GSNPackage.SUPPORTER__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -1441,7 +1448,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASIL_DECOMPOSITION_STRATEGY__VALID = GSNPackage.STRATEGY__VALID;
+  int SOLUTION__VALID = GSNPackage.SUPPORTER__VALID;
 
   /**
    * The feature id for the '<em><b>Supports</b></em>' reference list.
@@ -1449,138 +1456,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASIL_DECOMPOSITION_STRATEGY__SUPPORTS = GSNPackage.STRATEGY__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASIL_DECOMPOSITION_STRATEGY__SUPPORTED_BY = GSNPackage.STRATEGY__SUPPORTED_BY;
-
-  /**
-   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASIL_DECOMPOSITION_STRATEGY__IN_CONTEXT_OF = GSNPackage.STRATEGY__IN_CONTEXT_OF;
-
-  /**
-   * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASIL_DECOMPOSITION_STRATEGY__UNDEVELOPED = GSNPackage.STRATEGY__UNDEVELOPED;
-
-  /**
-   * The number of structural features of the '<em>ASIL Decomposition Strategy</em>' class.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASIL_DECOMPOSITION_STRATEGY_FEATURE_COUNT = GSNPackage.STRATEGY_FEATURE_COUNT + 0;
-
-  /**
-   * The operation id for the '<em>Validate</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASIL_DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.STRATEGY___VALIDATE;
-
-  /**
-   * The operation id for the '<em>Instantiate</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASIL_DECOMPOSITION_STRATEGY___INSTANTIATE = GSNPackage.STRATEGY___INSTANTIATE;
-
-  /**
-   * The number of operations of the '<em>ASIL Decomposition Strategy</em>' class.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASIL_DECOMPOSITION_STRATEGY_OPERATION_COUNT = GSNPackage.STRATEGY_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SolutionImpl <em>Solution</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.SolutionImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getSolution()
-   * @generated
-   */
-  int SOLUTION = 15;
-
-  /**
-   * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SOLUTION__ID = GSNPackage.CORE_ELEMENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SOLUTION__DESCRIPTION = GSNPackage.CORE_ELEMENT__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int SOLUTION__STATUS = GSNPackage.CORE_ELEMENT__STATUS;
-
-  /**
-   * The feature id for the '<em><b>Templates</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SOLUTION__TEMPLATES = GSNPackage.CORE_ELEMENT__TEMPLATES;
-
-  /**
-   * The feature id for the '<em><b>Valid</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SOLUTION__VALID = GSNPackage.CORE_ELEMENT__VALID;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SOLUTION__SUPPORTS = GSNPackage.CORE_ELEMENT__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>State Validity</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SOLUTION__STATE_VALIDITY = GSNPackage.CORE_ELEMENT_FEATURE_COUNT + 0;
+  int SOLUTION__SUPPORTS = GSNPackage.SUPPORTER__SUPPORTS;
 
   /**
    * The number of structural features of the '<em>Solution</em>' class.
@@ -1588,7 +1464,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SOLUTION_FEATURE_COUNT = GSNPackage.CORE_ELEMENT_FEATURE_COUNT + 1;
+  int SOLUTION_FEATURE_COUNT = GSNPackage.SUPPORTER_FEATURE_COUNT + 0;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -1597,7 +1473,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SOLUTION___VALIDATE = GSNPackage.CORE_ELEMENT___VALIDATE;
+  int SOLUTION___VALIDATE = GSNPackage.SUPPORTER___VALIDATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1606,7 +1482,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SOLUTION___INSTANTIATE = GSNPackage.CORE_ELEMENT___INSTANTIATE;
+  int SOLUTION___INSTANTIATE = GSNPackage.SUPPORTER___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Solution</em>' class.
@@ -1614,16 +1490,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SOLUTION_OPERATION_COUNT = GSNPackage.CORE_ELEMENT_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextImpl <em>Context</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.ContextImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getContext()
-   * @generated
-   */
-  int CONTEXT = 16;
+  int SOLUTION_OPERATION_COUNT = GSNPackage.SUPPORTER_OPERATION_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1709,15 +1576,6 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int CONTEXT_OPERATION_COUNT = GSNPackage.CONTEXTUAL_ELEMENT_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.JustificationImpl <em>Justification</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.JustificationImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getJustification()
-   * @generated
-   */
-  int JUSTIFICATION = 17;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1806,15 +1664,6 @@ public interface GSNPackage extends EPackage {
   int JUSTIFICATION_OPERATION_COUNT = GSNPackage.CONTEXTUAL_ELEMENT_OPERATION_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.AssumptionImpl <em>Assumption</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.AssumptionImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getAssumption()
-   * @generated
-   */
-  int ASSUMPTION = 18;
-
-  /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -1900,14 +1749,42 @@ public interface GSNPackage extends EPackage {
   int ASSUMPTION_OPERATION_COUNT = GSNPackage.CONTEXTUAL_ELEMENT_OPERATION_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ASILImpl <em>ASIL</em>}' class. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.ASILImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getASIL()
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl <em>Template</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getTemplate()
    * @generated
    */
-  int ASIL = 19;
+  int TEMPLATE = 21;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.UndevelopedImpl <em>Undeveloped</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.UndevelopedImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getUndeveloped()
+   * @generated
+   */
+  int UNDEVELOPED = 18;
+
+  /**
+   * The number of structural features of the '<em>Undeveloped</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNDEVELOPED_FEATURE_COUNT = 0;
+
+  /**
+   * The number of operations of the '<em>Undeveloped</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNDEVELOPED_OPERATION_COUNT = 0;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1951,15 +1828,6 @@ public interface GSNPackage extends EPackage {
   int ASIL_OPERATION_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ImpactAnnotationImpl <em>Impact Annotation</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.ImpactAnnotationImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getImpactAnnotation()
-   * @generated
-   */
-  int IMPACT_ANNOTATION = 20;
-
-  /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
@@ -1991,297 +1859,6 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int IMPACT_ANNOTATION_OPERATION_COUNT = 0;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUPPORTER__SUPPORTS = 0;
-
-  /**
-   * The number of structural features of the '<em>Supporter</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUPPORTER_FEATURE_COUNT = 1;
-
-  /**
-   * The number of operations of the '<em>Supporter</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUPPORTER_OPERATION_COUNT = 0;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUPPORTABLE__SUPPORTS = GSNPackage.SUPPORTER__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUPPORTABLE__SUPPORTED_BY = GSNPackage.SUPPORTER_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Supportable</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int SUPPORTABLE_FEATURE_COUNT = GSNPackage.SUPPORTER_FEATURE_COUNT + 1;
-
-  /**
-   * The number of operations of the '<em>Supportable</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUPPORTABLE_OPERATION_COUNT = GSNPackage.SUPPORTER_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportConnectorImpl <em>Support Connector</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.SupportConnectorImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getSupportConnector()
-   * @generated
-   */
-  int SUPPORT_CONNECTOR = 23;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUPPORT_CONNECTOR__SUPPORTS = GSNPackage.SUPPORTABLE__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUPPORT_CONNECTOR__SUPPORTED_BY = GSNPackage.SUPPORTABLE__SUPPORTED_BY;
-
-  /**
-   * The number of structural features of the '<em>Support Connector</em>' class.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUPPORT_CONNECTOR_FEATURE_COUNT = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 0;
-
-  /**
-   * The number of operations of the '<em>Support Connector</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUPPORT_CONNECTOR_OPERATION_COUNT = GSNPackage.SUPPORTABLE_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.AndSupporterImpl <em>And Supporter</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.AndSupporterImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getAndSupporter()
-   * @generated
-   */
-  int AND_SUPPORTER = 24;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AND_SUPPORTER__SUPPORTS = GSNPackage.SUPPORT_CONNECTOR__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AND_SUPPORTER__SUPPORTED_BY = GSNPackage.SUPPORT_CONNECTOR__SUPPORTED_BY;
-
-  /**
-   * The number of structural features of the '<em>And Supporter</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int AND_SUPPORTER_FEATURE_COUNT = GSNPackage.SUPPORT_CONNECTOR_FEATURE_COUNT + 0;
-
-  /**
-   * The number of operations of the '<em>And Supporter</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AND_SUPPORTER_OPERATION_COUNT = GSNPackage.SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.OrSupporterImpl <em>Or Supporter</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.OrSupporterImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getOrSupporter()
-   * @generated
-   */
-  int OR_SUPPORTER = 25;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OR_SUPPORTER__SUPPORTS = GSNPackage.SUPPORT_CONNECTOR__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OR_SUPPORTER__SUPPORTED_BY = GSNPackage.SUPPORT_CONNECTOR__SUPPORTED_BY;
-
-  /**
-   * The number of structural features of the '<em>Or Supporter</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int OR_SUPPORTER_FEATURE_COUNT = GSNPackage.SUPPORT_CONNECTOR_FEATURE_COUNT + 0;
-
-  /**
-   * The number of operations of the '<em>Or Supporter</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OR_SUPPORTER_OPERATION_COUNT = GSNPackage.SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.XorSupporterImpl <em>Xor Supporter</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.XorSupporterImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getXorSupporter()
-   * @generated
-   */
-  int XOR_SUPPORTER = 26;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int XOR_SUPPORTER__SUPPORTS = GSNPackage.SUPPORT_CONNECTOR__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int XOR_SUPPORTER__SUPPORTED_BY = GSNPackage.SUPPORT_CONNECTOR__SUPPORTED_BY;
-
-  /**
-   * The number of structural features of the '<em>Xor Supporter</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int XOR_SUPPORTER_FEATURE_COUNT = GSNPackage.SUPPORT_CONNECTOR_FEATURE_COUNT + 0;
-
-  /**
-   * The number of operations of the '<em>Xor Supporter</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int XOR_SUPPORTER_OPERATION_COUNT = GSNPackage.SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.MofNSupporterImpl <em>Mof NSupporter</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.MofNSupporterImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getMofNSupporter()
-   * @generated
-   */
-  int MOF_NSUPPORTER = 27;
-
-  /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MOF_NSUPPORTER__SUPPORTS = GSNPackage.SUPPORT_CONNECTOR__SUPPORTS;
-
-  /**
-   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MOF_NSUPPORTER__SUPPORTED_BY = GSNPackage.SUPPORT_CONNECTOR__SUPPORTED_BY;
-
-  /**
-   * The feature id for the '<em><b>Target</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MOF_NSUPPORTER__TARGET = GSNPackage.SUPPORT_CONNECTOR_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Mof NSupporter</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
-   * @generated
-   * @ordered
-   */
-  int MOF_NSUPPORTER_FEATURE_COUNT = GSNPackage.SUPPORT_CONNECTOR_FEATURE_COUNT + 1;
-
-  /**
-   * The number of operations of the '<em>Mof NSupporter</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MOF_NSUPPORTER_OPERATION_COUNT = GSNPackage.SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl <em>Template</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getTemplate()
-   * @generated
-   */
-  int TEMPLATE = 28;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' reference list.
@@ -2347,32 +1924,149 @@ public interface GSNPackage extends EPackage {
   int TEMPLATE_OPERATION_COUNT = 3;
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.UndevelopedImpl <em>Undeveloped</em>}' class.
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.RelationshipDecoratorImpl <em>Relationship Decorator</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.UndevelopedImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getUndeveloped()
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.RelationshipDecoratorImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getRelationshipDecorator()
    * @generated
    */
-  int UNDEVELOPED = 29;
+  int RELATIONSHIP_DECORATOR = 22;
 
   /**
-   * The number of structural features of the '<em>Undeveloped</em>' class.
+   * The feature id for the '<em><b>Id</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int UNDEVELOPED_FEATURE_COUNT = 0;
+  int RELATIONSHIP_DECORATOR__ID = GSNPackage.SUPPORTABLE__ID;
 
   /**
-   * The number of operations of the '<em>Undeveloped</em>' class.
+   * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int UNDEVELOPED_OPERATION_COUNT = 0;
+  int RELATIONSHIP_DECORATOR__DESCRIPTION = GSNPackage.SUPPORTABLE__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Status</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP_DECORATOR__STATUS = GSNPackage.SUPPORTABLE__STATUS;
+
+  /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP_DECORATOR__TEMPLATES = GSNPackage.SUPPORTABLE__TEMPLATES;
+
+  /**
+   * The feature id for the '<em><b>Valid</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP_DECORATOR__VALID = GSNPackage.SUPPORTABLE__VALID;
+
+  /**
+   * The feature id for the '<em><b>Decorators</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP_DECORATOR__DECORATORS = GSNPackage.SUPPORTABLE__DECORATORS;
+
+  /**
+   * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP_DECORATOR__SUPPORTED_BY = GSNPackage.SUPPORTABLE__SUPPORTED_BY;
+
+  /**
+   * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP_DECORATOR__UNDEVELOPED = GSNPackage.SUPPORTABLE__UNDEVELOPED;
+
+  /**
+   * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP_DECORATOR__IN_CONTEXT_OF = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP_DECORATOR__TYPE = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Cardinality</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP_DECORATOR__CARDINALITY = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Relationship Decorator</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP_DECORATOR_FEATURE_COUNT = GSNPackage.SUPPORTABLE_FEATURE_COUNT + 3;
+
+  /**
+   * The operation id for the '<em>Validate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP_DECORATOR___VALIDATE = GSNPackage.SUPPORTABLE___VALIDATE;
+
+  /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP_DECORATOR___INSTANTIATE = GSNPackage.SUPPORTABLE___INSTANTIATE;
+
+  /**
+   * The number of operations of the '<em>Relationship Decorator</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP_DECORATOR_OPERATION_COUNT = GSNPackage.SUPPORTABLE_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.ASILLevel <em>ASIL Level</em>}' enum. <!--
@@ -2382,16 +2076,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getASILLevel()
    * @generated
    */
-  int ASIL_LEVEL = 30;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.ValidityValue <em>Validity Value</em>}' enum.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.ValidityValue
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getValidityValue()
-   * @generated
-   */
-  int VALIDITY_VALUE = 31;
+  int ASIL_LEVEL = 23;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.ImpactType <em>Impact Type</em>}' enum. <!--
@@ -2401,7 +2086,17 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getImpactType()
    * @generated
    */
-  int IMPACT_TYPE = 32;
+  int IMPACT_TYPE = 24;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.DecoratorType <em>Decorator Type</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.DecoratorType
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDecoratorType()
+   * @generated
+   */
+  int DECORATOR_TYPE = 25;
 
   /**
    * The meta object id for the '<em>Exception</em>' data type.
@@ -2410,7 +2105,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getException()
    * @generated
    */
-  int EXCEPTION = 33;
+  int EXCEPTION = 26;
 
   /**
    * The meta object id for the '<em>Builder</em>' data type.
@@ -2420,7 +2115,7 @@ public interface GSNPackage extends EPackage {
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getGSNBuilder()
    * @generated
    */
-  int GSN_BUILDER = 34;
+  int GSN_BUILDER = 27;
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase <em>Safety Case</em>}'. <!--
@@ -2498,17 +2193,6 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   EReference getSafetyCase_Assumptions();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase#getConnectors <em>Connectors</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Connectors</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.SafetyCase#getConnectors()
-   * @see #getSafetyCase()
-   * @generated
-   */
-  EReference getSafetyCase_Connectors();
 
   /**
    * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase#getTemplates <em>Templates</em>}'.
@@ -2604,25 +2288,25 @@ public interface GSNPackage extends EPackage {
   EOperation getArgumentElement__Instantiate();
 
   /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.StatefulElement <em>Stateful Element</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>Stateful Element</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.StatefulElement
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.Decoratable <em>Decoratable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Decoratable</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Decoratable
    * @generated
    */
-  EClass getStatefulElement();
+  EClass getDecoratable();
 
   /**
-   * Returns the meta object for the attribute
-   * '{@link edu.toronto.cs.se.modelepedia.gsn.StatefulElement#getStateValidity <em>State Validity</em>}'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @return the meta object for the attribute '<em>State Validity</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.StatefulElement#getStateValidity()
-   * @see #getStatefulElement()
+   * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.gsn.Decoratable#getDecorators <em>Decorators</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Decorators</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Decoratable#getDecorators()
+   * @see #getDecoratable()
    * @generated
    */
-  EAttribute getStatefulElement_StateValidity();
+  EReference getDecoratable_Decorators();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.ASILfulElement <em>ASI Lful Element</em>}'.
@@ -2643,47 +2327,6 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   EReference getASILfulElement_Asil();
-
-  /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.CoreElement <em>Core Element</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>Core Element</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.CoreElement
-   * @generated
-   */
-  EClass getCoreElement();
-
-  /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement <em>Decomposable Core Element</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>Decomposable Core Element</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement
-   * @generated
-   */
-  EClass getDecomposableCoreElement();
-
-  /**
-   * Returns the meta object for the containment reference list
-   * '{@link edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement#getInContextOf <em>In Context Of</em>}'. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   *
-   * @return the meta object for the containment reference list '<em>In Context Of</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement#getInContextOf()
-   * @see #getDecomposableCoreElement()
-   * @generated
-   */
-  EReference getDecomposableCoreElement_InContextOf();
-
-  /**
-   * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement#getUndeveloped <em>Undeveloped</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Undeveloped</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement#getUndeveloped()
-   * @see #getDecomposableCoreElement()
-   * @generated
-   */
-  EReference getDecomposableCoreElement_Undeveloped();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.ContextualElement <em>Contextual Element</em>}'.
@@ -2733,6 +2376,27 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   EReference getSupportedBy_Target();
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement <em>Contextualizable Element</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Contextualizable Element</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement
+   * @generated
+   */
+  EClass getContextualizableElement();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement#getInContextOf <em>In Context Of</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>In Context Of</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement#getInContextOf()
+   * @see #getContextualizableElement()
+   * @generated
+   */
+  EReference getContextualizableElement_InContextOf();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.InContextOf <em>In Context Of</em>}'.
@@ -2785,15 +2449,6 @@ public interface GSNPackage extends EPackage {
   EClass getBasicGoal();
 
   /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.IndependenceGoal <em>Independence Goal</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>Independence Goal</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.IndependenceGoal
-   * @generated
-   */
-  EClass getIndependenceGoal();
-
-  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.Strategy <em>Strategy</em>}'. <!--
    * begin-user-doc --> <!-- end-user-doc -->
    *
@@ -2811,15 +2466,6 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   EClass getBasicStrategy();
-
-  /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.ASILDecompositionStrategy <em>ASIL Decomposition Strategy</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>ASIL Decomposition Strategy</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ASILDecompositionStrategy
-   * @generated
-   */
-  EClass getASILDecompositionStrategy();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.Solution <em>Solution</em>}'. <!--
@@ -2950,6 +2596,17 @@ public interface GSNPackage extends EPackage {
   EReference getSupportable_SupportedBy();
 
   /**
+   * Returns the meta object for the containment reference '{@link edu.toronto.cs.se.modelepedia.gsn.Supportable#getUndeveloped <em>Undeveloped</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Undeveloped</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Supportable#getUndeveloped()
+   * @see #getSupportable()
+   * @generated
+   */
+  EReference getSupportable_Undeveloped();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.Supporter <em>Supporter</em>}'. <!--
    * begin-user-doc --> <!-- end-user-doc -->
    *
@@ -2968,61 +2625,6 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   EReference getSupporter_Supports();
-
-  /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.SupportConnector <em>Support Connector</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>Support Connector</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.SupportConnector
-   * @generated
-   */
-  EClass getSupportConnector();
-
-  /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.AndSupporter <em>And Supporter</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>And Supporter</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.AndSupporter
-   * @generated
-   */
-  EClass getAndSupporter();
-
-  /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.OrSupporter <em>Or Supporter</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>Or Supporter</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.OrSupporter
-   * @generated
-   */
-  EClass getOrSupporter();
-
-  /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.XorSupporter <em>Xor Supporter</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>Xor Supporter</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.XorSupporter
-   * @generated
-   */
-  EClass getXorSupporter();
-
-  /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.MofNSupporter <em>Mof NSupporter</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>Mof NSupporter</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.MofNSupporter
-   * @generated
-   */
-  EClass getMofNSupporter();
-
-  /**
-   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.MofNSupporter#getTarget <em>Target</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Target</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.MofNSupporter#getTarget()
-   * @see #getMofNSupporter()
-   * @generated
-   */
-  EAttribute getMofNSupporter_Target();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.Template <em>Template</em>}'.
@@ -3087,6 +2689,38 @@ public interface GSNPackage extends EPackage {
   EOperation getTemplate__Instantiate();
 
   /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator <em>Relationship Decorator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Relationship Decorator</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator
+   * @generated
+   */
+  EClass getRelationshipDecorator();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator#getType()
+   * @see #getRelationshipDecorator()
+   * @generated
+   */
+  EAttribute getRelationshipDecorator_Type();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator#getCardinality <em>Cardinality</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Cardinality</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator#getCardinality()
+   * @see #getRelationshipDecorator()
+   * @generated
+   */
+  EAttribute getRelationshipDecorator_Cardinality();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.Undeveloped <em>Undeveloped</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3107,15 +2741,6 @@ public interface GSNPackage extends EPackage {
   EEnum getASILLevel();
 
   /**
-   * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.gsn.ValidityValue <em>Validity Value</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Validity Value</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ValidityValue
-   * @generated
-   */
-  EEnum getValidityValue();
-
-  /**
    * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.gsn.ImpactType <em>Impact Type</em>}'. <!--
    * begin-user-doc --> <!-- end-user-doc -->
    *
@@ -3124,6 +2749,16 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   EEnum getImpactType();
+
+  /**
+   * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.gsn.DecoratorType <em>Decorator Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Decorator Type</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.DecoratorType
+   * @generated
+   */
+  EEnum getDecoratorType();
 
   /**
    * Returns the meta object for data type '{@link java.lang.Exception <em>Exception</em>}'.
@@ -3226,14 +2861,6 @@ public interface GSNPackage extends EPackage {
     EReference SAFETY_CASE__ASSUMPTIONS = GSNPackage.eINSTANCE.getSafetyCase_Assumptions();
 
     /**
-     * The meta object literal for the '<em><b>Connectors</b></em>' containment reference list feature. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    EReference SAFETY_CASE__CONNECTORS = GSNPackage.eINSTANCE.getSafetyCase_Connectors();
-
-    /**
      * The meta object literal for the '<em><b>Templates</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3307,21 +2934,22 @@ public interface GSNPackage extends EPackage {
     EOperation ARGUMENT_ELEMENT___INSTANTIATE = GSNPackage.eINSTANCE.getArgumentElement__Instantiate();
 
     /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.StatefulElementImpl <em>Stateful Element</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.StatefulElementImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getStatefulElement()
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecoratableImpl <em>Decoratable</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.DecoratableImpl
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDecoratable()
      * @generated
      */
-    EClass STATEFUL_ELEMENT = GSNPackage.eINSTANCE.getStatefulElement();
+    EClass DECORATABLE = GSNPackage.eINSTANCE.getDecoratable();
 
     /**
-     * The meta object literal for the '<em><b>State Validity</b></em>' attribute feature.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
+     * The meta object literal for the '<em><b>Decorators</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute STATEFUL_ELEMENT__STATE_VALIDITY = GSNPackage.eINSTANCE.getStatefulElement_StateValidity();
+    EReference DECORATABLE__DECORATORS = GSNPackage.eINSTANCE.getDecoratable_Decorators();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ASILfulElementImpl <em>ASI Lful Element</em>}' class.
@@ -3339,40 +2967,6 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EReference ASI_LFUL_ELEMENT__ASIL = GSNPackage.eINSTANCE.getASILfulElement_Asil();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.CoreElementImpl <em>Core Element</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.CoreElementImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getCoreElement()
-     * @generated
-     */
-    EClass CORE_ELEMENT = GSNPackage.eINSTANCE.getCoreElement();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecomposableCoreElementImpl <em>Decomposable Core Element</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.DecomposableCoreElementImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDecomposableCoreElement()
-     * @generated
-     */
-    EClass DECOMPOSABLE_CORE_ELEMENT = GSNPackage.eINSTANCE.getDecomposableCoreElement();
-
-    /**
-     * The meta object literal for the '<em><b>In Context Of</b></em>' containment reference list feature. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     *
-     * @generated
-     */
-    EReference DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF = GSNPackage.eINSTANCE.getDecomposableCoreElement_InContextOf();
-
-    /**
-     * The meta object literal for the '<em><b>Undeveloped</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED = GSNPackage.eINSTANCE.getDecomposableCoreElement_Undeveloped();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualElementImpl <em>Contextual Element</em>}' class.
@@ -3415,6 +3009,24 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EReference SUPPORTED_BY__TARGET = GSNPackage.eINSTANCE.getSupportedBy_Target();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableElementImpl <em>Contextualizable Element</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableElementImpl
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getContextualizableElement()
+     * @generated
+     */
+    EClass CONTEXTUALIZABLE_ELEMENT = GSNPackage.eINSTANCE.getContextualizableElement();
+
+    /**
+     * The meta object literal for the '<em><b>In Context Of</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF = GSNPackage.eINSTANCE.getContextualizableElement_InContextOf();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.InContextOfImpl <em>In Context Of</em>}' class.
@@ -3460,15 +3072,6 @@ public interface GSNPackage extends EPackage {
     EClass BASIC_GOAL = GSNPackage.eINSTANCE.getBasicGoal();
 
     /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.IndependenceGoalImpl <em>Independence Goal</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.IndependenceGoalImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getIndependenceGoal()
-     * @generated
-     */
-    EClass INDEPENDENCE_GOAL = GSNPackage.eINSTANCE.getIndependenceGoal();
-
-    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl <em>Strategy</em>}' class.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl
@@ -3485,15 +3088,6 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EClass BASIC_STRATEGY = GSNPackage.eINSTANCE.getBasicStrategy();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ASILDecompositionStrategyImpl <em>ASIL Decomposition Strategy</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.ASILDecompositionStrategyImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getASILDecompositionStrategy()
-     * @generated
-     */
-    EClass ASIL_DECOMPOSITION_STRATEGY = GSNPackage.eINSTANCE.getASILDecompositionStrategy();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SolutionImpl <em>Solution</em>}' class.
@@ -3607,6 +3201,14 @@ public interface GSNPackage extends EPackage {
     EReference SUPPORTABLE__SUPPORTED_BY = GSNPackage.eINSTANCE.getSupportable_SupportedBy();
 
     /**
+     * The meta object literal for the '<em><b>Undeveloped</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SUPPORTABLE__UNDEVELOPED = GSNPackage.eINSTANCE.getSupportable_Undeveloped();
+
+    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupporterImpl <em>Supporter</em>}' class.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.SupporterImpl
@@ -3622,59 +3224,6 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EReference SUPPORTER__SUPPORTS = GSNPackage.eINSTANCE.getSupporter_Supports();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportConnectorImpl <em>Support Connector</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.SupportConnectorImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getSupportConnector()
-     * @generated
-     */
-    EClass SUPPORT_CONNECTOR = GSNPackage.eINSTANCE.getSupportConnector();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.AndSupporterImpl <em>And Supporter</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.AndSupporterImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getAndSupporter()
-     * @generated
-     */
-    EClass AND_SUPPORTER = GSNPackage.eINSTANCE.getAndSupporter();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.OrSupporterImpl <em>Or Supporter</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.OrSupporterImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getOrSupporter()
-     * @generated
-     */
-    EClass OR_SUPPORTER = GSNPackage.eINSTANCE.getOrSupporter();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.XorSupporterImpl <em>Xor Supporter</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.XorSupporterImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getXorSupporter()
-     * @generated
-     */
-    EClass XOR_SUPPORTER = GSNPackage.eINSTANCE.getXorSupporter();
-
-    /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.MofNSupporterImpl <em>Mof NSupporter</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.MofNSupporterImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getMofNSupporter()
-     * @generated
-     */
-    EClass MOF_NSUPPORTER = GSNPackage.eINSTANCE.getMofNSupporter();
-
-    /**
-     * The meta object literal for the '<em><b>Target</b></em>' attribute feature.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    EAttribute MOF_NSUPPORTER__TARGET = GSNPackage.eINSTANCE.getMofNSupporter_Target();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl <em>Template</em>}' class.
@@ -3727,6 +3276,32 @@ public interface GSNPackage extends EPackage {
     EOperation TEMPLATE___INSTANTIATE = GSNPackage.eINSTANCE.getTemplate__Instantiate();
 
     /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.RelationshipDecoratorImpl <em>Relationship Decorator</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.RelationshipDecoratorImpl
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getRelationshipDecorator()
+     * @generated
+     */
+    EClass RELATIONSHIP_DECORATOR = GSNPackage.eINSTANCE.getRelationshipDecorator();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RELATIONSHIP_DECORATOR__TYPE = GSNPackage.eINSTANCE.getRelationshipDecorator_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Cardinality</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RELATIONSHIP_DECORATOR__CARDINALITY = GSNPackage.eINSTANCE.getRelationshipDecorator_Cardinality();
+
+    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.UndevelopedImpl <em>Undeveloped</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3746,15 +3321,6 @@ public interface GSNPackage extends EPackage {
     EEnum ASIL_LEVEL = GSNPackage.eINSTANCE.getASILLevel();
 
     /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.ValidityValue <em>Validity Value</em>}' enum.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.ValidityValue
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getValidityValue()
-     * @generated
-     */
-    EEnum VALIDITY_VALUE = GSNPackage.eINSTANCE.getValidityValue();
-
-    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.ImpactType <em>Impact Type</em>}' enum.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @see edu.toronto.cs.se.modelepedia.gsn.ImpactType
@@ -3762,6 +3328,16 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EEnum IMPACT_TYPE = GSNPackage.eINSTANCE.getImpactType();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.DecoratorType <em>Decorator Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.gsn.DecoratorType
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getDecoratorType()
+     * @generated
+     */
+    EEnum DECORATOR_TYPE = GSNPackage.eINSTANCE.getDecoratorType();
 
     /**
      * The meta object literal for the '<em>Exception</em>' data type.

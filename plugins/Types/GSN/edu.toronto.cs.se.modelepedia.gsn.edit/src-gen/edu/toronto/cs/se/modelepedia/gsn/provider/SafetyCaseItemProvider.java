@@ -83,7 +83,6 @@ public class SafetyCaseItemProvider extends ItemProviderAdapter implements IEdit
       this.childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__CONTEXTS);
       this.childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__JUSTIFICATIONS);
       this.childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__ASSUMPTIONS);
-      this.childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__CONNECTORS);
       this.childrenFeatures.add(GSNPackage.Literals.SAFETY_CASE__TEMPLATES);
     }
     return this.childrenFeatures;
@@ -138,7 +137,6 @@ public class SafetyCaseItemProvider extends ItemProviderAdapter implements IEdit
       case GSNPackage.SAFETY_CASE__CONTEXTS:
       case GSNPackage.SAFETY_CASE__JUSTIFICATIONS:
       case GSNPackage.SAFETY_CASE__ASSUMPTIONS:
-      case GSNPackage.SAFETY_CASE__CONNECTORS:
       case GSNPackage.SAFETY_CASE__TEMPLATES:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
@@ -163,18 +161,8 @@ public class SafetyCaseItemProvider extends ItemProviderAdapter implements IEdit
 
     newChildDescriptors.add
       (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__GOALS,
-         GSNFactory.eINSTANCE.createIndependenceGoal()));
-
-    newChildDescriptors.add
-      (createChildParameter
         (GSNPackage.Literals.SAFETY_CASE__STRATEGIES,
          GSNFactory.eINSTANCE.createBasicStrategy()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__STRATEGIES,
-         GSNFactory.eINSTANCE.createASILDecompositionStrategy()));
 
     newChildDescriptors.add
       (createChildParameter
@@ -195,26 +183,6 @@ public class SafetyCaseItemProvider extends ItemProviderAdapter implements IEdit
       (createChildParameter
         (GSNPackage.Literals.SAFETY_CASE__ASSUMPTIONS,
          GSNFactory.eINSTANCE.createAssumption()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__CONNECTORS,
-         GSNFactory.eINSTANCE.createAndSupporter()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__CONNECTORS,
-         GSNFactory.eINSTANCE.createOrSupporter()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__CONNECTORS,
-         GSNFactory.eINSTANCE.createXorSupporter()));
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.SAFETY_CASE__CONNECTORS,
-         GSNFactory.eINSTANCE.createMofNSupporter()));
 
     newChildDescriptors.add
       (createChildParameter

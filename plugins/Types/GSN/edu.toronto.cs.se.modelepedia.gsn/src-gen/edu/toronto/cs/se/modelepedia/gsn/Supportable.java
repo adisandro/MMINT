@@ -23,15 +23,16 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.Supportable#getSupportedBy <em>Supported By</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.Supportable#getUndeveloped <em>Undeveloped</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getSupportable()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SupportCycle NonSupportableLeaves'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot SupportCycle='self.supportedBy.target -&gt; closure(p | if p.oclIsKindOf(Supportable) then \n\t\t\tp.oclAsType(Supportable).supportedBy.target else \n\t\t\tp.oclAsSet() endif) -&gt; excludes(self)' NonSupportableLeaves='self.supportedBy.target -&gt; size() &gt; 0 and self.supportedBy.target -&gt; excludes(null)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SupportCycle StrategySupportsGoals'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot SupportCycle='self.supportedBy.target-&gt;closure(p | if p.oclIsKindOf(Supportable) then p.oclAsType(Supportable).supportedBy.target else p.oclAsSet() endif)-&gt;excludes(self)' StrategySupportsGoals='if self.oclIsKindOf(gsn::Strategy) then self.supportedBy-&gt;forAll(sb | sb.target.oclIsKindOf(gsn::Goal)) else true endif'"
  * @generated
  */
-public interface Supportable extends Supporter {
+public interface Supportable extends ArgumentElement, Decoratable {
   /**
    * Returns the value of the '<em><b>Supported By</b></em>' containment reference list.
    * The list contents are of type {@link edu.toronto.cs.se.modelepedia.gsn.SupportedBy}.
@@ -45,5 +46,27 @@ public interface Supportable extends Supporter {
    * @generated
    */
   EList<SupportedBy> getSupportedBy();
+
+  /**
+   * Returns the value of the '<em><b>Undeveloped</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Undeveloped</em>' containment reference.
+   * @see #setUndeveloped(Undeveloped)
+   * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getSupportable_Undeveloped()
+   * @model containment="true"
+   * @generated
+   */
+  Undeveloped getUndeveloped();
+
+  /**
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.Supportable#getUndeveloped <em>Undeveloped</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Undeveloped</em>' containment reference.
+   * @see #getUndeveloped()
+   * @generated
+   */
+  void setUndeveloped(Undeveloped value);
 
 } // Supportable

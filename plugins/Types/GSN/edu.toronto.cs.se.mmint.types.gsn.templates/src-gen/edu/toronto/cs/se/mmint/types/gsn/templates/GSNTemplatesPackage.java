@@ -484,15 +484,6 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_DECOMPOSITION_STRATEGY__VALID = GSNPackage.STRATEGY__VALID;
 
   /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_DECOMPOSITION_STRATEGY__SUPPORTS = GSNPackage.STRATEGY__SUPPORTS;
-
-  /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -500,6 +491,24 @@ public interface GSNTemplatesPackage extends EPackage {
    * @ordered
    */
   int DOMAIN_DECOMPOSITION_STRATEGY__SUPPORTED_BY = GSNPackage.STRATEGY__SUPPORTED_BY;
+
+  /**
+   * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_DECOMPOSITION_STRATEGY__UNDEVELOPED = GSNPackage.STRATEGY__UNDEVELOPED;
+
+  /**
+   * The feature id for the '<em><b>Supports</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_DECOMPOSITION_STRATEGY__SUPPORTS = GSNPackage.STRATEGY__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -611,15 +620,6 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_GOAL__VALID = GSNPackage.GOAL__VALID;
 
   /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__SUPPORTS = GSNPackage.GOAL__SUPPORTS;
-
-  /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -629,6 +629,24 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_GOAL__SUPPORTED_BY = GSNPackage.GOAL__SUPPORTED_BY;
 
   /**
+   * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL__UNDEVELOPED = GSNPackage.GOAL__UNDEVELOPED;
+
+  /**
+   * The feature id for the '<em><b>Supports</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL__SUPPORTS = GSNPackage.GOAL__SUPPORTS;
+
+  /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -636,15 +654,6 @@ public interface GSNTemplatesPackage extends EPackage {
    * @ordered
    */
   int DOMAIN_GOAL__IN_CONTEXT_OF = GSNPackage.GOAL__IN_CONTEXT_OF;
-
-  /**
-   * The feature id for the '<em><b>State Validity</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_GOAL__STATE_VALIDITY = GSNPackage.GOAL__STATE_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Asil</b></em>' containment reference.
@@ -921,15 +930,6 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_DECOMPOSITION_STRATEGY__VALID = GSNPackage.STRATEGY__VALID;
 
   /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_DECOMPOSITION_STRATEGY__SUPPORTS = GSNPackage.STRATEGY__SUPPORTS;
-
-  /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -937,6 +937,24 @@ public interface GSNTemplatesPackage extends EPackage {
    * @ordered
    */
   int PROPERTY_DECOMPOSITION_STRATEGY__SUPPORTED_BY = GSNPackage.STRATEGY__SUPPORTED_BY;
+
+  /**
+   * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY__UNDEVELOPED = GSNPackage.STRATEGY__UNDEVELOPED;
+
+  /**
+   * The feature id for the '<em><b>Supports</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY__SUPPORTS = GSNPackage.STRATEGY__SUPPORTS;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -1057,15 +1075,6 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_GOAL__VALID = GSNPackage.GOAL__VALID;
 
   /**
-   * The feature id for the '<em><b>Supports</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_GOAL__SUPPORTS = GSNPackage.GOAL__SUPPORTS;
-
-  /**
    * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1075,6 +1084,24 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_GOAL__SUPPORTED_BY = GSNPackage.GOAL__SUPPORTED_BY;
 
   /**
+   * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__UNDEVELOPED = GSNPackage.GOAL__UNDEVELOPED;
+
+  /**
+   * The feature id for the '<em><b>Supports</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__SUPPORTS = GSNPackage.GOAL__SUPPORTS;
+
+  /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1082,15 +1109,6 @@ public interface GSNTemplatesPackage extends EPackage {
    * @ordered
    */
   int PROPERTY_GOAL__IN_CONTEXT_OF = GSNPackage.GOAL__IN_CONTEXT_OF;
-
-  /**
-   * The feature id for the '<em><b>State Validity</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_GOAL__STATE_VALIDITY = GSNPackage.GOAL__STATE_VALIDITY;
 
   /**
    * The feature id for the '<em><b>Asil</b></em>' containment reference.

@@ -94,7 +94,12 @@ public class DomainDecompositionStrategyImpl extends StrategyImpl implements Dom
     this.domain = newDomain;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN, oldDomain, newDomain);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      if (msgs == null) {
+        msgs = notification;
+      }
+      else {
+        msgs.add(notification);
+      }
     }
     return msgs;
   }
@@ -108,15 +113,20 @@ public class DomainDecompositionStrategyImpl extends StrategyImpl implements Dom
   public void setDomain(Domain newDomain) {
     if (newDomain != this.domain) {
       NotificationChain msgs = null;
-      if (this.domain != null)
+      if (this.domain != null) {
         msgs = ((InternalEObject)this.domain).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN, null, msgs);
-      if (newDomain != null)
+      }
+      if (newDomain != null) {
         msgs = ((InternalEObject)newDomain).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN, null, msgs);
+      }
       msgs = basicSetDomain(newDomain, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null) {
+        msgs.dispatch();
+      }
     }
-    else if (eNotificationRequired())
+    else if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.DOMAIN_DECOMPOSITION_STRATEGY__DOMAIN, newDomain, newDomain));
+    }
   }
 
   /**

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017, 2024 Alessio Di Sandro, Nick Fung.
+ * Copyright (c) 2024, 2024 Alessio Di Sandro.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,7 +9,6 @@
  *
  * Contributors:
  *     Alessio Di Sandro - Implementation
- *     Nick Fung - Implementation
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
@@ -19,39 +18,40 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
-import edu.toronto.cs.se.modelepedia.gsn.Strategy;
-import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
-import edu.toronto.cs.se.modelepedia.gsn.Supporter;
+import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Strategy</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Contextualizable Element</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl#getSupports <em>Supports</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl#getInContextOf <em>In Context Of</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableElementImpl#getDecorators <em>Decorators</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableElementImpl#getInContextOf <em>In Context Of</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class StrategyImpl extends SupportableImpl implements Strategy {
+public abstract class ContextualizableElementImpl extends ArgumentElementImpl implements ContextualizableElement {
   /**
-   * The cached value of the '{@link #getSupports() <em>Supports</em>}' reference list.
+   * The cached value of the '{@link #getDecorators() <em>Decorators</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSupports()
+   * @see #getDecorators()
    * @generated
    * @ordered
    */
-  protected EList<SupportedBy> supports;
+  protected EList<RelationshipDecorator> decorators;
   /**
    * The cached value of the '{@link #getInContextOf() <em>In Context Of</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -63,20 +63,12 @@ public abstract class StrategyImpl extends SupportableImpl implements Strategy {
   protected EList<InContextOf> inContextOf;
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  protected StrategyImpl() {
+  protected ContextualizableElementImpl() {
     super();
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return GSNPackage.Literals.STRATEGY;
   }
 
   /**
@@ -85,11 +77,21 @@ public abstract class StrategyImpl extends SupportableImpl implements Strategy {
    * @generated
    */
   @Override
-  public EList<SupportedBy> getSupports() {
-    if (this.supports == null) {
-      this.supports = new EObjectWithInverseResolvingEList<>(SupportedBy.class, this, GSNPackage.STRATEGY__SUPPORTS, GSNPackage.SUPPORTED_BY__TARGET);
+  protected EClass eStaticClass() {
+    return GSNPackage.Literals.CONTEXTUALIZABLE_ELEMENT;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<RelationshipDecorator> getDecorators() {
+    if (this.decorators == null) {
+      this.decorators = new EObjectContainmentEList<>(RelationshipDecorator.class, this, GSNPackage.CONTEXTUALIZABLE_ELEMENT__DECORATORS);
     }
-    return this.supports;
+    return this.decorators;
   }
 
   /**
@@ -100,7 +102,7 @@ public abstract class StrategyImpl extends SupportableImpl implements Strategy {
   @Override
   public EList<InContextOf> getInContextOf() {
     if (this.inContextOf == null) {
-      this.inContextOf = new EObjectContainmentWithInverseEList<>(InContextOf.class, this, GSNPackage.STRATEGY__IN_CONTEXT_OF, GSNPackage.IN_CONTEXT_OF__CONTEXT_OF);
+      this.inContextOf = new EObjectContainmentWithInverseEList<>(InContextOf.class, this, GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF, GSNPackage.IN_CONTEXT_OF__CONTEXT_OF);
     }
     return this.inContextOf;
   }
@@ -114,9 +116,7 @@ public abstract class StrategyImpl extends SupportableImpl implements Strategy {
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case GSNPackage.STRATEGY__SUPPORTS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupports()).basicAdd(otherEnd, msgs);
-      case GSNPackage.STRATEGY__IN_CONTEXT_OF:
+      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF:
         return ((InternalEList<InternalEObject>)(InternalEList<?>)getInContextOf()).basicAdd(otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -130,9 +130,9 @@ public abstract class StrategyImpl extends SupportableImpl implements Strategy {
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case GSNPackage.STRATEGY__SUPPORTS:
-        return ((InternalEList<?>)getSupports()).basicRemove(otherEnd, msgs);
-      case GSNPackage.STRATEGY__IN_CONTEXT_OF:
+      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__DECORATORS:
+        return ((InternalEList<?>)getDecorators()).basicRemove(otherEnd, msgs);
+      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF:
         return ((InternalEList<?>)getInContextOf()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -146,9 +146,9 @@ public abstract class StrategyImpl extends SupportableImpl implements Strategy {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNPackage.STRATEGY__SUPPORTS:
-        return getSupports();
-      case GSNPackage.STRATEGY__IN_CONTEXT_OF:
+      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__DECORATORS:
+        return getDecorators();
+      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF:
         return getInContextOf();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -163,11 +163,11 @@ public abstract class StrategyImpl extends SupportableImpl implements Strategy {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNPackage.STRATEGY__SUPPORTS:
-        getSupports().clear();
-        getSupports().addAll((Collection<? extends SupportedBy>)newValue);
+      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__DECORATORS:
+        getDecorators().clear();
+        getDecorators().addAll((Collection<? extends RelationshipDecorator>)newValue);
         return;
-      case GSNPackage.STRATEGY__IN_CONTEXT_OF:
+      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF:
         getInContextOf().clear();
         getInContextOf().addAll((Collection<? extends InContextOf>)newValue);
         return;
@@ -183,10 +183,10 @@ public abstract class StrategyImpl extends SupportableImpl implements Strategy {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNPackage.STRATEGY__SUPPORTS:
-        getSupports().clear();
+      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__DECORATORS:
+        getDecorators().clear();
         return;
-      case GSNPackage.STRATEGY__IN_CONTEXT_OF:
+      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF:
         getInContextOf().clear();
         return;
     }
@@ -201,9 +201,9 @@ public abstract class StrategyImpl extends SupportableImpl implements Strategy {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNPackage.STRATEGY__SUPPORTS:
-        return this.supports != null && !this.supports.isEmpty();
-      case GSNPackage.STRATEGY__IN_CONTEXT_OF:
+      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__DECORATORS:
+        return this.decorators != null && !this.decorators.isEmpty();
+      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF:
         return this.inContextOf != null && !this.inContextOf.isEmpty();
     }
     return super.eIsSet(featureID);
@@ -216,15 +216,9 @@ public abstract class StrategyImpl extends SupportableImpl implements Strategy {
    */
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-    if (baseClass == Supporter.class) {
+    if (baseClass == Decoratable.class) {
       return switch (derivedFeatureID) {
-      case GSNPackage.STRATEGY__SUPPORTS -> GSNPackage.SUPPORTER__SUPPORTS;
-      default -> -1;
-      };
-    }
-    if (baseClass == ContextualizableElement.class) {
-      return switch (derivedFeatureID) {
-      case GSNPackage.STRATEGY__IN_CONTEXT_OF -> GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF;
+      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__DECORATORS -> GSNPackage.DECORATABLE__DECORATORS;
       default -> -1;
       };
     }
@@ -238,19 +232,13 @@ public abstract class StrategyImpl extends SupportableImpl implements Strategy {
    */
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-    if (baseClass == Supporter.class) {
+    if (baseClass == Decoratable.class) {
       return switch (baseFeatureID) {
-      case GSNPackage.SUPPORTER__SUPPORTS -> GSNPackage.STRATEGY__SUPPORTS;
-      default -> -1;
-      };
-    }
-    if (baseClass == ContextualizableElement.class) {
-      return switch (baseFeatureID) {
-      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF -> GSNPackage.STRATEGY__IN_CONTEXT_OF;
+      case GSNPackage.DECORATABLE__DECORATORS -> GSNPackage.CONTEXTUALIZABLE_ELEMENT__DECORATORS;
       default -> -1;
       };
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }
 
-} // StrategyImpl
+} //ContextualizableElementImpl

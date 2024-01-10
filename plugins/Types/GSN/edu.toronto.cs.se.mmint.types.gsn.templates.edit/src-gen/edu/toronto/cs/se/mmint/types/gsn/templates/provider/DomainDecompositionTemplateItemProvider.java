@@ -55,17 +55,6 @@ public class DomainDecompositionTemplateItemProvider extends DecompositionTempla
   }
 
   /**
-   * This returns DomainDecompositionTemplate.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object getImageGen(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/DomainDecompositionTemplate"));
-  }
-
-  /**
    * @generated NOT
    */
   @Override

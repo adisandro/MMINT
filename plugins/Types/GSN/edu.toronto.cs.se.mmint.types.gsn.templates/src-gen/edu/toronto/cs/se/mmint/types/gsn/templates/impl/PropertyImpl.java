@@ -113,8 +113,9 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   public void setFormal(String newFormal) {
     var oldFormal = this.formal;
     this.formal = newFormal;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.PROPERTY__FORMAL, oldFormal, this.formal));
+    }
   }
 
   /**
@@ -136,8 +137,9 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
   public void setInformal(String newInformal) {
     var oldInformal = this.informal;
     this.informal = newInformal;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.PROPERTY__INFORMAL, oldInformal, this.informal));
+    }
   }
 
   /**
@@ -215,7 +217,9 @@ public class PropertyImpl extends MinimalEObjectImpl.Container implements Proper
    */
   @Override
   public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (formal: ");

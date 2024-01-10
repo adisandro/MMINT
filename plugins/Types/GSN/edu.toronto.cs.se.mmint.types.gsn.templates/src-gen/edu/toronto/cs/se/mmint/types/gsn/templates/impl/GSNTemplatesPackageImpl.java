@@ -205,7 +205,9 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
    * @generated
    */
   public static GSNTemplatesPackage init() {
-    if (GSNTemplatesPackageImpl.isInited) return (GSNTemplatesPackage)EPackage.Registry.INSTANCE.getEPackage(GSNTemplatesPackage.eNS_URI);
+    if (GSNTemplatesPackageImpl.isInited) {
+      return (GSNTemplatesPackage)EPackage.Registry.INSTANCE.getEPackage(GSNTemplatesPackage.eNS_URI);
+    }
 
     // Obtain or create and register package
     var registeredGSNTemplatesPackage = EPackage.Registry.INSTANCE.get(GSNTemplatesPackage.eNS_URI);
@@ -575,7 +577,9 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
    * @generated
    */
   public void createPackageContents() {
-    if (this.isCreated) return;
+    if (this.isCreated) {
+      return;
+    }
     this.isCreated = true;
 
     // Create classes and their features
@@ -645,7 +649,9 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
    * @generated
    */
   public void initializePackageContents() {
-    if (this.isInitialized) return;
+    if (this.isInitialized) {
+      return;
+    }
     this.isInitialized = true;
 
     // Initialize package

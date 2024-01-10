@@ -18,36 +18,29 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import edu.toronto.cs.se.modelepedia.gsn.ASIL;
-import edu.toronto.cs.se.modelepedia.gsn.ASILDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
-import edu.toronto.cs.se.modelepedia.gsn.AndSupporter;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Assumption;
 import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
 import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.CoreElement;
-import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
+import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
-import edu.toronto.cs.se.modelepedia.gsn.IndependenceGoal;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
-import edu.toronto.cs.se.modelepedia.gsn.MofNSupporter;
-import edu.toronto.cs.se.modelepedia.gsn.OrSupporter;
+import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Solution;
-import edu.toronto.cs.se.modelepedia.gsn.StatefulElement;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
-import edu.toronto.cs.se.modelepedia.gsn.SupportConnector;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.Undeveloped;
-import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call
@@ -113,50 +106,55 @@ public class GSNSwitch<T> extends Switch<T> {
         }
         return result;
       }
-      case GSNPackage.STATEFUL_ELEMENT: {
-        var statefulElement = (StatefulElement)theEObject;
-        var result = caseStatefulElement(statefulElement);
+      case GSNPackage.DECORATABLE: {
+        var decoratable = (Decoratable)theEObject;
+        var result = caseDecoratable(decoratable);
         if (result == null) {
           result = defaultCase(theEObject);
         }
         return result;
       }
-      case GSNPackage.ASI_LFUL_ELEMENT: {
-        var asiLfulElement = (ASILfulElement)theEObject;
-        var result = caseASILfulElement(asiLfulElement);
+      case GSNPackage.SUPPORTABLE: {
+        var supportable = (Supportable)theEObject;
+        var result = caseSupportable(supportable);
         if (result == null) {
-          result = defaultCase(theEObject);
-        }
-        return result;
-      }
-      case GSNPackage.CORE_ELEMENT: {
-        var coreElement = (CoreElement)theEObject;
-        var result = caseCoreElement(coreElement);
-        if (result == null) {
-          result = caseArgumentElement(coreElement);
+          result = caseArgumentElement(supportable);
         }
         if (result == null) {
-          result = caseSupporter(coreElement);
+          result = caseDecoratable(supportable);
         }
         if (result == null) {
           result = defaultCase(theEObject);
         }
         return result;
       }
-      case GSNPackage.DECOMPOSABLE_CORE_ELEMENT: {
-        var decomposableCoreElement = (DecomposableCoreElement)theEObject;
-        var result = caseDecomposableCoreElement(decomposableCoreElement);
+      case GSNPackage.SUPPORTER: {
+        var supporter = (Supporter)theEObject;
+        var result = caseSupporter(supporter);
         if (result == null) {
-          result = caseCoreElement(decomposableCoreElement);
+          result = caseArgumentElement(supporter);
         }
         if (result == null) {
-          result = caseSupportable(decomposableCoreElement);
+          result = defaultCase(theEObject);
+        }
+        return result;
+      }
+      case GSNPackage.SUPPORTED_BY: {
+        var supportedBy = (SupportedBy)theEObject;
+        var result = caseSupportedBy(supportedBy);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
+        return result;
+      }
+      case GSNPackage.CONTEXTUALIZABLE_ELEMENT: {
+        var contextualizableElement = (ContextualizableElement)theEObject;
+        var result = caseContextualizableElement(contextualizableElement);
+        if (result == null) {
+          result = caseArgumentElement(contextualizableElement);
         }
         if (result == null) {
-          result = caseArgumentElement(decomposableCoreElement);
-        }
-        if (result == null) {
-          result = caseSupporter(decomposableCoreElement);
+          result = caseDecoratable(contextualizableElement);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -174,17 +172,17 @@ public class GSNSwitch<T> extends Switch<T> {
         }
         return result;
       }
-      case GSNPackage.SUPPORTED_BY: {
-        var supportedBy = (SupportedBy)theEObject;
-        var result = caseSupportedBy(supportedBy);
+      case GSNPackage.IN_CONTEXT_OF: {
+        var inContextOf = (InContextOf)theEObject;
+        var result = caseInContextOf(inContextOf);
         if (result == null) {
           result = defaultCase(theEObject);
         }
         return result;
       }
-      case GSNPackage.IN_CONTEXT_OF: {
-        var inContextOf = (InContextOf)theEObject;
-        var result = caseInContextOf(inContextOf);
+      case GSNPackage.ASI_LFUL_ELEMENT: {
+        var asiLfulElement = (ASILfulElement)theEObject;
+        var result = caseASILfulElement(asiLfulElement);
         if (result == null) {
           result = defaultCase(theEObject);
         }
@@ -194,25 +192,22 @@ public class GSNSwitch<T> extends Switch<T> {
         var goal = (Goal)theEObject;
         var result = caseGoal(goal);
         if (result == null) {
-          result = caseDecomposableCoreElement(goal);
+          result = caseSupportable(goal);
         }
         if (result == null) {
-          result = caseStatefulElement(goal);
+          result = caseSupporter(goal);
+        }
+        if (result == null) {
+          result = caseContextualizableElement(goal);
         }
         if (result == null) {
           result = caseASILfulElement(goal);
         }
         if (result == null) {
-          result = caseCoreElement(goal);
-        }
-        if (result == null) {
-          result = caseSupportable(goal);
-        }
-        if (result == null) {
           result = caseArgumentElement(goal);
         }
         if (result == null) {
-          result = caseSupporter(goal);
+          result = caseDecoratable(goal);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -226,57 +221,22 @@ public class GSNSwitch<T> extends Switch<T> {
           result = caseGoal(basicGoal);
         }
         if (result == null) {
-          result = caseDecomposableCoreElement(basicGoal);
-        }
-        if (result == null) {
-          result = caseStatefulElement(basicGoal);
-        }
-        if (result == null) {
-          result = caseASILfulElement(basicGoal);
-        }
-        if (result == null) {
-          result = caseCoreElement(basicGoal);
-        }
-        if (result == null) {
           result = caseSupportable(basicGoal);
-        }
-        if (result == null) {
-          result = caseArgumentElement(basicGoal);
         }
         if (result == null) {
           result = caseSupporter(basicGoal);
         }
         if (result == null) {
-          result = defaultCase(theEObject);
-        }
-        return result;
-      }
-      case GSNPackage.INDEPENDENCE_GOAL: {
-        var independenceGoal = (IndependenceGoal)theEObject;
-        var result = caseIndependenceGoal(independenceGoal);
-        if (result == null) {
-          result = caseGoal(independenceGoal);
+          result = caseContextualizableElement(basicGoal);
         }
         if (result == null) {
-          result = caseDecomposableCoreElement(independenceGoal);
+          result = caseASILfulElement(basicGoal);
         }
         if (result == null) {
-          result = caseStatefulElement(independenceGoal);
+          result = caseArgumentElement(basicGoal);
         }
         if (result == null) {
-          result = caseASILfulElement(independenceGoal);
-        }
-        if (result == null) {
-          result = caseCoreElement(independenceGoal);
-        }
-        if (result == null) {
-          result = caseSupportable(independenceGoal);
-        }
-        if (result == null) {
-          result = caseArgumentElement(independenceGoal);
-        }
-        if (result == null) {
-          result = caseSupporter(independenceGoal);
+          result = caseDecoratable(basicGoal);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -287,19 +247,19 @@ public class GSNSwitch<T> extends Switch<T> {
         var strategy = (Strategy)theEObject;
         var result = caseStrategy(strategy);
         if (result == null) {
-          result = caseDecomposableCoreElement(strategy);
-        }
-        if (result == null) {
-          result = caseCoreElement(strategy);
-        }
-        if (result == null) {
           result = caseSupportable(strategy);
+        }
+        if (result == null) {
+          result = caseSupporter(strategy);
+        }
+        if (result == null) {
+          result = caseContextualizableElement(strategy);
         }
         if (result == null) {
           result = caseArgumentElement(strategy);
         }
         if (result == null) {
-          result = caseSupporter(strategy);
+          result = caseDecoratable(strategy);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -313,45 +273,19 @@ public class GSNSwitch<T> extends Switch<T> {
           result = caseStrategy(basicStrategy);
         }
         if (result == null) {
-          result = caseDecomposableCoreElement(basicStrategy);
-        }
-        if (result == null) {
-          result = caseCoreElement(basicStrategy);
-        }
-        if (result == null) {
           result = caseSupportable(basicStrategy);
-        }
-        if (result == null) {
-          result = caseArgumentElement(basicStrategy);
         }
         if (result == null) {
           result = caseSupporter(basicStrategy);
         }
         if (result == null) {
-          result = defaultCase(theEObject);
-        }
-        return result;
-      }
-      case GSNPackage.ASIL_DECOMPOSITION_STRATEGY: {
-        var asilDecompositionStrategy = (ASILDecompositionStrategy)theEObject;
-        var result = caseASILDecompositionStrategy(asilDecompositionStrategy);
-        if (result == null) {
-          result = caseStrategy(asilDecompositionStrategy);
+          result = caseContextualizableElement(basicStrategy);
         }
         if (result == null) {
-          result = caseDecomposableCoreElement(asilDecompositionStrategy);
+          result = caseArgumentElement(basicStrategy);
         }
         if (result == null) {
-          result = caseCoreElement(asilDecompositionStrategy);
-        }
-        if (result == null) {
-          result = caseSupportable(asilDecompositionStrategy);
-        }
-        if (result == null) {
-          result = caseArgumentElement(asilDecompositionStrategy);
-        }
-        if (result == null) {
-          result = caseSupporter(asilDecompositionStrategy);
+          result = caseDecoratable(basicStrategy);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -362,16 +296,10 @@ public class GSNSwitch<T> extends Switch<T> {
         var solution = (Solution)theEObject;
         var result = caseSolution(solution);
         if (result == null) {
-          result = caseCoreElement(solution);
-        }
-        if (result == null) {
-          result = caseStatefulElement(solution);
+          result = caseSupporter(solution);
         }
         if (result == null) {
           result = caseArgumentElement(solution);
-        }
-        if (result == null) {
-          result = caseSupporter(solution);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -420,6 +348,14 @@ public class GSNSwitch<T> extends Switch<T> {
         }
         return result;
       }
+      case GSNPackage.UNDEVELOPED: {
+        var undeveloped = (Undeveloped)theEObject;
+        var result = caseUndeveloped(undeveloped);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
+        return result;
+      }
       case GSNPackage.ASIL: {
         var asil = (ASIL)theEObject;
         var result = caseASIL(asil);
@@ -436,107 +372,6 @@ public class GSNSwitch<T> extends Switch<T> {
         }
         return result;
       }
-      case GSNPackage.SUPPORTABLE: {
-        var supportable = (Supportable)theEObject;
-        var result = caseSupportable(supportable);
-        if (result == null) {
-          result = caseSupporter(supportable);
-        }
-        if (result == null) {
-          result = defaultCase(theEObject);
-        }
-        return result;
-      }
-      case GSNPackage.SUPPORTER: {
-        var supporter = (Supporter)theEObject;
-        var result = caseSupporter(supporter);
-        if (result == null) {
-          result = defaultCase(theEObject);
-        }
-        return result;
-      }
-      case GSNPackage.SUPPORT_CONNECTOR: {
-        var supportConnector = (SupportConnector)theEObject;
-        var result = caseSupportConnector(supportConnector);
-        if (result == null) {
-          result = caseSupportable(supportConnector);
-        }
-        if (result == null) {
-          result = caseSupporter(supportConnector);
-        }
-        if (result == null) {
-          result = defaultCase(theEObject);
-        }
-        return result;
-      }
-      case GSNPackage.AND_SUPPORTER: {
-        var andSupporter = (AndSupporter)theEObject;
-        var result = caseAndSupporter(andSupporter);
-        if (result == null) {
-          result = caseSupportConnector(andSupporter);
-        }
-        if (result == null) {
-          result = caseSupportable(andSupporter);
-        }
-        if (result == null) {
-          result = caseSupporter(andSupporter);
-        }
-        if (result == null) {
-          result = defaultCase(theEObject);
-        }
-        return result;
-      }
-      case GSNPackage.OR_SUPPORTER: {
-        var orSupporter = (OrSupporter)theEObject;
-        var result = caseOrSupporter(orSupporter);
-        if (result == null) {
-          result = caseSupportConnector(orSupporter);
-        }
-        if (result == null) {
-          result = caseSupportable(orSupporter);
-        }
-        if (result == null) {
-          result = caseSupporter(orSupporter);
-        }
-        if (result == null) {
-          result = defaultCase(theEObject);
-        }
-        return result;
-      }
-      case GSNPackage.XOR_SUPPORTER: {
-        var xorSupporter = (XorSupporter)theEObject;
-        var result = caseXorSupporter(xorSupporter);
-        if (result == null) {
-          result = caseSupportConnector(xorSupporter);
-        }
-        if (result == null) {
-          result = caseSupportable(xorSupporter);
-        }
-        if (result == null) {
-          result = caseSupporter(xorSupporter);
-        }
-        if (result == null) {
-          result = defaultCase(theEObject);
-        }
-        return result;
-      }
-      case GSNPackage.MOF_NSUPPORTER: {
-        var mofNSupporter = (MofNSupporter)theEObject;
-        var result = caseMofNSupporter(mofNSupporter);
-        if (result == null) {
-          result = caseSupportConnector(mofNSupporter);
-        }
-        if (result == null) {
-          result = caseSupportable(mofNSupporter);
-        }
-        if (result == null) {
-          result = caseSupporter(mofNSupporter);
-        }
-        if (result == null) {
-          result = defaultCase(theEObject);
-        }
-        return result;
-      }
       case GSNPackage.TEMPLATE: {
         var template = (Template)theEObject;
         var result = caseTemplate(template);
@@ -545,9 +380,21 @@ public class GSNSwitch<T> extends Switch<T> {
         }
         return result;
       }
-      case GSNPackage.UNDEVELOPED: {
-        var undeveloped = (Undeveloped)theEObject;
-        var result = caseUndeveloped(undeveloped);
+      case GSNPackage.RELATIONSHIP_DECORATOR: {
+        var relationshipDecorator = (RelationshipDecorator)theEObject;
+        var result = caseRelationshipDecorator(relationshipDecorator);
+        if (result == null) {
+          result = caseSupportable(relationshipDecorator);
+        }
+        if (result == null) {
+          result = caseContextualizableElement(relationshipDecorator);
+        }
+        if (result == null) {
+          result = caseArgumentElement(relationshipDecorator);
+        }
+        if (result == null) {
+          result = caseDecoratable(relationshipDecorator);
+        }
         if (result == null) {
           result = defaultCase(theEObject);
         }
@@ -584,15 +431,17 @@ public class GSNSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Stateful Element</em>'.
-   * <!-- begin-user-doc
-   * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+   * Returns the result of interpreting the object as an instance of '<em>Decoratable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Stateful Element</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Decoratable</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseStatefulElement(StatefulElement object) {
+  public T caseDecoratable(Decoratable object) {
     return null;
   }
 
@@ -606,34 +455,6 @@ public class GSNSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseASILfulElement(ASILfulElement object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Core Element</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Core Element</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseCoreElement(CoreElement object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Decomposable Core Element</em>'. <!--
-   * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-   * end-user-doc -->
-   *
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Decomposable Core Element</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDecomposableCoreElement(DecomposableCoreElement object) {
     return null;
   }
 
@@ -660,6 +481,21 @@ public class GSNSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseSupportedBy(SupportedBy object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Contextualizable Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Contextualizable Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseContextualizableElement(ContextualizableElement object) {
     return null;
   }
 
@@ -703,19 +539,6 @@ public class GSNSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Independence Goal</em>'.
-   * <!-- begin-user-doc
-   * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Independence Goal</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseIndependenceGoal(IndependenceGoal object) {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Strategy</em>'.
    * <!-- begin-user-doc --> This
    * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
@@ -738,21 +561,6 @@ public class GSNSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseBasicStrategy(BasicStrategy object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>ASIL Decomposition Strategy</em>'. <!--
-   * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-   * end-user-doc -->
-   *
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>ASIL Decomposition Strategy</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseASILDecompositionStrategy(ASILDecompositionStrategy object) {
     return null;
   }
 
@@ -861,71 +669,6 @@ public class GSNSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Support Connector</em>'.
-   * <!-- begin-user-doc
-   * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Support Connector</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseSupportConnector(SupportConnector object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>And Supporter</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>And Supporter</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAndSupporter(AndSupporter object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Or Supporter</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Or Supporter</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseOrSupporter(OrSupporter object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Xor Supporter</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Xor Supporter</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseXorSupporter(XorSupporter object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Mof NSupporter</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Mof NSupporter</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseMofNSupporter(MofNSupporter object) {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Template</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -937,6 +680,21 @@ public class GSNSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseTemplate(Template object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Relationship Decorator</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Relationship Decorator</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRelationshipDecorator(RelationshipDecorator object) {
     return null;
   }
 

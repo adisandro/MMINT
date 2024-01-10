@@ -471,18 +471,42 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
    */
   @Override
   public void dispose() {
-    if (this.intDomainItemProvider != null) this.intDomainItemProvider.dispose();
-    if (this.realDomainItemProvider != null) this.realDomainItemProvider.dispose();
-    if (this.enumDomainItemProvider != null) this.enumDomainItemProvider.dispose();
-    if (this.valueDomainItemProvider != null) this.valueDomainItemProvider.dispose();
-    if (this.domainDecompositionStrategyItemProvider != null) this.domainDecompositionStrategyItemProvider.dispose();
-    if (this.domainGoalItemProvider != null) this.domainGoalItemProvider.dispose();
-    if (this.domainDecompositionTemplateItemProvider != null) this.domainDecompositionTemplateItemProvider.dispose();
-    if (this.propertyItemProvider != null) this.propertyItemProvider.dispose();
-    if (this.propertyDecompositionStrategyItemProvider != null) this.propertyDecompositionStrategyItemProvider.dispose();
-    if (this.propertyGoalItemProvider != null) this.propertyGoalItemProvider.dispose();
-    if (this.propertyDecompositionTemplateItemProvider != null) this.propertyDecompositionTemplateItemProvider.dispose();
-    if (this.filesContextItemProvider != null) this.filesContextItemProvider.dispose();
+    if (this.intDomainItemProvider != null) {
+      this.intDomainItemProvider.dispose();
+    }
+    if (this.realDomainItemProvider != null) {
+      this.realDomainItemProvider.dispose();
+    }
+    if (this.enumDomainItemProvider != null) {
+      this.enumDomainItemProvider.dispose();
+    }
+    if (this.valueDomainItemProvider != null) {
+      this.valueDomainItemProvider.dispose();
+    }
+    if (this.domainDecompositionStrategyItemProvider != null) {
+      this.domainDecompositionStrategyItemProvider.dispose();
+    }
+    if (this.domainGoalItemProvider != null) {
+      this.domainGoalItemProvider.dispose();
+    }
+    if (this.domainDecompositionTemplateItemProvider != null) {
+      this.domainDecompositionTemplateItemProvider.dispose();
+    }
+    if (this.propertyItemProvider != null) {
+      this.propertyItemProvider.dispose();
+    }
+    if (this.propertyDecompositionStrategyItemProvider != null) {
+      this.propertyDecompositionStrategyItemProvider.dispose();
+    }
+    if (this.propertyGoalItemProvider != null) {
+      this.propertyGoalItemProvider.dispose();
+    }
+    if (this.propertyDecompositionTemplateItemProvider != null) {
+      this.propertyDecompositionTemplateItemProvider.dispose();
+    }
+    if (this.filesContextItemProvider != null) {
+      this.filesContextItemProvider.dispose();
+    }
   }
 
   /**

@@ -33,7 +33,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Supportable;
  *
  * @generated
  */
-public class SupportableItemProvider extends SupporterItemProvider {
+public class SupportableItemProvider extends ArgumentElementItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -91,7 +91,9 @@ public class SupportableItemProvider extends SupporterItemProvider {
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
+      this.childrenFeatures.add(GSNPackage.Literals.DECORATABLE__DECORATORS);
       this.childrenFeatures.add(GSNPackage.Literals.SUPPORTABLE__SUPPORTED_BY);
+      this.childrenFeatures.add(GSNPackage.Literals.SUPPORTABLE__UNDEVELOPED);
     }
     return this.childrenFeatures;
   }
@@ -125,7 +127,10 @@ public class SupportableItemProvider extends SupporterItemProvider {
    */
   @Override
   public String getText(Object object) {
-    return getString("_UI_Supportable_type");
+    var label = ((Supportable)object).getId();
+    return label == null || label.length() == 0 ?
+      getString("_UI_Supportable_type") :
+      getString("_UI_Supportable_type") + " " + label;
   }
 
   /**
@@ -139,7 +144,9 @@ public class SupportableItemProvider extends SupporterItemProvider {
     updateChildren(notification);
 
     switch (notification.getFeatureID(Supportable.class)) {
+      case GSNPackage.SUPPORTABLE__DECORATORS:
       case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
+      case GSNPackage.SUPPORTABLE__UNDEVELOPED:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
     }
@@ -158,8 +165,18 @@ public class SupportableItemProvider extends SupporterItemProvider {
 
     newChildDescriptors.add
       (createChildParameter
+        (GSNPackage.Literals.DECORATABLE__DECORATORS,
+         GSNFactory.eINSTANCE.createRelationshipDecorator()));
+
+    newChildDescriptors.add
+      (createChildParameter
         (GSNPackage.Literals.SUPPORTABLE__SUPPORTED_BY,
          GSNFactory.eINSTANCE.createSupportedBy()));
+
+    newChildDescriptors.add
+      (createChildParameter
+        (GSNPackage.Literals.SUPPORTABLE__UNDEVELOPED,
+         GSNFactory.eINSTANCE.createUndeveloped()));
   }
 
 }

@@ -37,8 +37,7 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
  *
  * @generated
  */
-public class SupportedByItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-  IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class SupportedByItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -129,7 +128,8 @@ public class SupportedByItemProvider extends ItemProviderAdapter implements IEdi
 
   /**
    * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override

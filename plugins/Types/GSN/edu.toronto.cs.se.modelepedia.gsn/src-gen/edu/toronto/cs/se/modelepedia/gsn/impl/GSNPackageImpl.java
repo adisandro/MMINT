@@ -23,40 +23,33 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import edu.toronto.cs.se.modelepedia.gsn.ASILDecompositionStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.ASILLevel;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
-import edu.toronto.cs.se.modelepedia.gsn.AndSupporter;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Assumption;
 import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
 import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.CoreElement;
-import edu.toronto.cs.se.modelepedia.gsn.DecomposableCoreElement;
+import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
+import edu.toronto.cs.se.modelepedia.gsn.DecoratorType;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
-import edu.toronto.cs.se.modelepedia.gsn.IndependenceGoal;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
-import edu.toronto.cs.se.modelepedia.gsn.MofNSupporter;
-import edu.toronto.cs.se.modelepedia.gsn.OrSupporter;
+import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Solution;
-import edu.toronto.cs.se.modelepedia.gsn.StatefulElement;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
-import edu.toronto.cs.se.modelepedia.gsn.SupportConnector;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.Undeveloped;
-import edu.toronto.cs.se.modelepedia.gsn.ValidityValue;
-import edu.toronto.cs.se.modelepedia.gsn.XorSupporter;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNValidator;
 
@@ -78,28 +71,17 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   private EClass argumentElementEClass = null;
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  private EClass statefulElementEClass = null;
+  private EClass decoratableEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   private EClass asiLfulElementEClass = null;
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass coreElementEClass = null;
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass decomposableCoreElementEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -112,6 +94,13 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   private EClass supportedByEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass contextualizableElementEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -135,12 +124,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
-  private EClass independenceGoalEClass = null;
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
   private EClass strategyEClass = null;
 
   /**
@@ -148,12 +131,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   private EClass basicStrategyEClass = null;
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass asilDecompositionStrategyEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -204,41 +181,18 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   private EClass supporterEClass = null;
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  private EClass supportConnectorEClass = null;
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass andSupporterEClass = null;
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass orSupporterEClass = null;
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass xorSupporterEClass = null;
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass mofNSupporterEClass = null;
+  private EClass templateEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass templateEClass = null;
+  private EClass relationshipDecoratorEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -257,13 +211,14 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
-  private EEnum validityValueEEnum = null;
+  private EEnum impactTypeEEnum = null;
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  private EEnum impactTypeEEnum = null;
+  private EEnum decoratorTypeEEnum = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -412,22 +367,13 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getSafetyCase_Connectors() {
-    return (EReference)this.safetyCaseEClass.getEStructuralFeatures().get(6);
-  }
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public EReference getSafetyCase_Templates() {
-    return (EReference)this.safetyCaseEClass.getEStructuralFeatures().get(7);
+    return (EReference)this.safetyCaseEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -507,21 +453,23 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public EClass getStatefulElement() {
-    return this.statefulElementEClass;
+  public EClass getDecoratable() {
+    return this.decoratableEClass;
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public EAttribute getStatefulElement_StateValidity() {
-    return (EAttribute)this.statefulElementEClass.getEStructuralFeatures().get(0);
+  public EReference getDecoratable_Decorators() {
+    return (EReference)this.decoratableEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -540,43 +488,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   @Override
   public EReference getASILfulElement_Asil() {
     return (EReference)this.asiLfulElementEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getCoreElement() {
-    return this.coreElementEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getDecomposableCoreElement() {
-    return this.decomposableCoreElementEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getDecomposableCoreElement_InContextOf() {
-    return (EReference)this.decomposableCoreElementEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getDecomposableCoreElement_Undeveloped() {
-    return (EReference)this.decomposableCoreElementEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -622,6 +533,26 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   @Override
   public EReference getSupportedBy_Target() {
     return (EReference)this.supportedByEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getContextualizableElement() {
+    return this.contextualizableElementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getContextualizableElement_InContextOf() {
+    return (EReference)this.contextualizableElementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -674,15 +605,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EClass getIndependenceGoal() {
-    return this.independenceGoalEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getStrategy() {
     return this.strategyEClass;
   }
@@ -694,15 +616,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   @Override
   public EClass getBasicStrategy() {
     return this.basicStrategyEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getASILDecompositionStrategy() {
-    return this.asilDecompositionStrategyEClass;
   }
 
   /**
@@ -823,6 +736,16 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   }
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSupportable_Undeveloped() {
+    return (EReference)this.supportableEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
@@ -838,60 +761,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   @Override
   public EReference getSupporter_Supports() {
     return (EReference)this.supporterEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getSupportConnector() {
-    return this.supportConnectorEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getAndSupporter() {
-    return this.andSupporterEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getOrSupporter() {
-    return this.orSupporterEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getXorSupporter() {
-    return this.xorSupporterEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getMofNSupporter() {
-    return this.mofNSupporterEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getMofNSupporter_Target() {
-    return (EAttribute)this.mofNSupporterEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -960,6 +829,36 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
+  public EClass getRelationshipDecorator() {
+    return this.relationshipDecoratorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRelationshipDecorator_Type() {
+    return (EAttribute)this.relationshipDecoratorEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRelationshipDecorator_Cardinality() {
+    return (EAttribute)this.relationshipDecoratorEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getUndeveloped() {
     return this.undevelopedEClass;
   }
@@ -978,17 +877,18 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EEnum getValidityValue() {
-    return this.validityValueEEnum;
+  public EEnum getImpactType() {
+    return this.impactTypeEEnum;
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public EEnum getImpactType() {
-    return this.impactTypeEEnum;
+  public EEnum getDecoratorType() {
+    return this.decoratorTypeEEnum;
   }
 
   /**
@@ -1045,7 +945,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEReference(this.safetyCaseEClass, GSNPackage.SAFETY_CASE__CONTEXTS);
     createEReference(this.safetyCaseEClass, GSNPackage.SAFETY_CASE__JUSTIFICATIONS);
     createEReference(this.safetyCaseEClass, GSNPackage.SAFETY_CASE__ASSUMPTIONS);
-    createEReference(this.safetyCaseEClass, GSNPackage.SAFETY_CASE__CONNECTORS);
     createEReference(this.safetyCaseEClass, GSNPackage.SAFETY_CASE__TEMPLATES);
 
     this.argumentElementEClass = createEClass(GSNPackage.ARGUMENT_ELEMENT);
@@ -1057,40 +956,40 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEOperation(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT___VALIDATE);
     createEOperation(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE);
 
-    this.statefulElementEClass = createEClass(GSNPackage.STATEFUL_ELEMENT);
-    createEAttribute(this.statefulElementEClass, GSNPackage.STATEFUL_ELEMENT__STATE_VALIDITY);
+    this.decoratableEClass = createEClass(GSNPackage.DECORATABLE);
+    createEReference(this.decoratableEClass, GSNPackage.DECORATABLE__DECORATORS);
 
-    this.asiLfulElementEClass = createEClass(GSNPackage.ASI_LFUL_ELEMENT);
-    createEReference(this.asiLfulElementEClass, GSNPackage.ASI_LFUL_ELEMENT__ASIL);
+    this.supportableEClass = createEClass(GSNPackage.SUPPORTABLE);
+    createEReference(this.supportableEClass, GSNPackage.SUPPORTABLE__SUPPORTED_BY);
+    createEReference(this.supportableEClass, GSNPackage.SUPPORTABLE__UNDEVELOPED);
 
-    this.coreElementEClass = createEClass(GSNPackage.CORE_ELEMENT);
-
-    this.decomposableCoreElementEClass = createEClass(GSNPackage.DECOMPOSABLE_CORE_ELEMENT);
-    createEReference(this.decomposableCoreElementEClass, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF);
-    createEReference(this.decomposableCoreElementEClass, GSNPackage.DECOMPOSABLE_CORE_ELEMENT__UNDEVELOPED);
-
-    this.contextualElementEClass = createEClass(GSNPackage.CONTEXTUAL_ELEMENT);
-    createEReference(this.contextualElementEClass, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF);
+    this.supporterEClass = createEClass(GSNPackage.SUPPORTER);
+    createEReference(this.supporterEClass, GSNPackage.SUPPORTER__SUPPORTS);
 
     this.supportedByEClass = createEClass(GSNPackage.SUPPORTED_BY);
     createEReference(this.supportedByEClass, GSNPackage.SUPPORTED_BY__SOURCE);
     createEReference(this.supportedByEClass, GSNPackage.SUPPORTED_BY__TARGET);
 
+    this.contextualizableElementEClass = createEClass(GSNPackage.CONTEXTUALIZABLE_ELEMENT);
+    createEReference(this.contextualizableElementEClass, GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF);
+
+    this.contextualElementEClass = createEClass(GSNPackage.CONTEXTUAL_ELEMENT);
+    createEReference(this.contextualElementEClass, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF);
+
     this.inContextOfEClass = createEClass(GSNPackage.IN_CONTEXT_OF);
     createEReference(this.inContextOfEClass, GSNPackage.IN_CONTEXT_OF__CONTEXT);
     createEReference(this.inContextOfEClass, GSNPackage.IN_CONTEXT_OF__CONTEXT_OF);
+
+    this.asiLfulElementEClass = createEClass(GSNPackage.ASI_LFUL_ELEMENT);
+    createEReference(this.asiLfulElementEClass, GSNPackage.ASI_LFUL_ELEMENT__ASIL);
 
     this.goalEClass = createEClass(GSNPackage.GOAL);
 
     this.basicGoalEClass = createEClass(GSNPackage.BASIC_GOAL);
 
-    this.independenceGoalEClass = createEClass(GSNPackage.INDEPENDENCE_GOAL);
-
     this.strategyEClass = createEClass(GSNPackage.STRATEGY);
 
     this.basicStrategyEClass = createEClass(GSNPackage.BASIC_STRATEGY);
-
-    this.asilDecompositionStrategyEClass = createEClass(GSNPackage.ASIL_DECOMPOSITION_STRATEGY);
 
     this.solutionEClass = createEClass(GSNPackage.SOLUTION);
 
@@ -1099,6 +998,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     this.justificationEClass = createEClass(GSNPackage.JUSTIFICATION);
 
     this.assumptionEClass = createEClass(GSNPackage.ASSUMPTION);
+
+    this.undevelopedEClass = createEClass(GSNPackage.UNDEVELOPED);
 
     this.asilEClass = createEClass(GSNPackage.ASIL);
     createEAttribute(this.asilEClass, GSNPackage.ASIL__VALUE);
@@ -1109,23 +1010,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEAttribute(this.impactAnnotationEClass, GSNPackage.IMPACT_ANNOTATION__TYPE);
     createEAttribute(this.impactAnnotationEClass, GSNPackage.IMPACT_ANNOTATION__SOURCE);
 
-    this.supportableEClass = createEClass(GSNPackage.SUPPORTABLE);
-    createEReference(this.supportableEClass, GSNPackage.SUPPORTABLE__SUPPORTED_BY);
-
-    this.supporterEClass = createEClass(GSNPackage.SUPPORTER);
-    createEReference(this.supporterEClass, GSNPackage.SUPPORTER__SUPPORTS);
-
-    this.supportConnectorEClass = createEClass(GSNPackage.SUPPORT_CONNECTOR);
-
-    this.andSupporterEClass = createEClass(GSNPackage.AND_SUPPORTER);
-
-    this.orSupporterEClass = createEClass(GSNPackage.OR_SUPPORTER);
-
-    this.xorSupporterEClass = createEClass(GSNPackage.XOR_SUPPORTER);
-
-    this.mofNSupporterEClass = createEClass(GSNPackage.MOF_NSUPPORTER);
-    createEAttribute(this.mofNSupporterEClass, GSNPackage.MOF_NSUPPORTER__TARGET);
-
     this.templateEClass = createEClass(GSNPackage.TEMPLATE);
     createEReference(this.templateEClass, GSNPackage.TEMPLATE__ELEMENTS);
     createEAttribute(this.templateEClass, GSNPackage.TEMPLATE__ID);
@@ -1133,12 +1017,14 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___IMPORT____SAFETYCASE);
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___INSTANTIATE);
 
-    this.undevelopedEClass = createEClass(GSNPackage.UNDEVELOPED);
+    this.relationshipDecoratorEClass = createEClass(GSNPackage.RELATIONSHIP_DECORATOR);
+    createEAttribute(this.relationshipDecoratorEClass, GSNPackage.RELATIONSHIP_DECORATOR__TYPE);
+    createEAttribute(this.relationshipDecoratorEClass, GSNPackage.RELATIONSHIP_DECORATOR__CARDINALITY);
 
     // Create enums
     this.asilLevelEEnum = createEEnum(GSNPackage.ASIL_LEVEL);
-    this.validityValueEEnum = createEEnum(GSNPackage.VALIDITY_VALUE);
     this.impactTypeEEnum = createEEnum(GSNPackage.IMPACT_TYPE);
+    this.decoratorTypeEEnum = createEEnum(GSNPackage.DECORATOR_TYPE);
 
     // Create data types
     this.exceptionEDataType = createEDataType(GSNPackage.EXCEPTION);
@@ -1173,30 +1059,27 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    this.coreElementEClass.getESuperTypes().add(this.getArgumentElement());
-    this.coreElementEClass.getESuperTypes().add(this.getSupporter());
-    this.decomposableCoreElementEClass.getESuperTypes().add(this.getCoreElement());
-    this.decomposableCoreElementEClass.getESuperTypes().add(this.getSupportable());
+    this.supportableEClass.getESuperTypes().add(this.getArgumentElement());
+    this.supportableEClass.getESuperTypes().add(this.getDecoratable());
+    this.supporterEClass.getESuperTypes().add(this.getArgumentElement());
+    this.contextualizableElementEClass.getESuperTypes().add(this.getArgumentElement());
+    this.contextualizableElementEClass.getESuperTypes().add(this.getDecoratable());
     this.contextualElementEClass.getESuperTypes().add(this.getArgumentElement());
-    this.goalEClass.getESuperTypes().add(this.getDecomposableCoreElement());
-    this.goalEClass.getESuperTypes().add(this.getStatefulElement());
+    this.goalEClass.getESuperTypes().add(this.getSupportable());
+    this.goalEClass.getESuperTypes().add(this.getSupporter());
+    this.goalEClass.getESuperTypes().add(this.getContextualizableElement());
     this.goalEClass.getESuperTypes().add(this.getASILfulElement());
     this.basicGoalEClass.getESuperTypes().add(this.getGoal());
-    this.independenceGoalEClass.getESuperTypes().add(this.getGoal());
-    this.strategyEClass.getESuperTypes().add(this.getDecomposableCoreElement());
+    this.strategyEClass.getESuperTypes().add(this.getSupportable());
+    this.strategyEClass.getESuperTypes().add(this.getSupporter());
+    this.strategyEClass.getESuperTypes().add(this.getContextualizableElement());
     this.basicStrategyEClass.getESuperTypes().add(this.getStrategy());
-    this.asilDecompositionStrategyEClass.getESuperTypes().add(this.getStrategy());
-    this.solutionEClass.getESuperTypes().add(this.getCoreElement());
-    this.solutionEClass.getESuperTypes().add(this.getStatefulElement());
+    this.solutionEClass.getESuperTypes().add(this.getSupporter());
     this.contextEClass.getESuperTypes().add(this.getContextualElement());
     this.justificationEClass.getESuperTypes().add(this.getContextualElement());
     this.assumptionEClass.getESuperTypes().add(this.getContextualElement());
-    this.supportableEClass.getESuperTypes().add(this.getSupporter());
-    this.supportConnectorEClass.getESuperTypes().add(this.getSupportable());
-    this.andSupporterEClass.getESuperTypes().add(this.getSupportConnector());
-    this.orSupporterEClass.getESuperTypes().add(this.getSupportConnector());
-    this.xorSupporterEClass.getESuperTypes().add(this.getSupportConnector());
-    this.mofNSupporterEClass.getESuperTypes().add(this.getSupportConnector());
+    this.relationshipDecoratorEClass.getESuperTypes().add(this.getSupportable());
+    this.relationshipDecoratorEClass.getESuperTypes().add(this.getContextualizableElement());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(this.safetyCaseEClass, SafetyCase.class, "SafetyCase", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -1206,7 +1089,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     initEReference(getSafetyCase_Contexts(), this.getContext(), null, "contexts", null, 0, -1, SafetyCase.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getSafetyCase_Justifications(), this.getJustification(), null, "justifications", null, 0, -1, SafetyCase.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getSafetyCase_Assumptions(), this.getAssumption(), null, "assumptions", null, 0, -1, SafetyCase.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getSafetyCase_Connectors(), this.getSupportConnector(), null, "connectors", null, 0, -1, SafetyCase.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getSafetyCase_Templates(), this.getTemplate(), null, "templates", null, 0, -1, SafetyCase.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.argumentElementEClass, ArgumentElement.class, "ArgumentElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -1222,40 +1104,40 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     op = initEOperation(getArgumentElement__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
-    initEClass(this.statefulElementEClass, StatefulElement.class, "StatefulElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getStatefulElement_StateValidity(), this.getValidityValue(), "stateValidity", null, 0, 1, StatefulElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEClass(this.decoratableEClass, Decoratable.class, "Decoratable", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDecoratable_Decorators(), this.getRelationshipDecorator(), null, "decorators", null, 0, -1, Decoratable.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    initEClass(this.asiLfulElementEClass, ASILfulElement.class, "ASILfulElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getASILfulElement_Asil(), this.getASIL(), this.getASIL_Target(), "asil", null, 0, 1, ASILfulElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEClass(this.supportableEClass, Supportable.class, "Supportable", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSupportable_SupportedBy(), this.getSupportedBy(), this.getSupportedBy_Source(), "supportedBy", null, 1, -1, Supportable.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEReference(getSupportable_Undeveloped(), this.getUndeveloped(), null, "undeveloped", null, 0, 1, Supportable.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    initEClass(this.coreElementEClass, CoreElement.class, "CoreElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(this.decomposableCoreElementEClass, DecomposableCoreElement.class, "DecomposableCoreElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDecomposableCoreElement_InContextOf(), this.getInContextOf(), this.getInContextOf_ContextOf(), "inContextOf", null, 0, -1, DecomposableCoreElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getDecomposableCoreElement_Undeveloped(), this.getUndeveloped(), null, "undeveloped", null, 0, 1, DecomposableCoreElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-
-    initEClass(this.contextualElementEClass, ContextualElement.class, "ContextualElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getContextualElement_ContextOf(), this.getInContextOf(), this.getInContextOf_Context(), "contextOf", null, 1, -1, ContextualElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEClass(this.supporterEClass, Supporter.class, "Supporter", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSupporter_Supports(), this.getSupportedBy(), this.getSupportedBy_Target(), "supports", null, 0, -1, Supporter.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.supportedByEClass, SupportedBy.class, "SupportedBy", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSupportedBy_Source(), this.getSupportable(), this.getSupportable_SupportedBy(), "source", null, 1, 1, SupportedBy.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getSupportedBy_Target(), this.getSupporter(), this.getSupporter_Supports(), "target", null, 1, 1, SupportedBy.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
+    initEClass(this.contextualizableElementEClass, ContextualizableElement.class, "ContextualizableElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getContextualizableElement_InContextOf(), this.getInContextOf(), this.getInContextOf_ContextOf(), "inContextOf", null, 0, -1, ContextualizableElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+
+    initEClass(this.contextualElementEClass, ContextualElement.class, "ContextualElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getContextualElement_ContextOf(), this.getInContextOf(), this.getInContextOf_Context(), "contextOf", null, 1, -1, ContextualElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+
     initEClass(this.inContextOfEClass, InContextOf.class, "InContextOf", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEReference(getInContextOf_Context(), this.getContextualElement(), this.getContextualElement_ContextOf(), "context", null, 1, 1, InContextOf.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getInContextOf_ContextOf(), this.getDecomposableCoreElement(), this.getDecomposableCoreElement_InContextOf(), "contextOf", null, 1, 1, InContextOf.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEReference(getInContextOf_ContextOf(), this.getContextualizableElement(), this.getContextualizableElement_InContextOf(), "contextOf", null, 1, 1, InContextOf.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+
+    initEClass(this.asiLfulElementEClass, ASILfulElement.class, "ASILfulElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getASILfulElement_Asil(), this.getASIL(), this.getASIL_Target(), "asil", null, 0, 1, ASILfulElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.goalEClass, Goal.class, "Goal", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(this.basicGoalEClass, BasicGoal.class, "BasicGoal", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(this.independenceGoalEClass, IndependenceGoal.class, "IndependenceGoal", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-
     initEClass(this.strategyEClass, Strategy.class, "Strategy", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(this.basicStrategyEClass, BasicStrategy.class, "BasicStrategy", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(this.asilDecompositionStrategyEClass, ASILDecompositionStrategy.class, "ASILDecompositionStrategy", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(this.solutionEClass, Solution.class, "Solution", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
@@ -1265,6 +1147,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 
     initEClass(this.assumptionEClass, Assumption.class, "Assumption", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
+    initEClass(this.undevelopedEClass, Undeveloped.class, "Undeveloped", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(this.asilEClass, edu.toronto.cs.se.modelepedia.gsn.ASIL.class, "ASIL", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getASIL_Value(), this.getASILLevel(), "value", null, 1, 1, edu.toronto.cs.se.modelepedia.gsn.ASIL.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getASIL_Target(), this.getASILfulElement(), this.getASILfulElement_Asil(), "target", null, 1, 1, edu.toronto.cs.se.modelepedia.gsn.ASIL.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
@@ -1273,23 +1157,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     initEClass(this.impactAnnotationEClass, ImpactAnnotation.class, "ImpactAnnotation", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getImpactAnnotation_Type(), this.getImpactType(), "type", null, 1, 1, ImpactAnnotation.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getImpactAnnotation_Source(), this.ecorePackage.getEString(), "source", null, 0, 1, ImpactAnnotation.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-
-    initEClass(this.supportableEClass, Supportable.class, "Supportable", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSupportable_SupportedBy(), this.getSupportedBy(), this.getSupportedBy_Source(), "supportedBy", null, 1, -1, Supportable.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-
-    initEClass(this.supporterEClass, Supporter.class, "Supporter", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSupporter_Supports(), this.getSupportedBy(), this.getSupportedBy_Target(), "supports", null, 0, -1, Supporter.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-
-    initEClass(this.supportConnectorEClass, SupportConnector.class, "SupportConnector", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(this.andSupporterEClass, AndSupporter.class, "AndSupporter", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(this.orSupporterEClass, OrSupporter.class, "OrSupporter", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(this.xorSupporterEClass, XorSupporter.class, "XorSupporter", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(this.mofNSupporterEClass, MofNSupporter.class, "MofNSupporter", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getMofNSupporter_Target(), this.ecorePackage.getELong(), "target", "1", 1, 1, MofNSupporter.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.templateEClass, Template.class, "Template", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTemplate_Elements(), this.getArgumentElement(), this.getArgumentElement_Templates(), "elements", null, 1, -1, Template.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
@@ -1305,7 +1172,9 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     op = initEOperation(getTemplate__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
-    initEClass(this.undevelopedEClass, Undeveloped.class, "Undeveloped", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.relationshipDecoratorEClass, RelationshipDecorator.class, "RelationshipDecorator", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRelationshipDecorator_Type(), this.getDecoratorType(), "type", null, 1, 1, RelationshipDecorator.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEAttribute(getRelationshipDecorator_Cardinality(), this.ecorePackage.getEInt(), "cardinality", "-1", 0, 1, RelationshipDecorator.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(this.asilLevelEEnum, ASILLevel.class, "ASILLevel");
@@ -1315,16 +1184,16 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     addEEnumLiteral(this.asilLevelEEnum, ASILLevel.A);
     addEEnumLiteral(this.asilLevelEEnum, ASILLevel.QM);
 
-    initEEnum(this.validityValueEEnum, ValidityValue.class, "ValidityValue");
-    addEEnumLiteral(this.validityValueEEnum, ValidityValue.INVALID);
-    addEEnumLiteral(this.validityValueEEnum, ValidityValue.VALID);
-    addEEnumLiteral(this.validityValueEEnum, ValidityValue.UNDETERMINED);
-
     initEEnum(this.impactTypeEEnum, ImpactType.class, "ImpactType");
     addEEnumLiteral(this.impactTypeEEnum, ImpactType.REVISE);
     addEEnumLiteral(this.impactTypeEEnum, ImpactType.RECHECK_CONTENT);
     addEEnumLiteral(this.impactTypeEEnum, ImpactType.RECHECK_STATE);
     addEEnumLiteral(this.impactTypeEEnum, ImpactType.REUSE);
+
+    initEEnum(this.decoratorTypeEEnum, DecoratorType.class, "DecoratorType");
+    addEEnumLiteral(this.decoratorTypeEEnum, DecoratorType.MULTIPLE);
+    addEEnumLiteral(this.decoratorTypeEEnum, DecoratorType.OPTIONAL);
+    addEEnumLiteral(this.decoratorTypeEEnum, DecoratorType.CHOICE);
 
     // Initialize data types
     initEDataType(this.exceptionEDataType, Exception.class, "Exception", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -1380,49 +1249,25 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
       (this.safetyCaseEClass,
        source,
        new String[] {
-         "constraints", "SingleRoot"
-       });
-    addAnnotation
-      (this.contextualElementEClass,
-       source,
-       new String[] {
-         "constraints", "ContextualElementSupporter ContextualElementContext"
-       });
-    addAnnotation
-      (this.goalEClass,
-       source,
-       new String[] {
-         "constraints", "GoalSupporter GoalContext ASILInheritance"
-       });
-    addAnnotation
-      (this.strategyEClass,
-       source,
-       new String[] {
-         "constraints", "StrategySupporter StrategyContext"
-       });
-    addAnnotation
-      (this.asilDecompositionStrategyEClass,
-       source,
-       new String[] {
-         "constraints", "ASILDecompositionIndependence ASILDecompositionComponents ASILDescendants"
-       });
-    addAnnotation
-      (this.solutionEClass,
-       source,
-       new String[] {
-         "constraints", "SolutionSupporter SolutionContext"
+         "constraints", "SingleGoalRoot"
        });
     addAnnotation
       (this.supportableEClass,
        source,
        new String[] {
-         "constraints", "SupportCycle NonSupportableLeaves"
+         "constraints", "SupportCycle StrategySupportsGoals"
        });
     addAnnotation
-      (this.supporterEClass,
+      (this.goalEClass,
        source,
        new String[] {
-         "constraints", "GoalRoot"
+         "constraints", "ASILInheritance"
+       });
+    addAnnotation
+      (this.relationshipDecoratorEClass,
+       source,
+       new String[] {
+         "constraints", "OneRelationship"
        });
   }
 
@@ -1438,57 +1283,26 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
       (this.safetyCaseEClass,
        source,
        new String[] {
-         "SingleRoot", "Supporter.allInstances() -> \n\t\t\tselect(d | d.supports.source -> isEmpty()) -> size() = 1"
-       });
-    addAnnotation
-      (this.contextualElementEClass,
-       source,
-       new String[] {
-         "ContextualElementSupporter", "self.oclAsType(DecomposableCoreElement).oclIsInvalid()",
-         "ContextualElementContext", "self.oclAsType(DecomposableCoreElement).oclIsInvalid()"
-       });
-    addAnnotation
-      (this.goalEClass,
-       source,
-       new String[] {
-         "GoalSupporter", "\n\t\t\tlet children : Set(Supporter) = self.supportedBy.target -> closure(p | if p.oclIsKindOf(CoreElement) then p.oclAsSet() else p.oclAsType(Supportable).supportedBy.target endif) -> asSet()\n\t\t\tin children -> selectByKind(CoreElement) -> forAll(s | s.oclIsKindOf(Goal) or s.oclIsKindOf(Strategy) or s.oclIsKindOf(Solution))",
-         "GoalContext", "self.inContextOf.context -> forAll(c | c.oclIsKindOf(Context) or c.oclIsKindOf(Assumption) or c.oclIsKindOf(Justification))",
-         "ASILInheritance", "\n\t\t\tlet parents : Set(Goal) = self.supports.source -> closure(c | if c.oclIsKindOf(Goal) or c.oclIsKindOf(ASILDecompositionStrategy) then c.oclAsSet() else c.supports.source endif) -> selectByKind(Goal) -> asSet()\n\t\t\tin parents -> forAll(g | if g.asil = null then true else if self.asil = null then false else g.asil.value = ASILLevel::QM or (g.asil.value.toString() <= self.asil.value.toString() and self.asil.value <> ASILLevel::QM) endif endif)"
-       });
-    addAnnotation
-      (this.strategyEClass,
-       source,
-       new String[] {
-         "StrategySupporter", "\n\t\t\tlet children : Set(Supporter) = self.supportedBy.target -> closure(p | if p.oclIsKindOf(CoreElement) then p.oclAsSet() else p.oclAsType(Supportable).supportedBy.target endif) -> asSet() \n\t\t\tin children -> selectByKind(CoreElement) -> forAll(s | s.oclIsKindOf(Goal) or s.oclIsKindOf(Solution))",
-         "StrategyContext", "self.inContextOf.context -> forAll(c | c.oclIsKindOf(Context) or c.oclIsKindOf(Assumption) or c.oclIsKindOf(Justification))"
-       });
-    addAnnotation
-      (this.asilDecompositionStrategyEClass,
-       source,
-       new String[] {
-         "ASILDecompositionIndependence", "\n\t\t\tlet children = self.supportedBy.target -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.target else s.oclAsSet() endif)\n\t\t\tin children -> selectByType(IndependenceGoal) -> size() = 1",
-         "ASILDecompositionComponents", " \n\t\t\tlet children = self.supportedBy.target -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.target else s.oclAsSet() endif)\n\t\t\tin children -> selectByType(BasicGoal) -> size() = 2",
-         "ASILDescendants", "\n\t\t\tlet goalSeq = self.supportedBy.target -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.target else s.oclAsSet() endif) -> select(p | p.oclIsTypeOf(BasicGoal)), \n\t\t\tg1Descendants : Set(Supporter) = goalSeq -> at(1) -> closure(c | \n\t\t\t\t\tif c.oclIsKindOf(Supportable) then c.oclAsType(Supportable).supportedBy.target else null endif),\n\t\t\tg2Descendants : Set(Supporter) = goalSeq -> at(2) -> closure(c | \n\t\t\t\t\tif c.oclIsKindOf(Supportable) then c.oclAsType(Supportable).supportedBy.target else null endif) \n\t\t\tin g1Descendants -> intersection(g2Descendants) = Set{}"
-       });
-    addAnnotation
-      (this.solutionEClass,
-       source,
-       new String[] {
-         "SolutionSupporter", "self.oclAsType(DecomposableCoreElement).oclIsInvalid()",
-         "SolutionContext", "self.oclAsType(DecomposableCoreElement).oclIsInvalid()"
+         "SingleGoalRoot", "let root : Set(OclAny) = Supporter.allInstances()->select(s | s.supports->isEmpty()) in\n  root->size() = 1 and root->forAll(g | g.oclIsKindOf(gsn::Goal))"
        });
     addAnnotation
       (this.supportableEClass,
        source,
        new String[] {
-         "SupportCycle", "self.supportedBy.target -> closure(p | if p.oclIsKindOf(Supportable) then \n\t\t\tp.oclAsType(Supportable).supportedBy.target else \n\t\t\tp.oclAsSet() endif) -> excludes(self)",
-         "NonSupportableLeaves", "self.supportedBy.target -> size() > 0 and self.supportedBy.target -> excludes(null)"
+         "SupportCycle", "self.supportedBy.target->closure(p | if p.oclIsKindOf(Supportable) then p.oclAsType(Supportable).supportedBy.target else p.oclAsSet() endif)->excludes(self)",
+         "StrategySupportsGoals", "if self.oclIsKindOf(gsn::Strategy) then self.supportedBy->forAll(sb | sb.target.oclIsKindOf(gsn::Goal)) else true endif"
        });
     addAnnotation
-      (this.supporterEClass,
+      (this.goalEClass,
        source,
        new String[] {
-         "GoalRoot", "self.supports.source -> isEmpty() implies self.oclIsTypeOf(BasicGoal)"
+         "ASILInheritance", "let parents : Set(Goal) = self.supports.source -> closure(c | if c.oclIsKindOf(Goal) then c.oclAsSet() else c.oclAsType(gsn::Supporter).supports.source endif) -> selectByKind(Goal) -> asSet() in\n  parents -> forAll(g | if g.asil = null then true else if self.asil = null then false else g.asil.value = ASILLevel::QM or (g.asil.value.toString() <= self.asil.value.toString() and self.asil.value <> ASILLevel::QM) endif endif)"
+       });
+    addAnnotation
+      (this.relationshipDecoratorEClass,
+       source,
+       new String[] {
+         "OneRelationship", "self.supportedBy->isEmpty() or self.inContextOf->isEmpty()"
        });
   }
 

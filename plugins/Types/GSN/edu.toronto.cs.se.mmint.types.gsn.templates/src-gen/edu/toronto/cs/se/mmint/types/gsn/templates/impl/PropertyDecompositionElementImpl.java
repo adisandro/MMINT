@@ -86,7 +86,12 @@ public abstract class PropertyDecompositionElementImpl extends MinimalEObjectImp
     this.property = newProperty;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY, oldProperty, newProperty);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      if (msgs == null) {
+        msgs = notification;
+      }
+      else {
+        msgs.add(notification);
+      }
     }
     return msgs;
   }
@@ -100,15 +105,20 @@ public abstract class PropertyDecompositionElementImpl extends MinimalEObjectImp
   public void setProperty(Property newProperty) {
     if (newProperty != this.property) {
       NotificationChain msgs = null;
-      if (this.property != null)
+      if (this.property != null) {
         msgs = ((InternalEObject)this.property).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNTemplatesPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY, null, msgs);
-      if (newProperty != null)
+      }
+      if (newProperty != null) {
         msgs = ((InternalEObject)newProperty).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - GSNTemplatesPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY, null, msgs);
+      }
       msgs = basicSetProperty(newProperty, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null) {
+        msgs.dispatch();
+      }
     }
-    else if (eNotificationRequired())
+    else if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.PROPERTY_DECOMPOSITION_ELEMENT__PROPERTY, newProperty, newProperty));
+    }
   }
 
   /**

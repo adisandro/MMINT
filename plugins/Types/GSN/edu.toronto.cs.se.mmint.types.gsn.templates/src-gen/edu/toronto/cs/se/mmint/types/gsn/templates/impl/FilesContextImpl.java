@@ -190,7 +190,9 @@ public class FilesContextImpl extends ContextImpl implements FilesContext {
    */
   @Override
   public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (paths: ");
