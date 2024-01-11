@@ -124,9 +124,10 @@
           </style>
         </nodeMappings>
         <nodeMappings name="SolutionNode" semanticCandidatesExpression="feature:solutions" domainClass="gsn.Solution" reusedBorderedNodeMappings="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ElementImpactNode']">
-          <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="aql:self.id + '\n' + self.description" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Solution.svg">
+          <style xsi:type="style:DotDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql:self.id + '\n' + self.description" sizeComputationExpression="15" labelPosition="node" resizeKind="NSEW">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </nodeMappings>
         <nodeMappings name="ContextNode" semanticCandidatesExpression="feature:contexts" domainClass="gsn.Context" reusedBorderedNodeMappings="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ElementImpactNode']">
@@ -136,15 +137,17 @@
           </style>
         </nodeMappings>
         <nodeMappings name="JustificationNode" semanticCandidatesExpression="feature:justifications" domainClass="gsn.Justification" reusedBorderedNodeMappings="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ElementImpactNode']">
-          <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="aql:self.id + '\n' + self.description" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Justification.svg">
+          <style xsi:type="style:EllipseNodeDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql:self.id + '\n' + self.description" labelPosition="node" resizeKind="NSEW" horizontalDiameterComputationExpression="20" verticalDiameterComputationExpression="10">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </nodeMappings>
         <nodeMappings name="AssumptionNode" semanticCandidatesExpression="feature:assumptions" domainClass="gsn.Assumption" reusedBorderedNodeMappings="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='ElementImpactNode']">
-          <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="aql:self.id + '\n' + self.description" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Assumption.svg">
+          <style xsi:type="style:EllipseNodeDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql:self.id + '\n' + self.description" labelPosition="node" resizeKind="NSEW" horizontalDiameterComputationExpression="20" verticalDiameterComputationExpression="10">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </nodeMappings>
         <edgeMappings name="SupportedByEdge" sourceMapping="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode'] //@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@borderedNodeMappings[name='RelationshipDecoratorNode']" targetMapping="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='SolutionNode'] //@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']" targetFinderExpression="feature:target" sourceFinderExpression="feature:eContainer" domainClass="gsn.SupportedBy" useDomainElement="true">
@@ -299,7 +302,7 @@
         </decorationDescriptionsSet>
         <customization>
           <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql: self.oclIsKindOf(gsn::ArgumentElement) and not self.oclAsType(gsn::ArgumentElement).valid">
-            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@style //@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='AssumptionNode']/@style //@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='ContextNode']/@style //@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='JustificationNode']/@style //@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='SolutionNode']/@style //@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']/@style" referenceName="labelColor">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@style //@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='ContextNode']/@style //@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']/@style //@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='AssumptionNode']/@style //@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='JustificationNode']/@style //@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='SolutionNode']/@style" referenceName="labelColor">
               <value href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
             </featureCustomizations>
           </vsmElementCustomizations>
