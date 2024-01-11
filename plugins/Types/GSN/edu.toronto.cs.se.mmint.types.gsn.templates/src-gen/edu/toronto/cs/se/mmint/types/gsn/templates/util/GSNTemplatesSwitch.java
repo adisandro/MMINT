@@ -38,6 +38,7 @@ import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
@@ -194,6 +195,9 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
           result = caseArgumentElement(domainDecompositionStrategy);
         }
         if (result == null) {
+          result = caseDecoratable(domainDecompositionStrategy);
+        }
+        if (result == null) {
           result = defaultCase(theEObject);
         }
         return result;
@@ -221,6 +225,9 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
         }
         if (result == null) {
           result = caseArgumentElement(domainGoal);
+        }
+        if (result == null) {
+          result = caseDecoratable(domainGoal);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -279,6 +286,9 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
           result = caseArgumentElement(propertyDecompositionStrategy);
         }
         if (result == null) {
+          result = caseDecoratable(propertyDecompositionStrategy);
+        }
+        if (result == null) {
           result = defaultCase(theEObject);
         }
         return result;
@@ -306,6 +316,9 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
         }
         if (result == null) {
           result = caseArgumentElement(propertyGoal);
+        }
+        if (result == null) {
+          result = caseDecoratable(propertyGoal);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -644,6 +657,21 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseArgumentElement(ArgumentElement object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Decoratable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Decoratable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDecoratable(Decoratable object) {
     return null;
   }
 

@@ -39,6 +39,7 @@ import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
@@ -172,6 +173,10 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
       @Override
       public Adapter caseArgumentElement(ArgumentElement object) {
         return createArgumentElementAdapter();
+      }
+      @Override
+      public Adapter caseDecoratable(Decoratable object) {
+        return createDecoratableAdapter();
       }
       @Override
       public Adapter caseSupportable(Supportable object) {
@@ -502,6 +507,20 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createArgumentElementAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.Decoratable <em>Decoratable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Decoratable
+   * @generated
+   */
+  public Adapter createDecoratableAdapter() {
     return null;
   }
 
