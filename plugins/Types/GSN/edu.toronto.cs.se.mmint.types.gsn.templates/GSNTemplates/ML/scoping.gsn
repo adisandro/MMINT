@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN">
-  <goals xsi:type="gsn:BasicGoal" id="G1.1" description="{ML Component (MLC)} satisfies its allocated system requirements in the defined environment" templates="//@templates.0" valid="false">
+  <goals xsi:type="gsn:Goal" id="G1.1" description="{ML Component (MLC)} satisfies its allocated system requirements in the defined environment" templates="//@templates.0" valid="false">
     <inContextOf context="//@assumptions.0"/>
     <inContextOf context="//@assumptions.1"/>
     <inContextOf context="//@contexts.0"/>

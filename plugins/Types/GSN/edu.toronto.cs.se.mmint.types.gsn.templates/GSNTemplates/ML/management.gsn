@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN">
-  <goals xsi:type="gsn:BasicGoal" id="G3.1" description="The data used to develop and verify reliability is sufficient" templates="//@templates.0">
+  <goals xsi:type="gsn:Goal" id="G3.1" description="The data used to develop and verify reliability is sufficient" templates="//@templates.0">
     <supportedBy target="//@strategies.0"/>
     <inContextOf context="//@contexts.1"/>
     <inContextOf context="//@contexts.2"/>
     <inContextOf context="//@contexts.0"/>
   </goals>
-  <goals xsi:type="gsn:BasicGoal" id="G3.3" description="The data generated satisfies the ML data requirement" templates="//@templates.0" supports="//@strategies.0/@supportedBy.0">
+  <goals xsi:type="gsn:Goal" id="G3.3" description="The data generated satisfies the ML data requirement" templates="//@templates.0" supports="//@strategies.0/@supportedBy.0">
     <supportedBy target="//@strategies.1"/>
     <inContextOf context="//@justifications.0"/>
   </goals>
-  <goals xsi:type="gsn:BasicGoal" id="G3.4" description="The generated data meets relevance requirements" templates="//@templates.0" supports="//@strategies.1/@supportedBy.0">
+  <goals xsi:type="gsn:Goal" id="G3.4" description="The generated data meets relevance requirements" templates="//@templates.0" supports="//@strategies.1/@supportedBy.0">
     <supportedBy target="//@solutions.0"/>
   </goals>
-  <goals xsi:type="gsn:BasicGoal" id="G3.5" description="The generated data meets completeness requirements" templates="//@templates.0" supports="//@strategies.1/@supportedBy.1">
+  <goals xsi:type="gsn:Goal" id="G3.5" description="The generated data meets completeness requirements" templates="//@templates.0" supports="//@strategies.1/@supportedBy.1">
     <supportedBy target="//@solutions.1"/>
   </goals>
-  <goals xsi:type="gsn:BasicGoal" id="G3.6" description="The generated data meets accuracy requirements" templates="//@templates.0" supports="//@strategies.1/@supportedBy.2">
+  <goals xsi:type="gsn:Goal" id="G3.6" description="The generated data meets accuracy requirements" templates="//@templates.0" supports="//@strategies.1/@supportedBy.2">
     <supportedBy target="//@solutions.2"/>
   </goals>
-  <goals xsi:type="gsn:BasicGoal" id="G3.7" description="The generated data meets balance requirements" templates="//@templates.0" supports="//@strategies.1/@supportedBy.3">
+  <goals xsi:type="gsn:Goal" id="G3.7" description="The generated data meets balance requirements" templates="//@templates.0" supports="//@strategies.1/@supportedBy.3">
     <supportedBy target="//@solutions.3"/>
   </goals>
-  <strategies xsi:type="gsn:BasicStrategy" id="S3.1" description="Argument over requirements for data sufficiency" templates="//@templates.0" supports="//@goals.0/@supportedBy.0">
+  <strategies xsi:type="gsn:Strategy" id="S3.1" description="Argument over requirements for data sufficiency" templates="//@templates.0" supports="//@goals.0/@supportedBy.0">
     <supportedBy target="//@goals.1"/>
     <inContextOf context="//@contexts.3"/>
   </strategies>
-  <strategies xsi:type="gsn:BasicStrategy" id="S3.2" description="Argument over different types of data requirements" templates="//@templates.0" supports="//@goals.1/@supportedBy.0">
+  <strategies xsi:type="gsn:Strategy" id="S3.2" description="Argument over different types of data requirements" templates="//@templates.0" supports="//@goals.1/@supportedBy.0">
     <supportedBy target="//@goals.2"/>
     <supportedBy target="//@goals.3"/>
     <supportedBy target="//@goals.4"/>

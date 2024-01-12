@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:gsn.templates="model://edu.toronto.cs.se.mmint.types.gsn.templates">
-  <goals xsi:type="gsn:BasicGoal" id="G1" description="{Safety goal}" templates="//@templates.0" valid="false">
+  <goals xsi:type="gsn:Goal" id="G1" description="{Safety goal}" templates="//@templates.0" valid="false">
     <supportedBy target="//@strategies.0"/>
   </goals>
-  <goals xsi:type="gsn:BasicGoal" id="G1.1" description="G1 asserts the property in Ctx1.G1" templates="//@templates.0" supports="//@strategies.0/@supportedBy.0"/>
-  <goals xsi:type="gsn:BasicGoal" id="G1.2" description="The property in Ctx1.G1 holds" templates="//@templates.0" supports="//@strategies.0/@supportedBy.1">
+  <goals xsi:type="gsn:Goal" id="G1.1" description="G1 asserts the property in Ctx1.G1" templates="//@templates.0" supports="//@strategies.0/@supportedBy.0"/>
+  <goals xsi:type="gsn:Goal" id="G1.2" description="The property in Ctx1.G1 holds" templates="//@templates.0" supports="//@strategies.0/@supportedBy.1">
     <supportedBy target="//@strategies.1"/>
   </goals>
-  <goals xsi:type="gsn:BasicGoal" id="G1.3" description="The related model correctly models all aspects of the system for the property in Ctx1.G1" templates="//@templates.0" supports="//@strategies.0/@supportedBy.2"/>
+  <goals xsi:type="gsn:Goal" id="G1.3" description="The related model correctly models all aspects of the system for the property in Ctx1.G1" templates="//@templates.0" supports="//@strategies.0/@supportedBy.2"/>
   <goals xsi:type="gsn.templates:PropertyGoal" id="G1.N" description="{Decomposed safety properties}" templates="//@templates.0" valid="false" supports="//@strategies.1/@supportedBy.0">
     <property formal="{Decomposed formal properties}" informal="{Decomposed safety properties}"/>
   </goals>
-  <strategies xsi:type="gsn:BasicStrategy" id="S1.G1" description="Argument by {reasoner} formalization" templates="//@templates.0" valid="false" supports="//@goals.0/@supportedBy.0">
+  <strategies xsi:type="gsn:Strategy" id="S1.G1" description="Argument by {reasoner} formalization" templates="//@templates.0" valid="false" supports="//@goals.0/@supportedBy.0">
     <supportedBy target="//@goals.1"/>
     <supportedBy target="//@goals.2"/>
     <supportedBy target="//@goals.3"/>

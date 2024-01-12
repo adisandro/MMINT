@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:gsn.templates="model://edu.toronto.cs.se.mmint.types.gsn.templates">
-  <goals xsi:type="gsn:BasicGoal" id="G1" description="{Safety goal}" templates="//@templates.0" valid="false">
+  <goals xsi:type="gsn:Goal" id="G1" description="{Safety goal}" templates="//@templates.0" valid="false">
     <supportedBy target="//@strategies.0"/>
   </goals>
-  <goals xsi:type="gsn:BasicGoal" id="G1.1" description="Every possible value in the domain is covered by sub-domains" templates="//@templates.0" supports="//@strategies.0/@supportedBy.0"/>
+  <goals xsi:type="gsn:Goal" id="G1.1" description="Every possible value in the domain is covered by sub-domains" templates="//@templates.0" supports="//@strategies.0/@supportedBy.0"/>
   <goals xsi:type="gsn.templates:DomainGoal" id="G1.N" description="{Safety goal} for sub-domain {sub-values}" templates="//@templates.0" valid="false" supports="//@strategies.0/@supportedBy.1">
     <domain xsi:type="gsn.templates:ValueDomain" value="{Sub-values}"/>
   </goals>

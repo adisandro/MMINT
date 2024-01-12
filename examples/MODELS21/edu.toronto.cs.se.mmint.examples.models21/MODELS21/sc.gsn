@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN">
-  <goals xsi:type="gsn:BasicGoal" id="C1" description="The FCS never reaches a damaged state"/>
-  <goals xsi:type="gsn:BasicGoal" id="C2" description="Normal bolus doses are not administered whenever an error state is reached"/>
+  <goals xsi:type="gsn:Goal" id="C1" description="The FCS never reaches a damaged state"/>
+  <goals xsi:type="gsn:Goal" id="C2" description="Normal bolus doses are not administered whenever an error state is reached"/>
 </gsn:SafetyCase>
