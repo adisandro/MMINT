@@ -160,47 +160,49 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.BasicGoal} instances.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.Goal} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  protected BasicGoalItemProvider basicGoalItemProvider;
+  protected GoalItemProvider goalItemProvider;
 
   /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.BasicGoal}.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.Goal}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createBasicGoalAdapter() {
-    if (this.basicGoalItemProvider == null) {
-      this.basicGoalItemProvider = new BasicGoalItemProvider(this);
+  public Adapter createGoalAdapter() {
+    if (this.goalItemProvider == null) {
+      this.goalItemProvider = new GoalItemProvider(this);
     }
 
-    return this.basicGoalItemProvider;
+    return this.goalItemProvider;
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.BasicStrategy} instances.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.Strategy} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  protected BasicStrategyItemProvider basicStrategyItemProvider;
+  protected StrategyItemProvider strategyItemProvider;
 
   /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.BasicStrategy}.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.Strategy}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createBasicStrategyAdapter() {
-    if (this.basicStrategyItemProvider == null) {
-      this.basicStrategyItemProvider = new BasicStrategyItemProvider(this);
+  public Adapter createStrategyAdapter() {
+    if (this.strategyItemProvider == null) {
+      this.strategyItemProvider = new StrategyItemProvider(this);
     }
 
-    return this.basicStrategyItemProvider;
+    return this.strategyItemProvider;
   }
 
   /**
@@ -543,11 +545,11 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
     if (this.inContextOfItemProvider != null) {
       this.inContextOfItemProvider.dispose();
     }
-    if (this.basicGoalItemProvider != null) {
-      this.basicGoalItemProvider.dispose();
+    if (this.goalItemProvider != null) {
+      this.goalItemProvider.dispose();
     }
-    if (this.basicStrategyItemProvider != null) {
-      this.basicStrategyItemProvider.dispose();
+    if (this.strategyItemProvider != null) {
+      this.strategyItemProvider.dispose();
     }
     if (this.solutionItemProvider != null) {
       this.solutionItemProvider.dispose();

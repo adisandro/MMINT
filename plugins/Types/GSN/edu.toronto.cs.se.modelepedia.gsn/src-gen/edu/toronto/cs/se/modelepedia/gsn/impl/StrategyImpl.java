@@ -42,7 +42,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Supporter;
  *
  * @generated
  */
-public abstract class StrategyImpl extends SupportableImpl implements Strategy {
+public class StrategyImpl extends SupportableImpl implements Strategy {
   /**
    * The cached value of the '{@link #getSupports() <em>Supports</em>}' reference list.
    * <!-- begin-user-doc -->

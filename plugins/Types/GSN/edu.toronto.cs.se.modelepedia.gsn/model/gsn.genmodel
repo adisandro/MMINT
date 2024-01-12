@@ -75,9 +75,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//ASILfulElement/asil"/>
     </genClasses>
     <genClasses ecoreClass="gsn.ecore#//Goal"/>
-    <genClasses ecoreClass="gsn.ecore#//BasicGoal"/>
     <genClasses ecoreClass="gsn.ecore#//Strategy"/>
-    <genClasses ecoreClass="gsn.ecore#//BasicStrategy"/>
     <genClasses ecoreClass="gsn.ecore#//Solution"/>
     <genClasses ecoreClass="gsn.ecore#//Context"/>
     <genClasses ecoreClass="gsn.ecore#//Justification"/>

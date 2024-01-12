@@ -21,8 +21,6 @@ import edu.toronto.cs.se.modelepedia.gsn.ASIL;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Assumption;
-import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
-import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
@@ -214,35 +212,6 @@ public class GSNSwitch<T> extends Switch<T> {
         }
         return result;
       }
-      case GSNPackage.BASIC_GOAL: {
-        var basicGoal = (BasicGoal)theEObject;
-        var result = caseBasicGoal(basicGoal);
-        if (result == null) {
-          result = caseGoal(basicGoal);
-        }
-        if (result == null) {
-          result = caseSupportable(basicGoal);
-        }
-        if (result == null) {
-          result = caseSupporter(basicGoal);
-        }
-        if (result == null) {
-          result = caseContextualizableElement(basicGoal);
-        }
-        if (result == null) {
-          result = caseASILfulElement(basicGoal);
-        }
-        if (result == null) {
-          result = caseArgumentElement(basicGoal);
-        }
-        if (result == null) {
-          result = caseDecoratable(basicGoal);
-        }
-        if (result == null) {
-          result = defaultCase(theEObject);
-        }
-        return result;
-      }
       case GSNPackage.STRATEGY: {
         var strategy = (Strategy)theEObject;
         var result = caseStrategy(strategy);
@@ -260,32 +229,6 @@ public class GSNSwitch<T> extends Switch<T> {
         }
         if (result == null) {
           result = caseDecoratable(strategy);
-        }
-        if (result == null) {
-          result = defaultCase(theEObject);
-        }
-        return result;
-      }
-      case GSNPackage.BASIC_STRATEGY: {
-        var basicStrategy = (BasicStrategy)theEObject;
-        var result = caseBasicStrategy(basicStrategy);
-        if (result == null) {
-          result = caseStrategy(basicStrategy);
-        }
-        if (result == null) {
-          result = caseSupportable(basicStrategy);
-        }
-        if (result == null) {
-          result = caseSupporter(basicStrategy);
-        }
-        if (result == null) {
-          result = caseContextualizableElement(basicStrategy);
-        }
-        if (result == null) {
-          result = caseArgumentElement(basicStrategy);
-        }
-        if (result == null) {
-          result = caseDecoratable(basicStrategy);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -526,19 +469,6 @@ public class GSNSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Basic Goal</em>'.
-   * <!-- begin-user-doc --> This
-   * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Basic Goal</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseBasicGoal(BasicGoal object) {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Strategy</em>'.
    * <!-- begin-user-doc --> This
    * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
@@ -548,19 +478,6 @@ public class GSNSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseStrategy(Strategy object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Basic Strategy</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Basic Strategy</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseBasicStrategy(BasicStrategy object) {
     return null;
   }
 

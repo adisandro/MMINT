@@ -23,12 +23,11 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import edu.toronto.cs.se.modelepedia.gsn.ASIL;
 import edu.toronto.cs.se.modelepedia.gsn.ASILLevel;
 import edu.toronto.cs.se.modelepedia.gsn.Assumption;
-import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
-import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.DecoratorType;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
@@ -36,6 +35,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Justification;
 import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Solution;
+import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.Undeveloped;
@@ -83,8 +83,8 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
     case GSNPackage.SAFETY_CASE -> createSafetyCase();
     case GSNPackage.SUPPORTED_BY -> createSupportedBy();
     case GSNPackage.IN_CONTEXT_OF -> createInContextOf();
-    case GSNPackage.BASIC_GOAL -> createBasicGoal();
-    case GSNPackage.BASIC_STRATEGY -> createBasicStrategy();
+    case GSNPackage.GOAL -> createGoal();
+    case GSNPackage.STRATEGY -> createStrategy();
     case GSNPackage.SOLUTION -> createSolution();
     case GSNPackage.CONTEXT -> createContext();
     case GSNPackage.JUSTIFICATION -> createJustification();
@@ -161,23 +161,25 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public BasicGoal createBasicGoal() {
-    BasicGoalImpl basicGoal = new BasicGoalImpl();
-    return basicGoal;
+  public Goal createGoal() {
+    GoalImpl goal = new GoalImpl();
+    return goal;
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public BasicStrategy createBasicStrategy() {
-    BasicStrategyImpl basicStrategy = new BasicStrategyImpl();
-    return basicStrategy;
+  public Strategy createStrategy() {
+    StrategyImpl strategy = new StrategyImpl();
+    return strategy;
   }
 
   /**

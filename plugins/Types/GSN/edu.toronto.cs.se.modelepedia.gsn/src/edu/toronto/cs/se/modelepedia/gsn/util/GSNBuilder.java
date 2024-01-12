@@ -25,8 +25,6 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Assumption;
-import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
-import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
@@ -100,15 +98,15 @@ public class GSNBuilder {
     this.safetyCase.getStrategies().add(strategy);
   }
 
-  public BasicGoal createBasicGoal(String id, String description) {
-    var goal = this.factory.createBasicGoal();
+  public Goal createGoal(String id, String description) {
+    var goal = this.factory.createGoal();
     addGoal(goal, id, description);
 
     return goal;
   }
 
-  public BasicStrategy createBasicStrategy(String id, String description) {
-    var strategy = this.factory.createBasicStrategy();
+  public Strategy createStrategy(String id, String description) {
+    var strategy = this.factory.createStrategy();
     addStrategy(strategy, id, description);
 
     return strategy;

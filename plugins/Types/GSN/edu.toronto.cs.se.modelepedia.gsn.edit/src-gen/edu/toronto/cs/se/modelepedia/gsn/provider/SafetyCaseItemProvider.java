@@ -157,12 +157,12 @@ public class SafetyCaseItemProvider extends ItemProviderAdapter implements IEdit
     newChildDescriptors.add
       (createChildParameter
         (GSNPackage.Literals.SAFETY_CASE__GOALS,
-         GSNFactory.eINSTANCE.createBasicGoal()));
+         GSNFactory.eINSTANCE.createGoal()));
 
     newChildDescriptors.add
       (createChildParameter
         (GSNPackage.Literals.SAFETY_CASE__STRATEGIES,
-         GSNFactory.eINSTANCE.createBasicStrategy()));
+         GSNFactory.eINSTANCE.createStrategy()));
 
     newChildDescriptors.add
       (createChildParameter

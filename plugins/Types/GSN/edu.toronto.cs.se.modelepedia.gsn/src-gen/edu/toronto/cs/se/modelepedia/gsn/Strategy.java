@@ -18,7 +18,7 @@ package edu.toronto.cs.se.modelepedia.gsn;
  *
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getStrategy()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface Strategy extends Supportable, Supporter, ContextualizableElement {

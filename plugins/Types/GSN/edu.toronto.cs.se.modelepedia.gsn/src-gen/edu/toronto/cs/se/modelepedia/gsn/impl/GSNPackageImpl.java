@@ -27,8 +27,6 @@ import edu.toronto.cs.se.modelepedia.gsn.ASILLevel;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Assumption;
-import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
-import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
@@ -118,19 +116,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
-  private EClass basicGoalEClass = null;
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
   private EClass strategyEClass = null;
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass basicStrategyEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -596,26 +582,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EClass getBasicGoal() {
-    return this.basicGoalEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getStrategy() {
     return this.strategyEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getBasicStrategy() {
-    return this.basicStrategyEClass;
   }
 
   /**
@@ -985,11 +953,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
 
     this.goalEClass = createEClass(GSNPackage.GOAL);
 
-    this.basicGoalEClass = createEClass(GSNPackage.BASIC_GOAL);
-
     this.strategyEClass = createEClass(GSNPackage.STRATEGY);
-
-    this.basicStrategyEClass = createEClass(GSNPackage.BASIC_STRATEGY);
 
     this.solutionEClass = createEClass(GSNPackage.SOLUTION);
 
@@ -1069,11 +1033,9 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     this.goalEClass.getESuperTypes().add(this.getSupporter());
     this.goalEClass.getESuperTypes().add(this.getContextualizableElement());
     this.goalEClass.getESuperTypes().add(this.getASILfulElement());
-    this.basicGoalEClass.getESuperTypes().add(this.getGoal());
     this.strategyEClass.getESuperTypes().add(this.getSupportable());
     this.strategyEClass.getESuperTypes().add(this.getSupporter());
     this.strategyEClass.getESuperTypes().add(this.getContextualizableElement());
-    this.basicStrategyEClass.getESuperTypes().add(this.getStrategy());
     this.solutionEClass.getESuperTypes().add(this.getSupporter());
     this.contextEClass.getESuperTypes().add(this.getContextualElement());
     this.justificationEClass.getESuperTypes().add(this.getContextualElement());
@@ -1131,13 +1093,9 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     initEClass(this.asiLfulElementEClass, ASILfulElement.class, "ASILfulElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEReference(getASILfulElement_Asil(), this.getASIL(), this.getASIL_Target(), "asil", null, 0, 1, ASILfulElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    initEClass(this.goalEClass, Goal.class, "Goal", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.goalEClass, Goal.class, "Goal", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(this.basicGoalEClass, BasicGoal.class, "BasicGoal", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(this.strategyEClass, Strategy.class, "Strategy", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(this.basicStrategyEClass, BasicStrategy.class, "BasicStrategy", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.strategyEClass, Strategy.class, "Strategy", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(this.solutionEClass, Solution.class, "Solution", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 

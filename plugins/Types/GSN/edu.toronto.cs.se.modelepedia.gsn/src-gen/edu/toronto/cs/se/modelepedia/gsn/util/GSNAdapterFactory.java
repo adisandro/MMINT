@@ -22,8 +22,6 @@ import edu.toronto.cs.se.modelepedia.gsn.ASIL;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Assumption;
-import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
-import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
@@ -138,16 +136,8 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
         return createGoalAdapter();
       }
       @Override
-      public Adapter caseBasicGoal(BasicGoal object) {
-        return createBasicGoalAdapter();
-      }
-      @Override
       public Adapter caseStrategy(Strategy object) {
         return createStrategyAdapter();
-      }
-      @Override
-      public Adapter caseBasicStrategy(BasicStrategy object) {
-        return createBasicStrategyAdapter();
       }
       @Override
       public Adapter caseSolution(Solution object) {
@@ -318,18 +308,6 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.BasicGoal <em>Basic Goal</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.BasicGoal
-   * @generated
-   */
-  public Adapter createBasicGoalAdapter() {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.Strategy <em>Strategy</em>}'.
    * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
    * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
@@ -338,18 +316,6 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createStrategyAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.BasicStrategy <em>Basic Strategy</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore
-   * cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.BasicStrategy
-   * @generated
-   */
-  public Adapter createBasicStrategyAdapter() {
     return null;
   }
 

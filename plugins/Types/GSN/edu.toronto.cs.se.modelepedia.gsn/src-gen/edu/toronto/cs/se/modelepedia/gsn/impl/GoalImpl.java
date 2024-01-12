@@ -47,7 +47,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Supporter;
  *
  * @generated
  */
-public abstract class GoalImpl extends SupportableImpl implements Goal {
+public class GoalImpl extends SupportableImpl implements Goal {
   /**
    * The cached value of the '{@link #getSupports() <em>Supports</em>}' reference list.
    * <!-- begin-user-doc -->

@@ -26,8 +26,6 @@ import edu.toronto.cs.se.modelepedia.gsn.ASILLevel;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Assumption;
-import edu.toronto.cs.se.modelepedia.gsn.BasicGoal;
-import edu.toronto.cs.se.modelepedia.gsn.BasicStrategy;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
@@ -126,9 +124,7 @@ public class GSNValidator extends EObjectValidator {
     case GSNPackage.IN_CONTEXT_OF -> validateInContextOf((InContextOf)value, diagnostics, context);
     case GSNPackage.ASI_LFUL_ELEMENT -> validateASILfulElement((ASILfulElement)value, diagnostics, context);
     case GSNPackage.GOAL -> validateGoal((Goal)value, diagnostics, context);
-    case GSNPackage.BASIC_GOAL -> validateBasicGoal((BasicGoal)value, diagnostics, context);
     case GSNPackage.STRATEGY -> validateStrategy((Strategy)value, diagnostics, context);
-    case GSNPackage.BASIC_STRATEGY -> validateBasicStrategy((BasicStrategy)value, diagnostics, context);
     case GSNPackage.SOLUTION -> validateSolution((Solution)value, diagnostics, context);
     case GSNPackage.CONTEXT -> validateContext((Context)value, diagnostics, context);
     case GSNPackage.JUSTIFICATION -> validateJustification((Justification)value, diagnostics, context);
@@ -351,48 +347,6 @@ public class GSNValidator extends EObjectValidator {
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
-  public boolean validateBasicGoal(BasicGoal basicGoal, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(basicGoal, diagnostics, context)) {
-      return false;
-    }
-    var result = validate_EveryMultiplicityConforms(basicGoal, diagnostics, context);
-    if (result || diagnostics != null) {
-      result &= validate_EveryDataValueConforms(basicGoal, diagnostics, context);
-    }
-    if (result || diagnostics != null) {
-      result &= validate_EveryReferenceIsContained(basicGoal, diagnostics, context);
-    }
-    if (result || diagnostics != null) {
-      result &= validate_EveryBidirectionalReferenceIsPaired(basicGoal, diagnostics, context);
-    }
-    if (result || diagnostics != null) {
-      result &= validate_EveryProxyResolves(basicGoal, diagnostics, context);
-    }
-    if (result || diagnostics != null) {
-      result &= validate_UniqueID(basicGoal, diagnostics, context);
-    }
-    if (result || diagnostics != null) {
-      result &= validate_EveryKeyUnique(basicGoal, diagnostics, context);
-    }
-    if (result || diagnostics != null) {
-      result &= validate_EveryMapEntryUnique(basicGoal, diagnostics, context);
-    }
-    if (result || diagnostics != null) {
-      result &= validateSupportable_SupportCycle(basicGoal, diagnostics, context);
-    }
-    if (result || diagnostics != null) {
-      result &= validateSupportable_StrategySupportsGoals(basicGoal, diagnostics, context);
-    }
-    if (result || diagnostics != null) {
-      result &= validateGoal_ASILInheritance(basicGoal, diagnostics, context);
-    }
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
   public boolean validateStrategy(Strategy strategy, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (!validate_NoCircularContainment(strategy, diagnostics, context)) {
       return false;
@@ -424,46 +378,6 @@ public class GSNValidator extends EObjectValidator {
     }
     if (result || diagnostics != null) {
       result &= validateSupportable_StrategySupportsGoals(strategy, diagnostics, context);
-    }
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean validateBasicStrategy(BasicStrategy basicStrategy, DiagnosticChain diagnostics,
-                                       Map<Object, Object> context) {
-    if (!validate_NoCircularContainment(basicStrategy, diagnostics, context)) {
-      return false;
-    }
-    var result = validate_EveryMultiplicityConforms(basicStrategy, diagnostics, context);
-    if (result || diagnostics != null) {
-      result &= validate_EveryDataValueConforms(basicStrategy, diagnostics, context);
-    }
-    if (result || diagnostics != null) {
-      result &= validate_EveryReferenceIsContained(basicStrategy, diagnostics, context);
-    }
-    if (result || diagnostics != null) {
-      result &= validate_EveryBidirectionalReferenceIsPaired(basicStrategy, diagnostics, context);
-    }
-    if (result || diagnostics != null) {
-      result &= validate_EveryProxyResolves(basicStrategy, diagnostics, context);
-    }
-    if (result || diagnostics != null) {
-      result &= validate_UniqueID(basicStrategy, diagnostics, context);
-    }
-    if (result || diagnostics != null) {
-      result &= validate_EveryKeyUnique(basicStrategy, diagnostics, context);
-    }
-    if (result || diagnostics != null) {
-      result &= validate_EveryMapEntryUnique(basicStrategy, diagnostics, context);
-    }
-    if (result || diagnostics != null) {
-      result &= validateSupportable_SupportCycle(basicStrategy, diagnostics, context);
-    }
-    if (result || diagnostics != null) {
-      result &= validateSupportable_StrategySupportsGoals(basicStrategy, diagnostics, context);
     }
     return result;
   }

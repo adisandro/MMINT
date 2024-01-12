@@ -54,20 +54,22 @@ public interface GSNFactory extends EFactory {
   InContextOf createInContextOf();
 
   /**
-   * Returns a new object of class '<em>Basic Goal</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return a new object of class '<em>Basic Goal</em>'.
+   * Returns a new object of class '<em>Goal</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Goal</em>'.
    * @generated
    */
-  BasicGoal createBasicGoal();
+  Goal createGoal();
 
   /**
-   * Returns a new object of class '<em>Basic Strategy</em>'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return a new object of class '<em>Basic Strategy</em>'.
+   * Returns a new object of class '<em>Strategy</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Strategy</em>'.
    * @generated
    */
-  BasicStrategy createBasicStrategy();
+  Strategy createStrategy();
 
   /**
    * Returns a new object of class '<em>Solution</em>'.

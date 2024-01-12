@@ -93,7 +93,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="asil" eType="#//ASIL" containment="true"
         eOpposite="#//ASIL/target"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Goal" abstract="true" eSuperTypes="#//Supportable #//Supporter #//ContextualizableElement #//ASILfulElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Goal" eSuperTypes="#//Supportable #//Supporter #//ContextualizableElement #//ASILfulElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="ASILInheritance"/>
     </eAnnotations>
@@ -101,9 +101,7 @@
       <details key="ASILInheritance" value="let parents : Set(Goal) = self.supports.source -> closure(c | if c.oclIsKindOf(Goal) then c.oclAsSet() else c.oclAsType(gsn::Supporter).supports.source endif) -> selectByKind(Goal) -> asSet() in&#xA;  parents -> forAll(g | if g.asil = null then true else if self.asil = null then false else g.asil.value = ASILLevel::QM or (g.asil.value.toString() &lt;= self.asil.value.toString() and self.asil.value &lt;> ASILLevel::QM) endif endif)"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BasicGoal" eSuperTypes="#//Goal"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Strategy" abstract="true" eSuperTypes="#//Supportable #//Supporter #//ContextualizableElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BasicStrategy" eSuperTypes="#//Strategy"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Strategy" eSuperTypes="#//Supportable #//Supporter #//ContextualizableElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Solution" eSuperTypes="#//Supporter"/>
   <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="#//ContextualElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Justification" eSuperTypes="#//ContextualElement"/>
