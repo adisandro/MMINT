@@ -29,8 +29,8 @@ public class GSNProductLineServices extends ProductLineServices {
       case Class c when GSNPackage.eINSTANCE.getArgumentElement().isSuperTypeOf(c.getType()) -> {
         var id = mergePLAttributeLabels(c, GSNPackage.eINSTANCE.getArgumentElement_Id());
         var desc = mergePLAttributeLabels(c, GSNPackage.eINSTANCE.getArgumentElement_Description());
-        var text = (id + " " + desc).strip();
-        yield (pc.isBlank()) ? text : pc + "\n" + text;
+        var text = (id + "\n" + desc).strip();
+        yield (pc.isBlank()) ? text : pc + " " + text;
       }
       case Class c -> "";
       default -> getPLElementLabel(self);
