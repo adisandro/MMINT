@@ -36,7 +36,7 @@
     <undeveloped/>
   </goals>
   <strategies id="S5.1" description="Argument over ML verification approach" templates="//@templates.0" supports="//@goals.0/@supportedBy.1">
-    <decorators type="CHOICE">
+    <decorators templates="//@templates.0" valid="false" type="CHOICE">
       <supportedBy target="//@goals.2"/>
       <supportedBy target="//@goals.3"/>
     </decorators>
@@ -50,5 +50,5 @@
   <contexts id="C5.1" description="{Verification data samples}" templates="//@templates.0" valid="false" contextOf="//@goals.2/@inContextOf.0"/>
   <justifications id="J5.1" description="{Justification for the verification approach that is chosen}" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.0"/>
   <justifications id="J5.2" description="{Rationale that the formally specified properties are a sufficient representation of the intent of the ML safety requirement in the operating environment}" templates="//@templates.0" valid="false" contextOf="//@goals.3/@inContextOf.1"/>
-  <templates elements="//@goals.0 //@goals.1 //@goals.2 //@goals.3 //@goals.4 //@goals.6 //@goals.7 //@goals.8 //@goals.5 //@strategies.0 //@contexts.1 //@contexts.0 //@justifications.0 //@justifications.1 //@solutions.0 //@solutions.1 //@solutions.3 //@solutions.2" id="ML Model Verification"/>
+  <templates elements="//@goals.0 //@goals.1 //@goals.2 //@goals.3 //@goals.4 //@goals.6 //@goals.7 //@goals.8 //@goals.5 //@strategies.0 //@contexts.1 //@contexts.0 //@justifications.0 //@justifications.1 //@solutions.0 //@solutions.1 //@solutions.3 //@solutions.2 //@strategies.0/@decorators.0" id="ML Model Verification"/>
 </gsn:SafetyCase>

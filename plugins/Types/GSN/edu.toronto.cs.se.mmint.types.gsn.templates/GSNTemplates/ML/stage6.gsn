@@ -44,7 +44,7 @@
     <inContextOf context="//@justifications.1"/>
   </strategies>
   <strategies id="S6.2" description="Argument over the defined operating scenarios" templates="//@templates.0" supports="//@goals.1/@supportedBy.0">
-    <decorators type="OPTIONAL">
+    <decorators templates="//@templates.0" valid="false" type="OPTIONAL">
       <supportedBy target="//@goals.8"/>
     </decorators>
     <supportedBy target="//@goals.7"/>
@@ -54,5 +54,5 @@
   <contexts id="C6.3" description="{Erroneous behaviour}" templates="//@templates.0" valid="false" contextOf="//@strategies.2/@inContextOf.0"/>
   <justifications id="J6.1" description="{Rationale for the sufficiency of the operating scenarios}" templates="//@templates.0" valid="false" contextOf="//@goals.1/@inContextOf.1"/>
   <justifications id="J6.2" description="{Rationale for the sufficiency of the identified erroneous behaviour}" templates="//@templates.0" valid="false" contextOf="//@strategies.2/@inContextOf.1"/>
-  <templates elements="//@goals.0 //@goals.1 //@goals.2 //@goals.7 //@goals.8 //@goals.3 //@goals.4 //@goals.5 //@goals.6 //@strategies.0 //@strategies.3 //@strategies.1 //@strategies.2 //@contexts.0 //@contexts.1 //@justifications.0 //@justifications.1 //@solutions.0" id="ML Model Deployment"/>
+  <templates elements="//@goals.0 //@goals.1 //@goals.2 //@goals.7 //@goals.8 //@goals.3 //@goals.4 //@goals.5 //@goals.6 //@strategies.0 //@strategies.3 //@strategies.1 //@strategies.2 //@contexts.0 //@contexts.1 //@justifications.0 //@justifications.1 //@solutions.0 //@strategies.3/@decorators.0" id="ML Model Deployment"/>
 </gsn:SafetyCase>
