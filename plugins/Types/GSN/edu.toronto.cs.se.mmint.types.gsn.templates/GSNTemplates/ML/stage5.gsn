@@ -1,43 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN">
-  <goals xsi:type="gsn:Goal" id="G5.1" description="{ML safety requirement} is satisfied" templates="//@templates.0" valid="false">
+<gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN">
+  <goals id="G5.1" description="{ML safety and reliability requirements} are satisfied" templates="//@templates.0" valid="false">
     <supportedBy target="//@goals.1"/>
     <supportedBy target="//@strategies.0"/>
     <undeveloped/>
   </goals>
-  <goals xsi:type="gsn:Goal" id="G5.2" description="Verification of the MLM is independent of the development of the MLM" templates="//@templates.0" supports="//@goals.0/@supportedBy.0">
+  <goals id="G5.2" description="Verification of the MLM is independent of the development of the MLM" templates="//@templates.0" supports="//@goals.0/@supportedBy.0">
     <supportedBy target="//@solutions.0"/>
   </goals>
-  <goals xsi:type="gsn:Goal" id="G5.3" description="{ML safety requirement} is satisfied when using verification data" templates="//@templates.0" valid="false" supports="//@strategies.0/@supportedBy.0">
+  <goals id="G5.3" description="{ML safety requirement} is satisfied when using test data" templates="//@templates.0" valid="false" supports="//@strategies.0/@decorators.0/@supportedBy.0">
     <supportedBy target="//@goals.4"/>
     <supportedBy target="//@goals.5"/>
     <supportedBy target="//@goals.6"/>
     <inContextOf context="//@contexts.1"/>
   </goals>
-  <goals xsi:type="gsn:Goal" id="G5.4" description="Formal verification demonstrates {formally specified properties} are satisfied" templates="//@templates.0" valid="false" supports="//@strategies.0/@supportedBy.1">
+  <goals id="G5.4" description="Formal verification demonstrates {formally specified properties} are satisfied" templates="//@templates.0" valid="false" supports="//@strategies.0/@decorators.0/@supportedBy.1">
     <supportedBy target="//@goals.7"/>
     <supportedBy target="//@goals.8"/>
     <inContextOf context="//@contexts.0"/>
     <inContextOf context="//@justifications.1"/>
   </goals>
-  <goals xsi:type="gsn:Goal" id="G5.5" description="Verification test results show that the requirement is satisfied" templates="//@templates.0" supports="//@goals.2/@supportedBy.0">
+  <goals id="G5.5" description="Verification test results show that the requirement is satisfied" templates="//@templates.0" supports="//@goals.2/@supportedBy.0">
     <supportedBy target="//@solutions.1"/>
   </goals>
-  <goals xsi:type="gsn:Goal" id="G5.9" description="The verification data used is sufficient to verify the intent of {ML safety requirement} in the operating environment" templates="//@templates.0" valid="false" supports="//@goals.2/@supportedBy.1">
+  <goals id="G5.9" description="The verification data used is sufficient to verify the intent of {ML safety requirement} in the operating environment" templates="//@templates.0" valid="false" supports="//@goals.2/@supportedBy.1">
     <supportedBy target="//@solutions.2"/>
   </goals>
-  <goals xsi:type="gsn:Goal" id="G5.6" description="Test platform is sufficiently representative of operational platform" templates="//@templates.0" supports="//@goals.2/@supportedBy.2">
+  <goals id="G5.6" description="Test platform is sufficiently representative of operational platform" templates="//@templates.0" supports="//@goals.2/@supportedBy.2">
     <undeveloped/>
   </goals>
-  <goals xsi:type="gsn:Goal" id="G5.7" description="Results of formal verification prove that the formally specified properties hold in the MLM" templates="//@templates.0" supports="//@goals.3/@supportedBy.0">
+  <goals id="G5.7" description="Results of formal verification prove that the formally specified properties hold in the MLM" templates="//@templates.0" supports="//@goals.3/@supportedBy.0">
     <supportedBy target="//@solutions.3"/>
   </goals>
-  <goals xsi:type="gsn:Goal" id="G5.8" description="The formal model is sufficiently representative of the MLM and its operating environment" templates="//@templates.0" supports="//@goals.3/@supportedBy.1">
+  <goals id="G5.8" description="The formal model is sufficiently representative of the MLM and its operating environment" templates="//@templates.0" supports="//@goals.3/@supportedBy.1">
     <undeveloped/>
   </goals>
-  <strategies xsi:type="gsn:Strategy" id="S5.1" description="Argument over ML verification approach" templates="//@templates.0" supports="//@goals.0/@supportedBy.1">
-    <supportedBy target="//@goals.2"/>
-    <supportedBy target="//@goals.3"/>
+  <strategies id="S5.1" description="Argument over ML verification approach" templates="//@templates.0" supports="//@goals.0/@supportedBy.1">
+    <decorators type="CHOICE">
+      <supportedBy target="//@goals.2"/>
+      <supportedBy target="//@goals.3"/>
+    </decorators>
     <inContextOf context="//@justifications.0"/>
   </strategies>
   <solutions id="Sn5.1" description="{Verification log}" templates="//@templates.0" valid="false" supports="//@goals.1/@supportedBy.0"/>
