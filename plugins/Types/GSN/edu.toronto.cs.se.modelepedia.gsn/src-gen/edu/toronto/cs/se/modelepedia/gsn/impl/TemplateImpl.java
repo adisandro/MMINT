@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
@@ -154,8 +155,15 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    */
   @Override
   public void instantiate() throws Exception {
+    // instantiate relationship decorators first to fix the structure
     for (var elem : getElements()) {
-      if (elem.isValid()) {
+      if (elem.isValid() || !(elem instanceof RelationshipDecorator)) {
+        continue;
+      }
+      elem.instantiate();
+    }
+    for (var elem : getElements()) {
+      if (elem.isValid() || elem instanceof RelationshipDecorator) {
         continue;
       }
       elem.instantiate();

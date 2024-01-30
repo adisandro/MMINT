@@ -349,14 +349,13 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
   private void dropSubtree(ArgumentElement elem, SafetyCase safetyCase) {
     EcoreUtil.remove(elem);
     if (elem instanceof Supportable supportable) {
-      for (var supportedBy : supportable.getSupportedBy()) {
-        dropSubtree(supportedBy.getTarget(), safetyCase);
-      }
+      supportable.getSupportedBy().forEach(sb -> dropSubtree(sb.getTarget(), safetyCase));
     }
     if (elem instanceof Contextualizable contextualizable) {
-      for (var inContextOf : contextualizable.getInContextOf()) {
-        dropSubtree(inContextOf.getContext(), safetyCase);
-      }
+      contextualizable.getInContextOf().forEach(ico -> dropSubtree(ico.getContext(), safetyCase));
+    }
+    if (elem instanceof Decoratable decoratable) {
+      decoratable.getDecorators().forEach(d -> dropSubtree(d, safetyCase));
     }
   }
 
@@ -364,20 +363,119 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
    * @generated NOT
    */
   private void instantiateOptional(Decoratable decorated, boolean isSupported) {
-    var elem = (isSupported) ? getSupportedBy().get(0).getTarget() : getInContextOf().get(0).getContext();
-    var keep = MIDDialogs.getBooleanInput("Instantiate optional branch",
-                                          "Keep the optional sub-tree starting with " + elem.eClass().getName() + " " +
-                                          elem.getId() + "?");
+    var keep = MIDDialogs.getBooleanInput("Instantiate optional sub-tree",
+                                          "Keep the optional sub-tree starting below " + decorated.eClass().getName() +
+                                          " " + decorated.getId() + "?");
     if (keep) {
       if (isSupported) {
-        ((Supportable) decorated).getSupportedBy().add(getSupportedBy().get(0));
+        ((Supportable) decorated).getSupportedBy().addAll(getSupportedBy());
       }
       else {
-        ((Contextualizable) decorated).getInContextOf().add(getInContextOf().get(0));
+        ((Contextualizable) decorated).getInContextOf().addAll(getInContextOf());
       }
     }
     else {
-      dropSubtree(elem, (SafetyCase) decorated.eContainer());
+      var safetyCase = (SafetyCase) decorated.eContainer();
+      if (isSupported) {
+        getSupportedBy().forEach(sb -> dropSubtree(sb.getTarget(), safetyCase));
+      }
+      else {
+        getInContextOf().forEach(ico -> dropSubtree(ico.getContext(), safetyCase));
+      }
+    }
+  }
+
+  /**
+   * @generated NOT
+   */
+  private void instantiateChoice(Decoratable decorated, boolean isSupported) throws MMINTException {
+    var chosen = 0;
+    var max = getCardinality();
+    if (max < 0) {
+      max = (isSupported) ? getSupportedBy().size() : getInContextOf().size();
+    }
+    if (isSupported) {
+      for (var iter = getSupportedBy().iterator(); iter.hasNext();) {
+        var supportedBy = iter.next();
+        var elem = supportedBy.getTarget();
+        var keep = MIDDialogs.getBooleanInput("Instantiate up to " + max + " sub-trees",
+                                              "Keep the sub-tree starting at " + elem.eClass().getName() + " " +
+                                              elem.getId() + " (" + chosen + " kept so far)?");
+        if (keep) {
+          iter.remove();
+          ((Supportable) decorated).getSupportedBy().add(supportedBy);
+          chosen++;
+          if (chosen >= max) {
+            break;
+          }
+        }
+        else {
+          dropSubtree(elem, (SafetyCase) decorated.eContainer());
+        }
+      }
+    }
+    else {
+      for (var iter = getInContextOf().iterator(); iter.hasNext();) {
+        var inContextOf = iter.next();
+        var elem = inContextOf.getContext();
+        var keep = MIDDialogs.getBooleanInput("Instantiate up to " + max + " sub-trees",
+                                              "Keep the sub-tree starting at " + elem.eClass().getName() + " " +
+                                              elem.getId() + " (" + chosen + " kept so far)?");
+        if (keep) {
+          iter.remove();
+          ((Contextualizable) decorated).getInContextOf().add(inContextOf);
+          chosen++;
+          if (chosen >= max) {
+            break;
+          }
+        }
+        else {
+          dropSubtree(elem, (SafetyCase) decorated.eContainer());
+        }
+      }
+    }
+    if (chosen == 0) {
+      throw new MMINTException("At least one sub-tree must be chosen");
+    }
+  }
+
+  /**
+   * @generated NOT
+   */
+  private void instantiateMultiple(Decoratable decorated, boolean isSupported) throws MMINTException {
+    var max = getCardinality();
+    var x = (max < 0) ? "any number of" : "up to " + max;
+    var n = Integer.parseInt(
+      MIDDialogs.getStringInput("Instantiate " + x + " sub-trees", "Multiply the sub-tree starting below " +
+                                decorated.eClass().getName() + " " + decorated.getId() + " for how many times?", "1"));
+    if (n <= 0) {
+      throw new MMINTException("At least 1 sub-tree must be instantiated");
+    }
+    if (max > 0 && n >= max) {
+      throw new MMINTException("A max of " + max + " sub-trees can be instantiated");
+    }
+    if (n == 1) { // fast path, equivalent to optional
+      if (isSupported) {
+        ((Supportable) decorated).getSupportedBy().addAll(getSupportedBy());
+      }
+      else {
+        ((Contextualizable) decorated).getInContextOf().addAll(getInContextOf());
+      }
+    }
+    else {
+      var safetyCase = (SafetyCase) decorated.eContainer();
+      if (isSupported) {
+        for (var i = 0; i < n; i++) {
+          for (var supportedBy : getSupportedBy()) {
+          }
+        }
+        getSupportedBy().forEach(sb -> dropSubtree(sb.getTarget(), safetyCase));
+      }
+      else {
+        for (var i = 0; i < n; i++) {
+        }
+        getInContextOf().forEach(ico -> dropSubtree(ico.getContext(), safetyCase));
+      }
     }
   }
 
@@ -389,19 +487,14 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
     var isSupported = !getSupportedBy().isEmpty();
     var decorated = (Decoratable) eContainer();
     switch (this.getType()) {
-      case OPTIONAL -> {
-        instantiateOptional(decorated, isSupported);
-      }
-      case CHOICE -> {}
-      case MULTIPLE -> {}
+      case OPTIONAL -> instantiateOptional(decorated, isSupported);
+      case CHOICE -> instantiateChoice(decorated, isSupported);
+      case MULTIPLE -> instantiateMultiple(decorated, isSupported);
     };
     decorated.getDecorators().remove(this);
     /** TODO:
      *  1) Implement the three cases, removing the decorator and connecting the result to the node (use description as hint):
-     *  1a) OPTIONAL: keep or delete subbranch (append id not needed)
-     *  1b) CHOICE: keep or delete subbranches based on cardinality (append id not needed)
      *  1c) MULTIPLE: ask for n and copy subbranch n times (append _mX to ids)
-     *  2) When instantiating a template, rel decorators should be instantiated first, starting from the root node (order by # of rel decorators in parent recursion?)
      */
   }
 
@@ -411,7 +504,7 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
   @Override
   public void validate() throws Exception {
     setValid(false);
-    throw new MMINTException("A relationship decorator cannot exist in an instantiated template");
+    throw new MMINTException("Relationship decorators must be instantiated");
   }
 
 } //RelationshipDecoratorImpl
