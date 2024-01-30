@@ -32,7 +32,7 @@ import org.eclipse.emf.common.util.EList;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot SupportCycle='self.supportedBy.target-&gt;closure(p | if p.oclIsKindOf(Supportable) then p.oclAsType(Supportable).supportedBy.target else p.oclAsSet() endif)-&gt;excludes(self)' StrategySupportsGoals='if self.oclIsKindOf(gsn::Strategy) then self.supportedBy-&gt;forAll(sb | sb.target.oclIsKindOf(gsn::Goal)) else true endif'"
  * @generated
  */
-public interface Supportable extends ArgumentElement, Decoratable {
+public interface Supportable extends Decoratable {
   /**
    * Returns the value of the '<em><b>Supported By</b></em>' containment reference list.
    * The list contents are of type {@link edu.toronto.cs.se.modelepedia.gsn.SupportedBy}.

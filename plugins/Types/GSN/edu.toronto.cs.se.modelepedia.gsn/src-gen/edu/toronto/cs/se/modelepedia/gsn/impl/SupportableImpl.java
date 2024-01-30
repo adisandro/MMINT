@@ -21,13 +21,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Undeveloped;
@@ -38,24 +35,13 @@ import edu.toronto.cs.se.modelepedia.gsn.Undeveloped;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportableImpl#getDecorators <em>Decorators</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportableImpl#getSupportedBy <em>Supported By</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportableImpl#getUndeveloped <em>Undeveloped</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class SupportableImpl extends ArgumentElementImpl implements Supportable {
-  /**
-   * The cached value of the '{@link #getDecorators() <em>Decorators</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDecorators()
-   * @generated
-   * @ordered
-   */
-  protected EList<RelationshipDecorator> decorators;
-
+public abstract class SupportableImpl extends DecoratableImpl implements Supportable {
   /**
    * The cached value of the '{@link #getSupportedBy() <em>Supported By</em>}' containment reference list. <!--
    * begin-user-doc --> <!-- end-user-doc -->
@@ -91,19 +77,6 @@ public abstract class SupportableImpl extends ArgumentElementImpl implements Sup
   @Override
   protected EClass eStaticClass() {
     return GSNPackage.Literals.SUPPORTABLE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EList<RelationshipDecorator> getDecorators() {
-    if (this.decorators == null) {
-      this.decorators = new EObjectContainmentEList<>(RelationshipDecorator.class, this, GSNPackage.SUPPORTABLE__DECORATORS);
-    }
-    return this.decorators;
   }
 
   /**
@@ -194,8 +167,6 @@ public abstract class SupportableImpl extends ArgumentElementImpl implements Sup
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case GSNPackage.SUPPORTABLE__DECORATORS:
-        return ((InternalEList<?>)getDecorators()).basicRemove(otherEnd, msgs);
       case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
         return ((InternalEList<?>)getSupportedBy()).basicRemove(otherEnd, msgs);
       case GSNPackage.SUPPORTABLE__UNDEVELOPED:
@@ -211,8 +182,6 @@ public abstract class SupportableImpl extends ArgumentElementImpl implements Sup
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNPackage.SUPPORTABLE__DECORATORS:
-        return getDecorators();
       case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
         return getSupportedBy();
       case GSNPackage.SUPPORTABLE__UNDEVELOPED:
@@ -229,10 +198,6 @@ public abstract class SupportableImpl extends ArgumentElementImpl implements Sup
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNPackage.SUPPORTABLE__DECORATORS:
-        getDecorators().clear();
-        getDecorators().addAll((Collection<? extends RelationshipDecorator>)newValue);
-        return;
       case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
         getSupportedBy().clear();
         getSupportedBy().addAll((Collection<? extends SupportedBy>)newValue);
@@ -251,9 +216,6 @@ public abstract class SupportableImpl extends ArgumentElementImpl implements Sup
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNPackage.SUPPORTABLE__DECORATORS:
-        getDecorators().clear();
-        return;
       case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
         getSupportedBy().clear();
         return;
@@ -271,46 +233,12 @@ public abstract class SupportableImpl extends ArgumentElementImpl implements Sup
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNPackage.SUPPORTABLE__DECORATORS:
-        return this.decorators != null && !this.decorators.isEmpty();
       case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
         return this.supportedBy != null && !this.supportedBy.isEmpty();
       case GSNPackage.SUPPORTABLE__UNDEVELOPED:
         return this.undeveloped != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-    if (baseClass == Decoratable.class) {
-      return switch (derivedFeatureID) {
-      case GSNPackage.SUPPORTABLE__DECORATORS -> GSNPackage.DECORATABLE__DECORATORS;
-      default -> -1;
-      };
-    }
-    return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-    if (baseClass == Decoratable.class) {
-      return switch (baseFeatureID) {
-      case GSNPackage.DECORATABLE__DECORATORS -> GSNPackage.SUPPORTABLE__DECORATORS;
-      default -> -1;
-      };
-    }
-    return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }
 
 } // SupportableImpl

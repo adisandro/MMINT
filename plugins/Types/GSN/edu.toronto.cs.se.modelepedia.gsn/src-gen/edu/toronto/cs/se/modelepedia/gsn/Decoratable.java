@@ -13,7 +13,6 @@
 package edu.toronto.cs.se.modelepedia.gsn;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface Decoratable extends EObject {
+public interface Decoratable extends ArgumentElement {
   /**
    * Returns the value of the '<em><b>Decorators</b></em>' containment reference list.
    * The list contents are of type {@link edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator}.

@@ -481,7 +481,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   public void validate() throws Exception {
     if (GSNBuilder.findPattern(getDescription()).isPresent()) {
       setValid(false);
-      throw new MMINTException("Element " + getId() + " description contains placeholder text to be instantiated");
+      throw new MMINTException(eClass().getName() + " " + getId() +
+                               " description contains placeholder text to be instantiated");
     }
     setValid(true);
   }

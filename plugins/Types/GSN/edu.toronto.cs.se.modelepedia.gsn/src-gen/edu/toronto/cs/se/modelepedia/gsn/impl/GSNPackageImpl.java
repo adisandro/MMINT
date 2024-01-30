@@ -1026,10 +1026,9 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    this.supportableEClass.getESuperTypes().add(this.getArgumentElement());
+    this.decoratableEClass.getESuperTypes().add(this.getArgumentElement());
     this.supportableEClass.getESuperTypes().add(this.getDecoratable());
     this.supporterEClass.getESuperTypes().add(this.getArgumentElement());
-    this.contextualizableEClass.getESuperTypes().add(this.getArgumentElement());
     this.contextualizableEClass.getESuperTypes().add(this.getDecoratable());
     this.contextualEClass.getESuperTypes().add(this.getArgumentElement());
     this.goalEClass.getESuperTypes().add(this.getSupportable());

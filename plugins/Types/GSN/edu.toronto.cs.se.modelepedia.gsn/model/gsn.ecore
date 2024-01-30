@@ -47,11 +47,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Decoratable" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Decoratable" abstract="true" eSuperTypes="#//ArgumentElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="decorators" upperBound="-1"
         eType="#//RelationshipDecorator" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Supportable" abstract="true" eSuperTypes="#//ArgumentElement #//Decoratable">
+  <eClassifiers xsi:type="ecore:EClass" name="Supportable" abstract="true" eSuperTypes="#//Decoratable">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="SupportCycle StrategySupportsGoals"/>
     </eAnnotations>
@@ -74,7 +74,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
         eType="#//Supporter" eOpposite="#//Supporter/supports"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Contextualizable" abstract="true" eSuperTypes="#//ArgumentElement #//Decoratable">
+  <eClassifiers xsi:type="ecore:EClass" name="Contextualizable" abstract="true" eSuperTypes="#//Decoratable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inContextOf" upperBound="-1"
         eType="#//InContextOf" containment="true" eOpposite="#//InContextOf/contextOf"/>
   </eClassifiers>

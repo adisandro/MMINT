@@ -33,7 +33,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Supportable;
  *
  * @generated
  */
-public class SupportableItemProvider extends ArgumentElementItemProvider {
+public class SupportableItemProvider extends DecoratableItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -91,7 +91,6 @@ public class SupportableItemProvider extends ArgumentElementItemProvider {
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      this.childrenFeatures.add(GSNPackage.Literals.DECORATABLE__DECORATORS);
       this.childrenFeatures.add(GSNPackage.Literals.SUPPORTABLE__SUPPORTED_BY);
       this.childrenFeatures.add(GSNPackage.Literals.SUPPORTABLE__UNDEVELOPED);
     }
@@ -144,7 +143,6 @@ public class SupportableItemProvider extends ArgumentElementItemProvider {
     updateChildren(notification);
 
     switch (notification.getFeatureID(Supportable.class)) {
-      case GSNPackage.SUPPORTABLE__DECORATORS:
       case GSNPackage.SUPPORTABLE__SUPPORTED_BY:
       case GSNPackage.SUPPORTABLE__UNDEVELOPED:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -162,11 +160,6 @@ public class SupportableItemProvider extends ArgumentElementItemProvider {
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.DECORATABLE__DECORATORS,
-         GSNFactory.eINSTANCE.createRelationshipDecorator()));
 
     newChildDescriptors.add
       (createChildParameter

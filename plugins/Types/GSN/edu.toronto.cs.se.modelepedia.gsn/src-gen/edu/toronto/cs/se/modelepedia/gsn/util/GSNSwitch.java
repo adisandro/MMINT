@@ -108,6 +108,9 @@ public class GSNSwitch<T> extends Switch<T> {
         var decoratable = (Decoratable)theEObject;
         var result = caseDecoratable(decoratable);
         if (result == null) {
+          result = caseArgumentElement(decoratable);
+        }
+        if (result == null) {
           result = defaultCase(theEObject);
         }
         return result;
@@ -116,10 +119,10 @@ public class GSNSwitch<T> extends Switch<T> {
         var supportable = (Supportable)theEObject;
         var result = caseSupportable(supportable);
         if (result == null) {
-          result = caseArgumentElement(supportable);
+          result = caseDecoratable(supportable);
         }
         if (result == null) {
-          result = caseDecoratable(supportable);
+          result = caseArgumentElement(supportable);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -149,10 +152,10 @@ public class GSNSwitch<T> extends Switch<T> {
         var contextualizable = (Contextualizable)theEObject;
         var result = caseContextualizable(contextualizable);
         if (result == null) {
-          result = caseArgumentElement(contextualizable);
+          result = caseDecoratable(contextualizable);
         }
         if (result == null) {
-          result = caseDecoratable(contextualizable);
+          result = caseArgumentElement(contextualizable);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -202,10 +205,10 @@ public class GSNSwitch<T> extends Switch<T> {
           result = caseASILfulElement(goal);
         }
         if (result == null) {
-          result = caseArgumentElement(goal);
+          result = caseDecoratable(goal);
         }
         if (result == null) {
-          result = caseDecoratable(goal);
+          result = caseArgumentElement(goal);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -225,10 +228,10 @@ public class GSNSwitch<T> extends Switch<T> {
           result = caseContextualizable(strategy);
         }
         if (result == null) {
-          result = caseArgumentElement(strategy);
+          result = caseDecoratable(strategy);
         }
         if (result == null) {
-          result = caseDecoratable(strategy);
+          result = caseArgumentElement(strategy);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -333,10 +336,10 @@ public class GSNSwitch<T> extends Switch<T> {
           result = caseContextualizable(relationshipDecorator);
         }
         if (result == null) {
-          result = caseArgumentElement(relationshipDecorator);
+          result = caseDecoratable(relationshipDecorator);
         }
         if (result == null) {
-          result = caseDecoratable(relationshipDecorator);
+          result = caseArgumentElement(relationshipDecorator);
         }
         if (result == null) {
           result = defaultCase(theEObject);

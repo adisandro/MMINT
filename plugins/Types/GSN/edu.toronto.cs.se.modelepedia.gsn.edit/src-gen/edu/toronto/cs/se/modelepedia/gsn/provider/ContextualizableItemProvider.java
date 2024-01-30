@@ -32,7 +32,7 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ContextualizableItemProvider extends ArgumentElementItemProvider {
+public class ContextualizableItemProvider extends DecoratableItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -70,7 +70,6 @@ public class ContextualizableItemProvider extends ArgumentElementItemProvider {
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      this.childrenFeatures.add(GSNPackage.Literals.DECORATABLE__DECORATORS);
       this.childrenFeatures.add(GSNPackage.Literals.CONTEXTUALIZABLE__IN_CONTEXT_OF);
     }
     return this.childrenFeatures;
@@ -116,7 +115,6 @@ public class ContextualizableItemProvider extends ArgumentElementItemProvider {
     updateChildren(notification);
 
     switch (notification.getFeatureID(Contextualizable.class)) {
-      case GSNPackage.CONTEXTUALIZABLE__DECORATORS:
       case GSNPackage.CONTEXTUALIZABLE__IN_CONTEXT_OF:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
         return;
@@ -134,11 +132,6 @@ public class ContextualizableItemProvider extends ArgumentElementItemProvider {
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
-
-    newChildDescriptors.add
-      (createChildParameter
-        (GSNPackage.Literals.DECORATABLE__DECORATORS,
-         GSNFactory.eINSTANCE.createRelationshipDecorator()));
 
     newChildDescriptors.add
       (createChildParameter

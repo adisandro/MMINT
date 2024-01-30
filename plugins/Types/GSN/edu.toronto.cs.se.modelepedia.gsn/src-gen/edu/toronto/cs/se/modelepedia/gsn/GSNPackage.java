@@ -253,13 +253,58 @@ public interface GSNPackage extends EPackage {
   int DECORATABLE = 2;
 
   /**
+   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECORATABLE__ID = GSNPackage.ARGUMENT_ELEMENT__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECORATABLE__DESCRIPTION = GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Status</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECORATABLE__STATUS = GSNPackage.ARGUMENT_ELEMENT__STATUS;
+
+  /**
+   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECORATABLE__TEMPLATES = GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
+
+  /**
+   * The feature id for the '<em><b>Valid</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECORATABLE__VALID = GSNPackage.ARGUMENT_ELEMENT__VALID;
+
+  /**
    * The feature id for the '<em><b>Decorators</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECORATABLE__DECORATORS = 0;
+  int DECORATABLE__DECORATORS = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Decoratable</em>' class.
@@ -268,7 +313,25 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECORATABLE_FEATURE_COUNT = 1;
+  int DECORATABLE_FEATURE_COUNT = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The operation id for the '<em>Validate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECORATABLE___VALIDATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE;
+
+  /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECORATABLE___INSTANTIATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Decoratable</em>' class.
@@ -277,7 +340,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECORATABLE_OPERATION_COUNT = 0;
+  int DECORATABLE_OPERATION_COUNT = GSNPackage.ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ASILfulElementImpl <em>ASI Lful Element</em>}' class.
@@ -313,7 +376,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE__ID = GSNPackage.ARGUMENT_ELEMENT__ID;
+  int SUPPORTABLE__ID = GSNPackage.DECORATABLE__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -322,7 +385,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE__DESCRIPTION = GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION;
+  int SUPPORTABLE__DESCRIPTION = GSNPackage.DECORATABLE__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -331,7 +394,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE__STATUS = GSNPackage.ARGUMENT_ELEMENT__STATUS;
+  int SUPPORTABLE__STATUS = GSNPackage.DECORATABLE__STATUS;
 
   /**
    * The feature id for the '<em><b>Templates</b></em>' reference list.
@@ -340,7 +403,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE__TEMPLATES = GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
+  int SUPPORTABLE__TEMPLATES = GSNPackage.DECORATABLE__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -349,7 +412,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE__VALID = GSNPackage.ARGUMENT_ELEMENT__VALID;
+  int SUPPORTABLE__VALID = GSNPackage.DECORATABLE__VALID;
 
   /**
    * The feature id for the '<em><b>Decorators</b></em>' containment reference list.
@@ -358,7 +421,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE__DECORATORS = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
+  int SUPPORTABLE__DECORATORS = GSNPackage.DECORATABLE__DECORATORS;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportedByImpl <em>Supported By</em>}' class.
@@ -459,7 +522,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE__SUPPORTED_BY = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 1;
+  int SUPPORTABLE__SUPPORTED_BY = GSNPackage.DECORATABLE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Undeveloped</b></em>' containment reference.
@@ -468,7 +531,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE__UNDEVELOPED = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 2;
+  int SUPPORTABLE__UNDEVELOPED = GSNPackage.DECORATABLE_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Supportable</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -477,7 +540,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE_FEATURE_COUNT = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 3;
+  int SUPPORTABLE_FEATURE_COUNT = GSNPackage.DECORATABLE_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -486,7 +549,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE___VALIDATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE;
+  int SUPPORTABLE___VALIDATE = GSNPackage.DECORATABLE___VALIDATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -495,7 +558,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE___INSTANTIATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE;
+  int SUPPORTABLE___INSTANTIATE = GSNPackage.DECORATABLE___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Supportable</em>' class.
@@ -503,7 +566,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE_OPERATION_COUNT = GSNPackage.ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
+  int SUPPORTABLE_OPERATION_COUNT = GSNPackage.DECORATABLE_OPERATION_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -642,7 +705,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE__ID = GSNPackage.ARGUMENT_ELEMENT__ID;
+  int CONTEXTUALIZABLE__ID = GSNPackage.DECORATABLE__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -651,7 +714,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE__DESCRIPTION = GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION;
+  int CONTEXTUALIZABLE__DESCRIPTION = GSNPackage.DECORATABLE__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -660,7 +723,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE__STATUS = GSNPackage.ARGUMENT_ELEMENT__STATUS;
+  int CONTEXTUALIZABLE__STATUS = GSNPackage.DECORATABLE__STATUS;
 
   /**
    * The feature id for the '<em><b>Templates</b></em>' reference list.
@@ -669,7 +732,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE__TEMPLATES = GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
+  int CONTEXTUALIZABLE__TEMPLATES = GSNPackage.DECORATABLE__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -678,7 +741,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE__VALID = GSNPackage.ARGUMENT_ELEMENT__VALID;
+  int CONTEXTUALIZABLE__VALID = GSNPackage.DECORATABLE__VALID;
 
   /**
    * The feature id for the '<em><b>Decorators</b></em>' containment reference list.
@@ -687,7 +750,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE__DECORATORS = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
+  int CONTEXTUALIZABLE__DECORATORS = GSNPackage.DECORATABLE__DECORATORS;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -696,7 +759,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE__IN_CONTEXT_OF = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 1;
+  int CONTEXTUALIZABLE__IN_CONTEXT_OF = GSNPackage.DECORATABLE_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Contextualizable</em>' class.
@@ -705,7 +768,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE_FEATURE_COUNT = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 2;
+  int CONTEXTUALIZABLE_FEATURE_COUNT = GSNPackage.DECORATABLE_FEATURE_COUNT + 1;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -714,7 +777,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE___VALIDATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE;
+  int CONTEXTUALIZABLE___VALIDATE = GSNPackage.DECORATABLE___VALIDATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -723,7 +786,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE___INSTANTIATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE;
+  int CONTEXTUALIZABLE___INSTANTIATE = GSNPackage.DECORATABLE___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Contextualizable</em>' class.
@@ -732,7 +795,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE_OPERATION_COUNT = GSNPackage.ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
+  int CONTEXTUALIZABLE_OPERATION_COUNT = GSNPackage.DECORATABLE_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualImpl <em>Contextual</em>}' class.

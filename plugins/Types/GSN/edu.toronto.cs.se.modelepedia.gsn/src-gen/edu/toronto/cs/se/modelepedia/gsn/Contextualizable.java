@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface Contextualizable extends ArgumentElement, Decoratable {
+public interface Contextualizable extends Decoratable {
   /**
    * Returns the value of the '<em><b>In Context Of</b></em>' containment reference list.
    * The list contents are of type {@link edu.toronto.cs.se.modelepedia.gsn.InContextOf}.
