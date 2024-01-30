@@ -361,15 +361,6 @@ public interface GSNPackage extends EPackage {
   int SUPPORTABLE__DECORATORS = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualElementImpl <em>Contextual Element</em>}' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.ContextualElementImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getContextualElement()
-   * @generated
-   */
-  int CONTEXTUAL_ELEMENT = 7;
-
-  /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportedByImpl <em>Supported By</em>}' class.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see edu.toronto.cs.se.modelepedia.gsn.impl.SupportedByImpl
@@ -377,16 +368,6 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   int SUPPORTED_BY = 5;
-
-  /**
-   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableElementImpl <em>Contextualizable Element</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableElementImpl
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getContextualizableElement()
-   * @generated
-   */
-  int CONTEXTUALIZABLE_ELEMENT = 6;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.InContextOfImpl <em>In Context Of</em>}' class.
@@ -645,13 +626,23 @@ public interface GSNPackage extends EPackage {
   int SUPPORTED_BY_OPERATION_COUNT = 0;
 
   /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableImpl <em>Contextualizable</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getContextualizable()
+   * @generated
+   */
+  int CONTEXTUALIZABLE = 6;
+
+  /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE_ELEMENT__ID = GSNPackage.ARGUMENT_ELEMENT__ID;
+  int CONTEXTUALIZABLE__ID = GSNPackage.ARGUMENT_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -660,7 +651,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE_ELEMENT__DESCRIPTION = GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION;
+  int CONTEXTUALIZABLE__DESCRIPTION = GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference.
@@ -669,7 +660,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE_ELEMENT__STATUS = GSNPackage.ARGUMENT_ELEMENT__STATUS;
+  int CONTEXTUALIZABLE__STATUS = GSNPackage.ARGUMENT_ELEMENT__STATUS;
 
   /**
    * The feature id for the '<em><b>Templates</b></em>' reference list.
@@ -678,7 +669,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE_ELEMENT__TEMPLATES = GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
+  int CONTEXTUALIZABLE__TEMPLATES = GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -687,7 +678,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE_ELEMENT__VALID = GSNPackage.ARGUMENT_ELEMENT__VALID;
+  int CONTEXTUALIZABLE__VALID = GSNPackage.ARGUMENT_ELEMENT__VALID;
 
   /**
    * The feature id for the '<em><b>Decorators</b></em>' containment reference list.
@@ -696,7 +687,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE_ELEMENT__DECORATORS = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
+  int CONTEXTUALIZABLE__DECORATORS = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>In Context Of</b></em>' containment reference list.
@@ -705,16 +696,16 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 1;
+  int CONTEXTUALIZABLE__IN_CONTEXT_OF = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 1;
 
   /**
-   * The number of structural features of the '<em>Contextualizable Element</em>' class.
+   * The number of structural features of the '<em>Contextualizable</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE_ELEMENT_FEATURE_COUNT = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 2;
+  int CONTEXTUALIZABLE_FEATURE_COUNT = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -723,7 +714,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE_ELEMENT___VALIDATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE;
+  int CONTEXTUALIZABLE___VALIDATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -732,41 +723,53 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE_ELEMENT___INSTANTIATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE;
+  int CONTEXTUALIZABLE___INSTANTIATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE;
 
   /**
-   * The number of operations of the '<em>Contextualizable Element</em>' class.
+   * The number of operations of the '<em>Contextualizable</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE_ELEMENT_OPERATION_COUNT = GSNPackage.ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
+  int CONTEXTUALIZABLE_OPERATION_COUNT = GSNPackage.ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualImpl <em>Contextual</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.ContextualImpl
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getContextual()
+   * @generated
+   */
+  int CONTEXTUAL = 7;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTEXTUAL_ELEMENT__ID = GSNPackage.ARGUMENT_ELEMENT__ID;
+  int CONTEXTUAL__ID = GSNPackage.ARGUMENT_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTEXTUAL_ELEMENT__DESCRIPTION = GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION;
+  int CONTEXTUAL__DESCRIPTION = GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   *
+   * The feature id for the '<em><b>Status</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTEXTUAL_ELEMENT__STATUS = GSNPackage.ARGUMENT_ELEMENT__STATUS;
+  int CONTEXTUAL__STATUS = GSNPackage.ARGUMENT_ELEMENT__STATUS;
 
   /**
    * The feature id for the '<em><b>Templates</b></em>' reference list.
@@ -775,7 +778,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUAL_ELEMENT__TEMPLATES = GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
+  int CONTEXTUAL__TEMPLATES = GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -784,24 +787,25 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUAL_ELEMENT__VALID = GSNPackage.ARGUMENT_ELEMENT__VALID;
+  int CONTEXTUAL__VALID = GSNPackage.ARGUMENT_ELEMENT__VALID;
 
   /**
    * The feature id for the '<em><b>Context Of</b></em>' reference list.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTEXTUAL_ELEMENT__CONTEXT_OF = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
+  int CONTEXTUAL__CONTEXT_OF = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Contextual Element</em>' class.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * The number of structural features of the '<em>Contextual</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTEXTUAL_ELEMENT_FEATURE_COUNT = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 1;
+  int CONTEXTUAL_FEATURE_COUNT = GSNPackage.ARGUMENT_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -810,7 +814,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUAL_ELEMENT___VALIDATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE;
+  int CONTEXTUAL___VALIDATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -819,15 +823,16 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUAL_ELEMENT___INSTANTIATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE;
+  int CONTEXTUAL___INSTANTIATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE;
 
   /**
-   * The number of operations of the '<em>Contextual Element</em>' class.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * The number of operations of the '<em>Contextual</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTEXTUAL_ELEMENT_OPERATION_COUNT = GSNPackage.ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
+  int CONTEXTUAL_OPERATION_COUNT = GSNPackage.ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' reference.
@@ -1229,7 +1234,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT__ID = GSNPackage.CONTEXTUAL_ELEMENT__ID;
+  int CONTEXT__ID = GSNPackage.CONTEXTUAL__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1237,7 +1242,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT__DESCRIPTION = GSNPackage.CONTEXTUAL_ELEMENT__DESCRIPTION;
+  int CONTEXT__DESCRIPTION = GSNPackage.CONTEXTUAL__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1246,7 +1251,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT__STATUS = GSNPackage.CONTEXTUAL_ELEMENT__STATUS;
+  int CONTEXT__STATUS = GSNPackage.CONTEXTUAL__STATUS;
 
   /**
    * The feature id for the '<em><b>Templates</b></em>' reference list.
@@ -1255,7 +1260,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT__TEMPLATES = GSNPackage.CONTEXTUAL_ELEMENT__TEMPLATES;
+  int CONTEXT__TEMPLATES = GSNPackage.CONTEXTUAL__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -1264,7 +1269,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT__VALID = GSNPackage.CONTEXTUAL_ELEMENT__VALID;
+  int CONTEXT__VALID = GSNPackage.CONTEXTUAL__VALID;
 
   /**
    * The feature id for the '<em><b>Context Of</b></em>' reference list.
@@ -1272,7 +1277,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT__CONTEXT_OF = GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF;
+  int CONTEXT__CONTEXT_OF = GSNPackage.CONTEXTUAL__CONTEXT_OF;
 
   /**
    * The number of structural features of the '<em>Context</em>' class.
@@ -1280,7 +1285,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT_FEATURE_COUNT = GSNPackage.CONTEXTUAL_ELEMENT_FEATURE_COUNT + 0;
+  int CONTEXT_FEATURE_COUNT = GSNPackage.CONTEXTUAL_FEATURE_COUNT + 0;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -1289,7 +1294,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT___VALIDATE = GSNPackage.CONTEXTUAL_ELEMENT___VALIDATE;
+  int CONTEXT___VALIDATE = GSNPackage.CONTEXTUAL___VALIDATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1298,7 +1303,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT___INSTANTIATE = GSNPackage.CONTEXTUAL_ELEMENT___INSTANTIATE;
+  int CONTEXT___INSTANTIATE = GSNPackage.CONTEXTUAL___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Context</em>' class.
@@ -1306,7 +1311,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT_OPERATION_COUNT = GSNPackage.CONTEXTUAL_ELEMENT_OPERATION_COUNT + 0;
+  int CONTEXT_OPERATION_COUNT = GSNPackage.CONTEXTUAL_OPERATION_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1314,7 +1319,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION__ID = GSNPackage.CONTEXTUAL_ELEMENT__ID;
+  int JUSTIFICATION__ID = GSNPackage.CONTEXTUAL__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1322,7 +1327,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION__DESCRIPTION = GSNPackage.CONTEXTUAL_ELEMENT__DESCRIPTION;
+  int JUSTIFICATION__DESCRIPTION = GSNPackage.CONTEXTUAL__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1331,7 +1336,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION__STATUS = GSNPackage.CONTEXTUAL_ELEMENT__STATUS;
+  int JUSTIFICATION__STATUS = GSNPackage.CONTEXTUAL__STATUS;
 
   /**
    * The feature id for the '<em><b>Templates</b></em>' reference list.
@@ -1340,7 +1345,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION__TEMPLATES = GSNPackage.CONTEXTUAL_ELEMENT__TEMPLATES;
+  int JUSTIFICATION__TEMPLATES = GSNPackage.CONTEXTUAL__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -1349,7 +1354,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION__VALID = GSNPackage.CONTEXTUAL_ELEMENT__VALID;
+  int JUSTIFICATION__VALID = GSNPackage.CONTEXTUAL__VALID;
 
   /**
    * The feature id for the '<em><b>Context Of</b></em>' reference list.
@@ -1357,7 +1362,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION__CONTEXT_OF = GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF;
+  int JUSTIFICATION__CONTEXT_OF = GSNPackage.CONTEXTUAL__CONTEXT_OF;
 
   /**
    * The number of structural features of the '<em>Justification</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1366,7 +1371,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION_FEATURE_COUNT = GSNPackage.CONTEXTUAL_ELEMENT_FEATURE_COUNT + 0;
+  int JUSTIFICATION_FEATURE_COUNT = GSNPackage.CONTEXTUAL_FEATURE_COUNT + 0;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -1375,7 +1380,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION___VALIDATE = GSNPackage.CONTEXTUAL_ELEMENT___VALIDATE;
+  int JUSTIFICATION___VALIDATE = GSNPackage.CONTEXTUAL___VALIDATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1384,7 +1389,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION___INSTANTIATE = GSNPackage.CONTEXTUAL_ELEMENT___INSTANTIATE;
+  int JUSTIFICATION___INSTANTIATE = GSNPackage.CONTEXTUAL___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Justification</em>' class.
@@ -1392,7 +1397,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION_OPERATION_COUNT = GSNPackage.CONTEXTUAL_ELEMENT_OPERATION_COUNT + 0;
+  int JUSTIFICATION_OPERATION_COUNT = GSNPackage.CONTEXTUAL_OPERATION_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1400,7 +1405,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION__ID = GSNPackage.CONTEXTUAL_ELEMENT__ID;
+  int ASSUMPTION__ID = GSNPackage.CONTEXTUAL__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1408,7 +1413,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION__DESCRIPTION = GSNPackage.CONTEXTUAL_ELEMENT__DESCRIPTION;
+  int ASSUMPTION__DESCRIPTION = GSNPackage.CONTEXTUAL__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Status</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1417,7 +1422,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION__STATUS = GSNPackage.CONTEXTUAL_ELEMENT__STATUS;
+  int ASSUMPTION__STATUS = GSNPackage.CONTEXTUAL__STATUS;
 
   /**
    * The feature id for the '<em><b>Templates</b></em>' reference list.
@@ -1426,7 +1431,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION__TEMPLATES = GSNPackage.CONTEXTUAL_ELEMENT__TEMPLATES;
+  int ASSUMPTION__TEMPLATES = GSNPackage.CONTEXTUAL__TEMPLATES;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -1435,7 +1440,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION__VALID = GSNPackage.CONTEXTUAL_ELEMENT__VALID;
+  int ASSUMPTION__VALID = GSNPackage.CONTEXTUAL__VALID;
 
   /**
    * The feature id for the '<em><b>Context Of</b></em>' reference list.
@@ -1443,7 +1448,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION__CONTEXT_OF = GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF;
+  int ASSUMPTION__CONTEXT_OF = GSNPackage.CONTEXTUAL__CONTEXT_OF;
 
   /**
    * The number of structural features of the '<em>Assumption</em>' class.
@@ -1451,7 +1456,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION_FEATURE_COUNT = GSNPackage.CONTEXTUAL_ELEMENT_FEATURE_COUNT + 0;
+  int ASSUMPTION_FEATURE_COUNT = GSNPackage.CONTEXTUAL_FEATURE_COUNT + 0;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -1460,7 +1465,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION___VALIDATE = GSNPackage.CONTEXTUAL_ELEMENT___VALIDATE;
+  int ASSUMPTION___VALIDATE = GSNPackage.CONTEXTUAL___VALIDATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1469,7 +1474,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION___INSTANTIATE = GSNPackage.CONTEXTUAL_ELEMENT___INSTANTIATE;
+  int ASSUMPTION___INSTANTIATE = GSNPackage.CONTEXTUAL___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Assumption</em>' class.
@@ -1477,7 +1482,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION_OPERATION_COUNT = GSNPackage.CONTEXTUAL_ELEMENT_OPERATION_COUNT + 0;
+  int ASSUMPTION_OPERATION_COUNT = GSNPackage.CONTEXTUAL_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl <em>Template</em>}' class.
@@ -2060,26 +2065,6 @@ public interface GSNPackage extends EPackage {
   EReference getASILfulElement_Asil();
 
   /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.ContextualElement <em>Contextual Element</em>}'.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @return the meta object for class '<em>Contextual Element</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ContextualElement
-   * @generated
-   */
-  EClass getContextualElement();
-
-  /**
-   * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.gsn.ContextualElement#getContextOf <em>Context Of</em>}'.
-   * <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Context Of</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ContextualElement#getContextOf()
-   * @see #getContextualElement()
-   * @generated
-   */
-  EReference getContextualElement_ContextOf();
-
-  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.SupportedBy <em>Supported By</em>}'.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @return the meta object for class '<em>Supported By</em>'.
@@ -2109,25 +2094,46 @@ public interface GSNPackage extends EPackage {
   EReference getSupportedBy_Target();
 
   /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement <em>Contextualizable Element</em>}'.
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.Contextualizable <em>Contextualizable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Contextualizable Element</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement
+   * @return the meta object for class '<em>Contextualizable</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Contextualizable
    * @generated
    */
-  EClass getContextualizableElement();
+  EClass getContextualizable();
 
   /**
-   * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement#getInContextOf <em>In Context Of</em>}'.
+   * Returns the meta object for the containment reference list '{@link edu.toronto.cs.se.modelepedia.gsn.Contextualizable#getInContextOf <em>In Context Of</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>In Context Of</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement#getInContextOf()
-   * @see #getContextualizableElement()
+   * @see edu.toronto.cs.se.modelepedia.gsn.Contextualizable#getInContextOf()
+   * @see #getContextualizable()
    * @generated
    */
-  EReference getContextualizableElement_InContextOf();
+  EReference getContextualizable_InContextOf();
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.Contextual <em>Contextual</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Contextual</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Contextual
+   * @generated
+   */
+  EClass getContextual();
+
+  /**
+   * Returns the meta object for the reference list '{@link edu.toronto.cs.se.modelepedia.gsn.Contextual#getContextOf <em>Context Of</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Context Of</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Contextual#getContextOf()
+   * @see #getContextual()
+   * @generated
+   */
+  EReference getContextual_ContextOf();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.InContextOf <em>In Context Of</em>}'.
@@ -2681,23 +2687,6 @@ public interface GSNPackage extends EPackage {
     EReference ASI_LFUL_ELEMENT__ASIL = GSNPackage.eINSTANCE.getASILfulElement_Asil();
 
     /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualElementImpl <em>Contextual Element</em>}' class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.ContextualElementImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getContextualElement()
-     * @generated
-     */
-    EClass CONTEXTUAL_ELEMENT = GSNPackage.eINSTANCE.getContextualElement();
-
-    /**
-     * The meta object literal for the '<em><b>Context Of</b></em>' reference list feature.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    EReference CONTEXTUAL_ELEMENT__CONTEXT_OF = GSNPackage.eINSTANCE.getContextualElement_ContextOf();
-
-    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.SupportedByImpl <em>Supported By</em>}' class.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @see edu.toronto.cs.se.modelepedia.gsn.impl.SupportedByImpl
@@ -2723,14 +2712,14 @@ public interface GSNPackage extends EPackage {
     EReference SUPPORTED_BY__TARGET = GSNPackage.eINSTANCE.getSupportedBy_Target();
 
     /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableElementImpl <em>Contextualizable Element</em>}' class.
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableImpl <em>Contextualizable</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableElementImpl
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getContextualizableElement()
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableImpl
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getContextualizable()
      * @generated
      */
-    EClass CONTEXTUALIZABLE_ELEMENT = GSNPackage.eINSTANCE.getContextualizableElement();
+    EClass CONTEXTUALIZABLE = GSNPackage.eINSTANCE.getContextualizable();
 
     /**
      * The meta object literal for the '<em><b>In Context Of</b></em>' containment reference list feature.
@@ -2738,7 +2727,25 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF = GSNPackage.eINSTANCE.getContextualizableElement_InContextOf();
+    EReference CONTEXTUALIZABLE__IN_CONTEXT_OF = GSNPackage.eINSTANCE.getContextualizable_InContextOf();
+
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualImpl <em>Contextual</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.ContextualImpl
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getContextual()
+     * @generated
+     */
+    EClass CONTEXTUAL = GSNPackage.eINSTANCE.getContextual();
+
+    /**
+     * The meta object literal for the '<em><b>Context Of</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTEXTUAL__CONTEXT_OF = GSNPackage.eINSTANCE.getContextual_ContextOf();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.InContextOfImpl <em>In Context Of</em>}' class.

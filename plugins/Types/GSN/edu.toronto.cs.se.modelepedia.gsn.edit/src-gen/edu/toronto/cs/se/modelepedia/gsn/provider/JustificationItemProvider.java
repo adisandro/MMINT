@@ -28,7 +28,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Justification;
  *
  * @generated
  */
-public class JustificationItemProvider extends ContextualElementItemProvider {
+public class JustificationItemProvider extends ContextualItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc --> <!-- end-user-doc -->

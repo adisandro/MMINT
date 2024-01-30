@@ -61,11 +61,11 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference gsn.ecore#//SupportedBy/source"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//SupportedBy/target"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="gsn.ecore#//ContextualizableElement">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//ContextualizableElement/inContextOf"/>
+    <genClasses image="false" ecoreClass="gsn.ecore#//Contextualizable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//Contextualizable/inContextOf"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="gsn.ecore#//ContextualElement">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//ContextualElement/contextOf"/>
+    <genClasses image="false" ecoreClass="gsn.ecore#//Contextual">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//Contextual/contextOf"/>
     </genClasses>
     <genClasses ecoreClass="gsn.ecore#//InContextOf">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//InContextOf/context"/>

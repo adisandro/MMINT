@@ -27,8 +27,8 @@ import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Assumption;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Contextual;
+import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
 import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
 import edu.toronto.cs.se.modelepedia.gsn.DecoratorType;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
@@ -119,8 +119,8 @@ public class GSNValidator extends EObjectValidator {
     case GSNPackage.SUPPORTABLE -> validateSupportable((Supportable)value, diagnostics, context);
     case GSNPackage.SUPPORTER -> validateSupporter((Supporter)value, diagnostics, context);
     case GSNPackage.SUPPORTED_BY -> validateSupportedBy((SupportedBy)value, diagnostics, context);
-    case GSNPackage.CONTEXTUALIZABLE_ELEMENT -> validateContextualizableElement((ContextualizableElement)value, diagnostics, context);
-    case GSNPackage.CONTEXTUAL_ELEMENT -> validateContextualElement((ContextualElement)value, diagnostics, context);
+    case GSNPackage.CONTEXTUALIZABLE -> validateContextualizable((Contextualizable)value, diagnostics, context);
+    case GSNPackage.CONTEXTUAL -> validateContextual((Contextual)value, diagnostics, context);
     case GSNPackage.IN_CONTEXT_OF -> validateInContextOf((InContextOf)value, diagnostics, context);
     case GSNPackage.ASI_LFUL_ELEMENT -> validateASILfulElement((ASILfulElement)value, diagnostics, context);
     case GSNPackage.GOAL -> validateGoal((Goal)value, diagnostics, context);
@@ -240,15 +240,6 @@ public class GSNValidator extends EObjectValidator {
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
-  public boolean validateContextualElement(ContextualElement contextualElement, DiagnosticChain diagnostics,
-                                           Map<Object, Object> context) {
-    return validate_EveryDefaultConstraint(contextualElement, diagnostics, context);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
   public boolean validateSupportedBy(SupportedBy supportedBy, DiagnosticChain diagnostics,
                                      Map<Object, Object> context) {
     return validate_EveryDefaultConstraint(supportedBy, diagnostics, context);
@@ -259,8 +250,17 @@ public class GSNValidator extends EObjectValidator {
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean validateContextualizableElement(ContextualizableElement contextualizableElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return validate_EveryDefaultConstraint(contextualizableElement, diagnostics, context);
+  public boolean validateContextualizable(Contextualizable contextualizable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(contextualizable, diagnostics, context);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validateContextual(Contextual contextual, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(contextual, diagnostics, context);
   }
 
   /**

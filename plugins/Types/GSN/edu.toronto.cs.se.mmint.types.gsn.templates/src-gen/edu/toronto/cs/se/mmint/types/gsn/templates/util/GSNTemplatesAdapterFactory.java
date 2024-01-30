@@ -37,8 +37,8 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.ValueDomain;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Contextual;
+import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
 import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
@@ -187,8 +187,8 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
         return createSupporterAdapter();
       }
       @Override
-      public Adapter caseContextualizableElement(ContextualizableElement object) {
-        return createContextualizableElementAdapter();
+      public Adapter caseContextualizable(Contextualizable object) {
+        return createContextualizableAdapter();
       }
       @Override
       public Adapter caseStrategy(Strategy object) {
@@ -203,8 +203,8 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
         return createGoalAdapter();
       }
       @Override
-      public Adapter caseContextualElement(ContextualElement object) {
-        return createContextualElementAdapter();
+      public Adapter caseContextual(Contextual object) {
+        return createContextualAdapter();
       }
       @Override
       public Adapter caseContext(Context object) {
@@ -469,16 +469,16 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement <em>Contextualizable Element</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.Contextualizable <em>Contextualizable</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement
+   * @see edu.toronto.cs.se.modelepedia.gsn.Contextualizable
    * @generated
    */
-  public Adapter createContextualizableElementAdapter() {
+  public Adapter createContextualizableAdapter() {
     return null;
   }
 
@@ -567,16 +567,16 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.ContextualElement <em>Contextual Element</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.Contextual <em>Contextual</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ContextualElement
+   * @see edu.toronto.cs.se.modelepedia.gsn.Contextual
    * @generated
    */
-  public Adapter createContextualElementAdapter() {
+  public Adapter createContextualAdapter() {
     return null;
   }
 

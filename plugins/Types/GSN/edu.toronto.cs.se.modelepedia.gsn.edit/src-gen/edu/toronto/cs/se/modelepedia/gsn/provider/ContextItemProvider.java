@@ -28,7 +28,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Context;
  * --> <!-- end-user-doc -->
  * @generated
  */
-public class ContextItemProvider extends ContextualElementItemProvider {
+public class ContextItemProvider extends ContextualItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc --> <!-- end-user-doc -->

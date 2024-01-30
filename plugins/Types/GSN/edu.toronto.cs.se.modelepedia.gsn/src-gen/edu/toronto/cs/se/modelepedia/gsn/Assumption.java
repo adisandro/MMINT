@@ -21,5 +21,5 @@ package edu.toronto.cs.se.modelepedia.gsn;
  * @model
  * @generated
  */
-public interface Assumption extends ContextualElement {
+public interface Assumption extends Contextual {
 } // Assumption

@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link edu.toronto.cs.se.modelepedia.gsn.ContextualElement#getContextOf <em>Context Of</em>}</li>
+ * <li>{@link edu.toronto.cs.se.modelepedia.gsn.Contextual#getContextOf <em>Context Of</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getContextualElement()
@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  *        ContextualElementContext='self.oclAsType(DecomposableCoreElement).oclIsInvalid()'"
  * @generated
  */
-public interface ContextualElement extends ArgumentElement {
+public interface Contextual extends ArgumentElement {
   /**
    * Returns the value of the '<em><b>Context Of</b></em>' reference list.
    * The list contents are of type {@link edu.toronto.cs.se.modelepedia.gsn.InContextOf}.
@@ -41,7 +41,7 @@ public interface ContextualElement extends ArgumentElement {
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * @return the value of the '<em>Context Of</em>' reference list.
-   * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getContextualElement_ContextOf()
+   * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getContextual_ContextOf()
    * @see edu.toronto.cs.se.modelepedia.gsn.InContextOf#getContext
    * @model opposite="context" required="true"
    * @generated

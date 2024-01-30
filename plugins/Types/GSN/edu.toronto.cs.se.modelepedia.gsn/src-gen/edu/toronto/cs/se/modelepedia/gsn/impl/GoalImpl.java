@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.modelepedia.gsn.ASIL;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
@@ -300,9 +300,9 @@ public class GoalImpl extends SupportableImpl implements Goal {
       default -> -1;
       };
     }
-    if (baseClass == ContextualizableElement.class) {
+    if (baseClass == Contextualizable.class) {
       return switch (derivedFeatureID) {
-      case GSNPackage.GOAL__IN_CONTEXT_OF -> GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF;
+      case GSNPackage.GOAL__IN_CONTEXT_OF -> GSNPackage.CONTEXTUALIZABLE__IN_CONTEXT_OF;
       default -> -1;
       };
     }
@@ -327,9 +327,9 @@ public class GoalImpl extends SupportableImpl implements Goal {
       default -> -1;
       };
     }
-    if (baseClass == ContextualizableElement.class) {
+    if (baseClass == Contextualizable.class) {
       return switch (baseFeatureID) {
-      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF -> GSNPackage.GOAL__IN_CONTEXT_OF;
+      case GSNPackage.CONTEXTUALIZABLE__IN_CONTEXT_OF -> GSNPackage.GOAL__IN_CONTEXT_OF;
       default -> -1;
       };
     }

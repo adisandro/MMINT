@@ -23,7 +23,7 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
  *
  * @generated
  */
-public class AssumptionImpl extends ContextualElementImpl implements Assumption {
+public class AssumptionImpl extends ContextualImpl implements Assumption {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated

@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Contextual;
+import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 
@@ -47,7 +47,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
    * @generated
    * @ordered
    */
-  protected ContextualElement context;
+  protected Contextual context;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -71,10 +71,10 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
    * @generated
    */
   @Override
-  public ContextualElement getContext() {
+  public Contextual getContext() {
     if (this.context != null && this.context.eIsProxy()) {
       var oldContext = (InternalEObject)this.context;
-      this.context = (ContextualElement)eResolveProxy(oldContext);
+      this.context = (Contextual)eResolveProxy(oldContext);
       if (this.context != oldContext) {
         if (eNotificationRequired()) {
           eNotify(new ENotificationImpl(this, Notification.RESOLVE, GSNPackage.IN_CONTEXT_OF__CONTEXT, oldContext, this.context));
@@ -88,7 +88,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
-  public ContextualElement basicGetContext() {
+  public Contextual basicGetContext() {
     return this.context;
   }
 
@@ -96,7 +96,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetContext(ContextualElement newContext, NotificationChain msgs) {
+  public NotificationChain basicSetContext(Contextual newContext, NotificationChain msgs) {
     var oldContext = this.context;
     this.context = newContext;
     if (eNotificationRequired()) {
@@ -116,14 +116,14 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
    * @generated
    */
   @Override
-  public void setContext(ContextualElement newContext) {
+  public void setContext(Contextual newContext) {
     if (newContext != this.context) {
       NotificationChain msgs = null;
       if (this.context != null) {
-        msgs = ((InternalEObject)this.context).eInverseRemove(this, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF, ContextualElement.class, msgs);
+        msgs = ((InternalEObject)this.context).eInverseRemove(this, GSNPackage.CONTEXTUAL__CONTEXT_OF, Contextual.class, msgs);
       }
       if (newContext != null) {
-        msgs = ((InternalEObject)newContext).eInverseAdd(this, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF, ContextualElement.class, msgs);
+        msgs = ((InternalEObject)newContext).eInverseAdd(this, GSNPackage.CONTEXTUAL__CONTEXT_OF, Contextual.class, msgs);
       }
       msgs = basicSetContext(newContext, msgs);
       if (msgs != null) {
@@ -140,11 +140,11 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
    * @generated
    */
   @Override
-  public ContextualizableElement getContextOf() {
+  public Contextualizable getContextOf() {
     if (eContainerFeatureID() != GSNPackage.IN_CONTEXT_OF__CONTEXT_OF) {
       return null;
     }
-    return (ContextualizableElement)eInternalContainer();
+    return (Contextualizable)eInternalContainer();
   }
 
   /**
@@ -152,7 +152,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetContextOf(ContextualizableElement newContextOf, NotificationChain msgs) {
+  public NotificationChain basicSetContextOf(Contextualizable newContextOf, NotificationChain msgs) {
     msgs = eBasicSetContainer((InternalEObject)newContextOf, GSNPackage.IN_CONTEXT_OF__CONTEXT_OF, msgs);
     return msgs;
   }
@@ -163,7 +163,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
    * @generated
    */
   @Override
-  public void setContextOf(ContextualizableElement newContextOf) {
+  public void setContextOf(Contextualizable newContextOf) {
     if (newContextOf != eInternalContainer() || (eContainerFeatureID() != GSNPackage.IN_CONTEXT_OF__CONTEXT_OF && newContextOf != null)) {
       if (EcoreUtil.isAncestor(this, newContextOf)) {
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -173,7 +173,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
         msgs = eBasicRemoveFromContainer(msgs);
       }
       if (newContextOf != null) {
-        msgs = ((InternalEObject)newContextOf).eInverseAdd(this, GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF, ContextualizableElement.class, msgs);
+        msgs = ((InternalEObject)newContextOf).eInverseAdd(this, GSNPackage.CONTEXTUALIZABLE__IN_CONTEXT_OF, Contextualizable.class, msgs);
       }
       msgs = basicSetContextOf(newContextOf, msgs);
       if (msgs != null) {
@@ -194,14 +194,14 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
     switch (featureID) {
       case GSNPackage.IN_CONTEXT_OF__CONTEXT:
         if (this.context != null) {
-          msgs = ((InternalEObject)this.context).eInverseRemove(this, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF, ContextualElement.class, msgs);
+          msgs = ((InternalEObject)this.context).eInverseRemove(this, GSNPackage.CONTEXTUAL__CONTEXT_OF, Contextual.class, msgs);
         }
-        return basicSetContext((ContextualElement)otherEnd, msgs);
+        return basicSetContext((Contextual)otherEnd, msgs);
       case GSNPackage.IN_CONTEXT_OF__CONTEXT_OF:
         if (eInternalContainer() != null) {
           msgs = eBasicRemoveFromContainer(msgs);
         }
-        return basicSetContextOf((ContextualizableElement)otherEnd, msgs);
+        return basicSetContextOf((Contextualizable)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -229,7 +229,7 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
     switch (eContainerFeatureID()) {
       case GSNPackage.IN_CONTEXT_OF__CONTEXT_OF:
-        return eInternalContainer().eInverseRemove(this, GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF, ContextualizableElement.class, msgs);
+        return eInternalContainer().eInverseRemove(this, GSNPackage.CONTEXTUALIZABLE__IN_CONTEXT_OF, Contextualizable.class, msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
   }
@@ -260,10 +260,10 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
       case GSNPackage.IN_CONTEXT_OF__CONTEXT:
-        setContext((ContextualElement)newValue);
+        setContext((Contextual)newValue);
         return;
       case GSNPackage.IN_CONTEXT_OF__CONTEXT_OF:
-        setContextOf((ContextualizableElement)newValue);
+        setContextOf((Contextualizable)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -277,10 +277,10 @@ public class InContextOfImpl extends MinimalEObjectImpl.Container implements InC
   public void eUnset(int featureID) {
     switch (featureID) {
       case GSNPackage.IN_CONTEXT_OF__CONTEXT:
-        setContext((ContextualElement)null);
+        setContext((Contextual)null);
         return;
       case GSNPackage.IN_CONTEXT_OF__CONTEXT_OF:
-        setContextOf((ContextualizableElement)null);
+        setContextOf((Contextualizable)null);
         return;
     }
     super.eUnset(featureID);

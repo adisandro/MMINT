@@ -118,7 +118,7 @@ public class RelationshipDecoratorItemProvider extends SupportableItemProvider {
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      this.childrenFeatures.add(GSNPackage.Literals.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF);
+      this.childrenFeatures.add(GSNPackage.Literals.CONTEXTUALIZABLE__IN_CONTEXT_OF);
     }
     return this.childrenFeatures;
   }
@@ -198,7 +198,7 @@ public class RelationshipDecoratorItemProvider extends SupportableItemProvider {
 
     newChildDescriptors.add
       (createChildParameter
-        (GSNPackage.Literals.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF,
+        (GSNPackage.Literals.CONTEXTUALIZABLE__IN_CONTEXT_OF,
          GSNFactory.eINSTANCE.createInContextOf()));
   }
 

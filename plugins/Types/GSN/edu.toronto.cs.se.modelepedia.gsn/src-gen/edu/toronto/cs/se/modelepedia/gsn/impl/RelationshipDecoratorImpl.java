@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
 import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
 import edu.toronto.cs.se.modelepedia.gsn.DecoratorType;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
@@ -298,9 +298,9 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
    */
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-    if (baseClass == ContextualizableElement.class) {
+    if (baseClass == Contextualizable.class) {
       return switch (derivedFeatureID) {
-      case GSNPackage.RELATIONSHIP_DECORATOR__IN_CONTEXT_OF -> GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF;
+      case GSNPackage.RELATIONSHIP_DECORATOR__IN_CONTEXT_OF -> GSNPackage.CONTEXTUALIZABLE__IN_CONTEXT_OF;
       default -> -1;
       };
     }
@@ -314,9 +314,9 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
    */
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-    if (baseClass == ContextualizableElement.class) {
+    if (baseClass == Contextualizable.class) {
       return switch (baseFeatureID) {
-      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF -> GSNPackage.RELATIONSHIP_DECORATOR__IN_CONTEXT_OF;
+      case GSNPackage.CONTEXTUALIZABLE__IN_CONTEXT_OF -> GSNPackage.RELATIONSHIP_DECORATOR__IN_CONTEXT_OF;
       default -> -1;
       };
     }
@@ -353,7 +353,7 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
         dropSubtree(supportedBy.getTarget(), safetyCase);
       }
     }
-    if (elem instanceof ContextualizableElement contextualizable) {
+    if (elem instanceof Contextualizable contextualizable) {
       for (var inContextOf : contextualizable.getInContextOf()) {
         dropSubtree(inContextOf.getContext(), safetyCase);
       }
@@ -373,7 +373,7 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
         ((Supportable) decorated).getSupportedBy().add(getSupportedBy().get(0));
       }
       else {
-        ((ContextualizableElement) decorated).getInContextOf().add(getInContextOf().get(0));
+        ((Contextualizable) decorated).getInContextOf().add(getInContextOf().get(0));
       }
     }
     else {

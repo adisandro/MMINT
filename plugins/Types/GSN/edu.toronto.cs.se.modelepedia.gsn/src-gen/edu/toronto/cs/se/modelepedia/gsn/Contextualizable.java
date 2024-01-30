@@ -23,14 +23,14 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement#getInContextOf <em>In Context Of</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.Contextualizable#getInContextOf <em>In Context Of</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getContextualizableElement()
+ * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getContextualizable()
  * @model abstract="true"
  * @generated
  */
-public interface ContextualizableElement extends ArgumentElement, Decoratable {
+public interface Contextualizable extends ArgumentElement, Decoratable {
   /**
    * Returns the value of the '<em><b>In Context Of</b></em>' containment reference list.
    * The list contents are of type {@link edu.toronto.cs.se.modelepedia.gsn.InContextOf}.
@@ -38,7 +38,7 @@ public interface ContextualizableElement extends ArgumentElement, Decoratable {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>In Context Of</em>' containment reference list.
-   * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getContextualizableElement_InContextOf()
+   * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getContextualizable_InContextOf()
    * @see edu.toronto.cs.se.modelepedia.gsn.InContextOf#getContextOf
    * @model opposite="contextOf" containment="true"
    * @generated

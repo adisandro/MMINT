@@ -21,5 +21,5 @@ package edu.toronto.cs.se.modelepedia.gsn;
  * @model
  * @generated
  */
-public interface Justification extends ContextualElement {
+public interface Justification extends Contextual {
 } // Justification

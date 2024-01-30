@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
@@ -222,9 +222,9 @@ public class StrategyImpl extends SupportableImpl implements Strategy {
       default -> -1;
       };
     }
-    if (baseClass == ContextualizableElement.class) {
+    if (baseClass == Contextualizable.class) {
       return switch (derivedFeatureID) {
-      case GSNPackage.STRATEGY__IN_CONTEXT_OF -> GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF;
+      case GSNPackage.STRATEGY__IN_CONTEXT_OF -> GSNPackage.CONTEXTUALIZABLE__IN_CONTEXT_OF;
       default -> -1;
       };
     }
@@ -244,9 +244,9 @@ public class StrategyImpl extends SupportableImpl implements Strategy {
       default -> -1;
       };
     }
-    if (baseClass == ContextualizableElement.class) {
+    if (baseClass == Contextualizable.class) {
       return switch (baseFeatureID) {
-      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF -> GSNPackage.STRATEGY__IN_CONTEXT_OF;
+      case GSNPackage.CONTEXTUALIZABLE__IN_CONTEXT_OF -> GSNPackage.STRATEGY__IN_CONTEXT_OF;
       default -> -1;
       };
     }

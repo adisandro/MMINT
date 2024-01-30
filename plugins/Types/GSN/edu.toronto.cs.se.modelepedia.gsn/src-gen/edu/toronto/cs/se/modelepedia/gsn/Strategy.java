@@ -21,5 +21,5 @@ package edu.toronto.cs.se.modelepedia.gsn;
  * @model
  * @generated
  */
-public interface Strategy extends Supportable, Supporter, ContextualizableElement {
+public interface Strategy extends Supportable, Supporter, Contextualizable {
 } // Strategy

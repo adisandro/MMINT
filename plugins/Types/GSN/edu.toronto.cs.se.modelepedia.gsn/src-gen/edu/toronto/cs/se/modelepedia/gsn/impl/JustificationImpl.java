@@ -23,7 +23,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Justification;
  *
  * @generated
  */
-public class JustificationImpl extends ContextualElementImpl implements Justification {
+public class JustificationImpl extends ContextualImpl implements Justification {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated

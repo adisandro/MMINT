@@ -21,5 +21,5 @@ package edu.toronto.cs.se.modelepedia.gsn;
  * @model
  * @generated
  */
-public interface Context extends ContextualElement {
+public interface Context extends Contextual {
 } // Context

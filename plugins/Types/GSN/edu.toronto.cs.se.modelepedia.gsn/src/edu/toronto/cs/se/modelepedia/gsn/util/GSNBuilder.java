@@ -26,8 +26,8 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Assumption;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Contextual;
+import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
@@ -77,7 +77,7 @@ public class GSNBuilder {
     support.setTarget(supporter);
   }
 
-  public void addInContextOf(ContextualizableElement contextualizable, ContextualElement context) {
+  public void addInContextOf(Contextualizable contextualizable, Contextual context) {
     var inContext = this.factory.createInContextOf();
     inContext.setContextOf(contextualizable);
     inContext.setContext(context);

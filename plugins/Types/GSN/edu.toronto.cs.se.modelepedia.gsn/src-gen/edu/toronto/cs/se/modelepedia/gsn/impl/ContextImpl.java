@@ -23,7 +23,7 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
  *
  * @generated
  */
-public class ContextImpl extends ContextualElementImpl implements Context {
+public class ContextImpl extends ContextualImpl implements Context {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated

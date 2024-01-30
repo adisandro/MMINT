@@ -26,8 +26,8 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.operator.slice.Slice;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Contextual;
+import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
@@ -189,7 +189,7 @@ public class GSNSlice extends Slice {
    * Assure18 rule: V3.1.
    * Visit and slice attached elements.
    */
-  private SliceStep ruleContextOf(ContextualElement modelObj, SliceInfo info) {
+  private SliceStep ruleContextOf(Contextual modelObj, SliceInfo info) {
     var newInfoVisited = new SliceInfo(GSNSliceType.RECHECK_CONTENT, modelObj, "supportedByContextOf");
     var newInfoSliced = new SliceInfo(GSNSliceType.RECHECK_CONTENT, modelObj, "contextOf");
     var visited = new HashMap<EObject, SliceInfo>();
@@ -225,7 +225,7 @@ public class GSNSlice extends Slice {
       }
       if (!this.allSliced.containsKey(supporting)) {
         sliced.merge(supporting, newInfo, this.typesOrder);
-        if (supporting instanceof ContextualizableElement contextualizable) {
+        if (supporting instanceof Contextualizable contextualizable) {
           for (var inContextOf : contextualizable.getInContextOf()) {
             sliced.merge(inContextOf.getContext(), newInfo, this.typesOrder);
           }
@@ -244,7 +244,7 @@ public class GSNSlice extends Slice {
   @Override
   protected SliceStep getDirectlySlicedElements(EObject modelObj, SliceInfo info) {
     var sliceStep = switch (info.rule()) {
-      case "contextOf" -> ruleContextOf((ContextualElement) modelObj, info);
+      case "contextOf" -> ruleContextOf((Contextual) modelObj, info);
       case "inContextOf" -> ruleInContextOf((Strategy) modelObj, info);
       case "supportedBy" -> ruleSupportedBy((Supportable) modelObj, info);
       case "supportedByContextOf" -> ruleSupportedByContextOf((Supportable) modelObj, info);
@@ -293,7 +293,7 @@ public class GSNSlice extends Slice {
       sliceRule(critObj, new SliceInfo(info.typeId(), info.prevObj(), "inContextOf"));
       sliceRule(critObj, new SliceInfo(info.typeId(), info.prevObj(), "supportsState"));
     }
-    else if (critObj instanceof ContextualElement && (
+    else if (critObj instanceof Contextual && (
                SliceType.DEL.equals(info.typeId()) ||
                SliceType.REVISE.equals(info.typeId()))) {
       sliceRule(critObj, new SliceInfo(info.typeId(), info.prevObj(), "contextOf"));

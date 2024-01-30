@@ -33,17 +33,17 @@ import org.eclipse.emf.ecore.EObject;
 public interface InContextOf extends EObject {
   /**
    * Returns the value of the '<em><b>Context</b></em>' reference.
-   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.gsn.ContextualElement#getContextOf <em>Context Of</em>}'.
+   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.gsn.Contextual#getContextOf <em>Context Of</em>}'.
    * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
    * @return the value of the '<em>Context</em>' reference.
-   * @see #setContext(ContextualElement)
+   * @see #setContext(Contextual)
    * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getInContextOf_Context()
-   * @see edu.toronto.cs.se.modelepedia.gsn.ContextualElement#getContextOf
+   * @see edu.toronto.cs.se.modelepedia.gsn.Contextual#getContextOf
    * @model opposite="contextOf" required="true"
    * @generated
    */
-  ContextualElement getContext();
+  Contextual getContext();
 
   /**
    * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.InContextOf#getContext <em>Context</em>}' reference.
@@ -52,7 +52,7 @@ public interface InContextOf extends EObject {
    * @see #getContext()
    * @generated
    */
-  void setContext(ContextualElement value);
+  void setContext(Contextual value);
 
   /**
    * Returns the value of the '<em><b>Context Of</b></em>' container reference. It is bidirectional and its opposite is
@@ -66,7 +66,7 @@ public interface InContextOf extends EObject {
    * @model opposite="inContextOf" required="true" transient="false"
    * @generated
    */
-  ContextualizableElement getContextOf();
+  Contextualizable getContextOf();
 
   /**
    * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.InContextOf#getContextOf <em>Context Of</em>}' container reference.
@@ -76,6 +76,6 @@ public interface InContextOf extends EObject {
    * @see #getContextOf()
    * @generated
    */
-  void setContextOf(ContextualizableElement value);
+  void setContextOf(Contextualizable value);
 
 } // InContextOf

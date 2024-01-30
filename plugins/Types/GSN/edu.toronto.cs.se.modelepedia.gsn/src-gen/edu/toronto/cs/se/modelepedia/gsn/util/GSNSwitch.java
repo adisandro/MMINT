@@ -22,8 +22,8 @@ import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Assumption;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Contextual;
+import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
 import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
@@ -145,25 +145,25 @@ public class GSNSwitch<T> extends Switch<T> {
         }
         return result;
       }
-      case GSNPackage.CONTEXTUALIZABLE_ELEMENT: {
-        var contextualizableElement = (ContextualizableElement)theEObject;
-        var result = caseContextualizableElement(contextualizableElement);
+      case GSNPackage.CONTEXTUALIZABLE: {
+        var contextualizable = (Contextualizable)theEObject;
+        var result = caseContextualizable(contextualizable);
         if (result == null) {
-          result = caseArgumentElement(contextualizableElement);
+          result = caseArgumentElement(contextualizable);
         }
         if (result == null) {
-          result = caseDecoratable(contextualizableElement);
+          result = caseDecoratable(contextualizable);
         }
         if (result == null) {
           result = defaultCase(theEObject);
         }
         return result;
       }
-      case GSNPackage.CONTEXTUAL_ELEMENT: {
-        var contextualElement = (ContextualElement)theEObject;
-        var result = caseContextualElement(contextualElement);
+      case GSNPackage.CONTEXTUAL: {
+        var contextual = (Contextual)theEObject;
+        var result = caseContextual(contextual);
         if (result == null) {
-          result = caseArgumentElement(contextualElement);
+          result = caseArgumentElement(contextual);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -196,7 +196,7 @@ public class GSNSwitch<T> extends Switch<T> {
           result = caseSupporter(goal);
         }
         if (result == null) {
-          result = caseContextualizableElement(goal);
+          result = caseContextualizable(goal);
         }
         if (result == null) {
           result = caseASILfulElement(goal);
@@ -222,7 +222,7 @@ public class GSNSwitch<T> extends Switch<T> {
           result = caseSupporter(strategy);
         }
         if (result == null) {
-          result = caseContextualizableElement(strategy);
+          result = caseContextualizable(strategy);
         }
         if (result == null) {
           result = caseArgumentElement(strategy);
@@ -253,7 +253,7 @@ public class GSNSwitch<T> extends Switch<T> {
         var context = (Context)theEObject;
         var result = caseContext(context);
         if (result == null) {
-          result = caseContextualElement(context);
+          result = caseContextual(context);
         }
         if (result == null) {
           result = caseArgumentElement(context);
@@ -267,7 +267,7 @@ public class GSNSwitch<T> extends Switch<T> {
         var justification = (Justification)theEObject;
         var result = caseJustification(justification);
         if (result == null) {
-          result = caseContextualElement(justification);
+          result = caseContextual(justification);
         }
         if (result == null) {
           result = caseArgumentElement(justification);
@@ -281,7 +281,7 @@ public class GSNSwitch<T> extends Switch<T> {
         var assumption = (Assumption)theEObject;
         var result = caseAssumption(assumption);
         if (result == null) {
-          result = caseContextualElement(assumption);
+          result = caseContextual(assumption);
         }
         if (result == null) {
           result = caseArgumentElement(assumption);
@@ -330,7 +330,7 @@ public class GSNSwitch<T> extends Switch<T> {
           result = caseSupportable(relationshipDecorator);
         }
         if (result == null) {
-          result = caseContextualizableElement(relationshipDecorator);
+          result = caseContextualizable(relationshipDecorator);
         }
         if (result == null) {
           result = caseArgumentElement(relationshipDecorator);
@@ -402,19 +402,6 @@ public class GSNSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Contextual Element</em>'.
-   * <!-- begin-user-doc
-   * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Contextual Element</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseContextualElement(ContextualElement object) {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Supported By</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
@@ -428,17 +415,32 @@ public class GSNSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Contextualizable Element</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Contextualizable</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Contextualizable Element</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Contextualizable</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseContextualizableElement(ContextualizableElement object) {
+  public T caseContextualizable(Contextualizable object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Contextual</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Contextual</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseContextual(Contextual object) {
     return null;
   }
 

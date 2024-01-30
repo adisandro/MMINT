@@ -36,8 +36,8 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.ValueDomain;
 import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Contextual;
+import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
 import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
@@ -189,7 +189,7 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
           result = caseSupporter(domainDecompositionStrategy);
         }
         if (result == null) {
-          result = caseContextualizableElement(domainDecompositionStrategy);
+          result = caseContextualizable(domainDecompositionStrategy);
         }
         if (result == null) {
           result = caseArgumentElement(domainDecompositionStrategy);
@@ -218,7 +218,7 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
           result = caseSupporter(domainGoal);
         }
         if (result == null) {
-          result = caseContextualizableElement(domainGoal);
+          result = caseContextualizable(domainGoal);
         }
         if (result == null) {
           result = caseASILfulElement(domainGoal);
@@ -280,7 +280,7 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
           result = caseSupporter(propertyDecompositionStrategy);
         }
         if (result == null) {
-          result = caseContextualizableElement(propertyDecompositionStrategy);
+          result = caseContextualizable(propertyDecompositionStrategy);
         }
         if (result == null) {
           result = caseArgumentElement(propertyDecompositionStrategy);
@@ -309,7 +309,7 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
           result = caseSupporter(propertyGoal);
         }
         if (result == null) {
-          result = caseContextualizableElement(propertyGoal);
+          result = caseContextualizable(propertyGoal);
         }
         if (result == null) {
           result = caseASILfulElement(propertyGoal);
@@ -346,7 +346,7 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
           result = caseContext(filesContext);
         }
         if (result == null) {
-          result = caseContextualElement(filesContext);
+          result = caseContextual(filesContext);
         }
         if (result == null) {
           result = caseArgumentElement(filesContext);
@@ -616,17 +616,17 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Contextualizable Element</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Contextualizable</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Contextualizable Element</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Contextualizable</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseContextualizableElement(ContextualizableElement object) {
+  public T caseContextualizable(Contextualizable object) {
     return null;
   }
 
@@ -721,17 +721,17 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Contextual Element</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Contextual</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Contextual Element</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Contextual</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseContextualElement(ContextualElement object) {
+  public T caseContextual(Contextual object) {
     return null;
   }
 

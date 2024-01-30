@@ -28,8 +28,8 @@ import edu.toronto.cs.se.modelepedia.gsn.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Assumption;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Contextual;
+import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
 import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
 import edu.toronto.cs.se.modelepedia.gsn.DecoratorType;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
@@ -85,12 +85,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
-  private EClass contextualElementEClass = null;
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
   private EClass supportedByEClass = null;
 
   /**
@@ -98,7 +92,14 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass contextualizableElementEClass = null;
+  private EClass contextualizableEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass contextualEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -481,24 +482,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EClass getContextualElement() {
-    return this.contextualElementEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getContextualElement_ContextOf() {
-    return (EReference)this.contextualElementEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getSupportedBy() {
     return this.supportedByEClass;
   }
@@ -527,8 +510,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EClass getContextualizableElement() {
-    return this.contextualizableElementEClass;
+  public EClass getContextualizable() {
+    return this.contextualizableEClass;
   }
 
   /**
@@ -537,8 +520,28 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EReference getContextualizableElement_InContextOf() {
-    return (EReference)this.contextualizableElementEClass.getEStructuralFeatures().get(0);
+  public EReference getContextualizable_InContextOf() {
+    return (EReference)this.contextualizableEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getContextual() {
+    return this.contextualEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getContextual_ContextOf() {
+    return (EReference)this.contextualEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -938,11 +941,11 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEReference(this.supportedByEClass, GSNPackage.SUPPORTED_BY__SOURCE);
     createEReference(this.supportedByEClass, GSNPackage.SUPPORTED_BY__TARGET);
 
-    this.contextualizableElementEClass = createEClass(GSNPackage.CONTEXTUALIZABLE_ELEMENT);
-    createEReference(this.contextualizableElementEClass, GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF);
+    this.contextualizableEClass = createEClass(GSNPackage.CONTEXTUALIZABLE);
+    createEReference(this.contextualizableEClass, GSNPackage.CONTEXTUALIZABLE__IN_CONTEXT_OF);
 
-    this.contextualElementEClass = createEClass(GSNPackage.CONTEXTUAL_ELEMENT);
-    createEReference(this.contextualElementEClass, GSNPackage.CONTEXTUAL_ELEMENT__CONTEXT_OF);
+    this.contextualEClass = createEClass(GSNPackage.CONTEXTUAL);
+    createEReference(this.contextualEClass, GSNPackage.CONTEXTUAL__CONTEXT_OF);
 
     this.inContextOfEClass = createEClass(GSNPackage.IN_CONTEXT_OF);
     createEReference(this.inContextOfEClass, GSNPackage.IN_CONTEXT_OF__CONTEXT);
@@ -1026,22 +1029,22 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     this.supportableEClass.getESuperTypes().add(this.getArgumentElement());
     this.supportableEClass.getESuperTypes().add(this.getDecoratable());
     this.supporterEClass.getESuperTypes().add(this.getArgumentElement());
-    this.contextualizableElementEClass.getESuperTypes().add(this.getArgumentElement());
-    this.contextualizableElementEClass.getESuperTypes().add(this.getDecoratable());
-    this.contextualElementEClass.getESuperTypes().add(this.getArgumentElement());
+    this.contextualizableEClass.getESuperTypes().add(this.getArgumentElement());
+    this.contextualizableEClass.getESuperTypes().add(this.getDecoratable());
+    this.contextualEClass.getESuperTypes().add(this.getArgumentElement());
     this.goalEClass.getESuperTypes().add(this.getSupportable());
     this.goalEClass.getESuperTypes().add(this.getSupporter());
-    this.goalEClass.getESuperTypes().add(this.getContextualizableElement());
+    this.goalEClass.getESuperTypes().add(this.getContextualizable());
     this.goalEClass.getESuperTypes().add(this.getASILfulElement());
     this.strategyEClass.getESuperTypes().add(this.getSupportable());
     this.strategyEClass.getESuperTypes().add(this.getSupporter());
-    this.strategyEClass.getESuperTypes().add(this.getContextualizableElement());
+    this.strategyEClass.getESuperTypes().add(this.getContextualizable());
     this.solutionEClass.getESuperTypes().add(this.getSupporter());
-    this.contextEClass.getESuperTypes().add(this.getContextualElement());
-    this.justificationEClass.getESuperTypes().add(this.getContextualElement());
-    this.assumptionEClass.getESuperTypes().add(this.getContextualElement());
+    this.contextEClass.getESuperTypes().add(this.getContextual());
+    this.justificationEClass.getESuperTypes().add(this.getContextual());
+    this.assumptionEClass.getESuperTypes().add(this.getContextual());
     this.relationshipDecoratorEClass.getESuperTypes().add(this.getSupportable());
-    this.relationshipDecoratorEClass.getESuperTypes().add(this.getContextualizableElement());
+    this.relationshipDecoratorEClass.getESuperTypes().add(this.getContextualizable());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(this.safetyCaseEClass, SafetyCase.class, "SafetyCase", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -1080,15 +1083,15 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     initEReference(getSupportedBy_Source(), this.getSupportable(), this.getSupportable_SupportedBy(), "source", null, 1, 1, SupportedBy.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getSupportedBy_Target(), this.getSupporter(), this.getSupporter_Supports(), "target", null, 1, 1, SupportedBy.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    initEClass(this.contextualizableElementEClass, ContextualizableElement.class, "ContextualizableElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getContextualizableElement_InContextOf(), this.getInContextOf(), this.getInContextOf_ContextOf(), "inContextOf", null, 0, -1, ContextualizableElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEClass(this.contextualizableEClass, Contextualizable.class, "Contextualizable", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getContextualizable_InContextOf(), this.getInContextOf(), this.getInContextOf_ContextOf(), "inContextOf", null, 0, -1, Contextualizable.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    initEClass(this.contextualElementEClass, ContextualElement.class, "ContextualElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getContextualElement_ContextOf(), this.getInContextOf(), this.getInContextOf_Context(), "contextOf", null, 1, -1, ContextualElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEClass(this.contextualEClass, Contextual.class, "Contextual", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getContextual_ContextOf(), this.getInContextOf(), this.getInContextOf_Context(), "contextOf", null, 1, -1, Contextual.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.inContextOfEClass, InContextOf.class, "InContextOf", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getInContextOf_Context(), this.getContextualElement(), this.getContextualElement_ContextOf(), "context", null, 1, 1, InContextOf.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getInContextOf_ContextOf(), this.getContextualizableElement(), this.getContextualizableElement_InContextOf(), "contextOf", null, 1, 1, InContextOf.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEReference(getInContextOf_Context(), this.getContextual(), this.getContextual_ContextOf(), "context", null, 1, 1, InContextOf.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEReference(getInContextOf_ContextOf(), this.getContextualizable(), this.getContextualizable_InContextOf(), "contextOf", null, 1, 1, InContextOf.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.asiLfulElementEClass, ASILfulElement.class, "ASILfulElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEReference(getASILfulElement_Asil(), this.getASIL(), this.getASIL_Target(), "asil", null, 0, 1, ASILfulElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);

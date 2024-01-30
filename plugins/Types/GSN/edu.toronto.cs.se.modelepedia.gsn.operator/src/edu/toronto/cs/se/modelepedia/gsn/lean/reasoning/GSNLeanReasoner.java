@@ -41,7 +41,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder.PropertyTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
-import edu.toronto.cs.se.modelepedia.gsn.ContextualElement;
+import edu.toronto.cs.se.modelepedia.gsn.Contextual;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
@@ -86,7 +86,7 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     var relatedModelPath = strategy.getInContextOf().stream()
       .map(InContextOf::getContext)
       .filter(c -> c instanceof Context)
-      .map(ContextualElement::getDescription)
+      .map(Contextual::getDescription)
       .findAny()
       .orElseThrow(() ->
         new MMINTException("The property decomposition strategy is missing a context pointing to the related model"));

@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
 import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
@@ -30,19 +30,19 @@ import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Contextualizable Element</b></em>'.
+ * An implementation of the model object '<em><b>Contextualizable</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableElementImpl#getDecorators <em>Decorators</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableElementImpl#getInContextOf <em>In Context Of</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableImpl#getDecorators <em>Decorators</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.gsn.impl.ContextualizableImpl#getInContextOf <em>In Context Of</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ContextualizableElementImpl extends ArgumentElementImpl implements ContextualizableElement {
+public abstract class ContextualizableImpl extends ArgumentElementImpl implements Contextualizable {
   /**
    * The cached value of the '{@link #getDecorators() <em>Decorators</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -52,6 +52,7 @@ public abstract class ContextualizableElementImpl extends ArgumentElementImpl im
    * @ordered
    */
   protected EList<RelationshipDecorator> decorators;
+
   /**
    * The cached value of the '{@link #getInContextOf() <em>In Context Of</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -67,7 +68,7 @@ public abstract class ContextualizableElementImpl extends ArgumentElementImpl im
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ContextualizableElementImpl() {
+  protected ContextualizableImpl() {
     super();
   }
 
@@ -78,7 +79,7 @@ public abstract class ContextualizableElementImpl extends ArgumentElementImpl im
    */
   @Override
   protected EClass eStaticClass() {
-    return GSNPackage.Literals.CONTEXTUALIZABLE_ELEMENT;
+    return GSNPackage.Literals.CONTEXTUALIZABLE;
   }
 
   /**
@@ -89,7 +90,7 @@ public abstract class ContextualizableElementImpl extends ArgumentElementImpl im
   @Override
   public EList<RelationshipDecorator> getDecorators() {
     if (this.decorators == null) {
-      this.decorators = new EObjectContainmentEList<>(RelationshipDecorator.class, this, GSNPackage.CONTEXTUALIZABLE_ELEMENT__DECORATORS);
+      this.decorators = new EObjectContainmentEList<>(RelationshipDecorator.class, this, GSNPackage.CONTEXTUALIZABLE__DECORATORS);
     }
     return this.decorators;
   }
@@ -102,7 +103,7 @@ public abstract class ContextualizableElementImpl extends ArgumentElementImpl im
   @Override
   public EList<InContextOf> getInContextOf() {
     if (this.inContextOf == null) {
-      this.inContextOf = new EObjectContainmentWithInverseEList<>(InContextOf.class, this, GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF, GSNPackage.IN_CONTEXT_OF__CONTEXT_OF);
+      this.inContextOf = new EObjectContainmentWithInverseEList<>(InContextOf.class, this, GSNPackage.CONTEXTUALIZABLE__IN_CONTEXT_OF, GSNPackage.IN_CONTEXT_OF__CONTEXT_OF);
     }
     return this.inContextOf;
   }
@@ -116,7 +117,7 @@ public abstract class ContextualizableElementImpl extends ArgumentElementImpl im
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF:
+      case GSNPackage.CONTEXTUALIZABLE__IN_CONTEXT_OF:
         return ((InternalEList<InternalEObject>)(InternalEList<?>)getInContextOf()).basicAdd(otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -130,9 +131,9 @@ public abstract class ContextualizableElementImpl extends ArgumentElementImpl im
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__DECORATORS:
+      case GSNPackage.CONTEXTUALIZABLE__DECORATORS:
         return ((InternalEList<?>)getDecorators()).basicRemove(otherEnd, msgs);
-      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF:
+      case GSNPackage.CONTEXTUALIZABLE__IN_CONTEXT_OF:
         return ((InternalEList<?>)getInContextOf()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -146,9 +147,9 @@ public abstract class ContextualizableElementImpl extends ArgumentElementImpl im
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__DECORATORS:
+      case GSNPackage.CONTEXTUALIZABLE__DECORATORS:
         return getDecorators();
-      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF:
+      case GSNPackage.CONTEXTUALIZABLE__IN_CONTEXT_OF:
         return getInContextOf();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -163,11 +164,11 @@ public abstract class ContextualizableElementImpl extends ArgumentElementImpl im
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__DECORATORS:
+      case GSNPackage.CONTEXTUALIZABLE__DECORATORS:
         getDecorators().clear();
         getDecorators().addAll((Collection<? extends RelationshipDecorator>)newValue);
         return;
-      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF:
+      case GSNPackage.CONTEXTUALIZABLE__IN_CONTEXT_OF:
         getInContextOf().clear();
         getInContextOf().addAll((Collection<? extends InContextOf>)newValue);
         return;
@@ -183,10 +184,10 @@ public abstract class ContextualizableElementImpl extends ArgumentElementImpl im
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__DECORATORS:
+      case GSNPackage.CONTEXTUALIZABLE__DECORATORS:
         getDecorators().clear();
         return;
-      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF:
+      case GSNPackage.CONTEXTUALIZABLE__IN_CONTEXT_OF:
         getInContextOf().clear();
         return;
     }
@@ -201,9 +202,9 @@ public abstract class ContextualizableElementImpl extends ArgumentElementImpl im
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__DECORATORS:
+      case GSNPackage.CONTEXTUALIZABLE__DECORATORS:
         return this.decorators != null && !this.decorators.isEmpty();
-      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__IN_CONTEXT_OF:
+      case GSNPackage.CONTEXTUALIZABLE__IN_CONTEXT_OF:
         return this.inContextOf != null && !this.inContextOf.isEmpty();
     }
     return super.eIsSet(featureID);
@@ -218,7 +219,7 @@ public abstract class ContextualizableElementImpl extends ArgumentElementImpl im
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
     if (baseClass == Decoratable.class) {
       return switch (derivedFeatureID) {
-      case GSNPackage.CONTEXTUALIZABLE_ELEMENT__DECORATORS -> GSNPackage.DECORATABLE__DECORATORS;
+      case GSNPackage.CONTEXTUALIZABLE__DECORATORS -> GSNPackage.DECORATABLE__DECORATORS;
       default -> -1;
       };
     }
@@ -234,11 +235,11 @@ public abstract class ContextualizableElementImpl extends ArgumentElementImpl im
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
     if (baseClass == Decoratable.class) {
       return switch (baseFeatureID) {
-      case GSNPackage.DECORATABLE__DECORATORS -> GSNPackage.CONTEXTUALIZABLE_ELEMENT__DECORATORS;
+      case GSNPackage.DECORATABLE__DECORATORS -> GSNPackage.CONTEXTUALIZABLE__DECORATORS;
       default -> -1;
       };
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }
 
-} //ContextualizableElementImpl
+} //ContextualizableImpl

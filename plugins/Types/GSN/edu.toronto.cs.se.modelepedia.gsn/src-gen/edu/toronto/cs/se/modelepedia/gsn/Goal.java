@@ -22,5 +22,5 @@ package edu.toronto.cs.se.modelepedia.gsn;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot ASILInheritance='let parents : Set(Goal) = self.supports.source -&gt; closure(c | if c.oclIsKindOf(Goal) then c.oclAsSet() else c.oclAsType(gsn::Supporter).supports.source endif) -&gt; selectByKind(Goal) -&gt; asSet() in\n  parents -&gt; forAll(g | if g.asil = null then true else if self.asil = null then false else g.asil.value = ASILLevel::QM or (g.asil.value.toString() &lt;= self.asil.value.toString() and self.asil.value &lt;&gt; ASILLevel::QM) endif endif)'"
  * @generated
  */
-public interface Goal extends Supportable, Supporter, ContextualizableElement, ASILfulElement {
+public interface Goal extends Supportable, Supporter, Contextualizable, ASILfulElement {
 } // Goal

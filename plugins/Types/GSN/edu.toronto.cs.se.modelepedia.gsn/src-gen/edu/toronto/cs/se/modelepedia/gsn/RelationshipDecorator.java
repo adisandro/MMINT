@@ -31,7 +31,7 @@ package edu.toronto.cs.se.modelepedia.gsn;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot OneRelationship='self.supportedBy-&gt;isEmpty() or self.inContextOf-&gt;isEmpty()'"
  * @generated
  */
-public interface RelationshipDecorator extends Supportable, ContextualizableElement {
+public interface RelationshipDecorator extends Supportable, Contextualizable {
   /**
    * Returns the value of the '<em><b>Type</b></em>' attribute.
    * The literals are from the enumeration {@link edu.toronto.cs.se.modelepedia.gsn.DecoratorType}.

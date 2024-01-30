@@ -28,7 +28,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Assumption;
  *
  * @generated
  */
-public class AssumptionItemProvider extends ContextualElementItemProvider {
+public class AssumptionItemProvider extends ContextualItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
