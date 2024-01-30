@@ -167,6 +167,10 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    */
   protected void validate(List<ArgumentElement> elements) throws Exception {
     for (var element : elements) {
+      if (element.eContainer() == null) {
+        // skip template elements that have been deleted
+        continue;
+      }
       element.validate();
     }
   }

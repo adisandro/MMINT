@@ -457,7 +457,10 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   /**
    * @generated NOT
    */
-  private void replacePlaceholders(String title) throws Exception {
+  @Override
+  public void instantiate() throws Exception {
+    var title = "Instantiate placeholder text";
+    var node = eClass().getName() + " " + getId();
     while (true) {
       var desc = getDescription();
       var pattern = GSNBuilder.findPattern(desc);
@@ -465,18 +468,10 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
         break;
       }
       var toReplace = pattern.get();
-      var msg = "Replace '" + toReplace + "' in '" + desc + "' with:";
+      var msg = "Replace '" + toReplace + "' in " + node + " with:";
       var replacement = MIDDialogs.getStringInput(title, msg, null);
       setDescription(desc.replace(GSNBuilder.PATTERN1 + toReplace + GSNBuilder.PATTERN2, replacement));
     }
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public void instantiate() throws Exception {
-    replacePlaceholders("Instantiate Placeholder Text in " + eClass().getName() + " " + getId());
   }
 
   /**

@@ -21,13 +21,20 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.ContextualizableElement;
+import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
 import edu.toronto.cs.se.modelepedia.gsn.DecoratorType;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
+import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 
 /**
  * <!-- begin-user-doc -->
@@ -334,6 +341,77 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
     result.append(this.cardinality);
     result.append(')');
     return result.toString();
+  }
+
+  /**
+   * @generated NOT
+   */
+  private void dropSubtree(ArgumentElement elem, SafetyCase safetyCase) {
+    EcoreUtil.remove(elem);
+    if (elem instanceof Supportable supportable) {
+      for (var supportedBy : supportable.getSupportedBy()) {
+        dropSubtree(supportedBy.getTarget(), safetyCase);
+      }
+    }
+    if (elem instanceof ContextualizableElement contextualizable) {
+      for (var inContextOf : contextualizable.getInContextOf()) {
+        dropSubtree(inContextOf.getContext(), safetyCase);
+      }
+    }
+  }
+
+  /**
+   * @generated NOT
+   */
+  private void instantiateOptional(Decoratable decorated, boolean isSupported) {
+    var elem = (isSupported) ? getSupportedBy().get(0).getTarget() : getInContextOf().get(0).getContext();
+    var keep = MIDDialogs.getBooleanInput("Instantiate optional branch",
+                                          "Keep the optional sub-tree starting with " + elem.eClass().getName() + " " +
+                                          elem.getId() + "?");
+    if (keep) {
+      if (isSupported) {
+        ((Supportable) decorated).getSupportedBy().add(getSupportedBy().get(0));
+      }
+      else {
+        ((ContextualizableElement) decorated).getInContextOf().add(getInContextOf().get(0));
+      }
+    }
+    else {
+      dropSubtree(elem, (SafetyCase) decorated.eContainer());
+    }
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void instantiate() throws Exception {
+    var isSupported = !getSupportedBy().isEmpty();
+    var decorated = (Decoratable) eContainer();
+    switch (this.getType()) {
+      case OPTIONAL -> {
+        instantiateOptional(decorated, isSupported);
+      }
+      case CHOICE -> {}
+      case MULTIPLE -> {}
+    };
+    decorated.getDecorators().remove(this);
+    /** TODO:
+     *  1) Implement the three cases, removing the decorator and connecting the result to the node (use description as hint):
+     *  1a) OPTIONAL: keep or delete subbranch (append id not needed)
+     *  1b) CHOICE: keep or delete subbranches based on cardinality (append id not needed)
+     *  1c) MULTIPLE: ask for n and copy subbranch n times (append _mX to ids)
+     *  2) When instantiating a template, rel decorators should be instantiated first, starting from the root node (order by # of rel decorators in parent recursion?)
+     */
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void validate() throws Exception {
+    setValid(false);
+    throw new MMINTException("A relationship decorator cannot exist in an instantiated template");
   }
 
 } //RelationshipDecoratorImpl
