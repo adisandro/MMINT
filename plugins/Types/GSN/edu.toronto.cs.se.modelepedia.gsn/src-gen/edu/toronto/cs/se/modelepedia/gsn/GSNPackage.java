@@ -223,7 +223,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ARGUMENT_ELEMENT___VALIDATE = 0;
+  int ARGUMENT_ELEMENT___VALIDATE__TEMPLATE = 0;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -232,7 +232,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ARGUMENT_ELEMENT___INSTANTIATE = 1;
+  int ARGUMENT_ELEMENT___INSTANTIATE__TEMPLATE = 1;
 
   /**
    * The number of operations of the '<em>Argument Element</em>' class.
@@ -322,7 +322,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECORATABLE___VALIDATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE;
+  int DECORATABLE___VALIDATE__TEMPLATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE__TEMPLATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -331,7 +331,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECORATABLE___INSTANTIATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE;
+  int DECORATABLE___INSTANTIATE__TEMPLATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE__TEMPLATE;
 
   /**
    * The number of operations of the '<em>Decoratable</em>' class.
@@ -549,7 +549,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE___VALIDATE = GSNPackage.DECORATABLE___VALIDATE;
+  int SUPPORTABLE___VALIDATE__TEMPLATE = GSNPackage.DECORATABLE___VALIDATE__TEMPLATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -558,7 +558,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTABLE___INSTANTIATE = GSNPackage.DECORATABLE___INSTANTIATE;
+  int SUPPORTABLE___INSTANTIATE__TEMPLATE = GSNPackage.DECORATABLE___INSTANTIATE__TEMPLATE;
 
   /**
    * The number of operations of the '<em>Supportable</em>' class.
@@ -636,7 +636,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTER___VALIDATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE;
+  int SUPPORTER___VALIDATE__TEMPLATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE__TEMPLATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -645,7 +645,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SUPPORTER___INSTANTIATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE;
+  int SUPPORTER___INSTANTIATE__TEMPLATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE__TEMPLATE;
 
   /**
    * The number of operations of the '<em>Supporter</em>' class.
@@ -777,7 +777,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE___VALIDATE = GSNPackage.DECORATABLE___VALIDATE;
+  int CONTEXTUALIZABLE___VALIDATE__TEMPLATE = GSNPackage.DECORATABLE___VALIDATE__TEMPLATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -786,7 +786,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUALIZABLE___INSTANTIATE = GSNPackage.DECORATABLE___INSTANTIATE;
+  int CONTEXTUALIZABLE___INSTANTIATE__TEMPLATE = GSNPackage.DECORATABLE___INSTANTIATE__TEMPLATE;
 
   /**
    * The number of operations of the '<em>Contextualizable</em>' class.
@@ -877,7 +877,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUAL___VALIDATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE;
+  int CONTEXTUAL___VALIDATE__TEMPLATE = GSNPackage.ARGUMENT_ELEMENT___VALIDATE__TEMPLATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -886,7 +886,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXTUAL___INSTANTIATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE;
+  int CONTEXTUAL___INSTANTIATE__TEMPLATE = GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE__TEMPLATE;
 
   /**
    * The number of operations of the '<em>Contextual</em>' class.
@@ -1066,7 +1066,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL___VALIDATE = GSNPackage.SUPPORTABLE___VALIDATE;
+  int GOAL___VALIDATE__TEMPLATE = GSNPackage.SUPPORTABLE___VALIDATE__TEMPLATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1075,7 +1075,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GOAL___INSTANTIATE = GSNPackage.SUPPORTABLE___INSTANTIATE;
+  int GOAL___INSTANTIATE__TEMPLATE = GSNPackage.SUPPORTABLE___INSTANTIATE__TEMPLATE;
 
   /**
    * The number of operations of the '<em>Goal</em>' class.
@@ -1187,7 +1187,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STRATEGY___VALIDATE = GSNPackage.SUPPORTABLE___VALIDATE;
+  int STRATEGY___VALIDATE__TEMPLATE = GSNPackage.SUPPORTABLE___VALIDATE__TEMPLATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1196,7 +1196,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STRATEGY___INSTANTIATE = GSNPackage.SUPPORTABLE___INSTANTIATE;
+  int STRATEGY___INSTANTIATE__TEMPLATE = GSNPackage.SUPPORTABLE___INSTANTIATE__TEMPLATE;
 
   /**
    * The number of operations of the '<em>Strategy</em>' class.
@@ -1272,7 +1272,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SOLUTION___VALIDATE = GSNPackage.SUPPORTER___VALIDATE;
+  int SOLUTION___VALIDATE__TEMPLATE = GSNPackage.SUPPORTER___VALIDATE__TEMPLATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1281,7 +1281,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int SOLUTION___INSTANTIATE = GSNPackage.SUPPORTER___INSTANTIATE;
+  int SOLUTION___INSTANTIATE__TEMPLATE = GSNPackage.SUPPORTER___INSTANTIATE__TEMPLATE;
 
   /**
    * The number of operations of the '<em>Solution</em>' class.
@@ -1357,7 +1357,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT___VALIDATE = GSNPackage.CONTEXTUAL___VALIDATE;
+  int CONTEXT___VALIDATE__TEMPLATE = GSNPackage.CONTEXTUAL___VALIDATE__TEMPLATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1366,7 +1366,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT___INSTANTIATE = GSNPackage.CONTEXTUAL___INSTANTIATE;
+  int CONTEXT___INSTANTIATE__TEMPLATE = GSNPackage.CONTEXTUAL___INSTANTIATE__TEMPLATE;
 
   /**
    * The number of operations of the '<em>Context</em>' class.
@@ -1443,7 +1443,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION___VALIDATE = GSNPackage.CONTEXTUAL___VALIDATE;
+  int JUSTIFICATION___VALIDATE__TEMPLATE = GSNPackage.CONTEXTUAL___VALIDATE__TEMPLATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1452,7 +1452,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int JUSTIFICATION___INSTANTIATE = GSNPackage.CONTEXTUAL___INSTANTIATE;
+  int JUSTIFICATION___INSTANTIATE__TEMPLATE = GSNPackage.CONTEXTUAL___INSTANTIATE__TEMPLATE;
 
   /**
    * The number of operations of the '<em>Justification</em>' class.
@@ -1528,7 +1528,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION___VALIDATE = GSNPackage.CONTEXTUAL___VALIDATE;
+  int ASSUMPTION___VALIDATE__TEMPLATE = GSNPackage.CONTEXTUAL___VALIDATE__TEMPLATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1537,7 +1537,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ASSUMPTION___INSTANTIATE = GSNPackage.CONTEXTUAL___INSTANTIATE;
+  int ASSUMPTION___INSTANTIATE__TEMPLATE = GSNPackage.CONTEXTUAL___INSTANTIATE__TEMPLATE;
 
   /**
    * The number of operations of the '<em>Assumption</em>' class.
@@ -1847,7 +1847,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int RELATIONSHIP_DECORATOR___VALIDATE = GSNPackage.SUPPORTABLE___VALIDATE;
+  int RELATIONSHIP_DECORATOR___VALIDATE__TEMPLATE = GSNPackage.SUPPORTABLE___VALIDATE__TEMPLATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1856,7 +1856,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int RELATIONSHIP_DECORATOR___INSTANTIATE = GSNPackage.SUPPORTABLE___INSTANTIATE;
+  int RELATIONSHIP_DECORATOR___INSTANTIATE__TEMPLATE = GSNPackage.SUPPORTABLE___INSTANTIATE__TEMPLATE;
 
   /**
    * The number of operations of the '<em>Relationship Decorator</em>' class.
@@ -2067,24 +2067,24 @@ public interface GSNPackage extends EPackage {
   EAttribute getArgumentElement_Valid();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#validate() <em>Validate</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#validate(edu.toronto.cs.se.modelepedia.gsn.Template) <em>Validate</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Validate</em>' operation.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#validate()
+   * @see edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#validate(edu.toronto.cs.se.modelepedia.gsn.Template)
    * @generated
    */
-  EOperation getArgumentElement__Validate();
+  EOperation getArgumentElement__Validate__Template();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#instantiate() <em>Instantiate</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#instantiate(edu.toronto.cs.se.modelepedia.gsn.Template) <em>Instantiate</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Instantiate</em>' operation.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#instantiate()
+   * @see edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#instantiate(edu.toronto.cs.se.modelepedia.gsn.Template)
    * @generated
    */
-  EOperation getArgumentElement__Instantiate();
+  EOperation getArgumentElement__Instantiate__Template();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.Decoratable <em>Decoratable</em>}'.
@@ -2704,7 +2704,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation ARGUMENT_ELEMENT___VALIDATE = GSNPackage.eINSTANCE.getArgumentElement__Validate();
+    EOperation ARGUMENT_ELEMENT___VALIDATE__TEMPLATE = GSNPackage.eINSTANCE.getArgumentElement__Validate__Template();
 
     /**
      * The meta object literal for the '<em><b>Instantiate</b></em>' operation.
@@ -2712,7 +2712,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation ARGUMENT_ELEMENT___INSTANTIATE = GSNPackage.eINSTANCE.getArgumentElement__Instantiate();
+    EOperation ARGUMENT_ELEMENT___INSTANTIATE__TEMPLATE = GSNPackage.eINSTANCE.getArgumentElement__Instantiate__Template();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.DecoratableImpl <em>Decoratable</em>}' class.

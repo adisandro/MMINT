@@ -67,12 +67,14 @@ public class ValidateTemplateElement extends AbstractExternalJavaAction {
         id = "";
       }
       var message = "The GSN template element " + id + " is ";
-      try {
-        this.templateElem.validate();
-        MessageDialog.openInformation(shell, title, message + "instantiated correctly");
-      }
-      catch (Exception e) {
-        MMINTException.print(IStatus.ERROR, message + "not instantiated correctly", e);
+      for (var template : this.templateElem.getTemplates()) {
+        try {
+          this.templateElem.validate(template);
+          MessageDialog.openInformation(shell, title, message + "instantiated correctly");
+        }
+        catch (Exception e) {
+          MMINTException.print(IStatus.ERROR, message + "not instantiated correctly", e);
+        }
       }
     }
   }

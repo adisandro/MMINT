@@ -32,8 +32,12 @@
         eType="#//Template" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArgumentElement" abstract="true">
-    <eOperations name="validate" eExceptions="#//Exception"/>
-    <eOperations name="instantiate" eExceptions="#//Exception"/>
+    <eOperations name="validate" eExceptions="#//Exception">
+      <eParameters name="template" lowerBound="1" eType="#//Template"/>
+    </eOperations>
+    <eOperations name="instantiate" eExceptions="#//Exception">
+      <eParameters name="template" lowerBound="1" eType="#//Template"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="gmf.label">

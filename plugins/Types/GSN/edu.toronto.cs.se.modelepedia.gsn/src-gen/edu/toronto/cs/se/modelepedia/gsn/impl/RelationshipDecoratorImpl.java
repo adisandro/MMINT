@@ -43,6 +43,7 @@ import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Solution;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
+import edu.toronto.cs.se.modelepedia.gsn.Template;
 
 /**
  * <!-- begin-user-doc -->
@@ -568,7 +569,7 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
    * @generated NOT
    */
   @Override
-  public void instantiate() throws Exception {
+  public void instantiate(Template template) throws Exception {
     var decorated = (Decoratable) eContainer();
     var isSupported = !getSupportedBy().isEmpty();
     var hint = getDescription();
@@ -584,7 +585,7 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
    * @generated NOT
    */
   @Override
-  public void validate() throws Exception {
+  public void validate(Template template) throws Exception {
     setValid(false);
     throw new MMINTException("Relationship decorators must be instantiated");
   }

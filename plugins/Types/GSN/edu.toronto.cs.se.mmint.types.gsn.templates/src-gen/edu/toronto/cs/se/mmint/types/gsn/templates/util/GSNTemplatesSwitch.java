@@ -192,10 +192,10 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
           result = caseContextualizable(domainDecompositionStrategy);
         }
         if (result == null) {
-          result = caseArgumentElement(domainDecompositionStrategy);
+          result = caseDecoratable(domainDecompositionStrategy);
         }
         if (result == null) {
-          result = caseDecoratable(domainDecompositionStrategy);
+          result = caseArgumentElement(domainDecompositionStrategy);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -224,10 +224,10 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
           result = caseASILfulElement(domainGoal);
         }
         if (result == null) {
-          result = caseArgumentElement(domainGoal);
+          result = caseDecoratable(domainGoal);
         }
         if (result == null) {
-          result = caseDecoratable(domainGoal);
+          result = caseArgumentElement(domainGoal);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -283,10 +283,10 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
           result = caseContextualizable(propertyDecompositionStrategy);
         }
         if (result == null) {
-          result = caseArgumentElement(propertyDecompositionStrategy);
+          result = caseDecoratable(propertyDecompositionStrategy);
         }
         if (result == null) {
-          result = caseDecoratable(propertyDecompositionStrategy);
+          result = caseArgumentElement(propertyDecompositionStrategy);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -315,10 +315,10 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
           result = caseASILfulElement(propertyGoal);
         }
         if (result == null) {
-          result = caseArgumentElement(propertyGoal);
+          result = caseDecoratable(propertyGoal);
         }
         if (result == null) {
-          result = caseDecoratable(propertyGoal);
+          result = caseArgumentElement(propertyGoal);
         }
         if (result == null) {
           result = defaultCase(theEObject);

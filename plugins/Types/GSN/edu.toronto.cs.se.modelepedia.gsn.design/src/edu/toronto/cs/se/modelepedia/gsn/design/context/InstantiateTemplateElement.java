@@ -61,13 +61,16 @@ public class InstantiateTemplateElement extends AbstractExternalJavaAction {
 
     @Override
     protected void doExecute() {
-      try {
-        this.templateElem.instantiate();
-        this.templateElem.validate();
-      }
-      catch (MIDDialogCancellation e) {}
-      catch (Exception e) {
-        MMINTException.print(IStatus.ERROR, "Error instantiating GSN template element " + this.templateElem.getId(), e);
+      for (var template : this.templateElem.getTemplates()) {
+        try {
+          this.templateElem.instantiate(template);
+          this.templateElem.validate(template);
+        }
+        catch (MIDDialogCancellation e) {}
+        catch (Exception e) {
+          MMINTException.print(IStatus.ERROR, "Error instantiating GSN template element " + this.templateElem.getId(),
+                               e);
+        }
       }
     }
   }

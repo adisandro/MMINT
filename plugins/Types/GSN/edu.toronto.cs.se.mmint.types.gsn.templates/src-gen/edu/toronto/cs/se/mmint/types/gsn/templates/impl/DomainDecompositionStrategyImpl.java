@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
+import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl;
 
 /**
@@ -237,7 +238,7 @@ public class DomainDecompositionStrategyImpl extends StrategyImpl implements Dom
    * @generated NOT
    */
   @Override
-  public void instantiate() throws Exception {
+  public void instantiate(Template template) throws Exception {
     getTemplates().get(0).instantiate();
   }
 
@@ -245,7 +246,7 @@ public class DomainDecompositionStrategyImpl extends StrategyImpl implements Dom
    * @generated NOT
    */
   @Override
-  public void validate() throws Exception {
+  public void validate(Template template) throws Exception {
     try {
       var domain = Objects.requireNonNull(getDomain(), "Domain not specified");
       var subGoals = getSupportedBy().stream()

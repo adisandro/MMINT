@@ -71,7 +71,7 @@ public interface Template extends EObject {
 
   /**
    * <!-- begin-user-doc --> Validates the correctness of this instantiated template. The base implementation invokes
-   * {@link ArgumentElement#validate()} for each template element.
+   * {@link ArgumentElement#validate(Template)} for each template element.
    *
    * @throws Exception
    *           If this template has not been instantiated correctly. <!-- end-user-doc -->
@@ -95,7 +95,7 @@ public interface Template extends EObject {
 
   /**
    * <!-- begin-user-doc --> Instantiates this template. The base implementation invokes
-   * {@link ArgumentElement#instantiate()} for each invalid template element.
+   * {@link ArgumentElement#instantiate(Template)} for each invalid template element.
    *
    * @throws Exception
    *           If this template can not be instantiated. <!-- end-user-doc -->

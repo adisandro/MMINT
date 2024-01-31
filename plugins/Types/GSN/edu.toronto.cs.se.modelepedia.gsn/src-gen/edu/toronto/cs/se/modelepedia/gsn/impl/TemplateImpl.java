@@ -162,13 +162,13 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
       if (element.isValid() || element.eContainer() == null || !(element instanceof RelationshipDecorator)) {
         continue;
       }
-      element.instantiate();
+      element.instantiate(this);
     }
     for (var element : copyElements) {
       if (element.isValid() || element.eContainer() == null || element instanceof RelationshipDecorator) {
         continue;
       }
-      element.instantiate();
+      element.instantiate(this);
     }
   }
 
@@ -180,7 +180,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
       if (element.eContainer() == null) { // == deleted
         continue;
       }
-      element.validate();
+      element.validate(this);
     }
   }
 

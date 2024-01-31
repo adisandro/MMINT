@@ -139,22 +139,28 @@ public interface ArgumentElement extends EObject {
    * <!-- begin-user-doc --> Instantiates this template element. The base implementation searches and replaces
    * placeholder text (${placeholder}) in the description.
    *
+   * @param template
+   *          The template that contains this template element.
+   *
    * @throws Exception
    *           If this template element can not be instantiated. <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" templateRequired="true"
    * @generated
    */
-  void instantiate() throws Exception;
+  void instantiate(Template template) throws Exception;
 
   /**
    * <!-- begin-user-doc --> Validates the correctness of this instantiated template element. The base implementation
    * checks that no placeholder text (${placeholder}) is present in the description.
    *
+   * @param template
+   *          The template that contains this template element.
+   *
    * @throws Exception
    *           If this template element has not been instantiated correctly. <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" templateRequired="true"
    * @generated
    */
-  void validate() throws Exception;
+  void validate(Template template) throws Exception;
 
 } // ArgumentElement

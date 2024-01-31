@@ -33,6 +33,7 @@ import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
+import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.impl.StrategyImpl;
 
 /**
@@ -314,7 +315,7 @@ public class PropertyDecompositionStrategyImpl extends StrategyImpl implements P
    * @generated NOT
    */
   @Override
-  public void instantiate() throws Exception {
+  public void instantiate(Template template) throws Exception {
     getTemplates().get(0).instantiate();
   }
 
@@ -322,7 +323,7 @@ public class PropertyDecompositionStrategyImpl extends StrategyImpl implements P
    * @generated NOT
    */
   @Override
-  public void validate() throws Exception {
+  public void validate(Template template) throws Exception {
     try {
       var reasonerName = Objects.requireNonNull(getReasonerName(), "Reasoner not specified");
       var reasoner = Objects.requireNonNull(MMINT.getReasoner(reasonerName),

@@ -413,17 +413,17 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case GSNPackage.ARGUMENT_ELEMENT___VALIDATE:
+      case GSNPackage.ARGUMENT_ELEMENT___VALIDATE__TEMPLATE:
         try {
-          validate();
+          validate((Template)arguments.get(0));
           return null;
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE:
+      case GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE__TEMPLATE:
         try {
-          instantiate();
+          instantiate((Template)arguments.get(0));
           return null;
         }
         catch (Throwable throwable) {
@@ -458,7 +458,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    * @generated NOT
    */
   @Override
-  public void instantiate() throws Exception {
+  public void instantiate(Template template) throws Exception {
     var title = "Instantiate placeholder text";
     var node = eClass().getName() + " " + getId();
     while (true) {
@@ -478,7 +478,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    * @generated NOT
    */
   @Override
-  public void validate() throws Exception {
+  public void validate(Template template) throws Exception {
     if (GSNBuilder.findPattern(getDescription()).isPresent()) {
       setValid(false);
       throw new MMINTException(eClass().getName() + " " + getId() +

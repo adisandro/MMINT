@@ -553,7 +553,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.STRATEGY___VALIDATE;
+  int DOMAIN_DECOMPOSITION_STRATEGY___VALIDATE__TEMPLATE = GSNPackage.STRATEGY___VALIDATE__TEMPLATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -562,7 +562,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY___INSTANTIATE = GSNPackage.STRATEGY___INSTANTIATE;
+  int DOMAIN_DECOMPOSITION_STRATEGY___INSTANTIATE__TEMPLATE = GSNPackage.STRATEGY___INSTANTIATE__TEMPLATE;
 
   /**
    * The number of operations of the '<em>Domain Decomposition Strategy</em>' class.
@@ -707,7 +707,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL___VALIDATE = GSNPackage.GOAL___VALIDATE;
+  int DOMAIN_GOAL___VALIDATE__TEMPLATE = GSNPackage.GOAL___VALIDATE__TEMPLATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -716,7 +716,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL___INSTANTIATE = GSNPackage.GOAL___INSTANTIATE;
+  int DOMAIN_GOAL___INSTANTIATE__TEMPLATE = GSNPackage.GOAL___INSTANTIATE__TEMPLATE;
 
   /**
    * The number of operations of the '<em>Domain Goal</em>' class.
@@ -1026,7 +1026,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.STRATEGY___VALIDATE;
+  int PROPERTY_DECOMPOSITION_STRATEGY___VALIDATE__TEMPLATE = GSNPackage.STRATEGY___VALIDATE__TEMPLATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1035,7 +1035,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY___INSTANTIATE = GSNPackage.STRATEGY___INSTANTIATE;
+  int PROPERTY_DECOMPOSITION_STRATEGY___INSTANTIATE__TEMPLATE = GSNPackage.STRATEGY___INSTANTIATE__TEMPLATE;
 
   /**
    * The number of operations of the '<em>Property Decomposition Strategy</em>' class.
@@ -1189,7 +1189,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL___VALIDATE = GSNPackage.GOAL___VALIDATE;
+  int PROPERTY_GOAL___VALIDATE__TEMPLATE = GSNPackage.GOAL___VALIDATE__TEMPLATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1198,7 +1198,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL___INSTANTIATE = GSNPackage.GOAL___INSTANTIATE;
+  int PROPERTY_GOAL___INSTANTIATE__TEMPLATE = GSNPackage.GOAL___INSTANTIATE__TEMPLATE;
 
   /**
    * The number of operations of the '<em>Property Goal</em>' class.
@@ -1381,7 +1381,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FILES_CONTEXT___VALIDATE = GSNPackage.CONTEXT___VALIDATE;
+  int FILES_CONTEXT___VALIDATE__TEMPLATE = GSNPackage.CONTEXT___VALIDATE__TEMPLATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1390,7 +1390,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FILES_CONTEXT___INSTANTIATE = GSNPackage.CONTEXT___INSTANTIATE;
+  int FILES_CONTEXT___INSTANTIATE__TEMPLATE = GSNPackage.CONTEXT___INSTANTIATE__TEMPLATE;
 
   /**
    * The number of operations of the '<em>Files Context</em>' class.
