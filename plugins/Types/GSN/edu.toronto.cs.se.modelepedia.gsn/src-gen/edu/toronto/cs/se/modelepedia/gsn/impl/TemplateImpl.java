@@ -155,18 +155,20 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    */
   @Override
   public void instantiate() throws Exception {
+    // copy to avoid concurrent modifications: template instantiation may modify the template
+    var copyElements = List.copyOf(getElements());
     // instantiate relationship decorators first to fix the structure
-    for (var elem : getElements()) {
-      if (elem.isValid() || !(elem instanceof RelationshipDecorator)) {
+    for (var element : copyElements) {
+      if (element.isValid() || element.eContainer() == null || !(element instanceof RelationshipDecorator)) {
         continue;
       }
-      elem.instantiate();
+      element.instantiate();
     }
-    for (var elem : getElements()) {
-      if (elem.isValid() || elem instanceof RelationshipDecorator) {
+    for (var element : copyElements) {
+      if (element.isValid() || element.eContainer() == null || element instanceof RelationshipDecorator) {
         continue;
       }
-      elem.instantiate();
+      element.instantiate();
     }
   }
 
@@ -175,8 +177,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    */
   protected void validate(List<ArgumentElement> elements) throws Exception {
     for (var element : elements) {
-      if (element.eContainer() == null) {
-        // skip template elements that have been deleted
+      if (element.eContainer() == null) { // == deleted
         continue;
       }
       element.validate();
@@ -188,7 +189,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    */
   @Override
   public void validate() throws Exception {
-    // copy to avoid concurrent modifications: template element validation may modify the template
+    // copy to avoid concurrent modifications: template validation may modify the template
     validate(List.copyOf(getElements()));
   }
 
