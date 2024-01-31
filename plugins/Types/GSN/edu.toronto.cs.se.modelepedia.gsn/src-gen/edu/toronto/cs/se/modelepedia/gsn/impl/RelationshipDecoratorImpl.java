@@ -378,23 +378,26 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
   /**
    * @generated NOT
    */
-  private <T extends ArgumentElement> void _copySubtree(T elem, T copyElem, String idSuffix, SafetyCase safetyCase) {
+  private <T extends ArgumentElement> void _copySubtree(T elem, T copyElem, String idSuffix, SafetyCase safetyCase,
+                                                        Template template) {
     if (elem instanceof Supportable supportable) {
       for (var i = 0; i < supportable.getSupportedBy().size(); i++) {
-        var copySupporter = copySubtree(supportable.getSupportedBy().get(i).getTarget(), idSuffix, safetyCase);
+        var copySupporter = copySubtree(supportable.getSupportedBy().get(i).getTarget(), idSuffix, safetyCase,
+                                        template);
         ((Supportable) copyElem).getSupportedBy().get(i).setTarget(copySupporter);
       }
     }
     if (elem instanceof Contextualizable contextualizable) {
       for (var i = 0; i < contextualizable.getInContextOf().size(); i++) {
-        var copyContextual = copySubtree(contextualizable.getInContextOf().get(i).getContext(), idSuffix, safetyCase);
+        var copyContextual = copySubtree(contextualizable.getInContextOf().get(i).getContext(), idSuffix, safetyCase,
+                                         template);
         ((Contextualizable) copyElem).getInContextOf().get(i).setContext(copyContextual);
       }
     }
     if (elem instanceof Decoratable decoratable) {
       for (var i = 0; i < decoratable.getDecorators().size(); i++) {
         _copySubtree(decoratable.getDecorators().get(i), ((Decoratable) copyElem).getDecorators().get(i), idSuffix,
-                     safetyCase);
+                     safetyCase, template);
       }
     }
   }
@@ -402,7 +405,7 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
   /**
    * @generated NOT
    */
-  private <T extends ArgumentElement> T copySubtree(T elem, String idSuffix, SafetyCase safetyCase) {
+  private <T extends ArgumentElement> T copySubtree(T elem, String idSuffix, SafetyCase safetyCase, Template template) {
     var copyElem = EcoreUtil.copy(elem);
     copyElem.setId(copyElem.getId() + idSuffix);
     switch (copyElem) {
@@ -414,7 +417,11 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
       case Assumption a -> safetyCase.getAssumptions().add(a);
       default -> {}
     }
-    _copySubtree(elem, copyElem, idSuffix, safetyCase);
+    template.getElements().add(copyElem);
+    if (copyElem instanceof Decoratable decoratable) {
+      template.getElements().addAll(decoratable.getDecorators());
+    }
+    _copySubtree(elem, copyElem, idSuffix, safetyCase, template);
 
     return copyElem;
   }
@@ -512,7 +519,7 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
   /**
    * @generated NOT
    */
-  private void instantiateMultiple(Decoratable decorated, boolean isSupported, @Nullable String hint)
+  private void instantiateMultiple(Decoratable decorated, boolean isSupported, @Nullable String hint, Template template)
                                   throws MMINTException {
     var max = getCardinality();
     var x = (max < 0) ? "any number of" : "up to " + max;
@@ -543,7 +550,7 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
           var idSuffix = "." + (i+1);
           getSupportedBy().forEach(sb -> {
             var copySupportedBy = GSNFactory.eINSTANCE.createSupportedBy();
-            copySupportedBy.setTarget(copySubtree(sb.getTarget(), idSuffix, safetyCase));
+            copySupportedBy.setTarget(copySubtree(sb.getTarget(), idSuffix, safetyCase, template));
             ((Supportable) decorated).getSupportedBy().add(copySupportedBy);
           });
         }
@@ -554,15 +561,13 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
           var idSuffix = "." + (i+1);
           getInContextOf().forEach(ico -> {
             var copyInContextOf = GSNFactory.eINSTANCE.createInContextOf();
-            copyInContextOf.setContext(copySubtree(ico.getContext(), idSuffix, safetyCase));
+            copyInContextOf.setContext(copySubtree(ico.getContext(), idSuffix, safetyCase, template));
             ((Contextualizable) decorated).getInContextOf().add(copyInContextOf);
           });
         }
         getInContextOf().forEach(ico -> dropSubtree(ico.getContext(), safetyCase));
       }
     }
-    //TODO how do we add copyElems to template? -> pass template as param
-    //TODO make multiple-only a multiple step, instantiating only top-level
   }
 
   /**
@@ -576,7 +581,7 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
     switch (this.getType()) {
       case OPTIONAL -> instantiateOptional(decorated, isSupported, hint);
       case CHOICE -> instantiateChoice(decorated, isSupported, hint);
-      case MULTIPLE -> instantiateMultiple(decorated, isSupported, hint);
+      case MULTIPLE -> instantiateMultiple(decorated, isSupported, hint, template);
     };
     decorated.getDecorators().remove(this);
   }

@@ -159,13 +159,14 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
     var copyElements = List.copyOf(getElements());
     // instantiate relationship decorators first to fix the structure
     for (var element : copyElements) {
-      if (element.isValid() || element.eContainer() == null || !(element instanceof RelationshipDecorator)) {
+      if (element.isValid() || !(element instanceof RelationshipDecorator) ||
+          element.eContainer().eContainer() == null) {
         continue;
       }
       element.instantiate(this);
     }
     for (var element : copyElements) {
-      if (element.isValid() || element.eContainer() == null || element instanceof RelationshipDecorator) {
+      if (element.isValid() || element instanceof RelationshipDecorator || element.eContainer() == null) {
         continue;
       }
       element.instantiate(this);
