@@ -21,8 +21,8 @@ A virtual machine image for VirtualBox with all the required dependencies is ava
     6. Open `/MODELS21/examples.middiag`.
     7. Double-click on the yellow box named `sc : GSN` to open the GSN safety case.
 3. FCS example (Sec. V-B):
-    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/property_decomposition.gsn`.
-    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Add supported-by link`, click on the claim named `C1`, click on the strategy named `S1.G1` to connect them.
+    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/FormalStrategies/property_decomposition.gsn`.
+    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Create Supported-by Link`, click on the claim named `C1`, click on the strategy named `S1.G1` to connect them.
     3. Right-click on any of the imported nodes, select `MMINT > Instantiate Template`.
     4. Select `Absence > $X is not reached` as the property to be decomposed, select `State Damaged` for variable `$X`.
     5. Insert `2` as the number of sub-properties.
@@ -31,8 +31,8 @@ A virtual machine image for VirtualBox with all the required dependencies is ava
     8. Repeat FCS steps 3 to 6, select `Transitions > Never transition into $X` as the second sub-property, select `State Damaged` for variable `$X`.
     9. The decomposition succeeds and the GSN justification node `J1.C1` points to the results.
 4. Infusion Pump case study (Sec. VI-A):
-    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/property_decomposition.gsn`.
-    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Add supported-by link`, click on the claim named `C2`, click on the strategy named `S1.G1` to connect them.
+    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/FormalStrategies/property_decomposition.gsn`.
+    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Create Supported-by Link`, click on the claim named `C2`, click on the strategy named `S1.G1` to connect them.
     3. Right-click on any of the imported nodes, select `MMINT > Instantiate Template`.
     4. Select `Absence > $X is not reached after $A and until $B` as the property to be decomposed, select `State BolusRequest` for variable `$X`, `Transition Cond_6_3?` for variable `$A`, `State Infusion_NormalOperation` for variable `$B`.
     5. Insert `3` as the number of sub-properties.

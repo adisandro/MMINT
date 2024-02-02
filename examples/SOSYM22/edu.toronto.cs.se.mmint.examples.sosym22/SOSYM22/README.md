@@ -21,8 +21,8 @@ We can't share the K9 Mars Rover case study (Sec. 6.2). To illustrate the use of
     6. Open `/SOSYM22/model/examples.middiag`.
     7. Double-click on the yellow box named `sc : GSN` to open the GSN safety case.
 3. FCS example (Sec. 5):
-    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/property_decomposition.gsn`.
-    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Add supported-by link`, click on the claim named `C1`, click on the strategy named `S1.G1` to connect them.
+    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/FormalStrategies/property_decomposition.gsn`.
+    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Create Supported-by Link`, click on the claim named `C1`, click on the strategy named `S1.G1` to connect them.
     3. Right-click on any of the imported nodes, select `MMINT > Instantiate Template`.
     4. Select `Absence > $X is not reached` as the property to be decomposed, select `State Damaged` for variable `$X`.
     5. Insert `2` as the number of sub-properties.
@@ -30,8 +30,8 @@ We can't share the K9 Mars Rover case study (Sec. 6.2). To illustrate the use of
     7. Select `Transitions > Never transition into $X` as the second sub-property, select `State Damaged` for variable `$X`.
     8. The decomposition succeeds and the GSN justification node `J1.C1` points to the results.
 4. FCS example (alternative with query):
-    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/property_decomposition.gsn`.
-    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Add supported-by link`, click on the claim named `C1`, click on the strategy named `S1.G1` to connect them.
+    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/FormalStrategies/property_decomposition.gsn`.
+    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Create Supported-by Link`, click on the claim named `C1`, click on the strategy named `S1.G1` to connect them.
     3. Right-click on any of the imported nodes, select `MMINT > Instantiate Template`.
     4. Select `Absence > $X is not reached` as the property to be decomposed, select `Run query to select elements`, `/SOSYM22/src/sosym22/query.vql` as query file, `damaged` as query, insert `Selects the state named Damaged` as description.
     5. Insert `2` as the number of sub-properties.
@@ -39,8 +39,8 @@ We can't share the K9 Mars Rover case study (Sec. 6.2). To illustrate the use of
     7. Select `Transitions > Never transition into $X` as the second sub-property, select `Run query to select elements`, `/SOSYM22/src/sosym22/query.vql` as query file, `damaged` as query.
     8. The decomposition succeeds and the GSN justification node `J1.C1` points to the results.
 5. PCA Infusion Pump case study (Sec. 6.1):
-    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/property_decomposition.gsn`.
-    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Add supported-by link`, click on the claim named `C2`, click on the strategy named `S1.G1` to connect them.
+    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/FormalStrategies/property_decomposition.gsn`.
+    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Create Supported-by Link`, click on the claim named `C2`, click on the strategy named `S1.G1` to connect them.
     3. Right-click on any of the imported nodes, select `MMINT > Instantiate Template`.
     4. Select `Absence > $X is not reached after $A and until $B` as the property to be decomposed, select `State BolusRequest` for variable `$X`, `Transition Cond_6_3?` for variable `$A`, `State Infusion_NormalOperation` for variable `$B`.
     5. Insert `3` as the number of sub-properties.
@@ -49,8 +49,8 @@ We can't share the K9 Mars Rover case study (Sec. 6.2). To illustrate the use of
     8. Select `Absence > $X is not reached after $A and until $B` as the third sub-property, select `State BolusRequest` for variable `$X`, `State Alrm_EmptyReservoir` for variable `$A`, `State Infusion_NormalOperation` for variable `$B`.
     9. The decomposition succeeds and the GSN justification node `J1.C2` points to the results.
 6. LACU case study (Sec. 6.3):
-    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/property_decomposition.gsn`.
-    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Add supported-by link`, click on the claim named `C3`, click on the strategy named `S1.G1` to connect them.
+    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/FormalStrategies/property_decomposition.gsn`.
+    2. Click on the claim named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Create Supported-by Link`, click on the claim named `C3`, click on the strategy named `S1.G1` to connect them.
     3. Right-click on any of the imported nodes, select `MMINT > Instantiate Template`.
     2. Copy and paste the contents of file `/SOSYM22/model/lacu_properties/parent.property` as the property to be decomposed, insert `The subcontracts induce a correct decomposition of the LACU contract` as description.
     3. Insert `3` as the number of sub-properties.
