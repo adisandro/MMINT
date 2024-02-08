@@ -156,6 +156,37 @@
    </extension>   
 
    <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="SocratesToGSN"
+               uri="edu.toronto.cs.se.modelepedia.gsn.operator.SocratesToGSN"
+               class="edu.toronto.cs.se.modelepedia.gsn.operator.SocratesToGSN">
+         </type>
+         <inputs>
+            <parameter>
+               <type
+                     name="json">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/File">
+               </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+               <type
+                     name="gsn">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSN">
+               </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
+   <extension
          point="edu.toronto.cs.se.mmint.reasoners">
       <reasoner
             class="edu.toronto.cs.se.modelepedia.gsn.lean.reasoning.GSNLeanReasoner">
