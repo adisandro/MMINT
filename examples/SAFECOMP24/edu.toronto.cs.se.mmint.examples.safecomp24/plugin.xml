@@ -39,4 +39,12 @@
       </example>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated safecomp24.gsn -->
+      <package
+            uri="model://edu.toronto.cs.se.mmint.examples.safecomp24.gsn"
+            class="edu.toronto.cs.se.mmint.examples.safecomp24.gsn.AMLASrPackage"
+            genModel="model/safecomp24.gsn.genmodel"/>
+   </extension>
+
 </plugin>
