@@ -53,13 +53,6 @@
          unpack="false"/>
 
    <plugin
-         id="edu.toronto.cs.se.mmint.examples.vamos23.operators"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="edu.toronto.cs.se.mmint.examples.mmpl"
          download-size="0"
          install-size="0"

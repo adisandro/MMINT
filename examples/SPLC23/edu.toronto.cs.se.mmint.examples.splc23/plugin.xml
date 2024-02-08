@@ -39,4 +39,28 @@
       </example>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="PLPreload"
+               uri="edu.toronto.cs.se.mmint.examples.splc23.operators.PLPreload"
+               class="edu.toronto.cs.se.mmint.examples.splc23.operators.PLPreload">
+         </type>
+         <inputs>
+            <parameter>
+               <type
+                     name="pl"
+                     uri="edu.toronto.cs.se.mmint.examples.splc23.operators.PLPreload/pl">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="model://edu.toronto.cs.se.mmint.productline">
+               </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+         </outputs>
+      </operatorType>
+   </extension>
+
 </plugin>

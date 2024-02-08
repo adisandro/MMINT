@@ -7,4 +7,14 @@ Automatic-Module-Name: edu.toronto.cs.se.mmint.examples.vamos23
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.emf.common.ui
+Require-Bundle: org.eclipse.emf.common.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.validation,
+ org.eclipse.jdt.annotation;resolution:=optional,
+ edu.toronto.cs.se.mavo,
+ edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.modelepedia.classdiagram,
+ edu.toronto.cs.se.modelepedia.classdiagram_mavo,
+ edu.toronto.cs.se.mmint.productline,
+ edu.toronto.cs.se.mmint.productline.operators
+Export-Package: edu.toronto.cs.se.mmint.examples.vamos23.operators
