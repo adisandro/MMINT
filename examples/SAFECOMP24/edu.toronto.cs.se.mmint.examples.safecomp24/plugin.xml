@@ -47,4 +47,24 @@
             genModel="model/safecomp24.gsn.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated safecomp24.gsn -->
+      <factory
+            uri="model://edu.toronto.cs.se.mmint.examples.safecomp24.gsn"
+            class="edu.toronto.cs.se.mmint.examples.safecomp24.gsn.provider.AMLASrItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <!-- @generated safecomp24.gsn -->
+      <extender
+            uri="http://se.cs.toronto.edu/modelepedia/GSN"
+            class="edu.toronto.cs.se.mmint.examples.safecomp24.gsn.provider.AMLASrItemProviderAdapterFactory$GSNChildCreationExtender"/>
+   </extension>
+
 </plugin>

@@ -4,10 +4,12 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.examples.safecomp24;singleton:=true
 Bundle-Version: 2.20.99.qualifier
 Bundle-ClassPath: .
+Bundle-Activator: edu.toronto.cs.se.mmint.examples.safecomp24.gsn.provider.AMLASrEditPlugin$Implementation
 Automatic-Module-Name: edu.toronto.cs.se.mmint.examples.safecomp24
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Export-Package: edu.toronto.cs.se.mmint.examples.safecomp24.gsn,
  edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl,
+ edu.toronto.cs.se.mmint.examples.safecomp24.gsn.provider,
  edu.toronto.cs.se.mmint.examples.safecomp24.gsn.util
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -15,4 +17,6 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.common.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
- edu.toronto.cs.se.modelepedia.gsn
+ org.eclipse.emf.edit,
+ edu.toronto.cs.se.modelepedia.gsn,
+ edu.toronto.cs.se.modelepedia.gsn.edit
