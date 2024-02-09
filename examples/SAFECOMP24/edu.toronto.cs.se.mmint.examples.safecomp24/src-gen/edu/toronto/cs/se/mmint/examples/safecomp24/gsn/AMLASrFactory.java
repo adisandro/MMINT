@@ -32,13 +32,13 @@ public interface AMLASrFactory extends EFactory {
   AMLASrFactory eINSTANCE = edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl.AMLASrFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>Stage1 Template</em>'.
+   * Returns a new object of class '<em>Stage2 Template</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Stage1 Template</em>'.
+   * @return a new object of class '<em>Stage2 Template</em>'.
    * @generated
    */
-  Stage1Template createStage1Template();
+  Stage2Template createStage2Template();
 
   /**
    * Returns the package supported by this factory.

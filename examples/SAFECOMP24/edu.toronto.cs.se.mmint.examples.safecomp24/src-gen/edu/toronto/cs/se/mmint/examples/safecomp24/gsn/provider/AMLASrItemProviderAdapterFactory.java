@@ -91,26 +91,26 @@ public class AMLASrItemProviderAdapterFactory extends AMLASrAdapterFactory imple
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage1Template} instances.
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage2Template} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected Stage1TemplateItemProvider stage1TemplateItemProvider;
+  protected Stage2TemplateItemProvider stage2TemplateItemProvider;
 
   /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage1Template}.
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage2Template}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createStage1TemplateAdapter() {
-    if (this.stage1TemplateItemProvider == null) {
-      this.stage1TemplateItemProvider = new Stage1TemplateItemProvider(this);
+  public Adapter createStage2TemplateAdapter() {
+    if (this.stage2TemplateItemProvider == null) {
+      this.stage2TemplateItemProvider = new Stage2TemplateItemProvider(this);
     }
 
-    return this.stage1TemplateItemProvider;
+    return this.stage2TemplateItemProvider;
   }
 
   /**
@@ -218,8 +218,8 @@ public class AMLASrItemProviderAdapterFactory extends AMLASrAdapterFactory imple
    */
   @Override
   public void dispose() {
-    if (this.stage1TemplateItemProvider != null) {
-      this.stage1TemplateItemProvider.dispose();
+    if (this.stage2TemplateItemProvider != null) {
+      this.stage2TemplateItemProvider.dispose();
     }
   }
 
@@ -273,7 +273,7 @@ public class AMLASrItemProviderAdapterFactory extends AMLASrAdapterFactory imple
         this.newChildDescriptors.add
           (createChildParameter
             (GSNPackage.Literals.SAFETY_CASE__TEMPLATES,
-             AMLASrFactory.eINSTANCE.createStage1Template()));
+             AMLASrFactory.eINSTANCE.createStage2Template()));
 
         return null;
       }

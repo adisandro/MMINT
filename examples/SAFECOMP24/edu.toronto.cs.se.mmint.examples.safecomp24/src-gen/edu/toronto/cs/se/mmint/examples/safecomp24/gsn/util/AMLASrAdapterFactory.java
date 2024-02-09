@@ -18,7 +18,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.examples.safecomp24.gsn.AMLASrPackage;
-import edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage1Template;
+import edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage2Template;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 
 /**
@@ -78,8 +78,8 @@ public class AMLASrAdapterFactory extends AdapterFactoryImpl {
   protected AMLASrSwitch<Adapter> modelSwitch =
     new AMLASrSwitch<>() {
       @Override
-      public Adapter caseStage1Template(Stage1Template object) {
-        return createStage1TemplateAdapter();
+      public Adapter caseStage2Template(Stage2Template object) {
+        return createStage2TemplateAdapter();
       }
       @Override
       public Adapter caseTemplate(Template object) {
@@ -106,16 +106,16 @@ public class AMLASrAdapterFactory extends AdapterFactoryImpl {
 
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage1Template <em>Stage1 Template</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage2Template <em>Stage2 Template</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage1Template
+   * @see edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage2Template
    * @generated
    */
-  public Adapter createStage1TemplateAdapter() {
+  public Adapter createStage2TemplateAdapter() {
     return null;
   }
 

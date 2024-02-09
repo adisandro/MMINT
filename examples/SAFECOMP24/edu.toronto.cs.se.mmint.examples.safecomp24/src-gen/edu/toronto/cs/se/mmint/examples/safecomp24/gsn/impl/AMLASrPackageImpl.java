@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import edu.toronto.cs.se.mmint.examples.safecomp24.gsn.AMLASrFactory;
 import edu.toronto.cs.se.mmint.examples.safecomp24.gsn.AMLASrPackage;
-import edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage1Template;
+import edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage2Template;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 /**
@@ -33,8 +33,7 @@ public class AMLASrPackageImpl extends EPackageImpl implements AMLASrPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass stage1TemplateEClass = null;
-
+  private EClass stage2TemplateEClass = null;
   /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
@@ -106,8 +105,8 @@ public class AMLASrPackageImpl extends EPackageImpl implements AMLASrPackage {
    * @generated
    */
   @Override
-  public EClass getStage1Template() {
-    return this.stage1TemplateEClass;
+  public EClass getStage2Template() {
+    return this.stage2TemplateEClass;
   }
 
   /**
@@ -141,7 +140,7 @@ public class AMLASrPackageImpl extends EPackageImpl implements AMLASrPackage {
     this.isCreated = true;
 
     // Create classes and their features
-    this.stage1TemplateEClass = createEClass(AMLASrPackage.STAGE1_TEMPLATE);
+    this.stage2TemplateEClass = createEClass(AMLASrPackage.STAGE2_TEMPLATE);
   }
 
   /**
@@ -177,10 +176,10 @@ public class AMLASrPackageImpl extends EPackageImpl implements AMLASrPackage {
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    this.stage1TemplateEClass.getESuperTypes().add(theGSNPackage.getTemplate());
+    this.stage2TemplateEClass.getESuperTypes().add(theGSNPackage.getTemplate());
 
     // Initialize classes, features, and operations; add parameters
-    initEClass(this.stage1TemplateEClass, Stage1Template.class, "Stage1Template", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.stage2TemplateEClass, Stage2Template.class, "Stage2Template", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(AMLASrPackage.eNS_URI);

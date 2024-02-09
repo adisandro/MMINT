@@ -2,5 +2,5 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="gsn" nsURI="model://edu.toronto.cs.se.mmint.examples.safecomp24.gsn"
     nsPrefix="safecomp24.gsn">
-  <eClassifiers xsi:type="ecore:EClass" name="Stage1Template" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Template"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Stage2Template" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Template"/>
 </ecore:EPackage>

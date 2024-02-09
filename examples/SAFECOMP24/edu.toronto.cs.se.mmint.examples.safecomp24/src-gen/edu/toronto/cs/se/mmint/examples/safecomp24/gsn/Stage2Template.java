@@ -20,9 +20,9 @@ import edu.toronto.cs.se.modelepedia.gsn.Template;
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.examples.safecomp24.gsn.AMLASrPackage#getStage1Template()
+ * @see edu.toronto.cs.se.mmint.examples.safecomp24.gsn.AMLASrPackage#getStage2Template()
  * @model
  * @generated
  */
-public interface Stage1Template extends Template {
+public interface Stage2Template extends Template {
 } // Stage1Template

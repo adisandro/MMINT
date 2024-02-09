@@ -21,23 +21,23 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage1Template;
+import edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage2Template;
 import edu.toronto.cs.se.modelepedia.gsn.provider.TemplateItemProvider;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage1Template} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage2Template} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class Stage1TemplateItemProvider extends TemplateItemProvider {
+public class Stage2TemplateItemProvider extends TemplateItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public Stage1TemplateItemProvider(AdapterFactory adapterFactory) {
+  public Stage2TemplateItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -57,13 +57,13 @@ public class Stage1TemplateItemProvider extends TemplateItemProvider {
   }
 
   /**
-   * This returns Stage1Template.gif.
+   * This returns Stage2Template.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   public Object getImageGen(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/Stage1Template"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Stage2Template"));
   }
 
   /**
@@ -71,7 +71,7 @@ public class Stage1TemplateItemProvider extends TemplateItemProvider {
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/Stage1Template.png"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Stage2Template.png"));
   }
 
   /**
@@ -82,10 +82,10 @@ public class Stage1TemplateItemProvider extends TemplateItemProvider {
    */
   @Override
   public String getText(Object object) {
-    var label = ((Stage1Template)object).getId();
+    var label = ((Stage2Template)object).getId();
     return label == null || label.length() == 0 ?
-      getString("_UI_Stage1Template_type") :
-      getString("_UI_Stage1Template_type") + " " + label;
+      getString("_UI_Stage2Template_type") :
+      getString("_UI_Stage2Template_type") + " " + label;
   }
 
 

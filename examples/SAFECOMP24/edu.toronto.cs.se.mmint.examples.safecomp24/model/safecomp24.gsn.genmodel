@@ -9,6 +9,6 @@
   <foreignModel>safecomp24.gsn.ecore</foreignModel>
   <genPackages prefix="AMLASr" basePackage="edu.toronto.cs.se.mmint.examples.safecomp24"
       disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="safecomp24.gsn.ecore#/">
-    <genClasses ecoreClass="safecomp24.gsn.ecore#//Stage1Template"/>
+    <genClasses ecoreClass="safecomp24.gsn.ecore#//Stage2Template"/>
   </genPackages>
 </genmodel:GenModel>

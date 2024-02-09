@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import edu.toronto.cs.se.mmint.examples.safecomp24.gsn.AMLASrPackage;
-import edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage1Template;
+import edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage2Template;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 
 /**
@@ -77,11 +77,11 @@ public class AMLASrSwitch<T> extends Switch<T> {
   @Override
   protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
-      case AMLASrPackage.STAGE1_TEMPLATE: {
-        var stage1Template = (Stage1Template)theEObject;
-        var result = caseStage1Template(stage1Template);
+      case AMLASrPackage.STAGE2_TEMPLATE: {
+        var stage2Template = (Stage2Template)theEObject;
+        var result = caseStage2Template(stage2Template);
         if (result == null) {
-          result = caseTemplate(stage1Template);
+          result = caseTemplate(stage2Template);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -93,17 +93,17 @@ public class AMLASrSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Stage1 Template</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Stage2 Template</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Stage1 Template</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Stage2 Template</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseStage1Template(Stage1Template object) {
+  public T caseStage2Template(Stage2Template object) {
     return null;
   }
 

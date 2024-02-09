@@ -67,14 +67,14 @@ public interface AMLASrPackage extends EPackage {
   AMLASrPackage eINSTANCE = edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl.AMLASrPackageImpl.init();
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl.Stage1TemplateImpl <em>Stage1 Template</em>}' class.
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl.Stage2TemplateImpl <em>Stage2 Template</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl.Stage1TemplateImpl
-   * @see edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl.AMLASrPackageImpl#getStage1Template()
+   * @see edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl.Stage2TemplateImpl
+   * @see edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl.AMLASrPackageImpl#getStage2Template()
    * @generated
    */
-  int STAGE1_TEMPLATE = 0;
+  int STAGE2_TEMPLATE = 0;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' reference list.
@@ -83,7 +83,7 @@ public interface AMLASrPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STAGE1_TEMPLATE__ELEMENTS = GSNPackage.TEMPLATE__ELEMENTS;
+  int STAGE2_TEMPLATE__ELEMENTS = GSNPackage.TEMPLATE__ELEMENTS;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -92,16 +92,16 @@ public interface AMLASrPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STAGE1_TEMPLATE__ID = GSNPackage.TEMPLATE__ID;
+  int STAGE2_TEMPLATE__ID = GSNPackage.TEMPLATE__ID;
 
   /**
-   * The number of structural features of the '<em>Stage1 Template</em>' class.
+   * The number of structural features of the '<em>Stage2 Template</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STAGE1_TEMPLATE_FEATURE_COUNT = GSNPackage.TEMPLATE_FEATURE_COUNT + 0;
+  int STAGE2_TEMPLATE_FEATURE_COUNT = GSNPackage.TEMPLATE_FEATURE_COUNT + 0;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -110,7 +110,7 @@ public interface AMLASrPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STAGE1_TEMPLATE___VALIDATE = GSNPackage.TEMPLATE___VALIDATE;
+  int STAGE2_TEMPLATE___VALIDATE = GSNPackage.TEMPLATE___VALIDATE;
 
   /**
    * The operation id for the '<em>Import </em>' operation.
@@ -119,7 +119,7 @@ public interface AMLASrPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STAGE1_TEMPLATE___IMPORT____SAFETYCASE = GSNPackage.TEMPLATE___IMPORT____SAFETYCASE;
+  int STAGE2_TEMPLATE___IMPORT____SAFETYCASE = GSNPackage.TEMPLATE___IMPORT____SAFETYCASE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -128,27 +128,27 @@ public interface AMLASrPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int STAGE1_TEMPLATE___INSTANTIATE = GSNPackage.TEMPLATE___INSTANTIATE;
+  int STAGE2_TEMPLATE___INSTANTIATE = GSNPackage.TEMPLATE___INSTANTIATE;
 
   /**
-   * The number of operations of the '<em>Stage1 Template</em>' class.
+   * The number of operations of the '<em>Stage2 Template</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STAGE1_TEMPLATE_OPERATION_COUNT = GSNPackage.TEMPLATE_OPERATION_COUNT + 0;
+  int STAGE2_TEMPLATE_OPERATION_COUNT = GSNPackage.TEMPLATE_OPERATION_COUNT + 0;
 
 
   /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage1Template <em>Stage1 Template</em>}'.
+   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage2Template <em>Stage2 Template</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Stage1 Template</em>'.
-   * @see edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage1Template
+   * @return the meta object for class '<em>Stage2 Template</em>'.
+   * @see edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage2Template
    * @generated
    */
-  EClass getStage1Template();
+  EClass getStage2Template();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -174,14 +174,14 @@ public interface AMLASrPackage extends EPackage {
    */
   interface Literals {
     /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl.Stage1TemplateImpl <em>Stage1 Template</em>}' class.
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl.Stage2TemplateImpl <em>Stage2 Template</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl.Stage1TemplateImpl
-     * @see edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl.AMLASrPackageImpl#getStage1Template()
+     * @see edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl.Stage2TemplateImpl
+     * @see edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl.AMLASrPackageImpl#getStage2Template()
      * @generated
      */
-    EClass STAGE1_TEMPLATE = AMLASrPackage.eINSTANCE.getStage1Template();
+    EClass STAGE2_TEMPLATE = AMLASrPackage.eINSTANCE.getStage2Template();
 
   }
 

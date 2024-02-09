@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import edu.toronto.cs.se.mmint.examples.safecomp24.gsn.AMLASrFactory;
 import edu.toronto.cs.se.mmint.examples.safecomp24.gsn.AMLASrPackage;
-import edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage1Template;
+import edu.toronto.cs.se.mmint.examples.safecomp24.gsn.Stage2Template;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public class AMLASrFactoryImpl extends EFactoryImpl implements AMLASrFactory {
   @Override
   public EObject create(EClass eClass) {
     return switch (eClass.getClassifierID()) {
-    case AMLASrPackage.STAGE1_TEMPLATE -> createStage1Template();
+    case AMLASrPackage.STAGE2_TEMPLATE -> createStage2Template();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     };
   }
@@ -77,9 +77,9 @@ public class AMLASrFactoryImpl extends EFactoryImpl implements AMLASrFactory {
    * @generated
    */
   @Override
-  public Stage1Template createStage1Template() {
-    var stage1Template = new Stage1TemplateImpl();
-    return stage1Template;
+  public Stage2Template createStage2Template() {
+    var stage2Template = new Stage2TemplateImpl();
+    return stage2Template;
   }
 
   /**
