@@ -11,8 +11,10 @@
  */
 package edu.toronto.cs.se.mmint.mid.utils;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.FileVisitResult;
@@ -538,4 +540,36 @@ public class FileUtils {
 	public static void openEclipseEditorInState(String filePath, @Nullable String editorId) throws MMINTException {
 		FileUtils.openEclipseEditor(FileUtils.prependStatePath(filePath), editorId, false);
 	}
+
+  public static String runShell(String workingPath, String... command) throws Exception {
+    var builder = new ProcessBuilder(command);
+    builder.redirectErrorStream(true);
+    builder.directory(new File(workingPath));
+    var process = builder.start();
+    var output = new StringBuilder();
+    int exitValue;
+    Thread readerThread;
+    try (var reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+      readerThread = new Thread(() -> {
+        String line;
+        try {
+          while ((line = reader.readLine()) != null) {
+            output.append(line + System.lineSeparator());
+          }
+        }
+        catch (IOException e) {
+          // just terminate
+        }
+      });
+      readerThread.start();
+      exitValue = process.waitFor();
+    }
+    readerThread.join();
+    var result = output.toString().trim();
+    if (exitValue != 0) {
+      throw new MMINTException(result);
+    }
+
+    return result;
+  }
 }

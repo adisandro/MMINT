@@ -12,10 +12,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.lean.reasoning;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -56,33 +53,7 @@ public class LeanReasoner implements IModelConstraintTrait {
     // write property file
     Files.writeString(Path.of(absWorkingPath, LeanReasoner.LEAN_PROPERTY), property, StandardOpenOption.CREATE);
     // run lean from a shell
-    var builder = new ProcessBuilder(LeanReasoner.LEAN_EXEC, encodingFileName);
-    builder.redirectErrorStream(true);
-    builder.directory(new File(absWorkingPath));
-    var process = builder.start();
-    var output = new StringBuilder();
-    int exitValue;
-    Thread readerThread;
-    try (var reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
-      readerThread = new Thread(() -> {
-        String line;
-        try {
-          while ((line = reader.readLine()) != null) {
-            output.append(line + System.lineSeparator());
-          }
-        }
-        catch (IOException e) {
-          // just terminate
-        }
-      });
-      readerThread.start();
-      exitValue = process.waitFor();
-    }
-    readerThread.join();
-    var result = output.toString().trim();
-    if (exitValue != 0) {
-      throw new MMINTException(result);
-    }
+    var result = FileUtils.runShell(absWorkingPath, LeanReasoner.LEAN_EXEC, encodingFileName);
 
     return Boolean.valueOf(result);
   }
