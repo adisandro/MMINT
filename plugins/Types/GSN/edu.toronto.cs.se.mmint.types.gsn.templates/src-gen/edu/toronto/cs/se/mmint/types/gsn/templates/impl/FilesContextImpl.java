@@ -89,8 +89,8 @@ public class FilesContextImpl extends ContextImpl implements FilesContext {
   public void instantiate(Template template) throws Exception {
     super.instantiate(template);
     var paths = getPaths();
-    var title = "Instantiate Files Context";
-    var msg = "Select a file or directory";
+    var title = "Instantiate context file";
+    var msg = "Select a file or directory for Context " + getId();
     if (paths.size() == 0) {
       paths.add(FileUtils.prependWorkspacePath(GSNBuilder.askForPath(title, msg)));
     }
@@ -114,12 +114,12 @@ public class FilesContextImpl extends ContextImpl implements FilesContext {
     var paths = getPaths();
     if (paths.size() == 0) {
       setValid(false);
-      throw new MMINTException("There is no path associated with this context");
+      throw new MMINTException("Context " + getId() + " has no file or directory associated");
     }
     for (var path : paths) {
       if (!FileUtils.isFileOrDirectory(path, false)) {
         setValid(false);
-        throw new MMINTException("There are no files or directories at '" + path + "'");
+        throw new MMINTException("Context " + getId() + " associated file or directory '" + path + "' does not exist");
       }
     }
   }
