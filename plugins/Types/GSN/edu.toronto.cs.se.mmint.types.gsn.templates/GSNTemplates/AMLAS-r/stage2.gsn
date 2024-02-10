@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN">
+<gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:gsn.templates="model://edu.toronto.cs.se.mmint.types.gsn.templates" xmlns:safecomp24.gsn="model://edu.toronto.cs.se.mmint.examples.safecomp24.gsn">
   <goals id="G2.1" description="Allocated system safety requirements are satisfied in the development of the ML model" templates="//@templates.0">
     <supportedBy target="//@strategies.0"/>
   </goals>
@@ -53,14 +53,14 @@
   </strategies>
   <solutions id="Sn2.93" description="{Requirements selection validation results}" templates="//@templates.0" valid="false" supports="//@goals.5/@supportedBy.0"/>
   <solutions id="Sn2.97" description="{Requirements validation results}" templates="//@templates.0" valid="false" supports="//@goals.7/@supportedBy.0"/>
-  <contexts id="C2.1" description="{ML safety requirements developed from allocated system safety requirements}" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.1"/>
-  <contexts id="C2.2" description="ML data" templates="//@templates.0" contextOf="//@goals.1/@inContextOf.0 //@goals.2/@inContextOf.0"/>
-  <contexts id="C2.3" description="ML model" templates="//@templates.0" contextOf="//@goals.1/@inContextOf.1 //@goals.2/@inContextOf.1"/>
-  <contexts id="C2.95" description="{Change and threshold t}" templates="//@templates.0" valid="false" contextOf="//@strategies.3/@inContextOf.0"/>
-  <contexts id="C2.98" description="{Relationship R for each requirement}" templates="//@templates.0" valid="false" contextOf="//@goals.6/@inContextOf.0"/>
-  <contexts id="C2.92" description="{Relevant safety requirements}" templates="//@templates.0" valid="false" contextOf="//@goals.4/@inContextOf.0"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="C2.1" description="{ML safety requirements developed from allocated system safety requirements}" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.1"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="C2.2" description="ML data" templates="//@templates.0" contextOf="//@goals.1/@inContextOf.0 //@goals.2/@inContextOf.0"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="C2.3" description="ML model" templates="//@templates.0" contextOf="//@goals.1/@inContextOf.1 //@goals.2/@inContextOf.1"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="C2.95" description="{Change and threshold t}" templates="//@templates.0" valid="false" contextOf="//@strategies.3/@inContextOf.0"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="C2.98" description="{Relationship R for each requirement}" templates="//@templates.0" valid="false" contextOf="//@goals.6/@inContextOf.0"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="C2.92" description="{Relevant safety requirements}" templates="//@templates.0" valid="false" contextOf="//@goals.4/@inContextOf.0"/>
   <justifications id="J1.1" description="{Justification for the development of the ML safety requirements}" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.0"/>
   <justifications id="J2.93" description="{Rationale for the selection of relevant ML safety requirements}" templates="//@templates.0" valid="false" contextOf="//@goals.5/@inContextOf.0"/>
   <justifications id="J2.97" description="{Rationale for the sufficiency of the requirement validation approach}" templates="//@templates.0" valid="false" contextOf="//@goals.7/@inContextOf.0"/>
-  <templates elements="//@goals.0 //@goals.1 //@goals.3 //@goals.2 //@goals.4 //@goals.5 //@goals.6 //@goals.7 //@strategies.0 //@strategies.1 //@strategies.2 //@strategies.3 //@contexts.0 //@contexts.1 //@contexts.2 //@contexts.3 //@contexts.4 //@justifications.0 //@justifications.1 //@justifications.2 //@solutions.0 //@solutions.1 //@contexts.5 //@goals.4/@decorators.0 //@strategies.3/@decorators.0" id="ML Requirements"/>
+  <templates xsi:type="safecomp24.gsn:Stage2Template" elements="//@goals.0 //@goals.1 //@goals.3 //@goals.2 //@goals.4 //@goals.5 //@goals.6 //@goals.7 //@strategies.0 //@strategies.1 //@strategies.2 //@strategies.3 //@contexts.0 //@contexts.1 //@contexts.2 //@contexts.3 //@contexts.4 //@justifications.0 //@justifications.1 //@justifications.2 //@solutions.0 //@solutions.1 //@contexts.5 //@goals.4/@decorators.0 //@strategies.3/@decorators.0" id="ML Requirements"/>
 </gsn:SafetyCase>

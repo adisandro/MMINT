@@ -19,11 +19,11 @@
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="FormalStrategies/domain_decomposition.gsn#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_yN7zwGxCEe69DMFNZo6lFQ" name="stage1" repPath="#_yNrVEGxCEe69DMFNZo6lFQ" changeId="1706292927511">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_yN7zwGxCEe69DMFNZo6lFQ" name="stage1" repPath="#_yNrVEGxCEe69DMFNZo6lFQ" changeId="1707524279956">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="AMLAS-r/stage1.gsn#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_7EgEcGxFEe69DMFNZo6lFQ" name="stage2" repPath="#_7EfdYGxFEe69DMFNZo6lFQ" changeId="1706307048847">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_7EgEcGxFEe69DMFNZo6lFQ" name="stage2" repPath="#_7EfdYGxFEe69DMFNZo6lFQ" changeId="1707523804481">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="AMLAS-r/stage2.gsn#/"/>
       </ownedRepresentationDescriptors>
@@ -1050,8 +1050,8 @@
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='AssumptionNode']"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_R6-0UGxDEe69DMFNZo6lFQ" name="C1.1&#xA;{Description of the operational environment (OE)} and {changes and their distribution in the OE}" incomingEdges="__T9ZaGxDEe69DMFNZo6lFQ" width="20" height="20" resizeKind="NSEW">
-      <target xmi:type="gsn:Context" href="AMLAS-r/stage1.gsn#//@contexts.0"/>
-      <semanticElements xmi:type="gsn:Context" href="AMLAS-r/stage1.gsn#//@contexts.0"/>
+      <target xmi:type="gsn.templates:FilesContext" href="AMLAS-r/stage1.gsn#//@contexts.0"/>
+      <semanticElements xmi:type="gsn.templates:FilesContext" href="AMLAS-r/stage1.gsn#//@contexts.0"/>
       <decorations xmi:type="viewpoint:Decoration" uid="_iaVtQmxEEe69DMFNZo6lFQ">
         <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
       </decorations>
@@ -1949,9 +1949,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_J-5nMGxGEe69DMFNZo6lFQ" name="G2.1&#xA;Allocated system safety requirements are satisfied in the development of the ML model" outgoingEdges="_Wwx-QGxGEe69DMFNZo6lFQ" width="20" height="10" resizeKind="NSEW">
       <target xmi:type="gsn:Goal" href="AMLAS-r/stage2.gsn#//@goals.0"/>
       <semanticElements xmi:type="gsn:Goal" href="AMLAS-r/stage2.gsn#//@goals.0"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEjE4amVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <ownedStyle xmi:type="diagram:Square" uid="_J-5nMWxGEe69DMFNZo6lFQ" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" width="20" height="10" color="255,255,255">
         <description xmi:type="style:SquareDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']/@style"/>
       </ownedStyle>
@@ -1960,9 +1957,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_SsUJoGxOEe69DMFNZo6lFQ" name="G2.2&#xA;ML model satisfies the safety requirements" outgoingEdges="_yDPJPGxOEe69DMFNZo6lFQ _mL1dAryVEe6qDrZj4V-7DQ _mo5zmLyVEe6qDrZj4V-7DQ" incomingEdges="_k2Jc1GxOEe69DMFNZo6lFQ" width="20" height="10" resizeKind="NSEW">
       <target xmi:type="gsn:Goal" href="AMLAS-r/stage2.gsn#//@goals.1"/>
       <semanticElements xmi:type="gsn:Goal" href="AMLAS-r/stage2.gsn#//@goals.1"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEjE5KmVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -1974,9 +1968,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_TNs_cGxOEe69DMFNZo6lFQ" name="G2.90&#xA;Relevant ML safety requirements are reliably satisfied in the presence of changes in the OE" outgoingEdges="_5bEScGxOEe69DMFNZo6lFQ _nEgxlLyVEe6qDrZj4V-7DQ _ohynwLyVEe6qDrZj4V-7DQ" incomingEdges="_lTF3iGxOEe69DMFNZo6lFQ" width="20" height="10" resizeKind="NSEW">
       <target xmi:type="gsn:Goal" href="AMLAS-r/stage2.gsn#//@goals.2"/>
       <semanticElements xmi:type="gsn:Goal" href="AMLAS-r/stage2.gsn#//@goals.2"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEjE56mVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -1988,9 +1979,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_9FGu0KmREe6YItBA_GdBOg" name="G2.3&#xA;ML performance requirements satisfied" incomingEdges="_oDrrGrx3Ee6qDrZj4V-7DQ" width="20" height="10" resizeKind="NSEW">
       <target xmi:type="gsn:Goal" href="AMLAS-r/stage2.gsn#//@goals.3"/>
       <semanticElements xmi:type="gsn:Goal" href="AMLAS-r/stage2.gsn#//@goals.3"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEjE6qmVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2002,15 +1990,9 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_MTVzkKmSEe6YItBA_GdBOg" name="G2.92&#xA;The identified safety requirements are satisfied in the presence of scene changes in the OE" outgoingEdges="_VEY6Krx4Ee6qDrZj4V-7DQ" incomingEdges="_hQaDfKmSEe6YItBA_GdBOg" width="20" height="10" resizeKind="NSEW">
       <target xmi:type="gsn:Goal" href="AMLAS-r/stage2.gsn#//@goals.4"/>
       <semanticElements xmi:type="gsn:Goal" href="AMLAS-r/stage2.gsn#//@goals.4"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEjE8KmVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <ownedBorderedNodes xmi:type="diagram:DNode" uid="_HOlA0Lx4Ee6qDrZj4V-7DQ" outgoingEdges="_KtfXsLx4Ee6qDrZj4V-7DQ" width="3" height="3" resizeKind="NSEW">
         <target xmi:type="gsn:RelationshipDecorator" href="AMLAS-r/stage2.gsn#//@goals.4/@decorators.0"/>
         <semanticElements xmi:type="gsn:RelationshipDecorator" href="AMLAS-r/stage2.gsn#//@goals.4/@decorators.0"/>
-        <decorations xmi:type="viewpoint:Decoration" uid="_Q2wgZ7yWEe6qDrZj4V-7DQ">
-          <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-        </decorations>
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
         <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
         <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2030,9 +2012,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_bfyIkKmSEe6YItBA_GdBOg" name="G2.93&#xA;ML safety requirements to check for reliability checking have been correctly identified" outgoingEdges="_szJt2KmSEe6YItBA_GdBOg _zK89dqmSEe6YItBA_GdBOg" incomingEdges="_hp7WrKmSEe6YItBA_GdBOg" width="20" height="10" resizeKind="NSEW">
       <target xmi:type="gsn:Goal" href="AMLAS-r/stage2.gsn#//@goals.5"/>
       <semanticElements xmi:type="gsn:Goal" href="AMLAS-r/stage2.gsn#//@goals.5"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEjr8amVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2044,9 +2023,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_mYJj0KmTEe6YItBA_GdBOg" name="G2.96&#xA;Reliability requirement is satisfied" outgoingEdges="_PEZUFKmUEe6YItBA_GdBOg" incomingEdges="_iwT3tLx4Ee6qDrZj4V-7DQ" width="20" height="10" resizeKind="NSEW">
       <target xmi:type="gsn:Goal" href="AMLAS-r/stage2.gsn#//@goals.6"/>
       <semanticElements xmi:type="gsn:Goal" href="AMLAS-r/stage2.gsn#//@goals.6"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEjr9KmVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2058,9 +2034,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_m1b8wKmTEe6YItBA_GdBOg" name="G2.97&#xA;The reliability requirements are a valid deployment of the relevant safety requirements and changes in the OE" outgoingEdges="_-7iaIKmTEe6YItBA_GdBOg _AUTkBKmUEe6YItBA_GdBOg" incomingEdges="_jJlTTLx4Ee6qDrZj4V-7DQ" width="20" height="10" resizeKind="NSEW">
       <target xmi:type="gsn:Goal" href="AMLAS-r/stage2.gsn#//@goals.7"/>
       <semanticElements xmi:type="gsn:Goal" href="AMLAS-r/stage2.gsn#//@goals.7"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEjr96mVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2072,9 +2045,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_QCVJQGxGEe69DMFNZo6lFQ" name="S2.1&#xA;Argument over the specified ML safety requirements" outgoingEdges="_UMbgQGxIEe69DMFNZo6lFQ _jHLg9GxLEe69DMFNZo6lFQ _k2Jc1GxOEe69DMFNZo6lFQ _lTF3iGxOEe69DMFNZo6lFQ" incomingEdges="_Wwx-QGxGEe69DMFNZo6lFQ" width="20" height="20" resizeKind="NSEW">
       <target xmi:type="gsn:Strategy" href="AMLAS-r/stage2.gsn#//@strategies.0"/>
       <semanticElements xmi:type="gsn:Strategy" href="AMLAS-r/stage2.gsn#//@strategies.0"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEjr_amVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2086,9 +2056,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_oZpYwGxOEe69DMFNZo6lFQ" name="S2.2&#xA;Argument over satisfaction of different types of ML safety requirements" outgoingEdges="_oDrrGrx3Ee6qDrZj4V-7DQ" incomingEdges="_yDPJPGxOEe69DMFNZo6lFQ" width="20" height="20" resizeKind="NSEW">
       <target xmi:type="gsn:Strategy" href="AMLAS-r/stage2.gsn#//@strategies.1"/>
       <semanticElements xmi:type="gsn:Strategy" href="AMLAS-r/stage2.gsn#//@strategies.1"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEjsAKmVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2100,9 +2067,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_0xGdoGxOEe69DMFNZo6lFQ" name="S2.91&#xA;Identify ML safety requirements relevant for reliability analysis" outgoingEdges="_hQaDfKmSEe6YItBA_GdBOg _hp7WrKmSEe6YItBA_GdBOg" incomingEdges="_5bEScGxOEe69DMFNZo6lFQ" width="20" height="20" resizeKind="NSEW">
       <target xmi:type="gsn:Strategy" href="AMLAS-r/stage2.gsn#//@strategies.2"/>
       <semanticElements xmi:type="gsn:Strategy" href="AMLAS-r/stage2.gsn#//@strategies.2"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEjsA6mVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2114,15 +2078,9 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_GxmM0KmTEe6YItBA_GdBOg" name="S2.94&#xA;Argument over the threshold of the amount of scene changes ML" outgoingEdges="_kTFUzKmTEe6YItBA_GdBOg" incomingEdges="_KtfXsLx4Ee6qDrZj4V-7DQ" width="20" height="20" resizeKind="NSEW">
       <target xmi:type="gsn:Strategy" href="AMLAS-r/stage2.gsn#//@strategies.3"/>
       <semanticElements xmi:type="gsn:Strategy" href="AMLAS-r/stage2.gsn#//@strategies.3"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEkTAqmVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <ownedBorderedNodes xmi:type="diagram:DNode" uid="_eRKLoLx4Ee6qDrZj4V-7DQ" outgoingEdges="_iwT3tLx4Ee6qDrZj4V-7DQ _jJlTTLx4Ee6qDrZj4V-7DQ" width="3" height="3" resizeKind="NSEW">
         <target xmi:type="gsn:RelationshipDecorator" href="AMLAS-r/stage2.gsn#//@strategies.3/@decorators.0"/>
         <semanticElements xmi:type="gsn:RelationshipDecorator" href="AMLAS-r/stage2.gsn#//@strategies.3/@decorators.0"/>
-        <decorations xmi:type="viewpoint:Decoration" uid="_Q2xHeLyWEe6qDrZj4V-7DQ">
-          <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-        </decorations>
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
         <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
         <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2151,18 +2109,12 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_Mif6cGxIEe69DMFNZo6lFQ" name="J1.1&#xA;{Justification for the development of the ML safety requirements}" incomingEdges="_UMbgQGxIEe69DMFNZo6lFQ" width="20" height="10" resizeKind="NSEW">
       <target xmi:type="gsn:Justification" href="AMLAS-r/stage2.gsn#//@justifications.0"/>
       <semanticElements xmi:type="gsn:Justification" href="AMLAS-r/stage2.gsn#//@justifications.0"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEk6HamVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <ownedStyle xmi:type="diagram:Ellipse" uid="_je2kmLFsEe6A2vYU7RdKsA" labelSize="10" showIcon="false" labelColor="239,41,41" description="_je2klrFsEe6A2vYU7RdKsA" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" horizontalDiameter="20" verticalDiameter="10" color="255,255,255"/>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='JustificationNode']"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_lNiAQKmSEe6YItBA_GdBOg" name="J2.93&#xA;{Rationale for the selection of relevant ML safety requirements}" incomingEdges="_szJt2KmSEe6YItBA_GdBOg" width="20" height="10" resizeKind="NSEW">
       <target xmi:type="gsn:Justification" href="AMLAS-r/stage2.gsn#//@justifications.1"/>
       <semanticElements xmi:type="gsn:Justification" href="AMLAS-r/stage2.gsn#//@justifications.1"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEk6IKmVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2172,9 +2124,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_6QJpAKmTEe6YItBA_GdBOg" name="J2.97&#xA;{Rationale for the sufficiency of the requirement validation approach}" incomingEdges="_-7iaIKmTEe6YItBA_GdBOg" width="20" height="10" resizeKind="NSEW">
       <target xmi:type="gsn:Justification" href="AMLAS-r/stage2.gsn#//@justifications.2"/>
       <semanticElements xmi:type="gsn:Justification" href="AMLAS-r/stage2.gsn#//@justifications.2"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nElhIamVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2193,9 +2142,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_bD61IGxLEe69DMFNZo6lFQ" name="C2.1&#xA;{ML safety requirements developed from allocated system safety requirements}" incomingEdges="_jHLg9GxLEe69DMFNZo6lFQ" width="20" height="20" resizeKind="NSEW">
       <target xmi:type="gsn:Context" href="AMLAS-r/stage2.gsn#//@contexts.0"/>
       <semanticElements xmi:type="gsn:Context" href="AMLAS-r/stage2.gsn#//@contexts.0"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEkTDqmVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2205,9 +2151,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_euNOMGxOEe69DMFNZo6lFQ" name="C2.2&#xA;ML data" incomingEdges="_mL1dAryVEe6qDrZj4V-7DQ _nEgxlLyVEe6qDrZj4V-7DQ" width="20" height="20" resizeKind="NSEW">
       <target xmi:type="gsn:Context" href="AMLAS-r/stage2.gsn#//@contexts.1"/>
       <semanticElements xmi:type="gsn:Context" href="AMLAS-r/stage2.gsn#//@contexts.1"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEk6EamVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2219,9 +2162,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_gPgo4GxOEe69DMFNZo6lFQ" name="C2.3&#xA;ML model" incomingEdges="_mo5zmLyVEe6qDrZj4V-7DQ _ohynwLyVEe6qDrZj4V-7DQ" width="20" height="20" resizeKind="NSEW">
       <target xmi:type="gsn:Context" href="AMLAS-r/stage2.gsn#//@contexts.2"/>
       <semanticElements xmi:type="gsn:Context" href="AMLAS-r/stage2.gsn#//@contexts.2"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEk6FKmVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2233,9 +2173,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_gcNJ0KmTEe6YItBA_GdBOg" name="C2.95&#xA;{Change and threshold t}" incomingEdges="_kTFUzKmTEe6YItBA_GdBOg" width="20" height="20" resizeKind="NSEW">
       <target xmi:type="gsn:Context" href="AMLAS-r/stage2.gsn#//@contexts.3"/>
       <semanticElements xmi:type="gsn:Context" href="AMLAS-r/stage2.gsn#//@contexts.3"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEk6F6mVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2245,9 +2182,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_JSowwKmUEe6YItBA_GdBOg" name="C2.98&#xA;{Relationship R for each requirement}" incomingEdges="_PEZUFKmUEe6YItBA_GdBOg" width="20" height="20" resizeKind="NSEW">
       <target xmi:type="gsn:Context" href="AMLAS-r/stage2.gsn#//@contexts.4"/>
       <semanticElements xmi:type="gsn:Context" href="AMLAS-r/stage2.gsn#//@contexts.4"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEk6GqmVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2257,9 +2191,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_PEaUoLx4Ee6qDrZj4V-7DQ" name="C2.92&#xA;{Relevant safety requirements}" incomingEdges="_VEY6Krx4Ee6qDrZj4V-7DQ" width="20" height="20" resizeKind="NSEW">
       <target xmi:type="gsn:Context" href="AMLAS-r/stage2.gsn#//@contexts.5"/>
       <semanticElements xmi:type="gsn:Context" href="AMLAS-r/stage2.gsn#//@contexts.5"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_Q2xuibyWEe6qDrZj4V-7DQ">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <ownedStyle xmi:type="diagram:WorkspaceImage" uid="_RsLoJbx4Ee6qDrZj4V-7DQ" labelSize="10" showIcon="false" labelColor="239,41,41" description="_je19g7FsEe6A2vYU7RdKsA" labelPosition="node" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Context.svg"/>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='ContextNode']"/>
     </ownedDiagramElements>
@@ -2338,9 +2269,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_uNK0wKmSEe6YItBA_GdBOg" name="Sn2.93&#xA;{Requirements selection validation results}" incomingEdges="_zK89dqmSEe6YItBA_GdBOg" width="15" height="15" resizeKind="NSEW">
       <target xmi:type="gsn:Solution" href="AMLAS-r/stage2.gsn#//@solutions.0"/>
       <semanticElements xmi:type="gsn:Solution" href="AMLAS-r/stage2.gsn#//@solutions.0"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEkTCKmVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2350,9 +2278,6 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_60ByIKmTEe6YItBA_GdBOg" name="Sn2.97&#xA;{Requirements validation results}" incomingEdges="_AUTkBKmUEe6YItBA_GdBOg" width="15" height="15" resizeKind="NSEW">
       <target xmi:type="gsn:Solution" href="AMLAS-r/stage2.gsn#//@solutions.1"/>
       <semanticElements xmi:type="gsn:Solution" href="AMLAS-r/stage2.gsn#//@solutions.1"/>
-      <decorations xmi:type="viewpoint:Decoration" uid="_nEkTC6mVEe6YItBA_GdBOg">
-        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
-      </decorations>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
