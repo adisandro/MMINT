@@ -137,7 +137,7 @@ public interface ArgumentElement extends EObject {
 
   /**
    * <!-- begin-user-doc --> Instantiates this template element. The base implementation searches and replaces
-   * placeholder text (${placeholder}) in the description.
+   * placeholder text formatted like {placeholder} in the description.
    *
    * @param template
    *          The template that contains this template element.
@@ -151,7 +151,7 @@ public interface ArgumentElement extends EObject {
 
   /**
    * <!-- begin-user-doc --> Validates the correctness of this instantiated template element. The base implementation
-   * checks that no placeholder text (${placeholder}) is present in the description.
+   * checks that no placeholder text formatted like {placeholder} is present in the description.
    *
    * @param template
    *          The template that contains this template element.

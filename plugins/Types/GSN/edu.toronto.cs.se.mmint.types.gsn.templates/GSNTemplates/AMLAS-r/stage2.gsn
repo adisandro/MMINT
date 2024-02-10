@@ -54,8 +54,8 @@
   <solutions id="Sn2.93" description="{Requirements selection validation results}" templates="//@templates.0" valid="false" supports="//@goals.5/@supportedBy.0"/>
   <solutions id="Sn2.97" description="{Requirements validation results}" templates="//@templates.0" valid="false" supports="//@goals.7/@supportedBy.0"/>
   <contexts xsi:type="gsn.templates:FilesContext" id="C2.1" description="{ML safety requirements developed from allocated system safety requirements}" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.1"/>
-  <contexts xsi:type="gsn.templates:FilesContext" id="C2.2" description="ML data" templates="//@templates.0" contextOf="//@goals.1/@inContextOf.0 //@goals.2/@inContextOf.0"/>
-  <contexts xsi:type="gsn.templates:FilesContext" id="C2.3" description="ML model" templates="//@templates.0" contextOf="//@goals.1/@inContextOf.1 //@goals.2/@inContextOf.1"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="C2.2" description="ML data" templates="//@templates.0" valid="false" contextOf="//@goals.1/@inContextOf.0 //@goals.2/@inContextOf.0"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="C2.3" description="ML model" templates="//@templates.0" valid="false" contextOf="//@goals.1/@inContextOf.1 //@goals.2/@inContextOf.1"/>
   <contexts xsi:type="gsn.templates:FilesContext" id="C2.95" description="{Change and threshold t}" templates="//@templates.0" valid="false" contextOf="//@strategies.3/@inContextOf.0"/>
   <contexts xsi:type="gsn.templates:FilesContext" id="C2.98" description="{Relationship R for each requirement}" templates="//@templates.0" valid="false" contextOf="//@goals.6/@inContextOf.0"/>
   <contexts xsi:type="gsn.templates:FilesContext" id="C2.92" description="{Relevant safety requirements}" templates="//@templates.0" valid="false" contextOf="//@goals.4/@inContextOf.0"/>
