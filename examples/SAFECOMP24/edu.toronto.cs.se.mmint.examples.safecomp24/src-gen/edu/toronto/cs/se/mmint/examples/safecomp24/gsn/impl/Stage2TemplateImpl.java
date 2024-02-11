@@ -84,15 +84,28 @@ public class Stage2TemplateImpl extends TemplateImpl implements Stage2Template {
     final var RUN_FILE = "run.sh";
     var result = FileUtils.runShell(absWorkingPath, "bash", RUN_FILE);
     var lines = result.split("\n");
-    var safeReq = Boolean.parseBoolean(lines[lines.length-3]);
-    if (!safeReq) {
+    var safeOk = Boolean.parseBoolean(lines[lines.length-3]);
+    //TODO MMINT[GSN] Find by id is tricky as they could be changed -> Add templateId to all template elements.
+    if (!safeOk) {
+      var safeGoal = getElements().stream().filter(e -> e.getId().equals("G2.92")).findFirst().get();
+      safeGoal.setValid(false);
+    }
+    var relOk = Boolean.parseBoolean(lines[lines.length-1]);
+    if (!relOk) {
+      // TODO MMINT[SAFECOMP24] Handle multiple reliability requirements
+      var relGoal = getElements().stream().filter(e -> e.getId().equals("G2.96")).findFirst().get();
+      relGoal.setValid(false);
+    }
+    if (!safeOk && !relOk) {
+      throw new MMINTException("Safety and reliability requirements not satisfied");
+    }
+    if (!safeOk) {
       throw new MMINTException("Safety requirement not satisfied");
     }
-    var relReq = Boolean.parseBoolean(lines[lines.length-1]);
-    if (!relReq) {
+    if (!relOk) {
       throw new MMINTException("Reliability requirement not satisfied");
     }
-    //TODO Invalidate nodes
+    //TODO run.sh should be copied from bundle
   }
 
 } //Stage1TemplateImpl
