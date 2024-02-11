@@ -62,6 +62,20 @@ public class Stage2TemplateImpl extends TemplateImpl implements Stage2Template {
   @Override
   public void validate() throws Exception {
     super.validate();
+    final var MAIN_PY_FILE = "run_eval.py";
+    final var RUN_SH_FILE = "run.sh";
+    final var MAIN_PY = """
+      \nif __name__ == '__main__':
+      for req_rel in ReqRel:
+          (sID, s_sat, rID, R_sat, relData) = req_rel
+          print(s_sat(testset, model, model_accuracy))
+          print(R_sat(relData, model, model_accuracy))""";
+    final var RUN_SH = """
+      python3 -m venv venv
+      source venv/bin/activate
+      pip3 install numpy albumentations matplotlib > /dev/null
+      pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cpu > /dev/null
+      python3 """ + MAIN_PY_FILE;
     var gsnModel = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(this);
     //TODO MMINT[SAFECOMP24] Use the already existing "files" directory for simplicity
     var workingPath = FileUtils.replaceLastSegmentInPath(gsnModel.getUri(), "files");
@@ -69,20 +83,15 @@ public class Stage2TemplateImpl extends TemplateImpl implements Stage2Template {
     var scopingTemplate = ((SafetyCase) eContainer()).getTemplates().stream()
       .filter(t -> t.getId().equals("ML Scoping"))
       .findFirst().get();
-    var pyMain = Stream.concat(scopingTemplate.getElements().stream(), getElements().stream())
+    var py = Stream.concat(scopingTemplate.getElements().stream(), getElements().stream())
       .filter(e -> e instanceof FilesContext)
       .flatMap(c -> ((FilesContext) c).getPaths().stream())
       .map(p -> "from " + FileUtils.getFileNameFromPath(p) + " import *")
-      .collect(Collectors.joining("\n"));
-    pyMain += """
-      \nif __name__ == '__main__':
-          for req_rel in ReqRel:
-              (sID, s_sat, rID, R_sat, relData) = req_rel
-              print(s_sat(testset, model, model_accuracy))
-              print(R_sat(relData, model, model_accuracy))""";
-    Files.writeString(Path.of(absWorkingPath, "run_eval.py"), pyMain, StandardOpenOption.CREATE);
-    final var RUN_FILE = "run.sh";
-    var result = FileUtils.runShell(absWorkingPath, "bash", RUN_FILE);
+      .collect(Collectors.joining("\n")) +
+      MAIN_PY;
+    Files.writeString(Path.of(absWorkingPath, MAIN_PY_FILE), py, StandardOpenOption.CREATE);
+    Files.writeString(Path.of(absWorkingPath, RUN_SH_FILE), RUN_SH, StandardOpenOption.CREATE);
+    var result = FileUtils.runShell(absWorkingPath, "bash", RUN_SH_FILE);
     var lines = result.split("\n");
     var safeOk = Boolean.parseBoolean(lines[lines.length-3]);
     //TODO MMINT[GSN] Find by id is tricky as they could be changed -> Add templateId to all template elements.
@@ -105,7 +114,6 @@ public class Stage2TemplateImpl extends TemplateImpl implements Stage2Template {
     if (!relOk) {
       throw new MMINTException("Reliability requirement not satisfied");
     }
-    //TODO run.sh should be copied from bundle
   }
 
 } //Stage1TemplateImpl
