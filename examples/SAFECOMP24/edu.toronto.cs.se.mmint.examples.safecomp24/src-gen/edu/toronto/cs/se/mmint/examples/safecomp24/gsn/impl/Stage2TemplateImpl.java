@@ -66,16 +66,16 @@ public class Stage2TemplateImpl extends TemplateImpl implements Stage2Template {
     final var RUN_SH_FILE = "run.sh";
     final var MAIN_PY = """
       \nif __name__ == '__main__':
-      for req_rel in ReqRel:
-          (sID, s_sat, rID, R_sat, relData) = req_rel
-          print(s_sat(testset, model, model_accuracy))
-          print(R_sat(relData, model, model_accuracy))""";
+          for req_rel in ReqRel:
+              (sID, s_sat, rID, R_sat, relData) = req_rel
+              print(s_sat(testset, model, model_accuracy))
+              print(R_sat(relData, model, model_accuracy))""";
     final var RUN_SH = """
       python3 -m venv venv
       source venv/bin/activate
       pip3 install numpy albumentations matplotlib > /dev/null
       pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cpu > /dev/null
-      python3 """ + MAIN_PY_FILE;
+      python3\s""" + MAIN_PY_FILE;
     var gsnModel = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(this);
     //TODO MMINT[SAFECOMP24] Use the already existing "files" directory for simplicity
     var workingPath = FileUtils.replaceLastSegmentInPath(gsnModel.getUri(), "files");
@@ -89,8 +89,10 @@ public class Stage2TemplateImpl extends TemplateImpl implements Stage2Template {
       .map(p -> "from " + FileUtils.getFileNameFromPath(p) + " import *")
       .collect(Collectors.joining("\n")) +
       MAIN_PY;
-    Files.writeString(Path.of(absWorkingPath, MAIN_PY_FILE), py, StandardOpenOption.CREATE);
-    Files.writeString(Path.of(absWorkingPath, RUN_SH_FILE), RUN_SH, StandardOpenOption.CREATE);
+    Files.writeString(Path.of(absWorkingPath, MAIN_PY_FILE), py, StandardOpenOption.CREATE,
+                      StandardOpenOption.TRUNCATE_EXISTING);
+    Files.writeString(Path.of(absWorkingPath, RUN_SH_FILE), RUN_SH, StandardOpenOption.CREATE,
+                      StandardOpenOption.TRUNCATE_EXISTING);
     var result = FileUtils.runShell(absWorkingPath, "bash", RUN_SH_FILE);
     var lines = result.split("\n");
     var safeOk = Boolean.parseBoolean(lines[lines.length-3]);
