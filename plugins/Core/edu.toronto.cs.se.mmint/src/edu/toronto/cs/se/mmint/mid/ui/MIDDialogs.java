@@ -508,7 +508,8 @@ public class MIDDialogs {
       if (resource instanceof IFolder folder && binFolders.contains(folder.getName())) {
         return false;
       }
-      if (resource instanceof IFile file && fileExtensions.contains(file.getFileExtension())) {
+      if (resource instanceof IFile file && file.getFileExtension() != null &&
+          fileExtensions.contains(file.getFileExtension())) {
         files.add(file);
       }
       return true;
