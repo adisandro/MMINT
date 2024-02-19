@@ -16,7 +16,6 @@ package safecomp24;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
@@ -26,8 +25,6 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.apache.log4j.Logger;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
@@ -35,9 +32,6 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFPQuery;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.impl.BaseMatcher;
 import org.eclipse.viatra.query.runtime.api.impl.BasePatternMatch;
-import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
-import org.eclipse.viatra.query.runtime.emf.types.EDataTypeInSlotsKey;
-import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
 import org.eclipse.viatra.query.runtime.matchers.context.common.JavaTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
@@ -46,8 +40,6 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.PatternMatchCounter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.TypeFilterConstraint;
-import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.ConstantValue;
-import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PVisibility;
@@ -61,7 +53,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * <p>Original source:
  *         <code><pre>
  *         pattern numInvalidElems(invalid: java Integer) {
- *           invalid == count ArgumentElement.valid(_, false);
+ *           invalid == count find invalidElems(_);
  *         }
  * </pre></code>
  * 
@@ -254,7 +246,7 @@ public final class NumInvalidElems extends BaseGeneratedEMFQuerySpecification<Nu
    * <p>Original source:
    * <code><pre>
    * pattern numInvalidElems(invalid: java Integer) {
-   *   invalid == count ArgumentElement.valid(_, false);
+   *   invalid == count find invalidElems(_);
    * }
    * </pre></code>
    * 
@@ -523,46 +515,6 @@ public final class NumInvalidElems extends BaseGeneratedEMFQuerySpecification<Nu
 
     private final List<PParameter> parameters = Arrays.asList(parameter_invalid);
 
-    private class Embedded_1_ArgumentElement_valid extends BaseGeneratedEMFPQuery {
-      private final PParameter parameter_p0 = new PParameter("p0", "edu.toronto.cs.se.modelepedia.gsn.ArgumentElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/modelepedia/GSN", "ArgumentElement")), PParameterDirection.INOUT);
-
-      private final PParameter parameter_p1 = new PParameter("p1", "java.lang.Boolean", new EDataTypeInSlotsKey((EDataType)getClassifierLiteralSafe("http://www.eclipse.org/emf/2002/Ecore", "EBoolean")), PParameterDirection.INOUT);
-
-      private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
-
-      public Embedded_1_ArgumentElement_valid() {
-        super(PVisibility.EMBEDDED);
-      }
-
-      @Override
-      public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_ArgumentElement_valid";
-      }
-
-      @Override
-      public List<PParameter> getParameters() {
-        return embeddedParameters;
-      }
-
-      @Override
-      public Set<PBody> doGetContainedBodies() {
-        PBody body = new PBody(this);
-        PVariable var_p0 = body.getOrCreateVariableByName("p0");
-        PVariable var_p1 = body.getOrCreateVariableByName("p1");
-        body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-           new ExportedParameter(body, var_p0, parameter_p0),
-           new ExportedParameter(body, var_p1, parameter_p1)
-        ));
-        //  ArgumentElement.valid(_, false)
-        new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "ArgumentElement")));
-        PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-        new TypeConstraint(body, Tuples.flatTupleOf(var_p0, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "ArgumentElement", "valid")));
-        new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EBoolean")));
-        new Equality(body, var__virtual_0_, var_p1);
-        return Collections.singleton(body);
-      }
-    }
-
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
     }
@@ -594,19 +546,13 @@ public final class NumInvalidElems extends BaseGeneratedEMFQuerySpecification<Nu
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_invalid, parameter_invalid)
           ));
-          //   invalid == count ArgumentElement.valid(_, false)
+          //   invalid == count find invalidElems(_)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new ConstantValue(body, var__virtual_1_, false);
-          new PatternMatchCounter(body, Tuples.flatTupleOf(var___0_, var__virtual_1_), new NumInvalidElems.GeneratedPQuery.Embedded_1_ArgumentElement_valid(), var__virtual_0_);
+          new PatternMatchCounter(body, Tuples.flatTupleOf(var___0_), InvalidElems.instance().getInternalQueryRepresentation(), var__virtual_0_);
           new Equality(body, var_invalid, var__virtual_0_);
           bodies.add(body);
       }
       return bodies;
     }
-  }
-
-  private static boolean evaluateExpression_1_1() {
-    return false;
   }
 }

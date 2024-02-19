@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description">
   <viewpoint:DAnalysis uid="_XyVt0MH5Ee6cTbrGiZOvzA" selectedViews="_dnb48MH5Ee6cTbrGiZOvzA" version="15.2.0.202303281325">
-    <semanticResources>ac.gsn</semanticResources>
+    <semanticResources>model/ac.gsn</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_dnb48MH5Ee6cTbrGiZOvzA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_oWT2cMH5Ee6cTbrGiZOvzA" name="ac" repPath="#_oWSBQMH5Ee6cTbrGiZOvzA" changeId="1706898839401">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
-        <target xmi:type="gsn:SafetyCase" href="ac.gsn#/"/>
+        <target xmi:type="gsn:SafetyCase" href="model/ac.gsn#/"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
   </viewpoint:DAnalysis>
@@ -22,6 +22,6 @@
     <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_oWSoUMH5Ee6cTbrGiZOvzA"/>
     <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer"/>
-    <target xmi:type="gsn:SafetyCase" href="ac.gsn#/"/>
+    <target xmi:type="gsn:SafetyCase" href="model/ac.gsn#/"/>
   </diagram:DSemanticDiagram>
 </xmi:XMI>

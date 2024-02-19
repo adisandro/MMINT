@@ -14,10 +14,10 @@ package safecomp24
 
 import "http://se.cs.toronto.edu/modelepedia/GSN"
 
-pattern numInvalidElems(invalid: java Integer) {
-  invalid == count ArgumentElement.valid(_, false);
-}
-
 pattern invalidElems(elem: ArgumentElement) {
   ArgumentElement.valid(elem, false);
+}
+
+pattern numInvalidElems(invalid: java Integer) {
+  invalid == count find invalidElems(_);
 }

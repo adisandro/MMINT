@@ -25,8 +25,8 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
  * <p> From package safecomp24, the group contains the definition of the following patterns: <ul>
- * <li>numInvalidElems</li>
  * <li>invalidElems</li>
+ * <li>numInvalidElems</li>
  * </ul>
  * 
  * @see IQueryGroup
@@ -51,16 +51,8 @@ public final class Queries extends BaseGeneratedPatternGroup {
   private static Queries INSTANCE;
 
   private Queries() {
-    querySpecifications.add(NumInvalidElems.instance());
     querySpecifications.add(InvalidElems.instance());
-  }
-
-  public NumInvalidElems getNumInvalidElems() {
-    return NumInvalidElems.instance();
-  }
-
-  public NumInvalidElems.Matcher getNumInvalidElems(final ViatraQueryEngine engine) {
-    return NumInvalidElems.Matcher.on(engine);
+    querySpecifications.add(NumInvalidElems.instance());
   }
 
   public InvalidElems getInvalidElems() {
@@ -69,5 +61,13 @@ public final class Queries extends BaseGeneratedPatternGroup {
 
   public InvalidElems.Matcher getInvalidElems(final ViatraQueryEngine engine) {
     return InvalidElems.Matcher.on(engine);
+  }
+
+  public NumInvalidElems getNumInvalidElems() {
+    return NumInvalidElems.instance();
+  }
+
+  public NumInvalidElems.Matcher getNumInvalidElems(final ViatraQueryEngine engine) {
+    return NumInvalidElems.Matcher.on(engine);
   }
 }

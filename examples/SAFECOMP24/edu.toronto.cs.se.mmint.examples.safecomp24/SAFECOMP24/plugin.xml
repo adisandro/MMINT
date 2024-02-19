@@ -12,8 +12,8 @@
  --><plugin>
   <extension id="safecomp24.Queries" point="org.eclipse.viatra.query.runtime.queryspecification">
     <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:safecomp24.Queries" id="safecomp24.Queries">
-      <query-specification fqn="safecomp24.numInvalidElems"/>
       <query-specification fqn="safecomp24.invalidElems"/>
+      <query-specification fqn="safecomp24.numInvalidElems"/>
     </group>
   </extension>
 </plugin>
