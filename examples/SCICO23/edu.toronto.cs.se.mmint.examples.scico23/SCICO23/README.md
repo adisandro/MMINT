@@ -29,8 +29,8 @@ For more case studies evaluating the property decomposition workflow in step 7, 
     2. From the palette on the right select `Create basic goal`, click in the diagram background.
     3. Click to select the newly created goal if not already selected, from the properties tab on the bottom insert `G0` in the Id field and `All systems in the warehouse fleet operate safely` in the Description field.
 5. Domain decomposition
-    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/domain_decomposition.gsn`.
-    2. Click on the goal named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Add supported-by link`, click on the goal named `G0`, click on the strategy named `S1.G1` to connect them.
+    1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/FormalStrategies/domain_decomposition.gsn`.
+    2. Click on the goal named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Create supported-by Link`, click on the goal named `G0`, click on the strategy named `S1.G1` to connect them.
     3. Right-click on any of the imported nodes, select `MMINT > Instantiate Template`.
     4. Insert `FCS,PTS,VSS` as the domain to be decomposed.
     5. Insert `FCS` as the first sub-domain.
@@ -46,8 +46,8 @@ For more case studies evaluating the property decomposition workflow in step 7, 
     5. Repeat steps i-ii-iii-iv twice. Create a relationship between `pts : StateMachine` and `safety : GSN` by mapping model elements `Initial State Off` and `Domain Goal G0.3`, create a relationship between `vss : ClassDiagram` and `safety : GSN` by mapping model elements `Class Security Device` and `Domain Goal G0.4`.
 7. Property decomposition
     1. Go back to the `safety` GSN editor.
-    2. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/property_decomposition.gsn`.
-    3. Click on the goal named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Add supported-by link`, click on the goal named `G0.2`, click on the strategy named `S1.G1` to connect them.
+    2. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/GSNTemplates/FormalStrategies/property_decomposition.gsn`.
+    3. Click on the goal named `G1`, press delete on your keyboard to delete it, from the palette on the right select `Create supported-by Link`, click on the goal named `G0.2`, click on the strategy named `S1.G1` to connect them.
     4. Right-click on any of the imported nodes, select `MMINT > Instantiate Template`.
     5. Select `Absence > $X is not reached` as the property to be decomposed, select `State Damaged` for variable `$X`.
     6. Insert `2` as the number of sub-properties.

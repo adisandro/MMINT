@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -78,8 +79,8 @@ public class Stage2TemplateImpl extends TemplateImpl implements Stage2Template {
       python3\s""" + MAIN_PY_FILE;
     var gsnModel = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(this);
     //TODO MMINT[SAFECOMP24] Use the already existing "files" directory for simplicity
-    var workingPath = FileUtils.replaceLastSegmentInPath(gsnModel.getUri(), "files");
-    var absWorkingPath = FileUtils.prependWorkspacePath(workingPath);
+    var absWorkingPath = Paths.get(FileUtils.prependWorkspacePath(gsnModel.getUri()))
+      .getParent().getParent().resolve("files").toString();
     var scopingTemplate = ((SafetyCase) eContainer()).getTemplates().stream()
       .filter(t -> t.getId().equals("ML Scoping"))
       .findFirst().get();
