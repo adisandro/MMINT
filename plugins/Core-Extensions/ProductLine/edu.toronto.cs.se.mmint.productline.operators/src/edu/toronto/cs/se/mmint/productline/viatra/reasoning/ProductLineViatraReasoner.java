@@ -19,7 +19,6 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -37,8 +36,10 @@ import org.eclipse.viatra.query.patternlanguage.emf.vql.BoolValue;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.ClassType;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.ClosureType;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.CompareConstraint;
+import org.eclipse.viatra.query.patternlanguage.emf.vql.CompareFeature;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.Constraint;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.EnumValue;
+import org.eclipse.viatra.query.patternlanguage.emf.vql.NumberValue;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.Parameter;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.ParameterDirection;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.ParameterRef;
@@ -91,6 +92,8 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
   private @Nullable String aggregatedVarName;
   private @Nullable Aggregator aggregator;
   private Set<String> aggregatedGroupBy;
+  private @Nullable Integer aggregatedNumber;
+  private @Nullable CompareFeature aggregatedComparison;
   private @Nullable IProductLineFeaturesTrait featureReasoner;
   private String featuresConstraint;
 
@@ -110,6 +113,8 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
     this.aggregator = null;
     this.aggregatedVarName = null;
     this.aggregatedGroupBy = new HashSet<>();
+    this.aggregatedNumber = null;
+    this.aggregatedComparison = null;
     this.featureReasoner = null;
     this.featuresConstraint = "";
   }
@@ -446,17 +451,23 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
                                                            EList<Variable> plParameters, EList<Variable> plVariables,
                                                            Map<String, Variable> plVarsMap) throws Exception {
     var left = compareConstraint.getLeftOperand();
-    if (!(left instanceof VariableReference leftVarRef)) {
-      throw new MMINTException("Left operand type " + left.getClass().getName() + " not supported");
-    }
     var right = compareConstraint.getRightOperand();
     // special case: aggregation
     if (right instanceof AggregatedValue rightAgg) {
-      if (!(leftVarRef.getVariable() instanceof ParameterRef leftParRef)) {
+      if (left instanceof NumberValue leftNumber) {
+        this.aggregatedComparison = compareConstraint.getFeature();
+        this.aggregatedNumber = Integer.valueOf(leftNumber.getValue().getValue());
+      }
+      else if (left instanceof VariableReference leftVarRef) {
+        if (!(leftVarRef.getVariable() instanceof ParameterRef leftParRef)) {
+          throw new MMINTException("Left operand type " + left.getClass().getName() + " not supported in aggregations");
+        }
+        this.aggregatedVarName = leftParRef.getReferredParam().getName();
+      }
+      else {
         throw new MMINTException("Left operand type " + left.getClass().getName() + " not supported in aggregations");
       }
       this.aggregator = Aggregator.valueOf(rightAgg.getAggregator().getSimpleName().toUpperCase());
-      this.aggregatedVarName = leftParRef.getReferredParam().getName();
       var aggCall = rightAgg.getCall();
       // aggregation with pattern call
       if (aggCall instanceof PatternCall aggPatternCall) {
@@ -490,6 +501,9 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
       }
     }
     // normal case: var comparison
+    if (!(left instanceof VariableReference leftVarRef)) {
+      throw new MMINTException("Left operand type " + left.getClass().getName() + " not supported");
+    }
     if (!(right instanceof VariableReference rightVarRef)) {
       throw new MMINTException("Right operand type " + right.getClass().getName() + " not supported");
     }
@@ -649,9 +663,19 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
       var aggregationsByValue = new HashMap<Map<Set<Object>, Object>, Set<String>>();
       for (var aggregationEntry : aggregations.entrySet()) {
         var formula = aggregationEntry.getKey();
-        var aggregated = aggregationEntry.getValue().entrySet().stream()
-          .filter(e -> e.getValue() != null) // no matches for this formula if null
-          .collect(Collectors.toUnmodifiableMap(Entry::getKey, Entry::getValue));
+        var aggregated = new HashMap<Set<Object>, Object>();
+        for (var aggregationEntry2 : aggregationEntry.getValue().entrySet()) {
+          var aggregatedValue = aggregationEntry2.getValue();
+          if (aggregatedValue == null) {
+            if (this.aggregator == Aggregator.COUNT || this.aggregator == Aggregator.SUM) {
+              aggregatedValue = 0;
+            }
+            else { // no matches for this formula if null and not COUNT/SUM
+              continue;
+            }
+          }
+          aggregated.put(aggregationEntry2.getKey(), aggregatedValue);
+        }
         aggregationsByValue.compute(aggregated, (k, formulas) -> (formulas == null) ? new HashSet<>() : formulas)
                            .add(formula);
       }
@@ -664,10 +688,24 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
       var formulaList = new ArrayList<>();
       formulaList.add(aggregationEntry.getKey()); // [formula, [match1, aggrValue1], ..., [matchN, aggrValueN]]
       for (var matchEntry : aggregationEntry.getValue().entrySet()) {
+        var match = matchEntry.getKey(); // match can be empty for min/max/sum
+        var aggregatedValue = matchEntry.getValue();
         var matchList = new ArrayList<>();
-        matchList.addAll(matchEntry.getKey()); // match (can be empty for min/max/sum)
-        matchList.add(matchEntry.getValue()); // aggregated value
+        if (this.aggregatedNumber == null) {
+          matchList.addAll(match);
+          matchList.add(aggregatedValue);
+        }
+        else { // comparison
+          if (this.aggregatedComparison == CompareFeature.EQUALITY && this.aggregatedNumber != aggregatedValue) {
+            continue;
+          }
+          matchList.addAll(matchEntry.getKey());
+          //TODO MMINT[PL] Add other comparisons
+        }
         formulaList.add(matchList);
+      }
+      if (formulaList.size() == 1) {
+        continue;
       }
       matches.add(formulaList);
     }
