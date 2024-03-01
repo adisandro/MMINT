@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/description/tool/1.1.0" name="gsn.productline" version="12.0.0.2017041100">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="gsn.productline" version="12.0.0.2017041100">
   <ownedViewpoints name="GSNProductLineViewpoint" modelFileExtension="productline">
     <ownedRepresentationExtensions xsi:type="description_1:DiagramExtensionDescription" name="GSNProductLineDiagram" viewpointURI="viewpoint:/edu.toronto.cs.se.mmint.productline.design/ProductLineViewpoint" representationName="ProductLineDiagram">
       <layers name="GSNProductLine" label="GSN Product Line">
@@ -78,9 +78,20 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
+        <toolSections name="CreateGSN" label="Create GSN">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateGoal" label="Goal" nodeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLGoalNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Goal.gif">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateGoal" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateGoal"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
         <toolSections name="PLMenus">
-          <ownedTools xsi:type="tool:GroupMenu" name="MMINTGroup" locationURI="menu:MMINT">
-            <itemDescriptions xsi:type="tool:ExternalJavaAction" name="PLImportTemplate" label="Import Template" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLImportTemplate"/>
+          <ownedTools xsi:type="tool_1:GroupMenu" name="MMINTGroup" locationURI="menu:MMINT">
+            <itemDescriptions xsi:type="tool_1:ExternalJavaAction" name="PLImportTemplate" label="Import Template" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLImportTemplate"/>
           </ownedTools>
         </toolSections>
       </layers>

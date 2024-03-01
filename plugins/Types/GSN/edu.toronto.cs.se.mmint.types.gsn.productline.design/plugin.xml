@@ -26,5 +26,9 @@
             actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLImportTemplate"
             id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLImportTemplate">
       </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateGoal"
+            id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateGoal">
+      </javaActions>
    </extension>
 </plugin>

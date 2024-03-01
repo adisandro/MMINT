@@ -29,7 +29,7 @@
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </containerMappings>
-        <toolSections name="CreateTools" label="Create">
+        <toolSections name="CreatePL" label="Create PL">
           <ownedTools xsi:type="tool:ContainerCreationDescription" name="CreateClass" label="Class" containerMappings="//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
