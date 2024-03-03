@@ -15,6 +15,7 @@ package edu.toronto.cs.se.mmint.types.gsn.productline.design.tools;
 import java.util.Collection;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -25,7 +26,7 @@ import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
-public class PLCreateGoal extends AbstractExternalJavaAction {
+public class PLCreateNode extends AbstractExternalJavaAction {
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -35,17 +36,21 @@ public class PLCreateGoal extends AbstractExternalJavaAction {
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
     var productLine = (ProductLine) arg0.iterator().next();
+    var classType = (String) arg1.get("classType");
     var sSession = SessionManager.INSTANCE.getSession(productLine);
     var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(new PLCreateGoalCommand(sDomain, productLine));
+    sDomain.getCommandStack().execute(new PLCreateNodeCommand(sDomain, productLine, classType));
   }
 
-  private class PLCreateGoalCommand extends RecordingCommand {
+  private class PLCreateNodeCommand extends RecordingCommand {
     private ProductLine productLine;
+    private String classType;
+    private String referenceType;
 
-    public PLCreateGoalCommand(TransactionalEditingDomain domain, ProductLine productLine) {
+    public PLCreateNodeCommand(TransactionalEditingDomain domain, ProductLine productLine, String classType) {
       super(domain);
       this.productLine = productLine;
+      this.classType = classType;
     }
 
     @Override
@@ -54,10 +59,19 @@ public class PLCreateGoal extends AbstractExternalJavaAction {
         .filter(c -> c.getType() == GSNPackage.eINSTANCE.getSafetyCase())
         .findFirst().get();
       var clazz = ProductLineFactory.eINSTANCE.createClass();
-      clazz.setType(GSNPackage.eINSTANCE.getGoal());
+      clazz.setType((EClass) GSNPackage.eINSTANCE.getEClassifier(this.classType));
       this.productLine.getClasses().add(clazz);
       var reference = ProductLineFactory.eINSTANCE.createReference();
-      reference.setType(GSNPackage.eINSTANCE.getSafetyCase_Goals());
+      var referenceType = switch (this.classType) {
+        case "Goal" -> GSNPackage.eINSTANCE.getSafetyCase_Goals();
+        case "Strategy" -> GSNPackage.eINSTANCE.getSafetyCase_Strategies();
+        case "Solution" -> GSNPackage.eINSTANCE.getSafetyCase_Solutions();
+        case "Context" -> GSNPackage.eINSTANCE.getSafetyCase_Contexts();
+        case "Justification" -> GSNPackage.eINSTANCE.getSafetyCase_Justifications();
+        case "Assumption" -> GSNPackage.eINSTANCE.getSafetyCase_Assumptions();
+        default -> null;
+      };
+      reference.setType(referenceType);
       reference.setTarget(clazz);
       safetyCase.getReferences().add(reference);
       for (var attrType : GSNPackage.eINSTANCE.getGoal().getEAllAttributes()) {

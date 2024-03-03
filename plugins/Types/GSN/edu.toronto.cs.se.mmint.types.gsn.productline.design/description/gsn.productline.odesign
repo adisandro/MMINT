@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="gsn.productline" version="12.0.0.2017041100">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:properties="http://www.eclipse.org/sirius/properties/1.0.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="gsn.productline" version="12.0.0.2017041100">
   <ownedViewpoints name="GSNProductLineViewpoint" modelFileExtension="productline">
     <ownedRepresentationExtensions xsi:type="description_1:DiagramExtensionDescription" name="GSNProductLineDiagram" viewpointURI="viewpoint:/edu.toronto.cs.se.mmint.productline.design/ProductLineViewpoint" representationName="ProductLineDiagram">
+      <metamodel href="../../edu.toronto.cs.se.mmint.productline/model/productline.ecore#/"/>
       <layers name="GSNProductLine" label="GSN Product Line">
         <nodeMappings name="PLGoalNode" preconditionExpression="aql: self.type.name = 'Goal' or self.type.eAllSuperTypes->exists(s | s.name = 'Goal')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
@@ -84,7 +85,94 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateGoal" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateGoal"/>
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateGoal" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateNode">
+                  <parameters name="classType" value="Goal"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateStrategy" label="Strategy" nodeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLStrategyNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Strategy.gif">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateStrategy" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateNode">
+                  <parameters name="classType" value="Strategy"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateSolution" label="Solution" nodeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLSolutionNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Solution.gif">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateSolution" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateNode">
+                  <parameters name="classType" value="Solution"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateContext" label="Context" nodeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLContextNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Context.gif">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateContext" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateNode">
+                  <parameters name="classType" value="Context"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateJustification" label="Justification" nodeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLJustificationNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Justification.gif">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateJustification" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateNode">
+                  <parameters name="classType" value="Justification"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateAssumption" label="Assumption" nodeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLAssumptionNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Assumption.gif">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateAssumption" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateNode">
+                  <parameters name="classType" value="Assumption"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="PLCreateSupportedBy" label="Supported-by Link" edgeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@edgeMappings[name='PLSupportedByEdge']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/SupportedBy.gif">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateSupportedBy" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateEdge">
+                  <parameters name="source" value="var:source"/>
+                  <parameters name="target" value="var:target"/>
+                  <parameters name="classType" value="SupportedBy"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="PLCreateInContextOf" label="In-context-of Link" edgeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@edgeMappings[name='PLInContextOfEdge']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/InContextOf.gif">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateInContextOf" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateEdge">
+                  <parameters name="source" value="var:source"/>
+                  <parameters name="target" value="var:target"/>
+                  <parameters name="classType" value="InContextOf"/>
+                </subModelOperations>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
@@ -98,4 +186,27 @@
     </ownedRepresentationExtensions>
     <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint.types.gsn.productline.design.GSNProductLineServices"/>
   </ownedViewpoints>
+  <extensions xsi:type="properties:ViewExtensionDescription" name="PLProperties">
+    <categories name="PLCategory">
+      <pages name="GSNPage" groups="//@extensions.0/@categories.0/@groups.0">
+        <extends href="platform:/plugin/org.eclipse.sirius.properties.defaultrules/model/properties.odesign#//@extensions.0/@categories.0/@pages.0"/>
+      </pages>
+      <groups name="PLArgumentElementGroup" labelExpression="GSN Properties" domainClass="productline.Class" semanticCandidateExpression="var:self" preconditionExpression="aql: self.type.name = 'Goal' or self.type.eAllSuperTypes->exists(s | s.name = 'ArgumentElement')">
+        <controls xsi:type="properties:TextDescription" name="PLArgumentElementId" labelExpression="Id:" isEnabledExpression="aql: self.attributes->exists(a | a.type.name = 'id')" valueExpression="aql: self.attributes->select(a | a.type.name = 'id')->first().value">
+          <initialOperation>
+            <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql: self.attributes->select(a | a.type.name = 'id')->first()">
+              <subModelOperations xsi:type="tool_1:SetValue" featureName="value" valueExpression="var:newValue"/>
+            </firstModelOperations>
+          </initialOperation>
+        </controls>
+        <controls xsi:type="properties:TextAreaDescription" name="PLArgumentElementDescription" labelExpression="Description:" isEnabledExpression="aql: self.attributes->exists(a | a.type.name = 'description')" lineCount="3" valueExpression="aql: self.attributes->select(a | a.type.name = 'description')->first().value">
+          <initialOperation>
+            <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql: self.attributes->select(a | a.type.name = 'description')->first()">
+              <subModelOperations xsi:type="tool_1:SetValue" featureName="value" valueExpression="var:newValue"/>
+            </firstModelOperations>
+          </initialOperation>
+        </controls>
+      </groups>
+    </categories>
+  </extensions>
 </description:Group>
