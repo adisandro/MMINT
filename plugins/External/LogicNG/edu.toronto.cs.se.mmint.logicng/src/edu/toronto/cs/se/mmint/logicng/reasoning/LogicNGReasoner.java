@@ -130,7 +130,7 @@ public class LogicNGReasoner implements IProductLineFeaturesTrait {
     if (plFormula.isBlank()) {
       return Set.of();
     }
-    return Arrays.stream(plFormula.strip().split("[\\s\\(\\)\\|&~]|\\b(?:\\$true)\\b"))
+    return Arrays.stream(plFormula.strip().split("[\\s\\(\\)\\|&~]|(?:\\$true\\b)"))
       .filter(v -> !v.isBlank())
       .collect(Collectors.toSet());
   }
