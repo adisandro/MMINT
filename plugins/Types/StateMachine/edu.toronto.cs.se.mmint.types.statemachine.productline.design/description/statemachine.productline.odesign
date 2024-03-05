@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" name="statemachine.productline" version="12.0.0.2017041100">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="statemachine.productline" version="12.0.0.2017041100">
   <ownedViewpoints name="StateMachineProductLineViewpoint" modelFileExtension="productline">
     <ownedRepresentationExtensions xsi:type="description_1:DiagramExtensionDescription" name="StateMachineProductLineDiagram" viewpointURI="viewpoint:/edu.toronto.cs.se.mmint.productline.design/ProductLineViewpoint" representationName="ProductLineDiagram">
       <layers name="StateMachineProductLine" label="State Machine Product Line">
@@ -30,7 +30,7 @@
         </edgeMappings>
         <containerMappings name="PLState" preconditionExpression="aql: self.type.name = 'State'" semanticCandidatesExpression="feature:classes" domainClass="productline.Class" childrenPresentation="List">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
-          <subNodeMappings name="PLInternalAction" preconditionExpression="aql: self.type.name = 'StateAction'" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
+          <subNodeMappings name="PLInternalAction" preconditionExpression="aql: self.type.name = 'StateAction' and self.referencesAsTarget.eContainer(productline::Class)->includes(container)" semanticCandidatesExpression="aql: self.eContainer(productline::ProductLine).classes" domainClass="productline.Class">
             <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
             <style xsi:type="style:SquareDescription" labelSize="10" showIcon="false" labelExpression="service: getStateMachinePLElementLabel" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -45,6 +45,67 @@
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_yellow']"/>
           </style>
         </containerMappings>
+        <toolSections name="CreateStateMachine" label="Create State Machine">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateInitialState" label="Initial State" nodeMappings="//@ownedViewpoints[name='StateMachineProductLineViewpoint']/@ownedRepresentationExtensions[name='StateMachineProductLineDiagram']/@layers[name='StateMachineProductLine']/@nodeMappings[name='PLInitialState']" iconPath="/edu.toronto.cs.se.modelepedia.statemachine.edit/icons/full/obj16/InitialState.gif">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateInitialState" id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.PLCreateNode">
+                  <parameters name="classType" value="InitialState"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateFinalState" label="Final State" nodeMappings="//@ownedViewpoints[name='StateMachineProductLineViewpoint']/@ownedRepresentationExtensions[name='StateMachineProductLineDiagram']/@layers[name='StateMachineProductLine']/@nodeMappings[name='PLFinalState']" iconPath="/edu.toronto.cs.se.modelepedia.statemachine.edit/icons/full/obj16/FinalState.gif">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateFinalState" id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.PLCreateNode">
+                  <parameters name="classType" value="FinalState"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="PLCreateState" label="State" containerMappings="//@ownedViewpoints[name='StateMachineProductLineViewpoint']/@ownedRepresentationExtensions[name='StateMachineProductLineDiagram']/@layers[name='StateMachineProductLine']/@containerMappings[name='PLState']" iconPath="/edu.toronto.cs.se.modelepedia.statemachine.edit/icons/full/obj16/State.gif">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateState" id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.PLCreateNode">
+                  <parameters name="classType" value="State"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateInternalAction" label="Internal Action" nodeMappings="//@ownedViewpoints[name='StateMachineProductLineViewpoint']/@ownedRepresentationExtensions[name='StateMachineProductLineDiagram']/@layers[name='StateMachineProductLine']/@containerMappings[name='PLState']/@subNodeMappings[name='PLInternalAction']" iconPath="/edu.toronto.cs.se.modelepedia.statemachine.edit/icons/full/obj16/StateAction.gif">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateInternalAction" id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.PLCreateNode">
+                  <parameters name="classType" value="StateAction"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="PLCreateTransition" label="Transition" edgeMappings="//@ownedViewpoints[name='StateMachineProductLineViewpoint']/@ownedRepresentationExtensions[name='StateMachineProductLineDiagram']/@layers[name='StateMachineProductLine']/@edgeMappings[name='PLTransition']" iconPath="/edu.toronto.cs.se.modelepedia.statemachine.edit/icons/full/obj16/Transition.gif">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateTransition" id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.PLCreateEdge">
+                  <parameters name="source" value="var:source"/>
+                  <parameters name="target" value="var:target"/>
+                  <parameters name="classType" value="Transition"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
       </layers>
     </ownedRepresentationExtensions>
     <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint.types.statemachine.productline.design.StateMachineProductLineServices"/>
