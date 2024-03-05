@@ -12,57 +12,39 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.productline.design.tools;
 
-import java.util.Collection;
-import java.util.Map;
-
-import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
-import org.eclipse.sirius.business.api.session.SessionManager;
+import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
+import edu.toronto.cs.se.mmint.productline.Class;
+import edu.toronto.cs.se.mmint.productline.design.tools.CreateNode;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
-public class PLCreateNode extends AbstractExternalJavaAction {
+public class PLCreateNode extends CreateNode {
 
   @Override
-  public boolean canExecute(Collection<? extends EObject> arg0) {
-    return true;
+  protected Command getCommand(TransactionalEditingDomain domain, EObject container, String classType) {
+    return new PLCreateNodeCommand(domain, container, classType);
   }
 
-  @Override
-  public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var productLine = (ProductLine) arg0.iterator().next();
-    var classType = (String) arg1.get("classType");
-    var sSession = SessionManager.INSTANCE.getSession(productLine);
-    var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(new PLCreateNodeCommand(sDomain, productLine, classType));
-  }
+  protected class PLCreateNodeCommand extends CreateNodeCommand {
 
-  private class PLCreateNodeCommand extends RecordingCommand {
-    private ProductLine productLine;
-    private String classType;
-    private String referenceType;
-
-    public PLCreateNodeCommand(TransactionalEditingDomain domain, ProductLine productLine, String classType) {
-      super(domain);
-      this.productLine = productLine;
-      this.classType = classType;
+    public PLCreateNodeCommand(TransactionalEditingDomain domain, EObject container, String classType) {
+      super(domain, container, classType);
     }
 
     @Override
-    protected void doExecute() {
-      var safetyCase = this.productLine.getClasses().stream()
+    protected Class getContainer() {
+      return this.productLine.getClasses().stream()
         .filter(c -> c.getType() == GSNPackage.eINSTANCE.getSafetyCase())
         .findFirst().get();
-      var clazz = ProductLineFactory.eINSTANCE.createClass();
-      clazz.setType((EClass) GSNPackage.eINSTANCE.getEClassifier(this.classType));
-      this.productLine.getClasses().add(clazz);
-      var reference = ProductLineFactory.eINSTANCE.createReference();
-      var referenceType = switch (this.classType) {
+    }
+
+    @Override
+    protected @Nullable EReference getContainmentType() {
+      return switch (this.classType) {
         case "Goal" -> GSNPackage.eINSTANCE.getSafetyCase_Goals();
         case "Strategy" -> GSNPackage.eINSTANCE.getSafetyCase_Strategies();
         case "Solution" -> GSNPackage.eINSTANCE.getSafetyCase_Solutions();
@@ -71,14 +53,6 @@ public class PLCreateNode extends AbstractExternalJavaAction {
         case "Assumption" -> GSNPackage.eINSTANCE.getSafetyCase_Assumptions();
         default -> null;
       };
-      reference.setType(referenceType);
-      reference.setTarget(clazz);
-      safetyCase.getReferences().add(reference);
-      for (var attrType : GSNPackage.eINSTANCE.getGoal().getEAllAttributes()) {
-        var attribute = ProductLineFactory.eINSTANCE.createAttribute();
-        attribute.setType(attrType);
-        clazz.getAttributes().add(attribute);
-      }
     }
   }
 }

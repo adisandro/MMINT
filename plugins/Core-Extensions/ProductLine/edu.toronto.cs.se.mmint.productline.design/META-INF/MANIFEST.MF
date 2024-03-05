@@ -3,7 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.productline.design;singleton:=true
 Bundle-Version: 2.20.99.qualifier
-Export-Package: edu.toronto.cs.se.mmint.productline.design
+Export-Package: edu.toronto.cs.se.mmint.productline.design,
+ edu.toronto.cs.se.mmint.productline.design.tools
 Bundle-Activator: edu.toronto.cs.se.mmint.productline.design.Activator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,

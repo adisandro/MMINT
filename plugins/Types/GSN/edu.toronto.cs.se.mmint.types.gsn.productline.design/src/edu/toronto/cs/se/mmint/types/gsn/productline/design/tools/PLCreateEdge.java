@@ -12,86 +12,44 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.productline.design.tools;
 
-import java.util.Collection;
-import java.util.Map;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
-import org.eclipse.sirius.business.api.session.SessionManager;
+import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.productline.Class;
-import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
+import edu.toronto.cs.se.mmint.productline.design.tools.CreateEdge;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
-public class PLCreateEdge extends AbstractExternalJavaAction {
+public class PLCreateEdge extends CreateEdge {
 
   @Override
-  public boolean canExecute(Collection<? extends EObject> arg0) {
-    return true;
+  protected Command getCommand(TransactionalEditingDomain domain, Class srcClass, Class tgtClass, String classType) {
+    return new PLCreateEdgeCommand(domain, srcClass, tgtClass, classType);
   }
 
-  @Override
-  public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var srcClass = (Class) arg1.get("source");
-    var tgtClass = (Class) arg1.get("target");
-    var classType = (String) arg1.get("classType");
-    var sSession = SessionManager.INSTANCE.getSession(srcClass);
-    var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(new PLCreateEdgeCommand(sDomain, srcClass, tgtClass, classType));
-  }
-
-  private class PLCreateEdgeCommand extends RecordingCommand {
-    private Class srcClass;
-    private Class tgtClass;
-    private String classType;
+  protected class PLCreateEdgeCommand extends CreateEdgeCommand {
 
     public PLCreateEdgeCommand(TransactionalEditingDomain domain, Class srcClass, Class tgtClass, String classType) {
-      super(domain);
-      this.srcClass = srcClass;
-      this.tgtClass = tgtClass;
-      this.classType = classType;
+      super(domain, srcClass, tgtClass, classType);
     }
 
     @Override
-    protected void doExecute() {
-      var productLine = this.srcClass.getProductLine();
-      String pc = null;
-      try {
-        var reasoner = productLine.getReasoner();
-        pc = productLine.getReasoner().simplify(
-          reasoner.and(this.srcClass.getPresenceCondition(), this.tgtClass.getPresenceCondition()));
-      }
-      catch (MMINTException e) {
-        // pc == null
-      }
-      var edgeClass = ProductLineFactory.eINSTANCE.createClass();
-      edgeClass.setType((EClass) GSNPackage.eINSTANCE.getEClassifier(this.classType));
-      edgeClass.setPresenceCondition(pc);
-      productLine.getClasses().add(edgeClass);
-      var srcReference = ProductLineFactory.eINSTANCE.createReference();
-      var srcReferenceType = switch (this.classType) {
+    protected @Nullable EReference getSrcReferenceType() {
+      return switch (this.classType) {
         case "SupportedBy" -> GSNPackage.eINSTANCE.getSupportable_SupportedBy();
         case "InContextOf" -> GSNPackage.eINSTANCE.getContextualizable_InContextOf();
         default -> null;
       };
-      srcReference.setType(srcReferenceType);
-      srcReference.setTarget(edgeClass);
-      srcReference.setPresenceCondition(pc);
-      this.srcClass.getReferences().add(srcReference);
-      var tgtReference = ProductLineFactory.eINSTANCE.createReference();
-      var tgtReferenceType = switch (this.classType) {
+    }
+
+    @Override
+    protected @Nullable EReference getTgtReferenceType() {
+      return switch (this.classType) {
         case "SupportedBy" -> GSNPackage.eINSTANCE.getSupportedBy_Target();
         case "InContextOf" -> GSNPackage.eINSTANCE.getInContextOf_Context();
         default -> null;
       };
-      tgtReference.setType(tgtReferenceType);
-      tgtReference.setTarget(this.tgtClass);
-      tgtReference.setPresenceCondition(pc);
-      edgeClass.getReferences().add(tgtReference);
     }
   }
 }
