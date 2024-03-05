@@ -22,6 +22,8 @@ import java.util.stream.Collectors;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jface.action.LegacyActionTools;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
@@ -67,17 +69,38 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     return new QuerySpec(queryReasoner, queryFilePath, query);
   }
 
-  private static String queryResultToString(Object result) {
-    if (result instanceof EObject resultObj) {
-      try {
-        var name = FileUtils.getModelObjectFeature(resultObj, "name");
-        if (name != null) {
-          result = name;
-        }
+  private static String queryResultToString(Object result, Set<String> highlightUris, Set<Model> models) {
+    var message = "";
+    if (result instanceof Collection multiResult) {
+      for (var innerResult : multiResult) {
+        message += queryResultToString(innerResult, highlightUris, models) + "\n";
       }
-      catch (MMINTException e) {}
     }
-    return result.toString();
+    else {
+      if (result instanceof EObject resultObj) {
+        highlightUris.add(MIDRegistry.getModelElementUri(resultObj));
+        // try finding sirius models to highlight
+        try {
+          var model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(resultObj);
+          if (SiriusUtils.hasSiriusDiagram(model)) {
+            models.add(model);
+          }
+        }
+        catch (MMINTException e) {}
+        // try finding the name
+        try {
+          var name = FileUtils.getModelObjectFeature(resultObj, "name");
+          if (name != null) {
+            result = name;
+          }
+        }
+        catch (MMINTException e) {}
+      }
+
+      message += result.toString();
+    }
+
+    return message;
   }
 
   public static void displayQueryResults(EObject context, List<Object> results, String queryName) {
@@ -106,52 +129,16 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
 results:
     for (var i = 0; i < numResults; i++) {
       var result = results.get(i);
-      String message;
       var highlightUris = new HashSet<String>();
       var models = new HashSet<Model>();
-      if (result instanceof Collection multiResult) {
-        message = "";
-        for (var innerResult : multiResult) {
-          if (message.length() > 1) {
-            message += "\n";
-          }
-          message += queryResultToString(innerResult);
-          if (innerResult instanceof EObject innerObj) {
-            highlightUris.add(MIDRegistry.getModelElementUri(innerObj));
-            var modelUri = MIDRegistry.getModelUri(innerObj);
-            if (models.stream().noneMatch(m -> m.getUri().equals(modelUri))) {
-              try {
-                var model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(innerObj);
-                if (SiriusUtils.hasSiriusDiagram(model)) {
-                  models.add(model);
-                }
-              }
-              catch (MMINTException e) {
-              }
-            }
-          }
-        }
-      }
-      else {
-        message = queryResultToString(result);
-        if (result instanceof EObject resultObj) {
-          highlightUris.add(MIDRegistry.getModelElementUri(resultObj));
-          try {
-            var model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(resultObj);
-            if (SiriusUtils.hasSiriusDiagram(model)) {
-              models.add(model);
-            }
-          }
-          catch (MMINTException e) {
-          }
-        }
-      }
+      var message = queryResultToString(result, highlightUris, models);
 
       // display results
       var title = "Query Results (" + (i+1) + " out of " + numResults + ")";
       if (models.isEmpty()) {
         buttons = ((i+1) == numResults) ? buttonsDone : buttonsDoneNext;
-        buttonPressed = MessageDialog.open(MessageDialog.INFORMATION, shell, title, message, SWT.NONE, buttons);
+        buttonPressed = MessageDialog.open(MessageDialog.INFORMATION, shell, title,
+                                           LegacyActionTools.escapeMnemonics(message), SWT.NONE, buttons);
         if (buttons[buttonPressed].startsWith("Done")) {
           break;
         }
@@ -169,14 +156,19 @@ results:
           buttons = ((i+1) == numResults && j == models.size()) ?
             buttonsDone : ((j < models.size()) ?
               buttonsDoneSame : buttonsDoneNext);
-          buttonPressed = MessageDialog.open(MessageDialog.INFORMATION, shell, title, message, SWT.NONE, buttons);
+          buttonPressed = MessageDialog.open(MessageDialog.INFORMATION, shell, title,
+                                             LegacyActionTools.escapeMnemonics(message), SWT.NONE, buttons);
           if (buttons[buttonPressed].startsWith("Done")) {
-            SiriusUtils.closeRepresentations(window, highlighted);
+            if (context instanceof MID) {
+              SiriusUtils.closeRepresentations(window, highlighted);
+            }
             break results;
           }
           j++;
         }
-        SiriusUtils.closeRepresentations(window, highlighted);
+        if (context instanceof MID) {
+          SiriusUtils.closeRepresentations(window, highlighted);
+        }
       }
     }
 
@@ -227,24 +219,11 @@ results:
       var modelObjs = arg0.stream()
         .map(obj -> ((DSemanticDecorator) obj).getTarget())
         .collect(Collectors.toList());
-      var model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(modelObjs.get(0));
-      //TODO MMINT[QUERY] in case of exception the context should simply be the sirius model
-      var instanceMID = model.getMIDContainer();
-      var modelElems = model.getModelElems().stream()
-        .collect(Collectors.toMap(e -> MIDRegistry.getModelObjectUri(e), e -> e));
-      /**TODO MMINT[QUERY]
-       * Filtering by model elements was done to convert modelObjs into modelElems
-       * (no longer necessary now with connectedEMFObjects library query)
-       * Except it won't work anyway: queryArgs are from the Sirius editing domain,
-       * while the instanceMID context has its own editing domain
-       */
-      var queryArgs = modelObjs.stream()
-        .map(obj -> modelElems.get(MIDRegistry.getModelElementUri(obj)))
-        .filter(elem -> elem != null)
-        .collect(Collectors.toList());
-      var querySpec = selectQuery(instanceMID);
-      var queryResults = querySpec.evaluateQuery(instanceMID, queryArgs);
-      displayQueryResults(instanceMID, queryResults, querySpec.query().toString());
+      var rootModelObj = EcoreUtil.getRootContainer(modelObjs.get(0));
+      var queryArgs = (modelObjs.size() == 1 && modelObjs.get(0) == rootModelObj) ? List.<EObject>of() : modelObjs;
+      var querySpec = selectQuery(rootModelObj);
+      var queryResults = querySpec.evaluateQuery(rootModelObj, queryArgs);
+      displayQueryResults(rootModelObj, queryResults, querySpec.query().toString());
     }
     catch (Exception e) {
       MMINTException.print(IStatus.ERROR, "Query error", e);
