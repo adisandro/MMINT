@@ -12,7 +12,6 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.operator.merge;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -20,6 +19,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -98,7 +98,7 @@ public class Merge extends OperatorImpl {
       this.mergedMID = outputMIDsByName.get(Out.MODEL);
       var mergedModelName = operator.in.model1.getName() + Merge.MERGE_SEPARATOR + operator.in.model2.getName() +
                             MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR + operator.in.model1.getFileExtension();
-      var mergedModelPath = FileUtils.getUniquePath(operator.getWorkingPath() + File.separator + mergedModelName, true,
+      var mergedModelPath = FileUtils.getUniquePath(operator.getWorkingPath() + IPath.SEPARATOR + mergedModelName, true,
                                                     false);
       this.merged = operator.in.model1.getMetatype().createInstance(null, mergedModelPath, this.mergedMID);
       var modelRelType = MIDTypeHierarchy.getRootModelRelType();
