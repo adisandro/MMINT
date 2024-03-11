@@ -182,6 +182,16 @@
             <itemDescriptions xsi:type="tool_1:ExternalJavaAction" name="PLImportTemplate" label="Import Template" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLImportTemplate"/>
           </ownedTools>
         </toolSections>
+        <decorationDescriptionsSet>
+          <decorationDescriptions xsi:type="description:SemanticBasedDecoration" name="PLTemplateDecoration" position="NORTH_WEST" preconditionExpression="aql: self.references->exists(r | r.type.name = 'templates' and r.target.type.name = 'Template')" imageExpression="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Template.png" tooltipExpression="Template element" domainClass="productline.Class"/>
+        </decorationDescriptionsSet>
+        <customization>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql: self.oclIsKindOf(productline::Class) and self.oclAsType(productline::Class).attributes->exists(a | a.type.name = 'valid' and a.value = 'false')">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLAssumptionNode']/@style //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLContextNode']/@style //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLGoalNode']/@style //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLJustificationNode']/@style //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLSolutionNode']/@style //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLStrategyNode']/@style" referenceName="labelColor">
+              <value href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
+            </featureCustomizations>
+          </vsmElementCustomizations>
+        </customization>
       </layers>
     </ownedRepresentationExtensions>
     <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint.types.gsn.productline.design.GSNProductLineServices"/>
