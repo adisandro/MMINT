@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
-import edu.toronto.cs.se.mmint.productline.ProductLineUtils;
+import edu.toronto.cs.se.mmint.productline.PLUtils;
 
 /**
  * <!-- begin-user-doc -->
@@ -89,7 +89,7 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
    */
   @Override
   public String getPresenceCondition() {
-    return ProductLineUtils.getPresenceCondition(this, getPresenceConditionGen());
+    return PLUtils.getPresenceCondition(this, getPresenceConditionGen());
   }
 
   /**
@@ -119,7 +119,7 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
    */
   @Override
   public boolean isAlwaysPresent() {
-    return ProductLineUtils.isAlwaysPresent(this, getPresenceConditionGen());
+    return PLUtils.isAlwaysPresent(this, getPresenceConditionGen());
   }
 
   /**

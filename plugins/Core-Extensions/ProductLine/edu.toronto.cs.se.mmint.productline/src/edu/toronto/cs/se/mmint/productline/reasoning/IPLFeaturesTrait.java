@@ -26,7 +26,7 @@ import edu.toronto.cs.se.mmint.mid.reasoning.ISATReasoner;
  *
  * @author Alessio Di Sandro
  */
-public interface IProductLineFeaturesTrait extends ISATReasoner {
+public interface IPLFeaturesTrait extends ISATReasoner {
 
   interface AggregatorLambda {
     Object aggregate(Object a, Object b);

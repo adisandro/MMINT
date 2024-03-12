@@ -16,15 +16,15 @@ import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
-import edu.toronto.cs.se.mmint.productline.ProductLineUtils;
-import edu.toronto.cs.se.mmint.productline.design.ProductLineServices;
+import edu.toronto.cs.se.mmint.productline.PLUtils;
+import edu.toronto.cs.se.mmint.productline.design.PLServices;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
 
-public class StateMachineProductLineServices extends ProductLineServices {
+public class StateMachinePLServices extends PLServices {
 
   // use different method names to allow full disabling of StateMachine layer
   public String getStateMachinePLElementLabel(EObject self) {
-    var pc = ProductLineUtils.getPresenceConditionLabel((PLElement) self, true);
+    var pc = PLUtils.getPresenceConditionLabel((PLElement) self, true);
     var label = switch (self) {
       case Class c when StateMachinePackage.eINSTANCE.getState() == c.getType() -> {
         var name = mergePLAttributeLabels(c, StateMachinePackage.eINSTANCE.getAbstractState_Name());

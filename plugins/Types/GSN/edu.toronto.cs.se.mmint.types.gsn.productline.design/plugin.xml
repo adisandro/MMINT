@@ -23,16 +23,16 @@
    <extension
          point="org.eclipse.sirius.externalJavaAction">
       <javaActions
-            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLImportTemplate"
-            id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLImportTemplate">
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLImportTemplate"
+            id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLImportTemplate">
       </javaActions>
       <javaActions
-            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateNode"
-            id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateNode">
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode"
+            id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode">
       </javaActions>
       <javaActions
-            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateEdge"
-            id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateEdge">
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateEdge"
+            id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateEdge">
       </javaActions>
    </extension>
 </plugin>

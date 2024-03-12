@@ -29,12 +29,12 @@ import edu.toronto.cs.se.mmint.operator.merge.Merge;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.kotlin.PLKotlinConverter;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 import edu.toronto.cs.se.mmint.productline.reasoning.PLPipeline;
 
 @PLPipeline.Intercept
 public class PLMerge extends Merge {
-  private IProductLineFeaturesTrait reasoner;
+  private IPLFeaturesTrait reasoner;
   private String pcMergeSyntax;
 
   @Override

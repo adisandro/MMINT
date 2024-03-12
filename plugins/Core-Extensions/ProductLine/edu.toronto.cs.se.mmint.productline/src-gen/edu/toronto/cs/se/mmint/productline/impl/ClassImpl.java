@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
-import edu.toronto.cs.se.mmint.productline.ProductLineUtils;
+import edu.toronto.cs.se.mmint.productline.PLUtils;
 import edu.toronto.cs.se.mmint.productline.Reference;
 
 /**
@@ -322,7 +322,7 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
     var attributes = getAttributes().stream()
       .map(a -> a.getType().getName() + ": " + a.getValue())
       .collect(Collectors.joining(", "));
-    var presenceCondition = ProductLineUtils.getPresenceConditionLabel(this, true);
+    var presenceCondition = PLUtils.getPresenceConditionLabel(this, true);
     return getType().getName() +
            (attributes.isEmpty() ? "" : "{" + attributes + "}") +
            (presenceCondition.isEmpty() ? "" : " " + presenceCondition);

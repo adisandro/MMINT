@@ -38,7 +38,7 @@ import edu.toronto.cs.se.mmint.productline.operators.ToProductLine;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 
-public class PLImportTemplate extends AbstractExternalJavaAction {
+public class GSNPLImportTemplate extends AbstractExternalJavaAction {
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {

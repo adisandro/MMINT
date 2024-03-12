@@ -67,12 +67,12 @@ import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDPackage;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait.Aggregator;
+import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait.Aggregator;
 import edu.toronto.cs.se.mmint.productline.reasoning.PLPipeline;
 import edu.toronto.cs.se.mmint.viatra.reasoning.ViatraReasoner;
 
-public class ProductLineViatraReasoner extends ViatraReasoner {
+public class PLViatraReasoner extends ViatraReasoner {
 
   public final static String VIATRA_LIB_PATH = "edu/toronto/cs/se/mmint/productline/viatra/pl.vql";
   public final static String LIB_REFERENCE_PATTERN = "reference";
@@ -94,16 +94,16 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
   private Set<String> aggregatedGroupBy;
   private @Nullable Integer aggregatedNumber;
   private @Nullable CompareFeature aggregatedComparison;
-  private @Nullable IProductLineFeaturesTrait featureReasoner;
+  private @Nullable IPLFeaturesTrait featureReasoner;
   private String featuresConstraint;
 
-  public ProductLineViatraReasoner() throws Exception {
+  public PLViatraReasoner() throws Exception {
     var plModelRelType = MIDTypeRegistry.<ModelRel>getType(ProductLineMIDPackage.eNS_URI);
-    var libFilePath = MIDTypeRegistry.getBundlePath(plModelRelType, ProductLineViatraReasoner.VIATRA_LIB_PATH);
+    var libFilePath = MIDTypeRegistry.getBundlePath(plModelRelType, PLViatraReasoner.VIATRA_LIB_PATH);
     var libVqlRoot = getVQLRoot(libFilePath, false);
-    this.libRefPattern = super.getPattern(libVqlRoot, ProductLineViatraReasoner.LIB_REFERENCE_PATTERN);
-    this.libAttrPattern = super.getPattern(libVqlRoot, ProductLineViatraReasoner.LIB_ATTRIBUTE_PATTERN);
-    this.libClassPattern = super.getPattern(libVqlRoot, ProductLineViatraReasoner.LIB_CLASSTYPE_PATTERN);
+    this.libRefPattern = super.getPattern(libVqlRoot, PLViatraReasoner.LIB_REFERENCE_PATTERN);
+    this.libAttrPattern = super.getPattern(libVqlRoot, PLViatraReasoner.LIB_ATTRIBUTE_PATTERN);
+    this.libClassPattern = super.getPattern(libVqlRoot, PLViatraReasoner.LIB_CLASSTYPE_PATTERN);
     reset();
   }
 
@@ -120,7 +120,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
   }
 
   private String getNextExtraVariableName() {
-    return ProductLineViatraReasoner.EXTRA_VAR_NAME + this.extraVariables++;
+    return PLViatraReasoner.EXTRA_VAR_NAME + this.extraVariables++;
   }
 
   @Override
@@ -232,7 +232,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
   private Variable liftVariable(String name, EClass typeClass, EList<Variable> plParameters,
                                 EList<Variable> plVariables, Map<String, Variable> plVarsMap) {
     Variable plVar;
-    if (name.startsWith(ProductLineViatraReasoner.DONTCARE_VAR_NAME)) {
+    if (name.startsWith(PLViatraReasoner.DONTCARE_VAR_NAME)) {
       plVar = liftDontCareVariable(name, typeClass, plParameters, plVariables, plVarsMap);
     }
     else {
@@ -383,8 +383,8 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
                                                Map<String, Variable> plVarsMap) throws Exception {
     // check for mid.vql calls
     var plPattern = patternCall.getPatternRef();
-    if (!ProductLineViatraReasoner.MID_LIB_PATTERNS_NOCHANGES.contains(plPattern.getName()) &&
-        !ProductLineViatraReasoner.MID_LIB_PATTERNS_TOCHANGE.containsKey(plPattern.getName())) {
+    if (!PLViatraReasoner.MID_LIB_PATTERNS_NOCHANGES.contains(plPattern.getName()) &&
+        !PLViatraReasoner.MID_LIB_PATTERNS_TOCHANGE.containsKey(plPattern.getName())) {
       throw new MMINTException("Pattern call not supported");
     }
     var plConstraints = new ArrayList<PatternCompositionConstraint>();
@@ -393,7 +393,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
     plConstraint.setNegative(isNegative);
     var plCall = PatternLanguageFactory.eINSTANCE.createPatternCall();
     plConstraint.setCall(plCall);
-    var plPatternName = ProductLineViatraReasoner.MID_LIB_PATTERNS_TOCHANGE.get(plPattern.getName());
+    var plPatternName = PLViatraReasoner.MID_LIB_PATTERNS_TOCHANGE.get(plPattern.getName());
     if (plPatternName != null) {
       plPattern = getPattern((PatternModel) plPattern.eContainer(), plPatternName);
     }
@@ -408,7 +408,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
       else if (patternPar instanceof VariableReference varPar) {
         var variable = varPar.getVariable();
         var varName = variable.getName();
-        var plVar = (varName.startsWith(ProductLineViatraReasoner.DONTCARE_VAR_NAME)) ?
+        var plVar = (varName.startsWith(PLViatraReasoner.DONTCARE_VAR_NAME)) ?
           liftDontCareVariable(varName, ProductLinePackage.eINSTANCE.getClass_(), plParameters, plVariables,
                                plVarsMap) :
           plVarsMap.get(varName);
@@ -478,7 +478,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
         }
         this.aggregatedGroupBy = aggVars
           .map(p -> ((VariableReference) p).getVariable().getName())
-          .filter(n -> !n.startsWith(ProductLineViatraReasoner.DONTCARE_VAR_NAME))
+          .filter(n -> !n.startsWith(PLViatraReasoner.DONTCARE_VAR_NAME))
           .collect(Collectors.toSet());
         return createPatternCompositionConstraint(aggPatternCall, false, plParameters, plVariables, plVarsMap);
       }
@@ -487,7 +487,7 @@ public class ProductLineViatraReasoner extends ViatraReasoner {
         String aggName;
         if (this.aggregator == Aggregator.COUNT) {
           aggName = aggPathExpr.getSrc().getVariable().getName();
-          if (aggName.startsWith(ProductLineViatraReasoner.DONTCARE_VAR_NAME)) {
+          if (aggName.startsWith(PLViatraReasoner.DONTCARE_VAR_NAME)) {
             aggName = ((VariableReference) aggPathExpr.getDst()).getVariable().getName();
           }
         }

@@ -20,13 +20,13 @@ import org.eclipse.emf.ecore.EObject;
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
-import edu.toronto.cs.se.mmint.productline.ProductLineUtils;
+import edu.toronto.cs.se.mmint.productline.PLUtils;
 import edu.toronto.cs.se.mmint.productline.Reference;
 
 /**
  * The services class used by VSM.
  */
-public class ProductLineServices {
+public class PLServices {
 
   protected String mergePLAttributeLabels(Class plClass, EAttribute attrType) {
     var label = "";
@@ -35,7 +35,7 @@ public class ProductLineServices {
       .collect(Collectors.toList());
     if (attributes.size() > 1) {
       label = attributes.stream()
-        .map(t -> ProductLineUtils.getPresenceConditionLabel(t, true) + " " + t.getValue())
+        .map(t -> PLUtils.getPresenceConditionLabel(t, true) + " " + t.getValue())
         .collect(Collectors.joining("\n"));
     }
     else if (attributes.size() > 0) {
@@ -46,7 +46,7 @@ public class ProductLineServices {
   }
 
   public String getPLElementLabel(EObject self) {
-    var pc = ProductLineUtils.getPresenceConditionLabel((PLElement) self, true);
+    var pc = PLUtils.getPresenceConditionLabel((PLElement) self, true);
     var label = switch (self) {
       case Class c -> {
         var l = c.getType().getName();

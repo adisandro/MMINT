@@ -16,7 +16,7 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 
-public class ProductLineUtils {
+public class PLUtils {
 
   public static @Nullable String getPresenceCondition(PLElement plElem, @Nullable String pcField) {
     if (pcField == null) {

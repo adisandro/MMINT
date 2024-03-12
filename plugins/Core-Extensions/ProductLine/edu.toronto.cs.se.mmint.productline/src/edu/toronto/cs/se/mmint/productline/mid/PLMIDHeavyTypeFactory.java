@@ -22,7 +22,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 
-public class ProductLineMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
+public class PLMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
 
   public static ProductLine getProductLine(PLMapping plMapping) {
     return plMapping.getModelElemEndpoints().stream()

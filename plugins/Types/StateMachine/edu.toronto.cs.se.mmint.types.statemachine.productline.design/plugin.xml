@@ -23,12 +23,12 @@
    <extension
          point="org.eclipse.sirius.externalJavaAction">
       <javaActions
-            actionClass="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.PLCreateNode"
-            id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.PLCreateNode">
+            actionClass="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.StateMachinePLCreateNode"
+            id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.StateMachinePLCreateNode">
       </javaActions>
       <javaActions
-            actionClass="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.PLCreateEdge"
-            id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.PLCreateEdge">
+            actionClass="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.StateMachinePLCreateEdge"
+            id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.StateMachinePLCreateEdge">
       </javaActions>
    </extension>
 </plugin>

@@ -20,10 +20,10 @@ import edu.toronto.cs.se.mmint.mid.relationship.impl.BinaryMappingImpl;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
-import edu.toronto.cs.se.mmint.productline.ProductLineUtils;
+import edu.toronto.cs.se.mmint.productline.PLUtils;
 import edu.toronto.cs.se.mmint.productline.mid.PLBinaryMapping;
 import edu.toronto.cs.se.mmint.productline.mid.PLMapping;
-import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDHeavyTypeFactory;
+import edu.toronto.cs.se.mmint.productline.mid.PLMIDHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDPackage;
 
 /**
@@ -93,7 +93,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
    */
   @Override
   public String getPresenceCondition() {
-    return ProductLineUtils.getPresenceCondition(this, getPresenceConditionGen());
+    return PLUtils.getPresenceCondition(this, getPresenceConditionGen());
   }
 
   /**
@@ -115,7 +115,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
    */
   @Override
   public ProductLine getProductLine() {
-    return ProductLineMIDHeavyTypeFactory.getProductLine(this);
+    return PLMIDHeavyTypeFactory.getProductLine(this);
   }
 
   /**
@@ -241,7 +241,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
    */
   @Override
   public String toMIDCustomPrintLabel() {
-    return ProductLineUtils.getPresenceConditionLabel(this, true);
+    return PLUtils.getPresenceConditionLabel(this, true);
   }
 
   /**
@@ -249,7 +249,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
    */
   @Override
   public String toMIDCustomEditLabel() {
-    return ProductLineUtils.getPresenceConditionLabel(this, false);
+    return PLUtils.getPresenceConditionLabel(this, false);
   }
 
   /**
@@ -265,7 +265,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
    */
   @Override
   public boolean isAlwaysPresent() {
-    return ProductLineUtils.isAlwaysPresent(this, getPresenceConditionGen());
+    return PLUtils.isAlwaysPresent(this, getPresenceConditionGen());
   }
 
 } //PLBinaryMappingImpl

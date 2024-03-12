@@ -13,43 +13,39 @@
 package edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.productline.Class;
-import edu.toronto.cs.se.mmint.productline.design.tools.CreateNode;
+import edu.toronto.cs.se.mmint.productline.design.tools.CreateEdge;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
 
-public class PLCreateNode extends CreateNode {
+public class StateMachinePLCreateEdge extends CreateEdge {
 
   @Override
-  protected Command getCommand(TransactionalEditingDomain domain, EObject container, String classType) {
-    return new PLCreateNodeCommand(domain, container, classType);
+  protected Command getCommand(TransactionalEditingDomain domain, Class srcClass, Class tgtClass, String classType) {
+    return new PLCreateEdgeCommand(domain, srcClass, tgtClass, classType);
   }
 
-  protected class PLCreateNodeCommand extends CreateNodeCommand {
+  protected class PLCreateEdgeCommand extends CreateEdgeCommand {
 
-    public PLCreateNodeCommand(TransactionalEditingDomain domain, EObject container, String classType) {
-      super(domain, container, classType);
+    public PLCreateEdgeCommand(TransactionalEditingDomain domain, Class srcClass, Class tgtClass, String classType) {
+      super(domain, srcClass, tgtClass, classType);
     }
 
     @Override
-    protected Class getContainer() {
+    protected @Nullable EReference getSrcReferenceType() {
       return switch (this.classType) {
-        case "StateAction" -> (Class) this.container;
-        default -> this.productLine.getClasses().stream()
-          .filter(c -> c.getType() == StateMachinePackage.eINSTANCE.getStateMachine())
-          .findFirst().get();
+        case "Transition" -> StateMachinePackage.eINSTANCE.getStateMachine_Transitions();
+        default -> null;
       };
     }
 
     @Override
-    protected @Nullable EReference getContainmentType() {
+    protected @Nullable EReference getTgtReferenceType() {
       return switch (this.classType) {
-        case "InitialState", "FinalState", "State" -> StateMachinePackage.eINSTANCE.getStateMachine_States();
-        case "StateAction" -> StateMachinePackage.eINSTANCE.getState_InternalActions();
+        case "Transition" -> StateMachinePackage.eINSTANCE.getTransition_Target();
         default -> null;
       };
     }

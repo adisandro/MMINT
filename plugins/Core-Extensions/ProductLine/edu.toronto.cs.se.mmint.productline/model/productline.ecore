@@ -3,8 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="productline" nsURI="model://edu.toronto.cs.se.mmint.productline"
     nsPrefix="productline">
   <eClassifiers xsi:type="ecore:EClass" name="ProductLine">
-    <eOperations name="getReasoner" lowerBound="1" eType="#//IProductLineFeaturesTrait"
-        eExceptions="#//MMINTException"/>
+    <eOperations name="getReasoner" lowerBound="1" eType="#//IPLFeaturesTrait" eExceptions="#//MMINTException"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="featuresConstraint" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reasonerName" lowerBound="1"
@@ -39,6 +38,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="MMINTException" instanceClassName="edu.toronto.cs.se.mmint.MMINTException"
       serializable="false"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="IProductLineFeaturesTrait" instanceClassName="edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait"
+  <eClassifiers xsi:type="ecore:EDataType" name="IPLFeaturesTrait" instanceClassName="edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait"
       serializable="false"/>
 </ecore:EPackage>

@@ -23,7 +23,7 @@ import edu.toronto.cs.se.mmint.operator.match.RandomMatch;
 import edu.toronto.cs.se.mmint.operator.match.UntypedMatch;
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.Class;
-import edu.toronto.cs.se.mmint.productline.ProductLineUtils;
+import edu.toronto.cs.se.mmint.productline.PLUtils;
 import edu.toronto.cs.se.mmint.productline.Reference;
 
 public class PLRandomMatch extends RandomMatch {
@@ -51,10 +51,10 @@ public class PLRandomMatch extends RandomMatch {
 
   @Override
   protected boolean areContainersMatched(EObject modelObj1, EObject modelObj2, Map<EObject, EObject> matched) {
-    var modelObjCont1 = ProductLineUtils.getEContainer((Class) modelObj1);
-    var modelObjCont2 = ProductLineUtils.getEContainer((Class) modelObj2);
+    var modelObjCont1 = PLUtils.getEContainer((Class) modelObj1);
+    var modelObjCont2 = PLUtils.getEContainer((Class) modelObj2);
     return (modelObjCont1 == null && modelObjCont2 == null) || // roots
-           (ProductLineUtils.getEContainer(modelObjCont1) == null && ProductLineUtils.getEContainer(modelObjCont2) == null) || // root children
+           (PLUtils.getEContainer(modelObjCont1) == null && PLUtils.getEContainer(modelObjCont2) == null) || // root children
            (matched.get(modelObjCont1) ==  modelObjCont2); // containers already matched
   }
 

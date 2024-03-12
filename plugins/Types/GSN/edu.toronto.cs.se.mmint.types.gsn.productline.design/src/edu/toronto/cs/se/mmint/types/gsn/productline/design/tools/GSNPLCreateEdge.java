@@ -21,7 +21,7 @@ import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.design.tools.CreateEdge;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
-public class PLCreateEdge extends CreateEdge {
+public class GSNPLCreateEdge extends CreateEdge {
 
   @Override
   protected Command getCommand(TransactionalEditingDomain domain, Class srcClass, Class tgtClass, String classType) {

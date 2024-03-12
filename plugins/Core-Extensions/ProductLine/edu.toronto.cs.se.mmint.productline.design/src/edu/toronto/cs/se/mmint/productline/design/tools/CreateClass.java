@@ -34,7 +34,7 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogLabelProvider;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 
 public class CreateClass extends AbstractExternalJavaAction {
 
@@ -71,7 +71,7 @@ public class CreateClass extends AbstractExternalJavaAction {
           this.productLine.setMetamodel(modelType.getEMFTypeRoot());
         }
         if (this.productLine.getReasonerName() == null) {
-          var plReasoner = MIDDialogs.selectReasoner(IProductLineFeaturesTrait.class, "Product Line features", null);
+          var plReasoner = MIDDialogs.selectReasoner(IPLFeaturesTrait.class, "Product Line features", null);
           this.productLine.setReasonerName(plReasoner.getName());
         }
         var labelProvider = LabelProvider.createTextProvider(c -> ((EClass) c).getName());

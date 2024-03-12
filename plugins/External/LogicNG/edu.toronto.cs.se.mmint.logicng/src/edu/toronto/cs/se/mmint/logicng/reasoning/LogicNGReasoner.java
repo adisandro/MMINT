@@ -36,9 +36,9 @@ import org.logicng.solvers.MiniSat;
 import org.logicng.transformations.simplification.AdvancedSimplifier;
 
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 
-public class LogicNGReasoner implements IProductLineFeaturesTrait {
+public class LogicNGReasoner implements IPLFeaturesTrait {
   public static boolean statsEnabled = false;
   public static int satCalls = 0;
   public static long satTime = 0;

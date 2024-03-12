@@ -354,7 +354,7 @@
    </extension>
 
    <extension point="edu.toronto.cs.se.mmint.reasoners">
-      <reasoner class="edu.toronto.cs.se.mmint.productline.viatra.reasoning.ProductLineViatraReasoner"/>
+      <reasoner class="edu.toronto.cs.se.mmint.productline.viatra.reasoning.PLViatraReasoner"/>
    </extension>
 
 </plugin>

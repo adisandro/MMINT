@@ -45,7 +45,7 @@ import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
 import edu.toronto.cs.se.mmint.productline.Reference;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 
 public class ToProductLine extends OperatorImpl {
   protected In in;
@@ -55,7 +55,7 @@ public class ToProductLine extends OperatorImpl {
   public static class In {
     public final static String PROP_REASONERNAME = "reasonerName";
     public final static String MODEL = "product";
-    public IProductLineFeaturesTrait reasoner;
+    public IPLFeaturesTrait reasoner;
     public Model productModel;
 
     public In(Map<String, Model> inputsByName) {
@@ -69,8 +69,8 @@ public class ToProductLine extends OperatorImpl {
       this(inputsByName);
       try {
         this.reasoner = (reasonerName == null) ?
-          MIDDialogs.selectReasoner(IProductLineFeaturesTrait.class, "Product Line features", null) :
-          (IProductLineFeaturesTrait) MMINT.getReasoner(reasonerName);
+          MIDDialogs.selectReasoner(IPLFeaturesTrait.class, "Product Line features", null) :
+          (IPLFeaturesTrait) MMINT.getReasoner(reasonerName);
       }
       catch (Exception e) {
         throw new IllegalArgumentException();

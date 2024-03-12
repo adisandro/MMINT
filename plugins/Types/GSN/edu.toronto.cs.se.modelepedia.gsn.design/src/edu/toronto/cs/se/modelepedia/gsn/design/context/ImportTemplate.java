@@ -68,7 +68,7 @@ public class ImportTemplate extends AbstractExternalJavaAction {
                                                   "There are no GSN files in the workspace", Set.of(GSNPackage.eNAME));
         var templateSC = (SafetyCase) FileUtils.readModelFile(templatePath, null, true);
         if (templateSC.getTemplates().isEmpty()) {
-            throw new MMINTException(templatePath + " does not contain a template");
+          throw new MMINTException(templatePath + " does not contain a template");
         }
         templateSC = EcoreUtil.copy(templateSC);
         var template = (templateSC.getTemplates().size() > 1) ?

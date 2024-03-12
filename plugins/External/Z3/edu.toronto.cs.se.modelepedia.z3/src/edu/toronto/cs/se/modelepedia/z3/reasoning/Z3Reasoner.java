@@ -45,7 +45,7 @@ import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.reasoning.IModelConstraintTrait;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
@@ -58,7 +58,7 @@ import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOUtils;
 
 //TODO MMINT[Z3] Support refinement and highlighting for the complex full-MAVO encoding
-public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IProductLineFeaturesTrait {
+public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IPLFeaturesTrait {
 
 	public enum MAVOCheckStrategy { DOUBLE_CHECK, SINGLE_CHECK_IF_FALSE, SINGLE_CHECK }
 	public final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";

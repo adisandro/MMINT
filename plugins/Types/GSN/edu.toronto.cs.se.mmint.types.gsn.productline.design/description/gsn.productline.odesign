@@ -85,7 +85,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateGoal" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateNode">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateGoal" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode">
                   <parameters name="classType" value="Goal"/>
                 </subModelOperations>
               </firstModelOperations>
@@ -96,7 +96,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateStrategy" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateNode">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateStrategy" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode">
                   <parameters name="classType" value="Strategy"/>
                 </subModelOperations>
               </firstModelOperations>
@@ -107,7 +107,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateSolution" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateNode">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateSolution" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode">
                   <parameters name="classType" value="Solution"/>
                 </subModelOperations>
               </firstModelOperations>
@@ -118,7 +118,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateContext" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateNode">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateContext" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode">
                   <parameters name="classType" value="Context"/>
                 </subModelOperations>
               </firstModelOperations>
@@ -129,7 +129,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateJustification" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateNode">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateJustification" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode">
                   <parameters name="classType" value="Justification"/>
                 </subModelOperations>
               </firstModelOperations>
@@ -140,7 +140,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateAssumption" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateNode">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateAssumption" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode">
                   <parameters name="classType" value="Assumption"/>
                 </subModelOperations>
               </firstModelOperations>
@@ -153,7 +153,7 @@
             <targetViewVariable name="targetView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateSupportedBy" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateEdge">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateSupportedBy" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateEdge">
                   <parameters name="source" value="var:source"/>
                   <parameters name="target" value="var:target"/>
                   <parameters name="classType" value="SupportedBy"/>
@@ -168,7 +168,7 @@
             <targetViewVariable name="targetView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateInContextOf" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLCreateEdge">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateInContextOf" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateEdge">
                   <parameters name="source" value="var:source"/>
                   <parameters name="target" value="var:target"/>
                   <parameters name="classType" value="InContextOf"/>
@@ -194,7 +194,7 @@
         </customization>
       </layers>
     </ownedRepresentationExtensions>
-    <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint.types.gsn.productline.design.GSNProductLineServices"/>
+    <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint.types.gsn.productline.design.GSNPLServices"/>
   </ownedViewpoints>
   <extensions xsi:type="properties:ViewExtensionDescription" name="PLProperties">
     <categories name="PLCategory">

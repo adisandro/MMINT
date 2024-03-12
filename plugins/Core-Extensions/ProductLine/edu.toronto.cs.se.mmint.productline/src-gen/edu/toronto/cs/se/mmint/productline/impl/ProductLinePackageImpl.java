@@ -29,7 +29,7 @@ import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.Reference;
 import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDPackage;
 import edu.toronto.cs.se.mmint.productline.mid.impl.ProductLineMIDPackageImpl;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
+import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 
 /**
  * <!-- begin-user-doc -->
@@ -516,7 +516,7 @@ public class ProductLinePackageImpl extends EPackageImpl implements ProductLineP
     // Initialize data types
     initEDataType(this.mmintExceptionEDataType, MMINTException.class, "MMINTException", !EPackageImpl.IS_SERIALIZABLE,
                   !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEDataType(this.iProductLineFeaturesTraitEDataType, IProductLineFeaturesTrait.class, "IProductLineFeaturesTrait",
+    initEDataType(this.iProductLineFeaturesTraitEDataType, IPLFeaturesTrait.class, "IProductLineFeaturesTrait",
                   !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource

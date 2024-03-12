@@ -319,7 +319,7 @@ public interface ProductLinePackage extends EPackage {
    * The meta object id for the '<em>IProduct Line Features Trait</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait
+   * @see edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait
    * @see edu.toronto.cs.se.mmint.productline.impl.ProductLinePackageImpl#getIProductLineFeaturesTrait()
    * @generated
    */
@@ -530,11 +530,11 @@ public interface ProductLinePackage extends EPackage {
   EDataType getMMINTException();
 
   /**
-   * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait <em>IProduct Line Features Trait</em>}'.
+   * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait <em>IProduct Line Features Trait</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for data type '<em>IProduct Line Features Trait</em>'.
-   * @see edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait
+   * @see edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait
    * @model instanceClass="edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait" serializeable="false"
    * @generated
    */
@@ -730,7 +730,7 @@ public interface ProductLinePackage extends EPackage {
      * The meta object literal for the '<em>IProduct Line Features Trait</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait
+     * @see edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait
      * @see edu.toronto.cs.se.mmint.productline.impl.ProductLinePackageImpl#getIProductLineFeaturesTrait()
      * @generated
      */

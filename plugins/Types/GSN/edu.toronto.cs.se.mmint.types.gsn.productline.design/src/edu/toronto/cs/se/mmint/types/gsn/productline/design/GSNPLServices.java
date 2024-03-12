@@ -16,15 +16,15 @@ import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
-import edu.toronto.cs.se.mmint.productline.ProductLineUtils;
-import edu.toronto.cs.se.mmint.productline.design.ProductLineServices;
+import edu.toronto.cs.se.mmint.productline.PLUtils;
+import edu.toronto.cs.se.mmint.productline.design.PLServices;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
-public class GSNProductLineServices extends ProductLineServices {
+public class GSNPLServices extends PLServices {
 
   // use different method names to allow full disabling of GSN layer
   public String getGSNPLElementLabel(EObject self) {
-    var pc = ProductLineUtils.getPresenceConditionLabel((PLElement) self, true);
+    var pc = PLUtils.getPresenceConditionLabel((PLElement) self, true);
     var label = switch (self) {
       case Class c when GSNPackage.eINSTANCE.getArgumentElement().isSuperTypeOf(c.getType()) -> {
         var id = mergePLAttributeLabels(c, GSNPackage.eINSTANCE.getArgumentElement_Id());
