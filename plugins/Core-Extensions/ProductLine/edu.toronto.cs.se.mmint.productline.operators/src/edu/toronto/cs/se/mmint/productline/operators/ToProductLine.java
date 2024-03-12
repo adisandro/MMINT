@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IPath;
@@ -25,9 +26,11 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -35,6 +38,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.Class;
@@ -46,14 +50,29 @@ import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 public class ToProductLine extends OperatorImpl {
   protected In in;
   protected Out out;
+  protected @Nullable String reasonerName;
 
-  protected static class In {
+  public static class In {
+    public final static String PROP_REASONERNAME = "reasonerName";
     public final static String MODEL = "product";
+    public IProductLineFeaturesTrait reasoner;
     public Model productModel;
 
     public In(Map<String, Model> inputsByName) {
       this.productModel = inputsByName.get(In.MODEL);
       if (MIDTypeHierarchy.instanceOf(this.productModel, Out.MODEL_TYPE_ID, false)) {
+        throw new IllegalArgumentException();
+      }
+    }
+
+    public In(Map<String, Model> inputsByName, @Nullable String reasonerName) {
+      this(inputsByName);
+      try {
+        this.reasoner = (reasonerName == null) ?
+          MIDDialogs.selectReasoner(IProductLineFeaturesTrait.class, "Product Line features", null) :
+          (IProductLineFeaturesTrait) MMINT.getReasoner(reasonerName);
+      }
+      catch (Exception e) {
         throw new IllegalArgumentException();
       }
     }
@@ -83,11 +102,10 @@ public class ToProductLine extends OperatorImpl {
 
     public Out(Map<String, MID> outputMIDsByName, String workingPath, In in) throws MMINTException {
       this.plModelType = MIDTypeRegistry.<Model>getType(Out.MODEL_TYPE_ID);
-      var reasoner = MIDDialogs.selectReasoner(IProductLineFeaturesTrait.class, "Product Line features", null);
-      this.trueLiteral = reasoner.getTrueLiteral();
+      this.trueLiteral = in.reasoner.getTrueLiteral();
       this.productLine = ProductLineFactory.eINSTANCE.createProductLine();
       this.productLine.setMetamodel(in.productModel.getMetatype().getEMFTypeRoot());
-      this.productLine.setReasonerName(reasoner.getName());
+      this.productLine.setReasonerName(in.reasoner.getName());
       this.plPath = workingPath + IPath.SEPARATOR + in.productModel.getName() + "." +
                     this.plModelType.getFileExtension();
       this.mid = outputMIDsByName.get(Out.MODEL);
@@ -100,8 +118,13 @@ public class ToProductLine extends OperatorImpl {
     }
   }
 
+  @Override
+  public void readInputProperties(Properties inputProperties) throws MMINTException {
+    this.reasonerName = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, In.PROP_REASONERNAME, null);
+  }
+
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
-    this.in = new In(inputsByName);
+    this.in = new In(inputsByName, this.reasonerName);
     this.out = new Out(outputMIDsByName, getWorkingPath(), this.in);
   }
 

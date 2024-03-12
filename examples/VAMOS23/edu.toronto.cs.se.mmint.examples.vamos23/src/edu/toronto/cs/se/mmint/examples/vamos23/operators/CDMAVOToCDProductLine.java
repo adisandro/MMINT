@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.examples.vamos23.operators;
 
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import edu.toronto.cs.se.mavo.MAVOPackage;
@@ -28,11 +29,16 @@ import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
 public class CDMAVOToCDProductLine extends ToProductLine {
 
   protected static class CDMAVOToCDPLOut extends Out {
-    public CDMAVOToCDPLOut(Map<String, MID> outputMIDsByName, String workingPath, In in) throws MMINTException {
+    public CDMAVOToCDPLOut(Map<String, MID> outputMIDsByName, String workingPath, In in)
+                          throws MMINTException {
       super(outputMIDsByName, workingPath, in);
-      this.productLine.setReasonerName("LogicNG");
       this.productLine.setMetamodel(edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE);
     }
+  }
+
+  @Override
+  public void readInputProperties(Properties inputProperties) throws MMINTException {
+    this.reasonerName = "LogicNG";
   }
 
   @Override

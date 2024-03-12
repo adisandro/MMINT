@@ -14,13 +14,13 @@ package edu.toronto.cs.se.mmint.examples.vamos23.operators;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
-import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -28,30 +28,31 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.operators.ToProductLine;
-import edu.toronto.cs.se.mmint.productline.reasoning.IProductLineFeaturesTrait;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
 
 public class AnnotatedEcoreToCDProductLine extends ToProductLine {
-  private IProductLineFeaturesTrait reasoner;
 
   protected static class AnnotatedEcoreToCDPLOut extends Out {
-    public AnnotatedEcoreToCDPLOut(Map<String, MID> outputMIDsByName, String workingPath, In in,
-                                   IProductLineFeaturesTrait reasoner) throws MMINTException {
+    public AnnotatedEcoreToCDPLOut(Map<String, MID> outputMIDsByName, String workingPath, In in)
+                                  throws MMINTException {
       super(outputMIDsByName, workingPath, in);
-      this.productLine.setReasonerName(reasoner.getName());
       this.productLine.setMetamodel(edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE);
     }
   }
 
   @Override
+  public void readInputProperties(Properties inputProperties) throws MMINTException {
+    this.reasonerName = "LogicNG";
+  }
+
+  @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
     this.in = new In(inputsByName);
-    this.reasoner = (IProductLineFeaturesTrait) MMINT.getReasoner("LogicNG");
-    this.out = new AnnotatedEcoreToCDPLOut(outputMIDsByName, getWorkingPath(), this.in, this.reasoner);
+    this.out = new AnnotatedEcoreToCDPLOut(outputMIDsByName, getWorkingPath(), this.in);
   }
 
   private void addPresenceCondition(EModelElement eModelObj, PLElement plElem) {
-    var presenceCondition = this.reasoner.getTrueLiteral();
+    var presenceCondition = this.in.reasoner.getTrueLiteral();
     var eAnnotation = eModelObj.getEAnnotation("presence");
     if (eAnnotation != null) {
       var eDetail = eAnnotation.getDetails().get("condition");
@@ -94,7 +95,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
         if (!classIsTrue) {
           plEAttributePC = (plEAttribute.isAlwaysPresent()) ?
             plEClassPC :
-            this.reasoner.simplify(this.reasoner.and(plEAttributePC, plEClassPC));
+            this.in.reasoner.simplify(this.in.reasoner.and(plEAttributePC, plEClassPC));
           plEAttribute.setPresenceCondition(plEAttributePC);
         }
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_OwnedAttributes(), plEClass, plEAttribute)
@@ -110,7 +111,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
         if (!classIsTrue) {
           plEOperationPC = (plEOperation.isAlwaysPresent()) ?
             plEClassPC :
-            this.reasoner.simplify(this.reasoner.and(plEOperationPC, plEClassPC));
+            this.in.reasoner.simplify(this.in.reasoner.and(plEOperationPC, plEClassPC));
           plEOperation.setPresenceCondition(plEOperationPC);
         }
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_OwnedOperations(), plEClass, plEOperation)
@@ -133,7 +134,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
         if (!classIsTrue) {
           plESuperclassPC = (plESuperclass.isAlwaysPresent()) ?
             plEClassPC :
-            this.reasoner.simplify(this.reasoner.and(plESuperclassPC, plEClassPC));
+            this.in.reasoner.simplify(this.in.reasoner.and(plESuperclassPC, plEClassPC));
         }
         createPLReference(ClassDiagramPackage.eINSTANCE.getClass_Superclass(), plEClass, plESuperclass)
           .setPresenceCondition(plESuperclassPC);
@@ -174,19 +175,19 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
           if (!tgtIsTrue) {
             plEReferencePC = (assocIsTrue) ?
               plEClassTgtPC :
-              this.reasoner.simplify(this.reasoner.and(plEReferencePC, plEClassTgtPC));
+              this.in.reasoner.simplify(this.in.reasoner.and(plEReferencePC, plEClassTgtPC));
           }
         }
         else { // !classIsTrue
           if (tgtIsTrue) {
             plEReferencePC = (assocIsTrue) ?
               plEClassPC :
-              this.reasoner.simplify(this.reasoner.and(plEReferencePC, plEClassPC));
+              this.in.reasoner.simplify(this.in.reasoner.and(plEReferencePC, plEClassPC));
           }
           else { // !tgtIsTrue
             plEReferencePC = (assocIsTrue) ?
-              this.reasoner.simplify(this.reasoner.and(plEClassPC, plEClassTgtPC)) :
-              this.reasoner.simplify(this.reasoner.and(plEReferencePC, this.reasoner.and(plEClassPC, plEClassTgtPC)));
+              this.in.reasoner.simplify(this.in.reasoner.and(plEClassPC, plEClassTgtPC)) :
+              this.in.reasoner.simplify(this.in.reasoner.and(plEReferencePC, this.in.reasoner.and(plEClassPC, plEClassTgtPC)));
           }
         }
         plEReference.setPresenceCondition(plEReferencePC);

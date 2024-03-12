@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.types.gsn.productline.design.context;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
@@ -33,6 +34,7 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
+import edu.toronto.cs.se.mmint.productline.operators.ToProductLine;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 
@@ -80,7 +82,9 @@ public class PLImportTemplate extends AbstractExternalJavaAction {
         var templateModel = MIDTypeRegistry.<Model>getType("http://se.cs.toronto.edu/modelepedia/GSN")
           .createInstance(templateSC, templatePath, null);
         var tpl = MIDTypeRegistry.<Operator>getType("edu.toronto.cs.se.mmint.productline.operators.ToProductLine");
-        var tplOut = tpl.startInstance(tpl.checkAllowedInputs(ECollections.asEList(templateModel)), null,
+        var properties = new Properties();
+        properties.setProperty(ToProductLine.In.PROP_REASONERNAME, this.pl.getReasonerName());
+        var tplOut = tpl.startInstance(tpl.checkAllowedInputs(ECollections.asEList(templateModel)), properties,
                                        ECollections.emptyEList(), Map.of(), null);
         var templatePL = (ProductLine) tplOut.getOutputsByName().get("productLine").getEMFInstanceRoot();
         var plSC = this.pl.getClasses().stream()
