@@ -20,7 +20,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
+import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.Reference;
 
 /**
@@ -70,8 +70,8 @@ public class ReferenceItemProvider extends PLElementItemProvider {
                                                              getString("_UI_PropertyDescriptor_description",
                                                                        "_UI_Reference_target_feature",
                                                                        "_UI_Reference_type"),
-                                                             ProductLinePackage.Literals.REFERENCE__TARGET, true, false,
-                                                             true, null, null, null));
+                                                             PLPackage.Literals.REFERENCE__TARGET, true, false, true,
+                                                             null, null, null));
   }
 
   /**
@@ -87,8 +87,8 @@ public class ReferenceItemProvider extends PLElementItemProvider {
                                                              getString("_UI_PropertyDescriptor_description",
                                                                        "_UI_Reference_type_feature",
                                                                        "_UI_Reference_type"),
-                                                             ProductLinePackage.Literals.REFERENCE__TYPE, true, false,
-                                                             true, null, null, null));
+                                                             PLPackage.Literals.REFERENCE__TYPE, true, false, true,
+                                                             null, null, null));
   }
 
   /**
@@ -120,7 +120,7 @@ public class ReferenceItemProvider extends PLElementItemProvider {
    */
   @Override
   public String getText(Object object) {
-    var label = ((Reference) object).getPresenceCondition();
+    String label = ((Reference) object).getPresenceCondition();
     return label == null || label.length() == 0 ? getString("_UI_Reference_type")
       : getString("_UI_Reference_type") + " " + label;
   }

@@ -157,7 +157,7 @@
                 </superType>
              </type>
              <typeEndpoint
-                   targetTypeUri="rel://edu.toronto.cs.se.mmint.productline.mid.PLModelRel">
+                   targetTypeUri="rel://edu.toronto.cs.se.mmint.mid.productline.PLModelRel">
              </typeEndpoint>
             </parameter>
             <parameter>
@@ -212,7 +212,7 @@
                 </superType>
              </type>
              <typeEndpoint
-                   targetTypeUri="rel://edu.toronto.cs.se.mmint.productline.mid.PLModelRel">
+                   targetTypeUri="rel://edu.toronto.cs.se.mmint.mid.productline.PLModelRel">
              </typeEndpoint>
             </parameter>
          </inputs>

@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EAttribute;
  *   <li>{@link edu.toronto.cs.se.mmint.productline.Attribute#getType <em>Type</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getAttribute()
+ * @see edu.toronto.cs.se.mmint.productline.PLPackage#getAttribute()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface Attribute extends PLElement {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' attribute.
    * @see #setValue(String)
-   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getAttribute_Value()
+   * @see edu.toronto.cs.se.mmint.productline.PLPackage#getAttribute_Value()
    * @model required="true"
    * @generated
    */
@@ -60,7 +60,7 @@ public interface Attribute extends PLElement {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' reference.
    * @see #setType(EAttribute)
-   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getAttribute_Type()
+   * @see edu.toronto.cs.se.mmint.productline.PLPackage#getAttribute_Type()
    * @model required="true"
    * @generated
    */

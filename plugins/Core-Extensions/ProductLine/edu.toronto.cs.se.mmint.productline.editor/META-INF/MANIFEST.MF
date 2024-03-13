@@ -5,7 +5,7 @@ Bundle-SymbolicName: edu.toronto.cs.se.mmint.productline.editor;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.mmint.productline.editor
 Bundle-Version: 2.20.99.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorPlugin$Implementation
+Bundle-Activator: edu.toronto.cs.se.mmint.productline.presentation.PLEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: edu.toronto.cs.se.mmint.productline.presentation
@@ -16,6 +16,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
+ edu.toronto.cs.se.mmint.edit;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  edu.toronto.cs.se.mmint
 Bundle-ActivationPolicy: lazy

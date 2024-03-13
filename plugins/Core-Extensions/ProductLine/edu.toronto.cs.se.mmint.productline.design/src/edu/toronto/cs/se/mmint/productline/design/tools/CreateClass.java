@@ -32,8 +32,8 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogLabelProvider;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
 import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 
 public class CreateClass extends AbstractExternalJavaAction {
@@ -82,7 +82,7 @@ public class CreateClass extends AbstractExternalJavaAction {
           .toArray(EClass[]::new);
         var type = MIDDialogs.<EClass>openListDialog("Create Class", "Select Class", classes,
                                                      new ArrayContentProvider(), labelProvider);
-        var clazz = ProductLineFactory.eINSTANCE.createClass();
+        var clazz = PLFactory.eINSTANCE.createClass();
         clazz.setType(type);
         this.productLine.getClasses().add(clazz);
       }

@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -30,9 +31,9 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import edu.toronto.cs.se.mmint.productline.PLFactory;
+import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
-import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.productline.ProductLine} object.
@@ -84,9 +85,9 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
                                                              getString("_UI_PropertyDescriptor_description",
                                                                        "_UI_ProductLine_featuresConstraint_feature",
                                                                        "_UI_ProductLine_type"),
-                                                             ProductLinePackage.Literals.PRODUCT_LINE__FEATURES_CONSTRAINT,
-                                                             true, false, false,
-                                                             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+                                                             PLPackage.Literals.PRODUCT_LINE__FEATURES_CONSTRAINT, true,
+                                                             false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                                                             null, null));
   }
 
   /**
@@ -102,9 +103,9 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
                                                              getString("_UI_PropertyDescriptor_description",
                                                                        "_UI_ProductLine_reasonerName_feature",
                                                                        "_UI_ProductLine_type"),
-                                                             ProductLinePackage.Literals.PRODUCT_LINE__REASONER_NAME,
-                                                             true, false, false,
-                                                             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+                                                             PLPackage.Literals.PRODUCT_LINE__REASONER_NAME, true,
+                                                             false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                                                             null, null));
   }
 
   /**
@@ -120,8 +121,8 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
                                                              getString("_UI_PropertyDescriptor_description",
                                                                        "_UI_ProductLine_classes_feature",
                                                                        "_UI_ProductLine_type"),
-                                                             ProductLinePackage.Literals.PRODUCT_LINE__CLASSES, true,
-                                                             false, true, null, null, null));
+                                                             PLPackage.Literals.PRODUCT_LINE__CLASSES, true, false,
+                                                             true, null, null, null));
   }
 
   /**
@@ -137,8 +138,8 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
                                                              getString("_UI_PropertyDescriptor_description",
                                                                        "_UI_ProductLine_metamodel_feature",
                                                                        "_UI_ProductLine_type"),
-                                                             ProductLinePackage.Literals.PRODUCT_LINE__METAMODEL, true,
-                                                             false, true, null, null, null));
+                                                             PLPackage.Literals.PRODUCT_LINE__METAMODEL, true, false,
+                                                             true, null, null, null));
   }
 
   /**
@@ -153,7 +154,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      this.childrenFeatures.add(ProductLinePackage.Literals.PRODUCT_LINE__CLASSES);
+      this.childrenFeatures.add(PLPackage.Literals.PRODUCT_LINE__CLASSES);
     }
     return this.childrenFeatures;
   }
@@ -200,7 +201,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
    */
   @Override
   public String getText(Object object) {
-    var label = ((ProductLine) object).getReasonerName();
+    String label = ((ProductLine) object).getReasonerName();
     return label == null || label.length() == 0 ? getString("_UI_ProductLine_type")
       : getString("_UI_ProductLine_type") + " " + label;
   }
@@ -217,11 +218,11 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
     updateChildren(notification);
 
     switch (notification.getFeatureID(ProductLine.class)) {
-    case ProductLinePackage.PRODUCT_LINE__FEATURES_CONSTRAINT:
-    case ProductLinePackage.PRODUCT_LINE__REASONER_NAME:
+    case PLPackage.PRODUCT_LINE__FEATURES_CONSTRAINT:
+    case PLPackage.PRODUCT_LINE__REASONER_NAME:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
-    case ProductLinePackage.PRODUCT_LINE__CLASSES:
+    case PLPackage.PRODUCT_LINE__CLASSES:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
       return;
     }
@@ -239,8 +240,8 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add(createChildParameter(ProductLinePackage.Literals.PRODUCT_LINE__CLASSES,
-                                                 ProductLineFactory.eINSTANCE.createClass()));
+    newChildDescriptors.add(createChildParameter(PLPackage.Literals.PRODUCT_LINE__CLASSES, PLFactory.eINSTANCE
+                                                                                                              .createClass()));
   }
 
   /**
@@ -251,7 +252,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
    */
   @Override
   public ResourceLocator getResourceLocator() {
-    return ProductLineEditPlugin.INSTANCE;
+    return ((IChildCreationExtender) this.adapterFactory).getResourceLocator();
   }
 
 }

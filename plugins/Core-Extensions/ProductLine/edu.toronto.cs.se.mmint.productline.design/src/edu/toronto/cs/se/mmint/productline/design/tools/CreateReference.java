@@ -30,7 +30,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.productline.Class;
-import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
+import edu.toronto.cs.se.mmint.productline.PLFactory;
 
 public class CreateReference extends AbstractExternalJavaAction {
 
@@ -77,7 +77,7 @@ public class CreateReference extends AbstractExternalJavaAction {
         }
         var type = MIDDialogs.<EReference>openListDialog("Create Reference", "Select Reference", references,
                                                          contentProvider, labelProvider);
-        var reference = ProductLineFactory.eINSTANCE.createReference();
+        var reference = PLFactory.eINSTANCE.createReference();
         reference.setType(type);
         reference.setTarget(this.tgtClass);
         var pc = reasoner.simplify(

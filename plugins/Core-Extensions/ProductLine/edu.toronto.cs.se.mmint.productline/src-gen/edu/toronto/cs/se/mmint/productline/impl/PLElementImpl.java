@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import edu.toronto.cs.se.mmint.productline.PLElement;
-import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
+import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.PLUtils;
+import edu.toronto.cs.se.mmint.productline.ProductLine;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,7 +72,7 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
    */
   @Override
   protected EClass eStaticClass() {
-    return ProductLinePackage.Literals.PL_ELEMENT;
+    return PLPackage.Literals.PL_ELEMENT;
   }
 
   /**
@@ -101,9 +101,10 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
   public void setPresenceCondition(String newPresenceCondition) {
     var oldPresenceCondition = this.presenceCondition;
     this.presenceCondition = newPresenceCondition;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.PL_ELEMENT__PRESENCE_CONDITION,
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, PLPackage.PL_ELEMENT__PRESENCE_CONDITION,
                                     oldPresenceCondition, this.presenceCondition));
+    }
   }
 
   /**
@@ -130,7 +131,7 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case ProductLinePackage.PL_ELEMENT__PRESENCE_CONDITION:
+    case PLPackage.PL_ELEMENT__PRESENCE_CONDITION:
       return getPresenceCondition();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -144,7 +145,7 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case ProductLinePackage.PL_ELEMENT__PRESENCE_CONDITION:
+    case PLPackage.PL_ELEMENT__PRESENCE_CONDITION:
       setPresenceCondition((String) newValue);
       return;
     }
@@ -159,7 +160,7 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case ProductLinePackage.PL_ELEMENT__PRESENCE_CONDITION:
+    case PLPackage.PL_ELEMENT__PRESENCE_CONDITION:
       setPresenceCondition(PLElementImpl.PRESENCE_CONDITION_EDEFAULT);
       return;
     }
@@ -174,7 +175,7 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case ProductLinePackage.PL_ELEMENT__PRESENCE_CONDITION:
+    case PLPackage.PL_ELEMENT__PRESENCE_CONDITION:
       return PLElementImpl.PRESENCE_CONDITION_EDEFAULT == null ? this.presenceCondition != null
         : !PLElementImpl.PRESENCE_CONDITION_EDEFAULT.equals(this.presenceCondition);
     }
@@ -188,8 +189,9 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
    */
   @Override
   public String toString() {
-    if (eIsProxy())
+    if (eIsProxy()) {
       return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (presenceCondition: ");

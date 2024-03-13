@@ -5,18 +5,18 @@ Bundle-SymbolicName: edu.toronto.cs.se.mmint.productline.edit;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.mmint.productline.edit
 Bundle-Version: 2.20.99.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: edu.toronto.cs.se.mmint.productline.provider.ProductLineEditPlugin$Implementation
+Bundle-Activator: edu.toronto.cs.se.mmint.productline.provider.PLEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: edu.toronto.cs.se.mmint.productline.mid.provider,
+Export-Package: edu.toronto.cs.se.mmint.mid.productline.provider,
  edu.toronto.cs.se.mmint.productline.provider
 Require-Bundle: org.eclipse.core.runtime,
- edu.toronto.cs.se.mmint.productline,
- org.eclipse.emf.edit,
+ edu.toronto.cs.se.mmint.productline;visibility:=reexport,
+ org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.edit,
  org.eclipse.jdt.annotation;resolution:=optional,
- edu.toronto.cs.se.mmint,
- edu.toronto.cs.se.mmint.edit
+ edu.toronto.cs.se.mmint;visibility:=reexport,
+ edu.toronto.cs.se.mmint.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-21

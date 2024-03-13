@@ -22,8 +22,8 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
-import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
+import edu.toronto.cs.se.mmint.productline.PLFactory;
+import edu.toronto.cs.se.mmint.productline.PLPackage;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.productline.Class} object.
@@ -73,8 +73,8 @@ public class ClassItemProvider extends PLElementItemProvider {
                                                              getString("_UI_PropertyDescriptor_description",
                                                                        "_UI_Class_referencesAsTarget_feature",
                                                                        "_UI_Class_type"),
-                                                             ProductLinePackage.Literals.CLASS__REFERENCES_AS_TARGET,
-                                                             true, false, true, null, null, null));
+                                                             PLPackage.Literals.CLASS__REFERENCES_AS_TARGET, true,
+                                                             false, true, null, null, null));
   }
 
   /**
@@ -90,8 +90,8 @@ public class ClassItemProvider extends PLElementItemProvider {
                                                              getString("_UI_PropertyDescriptor_description",
                                                                        "_UI_Class_attributes_feature",
                                                                        "_UI_Class_type"),
-                                                             ProductLinePackage.Literals.CLASS__ATTRIBUTES, true, false,
-                                                             true, null, null, null));
+                                                             PLPackage.Literals.CLASS__ATTRIBUTES, true, false, true,
+                                                             null, null, null));
   }
 
   /**
@@ -105,8 +105,8 @@ public class ClassItemProvider extends PLElementItemProvider {
                                                              getResourceLocator(), getString("_UI_Class_type_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
                                                                        "_UI_Class_type_feature", "_UI_Class_type"),
-                                                             ProductLinePackage.Literals.CLASS__TYPE, true, false, true,
-                                                             null, null, null));
+                                                             PLPackage.Literals.CLASS__TYPE, true, false, true, null,
+                                                             null, null));
   }
 
   /**
@@ -121,8 +121,8 @@ public class ClassItemProvider extends PLElementItemProvider {
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      this.childrenFeatures.add(ProductLinePackage.Literals.CLASS__ATTRIBUTES);
-      this.childrenFeatures.add(ProductLinePackage.Literals.CLASS__REFERENCES);
+      this.childrenFeatures.add(PLPackage.Literals.CLASS__ATTRIBUTES);
+      this.childrenFeatures.add(PLPackage.Literals.CLASS__REFERENCES);
     }
     return this.childrenFeatures;
   }
@@ -169,7 +169,7 @@ public class ClassItemProvider extends PLElementItemProvider {
    */
   @Override
   public String getText(Object object) {
-    var label = ((edu.toronto.cs.se.mmint.productline.Class) object).getPresenceCondition();
+    String label = ((edu.toronto.cs.se.mmint.productline.Class) object).getPresenceCondition();
     return label == null || label.length() == 0 ? getString("_UI_Class_type")
       : getString("_UI_Class_type") + " " + label;
   }
@@ -186,8 +186,8 @@ public class ClassItemProvider extends PLElementItemProvider {
     updateChildren(notification);
 
     switch (notification.getFeatureID(edu.toronto.cs.se.mmint.productline.Class.class)) {
-    case ProductLinePackage.CLASS__ATTRIBUTES:
-    case ProductLinePackage.CLASS__REFERENCES:
+    case PLPackage.CLASS__ATTRIBUTES:
+    case PLPackage.CLASS__REFERENCES:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
       return;
     }
@@ -205,11 +205,11 @@ public class ClassItemProvider extends PLElementItemProvider {
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add(createChildParameter(ProductLinePackage.Literals.CLASS__ATTRIBUTES,
-                                                 ProductLineFactory.eINSTANCE.createAttribute()));
+    newChildDescriptors.add(createChildParameter(PLPackage.Literals.CLASS__ATTRIBUTES, PLFactory.eINSTANCE
+                                                                                                          .createAttribute()));
 
-    newChildDescriptors.add(createChildParameter(ProductLinePackage.Literals.CLASS__REFERENCES,
-                                                 ProductLineFactory.eINSTANCE.createReference()));
+    newChildDescriptors.add(createChildParameter(PLPackage.Literals.CLASS__REFERENCES, PLFactory.eINSTANCE
+                                                                                                          .createReference()));
   }
 
 }

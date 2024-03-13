@@ -27,8 +27,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 
 /**
@@ -124,7 +124,7 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
    */
   @Override
   protected EClass eStaticClass() {
-    return ProductLinePackage.Literals.PRODUCT_LINE;
+    return PLPackage.Literals.PRODUCT_LINE;
   }
 
   /**
@@ -146,9 +146,10 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
   public void setFeaturesConstraint(String newFeaturesConstraint) {
     var oldFeaturesConstraint = this.featuresConstraint;
     this.featuresConstraint = newFeaturesConstraint;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.PRODUCT_LINE__FEATURES_CONSTRAINT,
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, PLPackage.PRODUCT_LINE__FEATURES_CONSTRAINT,
                                     oldFeaturesConstraint, this.featuresConstraint));
+    }
   }
 
   /**
@@ -170,9 +171,10 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
   public void setReasonerName(String newReasonerName) {
     var oldReasonerName = this.reasonerName;
     this.reasonerName = newReasonerName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.PRODUCT_LINE__REASONER_NAME,
-                                    oldReasonerName, this.reasonerName));
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, PLPackage.PRODUCT_LINE__REASONER_NAME, oldReasonerName,
+                                    this.reasonerName));
+    }
   }
 
   /**
@@ -185,7 +187,7 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
     if (this.classes == null) {
       this.classes = new EObjectContainmentEList<>(edu.toronto.cs.se.mmint.productline.Class.class,
                                                                                        this,
-                                                                                       ProductLinePackage.PRODUCT_LINE__CLASSES);
+                                                                                       PLPackage.PRODUCT_LINE__CLASSES);
     }
     return this.classes;
   }
@@ -201,9 +203,10 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
       var oldMetamodel = (InternalEObject) this.metamodel;
       this.metamodel = (EPackage) eResolveProxy(oldMetamodel);
       if (this.metamodel != oldMetamodel) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProductLinePackage.PRODUCT_LINE__METAMODEL,
-                                        oldMetamodel, this.metamodel));
+        if (eNotificationRequired()) {
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PLPackage.PRODUCT_LINE__METAMODEL, oldMetamodel,
+                                        this.metamodel));
+        }
       }
     }
     return this.metamodel;
@@ -227,9 +230,10 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
   public void setMetamodel(EPackage newMetamodel) {
     var oldMetamodel = this.metamodel;
     this.metamodel = newMetamodel;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.PRODUCT_LINE__METAMODEL, oldMetamodel,
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, PLPackage.PRODUCT_LINE__METAMODEL, oldMetamodel,
                                     this.metamodel));
+    }
   }
 
   /**
@@ -252,7 +256,7 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-    case ProductLinePackage.PRODUCT_LINE__CLASSES:
+    case PLPackage.PRODUCT_LINE__CLASSES:
       return ((InternalEList<?>) getClasses()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -266,15 +270,16 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case ProductLinePackage.PRODUCT_LINE__FEATURES_CONSTRAINT:
+    case PLPackage.PRODUCT_LINE__FEATURES_CONSTRAINT:
       return getFeaturesConstraint();
-    case ProductLinePackage.PRODUCT_LINE__REASONER_NAME:
+    case PLPackage.PRODUCT_LINE__REASONER_NAME:
       return getReasonerName();
-    case ProductLinePackage.PRODUCT_LINE__CLASSES:
+    case PLPackage.PRODUCT_LINE__CLASSES:
       return getClasses();
-    case ProductLinePackage.PRODUCT_LINE__METAMODEL:
-      if (resolve)
+    case PLPackage.PRODUCT_LINE__METAMODEL:
+      if (resolve) {
         return getMetamodel();
+      }
       return basicGetMetamodel();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -289,17 +294,17 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case ProductLinePackage.PRODUCT_LINE__FEATURES_CONSTRAINT:
+    case PLPackage.PRODUCT_LINE__FEATURES_CONSTRAINT:
       setFeaturesConstraint((String) newValue);
       return;
-    case ProductLinePackage.PRODUCT_LINE__REASONER_NAME:
+    case PLPackage.PRODUCT_LINE__REASONER_NAME:
       setReasonerName((String) newValue);
       return;
-    case ProductLinePackage.PRODUCT_LINE__CLASSES:
+    case PLPackage.PRODUCT_LINE__CLASSES:
       getClasses().clear();
       getClasses().addAll((Collection<? extends edu.toronto.cs.se.mmint.productline.Class>) newValue);
       return;
-    case ProductLinePackage.PRODUCT_LINE__METAMODEL:
+    case PLPackage.PRODUCT_LINE__METAMODEL:
       setMetamodel((EPackage) newValue);
       return;
     }
@@ -314,16 +319,16 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case ProductLinePackage.PRODUCT_LINE__FEATURES_CONSTRAINT:
+    case PLPackage.PRODUCT_LINE__FEATURES_CONSTRAINT:
       setFeaturesConstraint(ProductLineImpl.FEATURES_CONSTRAINT_EDEFAULT);
       return;
-    case ProductLinePackage.PRODUCT_LINE__REASONER_NAME:
+    case PLPackage.PRODUCT_LINE__REASONER_NAME:
       setReasonerName(ProductLineImpl.REASONER_NAME_EDEFAULT);
       return;
-    case ProductLinePackage.PRODUCT_LINE__CLASSES:
+    case PLPackage.PRODUCT_LINE__CLASSES:
       getClasses().clear();
       return;
-    case ProductLinePackage.PRODUCT_LINE__METAMODEL:
+    case PLPackage.PRODUCT_LINE__METAMODEL:
       setMetamodel((EPackage) null);
       return;
     }
@@ -338,14 +343,14 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case ProductLinePackage.PRODUCT_LINE__FEATURES_CONSTRAINT:
+    case PLPackage.PRODUCT_LINE__FEATURES_CONSTRAINT:
       return ProductLineImpl.FEATURES_CONSTRAINT_EDEFAULT == null ? this.featuresConstraint != null
         : !ProductLineImpl.FEATURES_CONSTRAINT_EDEFAULT.equals(this.featuresConstraint);
-    case ProductLinePackage.PRODUCT_LINE__REASONER_NAME:
+    case PLPackage.PRODUCT_LINE__REASONER_NAME:
       return ProductLineImpl.REASONER_NAME_EDEFAULT == null ? this.reasonerName != null : !ProductLineImpl.REASONER_NAME_EDEFAULT.equals(this.reasonerName);
-    case ProductLinePackage.PRODUCT_LINE__CLASSES:
+    case PLPackage.PRODUCT_LINE__CLASSES:
       return this.classes != null && !this.classes.isEmpty();
-    case ProductLinePackage.PRODUCT_LINE__METAMODEL:
+    case PLPackage.PRODUCT_LINE__METAMODEL:
       return this.metamodel != null;
     }
     return super.eIsSet(featureID);
@@ -358,8 +363,9 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
    */
   @Override
   public String toString() {
-    if (eIsProxy())
+    if (eIsProxy()) {
       return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (featuresConstraint: ");

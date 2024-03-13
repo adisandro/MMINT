@@ -13,19 +13,18 @@
         Alessio Di Sandro - Implementation
 -->
 <plugin>
-
    <extension point="org.eclipse.ui.newWizards">
       <!-- @generated productline -->
       <category
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID"
-            name="%_UI_ProductLineModelWizard_label"
-            class="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizard"
+            id="edu.toronto.cs.se.mmint.productline.presentation.PLModelWizardID"
+            name="%_UI_PLModelWizard_label"
+            class="edu.toronto.cs.se.mmint.productline.presentation.PLModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/ProductLineModelFile.gif">
-         <description>%_UI_ProductLineModelWizard_description</description>
+            icon="icons/full/obj16/PLModelFile.gif">
+         <description>%_UI_PLModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
@@ -33,26 +32,25 @@
    <extension point="org.eclipse.ui.editors">
       <!-- @generated productline -->
       <editor
-            id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID"
-            name="%_UI_ProductLineEditor_label"
-            icon="icons/full/obj16/ProductLineModelFile.gif"
+            id="edu.toronto.cs.se.mmint.productline.presentation.PLEditorID"
+            name="%_UI_PLEditor_label"
+            icon="icons/full/obj16/PLModelFile.gif"
             extensions="productline"
-            class="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditor"
-            contributorClass="edu.toronto.cs.se.mmint.productline.presentation.ProductLineActionBarContributor">
+            class="edu.toronto.cs.se.mmint.productline.presentation.PLEditor"
+            contributorClass="edu.toronto.cs.se.mmint.productline.presentation.PLActionBarContributor">
       </editor>
    </extension>
 
    <extension
          point="edu.toronto.cs.se.mmint.editors">
       <editorType
-            id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID"
+            id="edu.toronto.cs.se.mmint.productline.presentation.PLEditorID"
             modelTypeUri="model://edu.toronto.cs.se.mmint.productline"
-            wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+            wizardId="edu.toronto.cs.se.mmint.productline.presentation.PLModelWizardID">
          <type
                name="ProductLine EMF Editor"
                uri="edu.toronto.cs.se.mmint.productline.editor">
          </type>
       </editorType>
    </extension>
-
 </plugin>

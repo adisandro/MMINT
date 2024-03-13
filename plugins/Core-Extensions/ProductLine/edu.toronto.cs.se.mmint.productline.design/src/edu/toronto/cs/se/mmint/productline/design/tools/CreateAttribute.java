@@ -27,7 +27,7 @@ import org.eclipse.sirius.business.api.session.SessionManager;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.productline.Class;
-import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
+import edu.toronto.cs.se.mmint.productline.PLFactory;
 
 public class CreateAttribute extends AbstractExternalJavaAction {
 
@@ -66,7 +66,7 @@ public class CreateAttribute extends AbstractExternalJavaAction {
         var contentProvider = new ArrayContentProvider();
         var type = MIDDialogs.<EAttribute>openListDialog("Create Attribute", "Select Attribute",
                                                          getAttributes(this.clazz), contentProvider, labelProvider);
-        var attribute = ProductLineFactory.eINSTANCE.createAttribute();
+        var attribute = PLFactory.eINSTANCE.createAttribute();
         attribute.setType(type);
         attribute.setPresenceCondition(this.clazz.getPresenceCondition());
         this.clazz.getAttributes().add(attribute);

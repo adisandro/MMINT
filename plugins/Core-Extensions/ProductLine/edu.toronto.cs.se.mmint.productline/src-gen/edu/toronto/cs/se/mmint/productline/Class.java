@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link edu.toronto.cs.se.mmint.productline.Class#getType <em>Type</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getClass_()
+ * @see edu.toronto.cs.se.mmint.productline.PLPackage#getClass_()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface Class extends PLElement {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>References As Target</em>' reference list.
-   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getClass_ReferencesAsTarget()
+   * @see edu.toronto.cs.se.mmint.productline.PLPackage#getClass_ReferencesAsTarget()
    * @see edu.toronto.cs.se.mmint.productline.Reference#getTarget
    * @model opposite="target"
    * @generated
@@ -55,7 +55,7 @@ public interface Class extends PLElement {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Attributes</em>' containment reference list.
-   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getClass_Attributes()
+   * @see edu.toronto.cs.se.mmint.productline.PLPackage#getClass_Attributes()
    * @model containment="true"
    * @generated
    */
@@ -67,7 +67,7 @@ public interface Class extends PLElement {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>References</em>' containment reference list.
-   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getClass_References()
+   * @see edu.toronto.cs.se.mmint.productline.PLPackage#getClass_References()
    * @model containment="true"
    * @generated
    */
@@ -79,7 +79,7 @@ public interface Class extends PLElement {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' reference.
    * @see #setType(EClass)
-   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getClass_Type()
+   * @see edu.toronto.cs.se.mmint.productline.PLPackage#getClass_Type()
    * @model required="true"
    * @generated
    */

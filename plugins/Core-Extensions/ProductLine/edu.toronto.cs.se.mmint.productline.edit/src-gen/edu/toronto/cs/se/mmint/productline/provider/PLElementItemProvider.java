@@ -19,6 +19,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -30,7 +31,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import edu.toronto.cs.se.mmint.productline.PLElement;
-import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
+import edu.toronto.cs.se.mmint.productline.PLPackage;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.productline.PLElement} object.
@@ -79,9 +80,9 @@ public class PLElementItemProvider extends ItemProviderAdapter implements IEditi
                                                              getString("_UI_PropertyDescriptor_description",
                                                                        "_UI_PLElement_presenceCondition_feature",
                                                                        "_UI_PLElement_type"),
-                                                             ProductLinePackage.Literals.PL_ELEMENT__PRESENCE_CONDITION,
-                                                             true, false, false,
-                                                             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+                                                             PLPackage.Literals.PL_ELEMENT__PRESENCE_CONDITION, true,
+                                                             false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                                                             null, null));
   }
 
   /**
@@ -113,7 +114,7 @@ public class PLElementItemProvider extends ItemProviderAdapter implements IEditi
    */
   @Override
   public String getText(Object object) {
-    var label = ((PLElement) object).getPresenceCondition();
+    String label = ((PLElement) object).getPresenceCondition();
     return label == null || label.length() == 0 ? getString("_UI_PLElement_type")
       : getString("_UI_PLElement_type") + " " + label;
   }
@@ -130,7 +131,7 @@ public class PLElementItemProvider extends ItemProviderAdapter implements IEditi
     updateChildren(notification);
 
     switch (notification.getFeatureID(PLElement.class)) {
-    case ProductLinePackage.PL_ELEMENT__PRESENCE_CONDITION:
+    case PLPackage.PL_ELEMENT__PRESENCE_CONDITION:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     }
@@ -157,7 +158,7 @@ public class PLElementItemProvider extends ItemProviderAdapter implements IEditi
    */
   @Override
   public ResourceLocator getResourceLocator() {
-    return ProductLineEditPlugin.INSTANCE;
+    return ((IChildCreationExtender) this.adapterFactory).getResourceLocator();
   }
 
 }

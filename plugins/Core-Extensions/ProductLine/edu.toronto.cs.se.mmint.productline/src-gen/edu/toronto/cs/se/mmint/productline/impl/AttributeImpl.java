@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.mmint.productline.Attribute;
+import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,7 +81,7 @@ public class AttributeImpl extends PLElementImpl implements Attribute {
    */
   @Override
   protected EClass eStaticClass() {
-    return ProductLinePackage.Literals.ATTRIBUTE;
+    return PLPackage.Literals.ATTRIBUTE;
   }
 
   /**
@@ -103,8 +103,9 @@ public class AttributeImpl extends PLElementImpl implements Attribute {
   public void setValue(String newValue) {
     var oldValue = this.value;
     this.value = newValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.ATTRIBUTE__VALUE, oldValue, this.value));
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, PLPackage.ATTRIBUTE__VALUE, oldValue, this.value));
+    }
   }
 
   /**
@@ -118,8 +119,9 @@ public class AttributeImpl extends PLElementImpl implements Attribute {
       var oldType = (InternalEObject) this.type;
       this.type = (EAttribute) eResolveProxy(oldType);
       if (this.type != oldType) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProductLinePackage.ATTRIBUTE__TYPE, oldType, this.type));
+        if (eNotificationRequired()) {
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PLPackage.ATTRIBUTE__TYPE, oldType, this.type));
+        }
       }
     }
     return this.type;
@@ -143,8 +145,9 @@ public class AttributeImpl extends PLElementImpl implements Attribute {
   public void setType(EAttribute newType) {
     var oldType = this.type;
     this.type = newType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.ATTRIBUTE__TYPE, oldType, this.type));
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, PLPackage.ATTRIBUTE__TYPE, oldType, this.type));
+    }
   }
 
   /**
@@ -155,11 +158,12 @@ public class AttributeImpl extends PLElementImpl implements Attribute {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case ProductLinePackage.ATTRIBUTE__VALUE:
+    case PLPackage.ATTRIBUTE__VALUE:
       return getValue();
-    case ProductLinePackage.ATTRIBUTE__TYPE:
-      if (resolve)
+    case PLPackage.ATTRIBUTE__TYPE:
+      if (resolve) {
         return getType();
+      }
       return basicGetType();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -173,10 +177,10 @@ public class AttributeImpl extends PLElementImpl implements Attribute {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case ProductLinePackage.ATTRIBUTE__VALUE:
+    case PLPackage.ATTRIBUTE__VALUE:
       setValue((String) newValue);
       return;
-    case ProductLinePackage.ATTRIBUTE__TYPE:
+    case PLPackage.ATTRIBUTE__TYPE:
       setType((EAttribute) newValue);
       return;
     }
@@ -191,10 +195,10 @@ public class AttributeImpl extends PLElementImpl implements Attribute {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case ProductLinePackage.ATTRIBUTE__VALUE:
+    case PLPackage.ATTRIBUTE__VALUE:
       setValue(AttributeImpl.VALUE_EDEFAULT);
       return;
-    case ProductLinePackage.ATTRIBUTE__TYPE:
+    case PLPackage.ATTRIBUTE__TYPE:
       setType((EAttribute) null);
       return;
     }
@@ -209,9 +213,9 @@ public class AttributeImpl extends PLElementImpl implements Attribute {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case ProductLinePackage.ATTRIBUTE__VALUE:
+    case PLPackage.ATTRIBUTE__VALUE:
       return AttributeImpl.VALUE_EDEFAULT == null ? this.value != null : !AttributeImpl.VALUE_EDEFAULT.equals(this.value);
-    case ProductLinePackage.ATTRIBUTE__TYPE:
+    case PLPackage.ATTRIBUTE__TYPE:
       return this.type != null;
     }
     return super.eIsSet(featureID);
@@ -224,10 +228,11 @@ public class AttributeImpl extends PLElementImpl implements Attribute {
    */
   @Override
   public String toString() {
-    if (eIsProxy())
+    if (eIsProxy()) {
       return super.toString();
+    }
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (value: ");
     result.append(this.value);
     result.append(')');

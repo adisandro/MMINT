@@ -27,8 +27,8 @@ import org.eclipse.sirius.business.api.session.SessionManager;
 
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
+import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
 
 public abstract class CreateNode extends AbstractExternalJavaAction {
 
@@ -67,15 +67,15 @@ public abstract class CreateNode extends AbstractExternalJavaAction {
     @Override
     protected void doExecute() {
       var classType = (EClass) this.productLine.getMetamodel().getEClassifier(this.classType);
-      var clazz = ProductLineFactory.eINSTANCE.createClass();
+      var clazz = PLFactory.eINSTANCE.createClass();
       clazz.setType(classType);
       this.productLine.getClasses().add(clazz);
-      var reference = ProductLineFactory.eINSTANCE.createReference();
+      var reference = PLFactory.eINSTANCE.createReference();
       reference.setType(getContainmentType());
       reference.setTarget(clazz);
       getContainer().getReferences().add(reference);
       for (var attrType : classType.getEAllAttributes()) {
-        var attribute = ProductLineFactory.eINSTANCE.createAttribute();
+        var attribute = PLFactory.eINSTANCE.createAttribute();
         attribute.setType(attrType);
         clazz.getAttributes().add(attribute);
       }

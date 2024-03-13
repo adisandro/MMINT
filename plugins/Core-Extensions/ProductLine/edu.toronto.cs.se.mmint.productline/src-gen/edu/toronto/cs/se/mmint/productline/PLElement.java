@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link edu.toronto.cs.se.mmint.productline.PLElement#getPresenceCondition <em>Presence Condition</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getPLElement()
+ * @see edu.toronto.cs.se.mmint.productline.PLPackage#getPLElement()
  * @model abstract="true"
  * @generated
  */
@@ -37,7 +37,7 @@ public interface PLElement extends EObject {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Presence Condition</em>' attribute.
    * @see #setPresenceCondition(String)
-   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getPLElement_PresenceCondition()
+   * @see edu.toronto.cs.se.mmint.productline.PLPackage#getPLElement_PresenceCondition()
    * @model
    * @generated
    */

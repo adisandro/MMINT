@@ -6,15 +6,15 @@ Bundle-Version: 2.20.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: edu.toronto.cs.se.mmint.productline,
+Export-Package: edu.toronto.cs.se.mmint.mid.productline,
+ edu.toronto.cs.se.mmint.mid.productline.impl,
+ edu.toronto.cs.se.mmint.mid.productline.util,
+ edu.toronto.cs.se.mmint.productline,
  edu.toronto.cs.se.mmint.productline.impl,
- edu.toronto.cs.se.mmint.productline.mid,
- edu.toronto.cs.se.mmint.productline.mid.impl,
- edu.toronto.cs.se.mmint.productline.mid.util,
  edu.toronto.cs.se.mmint.productline.reasoning,
  edu.toronto.cs.se.mmint.productline.util,
  edu.toronto.cs.se.mmint.productline.viatra
-Require-Bundle: org.eclipse.emf.ecore,
+Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.validation,
  org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -25,7 +25,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.viatra.query.runtime.localsearch,
  org.eclipse.viatra.query.patternlanguage.emf,
  org.eclipse.jdt.annotation;resolution:=optional,
- edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.mmint;visibility:=reexport,
  edu.toronto.cs.se.mmint.viatra
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-ActivationPolicy: lazy

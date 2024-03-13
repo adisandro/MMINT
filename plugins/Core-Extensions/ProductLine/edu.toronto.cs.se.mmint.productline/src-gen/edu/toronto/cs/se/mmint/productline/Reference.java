@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>{@link edu.toronto.cs.se.mmint.productline.Reference#getType <em>Type</em>}</li>
  * </ul>
  *
- * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getReference()
+ * @see edu.toronto.cs.se.mmint.productline.PLPackage#getReference()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface Reference extends PLElement {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Target</em>' reference.
    * @see #setTarget(edu.toronto.cs.se.mmint.productline.Class)
-   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getReference_Target()
+   * @see edu.toronto.cs.se.mmint.productline.PLPackage#getReference_Target()
    * @see edu.toronto.cs.se.mmint.productline.Class#getReferencesAsTarget
    * @model opposite="referencesAsTarget" required="true"
    * @generated
@@ -62,7 +62,7 @@ public interface Reference extends PLElement {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' reference.
    * @see #setType(EReference)
-   * @see edu.toronto.cs.se.mmint.productline.ProductLinePackage#getReference_Type()
+   * @see edu.toronto.cs.se.mmint.productline.PLPackage#getReference_Type()
    * @model required="true"
    * @generated
    */

@@ -3,17 +3,17 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
     modelDirectory="/edu.toronto.cs.se.mmint.productline/src-gen" creationIcons="false"
     editDirectory="/edu.toronto.cs.se.mmint.productline.edit/src-gen" editorDirectory="/edu.toronto.cs.se.mmint.productline.editor/src-gen"
-    modelPluginID="edu.toronto.cs.se.mmint.productline" modelName="ProductLine" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="20.0"
+    modelPluginID="edu.toronto.cs.se.mmint.productline" modelName="PL" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="21.0"
     copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mid"
     importOrganizing="true">
   <foreignModel>productline.ecore</foreignModel>
-  <foreignModel>productline.mid.ecore</foreignModel>
+  <foreignModel>mid.productline.ecore</foreignModel>
   <testsDirectory xsi:nil="true"/>
-  <genPackages prefix="ProductLine" basePackage="edu.toronto.cs.se.mmint" disposableProviderFactory="true"
-      ecorePackage="productline.ecore#/">
+  <genPackages prefix="PL" basePackage="edu.toronto.cs.se.mmint" disposableProviderFactory="true"
+      extensibleProviderFactory="true" fileExtensions="productline" ecorePackage="productline.ecore#/">
     <genDataTypes ecoreDataType="productline.ecore#//MMINTException"/>
-    <genDataTypes ecoreDataType="productline.ecore#//IProductLineFeaturesTrait"/>
+    <genDataTypes ecoreDataType="productline.ecore#//IPLFeaturesTrait"/>
     <genClasses ecoreClass="productline.ecore#//ProductLine">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute productline.ecore#//ProductLine/featuresConstraint"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute productline.ecore#//ProductLine/reasonerName"/>
@@ -41,24 +41,24 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Attribute/type"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="ProductLineMID" basePackage="edu.toronto.cs.se.mmint.productline"
-      disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="productline.mid.ecore#/">
-    <genClasses ecoreClass="productline.mid.ecore#//PLModelRel"/>
-    <genClasses ecoreClass="productline.mid.ecore#//PLBinaryModelRel"/>
-    <genClasses ecoreClass="productline.mid.ecore#//PLMapping">
-      <genOperations ecoreOperation="productline.mid.ecore#//PLMapping/toMIDCustomPrintLabel"/>
-      <genOperations ecoreOperation="productline.mid.ecore#//PLMapping/toMIDCustomEditLabel"/>
-      <genOperations ecoreOperation="productline.mid.ecore#//PLMapping/updateMIDCustomLabel">
-        <genParameters ecoreParameter="productline.mid.ecore#//PLMapping/updateMIDCustomLabel/newLabel"/>
+  <genPackages prefix="MIDPL" basePackage="edu.toronto.cs.se.mmint.mid" disposableProviderFactory="true"
+      childCreationExtenders="true" fileExtensions="mid" ecorePackage="mid.productline.ecore#/">
+    <genClasses ecoreClass="mid.productline.ecore#//PLModelRel"/>
+    <genClasses ecoreClass="mid.productline.ecore#//PLBinaryModelRel"/>
+    <genClasses ecoreClass="mid.productline.ecore#//PLMapping">
+      <genOperations ecoreOperation="mid.productline.ecore#//PLMapping/toMIDCustomPrintLabel"/>
+      <genOperations ecoreOperation="mid.productline.ecore#//PLMapping/toMIDCustomEditLabel"/>
+      <genOperations ecoreOperation="mid.productline.ecore#//PLMapping/updateMIDCustomLabel">
+        <genParameters ecoreParameter="mid.productline.ecore#//PLMapping/updateMIDCustomLabel/newLabel"/>
       </genOperations>
     </genClasses>
-    <genClasses ecoreClass="productline.mid.ecore#//PLBinaryMapping"/>
-    <genClasses ecoreClass="productline.mid.ecore#//PLMappingReference">
-      <genOperations ecoreOperation="productline.mid.ecore#//PLMappingReference/getObject"
+    <genClasses ecoreClass="mid.productline.ecore#//PLBinaryMapping"/>
+    <genClasses ecoreClass="mid.productline.ecore#//PLMappingReference">
+      <genOperations ecoreOperation="mid.productline.ecore#//PLMappingReference/getObject"
           body="var object = super.getObject();&#xA;return (object == null) ? null : (PLMapping) object;"/>
     </genClasses>
-    <genClasses ecoreClass="productline.mid.ecore#//PLBinaryMappingReference">
-      <genOperations ecoreOperation="productline.mid.ecore#//PLBinaryMappingReference/getObject"
+    <genClasses ecoreClass="mid.productline.ecore#//PLBinaryMappingReference">
+      <genOperations ecoreOperation="mid.productline.ecore#//PLBinaryMappingReference/getObject"
           body="var object = super.getObject();&#xA;return (object == null) ? null : (PLBinaryMapping) object;"/>
     </genClasses>
   </genPackages>

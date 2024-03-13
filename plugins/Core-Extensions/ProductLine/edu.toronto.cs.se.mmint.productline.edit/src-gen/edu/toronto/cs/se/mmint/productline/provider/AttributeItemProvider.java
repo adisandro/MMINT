@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import edu.toronto.cs.se.mmint.productline.Attribute;
-import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
+import edu.toronto.cs.se.mmint.productline.PLPackage;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.productline.Attribute} object.
@@ -72,9 +72,8 @@ public class AttributeItemProvider extends PLElementItemProvider {
                                                              getString("_UI_PropertyDescriptor_description",
                                                                        "_UI_Attribute_value_feature",
                                                                        "_UI_Attribute_type"),
-                                                             ProductLinePackage.Literals.ATTRIBUTE__VALUE, true, false,
-                                                             false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-                                                             null));
+                                                             PLPackage.Literals.ATTRIBUTE__VALUE, true, false, false,
+                                                             ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -90,8 +89,8 @@ public class AttributeItemProvider extends PLElementItemProvider {
                                                              getString("_UI_PropertyDescriptor_description",
                                                                        "_UI_Attribute_type_feature",
                                                                        "_UI_Attribute_type"),
-                                                             ProductLinePackage.Literals.ATTRIBUTE__TYPE, true, false,
-                                                             true, null, null, null));
+                                                             PLPackage.Literals.ATTRIBUTE__TYPE, true, false, true,
+                                                             null, null, null));
   }
 
   /**
@@ -123,7 +122,7 @@ public class AttributeItemProvider extends PLElementItemProvider {
    */
   @Override
   public String getText(Object object) {
-    var label = ((Attribute) object).getPresenceCondition();
+    String label = ((Attribute) object).getPresenceCondition();
     return label == null || label.length() == 0 ? getString("_UI_Attribute_type")
       : getString("_UI_Attribute_type") + " " + label;
   }
@@ -140,7 +139,7 @@ public class AttributeItemProvider extends PLElementItemProvider {
     updateChildren(notification);
 
     switch (notification.getFeatureID(Attribute.class)) {
-    case ProductLinePackage.ATTRIBUTE__VALUE:
+    case PLPackage.ATTRIBUTE__VALUE:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     }

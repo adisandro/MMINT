@@ -42,8 +42,8 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.Class;
+import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
 import edu.toronto.cs.se.mmint.productline.Reference;
 import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 
@@ -103,7 +103,7 @@ public class ToProductLine extends OperatorImpl {
     public Out(Map<String, MID> outputMIDsByName, String workingPath, In in) throws MMINTException {
       this.plModelType = MIDTypeRegistry.<Model>getType(Out.MODEL_TYPE_ID);
       this.trueLiteral = in.reasoner.getTrueLiteral();
-      this.productLine = ProductLineFactory.eINSTANCE.createProductLine();
+      this.productLine = PLFactory.eINSTANCE.createProductLine();
       this.productLine.setMetamodel(in.productModel.getMetatype().getEMFTypeRoot());
       this.productLine.setReasonerName(in.reasoner.getName());
       this.plPath = workingPath + IPath.SEPARATOR + in.productModel.getName() + "." +
@@ -129,7 +129,7 @@ public class ToProductLine extends OperatorImpl {
   }
 
   protected Class createPLClass(EObject modelObj, EClass plType, Map<String, Class> plClasses) {
-    var plClass = ProductLineFactory.eINSTANCE.createClass();
+    var plClass = PLFactory.eINSTANCE.createClass();
     plClass.setPresenceCondition(this.out.trueLiteral);
     plClass.setType(plType);
     this.out.productLine.getClasses().add(plClass);
@@ -139,7 +139,7 @@ public class ToProductLine extends OperatorImpl {
   }
 
   protected Attribute createPLAttribute(EAttribute plType, String plValue, Class plClass) {
-    var plAttribute = ProductLineFactory.eINSTANCE.createAttribute();
+    var plAttribute = PLFactory.eINSTANCE.createAttribute();
     plAttribute.setPresenceCondition(this.out.trueLiteral);
     plAttribute.setType(plType);
     plAttribute.setValue(plValue);
@@ -149,7 +149,7 @@ public class ToProductLine extends OperatorImpl {
   }
 
   protected Reference createPLReference(EReference plType, Class plSrc, Class plTgt) {
-    var plReference = ProductLineFactory.eINSTANCE.createReference();
+    var plReference = PLFactory.eINSTANCE.createReference();
     plReference.setPresenceCondition(this.out.trueLiteral);
     plReference.setType(plType);
     plReference.setTarget(plTgt);

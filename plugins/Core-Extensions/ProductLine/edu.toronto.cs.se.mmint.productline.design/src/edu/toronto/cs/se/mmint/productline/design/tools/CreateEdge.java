@@ -27,8 +27,8 @@ import org.eclipse.sirius.business.api.session.SessionManager;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.productline.Class;
+import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
 
 public abstract class CreateEdge extends AbstractExternalJavaAction {
 
@@ -79,16 +79,16 @@ public abstract class CreateEdge extends AbstractExternalJavaAction {
       catch (MMINTException e) {
         // pc == null
       }
-      var edgeClass = ProductLineFactory.eINSTANCE.createClass();
+      var edgeClass = PLFactory.eINSTANCE.createClass();
       edgeClass.setType((EClass) this.productLine.getMetamodel().getEClassifier(this.classType));
       edgeClass.setPresenceCondition(pc);
       this.productLine.getClasses().add(edgeClass);
-      var srcReference = ProductLineFactory.eINSTANCE.createReference();
+      var srcReference = PLFactory.eINSTANCE.createReference();
       srcReference.setType(getSrcReferenceType());
       srcReference.setTarget(edgeClass);
       srcReference.setPresenceCondition(pc);
       this.srcClass.getReferences().add(srcReference);
-      var tgtReference = ProductLineFactory.eINSTANCE.createReference();
+      var tgtReference = PLFactory.eINSTANCE.createReference();
       tgtReference.setType(getTgtReferenceType());
       tgtReference.setTarget(this.tgtClass);
       tgtReference.setPresenceCondition(pc);

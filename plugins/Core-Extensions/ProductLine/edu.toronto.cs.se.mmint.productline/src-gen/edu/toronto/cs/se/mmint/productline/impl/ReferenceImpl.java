@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 import edu.toronto.cs.se.mmint.productline.Reference;
 
 /**
@@ -74,7 +74,7 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
    */
   @Override
   protected EClass eStaticClass() {
-    return ProductLinePackage.Literals.REFERENCE;
+    return PLPackage.Literals.REFERENCE;
   }
 
   /**
@@ -88,9 +88,9 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
       var oldTarget = (InternalEObject) this.target;
       this.target = (edu.toronto.cs.se.mmint.productline.Class) eResolveProxy(oldTarget);
       if (this.target != oldTarget) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProductLinePackage.REFERENCE__TARGET, oldTarget,
-                                        this.target));
+        if (eNotificationRequired()) {
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PLPackage.REFERENCE__TARGET, oldTarget, this.target));
+        }
       }
     }
     return this.target;
@@ -114,13 +114,14 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
     var oldTarget = this.target;
     this.target = newTarget;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-                                                             ProductLinePackage.REFERENCE__TARGET, oldTarget,
-                                                             newTarget);
-      if (msgs == null)
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PLPackage.REFERENCE__TARGET,
+                                                             oldTarget, newTarget);
+      if (msgs == null) {
         msgs = notification;
-      else
+      }
+      else {
         msgs.add(notification);
+      }
     }
     return msgs;
   }
@@ -134,19 +135,22 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   public void setTarget(edu.toronto.cs.se.mmint.productline.Class newTarget) {
     if (newTarget != this.target) {
       NotificationChain msgs = null;
-      if (this.target != null)
-        msgs = ((InternalEObject) this.target).eInverseRemove(this, ProductLinePackage.CLASS__REFERENCES_AS_TARGET,
+      if (this.target != null) {
+        msgs = ((InternalEObject) this.target).eInverseRemove(this, PLPackage.CLASS__REFERENCES_AS_TARGET,
                                                          edu.toronto.cs.se.mmint.productline.Class.class, msgs);
-      if (newTarget != null)
-        msgs = ((InternalEObject) newTarget).eInverseAdd(this, ProductLinePackage.CLASS__REFERENCES_AS_TARGET,
+      }
+      if (newTarget != null) {
+        msgs = ((InternalEObject) newTarget).eInverseAdd(this, PLPackage.CLASS__REFERENCES_AS_TARGET,
                                                          edu.toronto.cs.se.mmint.productline.Class.class, msgs);
+      }
       msgs = basicSetTarget(newTarget, msgs);
-      if (msgs != null)
+      if (msgs != null) {
         msgs.dispatch();
+      }
     }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.REFERENCE__TARGET, newTarget,
-                                    newTarget));
+    else if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, PLPackage.REFERENCE__TARGET, newTarget, newTarget));
+    }
   }
 
   /**
@@ -160,8 +164,9 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
       var oldType = (InternalEObject) this.type;
       this.type = (EReference) eResolveProxy(oldType);
       if (this.type != oldType) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProductLinePackage.REFERENCE__TYPE, oldType, this.type));
+        if (eNotificationRequired()) {
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PLPackage.REFERENCE__TYPE, oldType, this.type));
+        }
       }
     }
     return this.type;
@@ -185,8 +190,9 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   public void setType(EReference newType) {
     var oldType = this.type;
     this.type = newType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.REFERENCE__TYPE, oldType, this.type));
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, PLPackage.REFERENCE__TYPE, oldType, this.type));
+    }
   }
 
   /**
@@ -198,10 +204,11 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-    case ProductLinePackage.REFERENCE__TARGET:
-      if (this.target != null)
-        msgs = ((InternalEObject) this.target).eInverseRemove(this, ProductLinePackage.CLASS__REFERENCES_AS_TARGET,
+    case PLPackage.REFERENCE__TARGET:
+      if (this.target != null) {
+        msgs = ((InternalEObject) this.target).eInverseRemove(this, PLPackage.CLASS__REFERENCES_AS_TARGET,
                                                          edu.toronto.cs.se.mmint.productline.Class.class, msgs);
+      }
       return basicSetTarget((edu.toronto.cs.se.mmint.productline.Class) otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -215,7 +222,7 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-    case ProductLinePackage.REFERENCE__TARGET:
+    case PLPackage.REFERENCE__TARGET:
       return basicSetTarget(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -229,13 +236,15 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case ProductLinePackage.REFERENCE__TARGET:
-      if (resolve)
+    case PLPackage.REFERENCE__TARGET:
+      if (resolve) {
         return getTarget();
+      }
       return basicGetTarget();
-    case ProductLinePackage.REFERENCE__TYPE:
-      if (resolve)
+    case PLPackage.REFERENCE__TYPE:
+      if (resolve) {
         return getType();
+      }
       return basicGetType();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -250,10 +259,10 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case ProductLinePackage.REFERENCE__TARGET:
+    case PLPackage.REFERENCE__TARGET:
       setTarget((edu.toronto.cs.se.mmint.productline.Class) newValue);
       return;
-    case ProductLinePackage.REFERENCE__TYPE:
+    case PLPackage.REFERENCE__TYPE:
       setType((EReference) newValue);
       return;
     }
@@ -268,10 +277,10 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case ProductLinePackage.REFERENCE__TARGET:
+    case PLPackage.REFERENCE__TARGET:
       setTarget((edu.toronto.cs.se.mmint.productline.Class) null);
       return;
-    case ProductLinePackage.REFERENCE__TYPE:
+    case PLPackage.REFERENCE__TYPE:
       setType((EReference) null);
       return;
     }
@@ -286,9 +295,9 @@ public class ReferenceImpl extends PLElementImpl implements Reference {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case ProductLinePackage.REFERENCE__TARGET:
+    case PLPackage.REFERENCE__TARGET:
       return this.target != null;
-    case ProductLinePackage.REFERENCE__TYPE:
+    case PLPackage.REFERENCE__TYPE:
       return this.type != null;
     }
     return super.eIsSet(featureID);

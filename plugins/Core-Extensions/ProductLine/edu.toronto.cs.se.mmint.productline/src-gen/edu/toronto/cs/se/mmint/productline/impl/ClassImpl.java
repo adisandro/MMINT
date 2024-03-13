@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.mmint.productline.Attribute;
-import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
+import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.PLUtils;
 import edu.toronto.cs.se.mmint.productline.Reference;
 
@@ -103,7 +103,7 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    */
   @Override
   protected EClass eStaticClass() {
-    return ProductLinePackage.Literals.CLASS;
+    return PLPackage.Literals.CLASS;
   }
 
   /**
@@ -115,8 +115,8 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   public EList<Reference> getReferencesAsTarget() {
     if (this.referencesAsTarget == null) {
       this.referencesAsTarget = new EObjectWithInverseResolvingEList<>(Reference.class, this,
-                                                                           ProductLinePackage.CLASS__REFERENCES_AS_TARGET,
-                                                                           ProductLinePackage.REFERENCE__TARGET);
+                                                                           PLPackage.CLASS__REFERENCES_AS_TARGET,
+                                                                           PLPackage.REFERENCE__TARGET);
     }
     return this.referencesAsTarget;
   }
@@ -129,7 +129,7 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   @Override
   public EList<Attribute> getAttributes() {
     if (this.attributes == null) {
-      this.attributes = new EObjectContainmentEList<>(Attribute.class, this, ProductLinePackage.CLASS__ATTRIBUTES);
+      this.attributes = new EObjectContainmentEList<>(Attribute.class, this, PLPackage.CLASS__ATTRIBUTES);
     }
     return this.attributes;
   }
@@ -142,7 +142,7 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   @Override
   public EList<Reference> getReferences() {
     if (this.references == null) {
-      this.references = new EObjectContainmentEList<>(Reference.class, this, ProductLinePackage.CLASS__REFERENCES);
+      this.references = new EObjectContainmentEList<>(Reference.class, this, PLPackage.CLASS__REFERENCES);
     }
     return this.references;
   }
@@ -158,8 +158,9 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
       var oldType = (InternalEObject) this.type;
       this.type = (EClass) eResolveProxy(oldType);
       if (this.type != oldType) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProductLinePackage.CLASS__TYPE, oldType, this.type));
+        if (eNotificationRequired()) {
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PLPackage.CLASS__TYPE, oldType, this.type));
+        }
       }
     }
     return this.type;
@@ -183,8 +184,9 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   public void setType(EClass newType) {
     var oldType = this.type;
     this.type = newType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProductLinePackage.CLASS__TYPE, oldType, this.type));
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, PLPackage.CLASS__TYPE, oldType, this.type));
+    }
   }
 
   /**
@@ -196,7 +198,7 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-    case ProductLinePackage.CLASS__REFERENCES_AS_TARGET:
+    case PLPackage.CLASS__REFERENCES_AS_TARGET:
       return ((InternalEList<InternalEObject>) (InternalEList<?>) getReferencesAsTarget()).basicAdd(otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -210,11 +212,11 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-    case ProductLinePackage.CLASS__ATTRIBUTES:
+    case PLPackage.CLASS__ATTRIBUTES:
       return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd, msgs);
-    case ProductLinePackage.CLASS__REFERENCES:
+    case PLPackage.CLASS__REFERENCES:
       return ((InternalEList<?>) getReferences()).basicRemove(otherEnd, msgs);
-    case ProductLinePackage.CLASS__REFERENCES_AS_TARGET:
+    case PLPackage.CLASS__REFERENCES_AS_TARGET:
       return ((InternalEList<?>) getReferencesAsTarget()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -228,15 +230,16 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case ProductLinePackage.CLASS__ATTRIBUTES:
+    case PLPackage.CLASS__ATTRIBUTES:
       return getAttributes();
-    case ProductLinePackage.CLASS__REFERENCES:
+    case PLPackage.CLASS__REFERENCES:
       return getReferences();
-    case ProductLinePackage.CLASS__REFERENCES_AS_TARGET:
+    case PLPackage.CLASS__REFERENCES_AS_TARGET:
       return getReferencesAsTarget();
-    case ProductLinePackage.CLASS__TYPE:
-      if (resolve)
+    case PLPackage.CLASS__TYPE:
+      if (resolve) {
         return getType();
+      }
       return basicGetType();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -251,19 +254,19 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case ProductLinePackage.CLASS__ATTRIBUTES:
+    case PLPackage.CLASS__ATTRIBUTES:
       getAttributes().clear();
       getAttributes().addAll((Collection<? extends Attribute>) newValue);
       return;
-    case ProductLinePackage.CLASS__REFERENCES:
+    case PLPackage.CLASS__REFERENCES:
       getReferences().clear();
       getReferences().addAll((Collection<? extends Reference>) newValue);
       return;
-    case ProductLinePackage.CLASS__REFERENCES_AS_TARGET:
+    case PLPackage.CLASS__REFERENCES_AS_TARGET:
       getReferencesAsTarget().clear();
       getReferencesAsTarget().addAll((Collection<? extends Reference>) newValue);
       return;
-    case ProductLinePackage.CLASS__TYPE:
+    case PLPackage.CLASS__TYPE:
       setType((EClass) newValue);
       return;
     }
@@ -278,16 +281,16 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case ProductLinePackage.CLASS__ATTRIBUTES:
+    case PLPackage.CLASS__ATTRIBUTES:
       getAttributes().clear();
       return;
-    case ProductLinePackage.CLASS__REFERENCES:
+    case PLPackage.CLASS__REFERENCES:
       getReferences().clear();
       return;
-    case ProductLinePackage.CLASS__REFERENCES_AS_TARGET:
+    case PLPackage.CLASS__REFERENCES_AS_TARGET:
       getReferencesAsTarget().clear();
       return;
-    case ProductLinePackage.CLASS__TYPE:
+    case PLPackage.CLASS__TYPE:
       setType((EClass) null);
       return;
     }
@@ -302,13 +305,13 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case ProductLinePackage.CLASS__ATTRIBUTES:
+    case PLPackage.CLASS__ATTRIBUTES:
       return this.attributes != null && !this.attributes.isEmpty();
-    case ProductLinePackage.CLASS__REFERENCES:
+    case PLPackage.CLASS__REFERENCES:
       return this.references != null && !this.references.isEmpty();
-    case ProductLinePackage.CLASS__REFERENCES_AS_TARGET:
+    case PLPackage.CLASS__REFERENCES_AS_TARGET:
       return this.referencesAsTarget != null && !this.referencesAsTarget.isEmpty();
-    case ProductLinePackage.CLASS__TYPE:
+    case PLPackage.CLASS__TYPE:
       return this.type != null;
     }
     return super.eIsSet(featureID);
@@ -319,13 +322,12 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    */
   @Override
   public String toString() {
-    var attributes = getAttributes().stream()
-      .map(a -> a.getType().getName() + ": " + a.getValue())
-      .collect(Collectors.joining(", "));
+    var attributes = getAttributes().stream().map(a -> a.getType().getName() + ": " + a.getValue()).collect(Collectors
+                                                                                                                      .joining(", "));
     var presenceCondition = PLUtils.getPresenceConditionLabel(this, true);
-    return getType().getName() +
-           (attributes.isEmpty() ? "" : "{" + attributes + "}") +
-           (presenceCondition.isEmpty() ? "" : " " + presenceCondition);
+    return getType().getName() + (attributes.isEmpty() ? "" : "{" + attributes + "}") + (presenceCondition.isEmpty()
+      ? ""
+      : " " + presenceCondition);
   }
 
 } //ClassImpl

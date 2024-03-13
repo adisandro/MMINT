@@ -42,8 +42,8 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.productline.Class;
+import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
 
 public class ToProducts extends ToProduct {
   protected Ins in;
@@ -59,7 +59,7 @@ public class ToProducts extends ToProduct {
       this.pls = new ArrayList<>();
       for (var plModel : this.plModels) {
         if (!(plModel instanceof ModelRel)) {
-          if (!plModel.getMetatypeUri().equals(ProductLinePackage.eNS_URI)) {
+          if (!plModel.getMetatypeUri().equals(PLPackage.eNS_URI)) {
             // all models must be PLs
             //TODO MMINT[POLY] Use instanceOf when it's optimized (automatic caching of runtime types)
             throw new IllegalArgumentException();

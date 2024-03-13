@@ -61,12 +61,12 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.productline.PLElement;
+import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.ProductLinePackage;
-import edu.toronto.cs.se.mmint.productline.mid.ProductLineMIDPackage;
 import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait.Aggregator;
 import edu.toronto.cs.se.mmint.productline.reasoning.PLPipeline;
@@ -98,7 +98,7 @@ public class PLViatraReasoner extends ViatraReasoner {
   private String featuresConstraint;
 
   public PLViatraReasoner() throws Exception {
-    var plModelRelType = MIDTypeRegistry.<ModelRel>getType(ProductLineMIDPackage.eNS_URI);
+    var plModelRelType = MIDTypeRegistry.<ModelRel>getType(MIDPLPackage.eNS_URI);
     var libFilePath = MIDTypeRegistry.getBundlePath(plModelRelType, PLViatraReasoner.VIATRA_LIB_PATH);
     var libVqlRoot = getVQLRoot(libFilePath, false);
     this.libRefPattern = super.getPattern(libVqlRoot, PLViatraReasoner.LIB_REFERENCE_PATTERN);
@@ -138,7 +138,7 @@ public class PLViatraReasoner extends ViatraReasoner {
     }
     return mid.getModels().stream()
       .filter(m -> !(m instanceof ModelRel))
-      .anyMatch(m -> MIDTypeHierarchy.instanceOf(m, ProductLinePackage.eNS_URI, false));
+      .anyMatch(m -> MIDTypeHierarchy.instanceOf(m, PLPackage.eNS_URI, false));
   }
 
   public Set<String> getPresenceConditions(Set<PLElement> plElements) {
@@ -271,7 +271,7 @@ public class PLViatraReasoner extends ViatraReasoner {
   private Parameter liftParameter(Parameter parameter) {
     var typeClass = ((ClassType) parameter.getType()).getClassname();
     if (!(typeClass instanceof EDataType)) {
-      typeClass = ProductLinePackage.eINSTANCE.getClass_();
+      typeClass = PLPackage.eINSTANCE.getClass_();
     }
     return createParameter(parameter.getName(), typeClass, parameter.getDirection());
   }
@@ -300,7 +300,7 @@ public class PLViatraReasoner extends ViatraReasoner {
                                                EList<Variable> plVariables, Map<String, Variable> plVarsMap)
                                                  throws MMINTException {
     var plConstraints = new ArrayList<PatternCompositionConstraint>();
-    var plElemType = ProductLinePackage.eINSTANCE.getPLElement();
+    var plElemType = PLPackage.eINSTANCE.getPLElement();
     for (var i = 0; i < pathConstraint.getEdgeTypes().size(); i++) {
       var edgeFeature = pathConstraint.getEdgeTypes().get(i).getRefname();
       // PL library call
@@ -409,7 +409,7 @@ public class PLViatraReasoner extends ViatraReasoner {
         var variable = varPar.getVariable();
         var varName = variable.getName();
         var plVar = (varName.startsWith(PLViatraReasoner.DONTCARE_VAR_NAME)) ?
-          liftDontCareVariable(varName, ProductLinePackage.eINSTANCE.getClass_(), plParameters, plVariables,
+          liftDontCareVariable(varName, PLPackage.eINSTANCE.getClass_(), plParameters, plVariables,
                                plVarsMap) :
           plVarsMap.get(varName);
         plPar = createVariableReference(plVar);

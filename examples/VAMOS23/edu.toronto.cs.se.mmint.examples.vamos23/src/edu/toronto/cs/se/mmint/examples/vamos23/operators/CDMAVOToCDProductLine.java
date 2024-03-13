@@ -21,7 +21,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.productline.Class;
-import edu.toronto.cs.se.mmint.productline.ProductLineFactory;
+import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.operators.ToProductLine;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
 import edu.toronto.cs.se.modelepedia.classdiagram_mavo.ClassDiagram_MAVOPackage;
@@ -89,7 +89,7 @@ public class CDMAVOToCDProductLine extends ToProductLine {
       var plClass = classIter.next();
       if (plClass.getType() == ClassDiagram_MAVOPackage.eINSTANCE.getSuperclassReference()) {
         // turn MAVOReferences from Class back to Reference
-        var plReference = ProductLineFactory.eINSTANCE.createReference();
+        var plReference = PLFactory.eINSTANCE.createReference();
         plReference.setPresenceCondition("true");
         plReference.setType(ClassDiagramPackage.eINSTANCE.getClass_Superclass());
         for (var subSuperReference : plClass.getReferencesAsTarget()) {
