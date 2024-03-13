@@ -5,7 +5,7 @@
   <editors uri="/MMPL/model/Automata/Automata.ecore" name="Ecore tree for model /MMPL/model/Automata/Automata.ecore" metatypeUri="http://www.eclipse.org/emf/2002/Ecore_tree" dynamic="true" modelUri="/MMPL/model/Automata/Automata.ecore" id="org.eclipse.emf.ecore.presentation.EcoreEditorID" wizardId="org.eclipse.emf.ecore.presentation.EcoreModelWizardID">
     <fileExtensions>ecore</fileExtensions>
   </editors>
-  <editors uri="/MMPL/model/Automata/Automata.productline" name="ProductLine EMF Editor for model /MMPL/model/Automata/Automata.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/Automata/Automata.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+  <editors uri="/MMPL/model/Automata/Automata.productline" name="ProductLine EMF Editor for model /MMPL/model/Automata/Automata.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/Automata/Automata.productline" id="edu.toronto.cs.se.mmint.productline.presentation.PLEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.PLModelWizardID">
     <fileExtensions>productline</fileExtensions>
   </editors>
   <operators uri="" name="ToProductLine" metatypeUri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine" dynamic="true" workingPath="/MMPL/model/Automata" executionTime="2850731607">

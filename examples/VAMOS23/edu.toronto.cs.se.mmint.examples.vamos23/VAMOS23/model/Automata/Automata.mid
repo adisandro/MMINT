@@ -1360,7 +1360,7 @@
       <modelElemEndpointRefs referencedObject="//@models.10/@mappings.31/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.10/@modelEndpointRefs.1/@modelElemRefs.31"/>
     </mappingRefs>
   </models>
-  <editors uri="/MMPL/model/Automata/Automata.productline" name="ProductLine EMF Editor for model /MMPL/model/Automata/Automata.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/Automata/Automata.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+  <editors uri="/MMPL/model/Automata/Automata.productline" name="ProductLine EMF Editor for model /MMPL/model/Automata/Automata.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/Automata/Automata.productline" id="edu.toronto.cs.se.mmint.productline.presentation.PLEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.PLModelWizardID">
     <fileExtensions>productline</fileExtensions>
   </editors>
   <editors uri="/VAMOS23/model/Automata/Automata_prod0.classdiagram" name="ClassDiagram tree for model /VAMOS23/model/Automata/Automata_prod0.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram" dynamic="true" modelUri="/VAMOS23/model/Automata/Automata_prod0.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">

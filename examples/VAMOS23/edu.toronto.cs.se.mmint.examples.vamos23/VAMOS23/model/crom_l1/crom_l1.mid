@@ -652,7 +652,7 @@
       <modelElemEndpointRefs referencedObject="//@models.2/@mappings.39/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.2/@modelEndpointRefs.1/@modelElemRefs.39"/>
     </mappingRefs>
   </models>
-  <editors uri="/MMPL/model/RoleBasedModelling/crom_l1.productline" name="ProductLine EMF Editor for model /MMPL/model/RoleBasedModelling/crom_l1.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/RoleBasedModelling/crom_l1.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+  <editors uri="/MMPL/model/RoleBasedModelling/crom_l1.productline" name="ProductLine EMF Editor for model /MMPL/model/RoleBasedModelling/crom_l1.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/RoleBasedModelling/crom_l1.productline" id="edu.toronto.cs.se.mmint.productline.presentation.PLEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.PLModelWizardID">
     <fileExtensions>productline</fileExtensions>
   </editors>
   <editors uri="/VAMOS23/model/crom_l1/crom_l1_prod0.classdiagram" name="ClassDiagram tree for model /VAMOS23/model/crom_l1/crom_l1_prod0.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram" dynamic="true" modelUri="/VAMOS23/model/crom_l1/crom_l1_prod0.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">

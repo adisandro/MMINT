@@ -5,7 +5,7 @@
   <editors uri="/MMPL/model/DDBBSchema/RelationalDDBB.ecore" name="Ecore tree for model /MMPL/model/DDBBSchema/RelationalDDBB.ecore" metatypeUri="http://www.eclipse.org/emf/2002/Ecore_tree" dynamic="true" modelUri="/MMPL/model/DDBBSchema/RelationalDDBB.ecore" id="org.eclipse.emf.ecore.presentation.EcoreEditorID" wizardId="org.eclipse.emf.ecore.presentation.EcoreModelWizardID">
     <fileExtensions>ecore</fileExtensions>
   </editors>
-  <editors uri="/MMPL/model/DDBBSchema/RelationalDDBB.productline" name="ProductLine EMF Editor for model /MMPL/model/DDBBSchema/RelationalDDBB.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/DDBBSchema/RelationalDDBB.productline" id="edu.toronto.cs.se.mmint.productline.presentation.ProductLineEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+  <editors uri="/MMPL/model/DDBBSchema/RelationalDDBB.productline" name="ProductLine EMF Editor for model /MMPL/model/DDBBSchema/RelationalDDBB.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/MMPL/model/DDBBSchema/RelationalDDBB.productline" id="edu.toronto.cs.se.mmint.productline.presentation.PLEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.PLModelWizardID">
     <fileExtensions>productline</fileExtensions>
   </editors>
   <operators uri="" name="ToProductLine" metatypeUri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine" dynamic="true" workingPath="/MMPL/model/DDBBSchema" executionTime="13524673">
