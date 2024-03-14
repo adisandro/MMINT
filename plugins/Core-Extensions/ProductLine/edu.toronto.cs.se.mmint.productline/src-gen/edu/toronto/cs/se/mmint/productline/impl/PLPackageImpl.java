@@ -15,6 +15,7 @@ package edu.toronto.cs.se.mmint.productline.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -218,6 +219,16 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
+  public EOperation getProductLine__GetReasoner() {
+    return this.productLineEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getPLElement() {
     return this.plElementEClass;
   }
@@ -230,6 +241,26 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
   @Override
   public EAttribute getPLElement_PresenceCondition() {
     return (EAttribute) this.plElementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getPLElement__GetProductLine() {
+    return this.plElementEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getPLElement__IsAlwaysPresent() {
+    return this.plElementEClass.getEOperations().get(1);
   }
 
   /**
@@ -398,9 +429,12 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     createEAttribute(this.productLineEClass, PLPackage.PRODUCT_LINE__REASONER_NAME);
     createEReference(this.productLineEClass, PLPackage.PRODUCT_LINE__CLASSES);
     createEReference(this.productLineEClass, PLPackage.PRODUCT_LINE__METAMODEL);
+    createEOperation(this.productLineEClass, PLPackage.PRODUCT_LINE___GET_REASONER);
 
     this.plElementEClass = createEClass(PLPackage.PL_ELEMENT);
     createEAttribute(this.plElementEClass, PLPackage.PL_ELEMENT__PRESENCE_CONDITION);
+    createEOperation(this.plElementEClass, PLPackage.PL_ELEMENT___GET_PRODUCT_LINE);
+    createEOperation(this.plElementEClass, PLPackage.PL_ELEMENT___IS_ALWAYS_PRESENT);
 
     this.classEClass = createEClass(PLPackage.CLASS);
     createEReference(this.classEClass, PLPackage.CLASS__ATTRIBUTES);
@@ -455,7 +489,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     this.referenceEClass.getESuperTypes().add(this.getPLElement());
     this.attributeEClass.getESuperTypes().add(this.getPLElement());
 
-    // Initialize classes and features; add operations and parameters
+    // Initialize classes, features, and operations; add parameters
     initEClass(this.productLineEClass, ProductLine.class, "ProductLine", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
                EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getProductLine_FeaturesConstraint(), this.ecorePackage.getEString(), "featuresConstraint", null, 1, 1,
@@ -471,8 +505,8 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
                    ProductLine.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES,
                    !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    var op = addEOperation(this.productLineEClass, this.getIPLFeaturesTrait(), "getReasoner", 1, 1, EPackageImpl.IS_UNIQUE,
-                                  EPackageImpl.IS_ORDERED);
+    var op = initEOperation(getProductLine__GetReasoner(), this.getIPLFeaturesTrait(), "getReasoner", 1, 1,
+                                   EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getMMINTException());
 
     initEClass(this.plElementEClass, PLElement.class, "PLElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -480,9 +514,11 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
                    PLElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE,
                    !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    addEOperation(this.plElementEClass, this.getProductLine(), "getProductLine", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    initEOperation(getPLElement__GetProductLine(), this.getProductLine(), "getProductLine", 1, 1, EPackageImpl.IS_UNIQUE,
+                   EPackageImpl.IS_ORDERED);
 
-    addEOperation(this.plElementEClass, this.ecorePackage.getEBoolean(), "isAlwaysPresent", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    initEOperation(getPLElement__IsAlwaysPresent(), this.ecorePackage.getEBoolean(), "isAlwaysPresent", 1, 1, EPackageImpl.IS_UNIQUE,
+                   EPackageImpl.IS_ORDERED);
 
     initEClass(this.classEClass, edu.toronto.cs.se.mmint.productline.Class.class, "Class", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
                EPackageImpl.IS_GENERATED_INSTANCE_CLASS);

@@ -128,12 +128,16 @@ public class ToProductLine extends OperatorImpl {
     this.out = new Out(outputMIDsByName, getWorkingPath(), this.in);
   }
 
-  protected Class createPLClass(EObject modelObj, EClass plType, Map<String, Class> plClasses) {
-    var plClass = PLFactory.eINSTANCE.createClass();
+  protected void addPLClass(Class plClass, EObject modelObj, EClass plType, Map<String, Class> plClasses) {
     plClass.setPresenceCondition(this.out.trueLiteral);
     plClass.setType(plType);
     this.out.productLine.getClasses().add(plClass);
     plClasses.put(MIDRegistry.getModelElementUri(modelObj), plClass);
+  }
+
+  protected Class createPLClass(EObject modelObj, EClass plType, Map<String, Class> plClasses) {
+    var plClass = PLFactory.eINSTANCE.createClass();
+    addPLClass(plClass, modelObj, plType, plClasses);
 
     return plClass;
   }

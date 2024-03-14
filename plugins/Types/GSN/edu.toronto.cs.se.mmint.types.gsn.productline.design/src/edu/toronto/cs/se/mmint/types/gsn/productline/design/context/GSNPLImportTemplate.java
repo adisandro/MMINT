@@ -35,6 +35,7 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.operators.ToProductLine;
+import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 
@@ -76,26 +77,22 @@ public class GSNPLImportTemplate extends AbstractExternalJavaAction {
         if (templateSC.getTemplates().isEmpty()) {
             throw new MMINTException(templatePath + " does not contain a template");
         }
-        var template = (templateSC.getTemplates().size() > 1) ?
+        var gsnTemplate = (templateSC.getTemplates().size() > 1) ?
           MIDDialogs.selectModelObject("Import Template", "Select GSN template", templateSC.getTemplates()) :
           templateSC.getTemplates().get(0);
+        // TODO MMINT[GSN] Prune extra templates != gsnTemplate before converting
         var templateModel = MIDTypeRegistry.<Model>getType("http://se.cs.toronto.edu/modelepedia/GSN")
           .createInstance(templateSC, templatePath, null);
-        var tpl = MIDTypeRegistry.<Operator>getType("edu.toronto.cs.se.mmint.productline.operators.ToProductLine");
+        var toPL = MIDTypeRegistry.<Operator>getType("edu.toronto.cs.se.mmint.types.gsn.productline.operators.GSNToProductLine");
         var properties = new Properties();
         properties.setProperty(ToProductLine.In.PROP_REASONERNAME, this.pl.getReasonerName());
-        var tplOut = tpl.startInstance(tpl.checkAllowedInputs(ECollections.asEList(templateModel)), properties,
-                                       ECollections.emptyEList(), Map.of(), null);
-        var templatePL = (ProductLine) tplOut.getOutputsByName().get("productLine").getEMFInstanceRoot();
-        var plSC = this.pl.getClasses().stream()
-          .filter(c -> c.getType() == GSNPackage.eINSTANCE.getSafetyCase())
+        var toPLOut = toPL.startInstance(toPL.checkAllowedInputs(ECollections.asEList(templateModel)), properties,
+                                         ECollections.emptyEList(), Map.of(), null);
+        var templatePL = (ProductLine) toPLOut.getOutputsByName().get("productLine").getEMFInstanceRoot();
+        var plTemplate = (GSNPLTemplate) templatePL.getClasses().stream()
+          .filter(c -> GSNPackage.eINSTANCE.getTemplate().isSuperTypeOf(c.getType()))
           .findFirst().get();
-        var templatePLSC = templatePL.getClasses().stream()
-          .filter(c -> c.getType() == GSNPackage.eINSTANCE.getSafetyCase())
-          .findFirst().get();
-        plSC.getReferences().addAll(templatePLSC.getReferences());
-        templatePL.getClasses().remove(templatePLSC);
-        this.pl.getClasses().addAll(templatePL.getClasses());
+        plTemplate.import_(this.pl);
       }
       catch (MIDDialogCancellation e) {
         // template file selection cancelled

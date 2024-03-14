@@ -136,7 +136,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Template">
     <eOperations name="validate" eExceptions="#//Exception"/>
-    <eOperations name="import_" lowerBound="1" eExceptions="#//Exception">
+    <eOperations name="import_" eExceptions="#//Exception">
       <eParameters name="safetyCase" lowerBound="1" eType="#//SafetyCase"/>
     </eOperations>
     <eOperations name="instantiate" eExceptions="#//Exception"/>

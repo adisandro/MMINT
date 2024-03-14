@@ -65,7 +65,7 @@ public class ImportTemplate extends AbstractExternalJavaAction {
     protected void doExecute() {
       try {
         var templatePath = MIDDialogs.selectFile("Import Template", "Select GSN template file",
-                                                  "There are no GSN files in the workspace", Set.of(GSNPackage.eNAME));
+                                                 "There are no GSN files in the workspace", Set.of(GSNPackage.eNAME));
         var templateSC = (SafetyCase) FileUtils.readModelFile(templatePath, null, true);
         if (templateSC.getTemplates().isEmpty()) {
           throw new MMINTException(templatePath + " does not contain a template");

@@ -15,6 +15,7 @@ package edu.toronto.cs.se.mmint.productline;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -122,6 +123,24 @@ public interface PLPackage extends EPackage {
   int PRODUCT_LINE_FEATURE_COUNT = 4;
 
   /**
+   * The operation id for the '<em>Get Reasoner</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRODUCT_LINE___GET_REASONER = 0;
+
+  /**
+   * The number of operations of the '<em>Product Line</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRODUCT_LINE_OPERATION_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.productline.impl.PLElementImpl <em>Element</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -148,6 +167,33 @@ public interface PLPackage extends EPackage {
    * @ordered
    */
   int PL_ELEMENT_FEATURE_COUNT = 1;
+
+  /**
+   * The operation id for the '<em>Get Product Line</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PL_ELEMENT___GET_PRODUCT_LINE = 0;
+
+  /**
+   * The operation id for the '<em>Is Always Present</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PL_ELEMENT___IS_ALWAYS_PRESENT = 1;
+
+  /**
+   * The number of operations of the '<em>Element</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PL_ELEMENT_OPERATION_COUNT = 2;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.productline.impl.ClassImpl <em>Class</em>}' class.
@@ -214,6 +260,33 @@ public interface PLPackage extends EPackage {
   int CLASS_FEATURE_COUNT = PLPackage.PL_ELEMENT_FEATURE_COUNT + 4;
 
   /**
+   * The operation id for the '<em>Get Product Line</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS___GET_PRODUCT_LINE = PLPackage.PL_ELEMENT___GET_PRODUCT_LINE;
+
+  /**
+   * The operation id for the '<em>Is Always Present</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS___IS_ALWAYS_PRESENT = PLPackage.PL_ELEMENT___IS_ALWAYS_PRESENT;
+
+  /**
+   * The number of operations of the '<em>Class</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS_OPERATION_COUNT = PLPackage.PL_ELEMENT_OPERATION_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl <em>Reference</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -260,6 +333,33 @@ public interface PLPackage extends EPackage {
   int REFERENCE_FEATURE_COUNT = PLPackage.PL_ELEMENT_FEATURE_COUNT + 2;
 
   /**
+   * The operation id for the '<em>Get Product Line</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REFERENCE___GET_PRODUCT_LINE = PLPackage.PL_ELEMENT___GET_PRODUCT_LINE;
+
+  /**
+   * The operation id for the '<em>Is Always Present</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REFERENCE___IS_ALWAYS_PRESENT = PLPackage.PL_ELEMENT___IS_ALWAYS_PRESENT;
+
+  /**
+   * The number of operations of the '<em>Reference</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REFERENCE_OPERATION_COUNT = PLPackage.PL_ELEMENT_OPERATION_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.productline.impl.AttributeImpl <em>Attribute</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -304,6 +404,33 @@ public interface PLPackage extends EPackage {
    * @ordered
    */
   int ATTRIBUTE_FEATURE_COUNT = PLPackage.PL_ELEMENT_FEATURE_COUNT + 2;
+
+  /**
+   * The operation id for the '<em>Get Product Line</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE___GET_PRODUCT_LINE = PLPackage.PL_ELEMENT___GET_PRODUCT_LINE;
+
+  /**
+   * The operation id for the '<em>Is Always Present</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE___IS_ALWAYS_PRESENT = PLPackage.PL_ELEMENT___IS_ALWAYS_PRESENT;
+
+  /**
+   * The number of operations of the '<em>Attribute</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_OPERATION_COUNT = PLPackage.PL_ELEMENT_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '<em>MMINT Exception</em>' data type.
@@ -380,6 +507,16 @@ public interface PLPackage extends EPackage {
   EReference getProductLine_Metamodel();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.ProductLine#getReasoner() <em>Get Reasoner</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Reasoner</em>' operation.
+   * @see edu.toronto.cs.se.mmint.productline.ProductLine#getReasoner()
+   * @generated
+   */
+  EOperation getProductLine__GetReasoner();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.productline.PLElement <em>Element</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -399,6 +536,26 @@ public interface PLPackage extends EPackage {
    * @generated
    */
   EAttribute getPLElement_PresenceCondition();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.PLElement#getProductLine() <em>Get Product Line</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Product Line</em>' operation.
+   * @see edu.toronto.cs.se.mmint.productline.PLElement#getProductLine()
+   * @generated
+   */
+  EOperation getPLElement__GetProductLine();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.PLElement#isAlwaysPresent() <em>Is Always Present</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Is Always Present</em>' operation.
+   * @see edu.toronto.cs.se.mmint.productline.PLElement#isAlwaysPresent()
+   * @generated
+   */
+  EOperation getPLElement__IsAlwaysPresent();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.productline.Class <em>Class</em>}'.
@@ -605,6 +762,14 @@ public interface PLPackage extends EPackage {
     EReference PRODUCT_LINE__METAMODEL = PLPackage.eINSTANCE.getProductLine_Metamodel();
 
     /**
+     * The meta object literal for the '<em><b>Get Reasoner</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation PRODUCT_LINE___GET_REASONER = PLPackage.eINSTANCE.getProductLine__GetReasoner();
+
+    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.productline.impl.PLElementImpl <em>Element</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -621,6 +786,22 @@ public interface PLPackage extends EPackage {
      * @generated
      */
     EAttribute PL_ELEMENT__PRESENCE_CONDITION = PLPackage.eINSTANCE.getPLElement_PresenceCondition();
+
+    /**
+     * The meta object literal for the '<em><b>Get Product Line</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation PL_ELEMENT___GET_PRODUCT_LINE = PLPackage.eINSTANCE.getPLElement__GetProductLine();
+
+    /**
+     * The meta object literal for the '<em><b>Is Always Present</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation PL_ELEMENT___IS_ALWAYS_PRESENT = PLPackage.eINSTANCE.getPLElement__IsAlwaysPresent();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.productline.impl.ClassImpl <em>Class</em>}' class.

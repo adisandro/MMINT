@@ -6,7 +6,7 @@
     modelPluginID="edu.toronto.cs.se.mmint.productline" modelName="PL" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="21.0"
     copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mid"
-    importOrganizing="true">
+    operationReflection="true" importOrganizing="true">
   <foreignModel>productline.ecore</foreignModel>
   <foreignModel>mid.productline.ecore</foreignModel>
   <testsDirectory xsi:nil="true"/>

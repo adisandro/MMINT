@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="productline" nsURI="model://edu.toronto.cs.se.mmint.types.gsn.productline"
+    nsPrefix="gsn.productline">
+  <eClassifiers xsi:type="ecore:EClass" name="GSNPLArgumentElement" eSuperTypes="../../edu.toronto.cs.se.mmint.productline/model/productline.ecore#//Class">
+    <eOperations name="validate" eExceptions="#//Exception">
+      <eParameters name="template" eType="#//GSNPLTemplate"/>
+    </eOperations>
+    <eOperations name="instantiate" eExceptions="#//Exception">
+      <eParameters name="template" eType="#//GSNPLTemplate"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GSNPLTemplate" eSuperTypes="../../edu.toronto.cs.se.mmint.productline/model/productline.ecore#//Class">
+    <eOperations name="validate" eExceptions="#//Exception"/>
+    <eOperations name="import_" eExceptions="#//Exception">
+      <eParameters name="productLine" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint.productline/model/productline.ecore#//ProductLine"/>
+    </eOperations>
+    <eOperations name="instantiate" eExceptions="#//Exception"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"
+      serializable="false"/>
+</ecore:EPackage>

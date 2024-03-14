@@ -12,6 +12,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -354,6 +355,25 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
       return this.metamodel != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+    switch (operationID) {
+    case PLPackage.PRODUCT_LINE___GET_REASONER:
+      try {
+        return getReasoner();
+      }
+      catch (Throwable throwable) {
+        throw new InvocationTargetException(throwable);
+      }
+    }
+    return super.eInvoke(operationID, arguments);
   }
 
   /**

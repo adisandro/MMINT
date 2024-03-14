@@ -12,7 +12,10 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.impl;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -180,6 +183,22 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
         : !PLElementImpl.PRESENCE_CONDITION_EDEFAULT.equals(this.presenceCondition);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+    switch (operationID) {
+    case PLPackage.PL_ELEMENT___GET_PRODUCT_LINE:
+      return getProductLine();
+    case PLPackage.PL_ELEMENT___IS_ALWAYS_PRESENT:
+      return isAlwaysPresent();
+    }
+    return super.eInvoke(operationID, arguments);
   }
 
   /**

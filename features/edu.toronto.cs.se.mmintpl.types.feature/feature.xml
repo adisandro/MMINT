@@ -42,6 +42,14 @@
          version="0.0.0"/>
 
    <plugin
+         id="edu.toronto.cs.se.mmint.types.gsn.productline"
+         version="0.0.0"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.types.gsn.productline.edit"
+         version="0.0.0"/>
+
+   <plugin
          id="edu.toronto.cs.se.mmint.types.gsn.productline.design"
          version="0.0.0"/>
 
