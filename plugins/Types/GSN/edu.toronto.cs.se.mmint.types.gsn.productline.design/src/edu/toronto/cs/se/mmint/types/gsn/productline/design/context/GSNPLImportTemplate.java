@@ -57,13 +57,13 @@ public class GSNPLImportTemplate extends AbstractExternalJavaAction {
     var pl = (ProductLine) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
     var sSession = SessionManager.INSTANCE.getSession(pl);
     var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(new PLImportTemplateCommand(sDomain, pl));
+    sDomain.getCommandStack().execute(new GSNPLImportTemplateCommand(sDomain, pl));
   }
 
-  private class PLImportTemplateCommand extends RecordingCommand {
+  private class GSNPLImportTemplateCommand extends RecordingCommand {
     ProductLine pl;
 
-    public PLImportTemplateCommand(TransactionalEditingDomain domain, ProductLine pl) {
+    public GSNPLImportTemplateCommand(TransactionalEditingDomain domain, ProductLine pl) {
       super(domain);
       this.pl = pl;
     }
@@ -83,7 +83,8 @@ public class GSNPLImportTemplate extends AbstractExternalJavaAction {
         // TODO MMINT[GSN] Prune extra templates != gsnTemplate before converting
         var templateModel = MIDTypeRegistry.<Model>getType("http://se.cs.toronto.edu/modelepedia/GSN")
           .createInstance(templateSC, templatePath, null);
-        var toPL = MIDTypeRegistry.<Operator>getType("edu.toronto.cs.se.mmint.types.gsn.productline.operators.GSNToProductLine");
+        var toPL = MIDTypeRegistry.<Operator>getType(
+          "edu.toronto.cs.se.mmint.types.gsn.productline.operators.GSNToProductLine");
         var properties = new Properties();
         properties.setProperty(ToProductLine.In.PROP_REASONERNAME, this.pl.getReasonerName());
         var toPLOut = toPL.startInstance(toPL.checkAllowedInputs(ECollections.asEList(templateModel)), properties,

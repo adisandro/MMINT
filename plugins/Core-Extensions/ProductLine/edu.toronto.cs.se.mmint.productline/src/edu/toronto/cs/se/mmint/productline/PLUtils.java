@@ -12,6 +12,12 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -59,5 +65,38 @@ public class PLUtils {
       .map(r -> (Class) r.eContainer())
       .findFirst()
       .orElse(null);
+  }
+
+  public static Stream<Class> getStreamOfReference(Class plClass, EReference referenceType) {
+    return plClass.getReferences().stream()
+      .filter(r -> r.getType() == referenceType)
+      .map(r -> r.getTarget());
+  }
+
+  public static List<Class> getReference(Class plClass, EReference referenceType) {
+    return getStreamOfReference(plClass, referenceType)
+      .collect(Collectors.toList());
+  }
+
+  public static Stream<Class> getStreamOfReferenceAsTarget(Class plClass, EReference referenceType) {
+    return plClass.getReferencesAsTarget().stream()
+      .filter(r -> r.getType() == referenceType)
+      .map(r -> r.getTarget());
+  }
+
+  public static List<Class> getReferenceAsTarget(Class plClass, EReference referenceType) {
+    return getStreamOfReferenceAsTarget(plClass, referenceType)
+      .collect(Collectors.toList());
+  }
+
+  public static Stream<String> getStreamOfAttribute(Class plClass, EAttribute attributeType) {
+    return plClass.getAttributes().stream()
+      .filter(a -> a.getType() == attributeType)
+      .map(a -> a.getValue());
+  }
+
+  public static List<String> getAttribute(Class plClass, EAttribute attributeType) {
+    return getStreamOfAttribute(plClass, attributeType)
+      .collect(Collectors.toList());
   }
 }
