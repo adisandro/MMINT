@@ -27,7 +27,6 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
-import edu.toronto.cs.se.mmint.productline.PLUtils;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
@@ -43,11 +42,11 @@ public class GSNPLInstantiateTemplate extends AbstractExternalJavaAction {
     if (!(modelObj instanceof GSNPLArgumentElement plTemplateElem)) {
       return false;
     }
-    var plTemplates = PLUtils.getReference(plTemplateElem, GSNPackage.eINSTANCE.getArgumentElement_Templates());
+    var plTemplates = plTemplateElem.getReference(GSNPackage.eINSTANCE.getArgumentElement_Templates());
     if (plTemplates.isEmpty() ||
         plTemplates.stream()
-          .flatMap(t -> PLUtils.getStreamOfReferenceAsTarget(t, GSNPackage.eINSTANCE.getArgumentElement_Templates()))
-          .flatMap(c -> PLUtils.getStreamOfAttribute(c, GSNPackage.eINSTANCE.getArgumentElement_Valid()))
+          .flatMap(t -> t.getStreamOfReferenceAsTarget(GSNPackage.eINSTANCE.getArgumentElement_Templates()))
+          .flatMap(c -> c.getStreamOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_Valid()))
           .allMatch(v -> Boolean.valueOf(v))) {
       return false;
     }
@@ -57,7 +56,7 @@ public class GSNPLInstantiateTemplate extends AbstractExternalJavaAction {
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
     var plTemplateElem = (GSNPLArgumentElement) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    var plTemplates = PLUtils.getStreamOfReference(plTemplateElem, GSNPackage.eINSTANCE.getArgumentElement_Templates())
+    var plTemplates = plTemplateElem.getStreamOfReference(GSNPackage.eINSTANCE.getArgumentElement_Templates())
       .map(c -> (GSNPLTemplate) c)
       .collect(Collectors.toList());
     var sSession = SessionManager.INSTANCE.getSession(plTemplateElem);
@@ -82,7 +81,7 @@ public class GSNPLInstantiateTemplate extends AbstractExternalJavaAction {
         }
         catch (MIDDialogCancellation e) {}
         catch (Exception e) {
-          var id = String.join(",", PLUtils.getAttribute(plTemplate, GSNPackage.eINSTANCE.getArgumentElement_Id()));
+          var id = String.join(",", plTemplate.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()));
           MMINTException.print(IStatus.ERROR, "Error instantiating GSN template " + id, e);
         }
       }

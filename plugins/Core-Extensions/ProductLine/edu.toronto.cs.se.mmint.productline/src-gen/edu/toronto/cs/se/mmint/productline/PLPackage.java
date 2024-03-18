@@ -278,13 +278,67 @@ public interface PLPackage extends EPackage {
   int CLASS___IS_ALWAYS_PRESENT = PLPackage.PL_ELEMENT___IS_ALWAYS_PRESENT;
 
   /**
+   * The operation id for the '<em>Get Stream Of Reference</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS___GET_STREAM_OF_REFERENCE__EREFERENCE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 0;
+
+  /**
+   * The operation id for the '<em>Get Reference</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS___GET_REFERENCE__EREFERENCE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 1;
+
+  /**
+   * The operation id for the '<em>Get Stream Of Reference As Target</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS___GET_STREAM_OF_REFERENCE_AS_TARGET__EREFERENCE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 2;
+
+  /**
+   * The operation id for the '<em>Get Reference As Target</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS___GET_REFERENCE_AS_TARGET__EREFERENCE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 3;
+
+  /**
+   * The operation id for the '<em>Get Stream Of Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 4;
+
+  /**
+   * The operation id for the '<em>Get Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS___GET_ATTRIBUTE__EATTRIBUTE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 5;
+
+  /**
    * The number of operations of the '<em>Class</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CLASS_OPERATION_COUNT = PLPackage.PL_ELEMENT_OPERATION_COUNT + 0;
+  int CLASS_OPERATION_COUNT = PLPackage.PL_ELEMENT_OPERATION_COUNT + 6;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl <em>Reference</em>}' class.
@@ -453,6 +507,16 @@ public interface PLPackage extends EPackage {
   int IPL_FEATURES_TRAIT = 6;
 
   /**
+   * The meta object id for the '<em>Stream</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see java.util.stream.Stream
+   * @see edu.toronto.cs.se.mmint.productline.impl.PLPackageImpl#getStream()
+   * @generated
+   */
+  int STREAM = 7;
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.productline.ProductLine <em>Product Line</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -612,6 +676,66 @@ public interface PLPackage extends EPackage {
   EReference getClass_Type();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#getStreamOfReference(org.eclipse.emf.ecore.EReference) <em>Get Stream Of Reference</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Stream Of Reference</em>' operation.
+   * @see edu.toronto.cs.se.mmint.productline.Class#getStreamOfReference(org.eclipse.emf.ecore.EReference)
+   * @generated
+   */
+  EOperation getClass__GetStreamOfReference__EReference();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#getReference(org.eclipse.emf.ecore.EReference) <em>Get Reference</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Reference</em>' operation.
+   * @see edu.toronto.cs.se.mmint.productline.Class#getReference(org.eclipse.emf.ecore.EReference)
+   * @generated
+   */
+  EOperation getClass__GetReference__EReference();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#getStreamOfReferenceAsTarget(org.eclipse.emf.ecore.EReference) <em>Get Stream Of Reference As Target</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Stream Of Reference As Target</em>' operation.
+   * @see edu.toronto.cs.se.mmint.productline.Class#getStreamOfReferenceAsTarget(org.eclipse.emf.ecore.EReference)
+   * @generated
+   */
+  EOperation getClass__GetStreamOfReferenceAsTarget__EReference();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#getReferenceAsTarget(org.eclipse.emf.ecore.EReference) <em>Get Reference As Target</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Reference As Target</em>' operation.
+   * @see edu.toronto.cs.se.mmint.productline.Class#getReferenceAsTarget(org.eclipse.emf.ecore.EReference)
+   * @generated
+   */
+  EOperation getClass__GetReferenceAsTarget__EReference();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#getStreamOfAttribute(org.eclipse.emf.ecore.EAttribute) <em>Get Stream Of Attribute</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Stream Of Attribute</em>' operation.
+   * @see edu.toronto.cs.se.mmint.productline.Class#getStreamOfAttribute(org.eclipse.emf.ecore.EAttribute)
+   * @generated
+   */
+  EOperation getClass__GetStreamOfAttribute__EAttribute();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#getAttribute(org.eclipse.emf.ecore.EAttribute) <em>Get Attribute</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Attribute</em>' operation.
+   * @see edu.toronto.cs.se.mmint.productline.Class#getAttribute(org.eclipse.emf.ecore.EAttribute)
+   * @generated
+   */
+  EOperation getClass__GetAttribute__EAttribute();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.productline.Reference <em>Reference</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -696,6 +820,17 @@ public interface PLPackage extends EPackage {
    * @generated
    */
   EDataType getIPLFeaturesTrait();
+
+  /**
+   * Returns the meta object for data type '{@link java.util.stream.Stream <em>Stream</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>Stream</em>'.
+   * @see java.util.stream.Stream
+   * @model instanceClass="java.util.stream.Stream" serializeable="false" typeParameters="T"
+   * @generated
+   */
+  EDataType getStream();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -846,6 +981,54 @@ public interface PLPackage extends EPackage {
     EReference CLASS__TYPE = PLPackage.eINSTANCE.getClass_Type();
 
     /**
+     * The meta object literal for the '<em><b>Get Stream Of Reference</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation CLASS___GET_STREAM_OF_REFERENCE__EREFERENCE = PLPackage.eINSTANCE.getClass__GetStreamOfReference__EReference();
+
+    /**
+     * The meta object literal for the '<em><b>Get Reference</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation CLASS___GET_REFERENCE__EREFERENCE = PLPackage.eINSTANCE.getClass__GetReference__EReference();
+
+    /**
+     * The meta object literal for the '<em><b>Get Stream Of Reference As Target</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation CLASS___GET_STREAM_OF_REFERENCE_AS_TARGET__EREFERENCE = PLPackage.eINSTANCE.getClass__GetStreamOfReferenceAsTarget__EReference();
+
+    /**
+     * The meta object literal for the '<em><b>Get Reference As Target</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation CLASS___GET_REFERENCE_AS_TARGET__EREFERENCE = PLPackage.eINSTANCE.getClass__GetReferenceAsTarget__EReference();
+
+    /**
+     * The meta object literal for the '<em><b>Get Stream Of Attribute</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = PLPackage.eINSTANCE.getClass__GetStreamOfAttribute__EAttribute();
+
+    /**
+     * The meta object literal for the '<em><b>Get Attribute</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation CLASS___GET_ATTRIBUTE__EATTRIBUTE = PLPackage.eINSTANCE.getClass__GetAttribute__EAttribute();
+
+    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl <em>Reference</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -916,6 +1099,16 @@ public interface PLPackage extends EPackage {
      * @generated
      */
     EDataType IPL_FEATURES_TRAIT = PLPackage.eINSTANCE.getIPLFeaturesTrait();
+
+    /**
+     * The meta object literal for the '<em>Stream</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see java.util.stream.Stream
+     * @see edu.toronto.cs.se.mmint.productline.impl.PLPackageImpl#getStream()
+     * @generated
+     */
+    EDataType STREAM = PLPackage.eINSTANCE.getStream();
 
   }
 

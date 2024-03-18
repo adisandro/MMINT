@@ -12,8 +12,12 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline;
 
+import java.util.stream.Stream;
+
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -94,5 +98,53 @@ public interface Class extends PLElement {
    * @generated
    */
   void setType(EClass value);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model dataType="edu.toronto.cs.se.mmint.productline.Stream&lt;edu.toronto.cs.se.mmint.productline.Class&gt;" required="true" referenceTypeRequired="true"
+   * @generated
+   */
+  Stream<Class> getStreamOfReference(EReference referenceType);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model referenceTypeRequired="true"
+   * @generated
+   */
+  EList<Class> getReference(EReference referenceType);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model dataType="edu.toronto.cs.se.mmint.productline.Stream&lt;edu.toronto.cs.se.mmint.productline.Class&gt;" required="true" referenceTypeRequired="true"
+   * @generated
+   */
+  Stream<Class> getStreamOfReferenceAsTarget(EReference referenceType);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model referenceTypeRequired="true"
+   * @generated
+   */
+  EList<Class> getReferenceAsTarget(EReference referenceType);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model dataType="edu.toronto.cs.se.mmint.productline.Stream&lt;org.eclipse.emf.ecore.EString&gt;" required="true" attributeTypeRequired="true"
+   * @generated
+   */
+  Stream<String> getStreamOfAttribute(EAttribute attributeType);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model attributeTypeRequired="true"
+   * @generated
+   */
+  EList<String> getAttribute(EAttribute attributeType);
 
 } // Class

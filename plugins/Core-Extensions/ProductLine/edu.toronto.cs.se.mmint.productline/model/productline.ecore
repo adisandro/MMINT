@@ -19,6 +19,33 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="presenceCondition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//PLElement">
+    <eOperations name="getStreamOfReference" lowerBound="1">
+      <eGenericType eClassifier="#//Stream">
+        <eTypeArguments eClassifier="#//Class"/>
+      </eGenericType>
+      <eParameters name="referenceType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
+    </eOperations>
+    <eOperations name="getReference" upperBound="-1" eType="#//Class">
+      <eParameters name="referenceType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
+    </eOperations>
+    <eOperations name="getStreamOfReferenceAsTarget" lowerBound="1">
+      <eGenericType eClassifier="#//Stream">
+        <eTypeArguments eClassifier="#//Class"/>
+      </eGenericType>
+      <eParameters name="referenceType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
+    </eOperations>
+    <eOperations name="getReferenceAsTarget" upperBound="-1" eType="#//Class">
+      <eParameters name="referenceType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
+    </eOperations>
+    <eOperations name="getStreamOfAttribute" lowerBound="1">
+      <eGenericType eClassifier="#//Stream">
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eGenericType>
+      <eParameters name="attributeType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+    </eOperations>
+    <eOperations name="getAttribute" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eParameters name="attributeType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//Attribute" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="references" upperBound="-1"
@@ -40,4 +67,8 @@
       serializable="false"/>
   <eClassifiers xsi:type="ecore:EDataType" name="IPLFeaturesTrait" instanceClassName="edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait"
       serializable="false"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Stream" instanceClassName="java.util.stream.Stream"
+      serializable="false">
+    <eTypeParameters name="T"/>
+  </eClassifiers>
 </ecore:EPackage>

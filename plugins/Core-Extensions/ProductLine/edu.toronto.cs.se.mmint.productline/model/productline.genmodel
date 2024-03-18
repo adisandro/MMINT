@@ -14,6 +14,9 @@
       extensibleProviderFactory="true" fileExtensions="productline" ecorePackage="productline.ecore#/">
     <genDataTypes ecoreDataType="productline.ecore#//MMINTException"/>
     <genDataTypes ecoreDataType="productline.ecore#//IPLFeaturesTrait"/>
+    <genDataTypes ecoreDataType="productline.ecore#//Stream">
+      <genTypeParameters ecoreTypeParameter="productline.ecore#//Stream/T"/>
+    </genDataTypes>
     <genClasses ecoreClass="productline.ecore#//ProductLine">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute productline.ecore#//ProductLine/featuresConstraint"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute productline.ecore#//ProductLine/reasonerName"/>
@@ -31,6 +34,24 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference productline.ecore#//Class/references"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Class/referencesAsTarget"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Class/type"/>
+      <genOperations ecoreOperation="productline.ecore#//Class/getStreamOfReference">
+        <genParameters ecoreParameter="productline.ecore#//Class/getStreamOfReference/referenceType"/>
+      </genOperations>
+      <genOperations ecoreOperation="productline.ecore#//Class/getReference">
+        <genParameters ecoreParameter="productline.ecore#//Class/getReference/referenceType"/>
+      </genOperations>
+      <genOperations ecoreOperation="productline.ecore#//Class/getStreamOfReferenceAsTarget">
+        <genParameters ecoreParameter="productline.ecore#//Class/getStreamOfReferenceAsTarget/referenceType"/>
+      </genOperations>
+      <genOperations ecoreOperation="productline.ecore#//Class/getReferenceAsTarget">
+        <genParameters ecoreParameter="productline.ecore#//Class/getReferenceAsTarget/referenceType"/>
+      </genOperations>
+      <genOperations ecoreOperation="productline.ecore#//Class/getStreamOfAttribute">
+        <genParameters ecoreParameter="productline.ecore#//Class/getStreamOfAttribute/attributeType"/>
+      </genOperations>
+      <genOperations ecoreOperation="productline.ecore#//Class/getAttribute">
+        <genParameters ecoreParameter="productline.ecore#//Class/getAttribute/attributeType"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="productline.ecore#//Reference">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Reference/target"/>

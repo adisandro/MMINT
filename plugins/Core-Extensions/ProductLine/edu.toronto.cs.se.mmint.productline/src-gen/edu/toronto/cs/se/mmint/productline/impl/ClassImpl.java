@@ -12,13 +12,18 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -190,6 +195,54 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   }
 
   /**
+   * @generated NOT
+   */
+  @Override
+  public Stream<edu.toronto.cs.se.mmint.productline.Class> getStreamOfReference(EReference referenceType) {
+    return getReferences().stream().filter(r -> r.getType() == referenceType).map(r -> r.getTarget());
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public EList<edu.toronto.cs.se.mmint.productline.Class> getReference(EReference referenceType) {
+    return ECollections.asEList(getStreamOfReference(referenceType).collect(Collectors.toList()));
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public Stream<edu.toronto.cs.se.mmint.productline.Class> getStreamOfReferenceAsTarget(EReference referenceType) {
+    return getReferencesAsTarget().stream().filter(r -> r.getType() == referenceType).map(r -> r.getTarget());
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public EList<edu.toronto.cs.se.mmint.productline.Class> getReferenceAsTarget(EReference referenceType) {
+    return ECollections.asEList(getStreamOfReferenceAsTarget(referenceType).collect(Collectors.toList()));
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public Stream<String> getStreamOfAttribute(EAttribute attributeType) {
+    return getAttributes().stream().filter(a -> a.getType() == attributeType).map(a -> a.getValue());
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public EList<String> getAttribute(EAttribute attributeType) {
+    return ECollections.asEList(getStreamOfAttribute(attributeType).collect(Collectors.toList()));
+  }
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -315,6 +368,30 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
       return this.type != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+    switch (operationID) {
+    case PLPackage.CLASS___GET_STREAM_OF_REFERENCE__EREFERENCE:
+      return getStreamOfReference((EReference) arguments.get(0));
+    case PLPackage.CLASS___GET_REFERENCE__EREFERENCE:
+      return getReference((EReference) arguments.get(0));
+    case PLPackage.CLASS___GET_STREAM_OF_REFERENCE_AS_TARGET__EREFERENCE:
+      return getStreamOfReferenceAsTarget((EReference) arguments.get(0));
+    case PLPackage.CLASS___GET_REFERENCE_AS_TARGET__EREFERENCE:
+      return getReferenceAsTarget((EReference) arguments.get(0));
+    case PLPackage.CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE:
+      return getStreamOfAttribute((EAttribute) arguments.get(0));
+    case PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE:
+      return getAttribute((EAttribute) arguments.get(0));
+    }
+    return super.eInvoke(operationID, arguments);
   }
 
   /**

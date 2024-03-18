@@ -12,6 +12,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.impl;
 
+import java.util.stream.Stream;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -87,6 +89,13 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   private EDataType iplFeaturesTraitEDataType = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType streamEDataType = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -319,6 +328,66 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
+  public EOperation getClass__GetStreamOfReference__EReference() {
+    return this.classEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getClass__GetReference__EReference() {
+    return this.classEClass.getEOperations().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getClass__GetStreamOfReferenceAsTarget__EReference() {
+    return this.classEClass.getEOperations().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getClass__GetReferenceAsTarget__EReference() {
+    return this.classEClass.getEOperations().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getClass__GetStreamOfAttribute__EAttribute() {
+    return this.classEClass.getEOperations().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getClass__GetAttribute__EAttribute() {
+    return this.classEClass.getEOperations().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getReference() {
     return this.referenceEClass;
   }
@@ -399,6 +468,16 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
+  public EDataType getStream() {
+    return this.streamEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public PLFactory getPLFactory() {
     return (PLFactory) getEFactoryInstance();
   }
@@ -441,6 +520,12 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     createEReference(this.classEClass, PLPackage.CLASS__REFERENCES);
     createEReference(this.classEClass, PLPackage.CLASS__REFERENCES_AS_TARGET);
     createEReference(this.classEClass, PLPackage.CLASS__TYPE);
+    createEOperation(this.classEClass, PLPackage.CLASS___GET_STREAM_OF_REFERENCE__EREFERENCE);
+    createEOperation(this.classEClass, PLPackage.CLASS___GET_REFERENCE__EREFERENCE);
+    createEOperation(this.classEClass, PLPackage.CLASS___GET_STREAM_OF_REFERENCE_AS_TARGET__EREFERENCE);
+    createEOperation(this.classEClass, PLPackage.CLASS___GET_REFERENCE_AS_TARGET__EREFERENCE);
+    createEOperation(this.classEClass, PLPackage.CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE);
+    createEOperation(this.classEClass, PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE);
 
     this.referenceEClass = createEClass(PLPackage.REFERENCE);
     createEReference(this.referenceEClass, PLPackage.REFERENCE__TARGET);
@@ -453,6 +538,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     // Create data types
     this.mmintExceptionEDataType = createEDataType(PLPackage.MMINT_EXCEPTION);
     this.iplFeaturesTraitEDataType = createEDataType(PLPackage.IPL_FEATURES_TRAIT);
+    this.streamEDataType = createEDataType(PLPackage.STREAM);
   }
 
   /**
@@ -481,6 +567,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     setNsURI(PLPackage.eNS_URI);
 
     // Create type parameters
+    addETypeParameter(this.streamEDataType, "T");
 
     // Set bounds for type parameters
 
@@ -536,6 +623,42 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
                    edu.toronto.cs.se.mmint.productline.Class.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE,
                    !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
+    op = initEOperation(getClass__GetStreamOfReference__EReference(), null, "getStreamOfReference", 1, 1, EPackageImpl.IS_UNIQUE,
+                        EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEReference(), "referenceType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    var g1 = createEGenericType(this.getStream());
+    var g2 = createEGenericType(this.getClass_());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
+    op = initEOperation(getClass__GetReference__EReference(), this.getClass_(), "getReference", 0, -1, EPackageImpl.IS_UNIQUE,
+                        EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEReference(), "referenceType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
+    op = initEOperation(getClass__GetStreamOfReferenceAsTarget__EReference(), null, "getStreamOfReferenceAsTarget", 1,
+                        1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEReference(), "referenceType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    g1 = createEGenericType(this.getStream());
+    g2 = createEGenericType(this.getClass_());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
+    op = initEOperation(getClass__GetReferenceAsTarget__EReference(), this.getClass_(), "getReferenceAsTarget", 0, -1,
+                        EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEReference(), "referenceType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
+    op = initEOperation(getClass__GetStreamOfAttribute__EAttribute(), null, "getStreamOfAttribute", 1, 1, EPackageImpl.IS_UNIQUE,
+                        EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEAttribute(), "attributeType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    g1 = createEGenericType(this.getStream());
+    g2 = createEGenericType(this.ecorePackage.getEString());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
+    op = initEOperation(getClass__GetAttribute__EAttribute(), this.ecorePackage.getEString(), "getAttribute", 0, -1,
+                        EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEAttribute(), "attributeType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
     initEClass(this.referenceEClass, Reference.class, "Reference", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEReference(getReference_Target(), this.getClass_(), this.getClass_ReferencesAsTarget(), "target", null, 1, 1,
                    Reference.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES,
@@ -556,6 +679,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
                   !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEDataType(this.iplFeaturesTraitEDataType, IPLFeaturesTrait.class, "IPLFeaturesTrait", !EPackageImpl.IS_SERIALIZABLE,
                   !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.streamEDataType, Stream.class, "Stream", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(PLPackage.eNS_URI);
