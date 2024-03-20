@@ -332,13 +332,22 @@ public interface PLPackage extends EPackage {
   int CLASS___GET_ATTRIBUTE__EATTRIBUTE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 5;
 
   /**
+   * The operation id for the '<em>Instance Of</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS___INSTANCE_OF__ECLASS = PLPackage.PL_ELEMENT_OPERATION_COUNT + 6;
+
+  /**
    * The number of operations of the '<em>Class</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CLASS_OPERATION_COUNT = PLPackage.PL_ELEMENT_OPERATION_COUNT + 6;
+  int CLASS_OPERATION_COUNT = PLPackage.PL_ELEMENT_OPERATION_COUNT + 7;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl <em>Reference</em>}' class.
@@ -736,6 +745,16 @@ public interface PLPackage extends EPackage {
   EOperation getClass__GetAttribute__EAttribute();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#instanceOf(org.eclipse.emf.ecore.EClass) <em>Instance Of</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Instance Of</em>' operation.
+   * @see edu.toronto.cs.se.mmint.productline.Class#instanceOf(org.eclipse.emf.ecore.EClass)
+   * @generated
+   */
+  EOperation getClass__InstanceOf__EClass();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.productline.Reference <em>Reference</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1027,6 +1046,14 @@ public interface PLPackage extends EPackage {
      * @generated
      */
     EOperation CLASS___GET_ATTRIBUTE__EATTRIBUTE = PLPackage.eINSTANCE.getClass__GetAttribute__EAttribute();
+
+    /**
+     * The meta object literal for the '<em><b>Instance Of</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation CLASS___INSTANCE_OF__ECLASS = PLPackage.eINSTANCE.getClass__InstanceOf__EClass();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl <em>Reference</em>}' class.

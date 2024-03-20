@@ -243,6 +243,14 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   }
 
   /**
+   * @generated NOT
+   */
+  @Override
+  public boolean instanceOf(EClass type) {
+    return type.isSuperTypeOf(getType());
+  }
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -390,6 +398,8 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
       return getStreamOfAttribute((EAttribute) arguments.get(0));
     case PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE:
       return getAttribute((EAttribute) arguments.get(0));
+    case PLPackage.CLASS___INSTANCE_OF__ECLASS:
+      return instanceOf((EClass) arguments.get(0));
     }
     return super.eInvoke(operationID, arguments);
   }

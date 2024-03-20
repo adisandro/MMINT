@@ -147,4 +147,12 @@ public interface Class extends PLElement {
    */
   EList<String> getAttribute(EAttribute attributeType);
 
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model required="true" typeRequired="true"
+   * @generated
+   */
+  boolean instanceOf(EClass type);
+
 } // Class
