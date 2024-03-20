@@ -26,7 +26,7 @@ public class GSNPLServices extends PLServices {
   public String getGSNPLElementLabel(EObject self) {
     var pc = PLUtils.getPresenceConditionLabel((PLElement) self, true);
     var label = switch (self) {
-      case Class c when GSNPackage.eINSTANCE.getArgumentElement().isSuperTypeOf(c.getType()) -> {
+      case Class c when c.instanceOf(GSNPackage.eINSTANCE.getArgumentElement()) -> {
         var id = mergePLAttributeLabels(c, GSNPackage.eINSTANCE.getArgumentElement_Id());
         var desc = mergePLAttributeLabels(c, GSNPackage.eINSTANCE.getArgumentElement_Description());
         var text = (id + "\n" + desc).strip();

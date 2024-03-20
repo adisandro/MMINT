@@ -17,10 +17,13 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.productline.impl.ClassImpl;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 /**
  * <!-- begin-user-doc -->
@@ -62,15 +65,28 @@ public class GSNPLArgumentElementImpl extends ClassImpl implements GSNPLArgument
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   @Override
   public void instantiate(GSNPLTemplate template) throws Exception {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
+    var title = "Instantiate placeholder text";
+    var node = getType().getName() + " " + String.join(",", getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()));
+    for (var attr : getAttributes()) {
+      if (attr.getType() != GSNPackage.eINSTANCE.getArgumentElement_Description()) {
+        continue;
+      }
+      while (true) {
+        var desc = attr.getValue();
+        var pattern = GSNBuilder.findPattern(desc);
+        if (pattern.isEmpty()) {
+          break;
+        }
+        var toReplace = pattern.get();
+        var msg = "Replace '" + toReplace + "' in " + node + " with:";
+        var replacement = MIDDialogs.getStringInput(title, msg, null);
+        attr.setValue(desc.replace(GSNBuilder.PATTERN1 + toReplace + GSNBuilder.PATTERN2, replacement));
+      }
+    }
   }
 
   /**

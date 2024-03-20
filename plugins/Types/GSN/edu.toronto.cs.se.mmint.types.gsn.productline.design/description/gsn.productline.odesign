@@ -217,6 +217,13 @@
             </firstModelOperations>
           </initialOperation>
         </controls>
+        <controls xsi:type="properties:CheckboxDescription" name="PLArgumentElementValid" labelExpression="Valid: " isEnabledExpression="aql: self.attributes->exists(a | a.type.name = 'valid')" valueExpression="aql: self.attributes->select(a | a.type.name = 'valid')->first().value.equalsIgnoreCase('true')">
+          <initialOperation>
+            <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql: self.attributes->select(a | a.type.name = 'valid')->first()">
+              <subModelOperations xsi:type="tool_1:SetValue" featureName="value" valueExpression="aql: if newValue then 'true' else 'false' endif"/>
+            </firstModelOperations>
+          </initialOperation>
+        </controls>
       </groups>
     </categories>
   </extensions>

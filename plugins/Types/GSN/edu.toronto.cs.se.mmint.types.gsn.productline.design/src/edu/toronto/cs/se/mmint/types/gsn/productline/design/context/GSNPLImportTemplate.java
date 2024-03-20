@@ -91,7 +91,7 @@ public class GSNPLImportTemplate extends AbstractExternalJavaAction {
                                          ECollections.emptyEList(), Map.of(), null);
         var templatePL = (ProductLine) toPLOut.getOutputsByName().get("productLine").getEMFInstanceRoot();
         var plTemplate = (GSNPLTemplate) templatePL.getClasses().stream()
-          .filter(c -> GSNPackage.eINSTANCE.getTemplate().isSuperTypeOf(c.getType()))
+          .filter(c -> c.instanceOf(GSNPackage.eINSTANCE.getTemplate()))
           .findFirst().get();
         plTemplate.import_(this.pl);
       }

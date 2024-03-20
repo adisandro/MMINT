@@ -215,7 +215,9 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    */
   @Override
   public Stream<edu.toronto.cs.se.mmint.productline.Class> getStreamOfReferenceAsTarget(EReference referenceType) {
-    return getReferencesAsTarget().stream().filter(r -> r.getType() == referenceType).map(r -> r.getTarget());
+    return getReferencesAsTarget().stream()
+      .filter(r -> r.getType() == referenceType)
+      .map(r -> (edu.toronto.cs.se.mmint.productline.Class) r.eContainer());
   }
 
   /**

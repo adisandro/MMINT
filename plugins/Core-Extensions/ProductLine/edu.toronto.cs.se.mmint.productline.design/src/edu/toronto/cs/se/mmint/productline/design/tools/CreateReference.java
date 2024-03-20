@@ -37,7 +37,7 @@ public class CreateReference extends AbstractExternalJavaAction {
   private EReference[] getReferences(Class srcClass, @Nullable Class tgtClass) {
     return srcClass.getType().getEAllReferences().stream()
     .filter(r -> !r.isDerived())
-    .filter(r -> tgtClass == null || r.getEReferenceType().isSuperTypeOf(tgtClass.getType()))
+    .filter(r -> tgtClass == null || tgtClass.instanceOf(r.getEReferenceType()))
     .toArray(EReference[]::new);
   }
 

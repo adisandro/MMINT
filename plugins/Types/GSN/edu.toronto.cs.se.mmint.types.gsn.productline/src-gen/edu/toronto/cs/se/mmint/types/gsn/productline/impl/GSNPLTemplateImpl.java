@@ -13,12 +13,14 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.impl.ClassImpl;
+import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
@@ -80,15 +82,23 @@ public class GSNPLTemplateImpl extends ClassImpl implements GSNPLTemplate {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   @Override
   public void instantiate() throws Exception {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
+    var plElements = getStreamOfReferenceAsTarget(GSNPackage.eINSTANCE.getArgumentElement_Templates())
+      .filter(e -> e instanceof GSNPLArgumentElement)
+      .map(e -> (GSNPLArgumentElement) e)
+      .collect(Collectors.toList());
+    for (var plElement : plElements) {
+      if (plElement.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Valid()).stream()
+            .allMatch(v -> Boolean.valueOf(v)) ||
+          plElement.instanceOf(GSNPackage.eINSTANCE.getRelationshipDecorator()) ||
+          plElement.eContainer() == null) {
+        continue;
+      }
+      plElement.instantiate(this);
+    }
   }
 
   /**

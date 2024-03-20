@@ -77,7 +77,7 @@ public class GSNPLInstantiateTemplate extends AbstractExternalJavaAction {
       for (var plTemplate : this.plTemplates) {
         try {
           plTemplate.instantiate();
-          plTemplate.validate();
+          //plTemplate.validate();
         }
         catch (MIDDialogCancellation e) {}
         catch (Exception e) {
