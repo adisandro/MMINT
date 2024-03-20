@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mmint.productline.operators,
  edu.toronto.cs.se.modelepedia.gsn
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-21
+Bundle-RequiredExecutionEnvironment: JavaSE-22
 Export-Package: edu.toronto.cs.se.mmint.types.gsn.productline,
  edu.toronto.cs.se.mmint.types.gsn.productline.impl,
  edu.toronto.cs.se.mmint.types.gsn.productline.util

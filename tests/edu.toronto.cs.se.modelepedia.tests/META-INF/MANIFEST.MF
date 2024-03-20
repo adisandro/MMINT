@@ -7,7 +7,7 @@ Bundle-Version: 2.20.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-21
+Bundle-RequiredExecutionEnvironment: JavaSE-22
 Require-Bundle: org.junit;bundle-version="4.11.0",
  org.eclipse.emf.ecore,
  org.eclipse.core.runtime,

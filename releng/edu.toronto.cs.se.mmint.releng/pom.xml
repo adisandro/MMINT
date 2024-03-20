@@ -117,7 +117,7 @@
         <artifactId>target-platform-configuration</artifactId>
         <version>${tycho-version}</version>
         <configuration>
-          <executionEnvironment>JavaSE-21</executionEnvironment>
+          <executionEnvironment>JavaSE-22</executionEnvironment>
         </configuration>
       </plugin>
     </plugins>

@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.mmint.types.lts,
  edu.toronto.cs.se.modelepedia.classdiagram,
  edu.toronto.cs.se.modelepedia.statemachine
-Bundle-RequiredExecutionEnvironment: JavaSE-21
+Bundle-RequiredExecutionEnvironment: JavaSE-22
 Automatic-Module-Name: SCICO23
 Import-Package: org.apache.log4j
 Bundle-ActivationPolicy: lazy

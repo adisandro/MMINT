@@ -45,4 +45,4 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mmint.edit,
  edu.toronto.cs.se.mmint.diagram
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-21
+Bundle-RequiredExecutionEnvironment: JavaSE-22

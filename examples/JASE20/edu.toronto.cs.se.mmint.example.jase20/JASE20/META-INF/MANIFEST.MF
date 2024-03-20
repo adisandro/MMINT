@@ -16,7 +16,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.modelepedia.classdiagram,
  edu.toronto.cs.se.modelepedia.gsn,
  edu.toronto.cs.se.mmint.example.jase20.iso26262
-Bundle-RequiredExecutionEnvironment: JavaSE-21
+Bundle-RequiredExecutionEnvironment: JavaSE-22
 Automatic-Module-Name: JASE20
 Import-Package: org.apache.log4j
 Bundle-ActivationPolicy: lazy

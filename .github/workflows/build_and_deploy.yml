@@ -15,7 +15,7 @@ jobs:
       - name: Install Java 22
         uses: actions/setup-java@v4
         with:
-          java-version: '22-ea'
+          java-version: '22'
           distribution: 'temurin'
 
       - name: Install Maven 3.9.6
