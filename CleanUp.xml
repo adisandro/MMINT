@@ -54,6 +54,7 @@
         <setting id="cleanup.use_anonymous_class_creation" value="false"/>
         <setting id="cleanup.stringconcat_stringbuffer_stringbuilder" value="false"/>
         <setting id="cleanup.convert_to_enhanced_for_loop_if_loop_var_used" value="false"/>
+        <setting id="cleanup.replace_deprecated_calls" value="false"/>
         <setting id="cleanup.qualify_static_member_accesses_through_subtypes_with_declaring_class" value="true"/>
         <setting id="cleanup.break_loop" value="false"/>
         <setting id="cleanup.useless_continue" value="false"/>
@@ -71,8 +72,8 @@
         <setting id="cleanup.remove_unnecessary_nls_tags" value="true"/>
         <setting id="cleanup.remove_unused_private_methods" value="true"/>
         <setting id="cleanup.qualify_static_member_accesses_through_instances_with_declaring_class" value="true"/>
-        <setting id="cleanup.primitive_serialization" value="false"/>
         <setting id="cleanup.always_use_this_for_non_static_method_access" value="true"/>
+        <setting id="cleanup.primitive_serialization" value="false"/>
         <setting id="cleanup.sort_members" value="false"/>
         <setting id="cleanup.insert_inferred_type_arguments" value="false"/>
         <setting id="cleanup.add_missing_override_annotations" value="true"/>
@@ -90,7 +91,7 @@
         <setting id="cleanup.make_variable_declarations_final" value="false"/>
         <setting id="cleanup.merge_conditional_blocks" value="false"/>
         <setting id="cleanup.never_use_parentheses_in_expressions" value="true"/>
-        <setting id="cleanup.use_blocks" value="false"/>
+        <setting id="cleanup.use_blocks" value="true"/>
         <setting id="cleanup.array_with_curly" value="false"/>
         <setting id="cleanup.remove_unnecessary_array_creation" value="false"/>
         <setting id="cleanup.add_missing_deprecated_annotations" value="true"/>
