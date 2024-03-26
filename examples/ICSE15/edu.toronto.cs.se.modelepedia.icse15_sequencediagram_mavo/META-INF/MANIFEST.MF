@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.icse15.sequencediagram.mavo
-Bundle-Version: 2.20.99.qualifier
+Bundle-Version: 2.21.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin

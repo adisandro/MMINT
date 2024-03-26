@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.necsis14_classdiagram.edit;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.necsis14.classdiagram.edit
-Bundle-Version: 2.20.99.qualifier
+Bundle-Version: 2.21.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.necsis14_classdiagram.provider.NECSIS14_ClassDiagramEditPlugin$Implementation
 Bundle-Vendor: %providerName

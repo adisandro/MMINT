@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.statemachine_mavo.editor;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.statemachine.mavo.editor
-Bundle-Version: 2.20.99.qualifier
+Bundle-Version: 2.21.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.statemachine_mavo.presentation.StateMachine_MAVOEditorPlugin$Implementation
 Bundle-Vendor: %providerName
