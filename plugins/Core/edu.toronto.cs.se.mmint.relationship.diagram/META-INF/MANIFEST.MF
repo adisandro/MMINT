@@ -3,7 +3,7 @@ Automatic-Module-Name: edu.toronto.cs.se.mmint.relationship.diagram
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.relationship.diagram; singleton:=true
-Bundle-Version: 2.21.0.qualifier
+Bundle-Version: 2.21.99.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmint.mid.relationship.diagram.part.MIDDiagramEditorPlugin
 Bundle-Vendor: %providerName

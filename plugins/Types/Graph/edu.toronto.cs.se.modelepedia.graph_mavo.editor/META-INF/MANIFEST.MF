@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.graph_mavo.editor;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.graph.mavo.editor
-Bundle-Version: 2.21.0.qualifier
+Bundle-Version: 2.21.99.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.graph_mavo.presentation.Graph_MAVOEditorPlugin$Implementation
 Bundle-Vendor: %providerName

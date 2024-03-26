@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.models17;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.models17
-Bundle-Version: 2.21.0.qualifier
+Bundle-Version: 2.21.99.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-22
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
