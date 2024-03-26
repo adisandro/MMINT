@@ -53,18 +53,6 @@ public class GSNPLTemplateImpl extends ClassImpl implements GSNPLTemplate {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void validate() throws Exception {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
    * @generated NOT
    */
   @Override
@@ -98,6 +86,23 @@ public class GSNPLTemplateImpl extends ClassImpl implements GSNPLTemplate {
         continue;
       }
       plElement.instantiate(this);
+    }
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void validate() throws Exception {
+    var plElements = getStreamOfReferenceAsTarget(GSNPackage.eINSTANCE.getArgumentElement_Templates())
+      .filter(e -> e instanceof GSNPLArgumentElement)
+      .map(e -> (GSNPLArgumentElement) e)
+      .collect(Collectors.toList());
+    for (var plElement : plElements) {
+      if (plElement.eContainer() == null) { // == deleted
+        continue;
+      }
+      plElement.validate(this);
     }
   }
 

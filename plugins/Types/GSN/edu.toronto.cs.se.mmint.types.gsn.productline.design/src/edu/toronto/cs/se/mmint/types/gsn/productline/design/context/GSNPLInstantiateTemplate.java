@@ -77,10 +77,11 @@ public class GSNPLInstantiateTemplate extends AbstractExternalJavaAction {
       for (var plTemplate : this.plTemplates) {
         try {
           plTemplate.instantiate();
-          //plTemplate.validate();
+          plTemplate.validate();
         }
         catch (MIDDialogCancellation e) {}
         catch (Exception e) {
+          //TODO abstract into function
           var id = String.join(",", plTemplate.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()));
           MMINTException.print(IStatus.ERROR, "Error instantiating GSN template " + id, e);
         }

@@ -17,6 +17,7 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.productline.impl.ClassImpl;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
@@ -53,23 +54,12 @@ public class GSNPLArgumentElementImpl extends ClassImpl implements GSNPLArgument
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void validate(GSNPLTemplate template) throws Exception {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
    * @generated NOT
    */
   @Override
   public void instantiate(GSNPLTemplate template) throws Exception {
     var title = "Instantiate placeholder text";
+    //TODO abstract into function
     var node = getType().getName() + " " + String.join(",", getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()));
     for (var attr : getAttributes()) {
       if (attr.getType() != GSNPackage.eINSTANCE.getArgumentElement_Description()) {
@@ -87,6 +77,25 @@ public class GSNPLArgumentElementImpl extends ClassImpl implements GSNPLArgument
         attr.setValue(desc.replace(GSNBuilder.PATTERN1 + toReplace + GSNBuilder.PATTERN2, replacement));
       }
     }
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void validate(GSNPLTemplate template) throws Exception {
+    var validAttrs = getAttributes().stream()
+      .filter(a -> a.getType() == GSNPackage.eINSTANCE.getArgumentElement_Valid());
+    if (getAttributes().stream()
+          .filter(a -> a.getType() == GSNPackage.eINSTANCE.getArgumentElement_Description())
+          .anyMatch(a -> GSNBuilder.findPattern(a.getValue()).isPresent())) {
+      //TODO abstract into function
+      var node = getType().getName() + " " +
+                 String.join(",", getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()));
+      validAttrs.forEach(a -> a.setValue(Boolean.FALSE.toString()));
+      throw new MMINTException(node + " description contains placeholder text to be instantiated");
+    }
+    validAttrs.forEach(a -> a.setValue(Boolean.TRUE.toString()));
   }
 
   /**

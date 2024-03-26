@@ -35,7 +35,7 @@ public class PLServices {
       .collect(Collectors.toList());
     if (attributes.size() > 1) {
       label = attributes.stream()
-        .map(t -> PLUtils.getPresenceConditionLabel(t, true) + " " + t.getValue())
+        .map(a -> PLUtils.getPresenceConditionLabel(a, true) + " " + a.getValue())
         .collect(Collectors.joining("\n"));
     }
     else if (attributes.size() > 0) {
