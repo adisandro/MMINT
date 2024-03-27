@@ -21,7 +21,6 @@ import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.Reference;
-import edu.toronto.cs.se.mmint.productline.impl.PLElementImpl;
 
 /**
  * The services class used by VSM.
@@ -35,7 +34,7 @@ public class PLServices {
       .collect(Collectors.toList());
     if (attributes.size() > 1) {
       label = attributes.stream()
-        .map(a -> PLElementImpl.getPresenceConditionLabel(a, true) + " " + a.getValue())
+        .map(a -> a.getPresenceConditionLabel(true) + " " + a.getValue())
         .collect(Collectors.joining("\n"));
     }
     else if (attributes.size() > 0) {
@@ -46,7 +45,7 @@ public class PLServices {
   }
 
   public String getPLElementLabel(EObject self) {
-    var pc = PLElementImpl.getPresenceConditionLabel((PLElement) self, true);
+    var pc = ((PLElement) self).getPresenceConditionLabel(true);
     var label = switch (self) {
       case Class c -> {
         var l = c.getType().getName();
