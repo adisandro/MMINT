@@ -71,4 +71,12 @@ public interface PLElement extends EObject {
    */
   boolean isAlwaysPresent();
 
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model required="true" withParenthesisRequired="true"
+   * @generated
+   */
+  String getPresenceConditionLabel(boolean withParenthesis);
+
 } // PLElement

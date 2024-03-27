@@ -155,4 +155,12 @@ public interface Class extends PLElement {
    */
   boolean instanceOf(EClass type);
 
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation"
+   * @generated
+   */
+  Class getEContainer();
+
 } // Class

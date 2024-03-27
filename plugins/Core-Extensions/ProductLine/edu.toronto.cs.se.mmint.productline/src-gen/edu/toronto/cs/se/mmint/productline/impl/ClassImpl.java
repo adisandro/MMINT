@@ -31,8 +31,8 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.mmint.productline.Attribute;
+import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLPackage;
-import edu.toronto.cs.se.mmint.productline.PLUtils;
 import edu.toronto.cs.se.mmint.productline.Reference;
 
 /**
@@ -195,64 +195,6 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   }
 
   /**
-   * @generated NOT
-   */
-  @Override
-  public Stream<edu.toronto.cs.se.mmint.productline.Class> getStreamOfReference(EReference referenceType) {
-    return getReferences().stream().filter(r -> r.getType() == referenceType).map(r -> r.getTarget());
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public EList<edu.toronto.cs.se.mmint.productline.Class> getReference(EReference referenceType) {
-    return ECollections.asEList(getStreamOfReference(referenceType).collect(Collectors.toList()));
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public Stream<edu.toronto.cs.se.mmint.productline.Class> getStreamOfReferenceAsTarget(EReference referenceType) {
-    return getReferencesAsTarget().stream()
-      .filter(r -> r.getType() == referenceType)
-      .map(r -> (edu.toronto.cs.se.mmint.productline.Class) r.eContainer());
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public EList<edu.toronto.cs.se.mmint.productline.Class> getReferenceAsTarget(EReference referenceType) {
-    return ECollections.asEList(getStreamOfReferenceAsTarget(referenceType).collect(Collectors.toList()));
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public Stream<String> getStreamOfAttribute(EAttribute attributeType) {
-    return getAttributes().stream().filter(a -> a.getType() == attributeType).map(a -> a.getValue());
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public EList<String> getAttribute(EAttribute attributeType) {
-    return ECollections.asEList(getStreamOfAttribute(attributeType).collect(Collectors.toList()));
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public boolean instanceOf(EClass type) {
-    return type.isSuperTypeOf(getType());
-  }
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -402,6 +344,8 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
       return getAttribute((EAttribute) arguments.get(0));
     case PLPackage.CLASS___INSTANCE_OF__ECLASS:
       return instanceOf((EClass) arguments.get(0));
+    case PLPackage.CLASS___GET_ECONTAINER:
+      return getEContainer();
     }
     return super.eInvoke(operationID, arguments);
   }
@@ -411,12 +355,80 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    */
   @Override
   public String toString() {
-    var attributes = getAttributes().stream().map(a -> a.getType().getName() + ": " + a.getValue()).collect(Collectors
-                                                                                                                      .joining(", "));
-    var presenceCondition = PLUtils.getPresenceConditionLabel(this, true);
-    return getType().getName() + (attributes.isEmpty() ? "" : "{" + attributes + "}") + (presenceCondition.isEmpty()
-      ? ""
-      : " " + presenceCondition);
+    var attributes = getAttributes().stream()
+      .map(a -> a.getType().getName() + ": " + a.getValue())
+      .collect(Collectors.joining(", "));
+    var pc = getPresenceConditionLabel(true);
+    return getType().getName() + (attributes.isEmpty() ? "" : "{" + attributes + "}") + (pc.isEmpty() ? "" : " " + pc);
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public Stream<edu.toronto.cs.se.mmint.productline.Class> getStreamOfReference(EReference referenceType) {
+    return getReferences().stream().filter(r -> r.getType() == referenceType).map(r -> r.getTarget());
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public EList<edu.toronto.cs.se.mmint.productline.Class> getReference(EReference referenceType) {
+    return ECollections.asEList(getStreamOfReference(referenceType).collect(Collectors.toList()));
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public Stream<edu.toronto.cs.se.mmint.productline.Class> getStreamOfReferenceAsTarget(EReference referenceType) {
+    return getReferencesAsTarget().stream().filter(r -> r.getType() == referenceType).map(
+                                                                                          r -> (edu.toronto.cs.se.mmint.productline.Class) r.eContainer());
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public EList<edu.toronto.cs.se.mmint.productline.Class> getReferenceAsTarget(EReference referenceType) {
+    return ECollections.asEList(getStreamOfReferenceAsTarget(referenceType).collect(Collectors.toList()));
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public Stream<String> getStreamOfAttribute(EAttribute attributeType) {
+    return getAttributes().stream().filter(a -> a.getType() == attributeType).map(a -> a.getValue());
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public EList<String> getAttribute(EAttribute attributeType) {
+    return ECollections.asEList(getStreamOfAttribute(attributeType).collect(Collectors.toList()));
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public boolean instanceOf(EClass type) {
+    return type.isSuperTypeOf(getType());
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public Class getEContainer() {
+    return getReferencesAsTarget().stream()
+      .filter(r -> r.getType().isContainment())
+      .map(r -> (Class) r.eContainer())
+      .findFirst()
+      .orElse(null);
   }
 
 } //ClassImpl

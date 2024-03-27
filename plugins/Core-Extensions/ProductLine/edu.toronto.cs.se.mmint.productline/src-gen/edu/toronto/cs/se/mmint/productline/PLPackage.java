@@ -187,13 +187,22 @@ public interface PLPackage extends EPackage {
   int PL_ELEMENT___IS_ALWAYS_PRESENT = 1;
 
   /**
+   * The operation id for the '<em>Get Presence Condition Label</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PL_ELEMENT___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = 2;
+
+  /**
    * The number of operations of the '<em>Element</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PL_ELEMENT_OPERATION_COUNT = 2;
+  int PL_ELEMENT_OPERATION_COUNT = 3;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.productline.impl.ClassImpl <em>Class</em>}' class.
@@ -278,6 +287,15 @@ public interface PLPackage extends EPackage {
   int CLASS___IS_ALWAYS_PRESENT = PLPackage.PL_ELEMENT___IS_ALWAYS_PRESENT;
 
   /**
+   * The operation id for the '<em>Get Presence Condition Label</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = PLPackage.PL_ELEMENT___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
+
+  /**
    * The operation id for the '<em>Get Stream Of Reference</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -341,13 +359,22 @@ public interface PLPackage extends EPackage {
   int CLASS___INSTANCE_OF__ECLASS = PLPackage.PL_ELEMENT_OPERATION_COUNT + 6;
 
   /**
+   * The operation id for the '<em>Get EContainer</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS___GET_ECONTAINER = PLPackage.PL_ELEMENT_OPERATION_COUNT + 7;
+
+  /**
    * The number of operations of the '<em>Class</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CLASS_OPERATION_COUNT = PLPackage.PL_ELEMENT_OPERATION_COUNT + 7;
+  int CLASS_OPERATION_COUNT = PLPackage.PL_ELEMENT_OPERATION_COUNT + 8;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl <em>Reference</em>}' class.
@@ -412,6 +439,15 @@ public interface PLPackage extends EPackage {
    * @ordered
    */
   int REFERENCE___IS_ALWAYS_PRESENT = PLPackage.PL_ELEMENT___IS_ALWAYS_PRESENT;
+
+  /**
+   * The operation id for the '<em>Get Presence Condition Label</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REFERENCE___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = PLPackage.PL_ELEMENT___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
 
   /**
    * The number of operations of the '<em>Reference</em>' class.
@@ -485,6 +521,15 @@ public interface PLPackage extends EPackage {
    * @ordered
    */
   int ATTRIBUTE___IS_ALWAYS_PRESENT = PLPackage.PL_ELEMENT___IS_ALWAYS_PRESENT;
+
+  /**
+   * The operation id for the '<em>Get Presence Condition Label</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = PLPackage.PL_ELEMENT___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
 
   /**
    * The number of operations of the '<em>Attribute</em>' class.
@@ -631,6 +676,16 @@ public interface PLPackage extends EPackage {
   EOperation getPLElement__IsAlwaysPresent();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.PLElement#getPresenceConditionLabel(boolean) <em>Get Presence Condition Label</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Presence Condition Label</em>' operation.
+   * @see edu.toronto.cs.se.mmint.productline.PLElement#getPresenceConditionLabel(boolean)
+   * @generated
+   */
+  EOperation getPLElement__GetPresenceConditionLabel__boolean();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.productline.Class <em>Class</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -753,6 +808,16 @@ public interface PLPackage extends EPackage {
    * @generated
    */
   EOperation getClass__InstanceOf__EClass();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#getEContainer() <em>Get EContainer</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get EContainer</em>' operation.
+   * @see edu.toronto.cs.se.mmint.productline.Class#getEContainer()
+   * @generated
+   */
+  EOperation getClass__GetEContainer();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.productline.Reference <em>Reference</em>}'.
@@ -958,6 +1023,14 @@ public interface PLPackage extends EPackage {
     EOperation PL_ELEMENT___IS_ALWAYS_PRESENT = PLPackage.eINSTANCE.getPLElement__IsAlwaysPresent();
 
     /**
+     * The meta object literal for the '<em><b>Get Presence Condition Label</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation PL_ELEMENT___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = PLPackage.eINSTANCE.getPLElement__GetPresenceConditionLabel__boolean();
+
+    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.productline.impl.ClassImpl <em>Class</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1054,6 +1127,14 @@ public interface PLPackage extends EPackage {
      * @generated
      */
     EOperation CLASS___INSTANCE_OF__ECLASS = PLPackage.eINSTANCE.getClass__InstanceOf__EClass();
+
+    /**
+     * The meta object literal for the '<em><b>Get EContainer</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation CLASS___GET_ECONTAINER = PLPackage.eINSTANCE.getClass__GetEContainer();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl <em>Reference</em>}' class.

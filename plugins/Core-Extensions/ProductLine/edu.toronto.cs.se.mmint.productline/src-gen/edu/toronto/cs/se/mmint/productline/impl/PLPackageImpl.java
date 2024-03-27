@@ -278,6 +278,16 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
+  public EOperation getPLElement__GetPresenceConditionLabel__boolean() {
+    return this.plElementEClass.getEOperations().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getClass_() {
     return this.classEClass;
   }
@@ -390,6 +400,16 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
   @Override
   public EOperation getClass__InstanceOf__EClass() {
     return this.classEClass.getEOperations().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getClass__GetEContainer() {
+    return this.classEClass.getEOperations().get(7);
   }
 
   /**
@@ -524,6 +544,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     createEAttribute(this.plElementEClass, PLPackage.PL_ELEMENT__PRESENCE_CONDITION);
     createEOperation(this.plElementEClass, PLPackage.PL_ELEMENT___GET_PRODUCT_LINE);
     createEOperation(this.plElementEClass, PLPackage.PL_ELEMENT___IS_ALWAYS_PRESENT);
+    createEOperation(this.plElementEClass, PLPackage.PL_ELEMENT___GET_PRESENCE_CONDITION_LABEL__BOOLEAN);
 
     this.classEClass = createEClass(PLPackage.CLASS);
     createEReference(this.classEClass, PLPackage.CLASS__ATTRIBUTES);
@@ -537,6 +558,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     createEOperation(this.classEClass, PLPackage.CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE);
     createEOperation(this.classEClass, PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE);
     createEOperation(this.classEClass, PLPackage.CLASS___INSTANCE_OF__ECLASS);
+    createEOperation(this.classEClass, PLPackage.CLASS___GET_ECONTAINER);
 
     this.referenceEClass = createEClass(PLPackage.REFERENCE);
     createEReference(this.referenceEClass, PLPackage.REFERENCE__TARGET);
@@ -618,6 +640,10 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     initEOperation(getPLElement__IsAlwaysPresent(), this.ecorePackage.getEBoolean(), "isAlwaysPresent", 1, 1, EPackageImpl.IS_UNIQUE,
                    EPackageImpl.IS_ORDERED);
 
+    op = initEOperation(getPLElement__GetPresenceConditionLabel__boolean(), this.ecorePackage.getEString(),
+                        "getPresenceConditionLabel", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEBoolean(), "withParenthesis", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
     initEClass(this.classEClass, edu.toronto.cs.se.mmint.productline.Class.class, "Class", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
                EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEReference(getClass_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1,
@@ -673,6 +699,8 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     op = initEOperation(getClass__InstanceOf__EClass(), this.ecorePackage.getEBoolean(), "instanceOf", 1, 1, EPackageImpl.IS_UNIQUE,
                         EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEClass(), "type", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
+    initEOperation(getClass__GetEContainer(), this.getClass_(), "getEContainer", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     initEClass(this.referenceEClass, Reference.class, "Reference", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEReference(getReference_Target(), this.getClass_(), this.getClass_ReferencesAsTarget(), "target", null, 1, 1,

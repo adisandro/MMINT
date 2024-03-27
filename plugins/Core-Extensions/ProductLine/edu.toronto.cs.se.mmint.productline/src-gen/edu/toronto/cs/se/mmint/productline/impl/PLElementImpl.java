@@ -19,10 +19,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.jdt.annotation.Nullable;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.PLPackage;
-import edu.toronto.cs.se.mmint.productline.PLUtils;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 
 /**
@@ -88,14 +89,6 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
   }
 
   /**
-   * @generated NOT
-   */
-  @Override
-  public String getPresenceCondition() {
-    return PLUtils.getPresenceCondition(this, getPresenceConditionGen());
-  }
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -108,22 +101,6 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
       eNotify(new ENotificationImpl(this, Notification.SET, PLPackage.PL_ELEMENT__PRESENCE_CONDITION,
                                     oldPresenceCondition, this.presenceCondition));
     }
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public ProductLine getProductLine() {
-    return (ProductLine) eContainer();
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public boolean isAlwaysPresent() {
-    return PLUtils.isAlwaysPresent(this, getPresenceConditionGen());
   }
 
   /**
@@ -197,6 +174,8 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
       return getProductLine();
     case PLPackage.PL_ELEMENT___IS_ALWAYS_PRESENT:
       return isAlwaysPresent();
+    case PLPackage.PL_ELEMENT___GET_PRESENCE_CONDITION_LABEL__BOOLEAN:
+      return getPresenceConditionLabel((Boolean) arguments.get(0));
     }
     return super.eInvoke(operationID, arguments);
   }
@@ -217,6 +196,82 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
     result.append(this.presenceCondition);
     result.append(')');
     return result.toString();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public ProductLine getProductLine() {
+    return (ProductLine) eContainer();
+  }
+
+  /**
+   * @generated NOT
+   */
+  public static @Nullable String getPresenceCondition(ProductLine productLine, @Nullable String presenceCondition) {
+    if (presenceCondition == null) {
+      try {
+        presenceCondition = productLine.getReasoner().getTrueLiteral();
+      }
+      catch (MMINTException e) {
+        // fallback to null presence condition
+      }
+    }
+    return presenceCondition;
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public String getPresenceCondition() {
+    return getPresenceCondition(getProductLine(), getPresenceConditionGen());
+  }
+
+  /**
+   * @generated NOT
+   */
+  public static boolean isAlwaysPresent(ProductLine productLine, @Nullable String presenceCondition) {
+    try {
+      if (presenceCondition == null || presenceCondition.strip().equals(productLine.getReasoner().getTrueLiteral())) {
+        return true;
+      }
+      return false;
+    }
+    catch (MMINTException e) {
+      return false;
+    }
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public boolean isAlwaysPresent() {
+    return isAlwaysPresent(getProductLine(), getPresenceConditionGen());
+  }
+
+  /**
+   * @generated NOT
+   */
+  public static String getPresenceConditionLabel(PLElement plElem, boolean withParenthesis) {
+    if (plElem.isAlwaysPresent()) {
+      return "";
+    }
+    var pc = plElem.getPresenceCondition();
+    if (withParenthesis) {
+      return "(" + pc + ")";
+    }
+    return pc;
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public String getPresenceConditionLabel(boolean withParenthesis) {
+    return getPresenceConditionLabel(this, withParenthesis);
   }
 
 } //PLElementImpl

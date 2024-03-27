@@ -22,8 +22,8 @@ import edu.toronto.cs.se.mmint.mid.productline.PLMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.MappingImpl;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.PLPackage;
-import edu.toronto.cs.se.mmint.productline.PLUtils;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
+import edu.toronto.cs.se.mmint.productline.impl.PLElementImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -88,14 +88,6 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
   }
 
   /**
-   * @generated NOT
-   */
-  @Override
-  public String getPresenceCondition() {
-    return PLUtils.getPresenceCondition(this, getPresenceConditionGen());
-  }
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -108,14 +100,6 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPLPackage.PL_MAPPING__PRESENCE_CONDITION,
                                     oldPresenceCondition, this.presenceCondition));
     }
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public ProductLine getProductLine() {
-    return MIDPLHeavyTypeFactory.getProductLine(this);
   }
 
   /**
@@ -231,8 +215,40 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
    * @generated NOT
    */
   @Override
+  public ProductLine getProductLine() {
+    return MIDPLHeavyTypeFactory.getProductLine(this);
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public String getPresenceCondition() {
+    return PLElementImpl.getPresenceCondition(getProductLine(), getPresenceConditionGen());
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public boolean isAlwaysPresent() {
+    return PLElementImpl.isAlwaysPresent(getProductLine(), getPresenceConditionGen());
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public String getPresenceConditionLabel(boolean withParenthesis) {
+    return PLElementImpl.getPresenceConditionLabel(this, withParenthesis);
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
   public String toMIDCustomPrintLabel() {
-    return PLUtils.getPresenceConditionLabel(this, true);
+    return PLElementImpl.getPresenceConditionLabel(this, true);
   }
 
   /**
@@ -240,7 +256,7 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
    */
   @Override
   public String toMIDCustomEditLabel() {
-    return PLUtils.getPresenceConditionLabel(this, false);
+    return PLElementImpl.getPresenceConditionLabel(this, false);
   }
 
   /**
@@ -249,14 +265,6 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
   @Override
   public void updateMIDCustomLabel(String newLabel) {
     setPresenceCondition(newLabel);
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public boolean isAlwaysPresent() {
-    return PLUtils.isAlwaysPresent(this, getPresenceConditionGen());
   }
 
 } //PLMappingImpl
