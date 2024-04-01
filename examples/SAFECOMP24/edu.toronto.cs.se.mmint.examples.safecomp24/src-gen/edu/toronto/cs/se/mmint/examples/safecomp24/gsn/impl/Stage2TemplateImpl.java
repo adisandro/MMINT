@@ -76,6 +76,8 @@ public class Stage2TemplateImpl extends TemplateImpl implements Stage2Template {
       source venv/bin/activate
       pip3 install numpy albumentations matplotlib > /dev/null
       pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cpu > /dev/null
+      mkdir -p state_dicts
+      wget -P state_dicts https://github.com/adisandro/adisandro.github.io/raw/main/files/resnet18.pt > /dev/null
       python3\s""" + MAIN_PY_FILE;
     var gsnModel = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(this);
     //TODO MMINT[SAFECOMP24] Use the already existing "files" directory for simplicity
