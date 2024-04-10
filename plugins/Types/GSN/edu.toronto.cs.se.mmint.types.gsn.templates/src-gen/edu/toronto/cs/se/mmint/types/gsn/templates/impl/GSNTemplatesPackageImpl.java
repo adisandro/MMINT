@@ -574,8 +574,18 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
    * @generated
    */
   @Override
+  public EAttribute getAnalysisTemplate_RunnerPath() {
+    return (EAttribute)this.analysisTemplateEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getAnalysisTemplate_Runner() {
-    return (EReference)this.analysisTemplateEClass.getEStructuralFeatures().get(0);
+    return (EReference)this.analysisTemplateEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -697,6 +707,7 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
     createEAttribute(this.filesContextEClass, GSNTemplatesPackage.FILES_CONTEXT__PATHS);
 
     this.analysisTemplateEClass = createEClass(GSNTemplatesPackage.ANALYSIS_TEMPLATE);
+    createEAttribute(this.analysisTemplateEClass, GSNTemplatesPackage.ANALYSIS_TEMPLATE__RUNNER_PATH);
     createEReference(this.analysisTemplateEClass, GSNTemplatesPackage.ANALYSIS_TEMPLATE__RUNNER);
 
     this.iAnalysisRunnerEClass = createEClass(GSNTemplatesPackage.IANALYSIS_RUNNER);
@@ -814,7 +825,8 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
     initEAttribute(getFilesContext_Paths(), this.ecorePackage.getEString(), "paths", null, 1, -1, FilesContext.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.analysisTemplateEClass, AnalysisTemplate.class, "AnalysisTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAnalysisTemplate_Runner(), this.getIAnalysisRunner(), null, "runner", null, 1, 1, AnalysisTemplate.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEAttribute(getAnalysisTemplate_RunnerPath(), this.ecorePackage.getEString(), "runnerPath", null, 0, 1, AnalysisTemplate.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEReference(getAnalysisTemplate_Runner(), this.getIAnalysisRunner(), null, "runner", null, 0, 1, AnalysisTemplate.class, EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.iAnalysisRunnerEClass, IAnalysisRunner.class, "IAnalysisRunner", EPackageImpl.IS_ABSTRACT, EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 

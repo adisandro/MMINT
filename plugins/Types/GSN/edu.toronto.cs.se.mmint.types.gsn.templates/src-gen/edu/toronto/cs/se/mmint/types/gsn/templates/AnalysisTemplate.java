@@ -23,6 +23,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Template;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate#getRunnerPath <em>Runner Path</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate#getRunner <em>Runner</em>}</li>
  * </ul>
  *
@@ -32,13 +33,35 @@ import edu.toronto.cs.se.modelepedia.gsn.Template;
  */
 public interface AnalysisTemplate extends Template {
   /**
+   * Returns the value of the '<em><b>Runner Path</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Runner Path</em>' attribute.
+   * @see #setRunnerPath(String)
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getAnalysisTemplate_RunnerPath()
+   * @model
+   * @generated
+   */
+  String getRunnerPath();
+
+  /**
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate#getRunnerPath <em>Runner Path</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Runner Path</em>' attribute.
+   * @see #getRunnerPath()
+   * @generated
+   */
+  void setRunnerPath(String value);
+
+  /**
    * Returns the value of the '<em><b>Runner</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Runner</em>' reference.
    * @see #setRunner(IAnalysisRunner)
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getAnalysisTemplate_Runner()
-   * @model required="true"
+   * @model transient="true"
    * @generated
    */
   IAnalysisRunner getRunner();

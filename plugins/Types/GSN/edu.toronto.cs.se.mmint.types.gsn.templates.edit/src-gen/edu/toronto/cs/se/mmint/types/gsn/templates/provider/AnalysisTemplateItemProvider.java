@@ -21,6 +21,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
@@ -54,9 +56,32 @@ public class AnalysisTemplateItemProvider extends TemplateItemProvider {
     if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
+      addRunnerPathPropertyDescriptor(object);
       addRunnerPropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds a property descriptor for the Runner Path feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addRunnerPathPropertyDescriptor(Object object) {
+    this.itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_AnalysisTemplate_runnerPath_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_AnalysisTemplate_runnerPath_feature", "_UI_AnalysisTemplate_type"),
+         GSNTemplatesPackage.Literals.ANALYSIS_TEMPLATE__RUNNER_PATH,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
   }
 
   /**
@@ -117,6 +142,12 @@ public class AnalysisTemplateItemProvider extends TemplateItemProvider {
   @Override
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
+
+    switch (notification.getFeatureID(AnalysisTemplate.class)) {
+      case GSNTemplatesPackage.ANALYSIS_TEMPLATE__RUNNER_PATH:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        return;
+    }
     super.notifyChanged(notification);
   }
 

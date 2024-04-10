@@ -1430,13 +1430,22 @@ public interface GSNTemplatesPackage extends EPackage {
   int ANALYSIS_TEMPLATE__ID = GSNPackage.TEMPLATE__ID;
 
   /**
+   * The feature id for the '<em><b>Runner Path</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANALYSIS_TEMPLATE__RUNNER_PATH = GSNPackage.TEMPLATE_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Runner</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANALYSIS_TEMPLATE__RUNNER = GSNPackage.TEMPLATE_FEATURE_COUNT + 0;
+  int ANALYSIS_TEMPLATE__RUNNER = GSNPackage.TEMPLATE_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Analysis Template</em>' class.
@@ -1445,7 +1454,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ANALYSIS_TEMPLATE_FEATURE_COUNT = GSNPackage.TEMPLATE_FEATURE_COUNT + 1;
+  int ANALYSIS_TEMPLATE_FEATURE_COUNT = GSNPackage.TEMPLATE_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -1873,6 +1882,17 @@ public interface GSNTemplatesPackage extends EPackage {
   EClass getAnalysisTemplate();
 
   /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate#getRunnerPath <em>Runner Path</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Runner Path</em>'.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate#getRunnerPath()
+   * @see #getAnalysisTemplate()
+   * @generated
+   */
+  EAttribute getAnalysisTemplate_RunnerPath();
+
+  /**
    * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate#getRunner <em>Runner</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2236,6 +2256,14 @@ public interface GSNTemplatesPackage extends EPackage {
      * @generated
      */
     EClass ANALYSIS_TEMPLATE = GSNTemplatesPackage.eINSTANCE.getAnalysisTemplate();
+
+    /**
+     * The meta object literal for the '<em><b>Runner Path</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ANALYSIS_TEMPLATE__RUNNER_PATH = GSNTemplatesPackage.eINSTANCE.getAnalysisTemplate_RunnerPath();
 
     /**
      * The meta object literal for the '<em><b>Runner</b></em>' reference feature.
