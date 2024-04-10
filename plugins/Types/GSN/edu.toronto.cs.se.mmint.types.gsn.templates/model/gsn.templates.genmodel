@@ -4,7 +4,7 @@
     editDirectory="/edu.toronto.cs.se.mmint.types.gsn.templates.edit/src-gen" editorDirectory="/edu.toronto.cs.se.mmint.types.gsn.templates.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.mmint.types.gsn.templates" modelName="GSNTemplates"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="21.0" copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.genmodel#//gsn"
+    complianceLevel="22.0" copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.genmodel#//gsn"
     operationReflection="true" importOrganizing="true">
   <foreignModel>gsn.templates.ecore</foreignModel>
   <genPackages prefix="GSNTemplates" basePackage="edu.toronto.cs.se.mmint.types.gsn"
@@ -57,6 +57,13 @@
     <genClasses image="false" ecoreClass="gsn.templates.ecore#//PropertyDecompositionTemplate"/>
     <genClasses ecoreClass="gsn.templates.ecore#//FilesContext">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.templates.ecore#//FilesContext/paths"/>
+    </genClasses>
+    <genClasses ecoreClass="gsn.templates.ecore#//AnalysisTemplate">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.templates.ecore#//AnalysisTemplate/runner"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="gsn.templates.ecore#//IAnalysisRunner">
+      <genOperations ecoreOperation="gsn.templates.ecore#//IAnalysisRunner/instantiate"/>
+      <genOperations ecoreOperation="gsn.templates.ecore#//IAnalysisRunner/validate"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

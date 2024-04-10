@@ -63,4 +63,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="paths" lowerBound="1" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnalysisTemplate" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Template">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runner" lowerBound="1"
+        eType="#//IAnalysisRunner"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IAnalysisRunner" abstract="true" interface="true">
+    <eOperations name="instantiate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
+    <eOperations name="validate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
+  </eClassifiers>
 </ecore:EPackage>

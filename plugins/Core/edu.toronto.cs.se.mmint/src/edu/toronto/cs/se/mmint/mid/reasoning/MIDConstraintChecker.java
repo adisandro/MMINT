@@ -503,9 +503,6 @@ mappingTypes:
     }
     var reasonerName = constraint.getLanguage();
     var reasoner = MMINT.getReasoner(reasonerName);
-    if (reasoner == null) {
-      throw new MMINTException("The " + reasonerName + " reasoner is not installed");
-    }
     if (!traitClass.isInstance(reasoner)) {
       throw new MMINTException("The " + reasonerName + " reasoner does not implement " + traitDesc);
     }

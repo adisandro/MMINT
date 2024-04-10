@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Domain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionElement;
@@ -30,6 +31,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.EnumDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesFactory;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
+import edu.toronto.cs.se.mmint.types.gsn.templates.IAnalysisRunner;
 import edu.toronto.cs.se.mmint.types.gsn.templates.IntDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionElement;
@@ -159,6 +161,20 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
    * @generated
    */
   private EClass filesContextEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass analysisTemplateEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass iAnalysisRunnerEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -548,6 +564,56 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
    * @generated
    */
   @Override
+  public EClass getAnalysisTemplate() {
+    return this.analysisTemplateEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAnalysisTemplate_Runner() {
+    return (EReference)this.analysisTemplateEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getIAnalysisRunner() {
+    return this.iAnalysisRunnerEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getIAnalysisRunner__Instantiate() {
+    return this.iAnalysisRunnerEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getIAnalysisRunner__Validate() {
+    return this.iAnalysisRunnerEClass.getEOperations().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EDataType getGSNTemplatesBuilder() {
     return this.gsnTemplatesBuilderEDataType;
   }
@@ -630,6 +696,13 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
     this.filesContextEClass = createEClass(GSNTemplatesPackage.FILES_CONTEXT);
     createEAttribute(this.filesContextEClass, GSNTemplatesPackage.FILES_CONTEXT__PATHS);
 
+    this.analysisTemplateEClass = createEClass(GSNTemplatesPackage.ANALYSIS_TEMPLATE);
+    createEReference(this.analysisTemplateEClass, GSNTemplatesPackage.ANALYSIS_TEMPLATE__RUNNER);
+
+    this.iAnalysisRunnerEClass = createEClass(GSNTemplatesPackage.IANALYSIS_RUNNER);
+    createEOperation(this.iAnalysisRunnerEClass, GSNTemplatesPackage.IANALYSIS_RUNNER___INSTANTIATE);
+    createEOperation(this.iAnalysisRunnerEClass, GSNTemplatesPackage.IANALYSIS_RUNNER___VALIDATE);
+
     // Create data types
     this.gsnTemplatesBuilderEDataType = createEDataType(GSNTemplatesPackage.GSN_TEMPLATES_BUILDER);
   }
@@ -683,6 +756,7 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
     this.propertyGoalEClass.getESuperTypes().add(this.getPropertyDecompositionElement());
     this.propertyDecompositionTemplateEClass.getESuperTypes().add(this.getDecompositionTemplate());
     this.filesContextEClass.getESuperTypes().add(theGSNPackage.getContext());
+    this.analysisTemplateEClass.getESuperTypes().add(theGSNPackage.getTemplate());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(this.decompositionTemplateEClass, DecompositionTemplate.class, "DecompositionTemplate", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -738,6 +812,17 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
 
     initEClass(this.filesContextEClass, FilesContext.class, "FilesContext", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFilesContext_Paths(), this.ecorePackage.getEString(), "paths", null, 1, -1, FilesContext.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+
+    initEClass(this.analysisTemplateEClass, AnalysisTemplate.class, "AnalysisTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAnalysisTemplate_Runner(), this.getIAnalysisRunner(), null, "runner", null, 1, 1, AnalysisTemplate.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+
+    initEClass(this.iAnalysisRunnerEClass, IAnalysisRunner.class, "IAnalysisRunner", EPackageImpl.IS_ABSTRACT, EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+
+    op = initEOperation(getIAnalysisRunner__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEException(op, theGSNPackage.getException());
+
+    op = initEOperation(getIAnalysisRunner__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEException(op, theGSNPackage.getException());
 
     // Initialize data types
     initEDataType(this.gsnTemplatesBuilderEDataType, GSNTemplatesBuilder.class, "GSNTemplatesBuilder", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);

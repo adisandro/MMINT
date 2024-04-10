@@ -59,8 +59,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
       });
     }
     var queryFilePath = MIDDialogs.selectFile("Evaluate query", "Select query file",
-                                               "There are no query files in the workspace",
-                                               fileExtToReasoners.keySet());
+                                              "There are no query files in the workspace", fileExtToReasoners.keySet());
     var fileExtension = FileUtils.getFileExtensionFromPath(queryFilePath);
     var reasoners = fileExtToReasoners.get(fileExtension);
     var queryReasoner = MIDDialogs.selectReasoner(reasoners, fileExtension + " queries");

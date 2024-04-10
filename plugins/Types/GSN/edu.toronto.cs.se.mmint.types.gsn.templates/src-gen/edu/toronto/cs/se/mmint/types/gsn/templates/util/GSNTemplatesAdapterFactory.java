@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Domain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionElement;
@@ -26,6 +27,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.EnumDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
+import edu.toronto.cs.se.mmint.types.gsn.templates.IAnalysisRunner;
 import edu.toronto.cs.se.mmint.types.gsn.templates.IntDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionElement;
@@ -165,6 +167,14 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
       @Override
       public Adapter caseFilesContext(FilesContext object) {
         return createFilesContextAdapter();
+      }
+      @Override
+      public Adapter caseAnalysisTemplate(AnalysisTemplate object) {
+        return createAnalysisTemplateAdapter();
+      }
+      @Override
+      public Adapter caseIAnalysisRunner(IAnalysisRunner object) {
+        return createIAnalysisRunnerAdapter();
       }
       @Override
       public Adapter caseTemplate(Template object) {
@@ -451,6 +461,34 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createFilesContextAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate <em>Analysis Template</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate
+   * @generated
+   */
+  public Adapter createAnalysisTemplateAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.IAnalysisRunner <em>IAnalysis Runner</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.IAnalysisRunner
+   * @generated
+   */
+  public Adapter createIAnalysisRunnerAdapter() {
     return null;
   }
 

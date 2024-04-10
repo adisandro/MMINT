@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
+import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
@@ -91,6 +92,7 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
     case GSNTemplatesPackage.PROPERTY_GOAL -> createPropertyGoal();
     case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_TEMPLATE -> createPropertyDecompositionTemplate();
     case GSNTemplatesPackage.FILES_CONTEXT -> createFilesContext();
+    case GSNTemplatesPackage.ANALYSIS_TEMPLATE -> createAnalysisTemplate();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     };
   }
@@ -251,6 +253,17 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
   public FilesContext createFilesContext() {
     FilesContextImpl filesContext = new FilesContextImpl();
     return filesContext;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AnalysisTemplate createAnalysisTemplate() {
+    AnalysisTemplateImpl analysisTemplate = new AnalysisTemplateImpl();
+    return analysisTemplate;
   }
 
   /**

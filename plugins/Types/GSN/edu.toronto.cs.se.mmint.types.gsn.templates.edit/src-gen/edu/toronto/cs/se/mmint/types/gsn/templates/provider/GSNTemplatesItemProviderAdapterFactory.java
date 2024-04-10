@@ -367,6 +367,29 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected AnalysisTemplateItemProvider analysisTemplateItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createAnalysisTemplateAdapter() {
+    if (this.analysisTemplateItemProvider == null) {
+      this.analysisTemplateItemProvider = new AnalysisTemplateItemProvider(this);
+    }
+
+    return this.analysisTemplateItemProvider;
+  }
+
+  /**
    * This returns the root adapter factory that contains this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -507,6 +530,9 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
     if (this.filesContextItemProvider != null) {
       this.filesContextItemProvider.dispose();
     }
+    if (this.analysisTemplateItemProvider != null) {
+      this.analysisTemplateItemProvider.dispose();
+    }
   }
 
   /**
@@ -590,6 +616,11 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
           (createChildParameter
             (GSNPackage.Literals.SAFETY_CASE__TEMPLATES,
              GSNTemplatesFactory.eINSTANCE.createPropertyDecompositionTemplate()));
+
+        this.newChildDescriptors.add
+          (createChildParameter
+            (GSNPackage.Literals.SAFETY_CASE__TEMPLATES,
+             GSNTemplatesFactory.eINSTANCE.createAnalysisTemplate()));
 
         return null;
       }
