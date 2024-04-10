@@ -81,6 +81,9 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.sosym18.feature_2.21.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.sosym18.feature" version="2.21.99.qualifier">
       <category name="Examples"/>
    </feature>
+   <feature url="features/edu.toronto.cs.se.mmmint.examples.fm24.feature_2.21.99.qualifier.jar" id="edu.toronto.cs.se.mmint.examples.fm24.feature" version="2.21.99.qualifier">
+      <category name="Examples"/>
+   </feature>
    <feature url="features/edu.toronto.cs.se.mmmint.examples.formalise24.feature_2.21.99.qualifier.jar" id="edu.toronto.cs.se.mmint.examples.formalise24.feature" version="2.21.99.qualifier">
       <category name="Examples"/>
    </feature>

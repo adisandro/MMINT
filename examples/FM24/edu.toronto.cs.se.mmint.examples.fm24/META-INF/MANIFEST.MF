@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: edu.toronto.cs.se.mmint.examples.fm24;singleton:=true
+Bundle-Version: 2.21.99.qualifier
+Automatic-Module-Name: edu.toronto.cs.se.mmint.examples.fm24
+Bundle-RequiredExecutionEnvironment: JavaSE-22
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.emf.common.ui
