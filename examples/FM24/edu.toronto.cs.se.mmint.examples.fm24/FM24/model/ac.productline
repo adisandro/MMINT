@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<productline:ProductLine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:productline="model://edu.toronto.cs.se.mmint.productline" reasonerName="LogicNG">
+  <classes>
+    <type href="http://se.cs.toronto.edu/modelepedia/GSN#//SafetyCase"/>
+  </classes>
+  <metamodel href="http://se.cs.toronto.edu/modelepedia/GSN#/"/>
+</productline:ProductLine>
