@@ -14,7 +14,7 @@
  */
 package fm24;
 
-import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.statemachine.State;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -57,8 +57,8 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern placeholder(elem: ArgumentElement) {
- *           ArgumentElement.valid(elem, false);
+ *         pattern placeholder(state: State) {
+ *           State.name(state, "");
  *         }
  * </pre></code>
  * 
@@ -81,18 +81,18 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
    * 
    */
   public static abstract class Match extends BasePatternMatch {
-    private ArgumentElement fElem;
+    private State fState;
 
-    private static List<String> parameterNames = makeImmutableList("elem");
+    private static List<String> parameterNames = makeImmutableList("state");
 
-    private Match(final ArgumentElement pElem) {
-      this.fElem = pElem;
+    private Match(final State pState) {
+      this.fState = pState;
     }
 
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
-          case "elem": return this.fElem;
+          case "state": return this.fState;
           default: return null;
       }
     }
@@ -100,28 +100,28 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
     @Override
     public Object get(final int index) {
       switch(index) {
-          case 0: return this.fElem;
+          case 0: return this.fState;
           default: return null;
       }
     }
 
-    public ArgumentElement getElem() {
-      return this.fElem;
+    public State getState() {
+      return this.fState;
     }
 
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      if ("elem".equals(parameterName) ) {
-          this.fElem = (ArgumentElement) newValue;
+      if ("state".equals(parameterName) ) {
+          this.fState = (State) newValue;
           return true;
       }
       return false;
     }
 
-    public void setElem(final ArgumentElement pElem) {
+    public void setState(final State pState) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      this.fElem = pElem;
+      this.fState = pState;
     }
 
     @Override
@@ -136,24 +136,24 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
 
     @Override
     public Object[] toArray() {
-      return new Object[]{fElem};
+      return new Object[]{fState};
     }
 
     @Override
     public Placeholder.Match toImmutable() {
-      return isMutable() ? newMatch(fElem) : this;
+      return isMutable() ? newMatch(fState) : this;
     }
 
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
-      result.append("\"elem\"=" + prettyPrintValue(fElem));
+      result.append("\"state\"=" + prettyPrintValue(fState));
       return result.toString();
     }
 
     @Override
     public int hashCode() {
-      return Objects.hash(fElem);
+      return Objects.hash(fState);
     }
 
     @Override
@@ -165,7 +165,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
       }
       if ((obj instanceof Placeholder.Match)) {
           Placeholder.Match other = (Placeholder.Match) obj;
-          return Objects.equals(fElem, other.fElem);
+          return Objects.equals(fState, other.fState);
       } else {
           // this should be infrequent
           if (!(obj instanceof IPatternMatch)) {
@@ -196,29 +196,29 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
-     * @param pElem the fixed value of pattern parameter elem, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static Placeholder.Match newMutableMatch(final ArgumentElement pElem) {
-      return new Mutable(pElem);
+    public static Placeholder.Match newMutableMatch(final State pState) {
+      return new Mutable(pState);
     }
 
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElem the fixed value of pattern parameter elem, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public static Placeholder.Match newMatch(final ArgumentElement pElem) {
-      return new Immutable(pElem);
+    public static Placeholder.Match newMatch(final State pState) {
+      return new Immutable(pState);
     }
 
     private static final class Mutable extends Placeholder.Match {
-      Mutable(final ArgumentElement pElem) {
-        super(pElem);
+      Mutable(final State pState) {
+        super(pState);
       }
 
       @Override
@@ -228,8 +228,8 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
     }
 
     private static final class Immutable extends Placeholder.Match {
-      Immutable(final ArgumentElement pElem) {
-        super(pElem);
+      Immutable(final State pState) {
+        super(pState);
       }
 
       @Override
@@ -250,8 +250,8 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern placeholder(elem: ArgumentElement) {
-   *   ArgumentElement.valid(elem, false);
+   * pattern placeholder(state: State) {
+   *   State.name(state, "");
    * }
    * </pre></code>
    * 
@@ -287,7 +287,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
       return new Matcher();
     }
 
-    private static final int POSITION_ELEM = 0;
+    private static final int POSITION_STATE = 0;
 
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(Placeholder.Matcher.class);
 
@@ -305,12 +305,12 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
 
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElem the fixed value of pattern parameter elem, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<Placeholder.Match> getAllMatches(final ArgumentElement pElem) {
-      return rawStreamAllMatches(new Object[]{pElem}).collect(Collectors.toSet());
+    public Collection<Placeholder.Match> getAllMatches(final State pState) {
+      return rawStreamAllMatches(new Object[]{pState}).collect(Collectors.toSet());
     }
 
     /**
@@ -319,101 +319,101 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     * @param pElem the fixed value of pattern parameter elem, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<Placeholder.Match> streamAllMatches(final ArgumentElement pElem) {
-      return rawStreamAllMatches(new Object[]{pElem});
+    public Stream<Placeholder.Match> streamAllMatches(final State pState) {
+      return rawStreamAllMatches(new Object[]{pState});
     }
 
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElem the fixed value of pattern parameter elem, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<Placeholder.Match> getOneArbitraryMatch(final ArgumentElement pElem) {
-      return rawGetOneArbitraryMatch(new Object[]{pElem});
+    public Optional<Placeholder.Match> getOneArbitraryMatch(final State pState) {
+      return rawGetOneArbitraryMatch(new Object[]{pState});
     }
 
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
-     * @param pElem the fixed value of pattern parameter elem, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final ArgumentElement pElem) {
-      return rawHasMatch(new Object[]{pElem});
+    public boolean hasMatch(final State pState) {
+      return rawHasMatch(new Object[]{pState});
     }
 
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElem the fixed value of pattern parameter elem, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final ArgumentElement pElem) {
-      return rawCountMatches(new Object[]{pElem});
+    public int countMatches(final State pState) {
+      return rawCountMatches(new Object[]{pState});
     }
 
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElem the fixed value of pattern parameter elem, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final ArgumentElement pElem, final Consumer<? super Placeholder.Match> processor) {
-      return rawForOneArbitraryMatch(new Object[]{pElem}, processor);
+    public boolean forOneArbitraryMatch(final State pState, final Consumer<? super Placeholder.Match> processor) {
+      return rawForOneArbitraryMatch(new Object[]{pState}, processor);
     }
 
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElem the fixed value of pattern parameter elem, or null if not bound.
+     * @param pState the fixed value of pattern parameter state, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public Placeholder.Match newMatch(final ArgumentElement pElem) {
-      return Placeholder.Match.newMatch(pElem);
+    public Placeholder.Match newMatch(final State pState) {
+      return Placeholder.Match.newMatch(pState);
     }
 
     /**
-     * Retrieve the set of values that occur in matches for elem.
+     * Retrieve the set of values that occur in matches for state.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<ArgumentElement> rawStreamAllValuesOfelem(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_ELEM, parameters).map(ArgumentElement.class::cast);
+    protected Stream<State> rawStreamAllValuesOfstate(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_STATE, parameters).map(State.class::cast);
     }
 
     /**
-     * Retrieve the set of values that occur in matches for elem.
+     * Retrieve the set of values that occur in matches for state.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<ArgumentElement> getAllValuesOfelem() {
-      return rawStreamAllValuesOfelem(emptyArray()).collect(Collectors.toSet());
+    public Set<State> getAllValuesOfstate() {
+      return rawStreamAllValuesOfstate(emptyArray()).collect(Collectors.toSet());
     }
 
     /**
-     * Retrieve the set of values that occur in matches for elem.
+     * Retrieve the set of values that occur in matches for state.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<ArgumentElement> streamAllValuesOfelem() {
-      return rawStreamAllValuesOfelem(emptyArray());
+    public Stream<State> streamAllValuesOfstate() {
+      return rawStreamAllValuesOfstate(emptyArray());
     }
 
     @Override
     protected Placeholder.Match tupleToMatch(final Tuple t) {
       try {
-          return Placeholder.Match.newMatch((ArgumentElement) t.get(POSITION_ELEM));
+          return Placeholder.Match.newMatch((State) t.get(POSITION_STATE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -423,7 +423,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
     @Override
     protected Placeholder.Match arrayToMatch(final Object[] match) {
       try {
-          return Placeholder.Match.newMatch((ArgumentElement) match[POSITION_ELEM]);
+          return Placeholder.Match.newMatch((State) match[POSITION_STATE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -433,7 +433,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
     @Override
     protected Placeholder.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return Placeholder.Match.newMutableMatch((ArgumentElement) match[POSITION_ELEM]);
+          return Placeholder.Match.newMutableMatch((State) match[POSITION_STATE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -484,7 +484,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
 
   @Override
   public Placeholder.Match newMatch(final Object... parameters) {
-    return Placeholder.Match.newMatch((edu.toronto.cs.se.modelepedia.gsn.ArgumentElement) parameters[0]);
+    return Placeholder.Match.newMatch((edu.toronto.cs.se.modelepedia.statemachine.State) parameters[0]);
   }
 
   /**
@@ -516,9 +516,9 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final Placeholder.GeneratedPQuery INSTANCE = new GeneratedPQuery();
 
-    private final PParameter parameter_elem = new PParameter("elem", "edu.toronto.cs.se.modelepedia.gsn.ArgumentElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/modelepedia/GSN", "ArgumentElement")), PParameterDirection.INOUT);
+    private final PParameter parameter_state = new PParameter("state", "edu.toronto.cs.se.modelepedia.statemachine.State", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/modelepedia/StateMachine", "State")), PParameterDirection.INOUT);
 
-    private final List<PParameter> parameters = Arrays.asList(parameter_elem);
+    private final List<PParameter> parameters = Arrays.asList(parameter_state);
 
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -531,7 +531,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
 
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("elem");
+      return Arrays.asList("state");
     }
 
     @Override
@@ -545,26 +545,22 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
-          PVariable var_elem = body.getOrCreateVariableByName("elem");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_elem), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "ArgumentElement")));
+          PVariable var_state = body.getOrCreateVariableByName("state");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_state), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/StateMachine", "State")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-             new ExportedParameter(body, var_elem, parameter_elem)
+             new ExportedParameter(body, var_state, parameter_state)
           ));
-          //   ArgumentElement.valid(elem, false)
+          //   State.name(state, "")
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new ConstantValue(body, var__virtual_0_, false);
-          new TypeConstraint(body, Tuples.flatTupleOf(var_elem), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "ArgumentElement")));
+          new ConstantValue(body, var__virtual_0_, "");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_state), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/StateMachine", "State")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_elem, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/modelepedia/GSN", "ArgumentElement", "valid")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EBoolean")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_state, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/modelepedia/StateMachine", "AbstractState", "name")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
           new Equality(body, var__virtual_1_, var__virtual_0_);
           bodies.add(body);
       }
       return bodies;
     }
-  }
-
-  private static boolean evaluateExpression_1_1() {
-    return false;
   }
 }

@@ -12,8 +12,8 @@
  *******************************************************************************/
 package fm24
 
-import "http://se.cs.toronto.edu/modelepedia/GSN"
+import "http://se.cs.toronto.edu/modelepedia/StateMachine"
 
-pattern placeholder(elem: ArgumentElement) {
-  ArgumentElement.valid(elem, false);
+pattern placeholder(state: State) {
+  State.name(state, "");
 }
