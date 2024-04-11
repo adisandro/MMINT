@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:gsn.templates="model://edu.toronto.cs.se.mmint.types.gsn.templates">
+  <goals id="G1" description="{Some goal}" templates="//@templates.0" valid="false"/>
+  <templates xsi:type="gsn.templates:AnalysisTemplate" elements="//@goals.0" id="Analysis"/>
+</gsn:SafetyCase>
