@@ -19,7 +19,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Install Maven 3.9.6
-        uses: stCarolas/setup-maven@v4.5
+        uses: stCarolas/setup-maven@v5
         with:
           maven-version: 3.9.6
 
