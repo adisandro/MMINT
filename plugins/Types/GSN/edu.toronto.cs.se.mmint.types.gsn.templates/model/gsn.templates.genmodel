@@ -64,8 +64,12 @@
           ecoreFeature="ecore:EReference gsn.templates.ecore#//AnalysisTemplate/runner"/>
     </genClasses>
     <genClasses image="false" ecoreClass="gsn.templates.ecore#//AnalysisRunner">
-      <genOperations ecoreOperation="gsn.templates.ecore#//AnalysisRunner/instantiate"/>
-      <genOperations ecoreOperation="gsn.templates.ecore#//AnalysisRunner/validate"/>
+      <genOperations ecoreOperation="gsn.templates.ecore#//AnalysisRunner/instantiate">
+        <genParameters ecoreParameter="gsn.templates.ecore#//AnalysisRunner/instantiate/template"/>
+      </genOperations>
+      <genOperations ecoreOperation="gsn.templates.ecore#//AnalysisRunner/validate">
+        <genParameters ecoreParameter="gsn.templates.ecore#//AnalysisRunner/validate/template"/>
+      </genOperations>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

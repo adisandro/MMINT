@@ -68,7 +68,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     return new QuerySpec(queryReasoner, queryFilePath, query);
   }
 
-  private static String queryResultToString(Object result, Set<String> highlightUris, Set<Model> models) {
+  public static String queryResultToString(Object result, Set<String> highlightUris, Set<Model> models) {
     var message = "";
     if (result instanceof Collection multiResult) {
       for (var innerResult : multiResult) {

@@ -28,17 +28,17 @@ public interface AnalysisRunner extends EObject {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" templateRequired="true"
    * @generated
    */
-  void instantiate() throws Exception;
+  void instantiate(AnalysisTemplate template) throws Exception;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" templateRequired="true"
    * @generated
    */
-  void validate() throws Exception;
+  void validate(AnalysisTemplate template) throws Exception;
 
 } // AnalysisRunner

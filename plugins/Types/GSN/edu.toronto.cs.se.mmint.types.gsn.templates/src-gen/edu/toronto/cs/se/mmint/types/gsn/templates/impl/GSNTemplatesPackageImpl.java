@@ -604,7 +604,7 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
    * @generated
    */
   @Override
-  public EOperation getAnalysisRunner__Instantiate() {
+  public EOperation getAnalysisRunner__Instantiate__AnalysisTemplate() {
     return this.analysisRunnerEClass.getEOperations().get(0);
   }
 
@@ -614,7 +614,7 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
    * @generated
    */
   @Override
-  public EOperation getAnalysisRunner__Validate() {
+  public EOperation getAnalysisRunner__Validate__AnalysisTemplate() {
     return this.analysisRunnerEClass.getEOperations().get(1);
   }
 
@@ -711,8 +711,8 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
     createEReference(this.analysisTemplateEClass, GSNTemplatesPackage.ANALYSIS_TEMPLATE__RUNNER);
 
     this.analysisRunnerEClass = createEClass(GSNTemplatesPackage.ANALYSIS_RUNNER);
-    createEOperation(this.analysisRunnerEClass, GSNTemplatesPackage.ANALYSIS_RUNNER___INSTANTIATE);
-    createEOperation(this.analysisRunnerEClass, GSNTemplatesPackage.ANALYSIS_RUNNER___VALIDATE);
+    createEOperation(this.analysisRunnerEClass, GSNTemplatesPackage.ANALYSIS_RUNNER___INSTANTIATE__ANALYSISTEMPLATE);
+    createEOperation(this.analysisRunnerEClass, GSNTemplatesPackage.ANALYSIS_RUNNER___VALIDATE__ANALYSISTEMPLATE);
 
     // Create data types
     this.gsnTemplatesBuilderEDataType = createEDataType(GSNTemplatesPackage.GSN_TEMPLATES_BUILDER);
@@ -830,10 +830,12 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
 
     initEClass(this.analysisRunnerEClass, AnalysisRunner.class, "AnalysisRunner", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    op = initEOperation(getAnalysisRunner__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getAnalysisRunner__Instantiate__AnalysisTemplate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.getAnalysisTemplate(), "template", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
-    op = initEOperation(getAnalysisRunner__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getAnalysisRunner__Validate__AnalysisTemplate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.getAnalysisTemplate(), "template", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
     // Initialize data types

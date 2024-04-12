@@ -1518,7 +1518,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ANALYSIS_RUNNER___INSTANTIATE = 0;
+  int ANALYSIS_RUNNER___INSTANTIATE__ANALYSISTEMPLATE = 0;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -1527,7 +1527,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ANALYSIS_RUNNER___VALIDATE = 1;
+  int ANALYSIS_RUNNER___VALIDATE__ANALYSISTEMPLATE = 1;
 
   /**
    * The number of operations of the '<em>Analysis Runner</em>' class.
@@ -1914,24 +1914,24 @@ public interface GSNTemplatesPackage extends EPackage {
   EClass getAnalysisRunner();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisRunner#instantiate() <em>Instantiate</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisRunner#instantiate(edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate) <em>Instantiate</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Instantiate</em>' operation.
-   * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisRunner#instantiate()
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisRunner#instantiate(edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate)
    * @generated
    */
-  EOperation getAnalysisRunner__Instantiate();
+  EOperation getAnalysisRunner__Instantiate__AnalysisTemplate();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisRunner#validate() <em>Validate</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisRunner#validate(edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate) <em>Validate</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Validate</em>' operation.
-   * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisRunner#validate()
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisRunner#validate(edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate)
    * @generated
    */
-  EOperation getAnalysisRunner__Validate();
+  EOperation getAnalysisRunner__Validate__AnalysisTemplate();
 
   /**
    * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder <em>Builder</em>}'.
@@ -2289,7 +2289,7 @@ public interface GSNTemplatesPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation ANALYSIS_RUNNER___INSTANTIATE = GSNTemplatesPackage.eINSTANCE.getAnalysisRunner__Instantiate();
+    EOperation ANALYSIS_RUNNER___INSTANTIATE__ANALYSISTEMPLATE = GSNTemplatesPackage.eINSTANCE.getAnalysisRunner__Instantiate__AnalysisTemplate();
 
     /**
      * The meta object literal for the '<em><b>Validate</b></em>' operation.
@@ -2297,7 +2297,7 @@ public interface GSNTemplatesPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation ANALYSIS_RUNNER___VALIDATE = GSNTemplatesPackage.eINSTANCE.getAnalysisRunner__Validate();
+    EOperation ANALYSIS_RUNNER___VALIDATE__ANALYSISTEMPLATE = GSNTemplatesPackage.eINSTANCE.getAnalysisRunner__Validate__AnalysisTemplate();
 
     /**
      * The meta object literal for the '<em>Builder</em>' data type.

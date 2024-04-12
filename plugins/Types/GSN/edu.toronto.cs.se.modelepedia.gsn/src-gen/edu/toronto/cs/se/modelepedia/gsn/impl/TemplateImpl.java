@@ -155,7 +155,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    */
   @Override
   public void instantiate() throws Exception {
-    // copy to avoid concurrent modifications: template instantiation may modify the template
+    // copy to avoid concurrent modifications: template instantiation may modify the list of template elements
     var copyElements = List.copyOf(getElements());
     // instantiate relationship decorators first to fix the structure
     for (var element : copyElements) {
@@ -190,7 +190,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    */
   @Override
   public void validate() throws Exception {
-    // copy to avoid concurrent modifications: template validation may modify the template
+    // copy to avoid concurrent modifications: template validation may modify the list of template elements
     validate(List.copyOf(getElements()));
   }
 

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisRunner;
+import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 
 /**
@@ -54,7 +55,7 @@ public abstract class AnalysisRunnerImpl extends MinimalEObjectImpl.Container im
    * @generated
    */
   @Override
-  public void instantiate() throws Exception {
+  public void instantiate(AnalysisTemplate template) throws Exception {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -66,7 +67,7 @@ public abstract class AnalysisRunnerImpl extends MinimalEObjectImpl.Container im
    * @generated
    */
   @Override
-  public void validate() throws Exception {
+  public void validate(AnalysisTemplate template) throws Exception {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -80,17 +81,17 @@ public abstract class AnalysisRunnerImpl extends MinimalEObjectImpl.Container im
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case GSNTemplatesPackage.ANALYSIS_RUNNER___INSTANTIATE:
+      case GSNTemplatesPackage.ANALYSIS_RUNNER___INSTANTIATE__ANALYSISTEMPLATE:
         try {
-          instantiate();
+          instantiate((AnalysisTemplate)arguments.get(0));
           return null;
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case GSNTemplatesPackage.ANALYSIS_RUNNER___VALIDATE:
+      case GSNTemplatesPackage.ANALYSIS_RUNNER___VALIDATE__ANALYSISTEMPLATE:
         try {
-          validate();
+          validate((AnalysisTemplate)arguments.get(0));
           return null;
         }
         catch (Throwable throwable) {

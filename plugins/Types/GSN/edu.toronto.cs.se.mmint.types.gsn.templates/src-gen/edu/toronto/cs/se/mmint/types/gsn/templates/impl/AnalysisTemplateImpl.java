@@ -302,11 +302,11 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
    */
   @Override
   public void instantiate() throws Exception {
-    super.instantiate();
     var runner = getRunner();
     if (runner != null) {
-      runner.instantiate();
+      runner.instantiate(this);
     }
+    super.instantiate();
   }
 
   /**
@@ -314,11 +314,11 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
    */
   @Override
   public void validate() throws Exception {
-    super.validate();
     var runner = getRunner();
     if (runner != null) {
-      runner.validate();
+      runner.validate(this);
     }
+    super.validate();
   }
 
 } //AnalysisTemplateImpl
