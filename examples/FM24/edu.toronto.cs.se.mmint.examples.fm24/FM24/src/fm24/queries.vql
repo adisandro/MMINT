@@ -14,6 +14,7 @@ package fm24
 
 import "http://se.cs.toronto.edu/modelepedia/StateMachine"
 
-pattern placeholder(state: State) {
-  State.name(state, "");
+pattern alarmStates(state: State) {
+  State.name(state, name);
+  check(name.startsWith("Alrm_"));
 }

@@ -25,7 +25,7 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
  * <p> From package fm24, the group contains the definition of the following patterns: <ul>
- * <li>placeholder</li>
+ * <li>alarmStates</li>
  * </ul>
  * 
  * @see IQueryGroup
@@ -50,14 +50,14 @@ public final class Queries extends BaseGeneratedPatternGroup {
   private static Queries INSTANCE;
 
   private Queries() {
-    querySpecifications.add(Placeholder.instance());
+    querySpecifications.add(AlarmStates.instance());
   }
 
-  public Placeholder getPlaceholder() {
-    return Placeholder.instance();
+  public AlarmStates getAlarmStates() {
+    return AlarmStates.instance();
   }
 
-  public Placeholder.Matcher getPlaceholder(final ViatraQueryEngine engine) {
-    return Placeholder.Matcher.on(engine);
+  public AlarmStates.Matcher getAlarmStates(final ViatraQueryEngine engine) {
+    return AlarmStates.Matcher.on(engine);
   }
 }

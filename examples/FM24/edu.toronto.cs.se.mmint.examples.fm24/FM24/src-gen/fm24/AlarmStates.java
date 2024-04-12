@@ -39,11 +39,13 @@ import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.emf.types.EDataTypeInSlotsKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
+import org.eclipse.viatra.query.runtime.matchers.psystem.IExpressionEvaluator;
+import org.eclipse.viatra.query.runtime.matchers.psystem.IValueProvider;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
-import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.ConstantValue;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExpressionEvaluation;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
@@ -57,8 +59,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern placeholder(state: State) {
- *           State.name(state, "");
+ *         pattern alarmStates(state: State) {
+ *           State.name(state, name);
+ *           check(name.startsWith("Alrm_"));
  *         }
  * </pre></code>
  * 
@@ -67,9 +70,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  */
 @SuppressWarnings("all")
-public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeholder.Matcher> {
+public final class AlarmStates extends BaseGeneratedEMFQuerySpecification<AlarmStates.Matcher> {
   /**
-   * Pattern-specific match representation of the fm24.placeholder pattern,
+   * Pattern-specific match representation of the fm24.alarmStates pattern,
    * to be used in conjunction with {@link Matcher}.
    * 
    * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
@@ -126,12 +129,12 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
 
     @Override
     public String patternName() {
-      return "fm24.placeholder";
+      return "fm24.alarmStates";
     }
 
     @Override
     public List<String> parameterNames() {
-      return Placeholder.Match.parameterNames;
+      return AlarmStates.Match.parameterNames;
     }
 
     @Override
@@ -140,7 +143,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
     }
 
     @Override
-    public Placeholder.Match toImmutable() {
+    public AlarmStates.Match toImmutable() {
       return isMutable() ? newMatch(fState) : this;
     }
 
@@ -163,8 +166,8 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
       if (obj == null) {
           return false;
       }
-      if ((obj instanceof Placeholder.Match)) {
-          Placeholder.Match other = (Placeholder.Match) obj;
+      if ((obj instanceof AlarmStates.Match)) {
+          AlarmStates.Match other = (AlarmStates.Match) obj;
           return Objects.equals(fState, other.fState);
       } else {
           // this should be infrequent
@@ -177,8 +180,8 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
     }
 
     @Override
-    public Placeholder specification() {
-      return Placeholder.instance();
+    public AlarmStates specification() {
+      return AlarmStates.instance();
     }
 
     /**
@@ -188,7 +191,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
      * @return the empty match.
      * 
      */
-    public static Placeholder.Match newEmptyMatch() {
+    public static AlarmStates.Match newEmptyMatch() {
       return new Mutable(null);
     }
 
@@ -200,7 +203,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static Placeholder.Match newMutableMatch(final State pState) {
+    public static AlarmStates.Match newMutableMatch(final State pState) {
       return new Mutable(pState);
     }
 
@@ -212,11 +215,11 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
      * @return the (partial) match object.
      * 
      */
-    public static Placeholder.Match newMatch(final State pState) {
+    public static AlarmStates.Match newMatch(final State pState) {
       return new Immutable(pState);
     }
 
-    private static final class Mutable extends Placeholder.Match {
+    private static final class Mutable extends AlarmStates.Match {
       Mutable(final State pState) {
         super(pState);
       }
@@ -227,7 +230,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
       }
     }
 
-    private static final class Immutable extends Placeholder.Match {
+    private static final class Immutable extends AlarmStates.Match {
       Immutable(final State pState) {
         super(pState);
       }
@@ -240,7 +243,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
   }
 
   /**
-   * Generated pattern matcher API of the fm24.placeholder pattern,
+   * Generated pattern matcher API of the fm24.alarmStates pattern,
    * providing pattern-specific query methods.
    * 
    * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
@@ -250,16 +253,17 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern placeholder(state: State) {
-   *   State.name(state, "");
+   * pattern alarmStates(state: State) {
+   *   State.name(state, name);
+   *   check(name.startsWith("Alrm_"));
    * }
    * </pre></code>
    * 
    * @see Match
-   * @see Placeholder
+   * @see AlarmStates
    * 
    */
-  public static class Matcher extends BaseMatcher<Placeholder.Match> {
+  public static class Matcher extends BaseMatcher<AlarmStates.Match> {
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -268,7 +272,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * 
      */
-    public static Placeholder.Matcher on(final ViatraQueryEngine engine) {
+    public static AlarmStates.Matcher on(final ViatraQueryEngine engine) {
       // check if matcher already exists
       Matcher matcher = engine.getExistingMatcher(querySpecification());
       if (matcher == null) {
@@ -283,13 +287,13 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
      * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
      * 
      */
-    public static Placeholder.Matcher create() {
+    public static AlarmStates.Matcher create() {
       return new Matcher();
     }
 
     private static final int POSITION_STATE = 0;
 
-    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(Placeholder.Matcher.class);
+    private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(AlarmStates.Matcher.class);
 
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
@@ -309,7 +313,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<Placeholder.Match> getAllMatches(final State pState) {
+    public Collection<AlarmStates.Match> getAllMatches(final State pState) {
       return rawStreamAllMatches(new Object[]{pState}).collect(Collectors.toSet());
     }
 
@@ -323,7 +327,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<Placeholder.Match> streamAllMatches(final State pState) {
+    public Stream<AlarmStates.Match> streamAllMatches(final State pState) {
       return rawStreamAllMatches(new Object[]{pState});
     }
 
@@ -334,7 +338,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<Placeholder.Match> getOneArbitraryMatch(final State pState) {
+    public Optional<AlarmStates.Match> getOneArbitraryMatch(final State pState) {
       return rawGetOneArbitraryMatch(new Object[]{pState});
     }
 
@@ -367,7 +371,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final State pState, final Consumer<? super Placeholder.Match> processor) {
+    public boolean forOneArbitraryMatch(final State pState, final Consumer<? super AlarmStates.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pState}, processor);
     }
 
@@ -379,8 +383,8 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
      * @return the (partial) match object.
      * 
      */
-    public Placeholder.Match newMatch(final State pState) {
-      return Placeholder.Match.newMatch(pState);
+    public AlarmStates.Match newMatch(final State pState) {
+      return AlarmStates.Match.newMatch(pState);
     }
 
     /**
@@ -411,9 +415,9 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
     }
 
     @Override
-    protected Placeholder.Match tupleToMatch(final Tuple t) {
+    protected AlarmStates.Match tupleToMatch(final Tuple t) {
       try {
-          return Placeholder.Match.newMatch((State) t.get(POSITION_STATE));
+          return AlarmStates.Match.newMatch((State) t.get(POSITION_STATE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -421,9 +425,9 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
     }
 
     @Override
-    protected Placeholder.Match arrayToMatch(final Object[] match) {
+    protected AlarmStates.Match arrayToMatch(final Object[] match) {
       try {
-          return Placeholder.Match.newMatch((State) match[POSITION_STATE]);
+          return AlarmStates.Match.newMatch((State) match[POSITION_STATE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -431,9 +435,9 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
     }
 
     @Override
-    protected Placeholder.Match arrayToMatchMutable(final Object[] match) {
+    protected AlarmStates.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return Placeholder.Match.newMutableMatch((State) match[POSITION_STATE]);
+          return AlarmStates.Match.newMutableMatch((State) match[POSITION_STATE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -445,12 +449,12 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
      * 
      */
-    public static IQuerySpecification<Placeholder.Matcher> querySpecification() {
-      return Placeholder.instance();
+    public static IQuerySpecification<AlarmStates.Matcher> querySpecification() {
+      return AlarmStates.instance();
     }
   }
 
-  private Placeholder() {
+  private AlarmStates() {
     super(GeneratedPQuery.INSTANCE);
   }
 
@@ -459,7 +463,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
    * 
    */
-  public static Placeholder instance() {
+  public static AlarmStates instance() {
     try{
         return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
@@ -468,35 +472,35 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
   }
 
   @Override
-  protected Placeholder.Matcher instantiate(final ViatraQueryEngine engine) {
-    return Placeholder.Matcher.on(engine);
+  protected AlarmStates.Matcher instantiate(final ViatraQueryEngine engine) {
+    return AlarmStates.Matcher.on(engine);
   }
 
   @Override
-  public Placeholder.Matcher instantiate() {
-    return Placeholder.Matcher.create();
+  public AlarmStates.Matcher instantiate() {
+    return AlarmStates.Matcher.create();
   }
 
   @Override
-  public Placeholder.Match newEmptyMatch() {
-    return Placeholder.Match.newEmptyMatch();
+  public AlarmStates.Match newEmptyMatch() {
+    return AlarmStates.Match.newEmptyMatch();
   }
 
   @Override
-  public Placeholder.Match newMatch(final Object... parameters) {
-    return Placeholder.Match.newMatch((edu.toronto.cs.se.modelepedia.statemachine.State) parameters[0]);
+  public AlarmStates.Match newMatch(final Object... parameters) {
+    return AlarmStates.Match.newMatch((edu.toronto.cs.se.modelepedia.statemachine.State) parameters[0]);
   }
 
   /**
-   * Inner class allowing the singleton instance of {@link Placeholder} to be created 
+   * Inner class allowing the singleton instance of {@link AlarmStates} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link Placeholder#instance()}.
+   *     but rather at the first call to {@link AlarmStates#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
    */
   private static class LazyHolder {
-    private static final Placeholder INSTANCE = new Placeholder();
+    private static final AlarmStates INSTANCE = new AlarmStates();
 
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
@@ -514,7 +518,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
   }
 
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
-    private static final Placeholder.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    private static final AlarmStates.GeneratedPQuery INSTANCE = new GeneratedPQuery();
 
     private final PParameter parameter_state = new PParameter("state", "edu.toronto.cs.se.modelepedia.statemachine.State", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://se.cs.toronto.edu/modelepedia/StateMachine", "State")), PParameterDirection.INOUT);
 
@@ -526,7 +530,7 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
 
     @Override
     public String getFullyQualifiedName() {
-      return "fm24.placeholder";
+      return "fm24.alarmStates";
     }
 
     @Override
@@ -546,21 +550,43 @@ public final class Placeholder extends BaseGeneratedEMFQuerySpecification<Placeh
       {
           PBody body = new PBody(this);
           PVariable var_state = body.getOrCreateVariableByName("state");
+          PVariable var_name = body.getOrCreateVariableByName("name");
           new TypeConstraint(body, Tuples.flatTupleOf(var_state), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/StateMachine", "State")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_state, parameter_state)
           ));
-          //   State.name(state, "")
-          PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new ConstantValue(body, var__virtual_0_, "");
+          //   State.name(state, name)
           new TypeConstraint(body, Tuples.flatTupleOf(var_state), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/StateMachine", "State")));
-          PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_state, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/modelepedia/StateMachine", "AbstractState", "name")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
-          new Equality(body, var__virtual_1_, var__virtual_0_);
+          PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_state, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/modelepedia/StateMachine", "AbstractState", "name")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
+          new Equality(body, var__virtual_0_, var_name);
+          //   check(name.startsWith("Alrm_"))
+          new ExpressionEvaluation(body, new IExpressionEvaluator() {
+          
+              @Override
+              public String getShortDescription() {
+                  return "Expression evaluation from pattern alarmStates";
+              }
+              
+              @Override
+              public Iterable<String> getInputParameterNames() {
+                  return Arrays.asList("name");}
+          
+              @Override
+              public Object evaluateExpression(IValueProvider provider) throws Exception {
+                  String name = (String) provider.getValue("name");
+                  return evaluateExpression_1_1(name);
+              }
+          },  null, false);
           bodies.add(body);
       }
       return bodies;
     }
+  }
+
+  private static boolean evaluateExpression_1_1(final String name) {
+    boolean _startsWith = name.startsWith("Alrm_");
+    return _startsWith;
   }
 }

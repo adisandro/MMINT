@@ -12,7 +12,7 @@
  --><plugin>
   <extension id="fm24.Queries" point="org.eclipse.viatra.query.runtime.queryspecification">
     <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:fm24.Queries" id="fm24.Queries">
-      <query-specification fqn="fm24.placeholder"/>
+      <query-specification fqn="fm24.alarmStates"/>
     </group>
   </extension>
 </plugin>
