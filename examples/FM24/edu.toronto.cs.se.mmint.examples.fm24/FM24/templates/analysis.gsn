@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:gsn.templates="model://edu.toronto.cs.se.mmint.types.gsn.templates">
+<gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:gsn.templates="model://edu.toronto.cs.se.mmint.types.gsn.templates">
   <goals id="G0" description="{Safety goal}" templates="//@templates.0" valid="false">
     <supportedBy target="//@strategies.0"/>
   </goals>
   <goals id="G1" description="The query specification is correct" templates="//@templates.0" supports="//@strategies.0/@supportedBy.0"/>
-  <goals id="GX" description="{For each scenario in Ctx0, the safety goal is satisfied}" templates="//@templates.0" valid="false" supports="//@strategies.0/@supportedBy.1"/>
-  <strategies id="S0" description="{Argument over scenarios identified by model query}" templates="//@templates.0" valid="false" supports="//@goals.0/@supportedBy.0">
+  <goals id="GX" description="{For each scenario in Ctx1}, {safety goal} is satisfied" templates="//@templates.0" valid="false" supports="//@strategies.0/@supportedBy.1"/>
+  <strategies id="S0" description="Argument over scenarios identified by model query" templates="//@templates.0" supports="//@goals.0/@supportedBy.0">
     <supportedBy target="//@goals.1"/>
     <supportedBy target="//@goals.2"/>
     <inContextOf context="//@contexts.0"/>
+    <inContextOf context="//@contexts.1"/>
   </strategies>
-  <contexts id="Ctx0" description="{Query results}" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.0"/>
-  <templates xsi:type="gsn.templates:AnalysisTemplate" elements="//@goals.0 //@contexts.0 //@strategies.0 //@goals.1 //@goals.2" id="QueryAnalysis"/>
+  <contexts id="Ctx0" description="{Model and query}" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.0"/>
+  <contexts id="Ctx1" description="{Query results}" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.1"/>
+  <templates xsi:type="gsn.templates:AnalysisTemplate" elements="//@goals.0 //@contexts.0 //@contexts.1 //@strategies.0 //@goals.1 //@goals.2" id="QueryAnalysis"/>
 </gsn:SafetyCase>
