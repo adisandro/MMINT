@@ -166,6 +166,9 @@ public class ToProductLine extends OperatorImpl {
     var plType = pModelObj.eClass();
     var plClass = createPLClass(pModelObj, plType, plClasses);
     for (var pAttribute : plType.getEAllAttributes()) {
+      if (pAttribute.isDerived() || pAttribute.isTransient()) {
+        continue;
+      }
       var plValue = pModelObj.eGet(pAttribute);
       if (plValue == null) {
         continue;
@@ -176,7 +179,7 @@ public class ToProductLine extends OperatorImpl {
 
   private void createPLReferences(EObject pModelObj, Map<String, Class> plClasses, Set<EReference> pOpposites) {
     for (var pReference : pModelObj.eClass().getEAllReferences()) {
-      if (pOpposites.contains(pReference)) {
+      if (pReference.isDerived() || pReference.isTransient() || pOpposites.contains(pReference)) {
         continue;
       }
       var pOpposite = pReference.getEOpposite();

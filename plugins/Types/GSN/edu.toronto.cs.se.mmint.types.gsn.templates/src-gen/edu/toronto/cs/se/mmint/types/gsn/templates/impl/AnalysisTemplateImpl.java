@@ -149,7 +149,7 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
     try {
       var javaPath = getRunnerPath();
       if (javaPath == null) {
-        throw new MMINTException("Missing runner path");
+        return null;
       }
       var className = FileUtils.getFileNameFromPath(javaPath);
       var projectName = FileUtils.getFirstSegmentFromPath(javaPath);
@@ -167,7 +167,7 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
       this.runner = runner;
     }
     catch (Exception e) {
-      MMINTException.print(IStatus.WARNING, "Failed to load analysis runner class, skipping it", e);
+      MMINTException.print(IStatus.WARNING, "Failed to load analysis runner class, returning null", e);
       return null;
     }
 
