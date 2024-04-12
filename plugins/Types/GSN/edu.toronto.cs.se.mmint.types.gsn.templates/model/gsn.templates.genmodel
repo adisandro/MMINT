@@ -60,11 +60,12 @@
     </genClasses>
     <genClasses ecoreClass="gsn.templates.ecore#//AnalysisTemplate">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.templates.ecore#//AnalysisTemplate/runnerPath"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.templates.ecore#//AnalysisTemplate/runner"/>
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference gsn.templates.ecore#//AnalysisTemplate/runner"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="gsn.templates.ecore#//IAnalysisRunner">
-      <genOperations ecoreOperation="gsn.templates.ecore#//IAnalysisRunner/instantiate"/>
-      <genOperations ecoreOperation="gsn.templates.ecore#//IAnalysisRunner/validate"/>
+    <genClasses image="false" ecoreClass="gsn.templates.ecore#//AnalysisRunner">
+      <genOperations ecoreOperation="gsn.templates.ecore#//AnalysisRunner/instantiate"/>
+      <genOperations ecoreOperation="gsn.templates.ecore#//AnalysisRunner/validate"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

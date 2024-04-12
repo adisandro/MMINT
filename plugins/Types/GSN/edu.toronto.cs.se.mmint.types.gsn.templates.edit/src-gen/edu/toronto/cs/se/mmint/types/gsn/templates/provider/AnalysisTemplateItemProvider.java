@@ -57,7 +57,6 @@ public class AnalysisTemplateItemProvider extends TemplateItemProvider {
       super.getPropertyDescriptors(object);
 
       addRunnerPathPropertyDescriptor(object);
-      addRunnerPropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
   }
@@ -80,28 +79,6 @@ public class AnalysisTemplateItemProvider extends TemplateItemProvider {
          false,
          false,
          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
-  }
-
-  /**
-   * This adds a property descriptor for the Runner feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addRunnerPropertyDescriptor(Object object) {
-    this.itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_AnalysisTemplate_runner_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_AnalysisTemplate_runner_feature", "_UI_AnalysisTemplate_type"),
-         GSNTemplatesPackage.Literals.ANALYSIS_TEMPLATE__RUNNER,
-         true,
-         false,
-         true,
-         null,
          null,
          null));
   }

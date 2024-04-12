@@ -16,15 +16,15 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>IAnalysis Runner</b></em>'.
+ * A representation of the model object '<em><b>Analysis Runner</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getIAnalysisRunner()
- * @model interface="true" abstract="true"
+ * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getAnalysisRunner()
+ * @model abstract="true"
  * @generated
  */
-public interface IAnalysisRunner extends EObject {
+public interface AnalysisRunner extends EObject {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -41,4 +41,4 @@ public interface IAnalysisRunner extends EObject {
    */
   void validate() throws Exception;
 
-} // IAnalysisRunner
+} // AnalysisRunner

@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
+import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisRunner;
 import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Domain;
@@ -26,7 +27,6 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.EnumDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
-import edu.toronto.cs.se.mmint.types.gsn.templates.IAnalysisRunner;
 import edu.toronto.cs.se.mmint.types.gsn.templates.IntDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Property;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionElement;
@@ -369,9 +369,9 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
         }
         return result;
       }
-      case GSNTemplatesPackage.IANALYSIS_RUNNER: {
-        var iAnalysisRunner = (IAnalysisRunner)theEObject;
-        var result = caseIAnalysisRunner(iAnalysisRunner);
+      case GSNTemplatesPackage.ANALYSIS_RUNNER: {
+        var analysisRunner = (AnalysisRunner)theEObject;
+        var result = caseAnalysisRunner(analysisRunner);
         if (result == null) {
           result = defaultCase(theEObject);
         }
@@ -637,17 +637,17 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>IAnalysis Runner</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Analysis Runner</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>IAnalysis Runner</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Analysis Runner</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseIAnalysisRunner(IAnalysisRunner object) {
+  public T caseAnalysisRunner(AnalysisRunner object) {
     return null;
   }
 

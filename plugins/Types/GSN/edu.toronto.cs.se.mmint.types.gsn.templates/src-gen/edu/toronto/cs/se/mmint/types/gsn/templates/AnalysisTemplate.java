@@ -59,12 +59,12 @@ public interface AnalysisTemplate extends Template {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Runner</em>' reference.
-   * @see #setRunner(IAnalysisRunner)
+   * @see #setRunner(AnalysisRunner)
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getAnalysisTemplate_Runner()
    * @model transient="true"
    * @generated
    */
-  IAnalysisRunner getRunner();
+  AnalysisRunner getRunner();
 
   /**
    * Sets the value of the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate#getRunner <em>Runner</em>}' reference.
@@ -74,6 +74,6 @@ public interface AnalysisTemplate extends Template {
    * @see #getRunner()
    * @generated
    */
-  void setRunner(IAnalysisRunner value);
+  void setRunner(AnalysisRunner value);
 
 } // AnalysisTemplate

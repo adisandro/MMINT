@@ -12,21 +12,24 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.Set;
 
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisRunner;
 import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
-import edu.toronto.cs.se.mmint.types.gsn.templates.IAnalysisRunner;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl;
 
@@ -71,7 +74,7 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
    * @generated
    * @ordered
    */
-  protected IAnalysisRunner runner;
+  protected AnalysisRunner runner;
 
   /**
    * <!-- begin-user-doc -->
@@ -121,11 +124,10 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public IAnalysisRunner getRunner() {
+  public AnalysisRunner getRunnerGen() {
     if (this.runner != null && this.runner.eIsProxy()) {
       var oldRunner = (InternalEObject)this.runner;
-      this.runner = (IAnalysisRunner)eResolveProxy(oldRunner);
+      this.runner = (AnalysisRunner)eResolveProxy(oldRunner);
       if (this.runner != oldRunner) {
         if (eNotificationRequired()) {
           eNotify(new ENotificationImpl(this, Notification.RESOLVE, GSNTemplatesPackage.ANALYSIS_TEMPLATE__RUNNER, oldRunner, this.runner));
@@ -136,11 +138,48 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
   }
 
   /**
+   * @generated NOT
+   */
+  @Override
+  public AnalysisRunner getRunner() {
+    var runner = getRunnerGen();
+    if (runner != null) {
+      return runner;
+    }
+    try {
+      var javaPath = getRunnerPath();
+      if (javaPath == null) {
+        throw new MMINTException("Missing runner path");
+      }
+      var className = FileUtils.getFileNameFromPath(javaPath);
+      var projectName = FileUtils.getFirstSegmentFromPath(javaPath);
+      var binaryName = FileUtils.getAllButLastSegmentFromPath(javaPath)
+        .replace(IPath.SEPARATOR + projectName + IPath.SEPARATOR + "src" + IPath.SEPARATOR, "")
+        .replace(IPath.SEPARATOR, '.') +
+        className;
+      var emfUri = FileUtils.createEMFUri(projectName + IPath.SEPARATOR + "bin" + IPath.SEPARATOR, true);
+      var url = URI.create(emfUri.toString()).toURL();
+      try (var loader = new URLClassLoader(new URL[] {url}, this.getClass().getClassLoader())) {
+        var runnerClass = loader.loadClass(binaryName);
+        runner = (AnalysisRunner) runnerClass.getConstructor().newInstance();
+      }
+      // bypass EMF notifications and the need for a write transaction
+      this.runner = runner;
+    }
+    catch (Exception e) {
+      MMINTException.print(IStatus.WARNING, "Failed to load analysis runner class, skipping it", e);
+      return null;
+    }
+
+    return runner;
+  }
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public IAnalysisRunner basicGetRunner() {
+  public AnalysisRunner basicGetRunner() {
     return this.runner;
   }
 
@@ -150,7 +189,7 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
    * @generated
    */
   @Override
-  public void setRunner(IAnalysisRunner newRunner) {
+  public void setRunner(AnalysisRunner newRunner) {
     var oldRunner = this.runner;
     this.runner = newRunner;
     if (eNotificationRequired()) {
@@ -189,7 +228,7 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
         setRunnerPath((String)newValue);
         return;
       case GSNTemplatesPackage.ANALYSIS_TEMPLATE__RUNNER:
-        setRunner((IAnalysisRunner)newValue);
+        setRunner((AnalysisRunner)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -207,7 +246,7 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
         setRunnerPath(AnalysisTemplateImpl.RUNNER_PATH_EDEFAULT);
         return;
       case GSNTemplatesPackage.ANALYSIS_TEMPLATE__RUNNER:
-        setRunner((IAnalysisRunner)null);
+        setRunner((AnalysisRunner)null);
         return;
     }
     super.eUnset(featureID);
@@ -252,20 +291,10 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
    */
   @Override
   public void import_(SafetyCase safetyCase) throws Exception {
+    var javaPath = MIDDialogs.selectFile("Import analysis template", "Select a Java class that implements the analysis",
+                                         "There are no Java files in the workspace", Set.of("java"));
+    setRunnerPath(javaPath);
     super.import_(safetyCase);
-    try {
-      var u = URI.create(FileUtils.createEMFUri("/edu.toronto.cs.se.mmint.productline.tests/bin/", true).toString()).toURL();
-      var x = new URLClassLoader(new URL[] {u});
-      var c = x.loadClass("edu.toronto.cs.se.mmint.test.Something");
-      var i = (IAnalysisRunner) c.getConstructor().newInstance();
-      setRunner(i);
-      x.close();
-    }
-    catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException | IOException e) {
-      e.printStackTrace();
-    }
-    //TODO will need a string field to hold the runner location and a volatile runner to be reloaded if null, just like the rootModelObj thing
-    //TODO document the two main ways of extending template behavior: runner vs inheritance
   }
 
   /**
@@ -274,7 +303,10 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
   @Override
   public void instantiate() throws Exception {
     super.instantiate();
-    getRunner().instantiate();
+    var runner = getRunner();
+    if (runner != null) {
+      runner.instantiate();
+    }
   }
 
   /**
@@ -283,7 +315,10 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
   @Override
   public void validate() throws Exception {
     super.validate();
-    getRunner().validate();
+    var runner = getRunner();
+    if (runner != null) {
+      runner.validate();
+    }
   }
 
 } //AnalysisTemplateImpl

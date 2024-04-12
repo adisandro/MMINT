@@ -65,10 +65,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnalysisTemplate" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Template">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="runnerPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="runner" eType="#//IAnalysisRunner"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runner" eType="#//AnalysisRunner"
         transient="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IAnalysisRunner" abstract="true" interface="true">
+  <eClassifiers xsi:type="ecore:EClass" name="AnalysisRunner" abstract="true">
     <eOperations name="instantiate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
     <eOperations name="validate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
   </eClassifiers>
