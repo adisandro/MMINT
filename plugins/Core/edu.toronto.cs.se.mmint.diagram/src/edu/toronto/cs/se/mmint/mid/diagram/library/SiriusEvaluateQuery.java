@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.action.LegacyActionTools;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
@@ -68,7 +69,8 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     return new QuerySpec(queryReasoner, queryFilePath, query);
   }
 
-  public static String queryResultToString(Object result, Set<String> highlightUris, Set<Model> models) {
+  public static String queryResultToString(Object result, @Nullable Set<String> highlightUris,
+                                           @Nullable Set<Model> models) {
     var message = "";
     if (result instanceof Collection multiResult) {
       for (var innerResult : multiResult) {
@@ -77,15 +79,17 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     }
     else {
       if (result instanceof EObject resultObj) {
-        highlightUris.add(MIDRegistry.getModelElementUri(resultObj));
-        // try finding sirius models to highlight
-        try {
-          var model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(resultObj);
-          if (SiriusUtils.hasSiriusDiagram(model)) {
-            models.add(model);
+        if (highlightUris != null) {
+          highlightUris.add(MIDRegistry.getModelElementUri(resultObj));
+          // try finding sirius models to highlight
+          try {
+            var model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(resultObj);
+            if (SiriusUtils.hasSiriusDiagram(model)) {
+              models.add(model);
+            }
           }
+          catch (MMINTException e) {}
         }
-        catch (MMINTException e) {}
         // try finding the name
         try {
           var name = FileUtils.getModelObjectFeature(resultObj, "name");
