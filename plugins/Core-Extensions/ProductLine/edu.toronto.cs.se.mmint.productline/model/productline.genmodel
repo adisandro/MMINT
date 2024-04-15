@@ -65,6 +65,7 @@
       </genOperations>
       <genOperations ecoreOperation="productline.ecore#//Class/addAttribute">
         <genParameters ecoreParameter="productline.ecore#//Class/addAttribute/attributeType"/>
+        <genParameters ecoreParameter="productline.ecore#//Class/addAttribute/value"/>
       </genOperations>
       <genOperations ecoreOperation="productline.ecore#//Class/setAttribute">
         <genParameters ecoreParameter="productline.ecore#//Class/setAttribute/attributeType"/>

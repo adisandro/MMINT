@@ -374,7 +374,7 @@ public interface PLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS___ADD_ATTRIBUTE__EATTRIBUTE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 8;
+  int CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.PL_ELEMENT_OPERATION_COUNT + 8;
 
   /**
    * The operation id for the '<em>Set Attribute</em>' operation.
@@ -856,14 +856,14 @@ public interface PLPackage extends EPackage {
   EOperation getClass__GetAttribute__EAttribute();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#addAttribute(org.eclipse.emf.ecore.EAttribute) <em>Add Attribute</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#addAttribute(org.eclipse.emf.ecore.EAttribute, java.lang.String) <em>Add Attribute</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Add Attribute</em>' operation.
-   * @see edu.toronto.cs.se.mmint.productline.Class#addAttribute(org.eclipse.emf.ecore.EAttribute)
+   * @see edu.toronto.cs.se.mmint.productline.Class#addAttribute(org.eclipse.emf.ecore.EAttribute, java.lang.String)
    * @generated
    */
-  EOperation getClass__AddAttribute__EAttribute();
+  EOperation getClass__AddAttribute__EAttribute_String();
 
   /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#setAttribute(org.eclipse.emf.ecore.EAttribute, java.lang.String) <em>Set Attribute</em>}' operation.
@@ -1218,7 +1218,7 @@ public interface PLPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation CLASS___ADD_ATTRIBUTE__EATTRIBUTE = PLPackage.eINSTANCE.getClass__AddAttribute__EAttribute();
+    EOperation CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.eINSTANCE.getClass__AddAttribute__EAttribute_String();
 
     /**
      * The meta object literal for the '<em><b>Set Attribute</b></em>' operation.

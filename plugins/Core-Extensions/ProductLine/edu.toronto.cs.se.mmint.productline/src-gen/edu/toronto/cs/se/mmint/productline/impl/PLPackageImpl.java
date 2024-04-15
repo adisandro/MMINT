@@ -418,7 +418,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__AddAttribute__EAttribute() {
+  public EOperation getClass__AddAttribute__EAttribute_String() {
     return this.classEClass.getEOperations().get(8);
   }
 
@@ -599,7 +599,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     createEOperation(this.classEClass, PLPackage.CLASS___GET_REFERENCE_AS_TARGET__EREFERENCE);
     createEOperation(this.classEClass, PLPackage.CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE);
     createEOperation(this.classEClass, PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE);
-    createEOperation(this.classEClass, PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE);
+    createEOperation(this.classEClass, PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING);
     createEOperation(this.classEClass, PLPackage.CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING);
     createEOperation(this.classEClass, PLPackage.CLASS___INSTANCE_OF__ECLASS);
     createEOperation(this.classEClass, PLPackage.CLASS___GET_ECONTAINER);
@@ -749,9 +749,10 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
                         EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEAttribute(), "attributeType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    op = initEOperation(getClass__AddAttribute__EAttribute(), this.getAttribute(), "addAttribute", 1, 1, EPackageImpl.IS_UNIQUE,
-                        EPackageImpl.IS_ORDERED);
+    op = initEOperation(getClass__AddAttribute__EAttribute_String(), this.getAttribute(), "addAttribute", 1, 1,
+                        EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEAttribute(), "attributeType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEString(), "value", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     op = initEOperation(getClass__SetAttribute__EAttribute_String(), null, "setAttribute", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEAttribute(), "attributeType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);

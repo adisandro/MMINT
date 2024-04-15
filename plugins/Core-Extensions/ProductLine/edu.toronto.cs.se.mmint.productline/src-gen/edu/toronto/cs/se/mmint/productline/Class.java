@@ -169,7 +169,7 @@ public interface Class extends PLElement {
    * @model required="true" attributeTypeRequired="true"
    * @generated
    */
-  Attribute addAttribute(EAttribute attributeType);
+  Attribute addAttribute(EAttribute attributeType, String value);
 
   /**
    * <!-- begin-user-doc -->

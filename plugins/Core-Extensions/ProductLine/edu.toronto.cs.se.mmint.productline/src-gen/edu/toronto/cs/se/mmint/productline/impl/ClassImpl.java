@@ -350,8 +350,8 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
       return getStreamOfAttribute((EAttribute) arguments.get(0));
     case PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE:
       return getAttribute((EAttribute) arguments.get(0));
-    case PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE:
-      return addAttribute((EAttribute) arguments.get(0));
+    case PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING:
+      return addAttribute((EAttribute) arguments.get(0), (String) arguments.get(1));
     case PLPackage.CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING:
       setAttribute((EAttribute) arguments.get(0), (String) arguments.get(1));
       return null;
@@ -477,9 +477,10 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    * @generated NOT
    */
   @Override
-  public Attribute addAttribute(EAttribute attributeType) {
+  public Attribute addAttribute(EAttribute attributeType, String value) {
     var attr = PLFactory.eINSTANCE.createAttribute();
     attr.setType(attributeType);
+    attr.setValue(value);
     attr.setPresenceCondition(getPresenceCondition());
     getAttributes().add(attr);
 
@@ -497,8 +498,7 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
       c.getAndIncrement();
     });
     if (c.get() == 0) { // add new attribute
-      var attr = addAttribute(attributeType);
-      attr.setValue(value);
+      addAttribute(attributeType, value);
     }
   }
 

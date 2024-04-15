@@ -65,7 +65,7 @@ public class CreateAttribute extends AbstractExternalJavaAction {
         var contentProvider = new ArrayContentProvider();
         var type = MIDDialogs.<EAttribute>openListDialog("Create Attribute", "Select Attribute",
                                                          getAttributes(this.clazz), contentProvider, labelProvider);
-        this.clazz.addAttribute(type);
+        this.clazz.addAttribute(type, null);
       }
       catch (MIDDialogCancellation e) {
         // do nothing

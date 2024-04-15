@@ -59,6 +59,7 @@
     </eOperations>
     <eOperations name="addAttribute" lowerBound="1" eType="#//Attribute">
       <eParameters name="attributeType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+      <eParameters name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
     <eOperations name="setAttribute">
       <eParameters name="attributeType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
