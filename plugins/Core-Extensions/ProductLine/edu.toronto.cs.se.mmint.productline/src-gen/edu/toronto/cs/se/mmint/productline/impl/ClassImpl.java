@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.productline.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,8 +31,10 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.Class;
+import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.Reference;
 
@@ -334,6 +337,8 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
       return getStreamOfReference((EReference) arguments.get(0));
     case PLPackage.CLASS___GET_REFERENCE__EREFERENCE:
       return getReference((EReference) arguments.get(0));
+    case PLPackage.CLASS___ADD_REFERENCE__EREFERENCE_CLASS:
+      return addReference((EReference) arguments.get(0), (edu.toronto.cs.se.mmint.productline.Class) arguments.get(1));
     case PLPackage.CLASS___SET_REFERENCE__EREFERENCE_CLASS:
       setReference((EReference) arguments.get(0), (edu.toronto.cs.se.mmint.productline.Class) arguments.get(1));
       return null;
@@ -345,6 +350,8 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
       return getStreamOfAttribute((EAttribute) arguments.get(0));
     case PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE:
       return getAttribute((EAttribute) arguments.get(0));
+    case PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE:
+      return addAttribute((EAttribute) arguments.get(0));
     case PLPackage.CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING:
       setAttribute((EAttribute) arguments.get(0), (String) arguments.get(1));
       return null;
@@ -394,8 +401,36 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    * @generated NOT
    */
   @Override
+  public Reference addReference(EReference referenceType, edu.toronto.cs.se.mmint.productline.Class tgtClass) {
+    var ref = PLFactory.eINSTANCE.createReference();
+    ref.setType(referenceType);
+    ref.setTarget(tgtClass);
+    getReferences().add(ref);
+    try {
+      var reasoner = getProductLine().getReasoner();
+      var pc = reasoner.simplify(reasoner.and(getPresenceCondition(), tgtClass.getPresenceCondition()));
+      ref.setPresenceCondition(pc);
+    }
+    catch (MMINTException e) {
+      // do nothing
+    }
+
+    return ref;
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
   public void setReference(EReference referenceType, edu.toronto.cs.se.mmint.productline.Class tgtClass) {
-    getStreamOfReference_(getReferences(), referenceType).forEach(r -> r.setTarget(tgtClass));
+    var c = new AtomicInteger(0);
+    getStreamOfReference_(getReferences(), referenceType).forEach(r -> {
+      r.setTarget(tgtClass);
+      c.getAndIncrement();
+    });
+    if (c.get() == 0) { // add new reference
+      addReference(referenceType, tgtClass);
+    }
   }
 
   /**
@@ -442,8 +477,29 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    * @generated NOT
    */
   @Override
+  public Attribute addAttribute(EAttribute attributeType) {
+    var attr = PLFactory.eINSTANCE.createAttribute();
+    attr.setType(attributeType);
+    attr.setPresenceCondition(getPresenceCondition());
+    getAttributes().add(attr);
+
+    return attr;
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
   public void setAttribute(EAttribute attributeType, String value) {
-    getStreamOfAttribute_(attributeType).forEach(a -> a.setValue(value));
+    var c = new AtomicInteger(0);
+    getStreamOfAttribute_(attributeType).forEach(a -> {
+      a.setValue(value);
+      c.getAndIncrement();
+    });
+    if (c.get() == 0) { // add new attribute
+      var attr = addAttribute(attributeType);
+      attr.setValue(value);
+    }
   }
 
   /**

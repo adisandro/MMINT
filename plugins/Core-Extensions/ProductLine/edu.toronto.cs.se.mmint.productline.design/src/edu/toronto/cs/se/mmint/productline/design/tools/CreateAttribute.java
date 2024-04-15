@@ -27,13 +27,12 @@ import org.eclipse.sirius.business.api.session.SessionManager;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.productline.Class;
-import edu.toronto.cs.se.mmint.productline.PLFactory;
 
 public class CreateAttribute extends AbstractExternalJavaAction {
 
   private EAttribute[] getAttributes(Class clazz) {
     return clazz.getType().getEAllAttributes().stream()
-    .filter(a -> !a.isDerived())
+    .filter(a -> !a.isDerived() && !a.isTransient())
     .toArray(EAttribute[]::new);
   }
 
@@ -66,10 +65,7 @@ public class CreateAttribute extends AbstractExternalJavaAction {
         var contentProvider = new ArrayContentProvider();
         var type = MIDDialogs.<EAttribute>openListDialog("Create Attribute", "Select Attribute",
                                                          getAttributes(this.clazz), contentProvider, labelProvider);
-        var attribute = PLFactory.eINSTANCE.createAttribute();
-        attribute.setType(type);
-        attribute.setPresenceCondition(this.clazz.getPresenceCondition());
-        this.clazz.getAttributes().add(attribute);
+        this.clazz.addAttribute(type);
       }
       catch (MIDDialogCancellation e) {
         // do nothing

@@ -30,7 +30,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.productline.Class;
-import edu.toronto.cs.se.mmint.productline.PLFactory;
 
 public class CreateReference extends AbstractExternalJavaAction {
 
@@ -68,7 +67,6 @@ public class CreateReference extends AbstractExternalJavaAction {
     @Override
     protected void doExecute() {
       try {
-        var reasoner = this.srcClass.getProductLine().getReasoner();
         var labelProvider = LabelProvider.createTextProvider(c -> ((EReference) c).getName());
         var contentProvider = new ArrayContentProvider();
         var references = getReferences(this.srcClass, this.tgtClass);
@@ -77,13 +75,7 @@ public class CreateReference extends AbstractExternalJavaAction {
         }
         var type = MIDDialogs.<EReference>openListDialog("Create Reference", "Select Reference", references,
                                                          contentProvider, labelProvider);
-        var reference = PLFactory.eINSTANCE.createReference();
-        reference.setType(type);
-        reference.setTarget(this.tgtClass);
-        var pc = reasoner.simplify(
-          reasoner.and(this.srcClass.getPresenceCondition(), this.tgtClass.getPresenceCondition()));
-        reference.setPresenceCondition(pc);
-        this.srcClass.getReferences().add(reference);
+        this.srcClass.addReference(type, this.tgtClass);
       }
       catch (MIDDialogCancellation e) {
         // do nothing
