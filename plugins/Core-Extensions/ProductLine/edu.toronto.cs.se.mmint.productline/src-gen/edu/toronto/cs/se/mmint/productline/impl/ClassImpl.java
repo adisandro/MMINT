@@ -342,10 +342,6 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
     case PLPackage.CLASS___SET_REFERENCE__EREFERENCE_CLASS:
       setReference((EReference) arguments.get(0), (edu.toronto.cs.se.mmint.productline.Class) arguments.get(1));
       return null;
-    case PLPackage.CLASS___GET_STREAM_OF_REFERENCE_AS_TARGET__EREFERENCE:
-      return getStreamOfReferenceAsTarget((EReference) arguments.get(0));
-    case PLPackage.CLASS___GET_REFERENCE_AS_TARGET__EREFERENCE:
-      return getReferenceAsTarget((EReference) arguments.get(0));
     case PLPackage.CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE:
       return getStreamOfAttribute((EAttribute) arguments.get(0));
     case PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE:
@@ -386,7 +382,15 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    */
   @Override
   public Stream<edu.toronto.cs.se.mmint.productline.Class> getStreamOfReference(EReference referenceType) {
-    return getStreamOfReference_(getReferences(), referenceType).map(r -> r.getTarget());
+    var stream = getStreamOfReference_(getReferences(), referenceType).map(r -> r.getTarget());
+    var oppositeReferenceType = referenceType.getEOpposite();
+    if (oppositeReferenceType != null) {
+      var oppositeStream = getStreamOfReference_(getReferencesAsTarget(), oppositeReferenceType).map(
+                                                                                                     r -> (edu.toronto.cs.se.mmint.productline.Class) r.eContainer());
+      stream = Stream.concat(stream, oppositeStream);
+    }
+
+    return stream;
   }
 
   /**
@@ -431,23 +435,6 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
     if (c.get() == 0) { // add new reference
       addReference(referenceType, tgtClass);
     }
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public Stream<edu.toronto.cs.se.mmint.productline.Class> getStreamOfReferenceAsTarget(EReference referenceType) {
-    return getStreamOfReference_(getReferencesAsTarget(), referenceType).map(
-                                                                             r -> (edu.toronto.cs.se.mmint.productline.Class) r.eContainer());
-  }
-
-  /**
-   * @generated NOT
-   */
-  @Override
-  public EList<edu.toronto.cs.se.mmint.productline.Class> getReferenceAsTarget(EReference referenceType) {
-    return ECollections.asEList(getStreamOfReferenceAsTarget(referenceType).collect(Collectors.toList()));
   }
 
   /**

@@ -45,7 +45,7 @@ public class GSNPLInstantiateTemplate extends AbstractExternalJavaAction {
     var plTemplates = plTemplateElem.getReference(GSNPackage.eINSTANCE.getArgumentElement_Templates());
     if (plTemplates.isEmpty() ||
         plTemplates.stream()
-          .flatMap(t -> t.getStreamOfReferenceAsTarget(GSNPackage.eINSTANCE.getArgumentElement_Templates()))
+          .flatMap(t -> t.getStreamOfReference(GSNPackage.eINSTANCE.getTemplate_Elements()))
           .flatMap(c -> c.getStreamOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_Valid()))
           .allMatch(v -> Boolean.valueOf(v))) {
       return false;

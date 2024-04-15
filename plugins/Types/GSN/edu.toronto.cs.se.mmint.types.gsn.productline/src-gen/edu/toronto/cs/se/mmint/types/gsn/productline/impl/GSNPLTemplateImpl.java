@@ -74,7 +74,7 @@ public class GSNPLTemplateImpl extends ClassImpl implements GSNPLTemplate {
    */
   @Override
   public void instantiate() throws Exception {
-    var plElements = getStreamOfReferenceAsTarget(GSNPackage.eINSTANCE.getArgumentElement_Templates())
+    var plElements = getStreamOfReference(GSNPackage.eINSTANCE.getTemplate_Elements())
       .filter(e -> e instanceof GSNPLArgumentElement)
       .map(e -> (GSNPLArgumentElement) e)
       .collect(Collectors.toList());
@@ -94,7 +94,7 @@ public class GSNPLTemplateImpl extends ClassImpl implements GSNPLTemplate {
    */
   @Override
   public void validate() throws Exception {
-    var plElements = getStreamOfReferenceAsTarget(GSNPackage.eINSTANCE.getArgumentElement_Templates())
+    var plElements = getStreamOfReference(GSNPackage.eINSTANCE.getTemplate_Elements())
       .filter(e -> e instanceof GSNPLArgumentElement)
       .map(e -> (GSNPLArgumentElement) e)
       .collect(Collectors.toList());

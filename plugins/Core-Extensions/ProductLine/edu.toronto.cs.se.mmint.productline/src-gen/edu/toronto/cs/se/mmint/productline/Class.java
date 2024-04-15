@@ -134,22 +134,6 @@ public interface Class extends PLElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model dataType="edu.toronto.cs.se.mmint.productline.Stream&lt;edu.toronto.cs.se.mmint.productline.Class&gt;" required="true" referenceTypeRequired="true"
-   * @generated
-   */
-  Stream<Class> getStreamOfReferenceAsTarget(EReference referenceType);
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model referenceTypeRequired="true"
-   * @generated
-   */
-  EList<Class> getReferenceAsTarget(EReference referenceType);
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
    * @model dataType="edu.toronto.cs.se.mmint.productline.Stream&lt;org.eclipse.emf.ecore.EString&gt;" required="true" attributeTypeRequired="true"
    * @generated
    */

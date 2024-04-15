@@ -378,7 +378,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__GetStreamOfReferenceAsTarget__EReference() {
+  public EOperation getClass__GetStreamOfAttribute__EAttribute() {
     return this.classEClass.getEOperations().get(4);
   }
 
@@ -388,7 +388,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__GetReferenceAsTarget__EReference() {
+  public EOperation getClass__GetAttribute__EAttribute() {
     return this.classEClass.getEOperations().get(5);
   }
 
@@ -398,7 +398,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__GetStreamOfAttribute__EAttribute() {
+  public EOperation getClass__AddAttribute__EAttribute_String() {
     return this.classEClass.getEOperations().get(6);
   }
 
@@ -408,7 +408,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__GetAttribute__EAttribute() {
+  public EOperation getClass__SetAttribute__EAttribute_String() {
     return this.classEClass.getEOperations().get(7);
   }
 
@@ -418,7 +418,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__AddAttribute__EAttribute_String() {
+  public EOperation getClass__InstanceOf__EClass() {
     return this.classEClass.getEOperations().get(8);
   }
 
@@ -428,28 +428,8 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__SetAttribute__EAttribute_String() {
-    return this.classEClass.getEOperations().get(9);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EOperation getClass__InstanceOf__EClass() {
-    return this.classEClass.getEOperations().get(10);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EOperation getClass__GetEContainer() {
-    return this.classEClass.getEOperations().get(11);
+    return this.classEClass.getEOperations().get(9);
   }
 
   /**
@@ -595,8 +575,6 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     createEOperation(this.classEClass, PLPackage.CLASS___GET_REFERENCE__EREFERENCE);
     createEOperation(this.classEClass, PLPackage.CLASS___ADD_REFERENCE__EREFERENCE_CLASS);
     createEOperation(this.classEClass, PLPackage.CLASS___SET_REFERENCE__EREFERENCE_CLASS);
-    createEOperation(this.classEClass, PLPackage.CLASS___GET_STREAM_OF_REFERENCE_AS_TARGET__EREFERENCE);
-    createEOperation(this.classEClass, PLPackage.CLASS___GET_REFERENCE_AS_TARGET__EREFERENCE);
     createEOperation(this.classEClass, PLPackage.CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE);
     createEOperation(this.classEClass, PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE);
     createEOperation(this.classEClass, PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING);
@@ -724,18 +702,6 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     op = initEOperation(getClass__SetReference__EReference_Class(), null, "setReference", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEReference(), "referenceType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.getClass_(), "tgtClass", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-
-    op = initEOperation(getClass__GetStreamOfReferenceAsTarget__EReference(), null, "getStreamOfReferenceAsTarget", 1,
-                        1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEReference(), "referenceType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    g1 = createEGenericType(this.getStream());
-    g2 = createEGenericType(this.getClass_());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
-
-    op = initEOperation(getClass__GetReferenceAsTarget__EReference(), this.getClass_(), "getReferenceAsTarget", 0, -1,
-                        EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEReference(), "referenceType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     op = initEOperation(getClass__GetStreamOfAttribute__EAttribute(), null, "getStreamOfAttribute", 1, 1, EPackageImpl.IS_UNIQUE,
                         EPackageImpl.IS_ORDERED);

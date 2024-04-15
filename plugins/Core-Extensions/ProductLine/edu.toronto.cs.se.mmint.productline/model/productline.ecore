@@ -39,15 +39,6 @@
       <eParameters name="referenceType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
       <eParameters name="tgtClass" lowerBound="1" eType="#//Class"/>
     </eOperations>
-    <eOperations name="getStreamOfReferenceAsTarget" lowerBound="1">
-      <eGenericType eClassifier="#//Stream">
-        <eTypeArguments eClassifier="#//Class"/>
-      </eGenericType>
-      <eParameters name="referenceType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
-    </eOperations>
-    <eOperations name="getReferenceAsTarget" upperBound="-1" eType="#//Class">
-      <eParameters name="referenceType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
-    </eOperations>
     <eOperations name="getStreamOfAttribute" lowerBound="1">
       <eGenericType eClassifier="#//Stream">
         <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

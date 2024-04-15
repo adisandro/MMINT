@@ -332,31 +332,13 @@ public interface PLPackage extends EPackage {
   int CLASS___SET_REFERENCE__EREFERENCE_CLASS = PLPackage.PL_ELEMENT_OPERATION_COUNT + 3;
 
   /**
-   * The operation id for the '<em>Get Stream Of Reference As Target</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CLASS___GET_STREAM_OF_REFERENCE_AS_TARGET__EREFERENCE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 4;
-
-  /**
-   * The operation id for the '<em>Get Reference As Target</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CLASS___GET_REFERENCE_AS_TARGET__EREFERENCE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 5;
-
-  /**
    * The operation id for the '<em>Get Stream Of Attribute</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 6;
+  int CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 4;
 
   /**
    * The operation id for the '<em>Get Attribute</em>' operation.
@@ -365,7 +347,7 @@ public interface PLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS___GET_ATTRIBUTE__EATTRIBUTE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 7;
+  int CLASS___GET_ATTRIBUTE__EATTRIBUTE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 5;
 
   /**
    * The operation id for the '<em>Add Attribute</em>' operation.
@@ -374,7 +356,7 @@ public interface PLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.PL_ELEMENT_OPERATION_COUNT + 8;
+  int CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.PL_ELEMENT_OPERATION_COUNT + 6;
 
   /**
    * The operation id for the '<em>Set Attribute</em>' operation.
@@ -383,7 +365,7 @@ public interface PLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.PL_ELEMENT_OPERATION_COUNT + 9;
+  int CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.PL_ELEMENT_OPERATION_COUNT + 7;
 
   /**
    * The operation id for the '<em>Instance Of</em>' operation.
@@ -392,7 +374,7 @@ public interface PLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS___INSTANCE_OF__ECLASS = PLPackage.PL_ELEMENT_OPERATION_COUNT + 10;
+  int CLASS___INSTANCE_OF__ECLASS = PLPackage.PL_ELEMENT_OPERATION_COUNT + 8;
 
   /**
    * The operation id for the '<em>Get EContainer</em>' operation.
@@ -401,7 +383,7 @@ public interface PLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS___GET_ECONTAINER = PLPackage.PL_ELEMENT_OPERATION_COUNT + 11;
+  int CLASS___GET_ECONTAINER = PLPackage.PL_ELEMENT_OPERATION_COUNT + 9;
 
   /**
    * The number of operations of the '<em>Class</em>' class.
@@ -410,7 +392,7 @@ public interface PLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS_OPERATION_COUNT = PLPackage.PL_ELEMENT_OPERATION_COUNT + 12;
+  int CLASS_OPERATION_COUNT = PLPackage.PL_ELEMENT_OPERATION_COUNT + 10;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl <em>Reference</em>}' class.
@@ -816,26 +798,6 @@ public interface PLPackage extends EPackage {
   EOperation getClass__SetReference__EReference_Class();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#getStreamOfReferenceAsTarget(org.eclipse.emf.ecore.EReference) <em>Get Stream Of Reference As Target</em>}' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Get Stream Of Reference As Target</em>' operation.
-   * @see edu.toronto.cs.se.mmint.productline.Class#getStreamOfReferenceAsTarget(org.eclipse.emf.ecore.EReference)
-   * @generated
-   */
-  EOperation getClass__GetStreamOfReferenceAsTarget__EReference();
-
-  /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#getReferenceAsTarget(org.eclipse.emf.ecore.EReference) <em>Get Reference As Target</em>}' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Get Reference As Target</em>' operation.
-   * @see edu.toronto.cs.se.mmint.productline.Class#getReferenceAsTarget(org.eclipse.emf.ecore.EReference)
-   * @generated
-   */
-  EOperation getClass__GetReferenceAsTarget__EReference();
-
-  /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#getStreamOfAttribute(org.eclipse.emf.ecore.EAttribute) <em>Get Stream Of Attribute</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1179,22 +1141,6 @@ public interface PLPackage extends EPackage {
      * @generated
      */
     EOperation CLASS___SET_REFERENCE__EREFERENCE_CLASS = PLPackage.eINSTANCE.getClass__SetReference__EReference_Class();
-
-    /**
-     * The meta object literal for the '<em><b>Get Stream Of Reference As Target</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation CLASS___GET_STREAM_OF_REFERENCE_AS_TARGET__EREFERENCE = PLPackage.eINSTANCE.getClass__GetStreamOfReferenceAsTarget__EReference();
-
-    /**
-     * The meta object literal for the '<em><b>Get Reference As Target</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation CLASS___GET_REFERENCE_AS_TARGET__EREFERENCE = PLPackage.eINSTANCE.getClass__GetReferenceAsTarget__EReference();
 
     /**
      * The meta object literal for the '<em><b>Get Stream Of Attribute</b></em>' operation.
