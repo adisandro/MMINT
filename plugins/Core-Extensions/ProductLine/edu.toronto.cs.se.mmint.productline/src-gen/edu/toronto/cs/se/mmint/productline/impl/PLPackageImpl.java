@@ -358,7 +358,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__GetStreamOfReferenceAsTarget__EReference() {
+  public EOperation getClass__SetReference__EReference_Class() {
     return this.classEClass.getEOperations().get(2);
   }
 
@@ -368,7 +368,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__GetReferenceAsTarget__EReference() {
+  public EOperation getClass__GetStreamOfReferenceAsTarget__EReference() {
     return this.classEClass.getEOperations().get(3);
   }
 
@@ -378,7 +378,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__GetStreamOfAttribute__EAttribute() {
+  public EOperation getClass__GetReferenceAsTarget__EReference() {
     return this.classEClass.getEOperations().get(4);
   }
 
@@ -388,7 +388,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__GetAttribute__EAttribute() {
+  public EOperation getClass__GetStreamOfAttribute__EAttribute() {
     return this.classEClass.getEOperations().get(5);
   }
 
@@ -398,7 +398,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__InstanceOf__EClass() {
+  public EOperation getClass__GetAttribute__EAttribute() {
     return this.classEClass.getEOperations().get(6);
   }
 
@@ -408,8 +408,28 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__GetEContainer() {
+  public EOperation getClass__SetAttribute__EAttribute_String() {
     return this.classEClass.getEOperations().get(7);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getClass__InstanceOf__EClass() {
+    return this.classEClass.getEOperations().get(8);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getClass__GetEContainer() {
+    return this.classEClass.getEOperations().get(9);
   }
 
   /**
@@ -553,10 +573,12 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     createEReference(this.classEClass, PLPackage.CLASS__TYPE);
     createEOperation(this.classEClass, PLPackage.CLASS___GET_STREAM_OF_REFERENCE__EREFERENCE);
     createEOperation(this.classEClass, PLPackage.CLASS___GET_REFERENCE__EREFERENCE);
+    createEOperation(this.classEClass, PLPackage.CLASS___SET_REFERENCE__EREFERENCE_CLASS);
     createEOperation(this.classEClass, PLPackage.CLASS___GET_STREAM_OF_REFERENCE_AS_TARGET__EREFERENCE);
     createEOperation(this.classEClass, PLPackage.CLASS___GET_REFERENCE_AS_TARGET__EREFERENCE);
     createEOperation(this.classEClass, PLPackage.CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE);
     createEOperation(this.classEClass, PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE);
+    createEOperation(this.classEClass, PLPackage.CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING);
     createEOperation(this.classEClass, PLPackage.CLASS___INSTANCE_OF__ECLASS);
     createEOperation(this.classEClass, PLPackage.CLASS___GET_ECONTAINER);
 
@@ -672,6 +694,10 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
                         EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEReference(), "referenceType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
+    op = initEOperation(getClass__SetReference__EReference_Class(), null, "setReference", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEReference(), "referenceType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.getClass_(), "tgtClass", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
     op = initEOperation(getClass__GetStreamOfReferenceAsTarget__EReference(), null, "getStreamOfReferenceAsTarget", 1,
                         1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEReference(), "referenceType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
@@ -695,6 +721,10 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     op = initEOperation(getClass__GetAttribute__EAttribute(), this.ecorePackage.getEString(), "getAttribute", 0, -1,
                         EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEAttribute(), "attributeType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
+    op = initEOperation(getClass__SetAttribute__EAttribute_String(), null, "setAttribute", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEAttribute(), "attributeType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEString(), "value", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     op = initEOperation(getClass__InstanceOf__EClass(), this.ecorePackage.getEBoolean(), "instanceOf", 1, 1, EPackageImpl.IS_UNIQUE,
                         EPackageImpl.IS_ORDERED);

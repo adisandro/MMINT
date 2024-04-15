@@ -201,7 +201,7 @@ public class ProductLineItemProvider extends ItemProviderAdapter implements IEdi
    */
   @Override
   public String getText(Object object) {
-    String label = ((ProductLine) object).getReasonerName();
+    var label = ((ProductLine) object).getReasonerName();
     return label == null || label.length() == 0 ? getString("_UI_ProductLine_type")
       : getString("_UI_ProductLine_type") + " " + label;
   }

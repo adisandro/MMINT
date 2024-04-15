@@ -120,7 +120,7 @@ public class ReferenceItemProvider extends PLElementItemProvider {
    */
   @Override
   public String getText(Object object) {
-    String label = ((Reference) object).getPresenceCondition();
+    var label = ((Reference) object).getPresenceCondition();
     return label == null || label.length() == 0 ? getString("_UI_Reference_type")
       : getString("_UI_Reference_type") + " " + label;
   }

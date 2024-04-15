@@ -122,7 +122,7 @@ public class AttributeItemProvider extends PLElementItemProvider {
    */
   @Override
   public String getText(Object object) {
-    String label = ((Attribute) object).getPresenceCondition();
+    var label = ((Attribute) object).getPresenceCondition();
     return label == null || label.length() == 0 ? getString("_UI_Attribute_type")
       : getString("_UI_Attribute_type") + " " + label;
   }

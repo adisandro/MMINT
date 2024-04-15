@@ -118,6 +118,14 @@ public interface Class extends PLElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @model referenceTypeRequired="true" tgtClassRequired="true"
+   * @generated
+   */
+  void setReference(EReference referenceType, Class tgtClass);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @model dataType="edu.toronto.cs.se.mmint.productline.Stream&lt;edu.toronto.cs.se.mmint.productline.Class&gt;" required="true" referenceTypeRequired="true"
    * @generated
    */
@@ -146,6 +154,14 @@ public interface Class extends PLElement {
    * @generated
    */
   EList<String> getAttribute(EAttribute attributeType);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model attributeTypeRequired="true" valueRequired="true"
+   * @generated
+   */
+  void setAttribute(EAttribute attributeType, String value);
 
   /**
    * <!-- begin-user-doc -->

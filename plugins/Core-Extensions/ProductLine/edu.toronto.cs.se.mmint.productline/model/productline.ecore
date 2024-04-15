@@ -31,6 +31,10 @@
     <eOperations name="getReference" upperBound="-1" eType="#//Class">
       <eParameters name="referenceType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
     </eOperations>
+    <eOperations name="setReference">
+      <eParameters name="referenceType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
+      <eParameters name="tgtClass" lowerBound="1" eType="#//Class"/>
+    </eOperations>
     <eOperations name="getStreamOfReferenceAsTarget" lowerBound="1">
       <eGenericType eClassifier="#//Stream">
         <eTypeArguments eClassifier="#//Class"/>
@@ -48,6 +52,10 @@
     </eOperations>
     <eOperations name="getAttribute" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eParameters name="attributeType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+    </eOperations>
+    <eOperations name="setAttribute">
+      <eParameters name="attributeType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+      <eParameters name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
     <eOperations name="instanceOf" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eParameters name="type" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>

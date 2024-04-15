@@ -169,7 +169,7 @@ public class ClassItemProvider extends PLElementItemProvider {
    */
   @Override
   public String getText(Object object) {
-    String label = ((edu.toronto.cs.se.mmint.productline.Class) object).getPresenceCondition();
+    var label = ((edu.toronto.cs.se.mmint.productline.Class) object).getPresenceCondition();
     return label == null || label.length() == 0 ? getString("_UI_Class_type")
       : getString("_UI_Class_type") + " " + label;
   }

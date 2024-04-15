@@ -114,7 +114,7 @@ public class PLElementItemProvider extends ItemProviderAdapter implements IEditi
    */
   @Override
   public String getText(Object object) {
-    String label = ((PLElement) object).getPresenceCondition();
+    var label = ((PLElement) object).getPresenceCondition();
     return label == null || label.length() == 0 ? getString("_UI_PLElement_type")
       : getString("_UI_PLElement_type") + " " + label;
   }

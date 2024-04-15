@@ -334,6 +334,9 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
       return getStreamOfReference((EReference) arguments.get(0));
     case PLPackage.CLASS___GET_REFERENCE__EREFERENCE:
       return getReference((EReference) arguments.get(0));
+    case PLPackage.CLASS___SET_REFERENCE__EREFERENCE_CLASS:
+      setReference((EReference) arguments.get(0), (edu.toronto.cs.se.mmint.productline.Class) arguments.get(1));
+      return null;
     case PLPackage.CLASS___GET_STREAM_OF_REFERENCE_AS_TARGET__EREFERENCE:
       return getStreamOfReferenceAsTarget((EReference) arguments.get(0));
     case PLPackage.CLASS___GET_REFERENCE_AS_TARGET__EREFERENCE:
@@ -342,6 +345,9 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
       return getStreamOfAttribute((EAttribute) arguments.get(0));
     case PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE:
       return getAttribute((EAttribute) arguments.get(0));
+    case PLPackage.CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING:
+      setAttribute((EAttribute) arguments.get(0), (String) arguments.get(1));
+      return null;
     case PLPackage.CLASS___INSTANCE_OF__ECLASS:
       return instanceOf((EClass) arguments.get(0));
     case PLPackage.CLASS___GET_ECONTAINER:
@@ -355,9 +361,8 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    */
   @Override
   public String toString() {
-    var attributes = getAttributes().stream()
-      .map(a -> a.getType().getName() + ": " + a.getValue())
-      .collect(Collectors.joining(", "));
+    var attributes = getAttributes().stream().map(a -> a.getType().getName() + ": " + a.getValue()).collect(Collectors
+                                                                                                                      .joining(", "));
     var pc = getPresenceConditionLabel(true);
     return getType().getName() + (attributes.isEmpty() ? "" : "{" + attributes + "}") + (pc.isEmpty() ? "" : " " + pc);
   }
@@ -365,9 +370,16 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   /**
    * @generated NOT
    */
+  private Stream<Reference> getStreamOfReference_(EList<Reference> references, EReference referenceType) {
+    return references.stream().filter(r -> r.getType() == referenceType);
+  }
+
+  /**
+   * @generated NOT
+   */
   @Override
   public Stream<edu.toronto.cs.se.mmint.productline.Class> getStreamOfReference(EReference referenceType) {
-    return getReferences().stream().filter(r -> r.getType() == referenceType).map(r -> r.getTarget());
+    return getStreamOfReference_(getReferences(), referenceType).map(r -> r.getTarget());
   }
 
   /**
@@ -382,9 +394,17 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    * @generated NOT
    */
   @Override
+  public void setReference(EReference referenceType, edu.toronto.cs.se.mmint.productline.Class tgtClass) {
+    getStreamOfReference_(getReferences(), referenceType).forEach(r -> r.setTarget(tgtClass));
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
   public Stream<edu.toronto.cs.se.mmint.productline.Class> getStreamOfReferenceAsTarget(EReference referenceType) {
-    return getReferencesAsTarget().stream().filter(r -> r.getType() == referenceType).map(
-                                                                                          r -> (edu.toronto.cs.se.mmint.productline.Class) r.eContainer());
+    return getStreamOfReference_(getReferencesAsTarget(), referenceType).map(
+                                                                             r -> (edu.toronto.cs.se.mmint.productline.Class) r.eContainer());
   }
 
   /**
@@ -398,9 +418,16 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   /**
    * @generated NOT
    */
+  private Stream<Attribute> getStreamOfAttribute_(EAttribute attributeType) {
+    return getAttributes().stream().filter(a -> a.getType() == attributeType);
+  }
+
+  /**
+   * @generated NOT
+   */
   @Override
   public Stream<String> getStreamOfAttribute(EAttribute attributeType) {
-    return getAttributes().stream().filter(a -> a.getType() == attributeType).map(a -> a.getValue());
+    return getStreamOfAttribute_(attributeType).map(a -> a.getValue());
   }
 
   /**
@@ -409,6 +436,14 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   @Override
   public EList<String> getAttribute(EAttribute attributeType) {
     return ECollections.asEList(getStreamOfAttribute(attributeType).collect(Collectors.toList()));
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void setAttribute(EAttribute attributeType, String value) {
+    getStreamOfAttribute_(attributeType).forEach(a -> a.setValue(value));
   }
 
   /**
@@ -424,11 +459,8 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    */
   @Override
   public Class getEContainer() {
-    return getReferencesAsTarget().stream()
-      .filter(r -> r.getType().isContainment())
-      .map(r -> (Class) r.eContainer())
-      .findFirst()
-      .orElse(null);
+    return getReferencesAsTarget().stream().filter(r -> r.getType().isContainment()).map(r -> (Class) r.eContainer())
+                                  .findFirst().orElse(null);
   }
 
 } //ClassImpl
