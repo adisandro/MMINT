@@ -355,6 +355,9 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
       return instanceOf((EClass) arguments.get(0));
     case PLPackage.CLASS___GET_ECONTAINER:
       return getEContainer();
+    case PLPackage.CLASS___DELETE:
+      delete();
+      return null;
     }
     return super.eInvoke(operationID, arguments);
   }
@@ -504,6 +507,16 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   public Class getEContainer() {
     return getReferencesAsTarget().stream().filter(r -> r.getType().isContainment()).map(r -> (Class) r.eContainer())
                                   .findFirst().orElse(null);
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void delete() {
+    getReferencesAsTarget().stream().forEach(r -> ((Class) r.eContainer()).getReferences().remove(r));
+    getReferencesAsTarget().clear();
+    getProductLine().getClasses().remove(this);
   }
 
 } //ClassImpl

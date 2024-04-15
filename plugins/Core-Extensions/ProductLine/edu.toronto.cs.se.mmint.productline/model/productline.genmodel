@@ -69,6 +69,7 @@
         <genParameters ecoreParameter="productline.ecore#//Class/instanceOf/type"/>
       </genOperations>
       <genOperations ecoreOperation="productline.ecore#//Class/getEContainer"/>
+      <genOperations ecoreOperation="productline.ecore#//Class/delete"/>
     </genClasses>
     <genClasses ecoreClass="productline.ecore#//Reference">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Reference/target"/>

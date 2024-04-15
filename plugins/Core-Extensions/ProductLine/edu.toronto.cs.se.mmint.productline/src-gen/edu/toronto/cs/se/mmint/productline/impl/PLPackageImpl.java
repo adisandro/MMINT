@@ -438,6 +438,16 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
+  public EOperation getClass__Delete() {
+    return this.classEClass.getEOperations().get(10);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getReference() {
     return this.referenceEClass;
   }
@@ -581,6 +591,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     createEOperation(this.classEClass, PLPackage.CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING);
     createEOperation(this.classEClass, PLPackage.CLASS___INSTANCE_OF__ECLASS);
     createEOperation(this.classEClass, PLPackage.CLASS___GET_ECONTAINER);
+    createEOperation(this.classEClass, PLPackage.CLASS___DELETE);
 
     this.referenceEClass = createEClass(PLPackage.REFERENCE);
     createEReference(this.referenceEClass, PLPackage.REFERENCE__TARGET);
@@ -729,6 +740,8 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     addEParameter(op, this.ecorePackage.getEClass(), "type", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     initEOperation(getClass__GetEContainer(), this.getClass_(), "getEContainer", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
+    initEOperation(getClass__Delete(), null, "delete", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     initEClass(this.referenceEClass, Reference.class, "Reference", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEReference(getReference_Target(), this.getClass_(), this.getClass_ReferencesAsTarget(), "target", null, 1, 1,

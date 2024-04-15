@@ -179,4 +179,12 @@ public interface Class extends PLElement {
    */
   Class getEContainer();
 
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  void delete();
+
 } // Class

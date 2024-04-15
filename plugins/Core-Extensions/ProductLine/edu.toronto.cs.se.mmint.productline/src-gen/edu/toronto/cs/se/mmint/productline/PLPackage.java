@@ -386,13 +386,22 @@ public interface PLPackage extends EPackage {
   int CLASS___GET_ECONTAINER = PLPackage.PL_ELEMENT_OPERATION_COUNT + 9;
 
   /**
+   * The operation id for the '<em>Delete</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS___DELETE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 10;
+
+  /**
    * The number of operations of the '<em>Class</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CLASS_OPERATION_COUNT = PLPackage.PL_ELEMENT_OPERATION_COUNT + 10;
+  int CLASS_OPERATION_COUNT = PLPackage.PL_ELEMENT_OPERATION_COUNT + 11;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl <em>Reference</em>}' class.
@@ -858,6 +867,16 @@ public interface PLPackage extends EPackage {
   EOperation getClass__GetEContainer();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#delete() <em>Delete</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Delete</em>' operation.
+   * @see edu.toronto.cs.se.mmint.productline.Class#delete()
+   * @generated
+   */
+  EOperation getClass__Delete();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.productline.Reference <em>Reference</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1189,6 +1208,14 @@ public interface PLPackage extends EPackage {
      * @generated
      */
     EOperation CLASS___GET_ECONTAINER = PLPackage.eINSTANCE.getClass__GetEContainer();
+
+    /**
+     * The meta object literal for the '<em><b>Delete</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation CLASS___DELETE = PLPackage.eINSTANCE.getClass__Delete();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl <em>Reference</em>}' class.
