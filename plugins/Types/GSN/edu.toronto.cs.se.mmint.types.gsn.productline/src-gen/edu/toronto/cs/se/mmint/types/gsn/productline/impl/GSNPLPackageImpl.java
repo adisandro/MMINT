@@ -13,16 +13,20 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import edu.toronto.cs.se.mmint.productline.PLPackage;
+import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisRunner;
+import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLFactory;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,8 +53,13 @@ public class GSNPLPackageImpl extends EPackageImpl implements GSNPLPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  private EDataType exceptionEDataType = null;
-
+  private EClass gsnplAnalysisTemplateEClass = null;
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass gsnplAnalysisRunnerEClass = null;
   /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
@@ -100,6 +109,8 @@ public class GSNPLPackageImpl extends EPackageImpl implements GSNPLPackage {
     GSNPLPackageImpl.isInited = true;
 
     // Initialize simple dependencies
+    GSNPackage.eINSTANCE.eClass();
+    GSNTemplatesPackage.eINSTANCE.eClass();
     PLPackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
@@ -192,8 +203,48 @@ public class GSNPLPackageImpl extends EPackageImpl implements GSNPLPackage {
    * @generated
    */
   @Override
-  public EDataType getException() {
-    return this.exceptionEDataType;
+  public EClass getGSNPLAnalysisTemplate() {
+    return this.gsnplAnalysisTemplateEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getGSNPLAnalysisTemplate_Runner() {
+    return (EReference)this.gsnplAnalysisTemplateEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getGSNPLAnalysisRunner() {
+    return this.gsnplAnalysisRunnerEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getGSNPLAnalysisRunner__Instantiate__GSNPLTemplate() {
+    return this.gsnplAnalysisRunnerEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getGSNPLAnalysisRunner__Validate__GSNPLTemplate() {
+    return this.gsnplAnalysisRunnerEClass.getEOperations().get(1);
   }
 
   /**
@@ -236,8 +287,12 @@ public class GSNPLPackageImpl extends EPackageImpl implements GSNPLPackage {
     createEOperation(this.gsnplTemplateEClass, GSNPLPackage.GSNPL_TEMPLATE___IMPORT____PRODUCTLINE);
     createEOperation(this.gsnplTemplateEClass, GSNPLPackage.GSNPL_TEMPLATE___INSTANTIATE);
 
-    // Create data types
-    this.exceptionEDataType = createEDataType(GSNPLPackage.EXCEPTION);
+    this.gsnplAnalysisTemplateEClass = createEClass(GSNPLPackage.GSNPL_ANALYSIS_TEMPLATE);
+    createEReference(this.gsnplAnalysisTemplateEClass, GSNPLPackage.GSNPL_ANALYSIS_TEMPLATE__RUNNER);
+
+    this.gsnplAnalysisRunnerEClass = createEClass(GSNPLPackage.GSNPL_ANALYSIS_RUNNER);
+    createEOperation(this.gsnplAnalysisRunnerEClass, GSNPLPackage.GSNPL_ANALYSIS_RUNNER___INSTANTIATE__GSNPLTEMPLATE);
+    createEOperation(this.gsnplAnalysisRunnerEClass, GSNPLPackage.GSNPL_ANALYSIS_RUNNER___VALIDATE__GSNPLTEMPLATE);
   }
 
   /**
@@ -267,6 +322,8 @@ public class GSNPLPackageImpl extends EPackageImpl implements GSNPLPackage {
 
     // Obtain other dependent packages
     var thePLPackage = (PLPackage)EPackage.Registry.INSTANCE.getEPackage(PLPackage.eNS_URI);
+    var theGSNPackage = (GSNPackage)EPackage.Registry.INSTANCE.getEPackage(GSNPackage.eNS_URI);
+    var theGSNTemplatesPackage = (GSNTemplatesPackage)EPackage.Registry.INSTANCE.getEPackage(GSNTemplatesPackage.eNS_URI);
 
     // Create type parameters
 
@@ -275,32 +332,44 @@ public class GSNPLPackageImpl extends EPackageImpl implements GSNPLPackage {
     // Add supertypes to classes
     this.gsnplArgumentElementEClass.getESuperTypes().add(thePLPackage.getClass_());
     this.gsnplTemplateEClass.getESuperTypes().add(thePLPackage.getClass_());
+    this.gsnplAnalysisTemplateEClass.getESuperTypes().add(this.getGSNPLTemplate());
+    this.gsnplAnalysisRunnerEClass.getESuperTypes().add(theGSNTemplatesPackage.getAnalysisRunner());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(this.gsnplArgumentElementEClass, GSNPLArgumentElement.class, "GSNPLArgumentElement", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     var op = initEOperation(getGSNPLArgumentElement__Validate__GSNPLTemplate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.getGSNPLTemplate(), "template", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEException(op, this.getException());
+    addEException(op, theGSNPackage.getException());
 
     op = initEOperation(getGSNPLArgumentElement__Instantiate__GSNPLTemplate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.getGSNPLTemplate(), "template", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEException(op, this.getException());
+    addEException(op, theGSNPackage.getException());
 
     initEClass(this.gsnplTemplateEClass, GSNPLTemplate.class, "GSNPLTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     op = initEOperation(getGSNPLTemplate__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEException(op, this.getException());
+    addEException(op, theGSNPackage.getException());
 
     op = initEOperation(getGSNPLTemplate__Import___ProductLine(), null, "import_", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, thePLPackage.getProductLine(), "productLine", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEException(op, this.getException());
+    addEException(op, theGSNPackage.getException());
 
     op = initEOperation(getGSNPLTemplate__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEException(op, this.getException());
+    addEException(op, theGSNPackage.getException());
 
-    // Initialize data types
-    initEDataType(this.exceptionEDataType, Exception.class, "Exception", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.gsnplAnalysisTemplateEClass, GSNPLAnalysisTemplate.class, "GSNPLAnalysisTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getGSNPLAnalysisTemplate_Runner(), this.getGSNPLAnalysisRunner(), null, "runner", null, 0, 1, GSNPLAnalysisTemplate.class, EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+
+    initEClass(this.gsnplAnalysisRunnerEClass, GSNPLAnalysisRunner.class, "GSNPLAnalysisRunner", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+
+    op = initEOperation(getGSNPLAnalysisRunner__Instantiate__GSNPLTemplate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.getGSNPLTemplate(), "template", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEException(op, theGSNPackage.getException());
+
+    op = initEOperation(getGSNPLAnalysisRunner__Validate__GSNPLTemplate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.getGSNPLTemplate(), "template", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEException(op, theGSNPackage.getException());
 
     // Create resource
     createResource(GSNPLPackage.eNS_URI);

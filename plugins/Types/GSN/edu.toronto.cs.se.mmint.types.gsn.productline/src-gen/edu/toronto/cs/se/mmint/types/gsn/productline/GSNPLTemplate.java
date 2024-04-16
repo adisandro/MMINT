@@ -30,7 +30,7 @@ public interface GSNPLTemplate extends edu.toronto.cs.se.mmint.productline.Class
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.mmint.types.gsn.productline.Exception"
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */
   void validate() throws Exception;
@@ -38,7 +38,7 @@ public interface GSNPLTemplate extends edu.toronto.cs.se.mmint.productline.Class
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.mmint.types.gsn.productline.Exception" productLineRequired="true"
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" productLineRequired="true"
    * @generated
    */
   void import_(ProductLine productLine) throws Exception;
@@ -46,7 +46,7 @@ public interface GSNPLTemplate extends edu.toronto.cs.se.mmint.productline.Class
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.mmint.types.gsn.productline.Exception"
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */
   void instantiate() throws Exception;

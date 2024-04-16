@@ -337,6 +337,9 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
       return getStreamOfReference((EReference) arguments.get(0));
     case PLPackage.CLASS___GET_REFERENCE__EREFERENCE:
       return getReference((EReference) arguments.get(0));
+    case PLPackage.CLASS___ADD_REFERENCE__EREFERENCE_CLASS_STRING:
+      return addReference((EReference) arguments.get(0), (edu.toronto.cs.se.mmint.productline.Class) arguments.get(1),
+                          (String) arguments.get(2));
     case PLPackage.CLASS___ADD_REFERENCE__EREFERENCE_CLASS:
       return addReference((EReference) arguments.get(0), (edu.toronto.cs.se.mmint.productline.Class) arguments.get(1));
     case PLPackage.CLASS___SET_REFERENCE__EREFERENCE_CLASS:
@@ -408,21 +411,40 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    * @generated NOT
    */
   @Override
+  public Reference addReference(EReference referenceType, edu.toronto.cs.se.mmint.productline.Class tgtClass,
+                                String presenceCondition) {
+    var reference = PLFactory.eINSTANCE.createReference();
+    reference.setType(referenceType);
+    reference.setTarget(tgtClass);
+    reference.setPresenceCondition(presenceCondition);
+    getReferences().add(reference);
+
+    return reference;
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
   public Reference addReference(EReference referenceType, edu.toronto.cs.se.mmint.productline.Class tgtClass) {
-    var ref = PLFactory.eINSTANCE.createReference();
-    ref.setType(referenceType);
-    ref.setTarget(tgtClass);
-    getReferences().add(ref);
+    String pc = null;
     try {
-      var reasoner = getProductLine().getReasoner();
-      var pc = reasoner.simplify(reasoner.and(getPresenceCondition(), tgtClass.getPresenceCondition()));
-      ref.setPresenceCondition(pc);
+      if (isAlwaysPresent()) {
+        pc = tgtClass.getPresenceCondition();
+      }
+      else if (tgtClass.isAlwaysPresent()) {
+        pc = getPresenceCondition();
+      }
+      else {
+        var reasoner = getProductLine().getReasoner();
+        pc = reasoner.simplify(reasoner.and(getPresenceCondition(), tgtClass.getPresenceCondition()));
+      }
     }
     catch (MMINTException e) {
-      // do nothing
+      // fallback to null presence condition
     }
 
-    return ref;
+    return addReference(referenceType, tgtClass, pc);
   }
 
   /**
@@ -468,13 +490,13 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    */
   @Override
   public Attribute addAttribute(EAttribute attributeType, String value) {
-    var attr = PLFactory.eINSTANCE.createAttribute();
-    attr.setType(attributeType);
-    attr.setValue(value);
-    attr.setPresenceCondition(getPresenceCondition());
-    getAttributes().add(attr);
+    var attribute = PLFactory.eINSTANCE.createAttribute();
+    attribute.setType(attributeType);
+    attribute.setValue(value);
+    attribute.setPresenceCondition(getPresenceCondition());
+    getAttributes().add(attribute);
 
-    return attr;
+    return attribute;
   }
 
   /**

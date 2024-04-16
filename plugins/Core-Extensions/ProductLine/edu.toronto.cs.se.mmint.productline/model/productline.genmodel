@@ -46,6 +46,11 @@
       <genOperations ecoreOperation="productline.ecore#//Class/addReference">
         <genParameters ecoreParameter="productline.ecore#//Class/addReference/referenceType"/>
         <genParameters ecoreParameter="productline.ecore#//Class/addReference/tgtClass"/>
+        <genParameters ecoreParameter="productline.ecore#//Class/addReference/presenceCondition"/>
+      </genOperations>
+      <genOperations ecoreOperation="productline.ecore#//Class/addReference.1">
+        <genParameters ecoreParameter="productline.ecore#//Class/addReference.1/referenceType"/>
+        <genParameters ecoreParameter="productline.ecore#//Class/addReference.1/tgtClass"/>
       </genOperations>
       <genOperations ecoreOperation="productline.ecore#//Class/setReference">
         <genParameters ecoreParameter="productline.ecore#//Class/setReference/referenceType"/>

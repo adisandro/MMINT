@@ -34,6 +34,11 @@
     <eOperations name="addReference" lowerBound="1" eType="#//Reference">
       <eParameters name="referenceType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
       <eParameters name="tgtClass" lowerBound="1" eType="#//Class"/>
+      <eParameters name="presenceCondition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="addReference" lowerBound="1" eType="#//Reference">
+      <eParameters name="referenceType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
+      <eParameters name="tgtClass" lowerBound="1" eType="#//Class"/>
     </eOperations>
     <eOperations name="setReference">
       <eParameters name="referenceType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>

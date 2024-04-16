@@ -22,7 +22,6 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -40,11 +39,9 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
-import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.Reference;
 import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 
 public class ToProductLine extends OperatorImpl {
@@ -142,26 +139,6 @@ public class ToProductLine extends OperatorImpl {
     return plClass;
   }
 
-  protected Attribute createPLAttribute(EAttribute plType, String plValue, Class plClass) {
-    var plAttribute = PLFactory.eINSTANCE.createAttribute();
-    plAttribute.setPresenceCondition(this.out.trueLiteral);
-    plAttribute.setType(plType);
-    plAttribute.setValue(plValue);
-    plClass.getAttributes().add(plAttribute);
-
-    return plAttribute;
-  }
-
-  protected Reference createPLReference(EReference plType, Class plSrc, Class plTgt) {
-    var plReference = PLFactory.eINSTANCE.createReference();
-    plReference.setPresenceCondition(this.out.trueLiteral);
-    plReference.setType(plType);
-    plReference.setTarget(plTgt);
-    plSrc.getReferences().add(plReference);
-
-    return plReference;
-  }
-
   private void createPLClassAndAttributes(EObject pModelObj, Map<String, Class> plClasses) {
     var plType = pModelObj.eClass();
     var plClass = createPLClass(pModelObj, plType, plClasses);
@@ -173,7 +150,7 @@ public class ToProductLine extends OperatorImpl {
       if (plValue == null) {
         continue;
       }
-      createPLAttribute(pAttribute, plValue.toString(), plClass);
+      plClass.addAttribute(pAttribute, plValue.toString());
     }
   }
 
@@ -202,7 +179,7 @@ public class ToProductLine extends OperatorImpl {
       }
       var plSource = plClasses.get(MIDRegistry.getModelElementUri(pModelObj));
       for (var plTarget : plTargets) {
-        createPLReference(pReference, plSource, plTarget);
+        plSource.addReference(pReference, plTarget, this.out.trueLiteral);
       }
     }
   }

@@ -16,6 +16,8 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import edu.toronto.cs.se.mmint.productline.provider.PLEditPlugin;
+import edu.toronto.cs.se.mmint.types.gsn.templates.provider.GSNTemplatesEditPlugin;
+import edu.toronto.cs.se.modelepedia.gsn.provider.GSNEditPlugin;
 
 /**
  * This is the central singleton for the GSNPL edit plugin.
@@ -49,6 +51,8 @@ public final class GSNPLEditPlugin extends EMFPlugin {
   public GSNPLEditPlugin() {
     super
       (new ResourceLocator [] {
+         GSNEditPlugin.INSTANCE,
+         GSNTemplatesEditPlugin.INSTANCE,
          PLEditPlugin.INSTANCE,
        });
   }

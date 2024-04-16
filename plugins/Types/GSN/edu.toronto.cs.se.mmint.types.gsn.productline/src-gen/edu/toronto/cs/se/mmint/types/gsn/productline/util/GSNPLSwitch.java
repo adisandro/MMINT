@@ -17,9 +17,12 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import edu.toronto.cs.se.mmint.productline.PLElement;
+import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisRunner;
+import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisRunner;
 
 /**
  * <!-- begin-user-doc -->
@@ -106,6 +109,34 @@ public class GSNPLSwitch<T> extends Switch<T> {
         }
         return result;
       }
+      case GSNPLPackage.GSNPL_ANALYSIS_TEMPLATE: {
+        var gsnplAnalysisTemplate = (GSNPLAnalysisTemplate)theEObject;
+        var result = caseGSNPLAnalysisTemplate(gsnplAnalysisTemplate);
+        if (result == null) {
+          result = caseGSNPLTemplate(gsnplAnalysisTemplate);
+        }
+        if (result == null) {
+          result = caseClass(gsnplAnalysisTemplate);
+        }
+        if (result == null) {
+          result = casePLElement(gsnplAnalysisTemplate);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
+        return result;
+      }
+      case GSNPLPackage.GSNPL_ANALYSIS_RUNNER: {
+        var gsnplAnalysisRunner = (GSNPLAnalysisRunner)theEObject;
+        var result = caseGSNPLAnalysisRunner(gsnplAnalysisRunner);
+        if (result == null) {
+          result = caseAnalysisRunner(gsnplAnalysisRunner);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -141,6 +172,36 @@ public class GSNPLSwitch<T> extends Switch<T> {
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Analysis Template</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Analysis Template</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseGSNPLAnalysisTemplate(GSNPLAnalysisTemplate object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Analysis Runner</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Analysis Runner</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseGSNPLAnalysisRunner(GSNPLAnalysisRunner object) {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -167,6 +228,21 @@ public class GSNPLSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseClass(edu.toronto.cs.se.mmint.productline.Class object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Analysis Runner</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Analysis Runner</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAnalysisRunner(AnalysisRunner object) {
     return null;
   }
 

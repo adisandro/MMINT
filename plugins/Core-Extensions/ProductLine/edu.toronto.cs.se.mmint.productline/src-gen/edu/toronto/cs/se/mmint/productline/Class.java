@@ -121,6 +121,14 @@ public interface Class extends PLElement {
    * @model required="true" referenceTypeRequired="true" tgtClassRequired="true"
    * @generated
    */
+  Reference addReference(EReference referenceType, Class tgtClass, String presenceCondition);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model required="true" referenceTypeRequired="true" tgtClassRequired="true"
+   * @generated
+   */
   Reference addReference(EReference referenceType, Class tgtClass);
 
   /**

@@ -137,6 +137,29 @@ public class GSNPLItemProviderAdapterFactory extends GSNPLAdapterFactory impleme
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected GSNPLAnalysisTemplateItemProvider gsnplAnalysisTemplateItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createGSNPLAnalysisTemplateAdapter() {
+    if (this.gsnplAnalysisTemplateItemProvider == null) {
+      this.gsnplAnalysisTemplateItemProvider = new GSNPLAnalysisTemplateItemProvider(this);
+    }
+
+    return this.gsnplAnalysisTemplateItemProvider;
+  }
+
+  /**
    * This returns the root adapter factory that contains this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -247,6 +270,9 @@ public class GSNPLItemProviderAdapterFactory extends GSNPLAdapterFactory impleme
     if (this.gsnplTemplateItemProvider != null) {
       this.gsnplTemplateItemProvider.dispose();
     }
+    if (this.gsnplAnalysisTemplateItemProvider != null) {
+      this.gsnplAnalysisTemplateItemProvider.dispose();
+    }
   }
 
   /**
@@ -305,6 +331,11 @@ public class GSNPLItemProviderAdapterFactory extends GSNPLAdapterFactory impleme
           (createChildParameter
             (PLPackage.Literals.PRODUCT_LINE__CLASSES,
              GSNPLFactory.eINSTANCE.createGSNPLTemplate()));
+
+        this.newChildDescriptors.add
+          (createChildParameter
+            (PLPackage.Literals.PRODUCT_LINE__CLASSES,
+             GSNPLFactory.eINSTANCE.createGSNPLAnalysisTemplate()));
 
         return null;
       }

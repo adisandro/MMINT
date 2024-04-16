@@ -13,12 +13,12 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
+import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLFactory;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
@@ -70,34 +70,9 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
     return switch (eClass.getClassifierID()) {
     case GSNPLPackage.GSNPL_ARGUMENT_ELEMENT -> createGSNPLArgumentElement();
     case GSNPLPackage.GSNPL_TEMPLATE -> createGSNPLTemplate();
+    case GSNPLPackage.GSNPL_ANALYSIS_TEMPLATE -> createGSNPLAnalysisTemplate();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     };
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object createFromString(EDataType eDataType, String initialValue) {
-    switch (eDataType.getClassifierID()) {
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-    }
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String convertToString(EDataType eDataType, Object instanceValue) {
-    switch (eDataType.getClassifierID()) {
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-    }
   }
 
   /**
@@ -120,6 +95,17 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
   public GSNPLTemplate createGSNPLTemplate() {
     GSNPLTemplateImpl gsnplTemplate = new GSNPLTemplateImpl();
     return gsnplTemplate;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public GSNPLAnalysisTemplate createGSNPLAnalysisTemplate() {
+    GSNPLAnalysisTemplateImpl gsnplAnalysisTemplate = new GSNPLAnalysisTemplateImpl();
+    return gsnplAnalysisTemplate;
   }
 
   /**
