@@ -12,12 +12,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 
-import java.net.URI;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.Set;
 
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -151,18 +147,7 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
       if (javaPath == null) {
         return null;
       }
-      var className = FileUtils.getFileNameFromPath(javaPath);
-      var projectName = FileUtils.getFirstSegmentFromPath(javaPath);
-      var binaryName = FileUtils.getAllButLastSegmentFromPath(javaPath)
-        .replace(IPath.SEPARATOR + projectName + IPath.SEPARATOR + "src" + IPath.SEPARATOR, "")
-        .replace(IPath.SEPARATOR, '.') +
-        className;
-      var emfUri = FileUtils.createEMFUri(projectName + IPath.SEPARATOR + "bin" + IPath.SEPARATOR, true);
-      var url = URI.create(emfUri.toString()).toURL();
-      try (var loader = new URLClassLoader(new URL[] {url}, this.getClass().getClassLoader())) {
-        var runnerClass = loader.loadClass(binaryName);
-        runner = (AnalysisRunner) runnerClass.getConstructor().newInstance();
-      }
+      runner = (AnalysisRunner) FileUtils.loadClassFromWorkspace(javaPath, this.getClass().getClassLoader());
       // bypass EMF notifications and the need for a write transaction
       this.runner = runner;
     }

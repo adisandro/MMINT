@@ -15,6 +15,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.nio.charset.Charset;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.FileVisitResult;
@@ -571,5 +573,19 @@ public class FileUtils {
     }
 
     return result;
+  }
+
+  public static Object loadClassFromWorkspace(String classPath, @Nullable ClassLoader bundleLoader) throws Exception {
+    var className = FileUtils.getFileNameFromPath(classPath);
+    var projectName = FileUtils.getFirstSegmentFromPath(classPath);
+    var binaryName = FileUtils.getAllButLastSegmentFromPath(classPath)
+      .replace(IPath.SEPARATOR + projectName + IPath.SEPARATOR + "src" + IPath.SEPARATOR, "")
+      .replace(IPath.SEPARATOR, '.') +
+      className;
+    var emfUri = FileUtils.createEMFUri(projectName + IPath.SEPARATOR + "bin" + IPath.SEPARATOR, true);
+    var url = java.net.URI.create(emfUri.toString()).toURL();
+    try (var loader = new URLClassLoader(new URL[] {url}, bundleLoader)) {
+      return loader.loadClass(binaryName).getConstructor().newInstance();
+    }
   }
 }
