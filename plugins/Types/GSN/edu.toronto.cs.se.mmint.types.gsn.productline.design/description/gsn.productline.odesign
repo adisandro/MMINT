@@ -181,6 +181,7 @@
           <ownedTools xsi:type="tool_1:GroupMenu" name="MMINTGroup" locationURI="menu:MMINT">
             <itemDescriptions xsi:type="tool_1:ExternalJavaAction" name="PLImportTemplate" label="Import Template" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLImportTemplate"/>
             <itemDescriptions xsi:type="tool_1:ExternalJavaAction" name="PLInstantiateTemplate" label="Instantiate Template" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLInstantiateTemplate"/>
+            <itemDescriptions xsi:type="tool_1:ExternalJavaAction" name="PLValidateTemplate" label="Validate Template" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLValidateTemplate"/>
           </ownedTools>
         </toolSections>
         <decorationDescriptionsSet>

@@ -31,6 +31,10 @@
             id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLInstantiateTemplate">
       </javaActions>
       <javaActions
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLValidateTemplate"
+            id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLValidateTemplate">
+      </javaActions>
+      <javaActions
             actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode"
             id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode">
       </javaActions>
