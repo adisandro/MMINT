@@ -24,10 +24,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="GSNPLAnalysisRunner" abstract="true"
       eSuperTypes="../../edu.toronto.cs.se.mmint.types.gsn.templates/model/gsn.templates.ecore#//AnalysisRunner">
     <eOperations name="instantiate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
-      <eParameters name="template" lowerBound="1" eType="#//GSNPLTemplate"/>
+      <eParameters name="template" lowerBound="1" eType="#//GSNPLAnalysisTemplate"/>
     </eOperations>
     <eOperations name="validate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
-      <eParameters name="template" lowerBound="1" eType="#//GSNPLTemplate"/>
+      <eParameters name="template" lowerBound="1" eType="#//GSNPLAnalysisTemplate"/>
     </eOperations>
   </eClassifiers>
 </ecore:EPackage>

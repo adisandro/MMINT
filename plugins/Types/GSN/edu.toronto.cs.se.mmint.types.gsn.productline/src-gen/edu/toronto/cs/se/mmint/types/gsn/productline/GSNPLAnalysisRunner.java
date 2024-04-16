@@ -31,7 +31,7 @@ public interface GSNPLAnalysisRunner extends AnalysisRunner {
    * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" templateRequired="true"
    * @generated
    */
-  void instantiate(GSNPLTemplate template) throws Exception;
+  void instantiate(GSNPLAnalysisTemplate template) throws Exception;
 
   /**
    * <!-- begin-user-doc -->
@@ -39,6 +39,6 @@ public interface GSNPLAnalysisRunner extends AnalysisRunner {
    * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" templateRequired="true"
    * @generated
    */
-  void validate(GSNPLTemplate template) throws Exception;
+  void validate(GSNPLAnalysisTemplate template) throws Exception;
 
 } // GSNPLAnalysisRunner

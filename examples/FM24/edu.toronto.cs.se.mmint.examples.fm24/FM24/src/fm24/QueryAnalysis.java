@@ -19,17 +19,17 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusEvaluateQuery;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
+import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLAnalysisRunnerImpl;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.GSNPLBuilder;
 import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.templates.impl.AnalysisRunnerImpl;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 
-public class QueryAnalysis extends AnalysisRunnerImpl {
+public class QueryAnalysis extends GSNPLAnalysisRunnerImpl {
 
   @Override
   public void instantiate(AnalysisTemplate template) throws Exception {
@@ -68,7 +68,8 @@ public class QueryAnalysis extends AnalysisRunnerImpl {
     resultCtx.setDescription(resultCtxDesc);
   }
 
-  public void instantiate(GSNPLTemplate template) throws Exception {
+  @Override
+  public void instantiate(GSNPLAnalysisTemplate template) throws Exception {
     var types = GSNPackage.eINSTANCE;
     // get template elems
     var productLine = (ProductLine) template.eContainer();
@@ -113,5 +114,9 @@ public class QueryAnalysis extends AnalysisRunnerImpl {
 
   @Override
   public void validate(AnalysisTemplate template) throws Exception {
+  }
+
+  @Override
+  public void validate(GSNPLAnalysisTemplate template) throws Exception {
   }
 }

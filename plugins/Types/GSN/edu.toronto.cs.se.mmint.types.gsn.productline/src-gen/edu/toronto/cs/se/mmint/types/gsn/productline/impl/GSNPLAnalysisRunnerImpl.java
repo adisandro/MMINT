@@ -18,8 +18,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisRunner;
+import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.impl.AnalysisRunnerImpl;
 
 /**
@@ -55,7 +55,7 @@ public abstract class GSNPLAnalysisRunnerImpl extends AnalysisRunnerImpl impleme
    * @generated
    */
   @Override
-  public void instantiate(GSNPLTemplate template) throws Exception {
+  public void instantiate(GSNPLAnalysisTemplate template) throws Exception {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -67,7 +67,7 @@ public abstract class GSNPLAnalysisRunnerImpl extends AnalysisRunnerImpl impleme
    * @generated
    */
   @Override
-  public void validate(GSNPLTemplate template) throws Exception {
+  public void validate(GSNPLAnalysisTemplate template) throws Exception {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -81,17 +81,17 @@ public abstract class GSNPLAnalysisRunnerImpl extends AnalysisRunnerImpl impleme
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case GSNPLPackage.GSNPL_ANALYSIS_RUNNER___INSTANTIATE__GSNPLTEMPLATE:
+      case GSNPLPackage.GSNPL_ANALYSIS_RUNNER___INSTANTIATE__GSNPLANALYSISTEMPLATE:
         try {
-          instantiate((GSNPLTemplate)arguments.get(0));
+          instantiate((GSNPLAnalysisTemplate)arguments.get(0));
           return null;
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case GSNPLPackage.GSNPL_ANALYSIS_RUNNER___VALIDATE__GSNPLTEMPLATE:
+      case GSNPLPackage.GSNPL_ANALYSIS_RUNNER___VALIDATE__GSNPLANALYSISTEMPLATE:
         try {
-          validate((GSNPLTemplate)arguments.get(0));
+          validate((GSNPLAnalysisTemplate)arguments.get(0));
           return null;
         }
         catch (Throwable throwable) {
