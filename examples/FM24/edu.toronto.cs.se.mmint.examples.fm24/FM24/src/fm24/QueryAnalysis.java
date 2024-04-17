@@ -88,7 +88,8 @@ public class QueryAnalysis extends GSNPLAnalysisRunnerImpl {
       .getReference(types.getSupportedBy_Target()).get(0);
     var resultDesc = resultGoal.getAttribute(types.getArgumentElement_Description()).get(0);
     // run query and process results
-    var modelPath = MIDDialogs.selectFile("", "", "", Set.of("productline"));
+    var modelPath = MIDDialogs.selectFile("Run Product Line analysis", "Select a Product Line model",
+                                          "There are no Product Line models in the workspace", Set.of("productline"));
     var rootModelObj = FileUtils.readModelFile(modelPath, null, true);
     var querySpec = SiriusEvaluateQuery.selectQuery(rootModelObj);
     var queryResults = querySpec.evaluateQuery(rootModelObj, List.of());
