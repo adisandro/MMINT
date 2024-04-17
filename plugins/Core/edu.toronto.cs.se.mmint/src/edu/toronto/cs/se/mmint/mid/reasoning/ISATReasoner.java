@@ -74,6 +74,20 @@ public interface ISATReasoner extends IReasoner {
   String getORSyntax();
 
   /**
+   * Gets the syntax of the Implication operator, using $1 and $2 as placeholders for the two operands.
+   *
+   * @return The Implication syntax.
+   */
+  String getIMPLYSyntax();
+
+  /**
+   * Gets the syntax of the Equivalence operator, using $1 and $2 as placeholders for the two operands.
+   *
+   * @return The Equivalence syntax.
+   */
+  String getEQUIVSyntax();
+
+  /**
    * Creates a new formula by joining two formulas with some specified syntax.
    *
    * @param syntax

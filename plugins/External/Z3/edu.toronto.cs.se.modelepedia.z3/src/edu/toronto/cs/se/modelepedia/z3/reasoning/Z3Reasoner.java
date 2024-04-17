@@ -90,6 +90,16 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IPLFeature
     return "(or ($1) ($2))";
   }
 
+  @Override
+  public String getIMPLYSyntax() {
+    return "(=> ($1) ($2))";
+  }
+
+  @Override
+  public String getEQUIVSyntax() {
+    return "(<=> ($1) ($2))";
+  }
+
 	public Z3MAVOModelParser generateSMTLIBEncoding(Model model) throws Exception {
 
 		if (!(model.getEMFInstanceRoot() instanceof MAVORoot)) {

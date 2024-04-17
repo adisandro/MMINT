@@ -80,6 +80,16 @@ public class LogicNGReasoner implements IPLFeaturesTrait {
     return "($1) | ($2)";
   }
 
+  @Override
+  public String getIMPLYSyntax() {
+    return "($1) => ($2)";
+  }
+
+  @Override
+  public String getEQUIVSyntax() {
+    return "($1) <=> ($2)";
+  }
+
   private Formula substituteVars(FormulaFactory factory, Formula formula, Map<String, Boolean> varValues) {
     var sub = new Substitution();
     for (var varEntry : varValues.entrySet()) {
