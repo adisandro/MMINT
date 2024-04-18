@@ -18,16 +18,7 @@
     <eOperations name="instantiate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GSNPLAnalysisTemplate" eSuperTypes="#//GSNPLTemplate">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="runner" eType="#//GSNPLAnalysisRunner"
-        transient="true"/>
+    <eOperations name="getRunner" eType="#//IGSNPLAnalysisRunner" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GSNPLAnalysisRunner" abstract="true"
-      eSuperTypes="../../edu.toronto.cs.se.mmint.types.gsn.templates/model/gsn.templates.ecore#//AnalysisRunner">
-    <eOperations name="instantiate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
-      <eParameters name="template" lowerBound="1" eType="#//GSNPLAnalysisTemplate"/>
-    </eOperations>
-    <eOperations name="validate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
-      <eParameters name="template" lowerBound="1" eType="#//GSNPLAnalysisTemplate"/>
-    </eOperations>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="IGSNPLAnalysisRunner" instanceClassName="edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysisRunner"/>
 </ecore:EPackage>

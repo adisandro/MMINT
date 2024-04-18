@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
-import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisRunner;
 import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Domain;
@@ -369,14 +368,6 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
         }
         return result;
       }
-      case GSNTemplatesPackage.ANALYSIS_RUNNER: {
-        var analysisRunner = (AnalysisRunner)theEObject;
-        var result = caseAnalysisRunner(analysisRunner);
-        if (result == null) {
-          result = defaultCase(theEObject);
-        }
-        return result;
-      }
       default: return defaultCase(theEObject);
     }
   }
@@ -633,21 +624,6 @@ public class GSNTemplatesSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseAnalysisTemplate(AnalysisTemplate object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Analysis Runner</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Analysis Runner</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAnalysisRunner(AnalysisRunner object) {
     return null;
   }
 

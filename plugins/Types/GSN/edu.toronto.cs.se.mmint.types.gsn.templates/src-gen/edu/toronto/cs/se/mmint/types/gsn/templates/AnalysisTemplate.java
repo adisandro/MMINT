@@ -12,6 +12,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates;
 
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysisRunner;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 
 /**
@@ -24,7 +25,6 @@ import edu.toronto.cs.se.modelepedia.gsn.Template;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate#getRunnerPath <em>Runner Path</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate#getRunner <em>Runner</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getAnalysisTemplate()
@@ -55,25 +55,11 @@ public interface AnalysisTemplate extends Template {
   void setRunnerPath(String value);
 
   /**
-   * Returns the value of the '<em><b>Runner</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Runner</em>' reference.
-   * @see #setRunner(AnalysisRunner)
-   * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getAnalysisTemplate_Runner()
-   * @model transient="true"
+   * @model kind="operation" dataType="edu.toronto.cs.se.mmint.types.gsn.templates.IAnalysisRunner" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */
-  AnalysisRunner getRunner();
-
-  /**
-   * Sets the value of the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate#getRunner <em>Runner</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Runner</em>' reference.
-   * @see #getRunner()
-   * @generated
-   */
-  void setRunner(AnalysisRunner value);
+  IAnalysisRunner getRunner() throws Exception;
 
 } // AnalysisTemplate

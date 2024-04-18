@@ -12,18 +12,14 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.productline;
 
+import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysisRunner;
+
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Analysis Template</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate#getRunner <em>Runner</em>}</li>
- * </ul>
  *
  * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage#getGSNPLAnalysisTemplate()
  * @model
@@ -31,25 +27,11 @@ package edu.toronto.cs.se.mmint.types.gsn.productline;
  */
 public interface GSNPLAnalysisTemplate extends GSNPLTemplate {
   /**
-   * Returns the value of the '<em><b>Runner</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Runner</em>' reference.
-   * @see #setRunner(GSNPLAnalysisRunner)
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage#getGSNPLAnalysisTemplate_Runner()
-   * @model transient="true"
+   * @model kind="operation" dataType="edu.toronto.cs.se.mmint.types.gsn.productline.IGSNPLAnalysisRunner" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */
-  GSNPLAnalysisRunner getRunner();
-
-  /**
-   * Sets the value of the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate#getRunner <em>Runner</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Runner</em>' reference.
-   * @see #getRunner()
-   * @generated
-   */
-  void setRunner(GSNPLAnalysisRunner value);
+  IGSNPLAnalysisRunner getRunner() throws Exception;
 
 } // GSNPLAnalysisTemplate

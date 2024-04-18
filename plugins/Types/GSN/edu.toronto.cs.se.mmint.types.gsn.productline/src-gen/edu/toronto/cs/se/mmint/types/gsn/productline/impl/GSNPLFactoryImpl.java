@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
@@ -23,6 +24,7 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLFactory;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysisRunner;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,6 +83,32 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
    * @generated
    */
   @Override
+  public Object createFromString(EDataType eDataType, String initialValue) {
+    return switch (eDataType.getClassifierID()) {
+    case GSNPLPackage.IGSNPL_ANALYSIS_RUNNER -> createIGSNPLAnalysisRunnerFromString(eDataType, initialValue);
+    default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    };
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue) {
+    return switch (eDataType.getClassifierID()) {
+    case GSNPLPackage.IGSNPL_ANALYSIS_RUNNER -> convertIGSNPLAnalysisRunnerToString(eDataType, instanceValue);
+    default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    };
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public GSNPLArgumentElement createGSNPLArgumentElement() {
     GSNPLArgumentElementImpl gsnplArgumentElement = new GSNPLArgumentElementImpl();
     return gsnplArgumentElement;
@@ -106,6 +134,24 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
   public GSNPLAnalysisTemplate createGSNPLAnalysisTemplate() {
     GSNPLAnalysisTemplateImpl gsnplAnalysisTemplate = new GSNPLAnalysisTemplateImpl();
     return gsnplAnalysisTemplate;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IGSNPLAnalysisRunner createIGSNPLAnalysisRunnerFromString(EDataType eDataType, String initialValue) {
+    return (IGSNPLAnalysisRunner)super.createFromString(eDataType, initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertIGSNPLAnalysisRunnerToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(eDataType, instanceValue);
   }
 
   /**

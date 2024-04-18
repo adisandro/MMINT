@@ -34,6 +34,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionTemplate
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.RealDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.ValueDomain;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysisRunner;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 
 /**
@@ -106,6 +107,7 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
   public Object createFromString(EDataType eDataType, String initialValue) {
     return switch (eDataType.getClassifierID()) {
     case GSNTemplatesPackage.GSN_TEMPLATES_BUILDER -> createGSNTemplatesBuilderFromString(eDataType, initialValue);
+    case GSNTemplatesPackage.IANALYSIS_RUNNER -> createIAnalysisRunnerFromString(eDataType, initialValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -119,6 +121,7 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
   public String convertToString(EDataType eDataType, Object instanceValue) {
     return switch (eDataType.getClassifierID()) {
     case GSNTemplatesPackage.GSN_TEMPLATES_BUILDER -> convertGSNTemplatesBuilderToString(eDataType, instanceValue);
+    case GSNTemplatesPackage.IANALYSIS_RUNNER -> convertIAnalysisRunnerToString(eDataType, instanceValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -281,6 +284,24 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
    * @generated
    */
   public String convertGSNTemplatesBuilderToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(eDataType, instanceValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IAnalysisRunner createIAnalysisRunnerFromString(EDataType eDataType, String initialValue) {
+    return (IAnalysisRunner)super.createFromString(eDataType, initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertIAnalysisRunnerToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(eDataType, instanceValue);
   }
 

@@ -18,12 +18,10 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.productline.PLElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisRunner;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisRunner;
 
 /**
  * <!-- begin-user-doc -->
@@ -94,20 +92,12 @@ public class GSNPLAdapterFactory extends AdapterFactoryImpl {
         return createGSNPLAnalysisTemplateAdapter();
       }
       @Override
-      public Adapter caseGSNPLAnalysisRunner(GSNPLAnalysisRunner object) {
-        return createGSNPLAnalysisRunnerAdapter();
-      }
-      @Override
       public Adapter casePLElement(PLElement object) {
         return createPLElementAdapter();
       }
       @Override
       public Adapter caseClass(edu.toronto.cs.se.mmint.productline.Class object) {
         return createClassAdapter();
-      }
-      @Override
-      public Adapter caseAnalysisRunner(AnalysisRunner object) {
-        return createAnalysisRunnerAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object) {
@@ -172,20 +162,6 @@ public class GSNPLAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisRunner <em>Analysis Runner</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisRunner
-   * @generated
-   */
-  public Adapter createGSNPLAnalysisRunnerAdapter() {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.productline.PLElement <em>Element</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -210,20 +186,6 @@ public class GSNPLAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createClassAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisRunner <em>Analysis Runner</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisRunner
-   * @generated
-   */
-  public Adapter createAnalysisRunnerAdapter() {
     return null;
   }
 

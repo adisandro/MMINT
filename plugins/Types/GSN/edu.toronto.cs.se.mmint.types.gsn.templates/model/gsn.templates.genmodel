@@ -10,6 +10,7 @@
   <genPackages prefix="GSNTemplates" basePackage="edu.toronto.cs.se.mmint.types.gsn"
       disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="gsn.templates.ecore#/">
     <genDataTypes ecoreDataType="gsn.templates.ecore#//GSNTemplatesBuilder"/>
+    <genDataTypes ecoreDataType="gsn.templates.ecore#//IAnalysisRunner"/>
     <genClasses image="false" ecoreClass="gsn.templates.ecore#//DecompositionTemplate">
       <genOperations ecoreOperation="gsn.templates.ecore#//DecompositionTemplate/decompose">
         <genParameters ecoreParameter="gsn.templates.ecore#//DecompositionTemplate/decompose/decomposed"/>
@@ -60,16 +61,7 @@
     </genClasses>
     <genClasses ecoreClass="gsn.templates.ecore#//AnalysisTemplate">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.templates.ecore#//AnalysisTemplate/runnerPath"/>
-      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
-          ecoreFeature="ecore:EReference gsn.templates.ecore#//AnalysisTemplate/runner"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="gsn.templates.ecore#//AnalysisRunner">
-      <genOperations ecoreOperation="gsn.templates.ecore#//AnalysisRunner/instantiate">
-        <genParameters ecoreParameter="gsn.templates.ecore#//AnalysisRunner/instantiate/template"/>
-      </genOperations>
-      <genOperations ecoreOperation="gsn.templates.ecore#//AnalysisRunner/validate">
-        <genParameters ecoreParameter="gsn.templates.ecore#//AnalysisRunner/validate/template"/>
-      </genOperations>
+      <genOperations ecoreOperation="gsn.templates.ecore#//AnalysisTemplate/getRunner"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
