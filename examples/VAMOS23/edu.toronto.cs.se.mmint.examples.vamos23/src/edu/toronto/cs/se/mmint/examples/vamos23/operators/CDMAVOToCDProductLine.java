@@ -48,7 +48,7 @@ public class CDMAVOToCDProductLine extends ToProductLine {
   }
 
   @Override
-  protected void toProductLine() {
+  protected void toProductLine() throws Exception {
     super.toProductLine();
     var classTypeSwitch = Map.of(
       ClassDiagram_MAVOPackage.eINSTANCE.getClassDiagram(), ClassDiagramPackage.eINSTANCE.getClassDiagram(),

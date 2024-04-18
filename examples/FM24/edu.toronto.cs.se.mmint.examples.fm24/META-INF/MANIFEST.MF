@@ -7,4 +7,11 @@ Automatic-Module-Name: edu.toronto.cs.se.mmint.examples.fm24
 Bundle-RequiredExecutionEnvironment: JavaSE-22
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.emf.common.ui
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.common.ui,
+ org.eclipse.emf.validation,
+ org.eclipse.jdt.annotation;resolution:=optional,
+ edu.toronto.cs.se.mmint,
+ edu.toronto.cs.se.mmint.productline,
+ edu.toronto.cs.se.mmint.productline.operators,
+ edu.toronto.cs.se.modelepedia.statemachine

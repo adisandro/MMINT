@@ -7,16 +7,16 @@
     <styles xmi:type="notation:FontStyle" xmi:id="__jGE8veVEe67baVPhpR8qQ" fontName="Cantarell"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="__jGE8_eVEe67baVPhpR8qQ" hint="Mid"/>
     <element xmi:type="mid:Model" href="example.mid#//@models.0"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="__jGE9PeVEe67baVPhpR8qQ" x="268" y="83"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="__jGE9PeVEe67baVPhpR8qQ" x="630" y="84"/>
   </children>
-  <children xmi:type="notation:Node" xmi:id="_uDhmsPkJEe6slLANpRcj9A" type="2002">
-    <children xmi:type="notation:DecorationNode" xmi:id="_uDntUPkJEe6slLANpRcj9A" type="5003"/>
-    <children xmi:type="notation:DecorationNode" xmi:id="_uDntUfkJEe6slLANpRcj9A" type="5004"/>
-    <styles xmi:type="notation:DescriptionStyle" xmi:id="_uDhmsfkJEe6slLANpRcj9A"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_uDhmsvkJEe6slLANpRcj9A" fontName="Cantarell"/>
-    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_uDhms_kJEe6slLANpRcj9A" hint="Mid"/>
+  <children xmi:type="notation:Node" xmi:id="_ej4tIP0gEe6QnOzizyFJug" type="2002">
+    <children xmi:type="notation:DecorationNode" xmi:id="_ej5UMP0gEe6QnOzizyFJug" type="5003"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ej5UMf0gEe6QnOzizyFJug" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_ej4tIf0gEe6QnOzizyFJug"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_ej4tIv0gEe6QnOzizyFJug" fontName="Cantarell"/>
+    <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_ej4tI_0gEe6QnOzizyFJug" hint="Mid"/>
     <element xmi:type="mid:Model" href="example.mid#//@models.1"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uDhmtPkJEe6slLANpRcj9A" x="592" y="102"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ej4tJP0gEe6QnOzizyFJug" x="252" y="84"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_sUI8wPeVEe67baVPhpR8qQ"/>
   <element xmi:type="mid:MID" href="example.mid#/"/>

@@ -125,11 +125,16 @@ public class ToProductLine extends OperatorImpl {
     this.out = new Out(outputMIDsByName, getWorkingPath(), this.in);
   }
 
-  protected void addPLClass(Class plClass, EObject modelObj, EClass plType, Map<String, Class> plClasses) {
-    plClass.setPresenceCondition(this.out.trueLiteral);
+  protected void addPLClass(Class plClass, String plClassesKey, String presenceCondition, EClass plType,
+                            Map<String, Class> plClasses) {
+    plClass.setPresenceCondition(presenceCondition);
     plClass.setType(plType);
     this.out.productLine.getClasses().add(plClass);
-    plClasses.put(MIDRegistry.getModelElementUri(modelObj), plClass);
+    plClasses.put(plClassesKey, plClass);
+  }
+
+  protected void addPLClass(Class plClass, EObject modelObj, EClass plType, Map<String, Class> plClasses) {
+    addPLClass(plClass, MIDRegistry.getModelElementUri(modelObj), this.out.trueLiteral, plType, plClasses);
   }
 
   protected Class createPLClass(EObject modelObj, EClass plType, Map<String, Class> plClasses) {
@@ -184,7 +189,7 @@ public class ToProductLine extends OperatorImpl {
     }
   }
 
-  protected void toProductLine() {
+  protected void toProductLine() throws Exception {
     var product = this.in.productModel.getEMFInstanceRoot();
     var plClasses = new HashMap<String, Class>();
     createPLClassAndAttributes(product, plClasses);
