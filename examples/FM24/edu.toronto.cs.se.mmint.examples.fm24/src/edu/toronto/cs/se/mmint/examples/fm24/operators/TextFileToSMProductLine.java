@@ -19,6 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import org.eclipse.core.runtime.IPath;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -35,6 +37,9 @@ public class TextFileToSMProductLine extends ToProductLine {
                                   throws MMINTException {
       super(outputMIDsByName, workingPath, in);
       this.productLine.setMetamodel(StateMachinePackage.eINSTANCE);
+      this.plPath = workingPath + IPath.SEPARATOR +
+                    FileUtils.replaceFileExtensionInPath(in.productModel.getName(),
+                                                         this.plModelType.getFileExtension());
     }
   }
 

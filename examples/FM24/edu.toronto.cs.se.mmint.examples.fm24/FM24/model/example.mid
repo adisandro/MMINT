@@ -2,9 +2,18 @@
 <mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:file="http://se.cs.toronto.edu/mmint/File" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
   <models uri="/FM24/model/ac.productline" name="ac" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.0"/>
   <models xsi:type="file:FileModel" uri="/FM24/model/R1.txt" name="R1.txt" metatypeUri="http://se.cs.toronto.edu/mmint/File" dynamic="true" fileExtension="txt"/>
+  <models uri="/FM24/model/R1.productline" name="R1" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" origin="CREATED" fileExtension="productline" editors="//@editors.1"/>
   <editors xsi:type="editor:Diagram" uri="/FM24/representations.aird#_9lehsPeVEe67baVPhpR8qQ" name="ProductLine Sirius Diagram for model /FM24/model/ac.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.design" dynamic="true" modelUri="/FM24/model/ac.productline" id="edu.toronto.cs.se.mmint.productline.design" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
     <fileExtensions>aird</fileExtensions>
   </editors>
+  <editors uri="/FM24/model/R1.productline" name="ProductLine EMF Editor for model /FM24/model/R1.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.editor" dynamic="true" modelUri="/FM24/model/R1.productline" id="edu.toronto.cs.se.mmint.productline.presentation.PLEditorID" wizardId="edu.toronto.cs.se.mmint.productline.presentation.PLModelWizardID">
+    <fileExtensions>productline</fileExtensions>
+  </editors>
+  <operators uri="" name="ToProductLine" metatypeUri="edu.toronto.cs.se.mmint.examples.fm24.operators.TextFileToSMProductLine" dynamic="true" workingPath="/FM24/model" executionTime="179087478">
+    <inputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.examples.fm24.operators.TextFileToSMProductLine/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <outputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.examples.fm24.operators.TextFileToSMProductLine/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+  </operators>
   <extendibleTable key="/FM24/model/ac.productline" value="//@models.0"/>
   <extendibleTable key="/FM24/model/R1.txt" value="//@models.1"/>
+  <extendibleTable key="/FM24/model/R1.productline" value="//@models.2"/>
 </mid:MID>
