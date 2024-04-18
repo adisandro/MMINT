@@ -18,6 +18,7 @@ import java.util.Set;
 import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusEvaluateQuery;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
@@ -28,14 +29,17 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysisRunner {
 
   @Override
-  public void instantiate(GSNPLAnalysisTemplate template) throws Exception {
+  public void instantiate(GSNPLAnalysisTemplate plTemplate) throws Exception {
     var types = GSNPackage.eINSTANCE;
     // get template elems
-    var productLine = (ProductLine) template.eContainer();
+    var productLine = (ProductLine) plTemplate.eContainer();
     var builder = new GSNPLBuilder(productLine);
-    var queryStrategy = template.getStreamOfReference(types.getTemplate_Elements())
+    var queryStrategy = (GSNPLArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
       .filter(c -> c.getType() == types.getStrategy())
       .findFirst().get();
+    var safetyGoal = (GSNPLArgumentElement) queryStrategy
+      .getReference(types.getSupporter_Supports()).get(0)
+      .getReference(types.getSupportedBy_Source()).get(0);
     var queryCtx = queryStrategy
       .getReference(types.getContextualizable_InContextOf()).get(0)
       .getReference(types.getInContextOf_Context()).get(0);
@@ -45,7 +49,10 @@ public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysisRunn
     var resultGoal = (GSNPLArgumentElement) queryStrategy
       .getReference(types.getSupportable_SupportedBy()).get(1)
       .getReference(types.getSupportedBy_Target()).get(0);
-    var resultDesc = resultGoal.getAttribute(types.getArgumentElement_Description()).get(0);
+    safetyGoal.instantiate(plTemplate);
+    var safetyDesc = safetyGoal.getAttribute(types.getArgumentElement_Description()).get(0);
+    var resultDesc = resultGoal.getAttribute(types.getArgumentElement_Description()).get(0)
+      .replace("{safety goal}", safetyDesc);
     // run query and process results
     var modelPath = MIDDialogs.selectFile("Run Product Line analysis", "Select a Product Line model",
                                           "There are no Product Line models in the workspace", Set.of("productline"));
@@ -57,22 +64,22 @@ public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysisRunn
       supportedBy.delete();
     }
     queryCtx.setAttribute(types.getArgumentElement_Description(),
-                          "Query '" + querySpec.query() + "' applied on model '" + modelPath + "'");
-    var resultCtxDesc = (queryResults.isEmpty()) ? "No results" : "Query results:\n";
+                          "Query '" + querySpec.query() + "' evaluated on model '" + modelPath + "'");
+    var resultCtxDesc = (queryResults.isEmpty()) ? "No results" : "Query results:";
     for (var i = 0; i < queryResults.size(); i++) {
       var queryResult = queryResults.get(i);
       var resultText = SiriusEvaluateQuery.queryResultToString(queryResult, null, null);
-      resultCtxDesc += "'" + resultText + "'";
+      var pc = ((PLElement) queryResult).getPresenceCondition();
+      resultCtxDesc += "\n'" + resultText + "'";
       resultGoal = builder.createGoal("G" + (i+2), resultDesc.replace("{For each scenario in Ctx1}",
-                                                                      "Query result '" + resultText + "'"));
-      resultGoal.setAttribute(types.getArgumentElement_Valid(), "false");
-      template.addReference(types.getTemplate_Elements(), resultGoal);
-      builder.addSupporter(null, resultGoal);
+                                                                      "Query result '" + resultText + "'"), pc);
+      plTemplate.addReference(types.getTemplate_Elements(), resultGoal, pc);
+      builder.addSupporter(queryStrategy, resultGoal);
     }
     resultCtx.setAttribute(types.getArgumentElement_Description(), resultCtxDesc);
   }
 
   @Override
-  public void validate(GSNPLAnalysisTemplate template) throws Exception {
+  public void validate(GSNPLAnalysisTemplate plTemplate) throws Exception {
   }
 }

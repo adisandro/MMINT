@@ -15,7 +15,6 @@ package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -228,12 +227,7 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
    */
   @Override
   public void instantiate() throws Exception {
-    try {
-      getRunner().instantiate(this);
-    }
-    catch (Exception e) {
-      MMINTException.print(IStatus.WARNING, "Failed to load runner class, skipping analysis instantiation", e);
-    }
+    getRunner().instantiate(this);
     super.instantiate();
   }
 
@@ -242,12 +236,7 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
    */
   @Override
   public void validate() throws Exception {
-    try {
-      getRunner().validate(this);
-    }
-    catch (Exception e) {
-      MMINTException.print(IStatus.WARNING, "Failed to load runner class, skipping analysis validation", e);
-    }
+    getRunner().validate(this);
     super.validate();
   }
 

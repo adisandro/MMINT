@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
@@ -427,23 +426,7 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    */
   @Override
   public Reference addReference(EReference referenceType, edu.toronto.cs.se.mmint.productline.Class tgtClass) {
-    String pc = null;
-    try {
-      if (isAlwaysPresent()) {
-        pc = tgtClass.getPresenceCondition();
-      }
-      else if (tgtClass.isAlwaysPresent()) {
-        pc = getPresenceCondition();
-      }
-      else {
-        var reasoner = getProductLine().getReasoner();
-        pc = reasoner.simplify(reasoner.and(getPresenceCondition(), tgtClass.getPresenceCondition()));
-      }
-    }
-    catch (MMINTException e) {
-      // fallback to null presence condition
-    }
-
+    var pc = PLElementImpl.merge(getProductLine(), getPresenceCondition(), tgtClass.getPresenceCondition());
     return addReference(referenceType, tgtClass, pc);
   }
 

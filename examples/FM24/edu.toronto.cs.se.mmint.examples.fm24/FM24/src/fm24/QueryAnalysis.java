@@ -35,10 +35,13 @@ public class QueryAnalysis implements IAnalysisRunner {
       .filter(Strategy.class::isInstance)
       .map(Strategy.class::cast)
       .findFirst().get();
+    var safetyGoal = queryStrategy.getSupports().get(0).getSource();
     var queryCtx = queryStrategy.getInContextOf().get(0).getContext();
     var resultCtx = queryStrategy.getInContextOf().get(1).getContext();
     var resultGoal = queryStrategy.getSupportedBy().get(1).getTarget();
-    var resultDesc = resultGoal.getDescription();
+    safetyGoal.instantiate(template);
+    var safetyDesc = safetyGoal.getDescription();
+    var resultDesc = resultGoal.getDescription().replace("{safety goal}", safetyDesc);
     // run query and process results
     var modelPath = MIDDialogs.selectModelToImport(false);
     var rootModelObj = FileUtils.readModelFile(modelPath, null, true);
@@ -47,15 +50,14 @@ public class QueryAnalysis implements IAnalysisRunner {
     templateElems.remove(resultGoal);
     safetyCase.getGoals().remove(resultGoal);
     queryStrategy.getSupportedBy().remove(1);
-    queryCtx.setDescription("Query '" + querySpec.query() + "' applied on model '" + modelPath + "'");
-    var resultCtxDesc = (queryResults.isEmpty()) ? "No results" : "Query results:\n";
+    queryCtx.setDescription("Query '" + querySpec.query() + "' evaluated on model '" + modelPath + "'");
+    var resultCtxDesc = (queryResults.isEmpty()) ? "No results" : "Query results:";
     for (var i = 0; i < queryResults.size(); i++) {
       var queryResult = queryResults.get(i);
       var resultText = SiriusEvaluateQuery.queryResultToString(queryResult, null, null);
-      resultCtxDesc += "'" + resultText + "'";
+      resultCtxDesc += "\n'" + resultText + "'";
       resultGoal = builder.createGoal("G" + (i+2), resultDesc.replace("{For each scenario in Ctx1}",
                                                                       "Query result '" + resultText + "'"));
-      resultGoal.setValid(false);
       templateElems.add(resultGoal);
       builder.addSupporter(queryStrategy, resultGoal);
     }

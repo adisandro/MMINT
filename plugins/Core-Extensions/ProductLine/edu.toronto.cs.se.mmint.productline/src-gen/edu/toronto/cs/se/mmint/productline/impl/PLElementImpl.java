@@ -274,4 +274,32 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
     return getPresenceConditionLabel(this, withParenthesis);
   }
 
+  /**
+   * @generated NOT
+   */
+  public static String merge(ProductLine productLine, @Nullable String presenceCondition1,
+                             @Nullable String presenceCondition2) {
+    String pc = null;
+    try {
+      if (isAlwaysPresent(productLine, presenceCondition1)) {
+        pc = presenceCondition2;
+      }
+      else if (isAlwaysPresent(productLine, presenceCondition2)) {
+        pc = presenceCondition1;
+      }
+      else if (presenceCondition1.equals(presenceCondition2)) {
+        pc = presenceCondition1;
+      }
+      else {
+        var reasoner = productLine.getReasoner();
+        pc = reasoner.simplify(reasoner.and(presenceCondition1, presenceCondition2));
+      }
+    }
+    catch (MMINTException e) {
+      // fallback to null presence condition
+    }
+
+    return pc;
+  }
+
 } //PLElementImpl
