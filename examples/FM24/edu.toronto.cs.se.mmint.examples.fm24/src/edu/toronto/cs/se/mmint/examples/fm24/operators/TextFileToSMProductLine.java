@@ -45,7 +45,7 @@ public class TextFileToSMProductLine extends ToProductLine {
 
   @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
-    this.in = new In(inputsByName);
+    this.in = new In(inputsByName, this.reasonerName);
     this.out = new TextFileToSMPLOut(outputMIDsByName, getWorkingPath(), this.in);
   }
 
@@ -102,6 +102,7 @@ public class TextFileToSMProductLine extends ToProductLine {
         plTransition.setPresenceCondition(pc);
         plTransition.setType(StateMachinePackage.eINSTANCE.getTransition());
         this.out.productLine.getClasses().add(plTransition);
+        plSM.addReference(StateMachinePackage.eINSTANCE.getStateMachine_Transitions(), plTransition);
         plTransition.addReference(StateMachinePackage.eINSTANCE.getTransition_Source(), fromState);
         plTransition.addReference(StateMachinePackage.eINSTANCE.getTransition_Target(), toState);
         currTransition = plTransition;

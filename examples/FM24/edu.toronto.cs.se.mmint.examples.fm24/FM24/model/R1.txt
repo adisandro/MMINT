@@ -50,7 +50,7 @@ States:
 "CheckNewRateS", <Features: CHECK_INFUSION_RATE>
 "ChangeDoseRateS", <Features: PROGRAMMABLE_INFUSION>
 "POSTDoneS", 
-"ConfirmPowerOffS";
+"ConfirmPowerOffS",
 
 
 InitialState: "PowerDownS";
