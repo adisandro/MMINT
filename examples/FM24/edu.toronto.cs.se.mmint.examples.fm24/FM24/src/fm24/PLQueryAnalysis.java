@@ -14,10 +14,13 @@ package fm24;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusEvaluateQuery;
+import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusEvaluateQuery.ResultPrinter;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate;
@@ -27,6 +30,21 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.util.GSNPLBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysisRunner {
+
+  public static ResultPrinter PL_NAME_PRINTER = (result) -> {
+    if (result instanceof Class plClass) {
+      // try finding a name
+      var name = plClass.getAttributes().stream()
+        .filter(a -> a.getType().getName().equals("name"))
+        .map(a -> a.getValue())
+        .collect(Collectors.joining(", "));
+      if (!name.isEmpty()) {
+        return name;
+      }
+    }
+    return SiriusEvaluateQuery.NAME_PRINTER.prettyPrint(result);
+  };
+
 
   @Override
   public void instantiate(GSNPLAnalysisTemplate plTemplate) throws Exception {
@@ -68,7 +86,8 @@ public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysisRunn
     var resultCtxDesc = (queryResults.isEmpty()) ? "No results" : "Query results:";
     for (var i = 0; i < queryResults.size(); i++) {
       var queryResult = queryResults.get(i);
-      var resultText = SiriusEvaluateQuery.queryResultToString(queryResult, null, null);
+      var resultText = SiriusEvaluateQuery.queryResultToString(queryResult, PLQueryAnalysis.PL_NAME_PRINTER, null,
+                                                               null);
       var pc = ((PLElement) queryResult).getPresenceCondition();
       resultCtxDesc += "\n'" + resultText + "'";
       resultGoal = builder.createGoal("G" + (i+2), resultDesc.replace("{For each scenario in Ctx1}",

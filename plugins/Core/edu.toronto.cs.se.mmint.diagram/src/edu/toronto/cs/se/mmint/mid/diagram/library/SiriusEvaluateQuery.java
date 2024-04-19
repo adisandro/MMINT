@@ -48,6 +48,25 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
 
+  public interface ResultPrinter {
+    String prettyPrint(Object result);
+  }
+
+  public static ResultPrinter NAME_PRINTER = (result) -> {
+    var out = result;
+    if (result instanceof EObject modelObj) {
+      // try finding a name
+      try {
+        var name = FileUtils.getModelObjectFeature(modelObj, "name");
+        if (name != null) {
+          out = name;
+        }
+      }
+      catch (MMINTException e) {}
+    }
+    return out.toString();
+  };
+
   public static QuerySpec selectQuery(EObject context) throws Exception {
     var allReasoners = MMINT.getReasonersForTrait(IQueryTrait.class, context);
     if (allReasoners.isEmpty()) {
@@ -69,38 +88,28 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
     return new QuerySpec(queryReasoner, queryFilePath, query);
   }
 
-  public static String queryResultToString(Object result, @Nullable Set<String> highlightUris,
+  public static String queryResultToString(Object result, ResultPrinter printer, @Nullable Set<String> highlightUris,
                                            @Nullable Set<Model> models) {
     var message = "";
     if (result instanceof Collection multiResult) {
       for (var innerResult : multiResult) {
-        message += queryResultToString(innerResult, highlightUris, models) + "\n";
+        message += queryResultToString(innerResult, printer, highlightUris, models) + "\n";
       }
     }
-    else {
-      if (result instanceof EObject resultObj) {
-        if (highlightUris != null) {
-          highlightUris.add(MIDRegistry.getModelElementUri(resultObj));
-          // try finding sirius models to highlight
-          try {
-            var model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(resultObj);
-            if (SiriusUtils.hasSiriusDiagram(model)) {
-              models.add(model);
-            }
-          }
-          catch (MMINTException e) {}
-        }
-        // try finding the name
+    else {    //TODO!!
+
+      if (result instanceof EObject resultObj && highlightUris != null) {
+        highlightUris.add(MIDRegistry.getModelElementUri(resultObj));
+        // try finding sirius models to highlight
         try {
-          var name = FileUtils.getModelObjectFeature(resultObj, "name");
-          if (name != null) {
-            result = name;
+          var model = MIDDiagramUtils.getInstanceMIDModelFromModelEditor(resultObj);
+          if (SiriusUtils.hasSiriusDiagram(model)) {
+            models.add(model);
           }
         }
         catch (MMINTException e) {}
       }
-
-      message += result.toString();
+      message += printer.prettyPrint(result);
     }
 
     return message;
@@ -134,7 +143,7 @@ results:
       var result = results.get(i);
       var highlightUris = new HashSet<String>();
       var models = new HashSet<Model>();
-      var message = queryResultToString(result, highlightUris, models);
+      var message = queryResultToString(result, SiriusEvaluateQuery.NAME_PRINTER, highlightUris, models);
 
       // display results
       var title = "Query Results (" + (i+1) + " out of " + numResults + ")";

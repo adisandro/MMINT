@@ -54,7 +54,8 @@ public class QueryAnalysis implements IAnalysisRunner {
     var resultCtxDesc = (queryResults.isEmpty()) ? "No results" : "Query results:";
     for (var i = 0; i < queryResults.size(); i++) {
       var queryResult = queryResults.get(i);
-      var resultText = SiriusEvaluateQuery.queryResultToString(queryResult, null, null);
+      var resultText = SiriusEvaluateQuery.queryResultToString(queryResult, SiriusEvaluateQuery.NAME_PRINTER, null,
+                                                               null);
       resultCtxDesc += "\n'" + resultText + "'";
       resultGoal = builder.createGoal("G" + (i+2), resultDesc.replace("{For each scenario in Ctx1}",
                                                                       "Query result '" + resultText + "'"));
