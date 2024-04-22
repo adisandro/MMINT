@@ -17,16 +17,16 @@ import java.util.List;
 import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusEvaluateQuery;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
-import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysisRunner;
+import edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 
-public class QueryAnalysis implements IAnalysisRunner {
+public class QueryAnalysis implements IAnalysis {
 
   @Override
-  public void instantiate(AnalysisTemplate template) throws Exception {
+  public void instantiate(AnalyticTemplate template) throws Exception {
     // get template elems
     var safetyCase = (SafetyCase) template.eContainer();
     var builder = new GSNTemplatesBuilder(safetyCase);
@@ -66,6 +66,6 @@ public class QueryAnalysis implements IAnalysisRunner {
   }
 
   @Override
-  public void validate(AnalysisTemplate template) throws Exception {
+  public void validate(AnalyticTemplate template) throws Exception {
   }
 }

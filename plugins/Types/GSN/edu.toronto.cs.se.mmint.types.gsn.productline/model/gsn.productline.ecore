@@ -17,8 +17,8 @@
     </eOperations>
     <eOperations name="instantiate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GSNPLAnalysisTemplate" eSuperTypes="#//GSNPLTemplate">
-    <eOperations name="getRunner" eType="#//IGSNPLAnalysisRunner" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GSNPLAnalyticTemplate" eSuperTypes="#//GSNPLTemplate">
+    <eOperations name="getAnalysis" eType="#//IGSNPLAnalysis" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="IGSNPLAnalysisRunner" instanceClassName="edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysisRunner"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="IGSNPLAnalysis" instanceClassName="edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis"/>
 </ecore:EPackage>

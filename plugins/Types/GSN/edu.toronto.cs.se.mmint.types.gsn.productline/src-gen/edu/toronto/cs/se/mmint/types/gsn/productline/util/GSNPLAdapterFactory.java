@@ -18,7 +18,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.productline.PLElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
@@ -88,8 +88,8 @@ public class GSNPLAdapterFactory extends AdapterFactoryImpl {
         return createGSNPLTemplateAdapter();
       }
       @Override
-      public Adapter caseGSNPLAnalysisTemplate(GSNPLAnalysisTemplate object) {
-        return createGSNPLAnalysisTemplateAdapter();
+      public Adapter caseGSNPLAnalyticTemplate(GSNPLAnalyticTemplate object) {
+        return createGSNPLAnalyticTemplateAdapter();
       }
       @Override
       public Adapter casePLElement(PLElement object) {
@@ -148,16 +148,16 @@ public class GSNPLAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate <em>Analysis Template</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate <em>Analytic Template</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate
    * @generated
    */
-  public Adapter createGSNPLAnalysisTemplateAdapter() {
+  public Adapter createGSNPLAnalyticTemplateAdapter() {
     return null;
   }
 

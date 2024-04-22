@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.Domain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionElement;
@@ -168,8 +168,8 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
         return createFilesContextAdapter();
       }
       @Override
-      public Adapter caseAnalysisTemplate(AnalysisTemplate object) {
-        return createAnalysisTemplateAdapter();
+      public Adapter caseAnalyticTemplate(AnalyticTemplate object) {
+        return createAnalyticTemplateAdapter();
       }
       @Override
       public Adapter caseTemplate(Template object) {
@@ -460,16 +460,16 @@ public class GSNTemplatesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate <em>Analysis Template</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate <em>Analytic Template</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate
    * @generated
    */
-  public Adapter createAnalysisTemplateAdapter() {
+  public Adapter createAnalyticTemplateAdapter() {
     return null;
   }
 

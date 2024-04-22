@@ -1402,14 +1402,14 @@ public interface GSNTemplatesPackage extends EPackage {
   int FILES_CONTEXT_OPERATION_COUNT = GSNPackage.CONTEXT_OPERATION_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.AnalysisTemplateImpl <em>Analysis Template</em>}' class.
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.AnalyticTemplateImpl <em>Analytic Template</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.AnalysisTemplateImpl
-   * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getAnalysisTemplate()
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.AnalyticTemplateImpl
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getAnalyticTemplate()
    * @generated
    */
-  int ANALYSIS_TEMPLATE = 16;
+  int ANALYTIC_TEMPLATE = 16;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' reference list.
@@ -1418,7 +1418,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ANALYSIS_TEMPLATE__ELEMENTS = GSNPackage.TEMPLATE__ELEMENTS;
+  int ANALYTIC_TEMPLATE__ELEMENTS = GSNPackage.TEMPLATE__ELEMENTS;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1427,25 +1427,25 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ANALYSIS_TEMPLATE__ID = GSNPackage.TEMPLATE__ID;
+  int ANALYTIC_TEMPLATE__ID = GSNPackage.TEMPLATE__ID;
 
   /**
-   * The feature id for the '<em><b>Runner Path</b></em>' attribute.
+   * The feature id for the '<em><b>Analysis Path</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANALYSIS_TEMPLATE__RUNNER_PATH = GSNPackage.TEMPLATE_FEATURE_COUNT + 0;
+  int ANALYTIC_TEMPLATE__ANALYSIS_PATH = GSNPackage.TEMPLATE_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Analysis Template</em>' class.
+   * The number of structural features of the '<em>Analytic Template</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANALYSIS_TEMPLATE_FEATURE_COUNT = GSNPackage.TEMPLATE_FEATURE_COUNT + 1;
+  int ANALYTIC_TEMPLATE_FEATURE_COUNT = GSNPackage.TEMPLATE_FEATURE_COUNT + 1;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -1454,7 +1454,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ANALYSIS_TEMPLATE___VALIDATE = GSNPackage.TEMPLATE___VALIDATE;
+  int ANALYTIC_TEMPLATE___VALIDATE = GSNPackage.TEMPLATE___VALIDATE;
 
   /**
    * The operation id for the '<em>Import </em>' operation.
@@ -1463,7 +1463,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ANALYSIS_TEMPLATE___IMPORT____SAFETYCASE = GSNPackage.TEMPLATE___IMPORT____SAFETYCASE;
+  int ANALYTIC_TEMPLATE___IMPORT____SAFETYCASE = GSNPackage.TEMPLATE___IMPORT____SAFETYCASE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1472,25 +1472,25 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ANALYSIS_TEMPLATE___INSTANTIATE = GSNPackage.TEMPLATE___INSTANTIATE;
+  int ANALYTIC_TEMPLATE___INSTANTIATE = GSNPackage.TEMPLATE___INSTANTIATE;
 
   /**
-   * The operation id for the '<em>Get Runner</em>' operation.
+   * The operation id for the '<em>Get Analysis</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANALYSIS_TEMPLATE___GET_RUNNER = GSNPackage.TEMPLATE_OPERATION_COUNT + 0;
+  int ANALYTIC_TEMPLATE___GET_ANALYSIS = GSNPackage.TEMPLATE_OPERATION_COUNT + 0;
 
   /**
-   * The number of operations of the '<em>Analysis Template</em>' class.
+   * The number of operations of the '<em>Analytic Template</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANALYSIS_TEMPLATE_OPERATION_COUNT = GSNPackage.TEMPLATE_OPERATION_COUNT + 1;
+  int ANALYTIC_TEMPLATE_OPERATION_COUNT = GSNPackage.TEMPLATE_OPERATION_COUNT + 1;
 
   /**
    * The meta object id for the '<em>Builder</em>' data type.
@@ -1503,14 +1503,14 @@ public interface GSNTemplatesPackage extends EPackage {
   int GSN_TEMPLATES_BUILDER = 17;
 
   /**
-   * The meta object id for the '<em>IAnalysis Runner</em>' data type.
+   * The meta object id for the '<em>IAnalysis</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysisRunner
-   * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getIAnalysisRunner()
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getIAnalysis()
    * @generated
    */
-  int IANALYSIS_RUNNER = 18;
+  int IANALYSIS = 18;
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate <em>Decomposition Template</em>}'.
@@ -1836,35 +1836,35 @@ public interface GSNTemplatesPackage extends EPackage {
   EAttribute getFilesContext_Paths();
 
   /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate <em>Analysis Template</em>}'.
+   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate <em>Analytic Template</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Analysis Template</em>'.
-   * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate
+   * @return the meta object for class '<em>Analytic Template</em>'.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate
    * @generated
    */
-  EClass getAnalysisTemplate();
+  EClass getAnalyticTemplate();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate#getRunnerPath <em>Runner Path</em>}'.
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getAnalysisPath <em>Analysis Path</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Runner Path</em>'.
-   * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate#getRunnerPath()
-   * @see #getAnalysisTemplate()
+   * @return the meta object for the attribute '<em>Analysis Path</em>'.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getAnalysisPath()
+   * @see #getAnalyticTemplate()
    * @generated
    */
-  EAttribute getAnalysisTemplate_RunnerPath();
+  EAttribute getAnalyticTemplate_AnalysisPath();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate#getRunner() <em>Get Runner</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getAnalysis() <em>Get Analysis</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Get Runner</em>' operation.
-   * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate#getRunner()
+   * @return the meta object for the '<em>Get Analysis</em>' operation.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getAnalysis()
    * @generated
    */
-  EOperation getAnalysisTemplate__GetRunner();
+  EOperation getAnalyticTemplate__GetAnalysis();
 
   /**
    * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder <em>Builder</em>}'.
@@ -1878,15 +1878,15 @@ public interface GSNTemplatesPackage extends EPackage {
   EDataType getGSNTemplatesBuilder();
 
   /**
-   * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysisRunner <em>IAnalysis Runner</em>}'.
+   * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis <em>IAnalysis</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>IAnalysis Runner</em>'.
-   * @see edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysisRunner
-   * @model instanceClass="edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysisRunner"
+   * @return the meta object for data type '<em>IAnalysis</em>'.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis
+   * @model instanceClass="edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis"
    * @generated
    */
-  EDataType getIAnalysisRunner();
+  EDataType getIAnalysis();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -2192,30 +2192,30 @@ public interface GSNTemplatesPackage extends EPackage {
     EAttribute FILES_CONTEXT__PATHS = GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths();
 
     /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.AnalysisTemplateImpl <em>Analysis Template</em>}' class.
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.AnalyticTemplateImpl <em>Analytic Template</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.AnalysisTemplateImpl
-     * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getAnalysisTemplate()
+     * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.AnalyticTemplateImpl
+     * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getAnalyticTemplate()
      * @generated
      */
-    EClass ANALYSIS_TEMPLATE = GSNTemplatesPackage.eINSTANCE.getAnalysisTemplate();
+    EClass ANALYTIC_TEMPLATE = GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate();
 
     /**
-     * The meta object literal for the '<em><b>Runner Path</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Analysis Path</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ANALYSIS_TEMPLATE__RUNNER_PATH = GSNTemplatesPackage.eINSTANCE.getAnalysisTemplate_RunnerPath();
+    EAttribute ANALYTIC_TEMPLATE__ANALYSIS_PATH = GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_AnalysisPath();
 
     /**
-     * The meta object literal for the '<em><b>Get Runner</b></em>' operation.
+     * The meta object literal for the '<em><b>Get Analysis</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation ANALYSIS_TEMPLATE___GET_RUNNER = GSNTemplatesPackage.eINSTANCE.getAnalysisTemplate__GetRunner();
+    EOperation ANALYTIC_TEMPLATE___GET_ANALYSIS = GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate__GetAnalysis();
 
     /**
      * The meta object literal for the '<em>Builder</em>' data type.
@@ -2228,14 +2228,14 @@ public interface GSNTemplatesPackage extends EPackage {
     EDataType GSN_TEMPLATES_BUILDER = GSNTemplatesPackage.eINSTANCE.getGSNTemplatesBuilder();
 
     /**
-     * The meta object literal for the '<em>IAnalysis Runner</em>' data type.
+     * The meta object literal for the '<em>IAnalysis</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysisRunner
-     * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getIAnalysisRunner()
+     * @see edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis
+     * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getIAnalysis()
      * @generated
      */
-    EDataType IANALYSIS_RUNNER = GSNTemplatesPackage.eINSTANCE.getIAnalysisRunner();
+    EDataType IANALYSIS = GSNTemplatesPackage.eINSTANCE.getIAnalysis();
 
   }
 

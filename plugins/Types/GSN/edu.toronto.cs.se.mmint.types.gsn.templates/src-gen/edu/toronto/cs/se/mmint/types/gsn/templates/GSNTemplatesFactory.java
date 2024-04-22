@@ -140,13 +140,13 @@ public interface GSNTemplatesFactory extends EFactory {
   FilesContext createFilesContext();
 
   /**
-   * Returns a new object of class '<em>Analysis Template</em>'.
+   * Returns a new object of class '<em>Analytic Template</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Analysis Template</em>'.
+   * @return a new object of class '<em>Analytic Template</em>'.
    * @generated
    */
-  AnalysisTemplate createAnalysisTemplate();
+  AnalyticTemplate createAnalyticTemplate();
 
   /**
    * Returns the package supported by this factory.

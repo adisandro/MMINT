@@ -367,26 +367,26 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate} instances.
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected AnalysisTemplateItemProvider analysisTemplateItemProvider;
+  protected AnalyticTemplateItemProvider analyticTemplateItemProvider;
 
   /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate}.
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createAnalysisTemplateAdapter() {
-    if (this.analysisTemplateItemProvider == null) {
-      this.analysisTemplateItemProvider = new AnalysisTemplateItemProvider(this);
+  public Adapter createAnalyticTemplateAdapter() {
+    if (this.analyticTemplateItemProvider == null) {
+      this.analyticTemplateItemProvider = new AnalyticTemplateItemProvider(this);
     }
 
-    return this.analysisTemplateItemProvider;
+    return this.analyticTemplateItemProvider;
   }
 
   /**
@@ -530,8 +530,8 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
     if (this.filesContextItemProvider != null) {
       this.filesContextItemProvider.dispose();
     }
-    if (this.analysisTemplateItemProvider != null) {
-      this.analysisTemplateItemProvider.dispose();
+    if (this.analyticTemplateItemProvider != null) {
+      this.analyticTemplateItemProvider.dispose();
     }
   }
 
@@ -620,7 +620,7 @@ public class GSNTemplatesItemProviderAdapterFactory extends GSNTemplatesAdapterF
         this.newChildDescriptors.add
           (createChildParameter
             (GSNPackage.Literals.SAFETY_CASE__TEMPLATES,
-             GSNTemplatesFactory.eINSTANCE.createAnalysisTemplate()));
+             GSNTemplatesFactory.eINSTANCE.createAnalyticTemplate()));
 
         return null;
       }

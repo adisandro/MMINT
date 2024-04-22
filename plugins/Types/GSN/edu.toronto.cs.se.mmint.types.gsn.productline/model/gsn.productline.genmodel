@@ -9,7 +9,7 @@
   <foreignModel>gsn.productline.ecore</foreignModel>
   <genPackages prefix="GSNPL" basePackage="edu.toronto.cs.se.mmint.types.gsn" disposableProviderFactory="true"
       childCreationExtenders="true" fileExtensions="productline" ecorePackage="gsn.productline.ecore#/">
-    <genDataTypes ecoreDataType="gsn.productline.ecore#//IGSNPLAnalysisRunner"/>
+    <genDataTypes ecoreDataType="gsn.productline.ecore#//IGSNPLAnalysis"/>
     <genClasses ecoreClass="gsn.productline.ecore#//GSNPLArgumentElement">
       <genOperations ecoreOperation="gsn.productline.ecore#//GSNPLArgumentElement/validate">
         <genParameters ecoreParameter="gsn.productline.ecore#//GSNPLArgumentElement/validate/template"/>
@@ -25,8 +25,8 @@
       </genOperations>
       <genOperations ecoreOperation="gsn.productline.ecore#//GSNPLTemplate/instantiate"/>
     </genClasses>
-    <genClasses ecoreClass="gsn.productline.ecore#//GSNPLAnalysisTemplate">
-      <genOperations ecoreOperation="gsn.productline.ecore#//GSNPLAnalysisTemplate/getRunner"/>
+    <genClasses ecoreClass="gsn.productline.ecore#//GSNPLAnalyticTemplate">
+      <genOperations ecoreOperation="gsn.productline.ecore#//GSNPLAnalyticTemplate/getAnalysis"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -12,9 +12,9 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates.reasoning;
 
-import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate;
 
-public interface IAnalysisRunner {
-  void instantiate(AnalysisTemplate template) throws Exception;
-  void validate(AnalysisTemplate template) throws Exception;
+public interface IAnalysis {
+  void instantiate(AnalyticTemplate template) throws Exception;
+  void validate(AnalyticTemplate template) throws Exception;
 }

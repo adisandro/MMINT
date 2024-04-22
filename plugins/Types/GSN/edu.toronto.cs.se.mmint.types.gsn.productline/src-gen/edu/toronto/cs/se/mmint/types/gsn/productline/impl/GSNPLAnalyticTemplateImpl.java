@@ -22,9 +22,9 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
-import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysisRunner;
+import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 
 /**
@@ -34,13 +34,13 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
  *
  * @generated
  */
-public class GSNPLAnalysisTemplateImpl extends GSNPLTemplateImpl implements GSNPLAnalysisTemplate {
+public class GSNPLAnalyticTemplateImpl extends GSNPLTemplateImpl implements GSNPLAnalyticTemplate {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected GSNPLAnalysisTemplateImpl() {
+  protected GSNPLAnalyticTemplateImpl() {
     super();
   }
 
@@ -51,19 +51,19 @@ public class GSNPLAnalysisTemplateImpl extends GSNPLTemplateImpl implements GSNP
    */
   @Override
   protected EClass eStaticClass() {
-    return GSNPLPackage.Literals.GSNPL_ANALYSIS_TEMPLATE;
+    return GSNPLPackage.Literals.GSNPL_ANALYTIC_TEMPLATE;
   }
 
   /**
    * @generated NOT
    */
   @Override
-  public IGSNPLAnalysisRunner getRunner() throws Exception {
-    var javaPath = getAttribute(GSNTemplatesPackage.eINSTANCE.getAnalysisTemplate_RunnerPath());
+  public IGSNPLAnalysis getAnalysis() throws Exception {
+    var javaPath = getAttribute(GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_AnalysisPath());
     if (javaPath.isEmpty()) {
       throw new MMINTException("Missing analysis runner Java path");
     }
-    return (IGSNPLAnalysisRunner) FileUtils.loadClassFromWorkspace(javaPath.get(0), this.getClass().getClassLoader());
+    return (IGSNPLAnalysis) FileUtils.loadClassFromWorkspace(javaPath.get(0), this.getClass().getClassLoader());
   }
 
   /**
@@ -74,9 +74,9 @@ public class GSNPLAnalysisTemplateImpl extends GSNPLTemplateImpl implements GSNP
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case GSNPLPackage.GSNPL_ANALYSIS_TEMPLATE___GET_RUNNER:
+      case GSNPLPackage.GSNPL_ANALYTIC_TEMPLATE___GET_ANALYSIS:
         try {
-          return getRunner();
+          return getAnalysis();
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
@@ -92,7 +92,7 @@ public class GSNPLAnalysisTemplateImpl extends GSNPLTemplateImpl implements GSNP
   public void import_(ProductLine productLine) throws Exception {
     var javaPath = MIDDialogs.selectFile("Import analysis template", "Select a Java class that implements the analysis",
                                          "There are no Java files in the workspace", Set.of("java"));
-    addAttribute(GSNTemplatesPackage.eINSTANCE.getAnalysisTemplate_RunnerPath(), javaPath);
+    addAttribute(GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_AnalysisPath(), javaPath);
     super.import_(productLine);
   }
 
@@ -101,7 +101,7 @@ public class GSNPLAnalysisTemplateImpl extends GSNPLTemplateImpl implements GSNP
    */
   @Override
   public void instantiate() throws Exception {
-    getRunner().instantiate(this);
+    getAnalysis().instantiate(this);
     super.instantiate();
   }
 
@@ -110,7 +110,7 @@ public class GSNPLAnalysisTemplateImpl extends GSNPLTemplateImpl implements GSNP
    */
   @Override
   public void validate() throws Exception {
-    getRunner().validate(this);
+    getAnalysis().validate(this);
     super.validate();
   }
 

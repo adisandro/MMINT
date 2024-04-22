@@ -63,9 +63,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="paths" lowerBound="1" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AnalysisTemplate" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Template">
-    <eOperations name="getRunner" eType="#//IAnalysisRunner" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="runnerPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AnalyticTemplate" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Template">
+    <eOperations name="getAnalysis" eType="#//IAnalysis" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="analysisPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="IAnalysisRunner" instanceClassName="edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysisRunner"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="IAnalysis" instanceClassName="edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis"/>
 </ecore:EPackage>

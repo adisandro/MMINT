@@ -23,13 +23,13 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysisRunner;
+import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.GSNPLBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
-public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysisRunner {
+public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysis {
 
   public static ResultPrinter PL_NAME_PRINTER = (result) -> {
     if (result instanceof Class plClass) {
@@ -47,7 +47,7 @@ public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysisRunn
 
 
   @Override
-  public void instantiate(GSNPLAnalysisTemplate plTemplate) throws Exception {
+  public void instantiate(GSNPLAnalyticTemplate plTemplate) throws Exception {
     var types = GSNPackage.eINSTANCE;
     // get template elems
     var productLine = (ProductLine) plTemplate.eContainer();
@@ -99,6 +99,6 @@ public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysisRunn
   }
 
   @Override
-  public void validate(GSNPLAnalysisTemplate plTemplate) throws Exception {
+  public void validate(GSNPLAnalyticTemplate plTemplate) throws Exception {
   }
 }

@@ -530,14 +530,14 @@ public interface GSNPLPackage extends EPackage {
   int GSNPL_TEMPLATE_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLAnalysisTemplateImpl <em>Analysis Template</em>}' class.
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLAnalyticTemplateImpl <em>Analytic Template</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLAnalysisTemplateImpl
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLPackageImpl#getGSNPLAnalysisTemplate()
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLAnalyticTemplateImpl
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLPackageImpl#getGSNPLAnalyticTemplate()
    * @generated
    */
-  int GSNPL_ANALYSIS_TEMPLATE = 2;
+  int GSNPL_ANALYTIC_TEMPLATE = 2;
 
   /**
    * The feature id for the '<em><b>Presence Condition</b></em>' attribute.
@@ -546,7 +546,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE__PRESENCE_CONDITION = GSNPLPackage.GSNPL_TEMPLATE__PRESENCE_CONDITION;
+  int GSNPL_ANALYTIC_TEMPLATE__PRESENCE_CONDITION = GSNPLPackage.GSNPL_TEMPLATE__PRESENCE_CONDITION;
 
   /**
    * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
@@ -555,7 +555,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE__ATTRIBUTES = GSNPLPackage.GSNPL_TEMPLATE__ATTRIBUTES;
+  int GSNPL_ANALYTIC_TEMPLATE__ATTRIBUTES = GSNPLPackage.GSNPL_TEMPLATE__ATTRIBUTES;
 
   /**
    * The feature id for the '<em><b>References</b></em>' containment reference list.
@@ -564,7 +564,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE__REFERENCES = GSNPLPackage.GSNPL_TEMPLATE__REFERENCES;
+  int GSNPL_ANALYTIC_TEMPLATE__REFERENCES = GSNPLPackage.GSNPL_TEMPLATE__REFERENCES;
 
   /**
    * The feature id for the '<em><b>References As Target</b></em>' reference list.
@@ -573,7 +573,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE__REFERENCES_AS_TARGET = GSNPLPackage.GSNPL_TEMPLATE__REFERENCES_AS_TARGET;
+  int GSNPL_ANALYTIC_TEMPLATE__REFERENCES_AS_TARGET = GSNPLPackage.GSNPL_TEMPLATE__REFERENCES_AS_TARGET;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -582,16 +582,16 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE__TYPE = GSNPLPackage.GSNPL_TEMPLATE__TYPE;
+  int GSNPL_ANALYTIC_TEMPLATE__TYPE = GSNPLPackage.GSNPL_TEMPLATE__TYPE;
 
   /**
-   * The number of structural features of the '<em>Analysis Template</em>' class.
+   * The number of structural features of the '<em>Analytic Template</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE_FEATURE_COUNT = GSNPLPackage.GSNPL_TEMPLATE_FEATURE_COUNT + 0;
+  int GSNPL_ANALYTIC_TEMPLATE_FEATURE_COUNT = GSNPLPackage.GSNPL_TEMPLATE_FEATURE_COUNT + 0;
 
   /**
    * The operation id for the '<em>Get Product Line</em>' operation.
@@ -600,7 +600,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___GET_PRODUCT_LINE = GSNPLPackage.GSNPL_TEMPLATE___GET_PRODUCT_LINE;
+  int GSNPL_ANALYTIC_TEMPLATE___GET_PRODUCT_LINE = GSNPLPackage.GSNPL_TEMPLATE___GET_PRODUCT_LINE;
 
   /**
    * The operation id for the '<em>Is Always Present</em>' operation.
@@ -609,7 +609,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___IS_ALWAYS_PRESENT = GSNPLPackage.GSNPL_TEMPLATE___IS_ALWAYS_PRESENT;
+  int GSNPL_ANALYTIC_TEMPLATE___IS_ALWAYS_PRESENT = GSNPLPackage.GSNPL_TEMPLATE___IS_ALWAYS_PRESENT;
 
   /**
    * The operation id for the '<em>Get Presence Condition Label</em>' operation.
@@ -618,7 +618,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = GSNPLPackage.GSNPL_TEMPLATE___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
+  int GSNPL_ANALYTIC_TEMPLATE___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = GSNPLPackage.GSNPL_TEMPLATE___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
 
   /**
    * The operation id for the '<em>Get Stream Of Reference</em>' operation.
@@ -627,7 +627,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___GET_STREAM_OF_REFERENCE__EREFERENCE = GSNPLPackage.GSNPL_TEMPLATE___GET_STREAM_OF_REFERENCE__EREFERENCE;
+  int GSNPL_ANALYTIC_TEMPLATE___GET_STREAM_OF_REFERENCE__EREFERENCE = GSNPLPackage.GSNPL_TEMPLATE___GET_STREAM_OF_REFERENCE__EREFERENCE;
 
   /**
    * The operation id for the '<em>Get Reference</em>' operation.
@@ -636,7 +636,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___GET_REFERENCE__EREFERENCE = GSNPLPackage.GSNPL_TEMPLATE___GET_REFERENCE__EREFERENCE;
+  int GSNPL_ANALYTIC_TEMPLATE___GET_REFERENCE__EREFERENCE = GSNPLPackage.GSNPL_TEMPLATE___GET_REFERENCE__EREFERENCE;
 
   /**
    * The operation id for the '<em>Add Reference</em>' operation.
@@ -645,7 +645,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS_STRING = GSNPLPackage.GSNPL_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS_STRING;
+  int GSNPL_ANALYTIC_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS_STRING = GSNPLPackage.GSNPL_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS_STRING;
 
   /**
    * The operation id for the '<em>Add Reference</em>' operation.
@@ -654,7 +654,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS = GSNPLPackage.GSNPL_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS;
+  int GSNPL_ANALYTIC_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS = GSNPLPackage.GSNPL_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS;
 
   /**
    * The operation id for the '<em>Set Reference</em>' operation.
@@ -663,7 +663,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___SET_REFERENCE__EREFERENCE_CLASS = GSNPLPackage.GSNPL_TEMPLATE___SET_REFERENCE__EREFERENCE_CLASS;
+  int GSNPL_ANALYTIC_TEMPLATE___SET_REFERENCE__EREFERENCE_CLASS = GSNPLPackage.GSNPL_TEMPLATE___SET_REFERENCE__EREFERENCE_CLASS;
 
   /**
    * The operation id for the '<em>Get Stream Of Attribute</em>' operation.
@@ -672,7 +672,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = GSNPLPackage.GSNPL_TEMPLATE___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE;
+  int GSNPL_ANALYTIC_TEMPLATE___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = GSNPLPackage.GSNPL_TEMPLATE___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE;
 
   /**
    * The operation id for the '<em>Get Attribute</em>' operation.
@@ -681,7 +681,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___GET_ATTRIBUTE__EATTRIBUTE = GSNPLPackage.GSNPL_TEMPLATE___GET_ATTRIBUTE__EATTRIBUTE;
+  int GSNPL_ANALYTIC_TEMPLATE___GET_ATTRIBUTE__EATTRIBUTE = GSNPLPackage.GSNPL_TEMPLATE___GET_ATTRIBUTE__EATTRIBUTE;
 
   /**
    * The operation id for the '<em>Add Attribute</em>' operation.
@@ -690,7 +690,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___ADD_ATTRIBUTE__EATTRIBUTE_STRING = GSNPLPackage.GSNPL_TEMPLATE___ADD_ATTRIBUTE__EATTRIBUTE_STRING;
+  int GSNPL_ANALYTIC_TEMPLATE___ADD_ATTRIBUTE__EATTRIBUTE_STRING = GSNPLPackage.GSNPL_TEMPLATE___ADD_ATTRIBUTE__EATTRIBUTE_STRING;
 
   /**
    * The operation id for the '<em>Set Attribute</em>' operation.
@@ -699,7 +699,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___SET_ATTRIBUTE__EATTRIBUTE_STRING = GSNPLPackage.GSNPL_TEMPLATE___SET_ATTRIBUTE__EATTRIBUTE_STRING;
+  int GSNPL_ANALYTIC_TEMPLATE___SET_ATTRIBUTE__EATTRIBUTE_STRING = GSNPLPackage.GSNPL_TEMPLATE___SET_ATTRIBUTE__EATTRIBUTE_STRING;
 
   /**
    * The operation id for the '<em>Instance Of</em>' operation.
@@ -708,7 +708,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___INSTANCE_OF__ECLASS = GSNPLPackage.GSNPL_TEMPLATE___INSTANCE_OF__ECLASS;
+  int GSNPL_ANALYTIC_TEMPLATE___INSTANCE_OF__ECLASS = GSNPLPackage.GSNPL_TEMPLATE___INSTANCE_OF__ECLASS;
 
   /**
    * The operation id for the '<em>Get EContainer</em>' operation.
@@ -717,7 +717,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___GET_ECONTAINER = GSNPLPackage.GSNPL_TEMPLATE___GET_ECONTAINER;
+  int GSNPL_ANALYTIC_TEMPLATE___GET_ECONTAINER = GSNPLPackage.GSNPL_TEMPLATE___GET_ECONTAINER;
 
   /**
    * The operation id for the '<em>Delete</em>' operation.
@@ -726,7 +726,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___DELETE = GSNPLPackage.GSNPL_TEMPLATE___DELETE;
+  int GSNPL_ANALYTIC_TEMPLATE___DELETE = GSNPLPackage.GSNPL_TEMPLATE___DELETE;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -735,7 +735,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___VALIDATE = GSNPLPackage.GSNPL_TEMPLATE___VALIDATE;
+  int GSNPL_ANALYTIC_TEMPLATE___VALIDATE = GSNPLPackage.GSNPL_TEMPLATE___VALIDATE;
 
   /**
    * The operation id for the '<em>Import </em>' operation.
@@ -744,7 +744,7 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___IMPORT____PRODUCTLINE = GSNPLPackage.GSNPL_TEMPLATE___IMPORT____PRODUCTLINE;
+  int GSNPL_ANALYTIC_TEMPLATE___IMPORT____PRODUCTLINE = GSNPLPackage.GSNPL_TEMPLATE___IMPORT____PRODUCTLINE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -753,35 +753,35 @@ public interface GSNPLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___INSTANTIATE = GSNPLPackage.GSNPL_TEMPLATE___INSTANTIATE;
+  int GSNPL_ANALYTIC_TEMPLATE___INSTANTIATE = GSNPLPackage.GSNPL_TEMPLATE___INSTANTIATE;
 
   /**
-   * The operation id for the '<em>Get Runner</em>' operation.
+   * The operation id for the '<em>Get Analysis</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE___GET_RUNNER = GSNPLPackage.GSNPL_TEMPLATE_OPERATION_COUNT + 0;
+  int GSNPL_ANALYTIC_TEMPLATE___GET_ANALYSIS = GSNPLPackage.GSNPL_TEMPLATE_OPERATION_COUNT + 0;
 
   /**
-   * The number of operations of the '<em>Analysis Template</em>' class.
+   * The number of operations of the '<em>Analytic Template</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYSIS_TEMPLATE_OPERATION_COUNT = GSNPLPackage.GSNPL_TEMPLATE_OPERATION_COUNT + 1;
+  int GSNPL_ANALYTIC_TEMPLATE_OPERATION_COUNT = GSNPLPackage.GSNPL_TEMPLATE_OPERATION_COUNT + 1;
 
   /**
-   * The meta object id for the '<em>IGSNPL Analysis Runner</em>' data type.
+   * The meta object id for the '<em>IGSNPL Analysis</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysisRunner
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLPackageImpl#getIGSNPLAnalysisRunner()
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLPackageImpl#getIGSNPLAnalysis()
    * @generated
    */
-  int IGSNPL_ANALYSIS_RUNNER = 3;
+  int IGSNPL_ANALYSIS = 3;
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement <em>Argument Element</em>}'.
@@ -854,35 +854,35 @@ public interface GSNPLPackage extends EPackage {
   EOperation getGSNPLTemplate__Instantiate();
 
   /**
-   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate <em>Analysis Template</em>}'.
+   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate <em>Analytic Template</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Analysis Template</em>'.
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate
+   * @return the meta object for class '<em>Analytic Template</em>'.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate
    * @generated
    */
-  EClass getGSNPLAnalysisTemplate();
+  EClass getGSNPLAnalyticTemplate();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate#getRunner() <em>Get Runner</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate#getAnalysis() <em>Get Analysis</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Get Runner</em>' operation.
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate#getRunner()
+   * @return the meta object for the '<em>Get Analysis</em>' operation.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate#getAnalysis()
    * @generated
    */
-  EOperation getGSNPLAnalysisTemplate__GetRunner();
+  EOperation getGSNPLAnalyticTemplate__GetAnalysis();
 
   /**
-   * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysisRunner <em>IGSNPL Analysis Runner</em>}'.
+   * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis <em>IGSNPL Analysis</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>IGSNPL Analysis Runner</em>'.
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysisRunner
-   * @model instanceClass="edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysisRunner"
+   * @return the meta object for data type '<em>IGSNPL Analysis</em>'.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis
+   * @model instanceClass="edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis"
    * @generated
    */
-  EDataType getIGSNPLAnalysisRunner();
+  EDataType getIGSNPLAnalysis();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -961,30 +961,30 @@ public interface GSNPLPackage extends EPackage {
      */
     EOperation GSNPL_TEMPLATE___INSTANTIATE = GSNPLPackage.eINSTANCE.getGSNPLTemplate__Instantiate();
     /**
-     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLAnalysisTemplateImpl <em>Analysis Template</em>}' class.
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLAnalyticTemplateImpl <em>Analytic Template</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLAnalysisTemplateImpl
-     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLPackageImpl#getGSNPLAnalysisTemplate()
+     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLAnalyticTemplateImpl
+     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLPackageImpl#getGSNPLAnalyticTemplate()
      * @generated
      */
-    EClass GSNPL_ANALYSIS_TEMPLATE = GSNPLPackage.eINSTANCE.getGSNPLAnalysisTemplate();
+    EClass GSNPL_ANALYTIC_TEMPLATE = GSNPLPackage.eINSTANCE.getGSNPLAnalyticTemplate();
     /**
-     * The meta object literal for the '<em><b>Get Runner</b></em>' operation.
+     * The meta object literal for the '<em><b>Get Analysis</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation GSNPL_ANALYSIS_TEMPLATE___GET_RUNNER = GSNPLPackage.eINSTANCE.getGSNPLAnalysisTemplate__GetRunner();
+    EOperation GSNPL_ANALYTIC_TEMPLATE___GET_ANALYSIS = GSNPLPackage.eINSTANCE.getGSNPLAnalyticTemplate__GetAnalysis();
     /**
-     * The meta object literal for the '<em>IGSNPL Analysis Runner</em>' data type.
+     * The meta object literal for the '<em>IGSNPL Analysis</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysisRunner
-     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLPackageImpl#getIGSNPLAnalysisRunner()
+     * @see edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis
+     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLPackageImpl#getIGSNPLAnalysis()
      * @generated
      */
-    EDataType IGSNPL_ANALYSIS_RUNNER = GSNPLPackage.eINSTANCE.getIGSNPLAnalysisRunner();
+    EDataType IGSNPL_ANALYSIS = GSNPLPackage.eINSTANCE.getIGSNPLAnalysis();
 
   }
 

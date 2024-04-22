@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
@@ -34,7 +34,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionTemplate
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.RealDomain;
 import edu.toronto.cs.se.mmint.types.gsn.templates.ValueDomain;
-import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysisRunner;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 
 /**
@@ -93,7 +93,7 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
     case GSNTemplatesPackage.PROPERTY_GOAL -> createPropertyGoal();
     case GSNTemplatesPackage.PROPERTY_DECOMPOSITION_TEMPLATE -> createPropertyDecompositionTemplate();
     case GSNTemplatesPackage.FILES_CONTEXT -> createFilesContext();
-    case GSNTemplatesPackage.ANALYSIS_TEMPLATE -> createAnalysisTemplate();
+    case GSNTemplatesPackage.ANALYTIC_TEMPLATE -> createAnalyticTemplate();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     };
   }
@@ -107,7 +107,7 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
   public Object createFromString(EDataType eDataType, String initialValue) {
     return switch (eDataType.getClassifierID()) {
     case GSNTemplatesPackage.GSN_TEMPLATES_BUILDER -> createGSNTemplatesBuilderFromString(eDataType, initialValue);
-    case GSNTemplatesPackage.IANALYSIS_RUNNER -> createIAnalysisRunnerFromString(eDataType, initialValue);
+    case GSNTemplatesPackage.IANALYSIS -> createIAnalysisFromString(eDataType, initialValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -121,7 +121,7 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
   public String convertToString(EDataType eDataType, Object instanceValue) {
     return switch (eDataType.getClassifierID()) {
     case GSNTemplatesPackage.GSN_TEMPLATES_BUILDER -> convertGSNTemplatesBuilderToString(eDataType, instanceValue);
-    case GSNTemplatesPackage.IANALYSIS_RUNNER -> convertIAnalysisRunnerToString(eDataType, instanceValue);
+    case GSNTemplatesPackage.IANALYSIS -> convertIAnalysisToString(eDataType, instanceValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -264,9 +264,9 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
    * @generated
    */
   @Override
-  public AnalysisTemplate createAnalysisTemplate() {
-    AnalysisTemplateImpl analysisTemplate = new AnalysisTemplateImpl();
-    return analysisTemplate;
+  public AnalyticTemplate createAnalyticTemplate() {
+    AnalyticTemplateImpl analyticTemplate = new AnalyticTemplateImpl();
+    return analyticTemplate;
   }
 
   /**
@@ -292,8 +292,8 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
    * <!-- end-user-doc -->
    * @generated
    */
-  public IAnalysisRunner createIAnalysisRunnerFromString(EDataType eDataType, String initialValue) {
-    return (IAnalysisRunner)super.createFromString(eDataType, initialValue);
+  public IAnalysis createIAnalysisFromString(EDataType eDataType, String initialValue) {
+    return (IAnalysis)super.createFromString(eDataType, initialValue);
   }
 
   /**
@@ -301,7 +301,7 @@ public class GSNTemplatesFactoryImpl extends EFactoryImpl implements GSNTemplate
    * <!-- end-user-doc -->
    * @generated
    */
-  public String convertIAnalysisRunnerToString(EDataType eDataType, Object instanceValue) {
+  public String convertIAnalysisToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(eDataType, instanceValue);
   }
 

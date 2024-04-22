@@ -10,7 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package edu.toronto.cs.se.mmint.types.gsn.templates.provider;
+package edu.toronto.cs.se.mmint.types.gsn.productline.provider;
 
 
 import java.util.Collection;
@@ -18,30 +18,24 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
-import edu.toronto.cs.se.modelepedia.gsn.provider.TemplateItemProvider;
+import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AnalysisTemplateItemProvider extends TemplateItemProvider {
+public class GSNPLAnalyticTemplateItemProvider extends GSNPLTemplateItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public AnalysisTemplateItemProvider(AdapterFactory adapterFactory) {
+  public GSNPLAnalyticTemplateItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -56,42 +50,19 @@ public class AnalysisTemplateItemProvider extends TemplateItemProvider {
     if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addRunnerPathPropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Runner Path feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addRunnerPathPropertyDescriptor(Object object) {
-    this.itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_AnalysisTemplate_runnerPath_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_AnalysisTemplate_runnerPath_feature", "_UI_AnalysisTemplate_type"),
-         GSNTemplatesPackage.Literals.ANALYSIS_TEMPLATE__RUNNER_PATH,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
-  }
-
-  /**
-   * This returns AnalysisTemplate.gif.
+   * This returns GSNPLAnalyticTemplate.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/AnalysisTemplate"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/GSNPLAnalyticTemplate"));
   }
 
   /**
@@ -102,10 +73,10 @@ public class AnalysisTemplateItemProvider extends TemplateItemProvider {
    */
   @Override
   public String getText(Object object) {
-    var label = ((AnalysisTemplate)object).getId();
+    var label = ((GSNPLAnalyticTemplate)object).getPresenceCondition();
     return label == null || label.length() == 0 ?
-      getString("_UI_AnalysisTemplate_type") :
-      getString("_UI_AnalysisTemplate_type") + " " + label;
+      getString("_UI_GSNPLAnalyticTemplate_type") :
+      getString("_UI_GSNPLAnalyticTemplate_type") + " " + label;
   }
 
 
@@ -119,12 +90,6 @@ public class AnalysisTemplateItemProvider extends TemplateItemProvider {
   @Override
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
-
-    switch (notification.getFeatureID(AnalysisTemplate.class)) {
-      case GSNTemplatesPackage.ANALYSIS_TEMPLATE__RUNNER_PATH:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-        return;
-    }
     super.notifyChanged(notification);
   }
 
@@ -138,17 +103,6 @@ public class AnalysisTemplateItemProvider extends TemplateItemProvider {
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
-  }
-
-  /**
-   * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ResourceLocator getResourceLocator() {
-    return GSNTemplatesEditPlugin.INSTANCE;
   }
 
 }

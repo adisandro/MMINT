@@ -50,13 +50,13 @@ public interface GSNPLFactory extends EFactory {
   GSNPLTemplate createGSNPLTemplate();
 
   /**
-   * Returns a new object of class '<em>Analysis Template</em>'.
+   * Returns a new object of class '<em>Analytic Template</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Analysis Template</em>'.
+   * @return a new object of class '<em>Analytic Template</em>'.
    * @generated
    */
-  GSNPLAnalysisTemplate createGSNPLAnalysisTemplate();
+  GSNPLAnalyticTemplate createGSNPLAnalyticTemplate();
 
   /**
    * Returns the package supported by this factory.

@@ -19,12 +19,12 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLFactory;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysisRunner;
+import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,7 +72,7 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
     return switch (eClass.getClassifierID()) {
     case GSNPLPackage.GSNPL_ARGUMENT_ELEMENT -> createGSNPLArgumentElement();
     case GSNPLPackage.GSNPL_TEMPLATE -> createGSNPLTemplate();
-    case GSNPLPackage.GSNPL_ANALYSIS_TEMPLATE -> createGSNPLAnalysisTemplate();
+    case GSNPLPackage.GSNPL_ANALYTIC_TEMPLATE -> createGSNPLAnalyticTemplate();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     };
   }
@@ -85,7 +85,7 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
   @Override
   public Object createFromString(EDataType eDataType, String initialValue) {
     return switch (eDataType.getClassifierID()) {
-    case GSNPLPackage.IGSNPL_ANALYSIS_RUNNER -> createIGSNPLAnalysisRunnerFromString(eDataType, initialValue);
+    case GSNPLPackage.IGSNPL_ANALYSIS -> createIGSNPLAnalysisFromString(eDataType, initialValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -98,7 +98,7 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
   @Override
   public String convertToString(EDataType eDataType, Object instanceValue) {
     return switch (eDataType.getClassifierID()) {
-    case GSNPLPackage.IGSNPL_ANALYSIS_RUNNER -> convertIGSNPLAnalysisRunnerToString(eDataType, instanceValue);
+    case GSNPLPackage.IGSNPL_ANALYSIS -> convertIGSNPLAnalysisToString(eDataType, instanceValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -131,9 +131,9 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
    * @generated
    */
   @Override
-  public GSNPLAnalysisTemplate createGSNPLAnalysisTemplate() {
-    GSNPLAnalysisTemplateImpl gsnplAnalysisTemplate = new GSNPLAnalysisTemplateImpl();
-    return gsnplAnalysisTemplate;
+  public GSNPLAnalyticTemplate createGSNPLAnalyticTemplate() {
+    GSNPLAnalyticTemplateImpl gsnplAnalyticTemplate = new GSNPLAnalyticTemplateImpl();
+    return gsnplAnalyticTemplate;
   }
 
   /**
@@ -141,8 +141,8 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public IGSNPLAnalysisRunner createIGSNPLAnalysisRunnerFromString(EDataType eDataType, String initialValue) {
-    return (IGSNPLAnalysisRunner)super.createFromString(eDataType, initialValue);
+  public IGSNPLAnalysis createIGSNPLAnalysisFromString(EDataType eDataType, String initialValue) {
+    return (IGSNPLAnalysis)super.createFromString(eDataType, initialValue);
   }
 
   /**
@@ -150,7 +150,7 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public String convertIGSNPLAnalysisRunnerToString(EDataType eDataType, Object instanceValue) {
+  public String convertIGSNPLAnalysisToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(eDataType, instanceValue);
   }
 

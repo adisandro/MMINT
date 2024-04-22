@@ -23,9 +23,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
-import edu.toronto.cs.se.mmint.types.gsn.templates.AnalysisTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
-import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysisRunner;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl;
 
@@ -37,36 +37,36 @@ import edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.AnalysisTemplateImpl#getRunnerPath <em>Runner Path</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.AnalyticTemplateImpl#getAnalysisPath <em>Analysis Path</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTemplate {
+public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTemplate {
   /**
-   * The default value of the '{@link #getRunnerPath() <em>Runner Path</em>}' attribute.
+   * The default value of the '{@link #getAnalysisPath() <em>Analysis Path</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getRunnerPath()
+   * @see #getAnalysisPath()
    * @generated
    * @ordered
    */
-  protected static final String RUNNER_PATH_EDEFAULT = null;
+  protected static final String ANALYSIS_PATH_EDEFAULT = null;
   /**
-   * The cached value of the '{@link #getRunnerPath() <em>Runner Path</em>}' attribute.
+   * The cached value of the '{@link #getAnalysisPath() <em>Analysis Path</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getRunnerPath()
+   * @see #getAnalysisPath()
    * @generated
    * @ordered
    */
-  protected String runnerPath = AnalysisTemplateImpl.RUNNER_PATH_EDEFAULT;
+  protected String analysisPath = AnalyticTemplateImpl.ANALYSIS_PATH_EDEFAULT;
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected AnalysisTemplateImpl() {
+  protected AnalyticTemplateImpl() {
     super();
   }
 
@@ -77,7 +77,7 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
    */
   @Override
   protected EClass eStaticClass() {
-    return GSNTemplatesPackage.Literals.ANALYSIS_TEMPLATE;
+    return GSNTemplatesPackage.Literals.ANALYTIC_TEMPLATE;
   }
 
   /**
@@ -86,8 +86,8 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
    * @generated
    */
   @Override
-  public String getRunnerPath() {
-    return this.runnerPath;
+  public String getAnalysisPath() {
+    return this.analysisPath;
   }
 
   /**
@@ -96,11 +96,11 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
    * @generated
    */
   @Override
-  public void setRunnerPath(String newRunnerPath) {
-    var oldRunnerPath = this.runnerPath;
-    this.runnerPath = newRunnerPath;
+  public void setAnalysisPath(String newAnalysisPath) {
+    var oldAnalysisPath = this.analysisPath;
+    this.analysisPath = newAnalysisPath;
     if (eNotificationRequired()) {
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.ANALYSIS_TEMPLATE__RUNNER_PATH, oldRunnerPath, this.runnerPath));
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS_PATH, oldAnalysisPath, this.analysisPath));
     }
   }
 
@@ -112,8 +112,8 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case GSNTemplatesPackage.ANALYSIS_TEMPLATE__RUNNER_PATH:
-        return getRunnerPath();
+      case GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS_PATH:
+        return getAnalysisPath();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -126,8 +126,8 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case GSNTemplatesPackage.ANALYSIS_TEMPLATE__RUNNER_PATH:
-        setRunnerPath((String)newValue);
+      case GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS_PATH:
+        setAnalysisPath((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -141,8 +141,8 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case GSNTemplatesPackage.ANALYSIS_TEMPLATE__RUNNER_PATH:
-        setRunnerPath(AnalysisTemplateImpl.RUNNER_PATH_EDEFAULT);
+      case GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS_PATH:
+        setAnalysisPath(AnalyticTemplateImpl.ANALYSIS_PATH_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -156,8 +156,8 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case GSNTemplatesPackage.ANALYSIS_TEMPLATE__RUNNER_PATH:
-        return AnalysisTemplateImpl.RUNNER_PATH_EDEFAULT == null ? this.runnerPath != null : !AnalysisTemplateImpl.RUNNER_PATH_EDEFAULT.equals(this.runnerPath);
+      case GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS_PATH:
+        return AnalyticTemplateImpl.ANALYSIS_PATH_EDEFAULT == null ? this.analysisPath != null : !AnalyticTemplateImpl.ANALYSIS_PATH_EDEFAULT.equals(this.analysisPath);
     }
     return super.eIsSet(featureID);
   }
@@ -170,9 +170,9 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case GSNTemplatesPackage.ANALYSIS_TEMPLATE___GET_RUNNER:
+      case GSNTemplatesPackage.ANALYTIC_TEMPLATE___GET_ANALYSIS:
         try {
-          return getRunner();
+          return getAnalysis();
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
@@ -193,8 +193,8 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
     }
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (runnerPath: ");
-    result.append(this.runnerPath);
+    result.append(" (analysisPath: ");
+    result.append(this.analysisPath);
     result.append(')');
     return result.toString();
   }
@@ -203,12 +203,12 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
    * @generated NOT
    */
   @Override
-  public IAnalysisRunner getRunner() throws Exception {
-    var javaPath = getRunnerPath();
+  public IAnalysis getAnalysis() throws Exception {
+    var javaPath = getAnalysisPath();
     if (javaPath == null) {
       throw new MMINTException("Missing analysis runner Java path");
     }
-    return (IAnalysisRunner) FileUtils.loadClassFromWorkspace(javaPath, this.getClass().getClassLoader());
+    return (IAnalysis) FileUtils.loadClassFromWorkspace(javaPath, this.getClass().getClassLoader());
   }
 
   /**
@@ -216,9 +216,9 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
    */
   @Override
   public void import_(SafetyCase safetyCase) throws Exception {
-    var javaPath = MIDDialogs.selectFile("Import analysis template", "Select a Java class that implements the analysis",
+    var javaPath = MIDDialogs.selectFile("Import analytic template", "Select a Java class that implements the analysis",
                                          "There are no Java files in the workspace", Set.of("java"));
-    setRunnerPath(javaPath);
+    setAnalysisPath(javaPath);
     super.import_(safetyCase);
   }
 
@@ -227,7 +227,7 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
    */
   @Override
   public void instantiate() throws Exception {
-    getRunner().instantiate(this);
+    getAnalysis().instantiate(this);
     super.instantiate();
   }
 
@@ -236,7 +236,7 @@ public class AnalysisTemplateImpl extends TemplateImpl implements AnalysisTempla
    */
   @Override
   public void validate() throws Exception {
-    getRunner().validate(this);
+    getAnalysis().validate(this);
     super.validate();
   }
 

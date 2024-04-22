@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import edu.toronto.cs.se.mmint.productline.PLElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
@@ -107,17 +107,17 @@ public class GSNPLSwitch<T> extends Switch<T> {
         }
         return result;
       }
-      case GSNPLPackage.GSNPL_ANALYSIS_TEMPLATE: {
-        var gsnplAnalysisTemplate = (GSNPLAnalysisTemplate)theEObject;
-        var result = caseGSNPLAnalysisTemplate(gsnplAnalysisTemplate);
+      case GSNPLPackage.GSNPL_ANALYTIC_TEMPLATE: {
+        var gsnplAnalyticTemplate = (GSNPLAnalyticTemplate)theEObject;
+        var result = caseGSNPLAnalyticTemplate(gsnplAnalyticTemplate);
         if (result == null) {
-          result = caseGSNPLTemplate(gsnplAnalysisTemplate);
+          result = caseGSNPLTemplate(gsnplAnalyticTemplate);
         }
         if (result == null) {
-          result = caseClass(gsnplAnalysisTemplate);
+          result = caseClass(gsnplAnalyticTemplate);
         }
         if (result == null) {
-          result = casePLElement(gsnplAnalysisTemplate);
+          result = casePLElement(gsnplAnalyticTemplate);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -159,17 +159,17 @@ public class GSNPLSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Analysis Template</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Analytic Template</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Analysis Template</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Analytic Template</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseGSNPLAnalysisTemplate(GSNPLAnalysisTemplate object) {
+  public T caseGSNPLAnalyticTemplate(GSNPLAnalyticTemplate object) {
     return null;
   }
 

@@ -137,26 +137,26 @@ public class GSNPLItemProviderAdapterFactory extends GSNPLAdapterFactory impleme
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate} instances.
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected GSNPLAnalysisTemplateItemProvider gsnplAnalysisTemplateItemProvider;
+  protected GSNPLAnalyticTemplateItemProvider gsnplAnalyticTemplateItemProvider;
 
   /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalysisTemplate}.
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createGSNPLAnalysisTemplateAdapter() {
-    if (this.gsnplAnalysisTemplateItemProvider == null) {
-      this.gsnplAnalysisTemplateItemProvider = new GSNPLAnalysisTemplateItemProvider(this);
+  public Adapter createGSNPLAnalyticTemplateAdapter() {
+    if (this.gsnplAnalyticTemplateItemProvider == null) {
+      this.gsnplAnalyticTemplateItemProvider = new GSNPLAnalyticTemplateItemProvider(this);
     }
 
-    return this.gsnplAnalysisTemplateItemProvider;
+    return this.gsnplAnalyticTemplateItemProvider;
   }
 
   /**
@@ -270,8 +270,8 @@ public class GSNPLItemProviderAdapterFactory extends GSNPLAdapterFactory impleme
     if (this.gsnplTemplateItemProvider != null) {
       this.gsnplTemplateItemProvider.dispose();
     }
-    if (this.gsnplAnalysisTemplateItemProvider != null) {
-      this.gsnplAnalysisTemplateItemProvider.dispose();
+    if (this.gsnplAnalyticTemplateItemProvider != null) {
+      this.gsnplAnalyticTemplateItemProvider.dispose();
     }
   }
 
@@ -335,7 +335,7 @@ public class GSNPLItemProviderAdapterFactory extends GSNPLAdapterFactory impleme
         this.newChildDescriptors.add
           (createChildParameter
             (PLPackage.Literals.PRODUCT_LINE__CLASSES,
-             GSNPLFactory.eINSTANCE.createGSNPLAnalysisTemplate()));
+             GSNPLFactory.eINSTANCE.createGSNPLAnalyticTemplate()));
 
         return null;
       }
