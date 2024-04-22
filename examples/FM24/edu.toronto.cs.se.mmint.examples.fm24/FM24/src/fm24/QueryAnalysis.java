@@ -55,10 +55,10 @@ public class QueryAnalysis implements IAnalysis {
     var queryResults = querySpec.evaluateQuery(rootModelObj, List.of());
     templateElems.remove(resultGoal);
     safetyCase.getGoals().remove(resultGoal);
-    resultStrategy.getSupportedBy().remove(1);
+    resultStrategy.getSupportedBy().remove(0);
     filesCtx.setDescription("Query '" + querySpec.query() + "' evaluated on model '" + modelPath + "'");
-    filesCtx.getPaths().add(modelPath);
-    filesCtx.getPaths().add(querySpec.filePath());
+    filesCtx.getPaths().add(FileUtils.prependWorkspacePath(modelPath));
+    filesCtx.getPaths().add(FileUtils.prependWorkspacePath(querySpec.filePath()));
     var resultCtxDesc = (queryResults.isEmpty()) ? "No results" : "Query results:";
     for (var i = 0; i < queryResults.size(); i++) {
       var queryResult = queryResults.get(i);

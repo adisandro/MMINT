@@ -94,8 +94,10 @@ public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysis {
     }
     filesCtx.setAttribute(types.getArgumentElement_Description(),
                           "Query '" + querySpec.query() + "' evaluated on model '" + modelPath + "'");
-    filesCtx.addAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(), modelPath);
-    filesCtx.addAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(), querySpec.filePath());
+    filesCtx.addAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
+                          FileUtils.prependWorkspacePath(modelPath));
+    filesCtx.addAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
+                          FileUtils.prependWorkspacePath(querySpec.filePath()));
     var resultCtxDesc = (queryResults.isEmpty()) ? "No results" : "Query results:";
     for (var i = 0; i < queryResults.size(); i++) {
       var queryResult = queryResults.get(i);
@@ -109,6 +111,9 @@ public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysis {
       builder.addSupporter(resultStrategy, resultGoal);
     }
     resultCtx.setAttribute(types.getArgumentElement_Description(), resultCtxDesc);
+    var liftingGoal = builder.createGoal("G4", "The lifted query engine is correct", null);
+    plTemplate.addReference(types.getTemplate_Elements(), liftingGoal);
+    builder.addSupporter(queryStrategy, liftingGoal);
   }
 
   @Override
