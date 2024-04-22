@@ -27,6 +27,7 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.GSNPLBuilder;
+import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysis {
@@ -58,19 +59,29 @@ public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysis {
     var safetyGoal = (GSNPLArgumentElement) queryStrategy
       .getReference(types.getSupporter_Supports()).get(0)
       .getReference(types.getSupportedBy_Source()).get(0);
-    var queryCtx = queryStrategy
+    var filesCtx = queryStrategy
       .getReference(types.getContextualizable_InContextOf()).get(0)
       .getReference(types.getInContextOf_Context()).get(0);
-    var resultCtx = queryStrategy
-      .getReference(types.getContextualizable_InContextOf()).get(1)
+    var scenarioGoal = queryStrategy
+      .getReference(types.getSupportable_SupportedBy()).get(2)
+      .getReference(types.getSupportedBy_Target()).get(0);
+    var resultStrategy = (GSNPLArgumentElement) scenarioGoal
+      .getReference(types.getSupportable_SupportedBy()).get(0)
+      .getReference(types.getSupportedBy_Target()).get(0);
+    var resultCtx = scenarioGoal
+      .getReference(types.getContextualizable_InContextOf()).get(0)
       .getReference(types.getInContextOf_Context()).get(0);
-    var resultGoal = (GSNPLArgumentElement) queryStrategy
-      .getReference(types.getSupportable_SupportedBy()).get(1)
+    var resultGoal = (GSNPLArgumentElement) resultStrategy
+      .getReference(types.getSupportable_SupportedBy()).get(0)
       .getReference(types.getSupportedBy_Target()).get(0);
     safetyGoal.instantiate(plTemplate);
     var safetyDesc = safetyGoal.getAttribute(types.getArgumentElement_Description()).get(0);
+    var resultId = resultGoal.getAttribute(types.getArgumentElement_Id()).get(0);
     var resultDesc = resultGoal.getAttribute(types.getArgumentElement_Description()).get(0)
       .replace("{safety goal}", safetyDesc);
+    scenarioGoal.setAttribute(types.getArgumentElement_Description(),
+                              scenarioGoal.getAttribute(types.getArgumentElement_Description()).get(0)
+                                          .replace("{safety goal}", safetyDesc));
     // run query and process results
     var modelPath = MIDDialogs.selectFile("Run Product Line analysis", "Select a Product Line model",
                                           "There are no Product Line models in the workspace", Set.of("productline"));
@@ -81,8 +92,10 @@ public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysis {
     for (var supportedBy : resultGoal.getReference(types.getSupporter_Supports())) {
       supportedBy.delete();
     }
-    queryCtx.setAttribute(types.getArgumentElement_Description(),
+    filesCtx.setAttribute(types.getArgumentElement_Description(),
                           "Query '" + querySpec.query() + "' evaluated on model '" + modelPath + "'");
+    filesCtx.addAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(), modelPath);
+    filesCtx.addAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(), querySpec.filePath());
     var resultCtxDesc = (queryResults.isEmpty()) ? "No results" : "Query results:";
     for (var i = 0; i < queryResults.size(); i++) {
       var queryResult = queryResults.get(i);
@@ -90,10 +103,10 @@ public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysis {
                                                                null);
       var pc = ((PLElement) queryResult).getPresenceCondition();
       resultCtxDesc += "\n'" + resultText + "'";
-      resultGoal = builder.createGoal("G" + (i+2), resultDesc.replace("{For each scenario in Ctx1}",
-                                                                      "Query result '" + resultText + "'"), pc);
+      resultGoal = builder.createGoal(resultId.replace("X", String.valueOf(i)),
+                                      resultDesc.replace("{X}", "'" + resultText + "'"), pc);
       plTemplate.addReference(types.getTemplate_Elements(), resultGoal, pc);
-      builder.addSupporter(queryStrategy, resultGoal);
+      builder.addSupporter(resultStrategy, resultGoal);
     }
     resultCtx.setAttribute(types.getArgumentElement_Description(), resultCtxDesc);
   }

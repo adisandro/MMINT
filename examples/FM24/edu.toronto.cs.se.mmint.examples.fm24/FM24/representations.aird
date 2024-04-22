@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:productline="model://edu.toronto.cs.se.mmint.productline" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:gsn.templates="model://edu.toronto.cs.se.mmint.types.gsn.templates" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:productline="model://edu.toronto.cs.se.mmint.productline" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
   <viewpoint:DAnalysis uid="_eQPkMPeVEe67baVPhpR8qQ" selectedViews="_7cBh4PeVEe67baVPhpR8qQ _76aHAPeVEe67baVPhpR8qQ _xnoeUPhTEe6cSflHCstVyw _yoGc0PhTEe6cSflHCstVyw _23BUUPhTEe6cSflHCstVyw" version="15.2.0.202303281325">
     <semanticResources>model/ac.productline</semanticResources>
     <semanticResources>templates/analysis.gsn</semanticResources>
@@ -15,7 +15,7 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" uid="_xnoeUPhTEe6cSflHCstVyw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_5sP1APhTEe6cSflHCstVyw" name="analysis" repPath="#_5sMxsPhTEe6cSflHCstVyw" changeId="1713815671283">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_5sP1APhTEe6cSflHCstVyw" name="analysis" repPath="#_5sMxsPhTEe6cSflHCstVyw" changeId="1713820597013">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="templates/analysis.gsn#/"/>
       </ownedRepresentationDescriptors>
@@ -342,7 +342,7 @@
       <ownedStyle xmi:type="diagram:Square" uid="_DcQIQQDgEe-j_tzrqjD_Mw" labelSize="10" showIcon="false" labelColor="239,41,41" description="_3TE-8fjnEe6cDfhDSoE1tg" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" width="20" height="10" color="255,255,255"/>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_LLJGkADgEe-j_tzrqjD_Mw" name="G3.X&#xA;{Query result X}, {safety goal} is satisfied" incomingEdges="_Mb_qfADgEe-j_tzrqjD_Mw" width="20" height="10" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_LLJGkADgEe-j_tzrqjD_Mw" name="G3.X&#xA;Query result {X}, {safety goal} is satisfied" incomingEdges="_Mb_qfADgEe-j_tzrqjD_Mw" width="20" height="10" resizeKind="NSEW">
       <target xmi:type="gsn:Goal" href="templates/analysis.gsn#//@goals.4"/>
       <semanticElements xmi:type="gsn:Goal" href="templates/analysis.gsn#//@goals.4"/>
       <decorations xmi:type="viewpoint:Decoration" uid="_jPO8RADhEe-j_tzrqjD_Mw">
@@ -383,8 +383,8 @@
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@edgeMappings[name='SupportedByEdge']"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_nzC_kPjnEe6cDfhDSoE1tg" name="Ctx0&#xA;{Model and query}" incomingEdges="_tpLFcPjnEe6cDfhDSoE1tg" width="20" height="20" resizeKind="NSEW">
-      <target xmi:type="gsn:Context" href="templates/analysis.gsn#//@contexts.0"/>
-      <semanticElements xmi:type="gsn:Context" href="templates/analysis.gsn#//@contexts.0"/>
+      <target xmi:type="gsn.templates:FilesContext" href="templates/analysis.gsn#//@contexts.0"/>
+      <semanticElements xmi:type="gsn.templates:FilesContext" href="templates/analysis.gsn#//@contexts.0"/>
       <decorations xmi:type="viewpoint:Decoration" uid="_P32YcfjsEe6cDfhDSoE1tg">
         <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
       </decorations>
