@@ -15,7 +15,7 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" uid="_xnoeUPhTEe6cSflHCstVyw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_5sP1APhTEe6cSflHCstVyw" name="analysis" repPath="#_5sMxsPhTEe6cSflHCstVyw" changeId="1713820597013">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_5sP1APhTEe6cSflHCstVyw" name="analysis" repPath="#_5sMxsPhTEe6cSflHCstVyw" changeId="1713883797937">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="templates/analysis.gsn#/"/>
       </ownedRepresentationDescriptors>
@@ -333,7 +333,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_vfdpsADfEe-j_tzrqjD_Mw" name="G3&#xA;For each scenario in Ctx1, {safety goal} is satisfied" outgoingEdges="_JTEKoADgEe-j_tzrqjD_Mw _0W4ZsgDhEe-j_tzrqjD_Mw" incomingEdges="_I9zsVADgEe-j_tzrqjD_Mw" width="20" height="10" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_vfdpsADfEe-j_tzrqjD_Mw" name="G3&#xA;For each scenario in Ctx1, {safety goal}" outgoingEdges="_JTEKoADgEe-j_tzrqjD_Mw _0W4ZsgDhEe-j_tzrqjD_Mw" incomingEdges="_I9zsVADgEe-j_tzrqjD_Mw" width="20" height="10" resizeKind="NSEW">
       <target xmi:type="gsn:Goal" href="templates/analysis.gsn#//@goals.3"/>
       <semanticElements xmi:type="gsn:Goal" href="templates/analysis.gsn#//@goals.3"/>
       <decorations xmi:type="viewpoint:Decoration" uid="_DcQIQgDgEe-j_tzrqjD_Mw">
@@ -342,7 +342,7 @@
       <ownedStyle xmi:type="diagram:Square" uid="_DcQIQQDgEe-j_tzrqjD_Mw" labelSize="10" showIcon="false" labelColor="239,41,41" description="_3TE-8fjnEe6cDfhDSoE1tg" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" width="20" height="10" color="255,255,255"/>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_LLJGkADgEe-j_tzrqjD_Mw" name="G3.X&#xA;Query result {X}, {safety goal} is satisfied" incomingEdges="_Mb_qfADgEe-j_tzrqjD_Mw" width="20" height="10" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_LLJGkADgEe-j_tzrqjD_Mw" name="G3.X&#xA;Query result {X}, {safety goal}" incomingEdges="_Mb_qfADgEe-j_tzrqjD_Mw" width="20" height="10" resizeKind="NSEW">
       <target xmi:type="gsn:Goal" href="templates/analysis.gsn#//@goals.4"/>
       <semanticElements xmi:type="gsn:Goal" href="templates/analysis.gsn#//@goals.4"/>
       <decorations xmi:type="viewpoint:Decoration" uid="_jPO8RADhEe-j_tzrqjD_Mw">

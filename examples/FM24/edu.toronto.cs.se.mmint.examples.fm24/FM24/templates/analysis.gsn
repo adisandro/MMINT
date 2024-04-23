@@ -5,11 +5,11 @@
   </goals>
   <goals id="G1" description="The query engine is correct" supports="//@strategies.0/@supportedBy.0"/>
   <goals id="G2" description="The query specification is correct" templates="//@templates.0" supports="//@strategies.0/@supportedBy.1"/>
-  <goals id="G3" description="For each scenario in Ctx1, {safety goal} is satisfied" templates="//@templates.0" valid="false" supports="//@strategies.0/@supportedBy.2">
+  <goals id="G3" description="For each scenario in Ctx1, {safety goal}" templates="//@templates.0" valid="false" supports="//@strategies.0/@supportedBy.2">
     <supportedBy target="//@strategies.1"/>
     <inContextOf context="//@contexts.1"/>
   </goals>
-  <goals id="G3.X" description="Query result {X}, {safety goal} is satisfied" templates="//@templates.0" valid="false" supports="//@strategies.1/@supportedBy.0"/>
+  <goals id="G3.X" description="Query result {X}, {safety goal}" templates="//@templates.0" valid="false" supports="//@strategies.1/@supportedBy.0"/>
   <strategies id="S0" description="Argument over scenarios identified by model query" templates="//@templates.0" supports="//@goals.0/@supportedBy.0">
     <supportedBy target="//@goals.1"/>
     <supportedBy target="//@goals.2"/>
