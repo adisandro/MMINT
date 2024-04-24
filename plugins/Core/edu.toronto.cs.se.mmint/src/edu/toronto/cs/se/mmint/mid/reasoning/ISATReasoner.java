@@ -74,6 +74,13 @@ public interface ISATReasoner extends IReasoner {
   String getORSyntax();
 
   /**
+   * Gets the syntax of the NOT operator, using $1 as placeholder for the operand.
+   *
+   * @return The NOT syntax.
+   */
+  String getNOTSyntax();
+
+  /**
    * Gets the syntax of the Implication operator, using $1 and $2 as placeholders for the two operands.
    *
    * @return The Implication syntax.

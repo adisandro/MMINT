@@ -81,6 +81,11 @@ public class LogicNGReasoner implements IPLFeaturesTrait {
   }
 
   @Override
+  public String getNOTSyntax() {
+    return "~($1)";
+  }
+
+  @Override
   public String getIMPLYSyntax() {
     return "($1) => ($2)";
   }

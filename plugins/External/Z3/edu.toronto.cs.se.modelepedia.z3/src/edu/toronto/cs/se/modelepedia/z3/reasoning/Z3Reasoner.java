@@ -91,6 +91,11 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IPLFeature
   }
 
   @Override
+  public String getNOTSyntax() {
+    return "(not ($1))";
+  }
+
+  @Override
   public String getIMPLYSyntax() {
     return "(=> ($1) ($2))";
   }
