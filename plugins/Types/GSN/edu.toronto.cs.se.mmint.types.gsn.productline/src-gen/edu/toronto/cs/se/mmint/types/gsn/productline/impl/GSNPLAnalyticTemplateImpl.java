@@ -55,18 +55,6 @@ public class GSNPLAnalyticTemplateImpl extends GSNPLTemplateImpl implements GSNP
   }
 
   /**
-   * @generated NOT
-   */
-  @Override
-  public IGSNPLAnalysis getAnalysis() throws Exception {
-    var javaPath = getAttribute(GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_AnalysisPath());
-    if (javaPath.isEmpty()) {
-      throw new MMINTException("Missing analysis runner Java path");
-    }
-    return (IGSNPLAnalysis) FileUtils.loadClassFromWorkspace(javaPath.get(0), this.getClass().getClassLoader());
-  }
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -83,6 +71,18 @@ public class GSNPLAnalyticTemplateImpl extends GSNPLTemplateImpl implements GSNP
         }
     }
     return super.eInvoke(operationID, arguments);
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public IGSNPLAnalysis getAnalysis() throws Exception {
+    var javaPath = getAttribute(GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_AnalysisPath());
+    if (javaPath.isEmpty()) {
+      throw new MMINTException("Missing analysis runner Java path");
+    }
+    return (IGSNPLAnalysis) FileUtils.loadClassFromWorkspace(javaPath.get(0), this.getClass().getClassLoader());
   }
 
   /**

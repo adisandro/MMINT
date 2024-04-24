@@ -51,6 +51,7 @@ States:
 "ChangeDoseRateS", <Features: PROGRAMMABLE_INFUSION>
 "POSTDoneS", 
 "ConfirmPowerOffS",
+"E_ClearAlarmS",
 
 
 InitialState: "PowerDownS";
@@ -544,7 +545,10 @@ Transition: from "Alrm_PrimeFailureS" to "Alrm_LevelOneHardwareFailureS"
 Transition: from "InfusionPausedS" to "ConfirmPowerDownS" 
 	when E_PowerButton ?  do previous_state = InfusionPaused;
 
-Transition: from "Alrm_DoseRateHardLimitsViolationS" to "DisplayDoseRateS" 
+Transition: from "Alrm_DoseRateHardLimitsViolationS" to "E_ClearAlarmS" 
+	when E_ClearAlarm ?  do previous_state = Alrm_DoseRateHardLimitsViolation;
+
+Transition: from "E_ClearAlarmS" to "DisplayDoseRateS" 
 	when E_ChangeDoseRate ?  do previous_state = Alrm_DoseRateHardLimitsViolation;
 
 Transition: from "CheckDoseRateS" to "DisplaySettingsS" 
