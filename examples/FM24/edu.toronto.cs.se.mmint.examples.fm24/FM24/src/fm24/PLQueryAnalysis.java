@@ -115,8 +115,4 @@ public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysis {
     plTemplate.addReference(types.getTemplate_Elements(), liftingGoal);
     builder.addSupporter(queryStrategy, liftingGoal);
   }
-
-  @Override
-  public void validate(GSNPLAnalyticTemplate plTemplate) throws Exception {
-  }
 }

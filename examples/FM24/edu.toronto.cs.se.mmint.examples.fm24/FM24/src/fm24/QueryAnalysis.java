@@ -72,8 +72,4 @@ public class QueryAnalysis implements IAnalysis {
     }
     resultCtx.setDescription(resultCtxDesc);
   }
-
-  @Override
-  public void validate(AnalyticTemplate template) throws Exception {
-  }
 }
