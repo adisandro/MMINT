@@ -79,9 +79,9 @@ public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysis {
     var resultId = resultGoal.getAttribute(types.getArgumentElement_Id()).get(0);
     var resultDesc = resultGoal.getAttribute(types.getArgumentElement_Description()).get(0)
       .replace("{safety goal}", safetyDesc);
-    scenarioGoal.setAttribute(types.getArgumentElement_Description(),
-                              scenarioGoal.getAttribute(types.getArgumentElement_Description()).get(0)
-                                          .replace("{safety goal}", safetyDesc));
+    var scenarioDesc = scenarioGoal.getAttribute(types.getArgumentElement_Description()).get(0)
+                                   .replace("{safety goal}", safetyDesc);
+    scenarioGoal.setAttribute(types.getArgumentElement_Description(), scenarioDesc);
     // run query and process results
     var modelPath = MIDDialogs.selectFile("Run Product Line analysis", "Select a Product Line model",
                                           "There are no Product Line models in the workspace", Set.of("productline"));
@@ -92,12 +92,14 @@ public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysis {
     for (var supportedBy : resultGoal.getReference(types.getSupporter_Supports())) {
       supportedBy.delete();
     }
-    filesCtx.setAttribute(types.getArgumentElement_Description(),
-                          "Query '" + querySpec.query() + "' evaluated on model '" + modelPath + "'");
-    filesCtx.addAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
-                          FileUtils.prependWorkspacePath(modelPath));
+    var filesDesc = filesCtx.getAttribute(types.getArgumentElement_Description()).get(0)
+                            .replace("{query}", querySpec.query().toString())
+                            .replace("{model}", modelPath);
+    filesCtx.setAttribute(types.getArgumentElement_Description(), filesDesc);
     filesCtx.addAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
                           FileUtils.prependWorkspacePath(querySpec.filePath()));
+    filesCtx.addAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
+                          FileUtils.prependWorkspacePath(modelPath));
     var resultCtxDesc = (queryResults.isEmpty()) ? "No results" : "Query results:";
     for (var i = 0; i < queryResults.size(); i++) {
       var queryResult = queryResults.get(i);
