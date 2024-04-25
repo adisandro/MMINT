@@ -203,9 +203,7 @@ public class FileUtils {
       filePath = FileUtils.prependWorkspacePath(filePath);
     }
     var path = Paths.get(filePath);
-    try (var writer = Files.newBufferedWriter(path, Charset.forName("UTF-8"))) {
-      writer.write(textContent);
-    }
+    Files.writeString(path, textContent);
   }
 
   public static void createTextFileInState(String textContent, String relativeFilePath) throws Exception {

@@ -50,9 +50,9 @@ public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysis {
   @Override
   public void instantiate(GSNPLAnalyticTemplate plTemplate) throws Exception {
     var types = GSNPackage.eINSTANCE;
-    // get template elems
     var productLine = (ProductLine) plTemplate.eContainer();
     var builder = new GSNPLBuilder(productLine);
+    // get template elems
     var queryStrategy = (GSNPLArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
       .filter(c -> c.getType() == types.getStrategy())
       .findFirst().get();
@@ -94,7 +94,7 @@ public class PLQueryAnalysis extends QueryAnalysis implements IGSNPLAnalysis {
     }
     var filesDesc = filesCtx.getAttribute(types.getArgumentElement_Description()).get(0)
                             .replace("{query}", querySpec.query().toString())
-                            .replace("{model}", modelPath);
+                            .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath));
     filesCtx.setAttribute(types.getArgumentElement_Description(), filesDesc);
     filesCtx.addAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
                           FileUtils.prependWorkspacePath(querySpec.filePath()));
