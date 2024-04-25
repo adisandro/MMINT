@@ -81,7 +81,7 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
     }
     var out = convertPL(modelPL, modelName);
     var outPath = FileUtils.replaceFileExtensionInPath(modelPath, "dot");
-    var outPath2 = FileUtils.replaceFileExtensionInPath(modelPath, "txt");
+    var outPath2 = FileUtils.replaceFileExtensionInPath(modelPath, "vmc");
     FileUtils.createTextFile(outPath, out, false);
     // run model checker and process results
     //TODO check if connected with previous template: if yes, construct property, else ask for it (text, not file)
@@ -101,9 +101,9 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
     final var RUN_SH = """
       python3 -m venv venv
       source venv/bin/activate
-      git clone https://github.com/fts4vmc/FTS4VMC.git
-      pip3 install -r FTS4VMC/requirements.txt
-      python3 translate.py""" + outPath + " " +  outPath2 + "\n" +
+      git clone https://github.com/fts4vmc/FTS4VMC.git &> /dev/null
+      pip3 install -r FTS4VMC/requirements.txt &> /dev/null
+      python3 FTS4VMC/translate.py\s""" + outPath + " " +  outPath2 + " &> /dev/null\n" +
       "FTS4VMC/vmc65-linux " + outPath2 + " " + propertyPath;
     final var RUN_SH_FILE = "run.sh";
     var runPath = Paths.get(FileUtils.replaceLastSegmentInPath(modelPath, RUN_SH_FILE));
