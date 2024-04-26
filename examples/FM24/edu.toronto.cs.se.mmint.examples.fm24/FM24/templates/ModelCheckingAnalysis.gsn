@@ -4,14 +4,17 @@
     <supportedBy target="//@strategies.0"/>
   </goals>
   <goals id="G1" description="The model checker is correct" templates="//@templates.0" supports="//@strategies.0/@supportedBy.0"/>
-  <goals id="G2" description="The safety property in Ctx0 is correct" templates="//@templates.0" supports="//@strategies.0/@supportedBy.1"/>
-  <goals id="G3" description="The safety property in Ctx0 {holds?}" templates="//@templates.0" valid="false" supports="//@strategies.0/@supportedBy.2"/>
+  <goals id="G2" description="The safety property and model in Ctx0 are correct" templates="//@templates.0" supports="//@strategies.0/@supportedBy.1"/>
+  <goals id="G3" description="The safety property in Ctx0 {holds?}" templates="//@templates.0" valid="false" supports="//@strategies.0/@supportedBy.2">
+    <supportedBy target="//@solutions.0"/>
+  </goals>
   <strategies id="S0" description="Argument over model checking" templates="//@templates.0" supports="//@goals.0/@supportedBy.0">
     <supportedBy target="//@goals.1"/>
     <supportedBy target="//@goals.2"/>
     <supportedBy target="//@goals.3"/>
     <inContextOf context="//@contexts.0"/>
   </strategies>
+  <solutions id="Sn3" description="See output file '{output}'" valid="false" supports="//@goals.3/@supportedBy.0"/>
   <contexts xsi:type="gsn.templates:FilesContext" id="Ctx0" description="Safety property '{property}' evaluated on model '{model}'" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.0"/>
   <templates xsi:type="gsn.templates:AnalyticTemplate" elements="//@goals.0 //@strategies.0 //@contexts.0 //@goals.1 //@goals.2 //@goals.3" id="ModelCheckingAnalysis" loaderBundleName="edu.toronto.cs.se.mmint.examples.fm24"/>
 </gsn:SafetyCase>

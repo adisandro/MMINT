@@ -86,8 +86,9 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
     // run model checker and process results
     //TODO check if connected with previous template: if yes, construct property, else ask for it (text, not file)
     var property = "AG(Alrm_DoseRateHardLimitsViolationS => A[not(Infusion_NormalOperationS) U (E_ClearAlarmS)])";
-    final var PROPERTY_FILE = "property.txt";
-    var propertyPath = FileUtils.replaceLastSegmentInPath(modelPath, PROPERTY_FILE);
+    final var PROPERTY_IN_FILE = "property.txt";
+    final var PROPERTY_OUT_FILE = PROPERTY_IN_FILE.replace("txt", "out");
+    var propertyPath = FileUtils.replaceLastSegmentInPath(modelPath, PROPERTY_IN_FILE);
     Files.writeString(Paths.get(propertyPath), property);
     var filesCtx = mcStrategy
       .getReference(types.getContextualizable_InContextOf()).get(0)
@@ -109,12 +110,19 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
     var runPath = Paths.get(FileUtils.replaceLastSegmentInPath(modelPath, RUN_SH_FILE));
     Files.writeString(runPath, RUN_SH);
     var result = FileUtils.runShell(runPath.getParent().toString(), "bash", RUN_SH_FILE);
+    Files.writeString(Paths.get(FileUtils.replaceLastSegmentInPath(modelPath, PROPERTY_OUT_FILE)), result);
     var satGoal = mcStrategy
       .getReference(types.getSupportable_SupportedBy()).get(2)
       .getReference(types.getSupportedBy_Target()).get(0);
-    var satDesc = satGoal.getAttribute(types.getArgumentElement_Description()).get(0);
+    var satGoalDesc = satGoal.getAttribute(types.getArgumentElement_Description()).get(0);
     var holds = (result.contains("TRUE")) ? "holds" : "does not hold";
-    satGoal.setAttribute(types.getArgumentElement_Description(), satDesc.replace("{holds?}", holds));
+    satGoal.setAttribute(types.getArgumentElement_Description(), satGoalDesc.replace("{holds?}", holds));
+    var satSolution = satGoal
+      .getReference(types.getSupportable_SupportedBy()).get(0)
+      .getReference(types.getSupportedBy_Target()).get(0);
+    var satSolDesc = satSolution.getAttribute(types.getArgumentElement_Description()).get(0)
+      .replace("{output}", "property.out");
+    satSolution.setAttribute(types.getArgumentElement_Description(), satSolDesc);
     var liftingGoal = builder.createGoal("G4", "The lifted model checker is correct", null);
     plTemplate.addReference(types.getTemplate_Elements(), liftingGoal);
     builder.addSupporter(mcStrategy, liftingGoal);
