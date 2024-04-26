@@ -14,12 +14,15 @@ package fm24;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Set;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
+import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.GSNPLBuilder;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
@@ -28,15 +31,15 @@ import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
 
 public class FTS4VMCAnalysis implements IGSNPLAnalysis {
 
-  private String convertPC(String pc) {
+  private String presenceCondition2Dot(String pc) {
     return pc.replace("&", "and").replace("|", "or").replace("~", "not ").replace("$true", "True");
   }
 
-  private String convertPL(ProductLine productLine, String name) {
+  private String productLine2Dot(ProductLine productLine, String name) {
     var types = StateMachinePackage.eINSTANCE;
     var out = "digraph " + name + "{";
     out += "\n  name=\"" + name + "\"";
-    var fm = convertPC(productLine.getFeaturesConstraint());
+    var fm = presenceCondition2Dot(productLine.getFeaturesConstraint());
     out += "\n  FM=\"" + fm + "\"";
     for (var s : productLine.getClasses()) {
       if (s.instanceOf(types.getInitialState())) {
@@ -53,7 +56,7 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
         for (var tgt : t.getReference(types.getTransition_Target())) {
           var tgtName = tgt.getAttribute(types.getAbstractState_Name()).get(0);
           out += "\n  " + srcName + " -> " + tgtName + "[label=\"" + tgtName + " | " +
-                 convertPC(t.getPresenceCondition()) + "\"];";
+                 presenceCondition2Dot(t.getPresenceCondition()) + "\"];";
         }
       }
     }
@@ -71,25 +74,53 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
     var mcStrategy = (GSNPLArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
       .filter(c -> c.getType() == types.getStrategy())
       .findFirst().get();
-    //TODO check if connected with previous template: if yes, get model path, else ask for it
-    var modelPath = "/FM24/model/R1.productline";
-    modelPath = FileUtils.prependWorkspacePath(modelPath);
+    var safetyGoal = (GSNPLArgumentElement) mcStrategy
+      .getReference(types.getSupporter_Supports()).get(0)
+      .getReference(types.getSupportedBy_Source()).get(0);
+    String modelPath;
+    var otherTemplate = safetyGoal.getReference(types.getArgumentElement_Templates());
+    var isConnected =
+      !otherTemplate.isEmpty() &&
+      ((GSNPLTemplate) otherTemplate.get(0)).getAttribute(types.getTemplate_Id()).get(0).equals("QueryAnalysis");
+    if (isConnected) {
+      // connected with query analysis template, extract model from it
+      var otherFilesCtx = safetyGoal
+        .getReference(types.getSupporter_Supports()).get(0)
+        .getReference(types.getSupportedBy_Source()).get(0) // result strategy
+        .getReference(types.getSupporter_Supports()).get(0)
+        .getReference(types.getSupportedBy_Source()).get(0) // scenario goal
+        .getReference(types.getSupporter_Supports()).get(0)
+        .getReference(types.getSupportedBy_Source()).get(0) // query strategy
+        .getReference(types.getContextualizable_InContextOf()).get(0)
+        .getReference(types.getInContextOf_Context()).get(0);
+      modelPath = otherFilesCtx.getAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(1);
+    }
+    else {
+      modelPath = FileUtils.prependWorkspacePath(
+        MIDDialogs.selectFile("Run Product Line analysis", "Select a Product Line model",
+                              "There are no Product Line models in the workspace", Set.of("productline")));
+    }
     var modelName = FileUtils.getFileNameFromPath(modelPath);
     var modelPL = (ProductLine) FileUtils.readModelFile(modelPath, null, false);
     if (modelPL.getMetamodel() != StateMachinePackage.eINSTANCE) {
       throw new MMINTException("Model type '" + modelPL.getMetamodel().getNsURI() + "' not supported");
     }
-    var out = convertPL(modelPL, modelName);
-    var outPath = FileUtils.replaceFileExtensionInPath(modelPath, "dot");
-    var outPath2 = FileUtils.replaceFileExtensionInPath(modelPath, "vmc");
-    FileUtils.createTextFile(outPath, out, false);
+    var dot = productLine2Dot(modelPL, modelName);
+    var dotPath = FileUtils.replaceFileExtensionInPath(modelPath, "dot");
+    var vmcPath = FileUtils.replaceFileExtensionInPath(modelPath, "vmc");
+    FileUtils.createTextFile(dotPath, dot, false);
     // run model checker and process results
-    //TODO check if connected with previous template: if yes, construct property, else ask for it (text, not file)
-    var property = "AG(Alrm_DoseRateHardLimitsViolationS => A[not(Infusion_NormalOperationS) U (E_ClearAlarmS)])";
-    final var PROPERTY_IN_FILE = "property.txt";
-    final var PROPERTY_OUT_FILE = PROPERTY_IN_FILE.replace("txt", "out");
-    var propertyPath = FileUtils.replaceLastSegmentInPath(modelPath, PROPERTY_IN_FILE);
+    var dialogInitial = (isConnected) ?
+      safetyGoal.getAttribute(types.getArgumentElement_Description()).get(0).split("'")[1] :
+      null;
+    //AG(Alrm_DoseRateHardLimitsViolationS => A[not(Infusion_NormalOperationS) U (E_ClearAlarmS)])
+    var property = MIDDialogs.getBigStringInput("Run Product Line analysis", "Insert model property to check",
+                                                dialogInitial);
+    final var PROPERTY_FILE = "property.txt";
+    final var SAT_FILE = "result.out";
+    var propertyPath = FileUtils.replaceLastSegmentInPath(modelPath, PROPERTY_FILE);
     Files.writeString(Paths.get(propertyPath), property);
+    //TODO change all ids to match connected?
     var filesCtx = mcStrategy
       .getReference(types.getContextualizable_InContextOf()).get(0)
       .getReference(types.getInContextOf_Context()).get(0);
@@ -104,13 +135,13 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
       source venv/bin/activate
       git clone https://github.com/fts4vmc/FTS4VMC.git &> /dev/null
       pip3 install -r FTS4VMC/requirements.txt &> /dev/null
-      python3 FTS4VMC/translate.py\s""" + outPath + " " +  outPath2 + " &> /dev/null\n" +
-      "FTS4VMC/vmc65-linux " + outPath2 + " " + propertyPath;
+      python3 FTS4VMC/translate.py\s""" + dotPath + " " +  vmcPath + " &> /dev/null\n" +
+      "FTS4VMC/vmc65-linux " + vmcPath + " " + propertyPath;
     final var RUN_SH_FILE = "run.sh";
     var runPath = Paths.get(FileUtils.replaceLastSegmentInPath(modelPath, RUN_SH_FILE));
     Files.writeString(runPath, RUN_SH);
     var result = FileUtils.runShell(runPath.getParent().toString(), "bash", RUN_SH_FILE);
-    Files.writeString(Paths.get(FileUtils.replaceLastSegmentInPath(modelPath, PROPERTY_OUT_FILE)), result);
+    Files.writeString(Paths.get(FileUtils.replaceLastSegmentInPath(modelPath, SAT_FILE)), result);
     var satGoal = mcStrategy
       .getReference(types.getSupportable_SupportedBy()).get(2)
       .getReference(types.getSupportedBy_Target()).get(0);
@@ -121,10 +152,14 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
       .getReference(types.getSupportable_SupportedBy()).get(0)
       .getReference(types.getSupportedBy_Target()).get(0);
     var satSolDesc = satSolution.getAttribute(types.getArgumentElement_Description()).get(0)
-      .replace("{output}", "property.out");
+      .replace("{output}", SAT_FILE);
     satSolution.setAttribute(types.getArgumentElement_Description(), satSolDesc);
     var liftingGoal = builder.createGoal("G4", "The lifted model checker is correct", null);
     plTemplate.addReference(types.getTemplate_Elements(), liftingGoal);
     builder.addSupporter(mcStrategy, liftingGoal);
+    if (!safetyGoal.isAlwaysPresent()) {
+      var pc = safetyGoal.getPresenceCondition();
+      plTemplate.getStreamOfReference(types.getTemplate_Elements()).forEach(e -> e.setPresenceCondition(pc));
+    }
   }
 }
