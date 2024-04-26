@@ -39,13 +39,10 @@ import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.emf.types.EDataTypeInSlotsKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
-import org.eclipse.viatra.query.runtime.matchers.psystem.IExpressionEvaluator;
-import org.eclipse.viatra.query.runtime.matchers.psystem.IValueProvider;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
-import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExpressionEvaluation;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
@@ -60,8 +57,11 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * <p>Original source:
  *         <code><pre>
  *         pattern alarmStates(state: State) {
- *           State.name(state, name);
- *           check(name.startsWith("Alrm_"));
+ *           State.name(state, _name);
+ *           // VQL does not have native string manipulation and invokes Java for it.
+ *           // The following statement is what would be needed for this query, but we cannot lift the Java language.
+ *           // Instead, we filter the alarms in the analysis code.
+ *           //check(name.startsWith("Alrm_"));
  *         }
  * </pre></code>
  * 
@@ -254,8 +254,11 @@ public final class AlarmStates extends BaseGeneratedEMFQuerySpecification<AlarmS
    * <p>Original source:
    * <code><pre>
    * pattern alarmStates(state: State) {
-   *   State.name(state, name);
-   *   check(name.startsWith("Alrm_"));
+   *   State.name(state, _name);
+   *   // VQL does not have native string manipulation and invokes Java for it.
+   *   // The following statement is what would be needed for this query, but we cannot lift the Java language.
+   *   // Instead, we filter the alarms in the analysis code.
+   *   //check(name.startsWith("Alrm_"));
    * }
    * </pre></code>
    * 
@@ -550,43 +553,20 @@ public final class AlarmStates extends BaseGeneratedEMFQuerySpecification<AlarmS
       {
           PBody body = new PBody(this);
           PVariable var_state = body.getOrCreateVariableByName("state");
-          PVariable var_name = body.getOrCreateVariableByName("name");
+          PVariable var__name = body.getOrCreateVariableByName("_name");
           new TypeConstraint(body, Tuples.flatTupleOf(var_state), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/StateMachine", "State")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_state, parameter_state)
           ));
-          //   State.name(state, name)
+          //   State.name(state, _name)
           new TypeConstraint(body, Tuples.flatTupleOf(var_state), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://se.cs.toronto.edu/modelepedia/StateMachine", "State")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
           new TypeConstraint(body, Tuples.flatTupleOf(var_state, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://se.cs.toronto.edu/modelepedia/StateMachine", "AbstractState", "name")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
-          new Equality(body, var__virtual_0_, var_name);
-          //   check(name.startsWith("Alrm_"))
-          new ExpressionEvaluation(body, new IExpressionEvaluator() {
-          
-              @Override
-              public String getShortDescription() {
-                  return "Expression evaluation from pattern alarmStates";
-              }
-              
-              @Override
-              public Iterable<String> getInputParameterNames() {
-                  return Arrays.asList("name");}
-          
-              @Override
-              public Object evaluateExpression(IValueProvider provider) throws Exception {
-                  String name = (String) provider.getValue("name");
-                  return evaluateExpression_1_1(name);
-              }
-          },  null, false);
+          new Equality(body, var__virtual_0_, var__name);
           bodies.add(body);
       }
       return bodies;
     }
-  }
-
-  private static boolean evaluateExpression_1_1(final String name) {
-    boolean _startsWith = name.startsWith("Alrm_");
-    return _startsWith;
   }
 }

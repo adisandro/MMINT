@@ -36,7 +36,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 
-public class QueryAnalysis implements IGSNPLAnalysis {
+public class VQLQueryAnalysis implements IGSNPLAnalysis {
 
   public static ResultPrinter PL_NAME_PRINTER = (result) -> {
     if (result instanceof Class plClass) {
@@ -88,15 +88,19 @@ public class QueryAnalysis implements IGSNPLAnalysis {
     filesCtx.getPaths().add(FileUtils.prependWorkspacePath(querySpec.filePath()));
     filesCtx.getPaths().add(FileUtils.prependWorkspacePath(modelPath));
     var resultCtxDesc = (queryResults.isEmpty()) ? "No results" : "Query results:";
-    for (var i = 0; i < queryResults.size(); i++) {
-      var queryResult = queryResults.get(i);
+    var i = 0;
+    for (var queryResult : queryResults) {
       var resultText = SiriusEvaluateQuery.queryResultToString(queryResult, SiriusEvaluateQuery.NAME_PRINTER, null,
                                                                null);
+      if (!resultText.startsWith("Alrm_")) {
+        continue;
+      }
       resultCtxDesc += "\n'" + resultText + "'";
       resultGoal = builder.createGoal(resultId.replace("X", String.valueOf(i)),
                                       resultDesc.replace("{X}", "'" + resultText + "'"));
       templateElems.add(resultGoal);
       builder.addSupporter(resultStrategy, resultGoal);
+      i++;
     }
     resultCtx.setDescription(resultCtxDesc);
   }
@@ -155,16 +159,20 @@ public class QueryAnalysis implements IGSNPLAnalysis {
     filesCtx.addAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
                           FileUtils.prependWorkspacePath(modelPath));
     var resultCtxDesc = (queryResults.isEmpty()) ? "No results" : "Query results:";
-    for (var i = 0; i < queryResults.size(); i++) {
-      var queryResult = queryResults.get(i);
-      var resultText = SiriusEvaluateQuery.queryResultToString(queryResult, QueryAnalysis.PL_NAME_PRINTER, null,
+    var i = 0;
+    for (var queryResult : queryResults) {
+      var resultText = SiriusEvaluateQuery.queryResultToString(queryResult, VQLQueryAnalysis.PL_NAME_PRINTER, null,
                                                                null);
+      if (!resultText.startsWith("Alrm_")) {
+        continue;
+      }
       var pc = ((PLElement) queryResult).getPresenceCondition();
       resultCtxDesc += "\n'" + resultText + "'";
       resultGoal = builder.createGoal(resultId.replace("X", String.valueOf(i)),
                                       resultDesc.replace("{X}", "'" + resultText + "'"), pc);
       plTemplate.addReference(types.getTemplate_Elements(), resultGoal, pc);
       builder.addSupporter(resultStrategy, resultGoal);
+      i++;
     }
     resultCtx.setAttribute(types.getArgumentElement_Description(), resultCtxDesc);
     var liftingGoal = builder.createGoal("G4", "The lifted query engine is correct", null);

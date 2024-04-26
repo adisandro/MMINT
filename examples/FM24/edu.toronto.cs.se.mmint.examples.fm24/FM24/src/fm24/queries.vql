@@ -15,6 +15,9 @@ package fm24
 import "http://se.cs.toronto.edu/modelepedia/StateMachine"
 
 pattern alarmStates(state: State) {
-  State.name(state, name);
-  check(name.startsWith("Alrm_"));
+  State.name(state, _name);
+  // VQL does not have native string manipulation and invokes Java for it.
+  // The following statement is what would be needed for this query, but we cannot lift the Java language.
+  // Instead, we filter the alarms in the analysis code.
+  //check(name.startsWith("Alrm_"));
 }
