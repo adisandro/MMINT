@@ -57,6 +57,7 @@ public class AnalyticTemplateItemProvider extends TemplateItemProvider {
       super.getPropertyDescriptors(object);
 
       addAnalysisPathPropertyDescriptor(object);
+      addLoaderBundleNamePropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
   }
@@ -75,6 +76,28 @@ public class AnalyticTemplateItemProvider extends TemplateItemProvider {
          getString("_UI_AnalyticTemplate_analysisPath_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_AnalyticTemplate_analysisPath_feature", "_UI_AnalyticTemplate_type"),
          GSNTemplatesPackage.Literals.ANALYTIC_TEMPLATE__ANALYSIS_PATH,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Loader Bundle Name feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addLoaderBundleNamePropertyDescriptor(Object object) {
+    this.itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_AnalyticTemplate_loaderBundleName_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_AnalyticTemplate_loaderBundleName_feature", "_UI_AnalyticTemplate_type"),
+         GSNTemplatesPackage.Literals.ANALYTIC_TEMPLATE__LOADER_BUNDLE_NAME,
          true,
          false,
          false,
@@ -122,6 +145,7 @@ public class AnalyticTemplateItemProvider extends TemplateItemProvider {
 
     switch (notification.getFeatureID(AnalyticTemplate.class)) {
       case GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS_PATH:
+      case GSNTemplatesPackage.ANALYTIC_TEMPLATE__LOADER_BUNDLE_NAME:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
     }

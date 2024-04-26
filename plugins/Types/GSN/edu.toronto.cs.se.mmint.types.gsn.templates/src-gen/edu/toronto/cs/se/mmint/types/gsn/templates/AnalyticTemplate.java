@@ -25,6 +25,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Template;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getAnalysisPath <em>Analysis Path</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getLoaderBundleName <em>Loader Bundle Name</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getAnalyticTemplate()
@@ -53,6 +54,28 @@ public interface AnalyticTemplate extends Template {
    * @generated
    */
   void setAnalysisPath(String value);
+
+  /**
+   * Returns the value of the '<em><b>Loader Bundle Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Loader Bundle Name</em>' attribute.
+   * @see #setLoaderBundleName(String)
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getAnalyticTemplate_LoaderBundleName()
+   * @model
+   * @generated
+   */
+  String getLoaderBundleName();
+
+  /**
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getLoaderBundleName <em>Loader Bundle Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Loader Bundle Name</em>' attribute.
+   * @see #getLoaderBundleName()
+   * @generated
+   */
+  void setLoaderBundleName(String value);
 
   /**
    * <!-- begin-user-doc -->

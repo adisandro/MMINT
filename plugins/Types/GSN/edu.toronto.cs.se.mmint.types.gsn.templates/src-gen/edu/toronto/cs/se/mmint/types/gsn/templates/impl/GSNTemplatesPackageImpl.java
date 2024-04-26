@@ -584,6 +584,16 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
    * @generated
    */
   @Override
+  public EAttribute getAnalyticTemplate_LoaderBundleName() {
+    return (EAttribute)this.analyticTemplateEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EOperation getAnalyticTemplate__GetAnalysis() {
     return this.analyticTemplateEClass.getEOperations().get(0);
   }
@@ -688,6 +698,7 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
 
     this.analyticTemplateEClass = createEClass(GSNTemplatesPackage.ANALYTIC_TEMPLATE);
     createEAttribute(this.analyticTemplateEClass, GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS_PATH);
+    createEAttribute(this.analyticTemplateEClass, GSNTemplatesPackage.ANALYTIC_TEMPLATE__LOADER_BUNDLE_NAME);
     createEOperation(this.analyticTemplateEClass, GSNTemplatesPackage.ANALYTIC_TEMPLATE___GET_ANALYSIS);
 
     // Create data types
@@ -803,6 +814,7 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
 
     initEClass(this.analyticTemplateEClass, AnalyticTemplate.class, "AnalyticTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAnalyticTemplate_AnalysisPath(), this.ecorePackage.getEString(), "analysisPath", null, 0, 1, AnalyticTemplate.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEAttribute(getAnalyticTemplate_LoaderBundleName(), this.ecorePackage.getEString(), "loaderBundleName", null, 0, 1, AnalyticTemplate.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     op = initEOperation(getAnalyticTemplate__GetAnalysis(), this.getIAnalysis(), "getAnalysis", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());

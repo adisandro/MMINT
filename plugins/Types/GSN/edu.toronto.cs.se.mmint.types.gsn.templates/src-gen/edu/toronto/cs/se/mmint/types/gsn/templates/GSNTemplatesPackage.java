@@ -1439,13 +1439,22 @@ public interface GSNTemplatesPackage extends EPackage {
   int ANALYTIC_TEMPLATE__ANALYSIS_PATH = GSNPackage.TEMPLATE_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Loader Bundle Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANALYTIC_TEMPLATE__LOADER_BUNDLE_NAME = GSNPackage.TEMPLATE_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>Analytic Template</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANALYTIC_TEMPLATE_FEATURE_COUNT = GSNPackage.TEMPLATE_FEATURE_COUNT + 1;
+  int ANALYTIC_TEMPLATE_FEATURE_COUNT = GSNPackage.TEMPLATE_FEATURE_COUNT + 2;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -1857,6 +1866,17 @@ public interface GSNTemplatesPackage extends EPackage {
   EAttribute getAnalyticTemplate_AnalysisPath();
 
   /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getLoaderBundleName <em>Loader Bundle Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Loader Bundle Name</em>'.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getLoaderBundleName()
+   * @see #getAnalyticTemplate()
+   * @generated
+   */
+  EAttribute getAnalyticTemplate_LoaderBundleName();
+
+  /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getAnalysis() <em>Get Analysis</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2208,6 +2228,14 @@ public interface GSNTemplatesPackage extends EPackage {
      * @generated
      */
     EAttribute ANALYTIC_TEMPLATE__ANALYSIS_PATH = GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_AnalysisPath();
+
+    /**
+     * The meta object literal for the '<em><b>Loader Bundle Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ANALYTIC_TEMPLATE__LOADER_BUNDLE_NAME = GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_LoaderBundleName();
 
     /**
      * The meta object literal for the '<em><b>Get Analysis</b></em>' operation.

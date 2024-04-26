@@ -15,8 +15,10 @@ package edu.toronto.cs.se.mmint.types.gsn.productline.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.osgi.framework.wiring.BundleWiring;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
@@ -82,7 +84,15 @@ public class GSNPLAnalyticTemplateImpl extends GSNPLTemplateImpl implements GSNP
     if (javaPath.isEmpty()) {
       throw new MMINTException("Missing analysis runner Java path");
     }
-    return (IGSNPLAnalysis) FileUtils.loadClassFromWorkspace(javaPath.get(0), this.getClass().getClassLoader());
+    var bundleName = getAttribute(GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_LoaderBundleName());
+    var classLoader = getClass().getClassLoader();
+    if (!bundleName.isEmpty()) {
+      var bundle = Platform.getBundle(bundleName.get(0));
+      if (bundle != null) {
+        classLoader = bundle.adapt(BundleWiring.class).getClassLoader();
+      }
+    }
+    return (IGSNPLAnalysis) FileUtils.loadClassFromWorkspace(javaPath.get(0), classLoader);
   }
 
   /**

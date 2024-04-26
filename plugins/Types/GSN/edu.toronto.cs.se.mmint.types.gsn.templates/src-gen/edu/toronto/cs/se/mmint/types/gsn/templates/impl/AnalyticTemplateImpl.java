@@ -15,10 +15,12 @@ package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.osgi.framework.wiring.BundleWiring;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
@@ -38,6 +40,7 @@ import edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.AnalyticTemplateImpl#getAnalysisPath <em>Analysis Path</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.impl.AnalyticTemplateImpl#getLoaderBundleName <em>Loader Bundle Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,6 +64,24 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
    * @ordered
    */
   protected String analysisPath = AnalyticTemplateImpl.ANALYSIS_PATH_EDEFAULT;
+  /**
+   * The default value of the '{@link #getLoaderBundleName() <em>Loader Bundle Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLoaderBundleName()
+   * @generated
+   * @ordered
+   */
+  protected static final String LOADER_BUNDLE_NAME_EDEFAULT = null;
+  /**
+   * The cached value of the '{@link #getLoaderBundleName() <em>Loader Bundle Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLoaderBundleName()
+   * @generated
+   * @ordered
+   */
+  protected String loaderBundleName = AnalyticTemplateImpl.LOADER_BUNDLE_NAME_EDEFAULT;
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -110,10 +131,36 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
    * @generated
    */
   @Override
+  public String getLoaderBundleName() {
+    return this.loaderBundleName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setLoaderBundleName(String newLoaderBundleName) {
+    var oldLoaderBundleName = this.loaderBundleName;
+    this.loaderBundleName = newLoaderBundleName;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.ANALYTIC_TEMPLATE__LOADER_BUNDLE_NAME, oldLoaderBundleName, this.loaderBundleName));
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
       case GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS_PATH:
         return getAnalysisPath();
+      case GSNTemplatesPackage.ANALYTIC_TEMPLATE__LOADER_BUNDLE_NAME:
+        return getLoaderBundleName();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -128,6 +175,9 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
     switch (featureID) {
       case GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS_PATH:
         setAnalysisPath((String)newValue);
+        return;
+      case GSNTemplatesPackage.ANALYTIC_TEMPLATE__LOADER_BUNDLE_NAME:
+        setLoaderBundleName((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -144,6 +194,9 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
       case GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS_PATH:
         setAnalysisPath(AnalyticTemplateImpl.ANALYSIS_PATH_EDEFAULT);
         return;
+      case GSNTemplatesPackage.ANALYTIC_TEMPLATE__LOADER_BUNDLE_NAME:
+        setLoaderBundleName(AnalyticTemplateImpl.LOADER_BUNDLE_NAME_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -158,6 +211,8 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
     switch (featureID) {
       case GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS_PATH:
         return AnalyticTemplateImpl.ANALYSIS_PATH_EDEFAULT == null ? this.analysisPath != null : !AnalyticTemplateImpl.ANALYSIS_PATH_EDEFAULT.equals(this.analysisPath);
+      case GSNTemplatesPackage.ANALYTIC_TEMPLATE__LOADER_BUNDLE_NAME:
+        return AnalyticTemplateImpl.LOADER_BUNDLE_NAME_EDEFAULT == null ? this.loaderBundleName != null : !AnalyticTemplateImpl.LOADER_BUNDLE_NAME_EDEFAULT.equals(this.loaderBundleName);
     }
     return super.eIsSet(featureID);
   }
@@ -195,6 +250,8 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (analysisPath: ");
     result.append(this.analysisPath);
+    result.append(", loaderBundleName: ");
+    result.append(this.loaderBundleName);
     result.append(')');
     return result.toString();
   }
@@ -208,7 +265,15 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
     if (javaPath == null) {
       throw new MMINTException("Missing analysis runner Java path");
     }
-    return (IAnalysis) FileUtils.loadClassFromWorkspace(javaPath, this.getClass().getClassLoader());
+    var bundleName = getLoaderBundleName();
+    var classLoader = getClass().getClassLoader();
+    if (bundleName != null) {
+      var bundle = Platform.getBundle(bundleName);
+      if (bundle != null) {
+        classLoader = bundle.adapt(BundleWiring.class).getClassLoader();
+      }
+    }
+    return (IAnalysis) FileUtils.loadClassFromWorkspace(javaPath, classLoader);
   }
 
   /**

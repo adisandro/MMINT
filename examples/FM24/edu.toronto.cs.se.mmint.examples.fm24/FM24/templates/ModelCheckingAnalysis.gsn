@@ -13,5 +13,5 @@
     <inContextOf context="//@contexts.0"/>
   </strategies>
   <contexts xsi:type="gsn.templates:FilesContext" id="Ctx0" description="Safety property '{property}' evaluated on model '{model}'" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.0"/>
-  <templates xsi:type="gsn.templates:AnalyticTemplate" elements="//@goals.0 //@strategies.0 //@contexts.0 //@goals.1 //@goals.2 //@goals.3" id="ModelCheckingAnalysis"/>
+  <templates xsi:type="gsn.templates:AnalyticTemplate" elements="//@goals.0 //@strategies.0 //@contexts.0 //@goals.1 //@goals.2 //@goals.3" id="ModelCheckingAnalysis" loaderBundleName="edu.toronto.cs.se.mmint.examples.fm24"/>
 </gsn:SafetyCase>

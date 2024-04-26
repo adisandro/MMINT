@@ -61,6 +61,7 @@
     </genClasses>
     <genClasses ecoreClass="gsn.templates.ecore#//AnalyticTemplate">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.templates.ecore#//AnalyticTemplate/analysisPath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.templates.ecore#//AnalyticTemplate/loaderBundleName"/>
       <genOperations ecoreOperation="gsn.templates.ecore#//AnalyticTemplate/getAnalysis"/>
     </genClasses>
   </genPackages>
