@@ -24,6 +24,6 @@ Assuring Reliability of Machine Learning-based Components
     9. Save the GSN diagram, right-click in the diagram background, select `MMINT > Evaluate Query`, select file `/SAFECOMP24/src/safecomp24/queries.vql`, select query `numInvalidElems`, check the result, select `Done`.
     10. Select context `C2.92`, select the Properties tab at the bottom and the Semantic sub-tab, click on the Paths property and change it to the `C2_92_pass.py` file.
     11. Repeat step 10 for context `C2.98`.
-    12. (This step works only in Linux and requires Python installed) Right-click on any of the imported nodes from stage 2, select `MMINT > Validate Template`.
+    12. (This step works only in Linux and requires Python installed.) Right-click on any of the imported nodes from stage 2, select `MMINT > Validate Template`.
     13. The validation of the template succeeds.
     14. Save the GSN diagram, repeat step 9 and check the different result.
