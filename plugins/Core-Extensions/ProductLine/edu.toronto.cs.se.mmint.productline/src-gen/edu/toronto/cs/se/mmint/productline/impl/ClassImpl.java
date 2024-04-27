@@ -379,7 +379,7 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    * @generated NOT
    */
   private Stream<Reference> getStreamOfReference_(EList<Reference> references, EReference referenceType) {
-    return references.stream().filter(r -> r.getType() == referenceType);
+    return references.stream().filter(r -> r.getTarget() != null && r.getType() == referenceType);
   }
 
   /**

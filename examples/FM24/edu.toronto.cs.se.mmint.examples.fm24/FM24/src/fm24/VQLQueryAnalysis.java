@@ -154,10 +154,10 @@ public class VQLQueryAnalysis implements IGSNPLAnalysis {
                             .replace("{query}", querySpec.query().toString())
                             .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath));
     filesCtx.setAttribute(types.getArgumentElement_Description(), filesDesc);
-    filesCtx.addAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
-                          FileUtils.prependWorkspacePath(querySpec.filePath()));
-    filesCtx.addAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
-                          FileUtils.prependWorkspacePath(modelPath));
+    filesCtx.setAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
+                          List.of(FileUtils.prependWorkspacePath(querySpec.filePath()),
+                                  FileUtils.prependWorkspacePath(modelPath))
+                              .toString());
     var resultCtxDesc = (queryResults.isEmpty()) ? "No results" : "Query results:";
     var i = 0;
     for (var queryResult : queryResults) {

@@ -20,7 +20,7 @@
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="templates/QueryAnalysis.gsn#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_yHU8gAKPEe-ZaZ9N8Ih82Q" name="ModelCheckingAnalysis" repPath="#_yHTHUAKPEe-ZaZ9N8Ih82Q" changeId="1714164856202">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_yHU8gAKPEe-ZaZ9N8Ih82Q" name="ModelCheckingAnalysis" repPath="#_yHTHUAKPEe-ZaZ9N8Ih82Q" changeId="1714185082047">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="templates/ModelCheckingAnalysis.gsn#/"/>
       </ownedRepresentationDescriptors>
@@ -782,6 +782,9 @@
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_qTT8kAQOEe-BM6H4qq-UOA" name="Sn3&#xA;See output file '{output}'" incomingEdges="_rjOFSAQOEe-BM6H4qq-UOA" width="15" height="15" resizeKind="NSEW">
       <target xmi:type="gsn:Solution" href="templates/ModelCheckingAnalysis.gsn#//@solutions.0"/>
       <semanticElements xmi:type="gsn:Solution" href="templates/ModelCheckingAnalysis.gsn#//@solutions.0"/>
+      <decorations xmi:type="viewpoint:Decoration" uid="_PHCXsAQ-Ee-HjZ3xR97cmw">
+        <description xmi:type="description:SemanticBasedDecoration" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@decorationDescriptionsSet/@decorationDescriptions[name='TemplateDecoration']"/>
+      </decorations>
       <ownedStyle xmi:type="diagram:Dot" uid="_0-shMQQOEe-BM6H4qq-UOA" labelSize="10" showIcon="false" labelColor="239,41,41" description="_0-r6IgQOEe-BM6H4qq-UOA" borderSize="1" borderSizeComputationExpression="1" labelPosition="node" backgroundColor="255,255,255"/>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='SolutionNode']"/>
     </ownedDiagramElements>

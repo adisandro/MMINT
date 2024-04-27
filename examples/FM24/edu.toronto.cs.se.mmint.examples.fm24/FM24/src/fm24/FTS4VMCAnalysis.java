@@ -14,6 +14,7 @@ package fm24;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Set;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -93,7 +94,8 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
         .getReference(types.getSupportedBy_Source()).get(0) // query strategy
         .getReference(types.getContextualizable_InContextOf()).get(0)
         .getReference(types.getInContextOf_Context()).get(0);
-      modelPath = otherFilesCtx.getAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(1);
+      var pathsList = otherFilesCtx.getAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
+      modelPath = pathsList.substring(1, pathsList.length()-1).split(", ")[1];
     }
     else {
       modelPath = FileUtils.prependWorkspacePath(
@@ -113,7 +115,6 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
     var dialogInitial = (isConnected) ?
       safetyGoal.getAttribute(types.getArgumentElement_Description()).get(0).split("'")[1] :
       null;
-    //AG(Alrm_DoseRateHardLimitsViolationS => A[not(Infusion_NormalOperationS) U (E_ClearAlarmS)])
     var property = MIDDialogs.getBigStringInput("Run Product Line analysis", "Insert model property to check",
                                                 dialogInitial);
     final var PROPERTY_FILE = "property.txt";
@@ -128,8 +129,8 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
       .replace("{property}", FileUtils.getLastSegmentFromPath(propertyPath))
       .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath));
     filesCtx.setAttribute(types.getArgumentElement_Description(), filesDesc);
-    filesCtx.addAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(), propertyPath);
-    filesCtx.addAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(), modelPath);
+    filesCtx.setAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
+                          List.of(propertyPath, modelPath).toString());
     final var RUN_SH = """
       python3 -m venv venv
       source venv/bin/activate
@@ -159,7 +160,11 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
     builder.addSupporter(mcStrategy, liftingGoal);
     if (!safetyGoal.isAlwaysPresent()) {
       var pc = safetyGoal.getPresenceCondition();
-      plTemplate.getStreamOfReference(types.getTemplate_Elements()).forEach(e -> e.setPresenceCondition(pc));
+      plTemplate.getStreamOfReference(types.getTemplate_Elements()).forEach(e -> {
+        e.setPresenceCondition(pc);
+        e.getStreamOfReference(types.getSupportable_SupportedBy()).forEach(sb -> sb.setPresenceCondition(pc));
+        e.getStreamOfReference(types.getContextualizable_InContextOf()).forEach(ico -> ico.setPresenceCondition(pc));
+      });
     }
   }
 }
