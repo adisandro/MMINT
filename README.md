@@ -114,8 +114,6 @@ MoDELS 15
 
 * <a name="paper-fm24"></a> Formal Foundations of Lifted Assurance Cases for Product Lines  
 FM 24 (submitted) | Install: `Examples > MMINT - FM24` | [Readme](examples/FM24/edu.toronto.cs.se.mmint.examples.fm24/FM24/README.md)
-* <a name="paper-safecomp24"></a> Assuring Reliability of Machine Learning-based Components  
-SafeComp 24 (submitted) | Install: `Examples > MMINT - SAFECOMP24` | [Readme](examples/SAFECOMP24/edu.toronto.cs.se.mmint.examples.safecomp24/SAFECOMP24/README.md)
 * <a name="paper-sosym22"></a> [The ForeMoSt Approach to Building Valid Model-Based Safety Arguments](https://doi.org/10.1007/s10270-022-01063-4)  
 SoSyM Vol. 22-5 | Install: `Examples > MMINT - SOSYM22` | [Readme](examples/SOSYM22/edu.toronto.cs.se.mmint.examples.sosym22/SOSYM22/README.md)
 * [Validating Safety Arguments with Lean](https://doi.org/10.1007/978-3-030-92124-8_2)  
