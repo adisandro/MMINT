@@ -26,6 +26,11 @@
       <artifactId>logicng</artifactId>
       <version>2.5.0</version>
     </dependency>
+    <dependency>
+      <groupId>org.logicng</groupId>
+      <artifactId>logicng-parser-j11</artifactId>
+      <version>2.5.0</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
