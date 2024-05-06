@@ -12,13 +12,13 @@
         Alessio Di Sandro - Implementation
  -->
 <feature
-      id="edu.toronto.cs.se.mmint.examples.safecomp24.feature"
-      label="MMINT - SAFECOMP24 paper"
+      id="edu.toronto.cs.se.mmint.examples.issre24.feature"
+      label="MMINT - ISSRE24 paper"
       version="2.21.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="">
-      MMINT support for the SAFECOMP24 paper.
+      MMINT support for the ISSRE24 paper.
    </description>
 
    <copyright>
@@ -35,7 +35,7 @@
    </requires>
 
    <plugin
-         id="edu.toronto.cs.se.mmint.examples.safecomp24"
+         id="edu.toronto.cs.se.mmint.examples.issre24"
          version="0.0.0"/>
 
 </feature>

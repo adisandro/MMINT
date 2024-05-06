@@ -10,7 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package safecomp24
+package issre24
 
 import "http://se.cs.toronto.edu/modelepedia/GSN"
 

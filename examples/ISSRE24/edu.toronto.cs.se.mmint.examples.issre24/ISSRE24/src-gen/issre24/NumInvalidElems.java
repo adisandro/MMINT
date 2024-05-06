@@ -12,7 +12,7 @@
  *       Alessio Di Sandro - Implementation
  *  
  */
-package safecomp24;
+package issre24;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -64,7 +64,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
 @SuppressWarnings("all")
 public final class NumInvalidElems extends BaseGeneratedEMFQuerySpecification<NumInvalidElems.Matcher> {
   /**
-   * Pattern-specific match representation of the safecomp24.numInvalidElems pattern,
+   * Pattern-specific match representation of the issre24.numInvalidElems pattern,
    * to be used in conjunction with {@link Matcher}.
    * 
    * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
@@ -121,7 +121,7 @@ public final class NumInvalidElems extends BaseGeneratedEMFQuerySpecification<Nu
 
     @Override
     public String patternName() {
-      return "safecomp24.numInvalidElems";
+      return "issre24.numInvalidElems";
     }
 
     @Override
@@ -235,7 +235,7 @@ public final class NumInvalidElems extends BaseGeneratedEMFQuerySpecification<Nu
   }
 
   /**
-   * Generated pattern matcher API of the safecomp24.numInvalidElems pattern,
+   * Generated pattern matcher API of the issre24.numInvalidElems pattern,
    * providing pattern-specific query methods.
    * 
    * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
@@ -521,7 +521,7 @@ public final class NumInvalidElems extends BaseGeneratedEMFQuerySpecification<Nu
 
     @Override
     public String getFullyQualifiedName() {
-      return "safecomp24.numInvalidElems";
+      return "issre24.numInvalidElems";
     }
 
     @Override

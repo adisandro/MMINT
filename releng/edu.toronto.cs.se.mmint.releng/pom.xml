@@ -221,12 +221,10 @@
     <module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.operator</module>
     <module>../../plugins/Types/StateMachine/edu.toronto.cs.se.mmint.types.statemachine.productline.design</module>
     <module>../../plugins/Types/UML/edu.toronto.cs.se.mmint.types.uml.operators</module>
-    <module>../../examples/FORMALISE24/edu.toronto.cs.se.mmint.examples.formalise24</module>
     <module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo</module>
     <module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram</module>
     <module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.edit</module>
     <module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.editor</module>
-    <module>../../examples/IFM24/edu.toronto.cs.se.mmint.examples.ifm24</module>
     <module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15</module>
     <module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java</module>
     <module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java.edit</module>
@@ -235,10 +233,12 @@
     <module>../../examples/JASE20/edu.toronto.cs.se.mmint.example.jase20.iso26262</module>
     <module>../../examples/LMS/edu.toronto.cs.se.mmint.example.lms</module>
     <module>../../examples/MASE19/edu.toronto.cs.se.mmint.example.mase19</module>
-    <module>../../examples/MMPL/edu.toronto.cs.se.mmint.examples.mmpl</module>
     <module>../../examples/MoDELS20/edu.toronto.cs.se.mmint.example.models20</module>
+    <module>../../examples/FORMALISE24/edu.toronto.cs.se.mmint.examples.formalise24</module>
+    <module>../../examples/IFM24/edu.toronto.cs.se.mmint.examples.ifm24</module>
+    <module>../../examples/ISSRE24/edu.toronto.cs.se.mmint.examples.issre24</module>
+    <module>../../examples/MMPL/edu.toronto.cs.se.mmint.examples.mmpl</module>
     <module>../../examples/MODELS21/edu.toronto.cs.se.mmint.examples.models21</module>
-    <module>../../examples/SAFECOMP24/edu.toronto.cs.se.mmint.examples.safecomp24</module>
     <module>../../examples/SCICO23/edu.toronto.cs.se.mmint.examples.scico23</module>
     <module>../../examples/SOSYM22/edu.toronto.cs.se.mmint.examples.sosym22</module>
     <module>../../examples/SPLC23/edu.toronto.cs.se.mmint.examples.splc23</module>
@@ -273,10 +273,10 @@
     <module>../../features/edu.toronto.cs.se.mmint.example.jase20.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.example.mase19.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.example.models20.feature</module>
-    <module>../../features/edu.toronto.cs.se.mmint.examples.ifm24.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.formalise24.feature</module>
+    <module>../../features/edu.toronto.cs.se.mmint.examples.ifm24.feature</module>
+    <module>../../features/edu.toronto.cs.se.mmint.examples.issre24.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.models21.feature</module>
-    <module>../../features/edu.toronto.cs.se.mmint.examples.safecomp24.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.scico23.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.sosym22.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.splc23.feature</module>

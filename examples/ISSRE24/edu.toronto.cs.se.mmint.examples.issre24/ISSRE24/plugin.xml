@@ -10,10 +10,10 @@
     Contributors:
         Alessio Di Sandro - Implementation
  --><plugin>
-  <extension id="safecomp24.Queries" point="org.eclipse.viatra.query.runtime.queryspecification">
-    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:safecomp24.Queries" id="safecomp24.Queries">
-      <query-specification fqn="safecomp24.invalidElems"/>
-      <query-specification fqn="safecomp24.numInvalidElems"/>
+  <extension id="issre24.Queries" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:issre24.Queries" id="issre24.Queries">
+      <query-specification fqn="issre24.invalidElems"/>
+      <query-specification fqn="issre24.numInvalidElems"/>
     </group>
   </extension>
 </plugin>

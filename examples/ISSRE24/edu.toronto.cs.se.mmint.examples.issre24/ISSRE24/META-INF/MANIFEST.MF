@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: SAFECOMP24;singleton:=true
+Bundle-SymbolicName: ISSRE24;singleton:=true
 Bundle-Version: 2.21.99.qualifier
 Bundle-Vendor: %providerName
-Export-Package: safecomp24
+Export-Package: issre24
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.viatra.query.runtime,
  org.eclipse.viatra.query.runtime.rete,
@@ -13,6 +13,6 @@ Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.gsn
 Bundle-RequiredExecutionEnvironment: JavaSE-22
-Automatic-Module-Name: SAFECOMP24
+Automatic-Module-Name: ISSRE24
 Import-Package: org.apache.log4j
 Bundle-ActivationPolicy: lazy

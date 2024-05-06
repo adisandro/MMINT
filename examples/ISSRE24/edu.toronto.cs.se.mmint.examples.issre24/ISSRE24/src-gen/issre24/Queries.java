@@ -12,7 +12,7 @@
  *       Alessio Di Sandro - Implementation
  *  
  */
-package safecomp24;
+package issre24;
 
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
@@ -24,7 +24,7 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * a VIATRA Query engine for matching all patterns originally defined in file queries.vql,
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
- * <p> From package safecomp24, the group contains the definition of the following patterns: <ul>
+ * <p> From package issre24, the group contains the definition of the following patterns: <ul>
  * <li>invalidElems</li>
  * <li>numInvalidElems</li>
  * </ul>

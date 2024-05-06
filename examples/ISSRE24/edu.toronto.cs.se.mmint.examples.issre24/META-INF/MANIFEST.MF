@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: edu.toronto.cs.se.mmint.examples.safecomp24;singleton:=true
+Bundle-SymbolicName: edu.toronto.cs.se.mmint.examples.issre24;singleton:=true
 Bundle-Version: 2.21.99.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmint.examples.safecomp24.gsn.provider.AMLASrEditPlugin$Implementation
-Automatic-Module-Name: edu.toronto.cs.se.mmint.examples.safecomp24
+Automatic-Module-Name: edu.toronto.cs.se.mmint.examples.issre24
 Bundle-RequiredExecutionEnvironment: JavaSE-22
 Export-Package: edu.toronto.cs.se.mmint.examples.safecomp24.gsn,
  edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl,

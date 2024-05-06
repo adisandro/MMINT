@@ -20,22 +20,22 @@
       <category id="edu.toronto.cs.se.mmint.example"
             name="MMINT Examples"
             parentCategory="org.eclipse.ui.Examples"/>
-      <wizard id="edu.toronto.cs.se.mmint.examples.safecomp24"
+      <wizard id="edu.toronto.cs.se.mmint.examples.issre24"
             category="org.eclipse.ui.Examples/edu.toronto.cs.se.mmint.example"
             class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
             project="true"
-            name="SAFECOMP24">
-         <description>Creates a project containing the artifacts from the SAFECOMP24 paper</description>
+            name="ISSRE24">
+         <description>Creates a project containing the artifacts from the ISSRE24 paper</description>
       </wizard>
    </extension>
 
    <extension point="org.eclipse.emf.common.ui.examples">
-      <example id="edu.toronto.cs.se.mmint.examples.safecomp24"
-            wizardID="edu.toronto.cs.se.mmint.examples.safecomp24">
-         <projectDescriptor name="SAFECOMP24"
-               contentURI="SAFECOMP24/"
-               description="Creates a project containing the artifacts from the SAFECOMP24 paper"/>
-         <fileToOpen location="SAFECOMP24/README.md"/>
+      <example id="edu.toronto.cs.se.mmint.examples.issre24"
+            wizardID="edu.toronto.cs.se.mmint.examples.issre24">
+         <projectDescriptor name="ISSRE24"
+               contentURI="ISSRE24/"
+               description="Creates a project containing the artifacts from the ISSRE24 paper"/>
+         <fileToOpen location="ISSRE24/README.md"/>
       </example>
    </extension>
 
