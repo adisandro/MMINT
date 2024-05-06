@@ -44,7 +44,7 @@
     <supportedBy target="//@goals.4"/>
     <supportedBy target="//@goals.5"/>
   </strategies>
-  <strategies id="S2.94" description="Argument over the threshold of the amount of scene changes ML" templates="//@templates.0" supports="//@goals.4/@decorators.0/@supportedBy.0">
+  <strategies id="S2.94" description="Argument over the threshold of the amount of scene changes ML should be reliable against" templates="//@templates.0" supports="//@goals.4/@decorators.0/@supportedBy.0">
     <decorators description="# safety requirements" templates="//@templates.0" valid="false">
       <supportedBy target="//@goals.6"/>
       <supportedBy target="//@goals.7"/>

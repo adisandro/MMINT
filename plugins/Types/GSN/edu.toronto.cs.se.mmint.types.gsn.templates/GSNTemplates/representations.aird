@@ -23,7 +23,7 @@
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="AMLAS-r/stage1.gsn#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_7EgEcGxFEe69DMFNZo6lFQ" name="stage2" repPath="#_7EfdYGxFEe69DMFNZo6lFQ" changeId="1707588842864">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_7EgEcGxFEe69DMFNZo6lFQ" name="stage2" repPath="#_7EfdYGxFEe69DMFNZo6lFQ" changeId="1715032773880">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']"/>
         <target xmi:type="gsn:SafetyCase" href="AMLAS-r/stage2.gsn#/"/>
       </ownedRepresentationDescriptors>
@@ -2159,7 +2159,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.gsn.design/description/gsn.odesign#//@ownedViewpoints[name='GSNViewpoint']/@ownedRepresentations[name='GSNRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNode" uid="_GxmM0KmTEe6YItBA_GdBOg" name="S2.94&#xA;Argument over the threshold of the amount of scene changes ML" outgoingEdges="_kTFUzKmTEe6YItBA_GdBOg" incomingEdges="_KtfXsLx4Ee6qDrZj4V-7DQ" width="20" height="20" resizeKind="NSEW">
+    <ownedDiagramElements xmi:type="diagram:DNode" uid="_GxmM0KmTEe6YItBA_GdBOg" name="S2.94&#xA;Argument over the threshold of the amount of scene changes ML should be reliable against" outgoingEdges="_kTFUzKmTEe6YItBA_GdBOg" incomingEdges="_KtfXsLx4Ee6qDrZj4V-7DQ" width="20" height="20" resizeKind="NSEW">
       <target xmi:type="gsn:Strategy" href="AMLAS-r/stage2.gsn#//@strategies.3"/>
       <semanticElements xmi:type="gsn:Strategy" href="AMLAS-r/stage2.gsn#//@strategies.3"/>
       <decorations xmi:type="viewpoint:Decoration" uid="_XbymRcewEe6TK9PS_s3kKg">
