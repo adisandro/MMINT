@@ -15,7 +15,7 @@
   <artifactId>edu.toronto.cs.se.mmint.kotlin</artifactId>
   <packaging>eclipse-plugin</packaging>
   <properties>
-    <kotlin-version>1.9.23</kotlin-version>
+    <kotlin-version>1.9.24</kotlin-version>
   </properties>
   <parent>
   	<groupId>MMINT</groupId>
