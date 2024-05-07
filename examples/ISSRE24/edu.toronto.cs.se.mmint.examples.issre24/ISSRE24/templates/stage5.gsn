@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN">
+  <goals id="G5.1" description="{ML safety and reliability requirements} are satisfied" templates="//@templates.0" valid="false">
+    <supportedBy target="//@goals.1"/>
+    <supportedBy target="//@strategies.0"/>
+    <undeveloped/>
+  </goals>
+  <goals id="G5.2" description="Verification of the MLM is independent of the development of the MLM" templates="//@templates.0" supports="//@goals.0/@supportedBy.0">
+    <supportedBy target="//@solutions.0"/>
+  </goals>
+  <goals id="G5.3" description="{ML safety requirement} is satisfied when using test data" templates="//@templates.0" valid="false" supports="//@strategies.0/@decorators.0/@supportedBy.0">
+    <supportedBy target="//@goals.4"/>
+    <supportedBy target="//@goals.5"/>
+    <supportedBy target="//@goals.6"/>
+    <inContextOf context="//@contexts.1"/>
+  </goals>
+  <goals id="G5.4" description="Formal verification demonstrates {formally specified properties} are satisfied" templates="//@templates.0" valid="false" supports="//@strategies.0/@decorators.0/@supportedBy.1">
+    <supportedBy target="//@goals.7"/>
+    <supportedBy target="//@goals.8"/>
+    <inContextOf context="//@contexts.0"/>
+    <inContextOf context="//@justifications.1"/>
+  </goals>
+  <goals id="G5.5" description="Verification test results show that the requirement is satisfied" templates="//@templates.0" supports="//@goals.2/@supportedBy.0">
+    <supportedBy target="//@solutions.1"/>
+  </goals>
+  <goals id="G5.9" description="The verification data used is sufficient to verify the intent of {ML safety requirement} in the operating environment" templates="//@templates.0" valid="false" supports="//@goals.2/@supportedBy.1">
+    <supportedBy target="//@solutions.2"/>
+  </goals>
+  <goals id="G5.6" description="Test platform is sufficiently representative of operational platform" templates="//@templates.0" supports="//@goals.2/@supportedBy.2">
+    <undeveloped/>
+  </goals>
+  <goals id="G5.7" description="Results of formal verification prove that the formally specified properties hold in the MLM" templates="//@templates.0" supports="//@goals.3/@supportedBy.0">
+    <supportedBy target="//@solutions.3"/>
+  </goals>
+  <goals id="G5.8" description="The formal model is sufficiently representative of the MLM and its operating environment" templates="//@templates.0" supports="//@goals.3/@supportedBy.1">
+    <undeveloped/>
+  </goals>
+  <strategies id="S5.1" description="Argument over ML verification approach" templates="//@templates.0" supports="//@goals.0/@supportedBy.1">
+    <decorators templates="//@templates.0" valid="false" type="CHOICE">
+      <supportedBy target="//@goals.2"/>
+      <supportedBy target="//@goals.3"/>
+    </decorators>
+    <inContextOf context="//@justifications.0"/>
+  </strategies>
+  <solutions id="Sn5.1" description="{Verification log}" templates="//@templates.0" valid="false" supports="//@goals.1/@supportedBy.0"/>
+  <solutions id="Sn5.2" description="{Verification test results}" templates="//@templates.0" valid="false" supports="//@goals.4/@supportedBy.0"/>
+  <solutions id="Sn5.4" description="{Verification log}" templates="//@templates.0" valid="false" supports="//@goals.5/@supportedBy.0"/>
+  <solutions id="Sn5.3" description="{Formal verification results}" templates="//@templates.0" valid="false" supports="//@goals.7/@supportedBy.0"/>
+  <contexts id="C5.2" description="{Formally specified properties}" templates="//@templates.0" valid="false" contextOf="//@goals.3/@inContextOf.0"/>
+  <contexts id="C5.1" description="{Verification data samples}" templates="//@templates.0" valid="false" contextOf="//@goals.2/@inContextOf.0"/>
+  <justifications id="J5.1" description="{Justification for the verification approach that is chosen}" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.0"/>
+  <justifications id="J5.2" description="{Rationale that the formally specified properties are a sufficient representation of the intent of the ML safety requirement in the operating environment}" templates="//@templates.0" valid="false" contextOf="//@goals.3/@inContextOf.1"/>
+  <templates elements="//@goals.0 //@goals.1 //@goals.2 //@goals.3 //@goals.4 //@goals.6 //@goals.7 //@goals.8 //@goals.5 //@strategies.0 //@contexts.1 //@contexts.0 //@justifications.0 //@justifications.1 //@solutions.0 //@solutions.1 //@solutions.3 //@solutions.2 //@strategies.0/@decorators.0" id="ML Model Verification"/>
+</gsn:SafetyCase>

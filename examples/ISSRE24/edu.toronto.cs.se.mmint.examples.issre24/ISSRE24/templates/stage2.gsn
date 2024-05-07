@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:gsn.templates="model://edu.toronto.cs.se.mmint.types.gsn.templates">
+  <goals id="G2.1" description="Allocated system safety requirements are satisfied in the development of the ML model" templates="//@templates.0">
+    <supportedBy target="//@strategies.0"/>
+  </goals>
+  <goals id="G2.2" description="ML model satisfies the safety requirements" templates="//@templates.0" supports="//@strategies.0/@supportedBy.0">
+    <supportedBy target="//@strategies.1"/>
+    <inContextOf context="//@contexts.1"/>
+    <inContextOf context="//@contexts.2"/>
+  </goals>
+  <goals id="G2.90" description="Relevant ML safety requirements are reliably satisfied in the presence of changes in the OE" templates="//@templates.0" supports="//@strategies.0/@supportedBy.1">
+    <supportedBy target="//@strategies.2"/>
+    <inContextOf context="//@contexts.1"/>
+    <inContextOf context="//@contexts.2"/>
+  </goals>
+  <goals id="G2.3" description="ML performance requirements satisfied" templates="//@templates.0" supports="//@strategies.1/@supportedBy.0"/>
+  <goals id="G2.92" description="The identified safety requirements are satisfied in the presence of scene changes in the OE" templates="//@templates.0" supports="//@strategies.2/@supportedBy.0">
+    <decorators description="# changes" templates="//@templates.0" valid="false">
+      <supportedBy target="//@strategies.3"/>
+    </decorators>
+    <inContextOf context="//@contexts.5"/>
+  </goals>
+  <goals id="G2.93" description="ML safety requirements to check for reliability checking have been correctly identified" templates="//@templates.0" supports="//@strategies.2/@supportedBy.1">
+    <supportedBy target="//@solutions.0"/>
+    <inContextOf context="//@justifications.1"/>
+  </goals>
+  <goals id="G2.96" description="Reliability requirement is satisfied" templates="//@templates.0" supports="//@strategies.3/@decorators.0/@supportedBy.0">
+    <inContextOf context="//@contexts.4"/>
+  </goals>
+  <goals id="G2.97" description="The reliability requirements are a valid deployment of the relevant safety requirements and changes in the OE" templates="//@templates.0" supports="//@strategies.3/@decorators.0/@supportedBy.1">
+    <supportedBy target="//@solutions.1"/>
+    <inContextOf context="//@justifications.2"/>
+  </goals>
+  <strategies id="S2.1" description="Argument over the specified ML safety requirements" templates="//@templates.0" supports="//@goals.0/@supportedBy.0">
+    <supportedBy target="//@goals.1"/>
+    <supportedBy target="//@goals.2"/>
+    <inContextOf context="//@justifications.0"/>
+    <inContextOf context="//@contexts.0"/>
+  </strategies>
+  <strategies id="S2.2" description="Argument over satisfaction of different types of ML safety requirements" templates="//@templates.0" supports="//@goals.1/@supportedBy.0">
+    <supportedBy target="//@goals.3"/>
+  </strategies>
+  <strategies id="S2.91" description="Identify ML safety requirements relevant for reliability analysis" templates="//@templates.0" supports="//@goals.2/@supportedBy.0">
+    <supportedBy target="//@goals.4"/>
+    <supportedBy target="//@goals.5"/>
+  </strategies>
+  <strategies id="S2.94" description="Argument over the threshold of the amount of scene changes ML should be reliable against" templates="//@templates.0" supports="//@goals.4/@decorators.0/@supportedBy.0">
+    <decorators description="# safety requirements" templates="//@templates.0" valid="false">
+      <supportedBy target="//@goals.6"/>
+      <supportedBy target="//@goals.7"/>
+    </decorators>
+    <inContextOf context="//@contexts.3"/>
+  </strategies>
+  <solutions id="Sn2.93" description="{Requirements selection validation results}" templates="//@templates.0" valid="false" supports="//@goals.5/@supportedBy.0"/>
+  <solutions id="Sn2.97" description="{Requirements validation results}" templates="//@templates.0" valid="false" supports="//@goals.7/@supportedBy.0"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="C2.1" description="{ML safety requirements developed from allocated system safety requirements}" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.1"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="C2.2" description="ML data" templates="//@templates.0" valid="false" contextOf="//@goals.1/@inContextOf.0 //@goals.2/@inContextOf.0"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="C2.3" description="ML model" templates="//@templates.0" valid="false" contextOf="//@goals.1/@inContextOf.1 //@goals.2/@inContextOf.1"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="C2.95" description="{Change and threshold t}" templates="//@templates.0" valid="false" contextOf="//@strategies.3/@inContextOf.0"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="C2.98" description="{Relationship R for each requirement}" templates="//@templates.0" valid="false" contextOf="//@goals.6/@inContextOf.0"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="C2.92" description="{Relevant safety requirements}" templates="//@templates.0" valid="false" contextOf="//@goals.4/@inContextOf.0"/>
+  <justifications id="J1.1" description="{Justification for the development of the ML safety requirements}" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.0"/>
+  <justifications id="J2.93" description="{Rationale for the selection of relevant ML safety requirements}" templates="//@templates.0" valid="false" contextOf="//@goals.5/@inContextOf.0"/>
+  <justifications id="J2.97" description="{Rationale for the sufficiency of the requirement validation approach}" templates="//@templates.0" valid="false" contextOf="//@goals.7/@inContextOf.0"/>
+  <templates xsi:type="gsn.templates:AnalyticTemplate" elements="//@goals.0 //@goals.1 //@goals.3 //@goals.2 //@goals.4 //@goals.5 //@goals.6 //@goals.7 //@strategies.0 //@strategies.1 //@strategies.2 //@strategies.3 //@contexts.0 //@contexts.1 //@contexts.2 //@contexts.3 //@contexts.4 //@justifications.0 //@justifications.1 //@justifications.2 //@solutions.0 //@solutions.1 //@contexts.5 //@goals.4/@decorators.0 //@strategies.3/@decorators.0" id="ML Requirements" loaderBundleName="edu.toronto.cs.se.mmint.examples.issre24"/>
+</gsn:SafetyCase>
