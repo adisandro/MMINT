@@ -11,7 +11,3 @@ allows users to formalize safety case goals as logical properties over a system 
 
 2. **Domain Decomposition:**
 allows users to specify a partition of a safety goal's domain into subdomains, supporting numeric intervals and enumerations.
-
-### AMLAS-r
-
-[AMLAS](https://www.assuringautonomy.com) templates with reliability extensions.
