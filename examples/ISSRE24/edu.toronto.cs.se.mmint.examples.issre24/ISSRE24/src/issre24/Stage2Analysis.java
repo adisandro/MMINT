@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (c) 2024, 2024 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
 package issre24;
 
 import java.nio.file.Files;
@@ -17,9 +29,13 @@ import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 
 public class Stage2Analysis implements IAnalysis {
 
-	@Override
+  @Override
+  public boolean runsFirst() {
+    return false;
+  }
+
+  @Override
   public void validate(AnalyticTemplate template) throws Exception {
-	  template.validate();
     final var MAIN_PY_FILE = "run_eval.py";
     final var RUN_SH_FILE = "run.sh";
     final var MAIN_PY = """
