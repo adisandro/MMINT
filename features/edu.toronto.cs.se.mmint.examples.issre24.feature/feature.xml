@@ -30,7 +30,6 @@
    </license>
 
    <requires>
-      <import feature="edu.toronto.cs.se.modelepedia.gsn.feature"/>
       <import feature="edu.toronto.cs.se.mminta.feature"/>
    </requires>
 
