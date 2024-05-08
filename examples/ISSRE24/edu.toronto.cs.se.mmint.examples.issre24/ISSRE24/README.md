@@ -5,11 +5,11 @@ Arguing Reliability of Machine Learning-based Components
 ### Instructions to reproduce the examples
 
 1. MMINT
-    1. Install Java and Eclipse following the [requirements](/README.md#requirements) and add `https://adisandro.github.io/mmint/develop` to the list of software sites (`Help > Install New Software > Available Software Sites`).
+    1. Install Java and Eclipse following the [requirements](/README.md#requirements) and add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
     2. From the top menu select `Help > Install New Software` and install `Examples > MMINT - ISSRE24 paper`.
     3. From the top menu select `File > New > Example > MMINT Examples > ISSRE24`.
     4. Open `/ISSRE24/model/example.middiag`.
-    5. Double-click on the yellow box named `ac : GSN` to open the GSN assurance case.
+    5. Double-click on the yellow box named `ac : GSN` to open the GSN assurance case. During any of the following steps, right-click in the diagram background and select `Layout > All` to automatically arrange all nodes.
 
 2. AMLAS-r stages 1-2 + assurance queries
     1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/ISSRE24/templates/stage1.gsn`.
