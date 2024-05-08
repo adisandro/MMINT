@@ -111,8 +111,15 @@ public class GSNPLAnalyticTemplateImpl extends GSNPLTemplateImpl implements GSNP
    */
   @Override
   public void instantiate() throws Exception {
-    getAnalysis().instantiate(this);
-    super.instantiate();
+    var analysis = getAnalysis();
+    if (analysis.runsFirst()) {
+      analysis.instantiate(this);
+      super.instantiate();
+    }
+    else {
+      super.instantiate();
+      analysis.instantiate(this);
+    }
   }
 
   /**
@@ -120,8 +127,15 @@ public class GSNPLAnalyticTemplateImpl extends GSNPLTemplateImpl implements GSNP
    */
   @Override
   public void validate() throws Exception {
-    getAnalysis().validate(this);
-    super.validate();
+    var analysis = getAnalysis();
+    if (analysis.runsFirst()) {
+      analysis.validate(this);
+      super.validate();
+    }
+    else {
+      super.validate();
+      analysis.validate(this);
+    }
   }
 
 } //GSNPLAnalysisTemplateImpl

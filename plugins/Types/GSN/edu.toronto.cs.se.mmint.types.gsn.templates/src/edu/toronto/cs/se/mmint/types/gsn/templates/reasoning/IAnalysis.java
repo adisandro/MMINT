@@ -17,4 +17,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate;
 public interface IAnalysis {
   default void instantiate(AnalyticTemplate template) throws Exception {}
   default void validate(AnalyticTemplate template) throws Exception {}
+  default boolean runsFirst() {
+    return true;
+  }
 }
