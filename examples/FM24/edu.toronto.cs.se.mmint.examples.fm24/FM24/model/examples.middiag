@@ -25,7 +25,7 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_vzrHAv0tEe6GYdMPeCTj5Q" fontName="Cantarell"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_vzrHA_0tEe6GYdMPeCTj5Q" hint="Mid"/>
     <element xmi:type="mid:Model" href="examples.mid#//@models.2"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vzrHBP0tEe6GYdMPeCTj5Q" x="252" y="308"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vzrHBP0tEe6GYdMPeCTj5Q" x="240" y="304"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_vzruEP0tEe6GYdMPeCTj5Q" type="2005">
     <children xmi:type="notation:DecorationNode" xmi:id="_vzruFf0tEe6GYdMPeCTj5Q" type="5009"/>
@@ -33,7 +33,7 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_vzruEv0tEe6GYdMPeCTj5Q" fontName="Cantarell"/>
     <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_vzruE_0tEe6GYdMPeCTj5Q" hint="Mid"/>
     <element xmi:type="operator:Operator" href="examples.mid#//@operators.0"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vzruFP0tEe6GYdMPeCTj5Q" x="252" y="210"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vzruFP0tEe6GYdMPeCTj5Q" x="240" y="208"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_sUI8wPeVEe67baVPhpR8qQ"/>
   <element xmi:type="mid:MID" href="examples.mid#/"/>
@@ -48,5 +48,7 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_vzx0sv0tEe6GYdMPeCTj5Q" fontName="Cantarell"/>
     <element xmi:type="mid:ModelEndpoint" href="examples.mid#//@operators.0/@outputs.0"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_vzx0s_0tEe6GYdMPeCTj5Q" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZKtQ4A5WEe-H35zBZ-7bLw" id="(0.5069444444444444,0.95)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZvKo0A5WEe-H35zBZ-7bLw" id="(0.4675324675324675,0.03333333333333333)"/>
   </edges>
 </notation:Diagram>
