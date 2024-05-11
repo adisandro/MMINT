@@ -285,6 +285,7 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
                                          "There are no Java files in the workspace", Set.of("java"));
     setAnalysisPath(javaPath);
     super.import_(safetyCase);
+    getAnalysis().import_(this, safetyCase);
   }
 
   /**

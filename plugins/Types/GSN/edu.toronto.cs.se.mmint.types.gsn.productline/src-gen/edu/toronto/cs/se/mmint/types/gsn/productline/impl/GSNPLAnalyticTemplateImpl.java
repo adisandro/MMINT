@@ -104,6 +104,7 @@ public class GSNPLAnalyticTemplateImpl extends GSNPLTemplateImpl implements GSNP
                                          "There are no Java files in the workspace", Set.of("java"));
     addAttribute(GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_AnalysisPath(), javaPath);
     super.import_(productLine);
+    getAnalysis().import_(this, productLine);
   }
 
   /**

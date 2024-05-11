@@ -106,6 +106,18 @@ public class VQLQueryAnalysis implements IGSNPLAnalysis {
   }
 
   @Override
+  public void import_(GSNPLAnalyticTemplate plTemplate, ProductLine productLine) throws Exception {
+    var types = GSNPackage.eINSTANCE;
+    var builder = new GSNPLBuilder(productLine);
+    var queryStrategy = (GSNPLArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
+      .filter(c -> c.getType() == types.getStrategy())
+      .findFirst().get();
+    var liftingGoal = builder.createGoal("G4", "The lifted query engine is correct", null);
+    plTemplate.addReference(types.getTemplate_Elements(), liftingGoal);
+    builder.addSupporter(queryStrategy, liftingGoal);
+  }
+
+  @Override
   public void instantiate(GSNPLAnalyticTemplate plTemplate) throws Exception {
     var types = GSNPackage.eINSTANCE;
     var productLine = (ProductLine) plTemplate.eContainer();
@@ -175,8 +187,5 @@ public class VQLQueryAnalysis implements IGSNPLAnalysis {
       i++;
     }
     resultCtx.setAttribute(types.getArgumentElement_Description(), resultCtxDesc);
-    var liftingGoal = builder.createGoal("G4", "The lifted query engine is correct", null);
-    plTemplate.addReference(types.getTemplate_Elements(), liftingGoal);
-    builder.addSupporter(queryStrategy, liftingGoal);
   }
 }

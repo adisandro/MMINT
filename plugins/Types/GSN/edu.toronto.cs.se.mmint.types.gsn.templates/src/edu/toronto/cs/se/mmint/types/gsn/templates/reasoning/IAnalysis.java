@@ -13,8 +13,10 @@
 package edu.toronto.cs.se.mmint.types.gsn.templates.reasoning;
 
 import edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate;
+import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 
 public interface IAnalysis {
+  default void import_(AnalyticTemplate template, SafetyCase safetyCase) throws Exception {}
   default void instantiate(AnalyticTemplate template) throws Exception {}
   default void validate(AnalyticTemplate template) throws Exception {}
   default boolean runsFirst() {

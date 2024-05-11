@@ -67,6 +67,18 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
   }
 
   @Override
+  public void import_(GSNPLAnalyticTemplate plTemplate, ProductLine productLine) throws Exception {
+    var types = GSNPackage.eINSTANCE;
+    var builder = new GSNPLBuilder(productLine);
+    var mcStrategy = (GSNPLArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
+      .filter(c -> c.getType() == types.getStrategy())
+      .findFirst().get();
+    var liftingGoal = builder.createGoal("G4", "The lifted model checker is correct", null);
+    plTemplate.addReference(types.getTemplate_Elements(), liftingGoal);
+    builder.addSupporter(mcStrategy, liftingGoal);
+  }
+
+  @Override
   public void instantiate(GSNPLAnalyticTemplate plTemplate) throws Exception {
     var types = GSNPackage.eINSTANCE;
     var productLine = (ProductLine) plTemplate.eContainer();
@@ -155,9 +167,6 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
     var satSolDesc = satSolution.getAttribute(types.getArgumentElement_Description()).get(0)
       .replace("{output}", SAT_FILE);
     satSolution.setAttribute(types.getArgumentElement_Description(), satSolDesc);
-    var liftingGoal = builder.createGoal("G4", "The lifted model checker is correct", null);
-    plTemplate.addReference(types.getTemplate_Elements(), liftingGoal);
-    builder.addSupporter(mcStrategy, liftingGoal);
     if (!safetyGoal.isAlwaysPresent()) {
       var pc = safetyGoal.getPresenceCondition();
       plTemplate.getStreamOfReference(types.getTemplate_Elements()).forEach(e -> {

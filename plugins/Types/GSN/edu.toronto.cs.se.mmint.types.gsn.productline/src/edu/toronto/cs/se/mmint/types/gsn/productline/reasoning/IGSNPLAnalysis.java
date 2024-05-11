@@ -12,10 +12,12 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.productline.reasoning;
 
+import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis;
 
 public interface IGSNPLAnalysis extends IAnalysis {
+  default void import_(GSNPLAnalyticTemplate plTemplate, ProductLine productLine) throws Exception {}
   default void instantiate(GSNPLAnalyticTemplate plTemplate) throws Exception {}
   default void validate(GSNPLAnalyticTemplate plTemplate) throws Exception {}
 }
