@@ -73,6 +73,9 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
     var mcStrategy = (GSNPLArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
       .filter(c -> c.getType() == types.getStrategy())
       .findFirst().get();
+    var desc = mcStrategy.getAttribute(types.getArgumentElement_Description()).get(0)
+      .replace("model checking", "lifted model checking");
+    mcStrategy.setAttribute(types.getArgumentElement_Description(), desc);
     var liftingGoal = builder.createGoal("G4", "The lifted model checker is correct", null);
     plTemplate.addReference(types.getTemplate_Elements(), liftingGoal);
     builder.addSupporter(mcStrategy, liftingGoal);

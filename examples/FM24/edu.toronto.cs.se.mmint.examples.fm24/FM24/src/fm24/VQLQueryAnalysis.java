@@ -112,6 +112,9 @@ public class VQLQueryAnalysis implements IGSNPLAnalysis {
     var queryStrategy = (GSNPLArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
       .filter(c -> c.getType() == types.getStrategy())
       .findFirst().get();
+    var desc = queryStrategy.getAttribute(types.getArgumentElement_Description()).get(0)
+      .replace("model query", "lifted model query");
+    queryStrategy.setAttribute(types.getArgumentElement_Description(), desc);
     var liftingGoal = builder.createGoal("G4", "The lifted query engine is correct", null);
     plTemplate.addReference(types.getTemplate_Elements(), liftingGoal);
     builder.addSupporter(queryStrategy, liftingGoal);
