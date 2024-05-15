@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.types.gsn.productline.util;
 
 import org.eclipse.jdt.annotation.Nullable;
 
+import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.impl.PLElementImpl;
@@ -25,38 +26,49 @@ public class GSNPLBuilder {
   protected ProductLine productLine;
   protected PLFactory plFactory;
   protected GSNPLFactory gsnPLfactory;
+  protected GSNPackage gsnTypes;
+  protected Class plSafetyCase;
+
+  public static Class getSafetyCase(ProductLine productLine) {
+    return productLine.getClasses().stream()
+    .filter(c -> c.getType() == GSNPackage.eINSTANCE.getSafetyCase())
+    .findFirst().get();
+  }
 
   public GSNPLBuilder(ProductLine productLine) {
     this.productLine = productLine;
     this.plFactory = PLFactory.eINSTANCE;
     this.gsnPLfactory = GSNPLFactory.eINSTANCE;
+    this.gsnTypes = GSNPackage.eINSTANCE;
+    this.plSafetyCase = getSafetyCase(this.productLine);
   }
 
   public void addSupporter(GSNPLArgumentElement plSupportable, GSNPLArgumentElement plSupporter) {
     var pc = PLElementImpl.merge(this.productLine, plSupportable.getPresenceCondition(),
                                  plSupporter.getPresenceCondition());
     var plSupportedBy = this.plFactory.createClass();
-    plSupportedBy.setType(GSNPackage.eINSTANCE.getSupportedBy());
+    plSupportedBy.setType(this.gsnTypes.getSupportedBy());
     plSupportedBy.setPresenceCondition(pc);
     this.productLine.getClasses().add(plSupportedBy);
-    plSupportedBy.addReference(GSNPackage.eINSTANCE.getSupportedBy_Source(), plSupportable, pc);
-    plSupportedBy.addReference(GSNPackage.eINSTANCE.getSupportedBy_Target(), plSupporter, pc);
+    plSupportedBy.addReference(this.gsnTypes.getSupportedBy_Source(), plSupportable, pc);
+    plSupportedBy.addReference(this.gsnTypes.getSupportedBy_Target(), plSupporter, pc);
   }
 
   public void addArgumentElement(GSNPLArgumentElement plArgument, String id, String description) {
-    plArgument.addAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id(), id);
-    plArgument.addAttribute(GSNPackage.eINSTANCE.getArgumentElement_Description(), description);
-    plArgument.addAttribute(GSNPackage.eINSTANCE.getArgumentElement_Valid(), Boolean.TRUE.toString());
+    plArgument.addAttribute(this.gsnTypes.getArgumentElement_Id(), id);
+    plArgument.addAttribute(this.gsnTypes.getArgumentElement_Description(), description);
+    plArgument.addAttribute(this.gsnTypes.getArgumentElement_Valid(), Boolean.TRUE.toString());
   }
 
   public void addGoal(GSNPLArgumentElement plGoal, String id, String description) {
     this.productLine.getClasses().add(plGoal);
+    this.plSafetyCase.addReference(this.gsnTypes.getSafetyCase_Goals(), plGoal);
     addArgumentElement(plGoal, id, description);
   }
 
   public GSNPLArgumentElement createGoal(String id, String description, @Nullable String presenceCondition) {
     var plGoal = this.gsnPLfactory.createGSNPLArgumentElement();
-    plGoal.setType(GSNPackage.eINSTANCE.getGoal());
+    plGoal.setType(this.gsnTypes.getGoal());
     plGoal.setPresenceCondition(presenceCondition);
     addGoal(plGoal, id, description);
 

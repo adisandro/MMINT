@@ -181,12 +181,11 @@ public class ToProduct extends RandomOperatorImpl {
     }
 
     EObject product = null;
-    var productFactory = pl.getMetamodel().getEFactoryInstance();
     for (var plClass : pl.getClasses()) {
       if (!canInstantiateFeatures(plClass)) {
         continue;
       }
-      var productModelObj = productFactory.create(plClass.getType());
+      var productModelObj = plClass.getType().getEPackage().getEFactoryInstance().create(plClass.getType());
       traceLinks.put(plClass, productModelObj);
       if (product == null) {
         product = productModelObj;
