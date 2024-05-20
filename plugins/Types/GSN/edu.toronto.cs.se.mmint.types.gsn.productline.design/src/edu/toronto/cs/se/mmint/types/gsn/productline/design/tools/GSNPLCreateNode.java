@@ -20,7 +20,6 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.design.tools.CreateNode;
-import edu.toronto.cs.se.mmint.types.gsn.productline.util.GSNPLBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 public class GSNPLCreateNode extends CreateNode {
@@ -38,7 +37,7 @@ public class GSNPLCreateNode extends CreateNode {
 
     @Override
     protected Class getContainer() {
-      return GSNPLBuilder.getSafetyCase(this.productLine);
+      return this.productLine.getRoot(GSNPackage.eINSTANCE.getSafetyCase());
     }
 
     @Override

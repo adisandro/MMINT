@@ -238,6 +238,16 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
+  public EOperation getProductLine__GetRoot__EClass() {
+    return this.productLineEClass.getEOperations().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getPLElement() {
     return this.plElementEClass;
   }
@@ -609,6 +619,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     createEReference(this.productLineEClass, PLPackage.PRODUCT_LINE__CLASSES);
     createEReference(this.productLineEClass, PLPackage.PRODUCT_LINE__METAMODEL);
     createEOperation(this.productLineEClass, PLPackage.PRODUCT_LINE___GET_REASONER);
+    createEOperation(this.productLineEClass, PLPackage.PRODUCT_LINE___GET_ROOT__ECLASS);
 
     this.plElementEClass = createEClass(PLPackage.PL_ELEMENT);
     createEAttribute(this.plElementEClass, PLPackage.PL_ELEMENT__PRESENCE_CONDITION);
@@ -705,6 +716,9 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     var op = initEOperation(getProductLine__GetReasoner(), this.getIPLFeaturesTrait(), "getReasoner", 1, 1,
                                    EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getMMINTException());
+
+    op = initEOperation(getProductLine__GetRoot__EClass(), this.getClass_(), "getRoot", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEClass(), "rootType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     initEClass(this.plElementEClass, PLElement.class, "PLElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPLElement_PresenceCondition(), this.ecorePackage.getEString(), "presenceCondition", null, 0, 1,

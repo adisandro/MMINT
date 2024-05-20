@@ -23,7 +23,6 @@ import edu.toronto.cs.se.mmint.productline.impl.ClassImpl;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.productline.util.GSNPLBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 /**
@@ -59,8 +58,9 @@ public class GSNPLTemplateImpl extends ClassImpl implements GSNPLTemplate {
   @Override
   public void import_(ProductLine productLine) throws Exception {
     var templatePL = this.getProductLine();
-    var plSC = GSNPLBuilder.getSafetyCase(productLine);
-    var templatePLSC = GSNPLBuilder.getSafetyCase(templatePL);
+    var rootType = GSNPackage.eINSTANCE.getSafetyCase();
+    var plSC = productLine.getRoot(rootType);
+    var templatePLSC = templatePL.getRoot(rootType);
     plSC.getReferences().addAll(templatePLSC.getReferences());
     templatePL.getClasses().remove(templatePLSC);
     productLine.getClasses().addAll(templatePL.getClasses());

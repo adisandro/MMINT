@@ -18,6 +18,7 @@ import java.util.Map;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -25,10 +26,10 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.business.api.session.SessionManager;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
+import edu.toronto.cs.se.mmint.productline.impl.PLElementImpl;
 
 public abstract class CreateEdge extends AbstractExternalJavaAction {
 
@@ -51,10 +52,12 @@ public abstract class CreateEdge extends AbstractExternalJavaAction {
   }
 
   protected abstract class CreateEdgeCommand extends RecordingCommand {
+    public record RefSpec(Class owner, EReference type, Class target) {};
     protected ProductLine productLine;
     protected Class srcClass;
     protected Class tgtClass;
     protected String classType;
+    protected EPackage types;
 
     public CreateEdgeCommand(TransactionalEditingDomain domain, Class srcClass, Class tgtClass, String classType) {
       super(domain);
@@ -64,35 +67,40 @@ public abstract class CreateEdge extends AbstractExternalJavaAction {
       this.classType = classType;
     }
 
-    protected abstract @Nullable EReference getSrcReferenceType();
+    protected abstract @Nullable RefSpec getContainerSpec(Class edgeClass);
 
-    protected abstract @Nullable EReference getTgtReferenceType();
+    protected abstract @Nullable RefSpec getSrcSpec(Class edgeClass);
+
+    protected abstract @Nullable RefSpec getTgtSpec(Class edgeClass);
+
+    private void createReference(RefSpec refSpec, String pc) {
+      var reference = PLFactory.eINSTANCE.createReference();
+      reference.setType(refSpec.type());
+      reference.setTarget(refSpec.target());
+      reference.setPresenceCondition(pc);
+      refSpec.owner().getReferences().add(reference);
+    }
 
     @Override
     protected void doExecute() {
-      String pc = null;
-      try {
-        var reasoner = this.productLine.getReasoner();
-        pc = this.productLine.getReasoner().simplify(
-          reasoner.and(this.srcClass.getPresenceCondition(), this.tgtClass.getPresenceCondition()));
-      }
-      catch (MMINTException e) {
-        // pc == null
-      }
+      var pc = PLElementImpl.merge(this.productLine, this.srcClass.getPresenceCondition(),
+                                   this.tgtClass.getPresenceCondition());
       var edgeClass = PLFactory.eINSTANCE.createClass();
       edgeClass.setType((EClass) this.productLine.getMetamodel().getEClassifier(this.classType));
       edgeClass.setPresenceCondition(pc);
       this.productLine.getClasses().add(edgeClass);
-      var srcReference = PLFactory.eINSTANCE.createReference();
-      srcReference.setType(getSrcReferenceType());
-      srcReference.setTarget(edgeClass);
-      srcReference.setPresenceCondition(pc);
-      this.srcClass.getReferences().add(srcReference);
-      var tgtReference = PLFactory.eINSTANCE.createReference();
-      tgtReference.setType(getTgtReferenceType());
-      tgtReference.setTarget(this.tgtClass);
-      tgtReference.setPresenceCondition(pc);
-      edgeClass.getReferences().add(tgtReference);
+      var containerSpec = getContainerSpec(edgeClass);
+      if (containerSpec != null) {
+        createReference(containerSpec, pc);
+      }
+      var srcSpec = getSrcSpec(edgeClass);
+      if (srcSpec != null) {
+        createReference(srcSpec, pc);
+      }
+      var tgtSpec = getTgtSpec(edgeClass);
+      if (tgtSpec != null) {
+        createReference(tgtSpec, pc);
+      }
     }
   }
 }

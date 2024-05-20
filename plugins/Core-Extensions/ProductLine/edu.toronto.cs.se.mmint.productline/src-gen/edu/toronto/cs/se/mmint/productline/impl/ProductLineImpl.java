@@ -372,6 +372,8 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
       catch (Throwable throwable) {
         throw new InvocationTargetException(throwable);
       }
+    case PLPackage.PRODUCT_LINE___GET_ROOT__ECLASS:
+      return getRoot((EClass) arguments.get(0));
     }
     return super.eInvoke(operationID, arguments);
   }
@@ -394,6 +396,14 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
     result.append(this.reasonerName);
     result.append(')');
     return result.toString();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public edu.toronto.cs.se.mmint.productline.Class getRoot(EClass rootType) {
+    return getClasses().stream().filter(c -> c.getType() == rootType).findFirst().get();
   }
 
 } //ProductLineImpl

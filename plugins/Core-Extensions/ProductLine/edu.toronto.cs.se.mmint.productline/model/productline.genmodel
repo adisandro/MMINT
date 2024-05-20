@@ -23,6 +23,9 @@
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//ProductLine/classes"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//ProductLine/metamodel"/>
       <genOperations ecoreOperation="productline.ecore#//ProductLine/getReasoner"/>
+      <genOperations ecoreOperation="productline.ecore#//ProductLine/getRoot">
+        <genParameters ecoreParameter="productline.ecore#//ProductLine/getRoot/rootType"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="productline.ecore#//PLElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute productline.ecore#//PLElement/presenceCondition"/>

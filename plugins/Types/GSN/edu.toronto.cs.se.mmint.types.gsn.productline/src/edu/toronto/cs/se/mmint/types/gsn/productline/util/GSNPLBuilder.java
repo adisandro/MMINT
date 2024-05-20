@@ -29,18 +29,12 @@ public class GSNPLBuilder {
   protected GSNPackage gsnTypes;
   protected Class plSafetyCase;
 
-  public static Class getSafetyCase(ProductLine productLine) {
-    return productLine.getClasses().stream()
-    .filter(c -> c.getType() == GSNPackage.eINSTANCE.getSafetyCase())
-    .findFirst().get();
-  }
-
   public GSNPLBuilder(ProductLine productLine) {
     this.productLine = productLine;
     this.plFactory = PLFactory.eINSTANCE;
     this.gsnPLfactory = GSNPLFactory.eINSTANCE;
     this.gsnTypes = GSNPackage.eINSTANCE;
-    this.plSafetyCase = getSafetyCase(this.productLine);
+    this.plSafetyCase = this.productLine.getRoot(this.gsnTypes.getSafetyCase());
   }
 
   public void addSupporter(GSNPLArgumentElement plSupportable, GSNPLArgumentElement plSupporter) {

@@ -13,7 +13,6 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.design.tools;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -35,19 +34,27 @@ public class GSNPLCreateEdge extends CreateEdge {
     }
 
     @Override
-    protected @Nullable EReference getSrcReferenceType() {
+    protected @Nullable RefSpec getContainerSpec(Class edgeClass) {
       return switch (this.classType) {
-        case "SupportedBy" -> GSNPackage.eINSTANCE.getSupportable_SupportedBy();
-        case "InContextOf" -> GSNPackage.eINSTANCE.getContextualizable_InContextOf();
         default -> null;
       };
     }
 
     @Override
-    protected @Nullable EReference getTgtReferenceType() {
+    protected @Nullable RefSpec getSrcSpec(Class edgeClass) {
       return switch (this.classType) {
-        case "SupportedBy" -> GSNPackage.eINSTANCE.getSupportedBy_Target();
-        case "InContextOf" -> GSNPackage.eINSTANCE.getInContextOf_Context();
+        case "SupportedBy" -> new RefSpec(this.srcClass, GSNPackage.eINSTANCE.getSupportable_SupportedBy(), edgeClass);
+        case "InContextOf" -> new RefSpec(this.srcClass, GSNPackage.eINSTANCE.getContextualizable_InContextOf(),
+                                          edgeClass);
+        default -> null;
+      };
+    }
+
+    @Override
+    protected @Nullable RefSpec getTgtSpec(Class edgeClass) {
+      return switch (this.classType) {
+        case "SupportedBy" -> new RefSpec(edgeClass, GSNPackage.eINSTANCE.getSupportedBy_Target(), this.tgtClass);
+        case "InContextOf" -> new RefSpec(edgeClass, GSNPackage.eINSTANCE.getInContextOf_Context(), this.tgtClass);
         default -> null;
       };
     }

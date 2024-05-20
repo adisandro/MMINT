@@ -13,7 +13,6 @@
 package edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -29,23 +28,34 @@ public class StateMachinePLCreateEdge extends CreateEdge {
   }
 
   protected class PLCreateEdgeCommand extends CreateEdgeCommand {
+    protected StateMachinePackage types;
 
     public PLCreateEdgeCommand(TransactionalEditingDomain domain, Class srcClass, Class tgtClass, String classType) {
       super(domain, srcClass, tgtClass, classType);
+      this.types = StateMachinePackage.eINSTANCE;
     }
 
     @Override
-    protected @Nullable EReference getSrcReferenceType() {
+    protected @Nullable RefSpec getContainerSpec(Class edgeClass) {
       return switch (this.classType) {
-        case "Transition" -> StateMachinePackage.eINSTANCE.getStateMachine_Transitions();
+        case "Transition" -> new RefSpec(this.productLine.getRoot(this.types.getStateMachine()),
+                                         this.types.getStateMachine_Transitions(), edgeClass);
         default -> null;
       };
     }
 
     @Override
-    protected @Nullable EReference getTgtReferenceType() {
+    protected @Nullable RefSpec getSrcSpec(Class edgeClass) {
       return switch (this.classType) {
-        case "Transition" -> StateMachinePackage.eINSTANCE.getTransition_Target();
+        case "Transition" -> new RefSpec(edgeClass, this.types.getTransition_Source(), this.srcClass);
+        default -> null;
+      };
+    }
+
+    @Override
+    protected @Nullable RefSpec getTgtSpec(Class edgeClass) {
+      return switch (this.classType) {
+        case "Transition" -> new RefSpec(edgeClass, this.types.getTransition_Target(), this.tgtClass);
         default -> null;
       };
     }

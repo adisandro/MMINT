@@ -132,13 +132,22 @@ public interface PLPackage extends EPackage {
   int PRODUCT_LINE___GET_REASONER = 0;
 
   /**
+   * The operation id for the '<em>Get Root</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRODUCT_LINE___GET_ROOT__ECLASS = 1;
+
+  /**
    * The number of operations of the '<em>Product Line</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PRODUCT_LINE_OPERATION_COUNT = 1;
+  int PRODUCT_LINE_OPERATION_COUNT = 2;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.productline.impl.PLElementImpl <em>Element</em>}' class.
@@ -698,6 +707,16 @@ public interface PLPackage extends EPackage {
   EOperation getProductLine__GetReasoner();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.ProductLine#getRoot(org.eclipse.emf.ecore.EClass) <em>Get Root</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Root</em>' operation.
+   * @see edu.toronto.cs.se.mmint.productline.ProductLine#getRoot(org.eclipse.emf.ecore.EClass)
+   * @generated
+   */
+  EOperation getProductLine__GetRoot__EClass();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.productline.PLElement <em>Element</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1120,6 +1139,14 @@ public interface PLPackage extends EPackage {
      * @generated
      */
     EOperation PRODUCT_LINE___GET_REASONER = PLPackage.eINSTANCE.getProductLine__GetReasoner();
+
+    /**
+     * The meta object literal for the '<em><b>Get Root</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation PRODUCT_LINE___GET_ROOT__ECLASS = PLPackage.eINSTANCE.getProductLine__GetRoot__EClass();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.productline.impl.PLElementImpl <em>Element</em>}' class.
