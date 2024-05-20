@@ -359,13 +359,31 @@ public interface PLPackage extends EPackage {
   int CLASS___GET_ATTRIBUTE__EATTRIBUTE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 6;
 
   /**
+   * The operation id for the '<em>Get Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS___GET_MANY_ATTRIBUTE__EATTRIBUTE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 7;
+
+  /**
    * The operation id for the '<em>Add Attribute</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.PL_ELEMENT_OPERATION_COUNT + 7;
+  int CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.PL_ELEMENT_OPERATION_COUNT + 8;
+
+  /**
+   * The operation id for the '<em>Add Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST = PLPackage.PL_ELEMENT_OPERATION_COUNT + 9;
 
   /**
    * The operation id for the '<em>Set Attribute</em>' operation.
@@ -374,7 +392,16 @@ public interface PLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.PL_ELEMENT_OPERATION_COUNT + 8;
+  int CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.PL_ELEMENT_OPERATION_COUNT + 10;
+
+  /**
+   * The operation id for the '<em>Set Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS___SET_MANY_ATTRIBUTE__EATTRIBUTE_ELIST = PLPackage.PL_ELEMENT_OPERATION_COUNT + 11;
 
   /**
    * The operation id for the '<em>Instance Of</em>' operation.
@@ -383,7 +410,7 @@ public interface PLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS___INSTANCE_OF__ECLASS = PLPackage.PL_ELEMENT_OPERATION_COUNT + 9;
+  int CLASS___INSTANCE_OF__ECLASS = PLPackage.PL_ELEMENT_OPERATION_COUNT + 12;
 
   /**
    * The operation id for the '<em>Get EContainer</em>' operation.
@@ -392,7 +419,7 @@ public interface PLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS___GET_ECONTAINER = PLPackage.PL_ELEMENT_OPERATION_COUNT + 10;
+  int CLASS___GET_ECONTAINER = PLPackage.PL_ELEMENT_OPERATION_COUNT + 13;
 
   /**
    * The operation id for the '<em>Delete</em>' operation.
@@ -401,7 +428,7 @@ public interface PLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS___DELETE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 11;
+  int CLASS___DELETE = PLPackage.PL_ELEMENT_OPERATION_COUNT + 14;
 
   /**
    * The number of operations of the '<em>Class</em>' class.
@@ -410,7 +437,7 @@ public interface PLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CLASS_OPERATION_COUNT = PLPackage.PL_ELEMENT_OPERATION_COUNT + 12;
+  int CLASS_OPERATION_COUNT = PLPackage.PL_ELEMENT_OPERATION_COUNT + 15;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.productline.impl.ReferenceImpl <em>Reference</em>}' class.
@@ -846,6 +873,16 @@ public interface PLPackage extends EPackage {
   EOperation getClass__GetAttribute__EAttribute();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#getManyAttribute(org.eclipse.emf.ecore.EAttribute) <em>Get Many Attribute</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Many Attribute</em>' operation.
+   * @see edu.toronto.cs.se.mmint.productline.Class#getManyAttribute(org.eclipse.emf.ecore.EAttribute)
+   * @generated
+   */
+  EOperation getClass__GetManyAttribute__EAttribute();
+
+  /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#addAttribute(org.eclipse.emf.ecore.EAttribute, java.lang.String) <em>Add Attribute</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -856,6 +893,16 @@ public interface PLPackage extends EPackage {
   EOperation getClass__AddAttribute__EAttribute_String();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#addManyAttribute(org.eclipse.emf.ecore.EAttribute, org.eclipse.emf.common.util.EList) <em>Add Many Attribute</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Add Many Attribute</em>' operation.
+   * @see edu.toronto.cs.se.mmint.productline.Class#addManyAttribute(org.eclipse.emf.ecore.EAttribute, org.eclipse.emf.common.util.EList)
+   * @generated
+   */
+  EOperation getClass__AddManyAttribute__EAttribute_EList();
+
+  /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#setAttribute(org.eclipse.emf.ecore.EAttribute, java.lang.String) <em>Set Attribute</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -864,6 +911,16 @@ public interface PLPackage extends EPackage {
    * @generated
    */
   EOperation getClass__SetAttribute__EAttribute_String();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#setManyAttribute(org.eclipse.emf.ecore.EAttribute, org.eclipse.emf.common.util.EList) <em>Set Many Attribute</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Set Many Attribute</em>' operation.
+   * @see edu.toronto.cs.se.mmint.productline.Class#setManyAttribute(org.eclipse.emf.ecore.EAttribute, org.eclipse.emf.common.util.EList)
+   * @generated
+   */
+  EOperation getClass__SetManyAttribute__EAttribute_EList();
 
   /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.Class#instanceOf(org.eclipse.emf.ecore.EClass) <em>Instance Of</em>}' operation.
@@ -1205,6 +1262,14 @@ public interface PLPackage extends EPackage {
     EOperation CLASS___GET_ATTRIBUTE__EATTRIBUTE = PLPackage.eINSTANCE.getClass__GetAttribute__EAttribute();
 
     /**
+     * The meta object literal for the '<em><b>Get Many Attribute</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation CLASS___GET_MANY_ATTRIBUTE__EATTRIBUTE = PLPackage.eINSTANCE.getClass__GetManyAttribute__EAttribute();
+
+    /**
      * The meta object literal for the '<em><b>Add Attribute</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1213,12 +1278,28 @@ public interface PLPackage extends EPackage {
     EOperation CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.eINSTANCE.getClass__AddAttribute__EAttribute_String();
 
     /**
+     * The meta object literal for the '<em><b>Add Many Attribute</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation CLASS___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST = PLPackage.eINSTANCE.getClass__AddManyAttribute__EAttribute_EList();
+
+    /**
      * The meta object literal for the '<em><b>Set Attribute</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EOperation CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.eINSTANCE.getClass__SetAttribute__EAttribute_String();
+
+    /**
+     * The meta object literal for the '<em><b>Set Many Attribute</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation CLASS___SET_MANY_ATTRIBUTE__EATTRIBUTE_ELIST = PLPackage.eINSTANCE.getClass__SetManyAttribute__EAttribute_EList();
 
     /**
      * The meta object literal for the '<em><b>Instance Of</b></em>' operation.

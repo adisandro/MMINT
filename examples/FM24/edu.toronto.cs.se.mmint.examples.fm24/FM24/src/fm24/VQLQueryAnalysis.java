@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.ECollections;
+
 import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusEvaluateQuery;
 import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusEvaluateQuery.ResultPrinter;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
@@ -169,10 +171,9 @@ public class VQLQueryAnalysis implements IGSNPLAnalysis {
                             .replace("{query}", querySpec.query().toString())
                             .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath));
     filesCtx.setAttribute(types.getArgumentElement_Description(), filesDesc);
-    filesCtx.setAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
-                          List.of(FileUtils.prependWorkspacePath(querySpec.filePath()),
-                                  FileUtils.prependWorkspacePath(modelPath))
-                              .toString());
+    filesCtx.setManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
+                              ECollections.asEList(List.of(FileUtils.prependWorkspacePath(querySpec.filePath()),
+                                                           FileUtils.prependWorkspacePath(modelPath))));
     var resultCtxDesc = (queryResults.isEmpty()) ? "No results" : "Query results:";
     var i = 0;
     for (var queryResult : queryResults) {

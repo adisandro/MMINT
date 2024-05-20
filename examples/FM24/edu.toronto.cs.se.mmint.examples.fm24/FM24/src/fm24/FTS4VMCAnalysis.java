@@ -17,6 +17,8 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.ECollections;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
@@ -109,8 +111,8 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
         .getReference(types.getSupportedBy_Source()).get(0) // query strategy
         .getReference(types.getContextualizable_InContextOf()).get(0)
         .getReference(types.getInContextOf_Context()).get(0);
-      var pathsList = otherFilesCtx.getAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
-      modelPath = pathsList.substring(1, pathsList.length()-1).split(", ")[1];
+      var paths = otherFilesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
+      modelPath = paths.get(1);
     }
     else {
       modelPath = FileUtils.prependWorkspacePath(
@@ -144,8 +146,8 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
       .replace("{property}", FileUtils.getLastSegmentFromPath(propertyPath))
       .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath));
     filesCtx.setAttribute(types.getArgumentElement_Description(), filesDesc);
-    filesCtx.setAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
-                          List.of(propertyPath, modelPath).toString());
+    filesCtx.setManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
+                              ECollections.asEList(List.of(propertyPath, modelPath)));
     final var RUN_SH = """
       python3 -m venv venv
       source venv/bin/activate

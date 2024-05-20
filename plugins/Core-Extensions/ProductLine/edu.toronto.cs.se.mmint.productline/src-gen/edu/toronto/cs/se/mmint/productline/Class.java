@@ -158,6 +158,14 @@ public interface Class extends PLElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @model attributeTypeRequired="true"
+   * @generated
+   */
+  EList<EList<String>> getManyAttribute(EAttribute attributeType);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @model required="true" attributeTypeRequired="true"
    * @generated
    */
@@ -166,10 +174,26 @@ public interface Class extends PLElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @model required="true" attributeTypeRequired="true" valuesMany="true"
+   * @generated
+   */
+  Attribute addManyAttribute(EAttribute attributeType, EList<String> values);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @model attributeTypeRequired="true" valueRequired="true"
    * @generated
    */
   void setAttribute(EAttribute attributeType, String value);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model attributeTypeRequired="true" valuesMany="true"
+   * @generated
+   */
+  void setManyAttribute(EAttribute attributeType, EList<String> values);
 
   /**
    * <!-- begin-user-doc -->

@@ -408,7 +408,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__AddAttribute__EAttribute_String() {
+  public EOperation getClass__GetManyAttribute__EAttribute() {
     return this.classEClass.getEOperations().get(7);
   }
 
@@ -418,7 +418,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__SetAttribute__EAttribute_String() {
+  public EOperation getClass__AddAttribute__EAttribute_String() {
     return this.classEClass.getEOperations().get(8);
   }
 
@@ -428,7 +428,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__InstanceOf__EClass() {
+  public EOperation getClass__AddManyAttribute__EAttribute_EList() {
     return this.classEClass.getEOperations().get(9);
   }
 
@@ -438,7 +438,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__GetEContainer() {
+  public EOperation getClass__SetAttribute__EAttribute_String() {
     return this.classEClass.getEOperations().get(10);
   }
 
@@ -448,8 +448,38 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getClass__Delete() {
+  public EOperation getClass__SetManyAttribute__EAttribute_EList() {
     return this.classEClass.getEOperations().get(11);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getClass__InstanceOf__EClass() {
+    return this.classEClass.getEOperations().get(12);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getClass__GetEContainer() {
+    return this.classEClass.getEOperations().get(13);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getClass__Delete() {
+    return this.classEClass.getEOperations().get(14);
   }
 
   /**
@@ -598,8 +628,11 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     createEOperation(this.classEClass, PLPackage.CLASS___SET_REFERENCE__EREFERENCE_CLASS);
     createEOperation(this.classEClass, PLPackage.CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE);
     createEOperation(this.classEClass, PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE);
+    createEOperation(this.classEClass, PLPackage.CLASS___GET_MANY_ATTRIBUTE__EATTRIBUTE);
     createEOperation(this.classEClass, PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING);
+    createEOperation(this.classEClass, PLPackage.CLASS___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST);
     createEOperation(this.classEClass, PLPackage.CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING);
+    createEOperation(this.classEClass, PLPackage.CLASS___SET_MANY_ATTRIBUTE__EATTRIBUTE_ELIST);
     createEOperation(this.classEClass, PLPackage.CLASS___INSTANCE_OF__ECLASS);
     createEOperation(this.classEClass, PLPackage.CLASS___GET_ECONTAINER);
     createEOperation(this.classEClass, PLPackage.CLASS___DELETE);
@@ -743,14 +776,32 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
                         EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEAttribute(), "attributeType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
+    op = initEOperation(getClass__GetManyAttribute__EAttribute(), null, "getManyAttribute", 0, -1, EPackageImpl.IS_UNIQUE,
+                        EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEAttribute(), "attributeType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    g1 = createEGenericType(this.ecorePackage.getEEList());
+    g2 = createEGenericType(this.ecorePackage.getEString());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
     op = initEOperation(getClass__AddAttribute__EAttribute_String(), this.getAttribute(), "addAttribute", 1, 1,
                         EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEAttribute(), "attributeType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEString(), "value", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
+    op = initEOperation(getClass__AddManyAttribute__EAttribute_EList(), this.getAttribute(), "addManyAttribute", 1, 1,
+                        EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEAttribute(), "attributeType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEString(), "values", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
     op = initEOperation(getClass__SetAttribute__EAttribute_String(), null, "setAttribute", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEAttribute(), "attributeType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEString(), "value", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
+    op = initEOperation(getClass__SetManyAttribute__EAttribute_EList(), null, "setManyAttribute", 0, 1, EPackageImpl.IS_UNIQUE,
+                        EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEAttribute(), "attributeType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEString(), "values", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     op = initEOperation(getClass__InstanceOf__EClass(), this.ecorePackage.getEBoolean(), "instanceOf", 1, 1, EPackageImpl.IS_UNIQUE,
                         EPackageImpl.IS_ORDERED);

@@ -330,6 +330,7 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    * @generated
    */
   @Override
+  @SuppressWarnings("unchecked")
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
     case PLPackage.CLASS___GET_STREAM_OF_REFERENCE__EREFERENCE:
@@ -348,10 +349,17 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
       return getStreamOfAttribute((EAttribute) arguments.get(0));
     case PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE:
       return getAttribute((EAttribute) arguments.get(0));
+    case PLPackage.CLASS___GET_MANY_ATTRIBUTE__EATTRIBUTE:
+      return getManyAttribute((EAttribute) arguments.get(0));
     case PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING:
       return addAttribute((EAttribute) arguments.get(0), (String) arguments.get(1));
+    case PLPackage.CLASS___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST:
+      return addManyAttribute((EAttribute) arguments.get(0), (EList<String>) arguments.get(1));
     case PLPackage.CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING:
       setAttribute((EAttribute) arguments.get(0), (String) arguments.get(1));
+      return null;
+    case PLPackage.CLASS___SET_MANY_ATTRIBUTE__EATTRIBUTE_ELIST:
+      setManyAttribute((EAttribute) arguments.get(0), (EList<String>) arguments.get(1));
       return null;
     case PLPackage.CLASS___INSTANCE_OF__ECLASS:
       return instanceOf((EClass) arguments.get(0));
@@ -403,7 +411,7 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    */
   @Override
   public EList<edu.toronto.cs.se.mmint.productline.Class> getReference(EReference referenceType) {
-    return ECollections.asEList(getStreamOfReference(referenceType).collect(Collectors.toList()));
+    return ECollections.asEList(getStreamOfReference(referenceType).toList());
   }
 
   /**
@@ -465,7 +473,20 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    */
   @Override
   public EList<String> getAttribute(EAttribute attributeType) {
-    return ECollections.asEList(getStreamOfAttribute(attributeType).collect(Collectors.toList()));
+    return ECollections.asEList(getStreamOfAttribute(attributeType).toList());
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public EList<EList<String>> getManyAttribute(EAttribute attributeType) {
+    if (!attributeType.isMany()) {
+      return ECollections.emptyEList();
+    }
+    return ECollections.asEList(getStreamOfAttribute(attributeType).map(v -> ECollections.asEList(v.substring(1, v
+                                                                                                                  .length()
+      - 1).split(", "))).toList());
   }
 
   /**
@@ -486,6 +507,17 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    * @generated NOT
    */
   @Override
+  public Attribute addManyAttribute(EAttribute attributeType, EList<String> values) {
+    if (!attributeType.isMany()) {
+      return null;
+    }
+    return addAttribute(attributeType, values.toString());
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
   public void setAttribute(EAttribute attributeType, String value) {
     var c = new AtomicInteger(0);
     getStreamOfAttribute_(attributeType).forEach(a -> {
@@ -495,6 +527,17 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
     if (c.get() == 0) { // add new attribute
       addAttribute(attributeType, value);
     }
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void setManyAttribute(EAttribute attributeType, EList<String> values) {
+    if (!attributeType.isMany()) {
+      return;
+    }
+    setAttribute(attributeType, values.toString());
   }
 
   /**

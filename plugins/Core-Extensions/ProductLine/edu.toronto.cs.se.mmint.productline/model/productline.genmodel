@@ -62,13 +62,24 @@
       <genOperations ecoreOperation="productline.ecore#//Class/getAttribute">
         <genParameters ecoreParameter="productline.ecore#//Class/getAttribute/attributeType"/>
       </genOperations>
+      <genOperations ecoreOperation="productline.ecore#//Class/getManyAttribute">
+        <genParameters ecoreParameter="productline.ecore#//Class/getManyAttribute/attributeType"/>
+      </genOperations>
       <genOperations ecoreOperation="productline.ecore#//Class/addAttribute">
         <genParameters ecoreParameter="productline.ecore#//Class/addAttribute/attributeType"/>
         <genParameters ecoreParameter="productline.ecore#//Class/addAttribute/value"/>
       </genOperations>
+      <genOperations ecoreOperation="productline.ecore#//Class/addManyAttribute">
+        <genParameters ecoreParameter="productline.ecore#//Class/addManyAttribute/attributeType"/>
+        <genParameters ecoreParameter="productline.ecore#//Class/addManyAttribute/values"/>
+      </genOperations>
       <genOperations ecoreOperation="productline.ecore#//Class/setAttribute">
         <genParameters ecoreParameter="productline.ecore#//Class/setAttribute/attributeType"/>
         <genParameters ecoreParameter="productline.ecore#//Class/setAttribute/value"/>
+      </genOperations>
+      <genOperations ecoreOperation="productline.ecore#//Class/setManyAttribute">
+        <genParameters ecoreParameter="productline.ecore#//Class/setManyAttribute/attributeType"/>
+        <genParameters ecoreParameter="productline.ecore#//Class/setManyAttribute/values"/>
       </genOperations>
       <genOperations ecoreOperation="productline.ecore#//Class/instanceOf">
         <genParameters ecoreParameter="productline.ecore#//Class/instanceOf/type"/>
