@@ -33,7 +33,7 @@ import edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Analysis Template</b></em>'.
+ * An implementation of the model object '<em><b>Analytic Template</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:

@@ -16,16 +16,19 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Analysis Template</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Analytic Template</b></em>'. A template can be
+ * extended in two ways: a) with a custom class that extends the base {@link edu.toronto.cs.se.modelepedia.gsn.Template}
+ * class; b) with an analysis class attached to an instance of this AnalyticTemplate class. The first option requires a
+ * plugin with an emf model to be created and deployed but allows greater customization, while the second option can be
+ * created directly at runtime at the expense of less customization. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getAnalysisPath <em>Analysis Path</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getLoaderBundleName <em>Loader Bundle Name</em>}</li>
+ * <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getAnalysisPath <em>Analysis Path</em>}</li>
+ * <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getLoaderBundleName <em>Loader Bundle
+ * Name</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getAnalyticTemplate()
