@@ -958,4 +958,23 @@ Contributors:
       </javaActions>
    </extension>
 
+  <extension point="edu.toronto.cs.se.mmint.models">
+    <modelType>
+      <type name="SiriusSpec" uri="http://www.eclipse.org/sirius/description/1.1.0"/>
+    </modelType>
+  </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            modelTypeUri="http://www.eclipse.org/sirius/description/1.1.0"
+            id="org.eclipse.sirius.editor.editorPlugin.SiriusEditorID"
+            wizardId="org.eclipse.sirius.presentation.DescriptionModelWizardID">
+         <type
+               name="Sirius Specification Editor"
+               uri="org.eclipse.sirius.diagram.description">
+         </type>
+      </editorType>
+   </extension>
+
 </plugin>
