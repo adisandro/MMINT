@@ -18,10 +18,10 @@ jobs:
           java-version: '22'
           distribution: 'temurin'
 
-      - name: Install Maven 3.9.6
+      - name: Install Maven 3.9.7
         uses: stCarolas/setup-maven@v5
         with:
-          maven-version: 3.9.6
+          maven-version: 3.9.7
 
       - name: Load Maven cache
         uses: actions/cache@v4
