@@ -47,7 +47,7 @@
             modelTypeUri="model://edu.toronto.cs.se.mmint.productline"
             id="edu.toronto.cs.se.mmint.productline.design"
             isDiagram="true"
-            wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+            wizardId="edu.toronto.cs.se.mmint.productline.presentation.PLModelWizardID">
          <type
                name="ProductLine Sirius Diagram"
                uri="edu.toronto.cs.se.mmint.productline.design">
