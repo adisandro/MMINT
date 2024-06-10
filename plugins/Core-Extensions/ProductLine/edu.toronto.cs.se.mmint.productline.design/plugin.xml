@@ -55,4 +55,37 @@
       </editorType>
    </extension>
 
+   <extension
+         point="edu.toronto.cs.se.mmint.operators">
+      <operatorType>
+         <type
+               name="ToProductLine"
+               uri="edu.toronto.cs.se.mmint.productline.design.ToProductLine"
+               class="edu.toronto.cs.se.mmint.productline.design.ToProductLine">
+         </type>
+         <inputs>
+            <parameter>
+               <type
+                     name="siriusSpec"
+                     uri="edu.toronto.cs.se.mmint.productline.design.ToProductLine/siriusSpec">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://www.eclipse.org/sirius/description/1.1.0">
+               </typeEndpoint>
+            </parameter>
+         </inputs>
+         <outputs>
+            <parameter>
+               <type
+                     name="plSiriusSpec"
+                     uri="edu.toronto.cs.se.mmint.productline.design.ToProductLine/plSiriusSpec">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://www.eclipse.org/sirius/description/1.1.0">
+               </typeEndpoint>
+            </parameter>
+         </outputs>
+      </operatorType>
+   </extension>
+
 </plugin>
