@@ -221,12 +221,12 @@
     <module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.operator</module>
     <module>../../plugins/Types/StateMachine/edu.toronto.cs.se.mmint.types.statemachine.productline.design</module>
     <module>../../plugins/Types/UML/edu.toronto.cs.se.mmint.types.uml.operators</module>
-    <module>../../examples/FM24/edu.toronto.cs.se.mmint.examples.fm24</module>
     <module>../../examples/FORMALISE24/edu.toronto.cs.se.mmint.examples.formalise24</module>
     <module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo</module>
     <module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram</module>
     <module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.edit</module>
     <module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.editor</module>
+    <module>../../examples/IFM24/edu.toronto.cs.se.mmint.examples.ifm24</module>
     <module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15</module>
     <module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java</module>
     <module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java.edit</module>
@@ -273,7 +273,7 @@
     <module>../../features/edu.toronto.cs.se.mmint.example.jase20.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.example.mase19.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.example.models20.feature</module>
-    <module>../../features/edu.toronto.cs.se.mmint.examples.fm24.feature</module>
+    <module>../../features/edu.toronto.cs.se.mmint.examples.ifm24.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.formalise24.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.models21.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.safecomp24.feature</module>
