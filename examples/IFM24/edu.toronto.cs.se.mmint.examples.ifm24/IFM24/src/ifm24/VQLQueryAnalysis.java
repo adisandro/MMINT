@@ -66,7 +66,7 @@ public class VQLQueryAnalysis implements IGSNPLAnalysis {
       .findFirst().get();
     var safetyGoal = queryStrategy.getSupports().get(0).getSource();
     var filesCtx = (FilesContext) queryStrategy.getInContextOf().get(0).getContext();
-    var scenarioGoal = (Goal) queryStrategy.getSupportedBy().get(2).getTarget();
+    var scenarioGoal = (Goal) queryStrategy.getSupportedBy().get(3).getTarget();
     var resultStrategy = (Strategy) scenarioGoal.getSupportedBy().get(0).getTarget();
     var resultCtx = scenarioGoal.getInContextOf().get(0).getContext();
     var resultGoal = resultStrategy.getSupportedBy().get(0).getTarget();
@@ -117,7 +117,7 @@ public class VQLQueryAnalysis implements IGSNPLAnalysis {
     var desc = queryStrategy.getAttribute(types.getArgumentElement_Description()).get(0)
       .replace("model query", "lifted model query");
     queryStrategy.setAttribute(types.getArgumentElement_Description(), desc);
-    var liftingGoal = builder.createGoal("G4", "The lifted query engine is correct", null);
+    var liftingGoal = builder.createGoal("G5", "The lifted query engine is correct", null);
     plTemplate.addReference(types.getTemplate_Elements(), liftingGoal);
     builder.addSupporter(queryStrategy, liftingGoal);
   }
@@ -138,7 +138,7 @@ public class VQLQueryAnalysis implements IGSNPLAnalysis {
       .getReference(types.getContextualizable_InContextOf()).get(0)
       .getReference(types.getInContextOf_Context()).get(0);
     var scenarioGoal = queryStrategy
-      .getReference(types.getSupportable_SupportedBy()).get(2)
+      .getReference(types.getSupportable_SupportedBy()).get(3)
       .getReference(types.getSupportedBy_Target()).get(0);
     var resultStrategy = (GSNPLArgumentElement) scenarioGoal
       .getReference(types.getSupportable_SupportedBy()).get(0)

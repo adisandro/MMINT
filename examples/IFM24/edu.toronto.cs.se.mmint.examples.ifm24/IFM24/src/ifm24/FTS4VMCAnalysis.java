@@ -78,7 +78,7 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
     var desc = mcStrategy.getAttribute(types.getArgumentElement_Description()).get(0)
       .replace("model checking", "lifted model checking");
     mcStrategy.setAttribute(types.getArgumentElement_Description(), desc);
-    var liftingGoal = builder.createGoal("G4", "The lifted model checker is correct", null);
+    var liftingGoal = builder.createGoal("G5", "The lifted model checker is correct", null);
     plTemplate.addReference(types.getTemplate_Elements(), liftingGoal);
     builder.addSupporter(mcStrategy, liftingGoal);
   }
@@ -161,7 +161,7 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
     var result = FileUtils.runShell(runPath.getParent().toString(), "bash", RUN_SH_FILE);
     Files.writeString(Paths.get(FileUtils.replaceLastSegmentInPath(modelPath, SAT_FILE)), result);
     var satGoal = mcStrategy
-      .getReference(types.getSupportable_SupportedBy()).get(2)
+      .getReference(types.getSupportable_SupportedBy()).get(3)
       .getReference(types.getSupportedBy_Target()).get(0);
     var satGoalDesc = satGoal.getAttribute(types.getArgumentElement_Description()).get(0);
     var holds = (result.contains("TRUE")) ? "holds" : "does not hold";
