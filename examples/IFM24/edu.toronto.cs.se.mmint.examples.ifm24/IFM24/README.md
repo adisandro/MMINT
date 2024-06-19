@@ -5,7 +5,7 @@ PLACIDUS: Engineering Product Lines of Rigorous Assurance Cases
 ### Instructions to reproduce the examples
 
 1. MMINT
-    1. Install Java and Eclipse following the [requirements](/README.md#requirements) and add `https://adisandro.github.io/mmint/develop` to the list of software sites (`Help > Install New Software > Available Software Sites`).
+    1. Install Java and Eclipse following the [requirements](/README.md#requirements) and add `https://adisandro.github.io/mmint/release` to the list of software sites (`Help > Install New Software > Available Software Sites`).
     2. From the top menu select `Help > Install New Software` and install `Examples > MMINT - IFM24 paper`.
     3. From the top menu select `File > New > Example > MMINT Examples > IFM24`.
     4. Open `/IFM24/model/examples.middiag`.
@@ -14,7 +14,7 @@ PLACIDUS: Engineering Product Lines of Rigorous Assurance Cases
 2. Querying AC template (Sec. 5.2)
     1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/IFM24/templates/QueryAnalysis.gsn`, select the analysis class `/IFM24/src/ifm24/VQLQueryAnalysis.java`.
     2. Right-click on any of the imported nodes, select `MMINT > Instantiate Template`.
-    3. Insert the safety goal text `the system does not administer a dose`, select the PL model `/IFM24/model/R1.productline`, select the query `/IFM24/src/ifm24/queries.vql`, select `Viatra for Product Lines`. The PL AC is populated with the results of the query analysis.
+    3. Insert the safety goal text `the system does not administer a dose until the alarm is disabled`, select the PL model `/IFM24/model/R1.productline`, select the query `/IFM24/src/ifm24/queries.vql`, select `Viatra for Product Lines`. The PL AC is populated with the results of the query analysis.
 
 3. Model Checking AC template (Sec. 5.2)
     1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/IFM24/templates/ModelCheckingAnalysis.gsn`, select the analysis class `/IFM24/src/ifm24/FTS4VMCAnalysis.java`.
