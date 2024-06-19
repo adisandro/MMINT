@@ -19,7 +19,7 @@ The easiest way of installing MMINT in Eclipse is using the [binary packages](#b
 ### Requirements
 
 * Java 22
-* [Eclipse Modeling Tools 2024-06](https://www.eclipse.org/downloads/packages/release/2024-06/r/eclipse-modeling-tools)
+* [Eclipse Modeling Tools 2024-09](https://www.eclipse.org/downloads/packages/release/2024-09/r/eclipse-modeling-tools)
 * After downloading Eclipse, open the `eclipse.ini` file and change the line below `-vm` to point to your Java 22 installation (for example, on Debian Linux change it to `/lib/jvm/java-22-openjdk-amd64/bin`, on Windows change it to `C:\Program Files\Java\jdk-22\bin`)
 
 ### Binary Packages
@@ -36,7 +36,7 @@ Binary packages for the current development version of MMINT are similarly avail
 ### Source code
 
 Add the following update sites to Eclipse (`Help > Install New Software > Available Software Sites`):
-  * `https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/2024-06`
+  * `https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/2024-09`
   * `http://download.eclipse.org/modeling/emft/henshin/updates/release`
   * `https://static.incquerylabs.com/projects/massif/release/0.7.0/repository`
 
