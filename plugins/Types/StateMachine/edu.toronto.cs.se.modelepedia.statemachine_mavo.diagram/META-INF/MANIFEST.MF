@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram; singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.statemachine.mavo.diagram
-Bundle-Version: 2.22.0.qualifier
+Bundle-Version: 2.22.99.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram.part.StateMachine_MAVODiagramEditorPlugin
 Bundle-Vendor: %providerName
