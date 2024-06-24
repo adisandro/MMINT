@@ -12,16 +12,16 @@ jobs:
       - name: Checkout MMINT
         uses: actions/checkout@v4
 
-      - name: Install Java 22
+      - name: Install Java
         uses: actions/setup-java@v4
         with:
           java-version: '22'
           distribution: 'temurin'
 
-      - name: Install Maven 3.9.7
+      - name: Install Maven
         uses: stCarolas/setup-maven@v5
         with:
-          maven-version: 3.9.7
+          maven-version: 3.9.8
 
       - name: Load Maven cache
         uses: actions/cache@v4
