@@ -22,45 +22,42 @@
     <references presenceCondition="$true" target="//@classes.7">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/transitions"/>
     </references>
-    <references presenceCondition="Delay" target="//@classes.8">
-      <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/transitions"/>
-    </references>
-    <references presenceCondition="$true" target="//@classes.9">
+    <references presenceCondition="$true" target="//@classes.8">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/states"/>
     </references>
-    <references presenceCondition="$true" target="//@classes.10">
+    <references presenceCondition="$true" target="//@classes.9">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/transitions"/>
     </references>
-    <references presenceCondition="~Heat &amp; ~Delay" target="//@classes.11">
+    <references presenceCondition="~Heat &amp; ~Delay" target="//@classes.10">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/transitions"/>
     </references>
-    <references presenceCondition="Delay" target="//@classes.13">
+    <references presenceCondition="Delay" target="//@classes.12">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/transitions"/>
     </references>
-    <references presenceCondition="Heat" target="//@classes.12">
+    <references presenceCondition="Heat" target="//@classes.11">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/transitions"/>
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine"/>
   </classes>
-  <classes presenceCondition="Heat" referencesAsTarget="//@classes.0/@references.0 //@classes.6/@references.0 //@classes.12/@references.1">
+  <classes presenceCondition="Heat" referencesAsTarget="//@classes.0/@references.0 //@classes.6/@references.0 //@classes.11/@references.1">
     <attributes presenceCondition="Heat" value="Heat">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//AbstractState/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//State"/>
   </classes>
-  <classes presenceCondition="Delay" referencesAsTarget="//@classes.0/@references.1 //@classes.5/@references.0 //@classes.8/@references.0 //@classes.8/@references.1 //@classes.13/@references.1">
+  <classes presenceCondition="Delay" referencesAsTarget="//@classes.0/@references.1 //@classes.5/@references.0 //@classes.12/@references.1">
     <attributes presenceCondition="Delay" value="Wait">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//AbstractState/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//State"/>
   </classes>
-  <classes referencesAsTarget="//@classes.0/@references.2 //@classes.5/@references.1 //@classes.6/@references.1 //@classes.7/@references.0 //@classes.11/@references.1">
+  <classes referencesAsTarget="//@classes.0/@references.2 //@classes.5/@references.1 //@classes.6/@references.1 //@classes.7/@references.0 //@classes.10/@references.1">
     <attributes value="Wash">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//AbstractState/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//State"/>
   </classes>
-  <classes referencesAsTarget="//@classes.0/@references.3 //@classes.7/@references.1 //@classes.10/@references.0 //@classes.10/@references.1">
+  <classes referencesAsTarget="//@classes.0/@references.3 //@classes.7/@references.1 //@classes.9/@references.0 //@classes.9/@references.1">
     <attributes value="Idle">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//AbstractState/name"/>
     </attributes>
@@ -93,25 +90,13 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition"/>
   </classes>
-  <classes presenceCondition="Delay" referencesAsTarget="//@classes.0/@references.7">
-    <attributes presenceCondition="Delay" value="SetDelay">
-      <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//FiringElement/action"/>
-    </attributes>
-    <references presenceCondition="Delay" target="//@classes.2">
-      <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/source"/>
-    </references>
-    <references presenceCondition="Delay" target="//@classes.2">
-      <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/target"/>
-    </references>
-    <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition"/>
-  </classes>
-  <classes referencesAsTarget="//@classes.0/@references.8 //@classes.11/@references.0 //@classes.12/@references.0 //@classes.13/@references.0">
+  <classes referencesAsTarget="//@classes.0/@references.7 //@classes.10/@references.0 //@classes.11/@references.0 //@classes.12/@references.0">
     <attributes presenceCondition="$true" value="Init">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//AbstractState/name"/>
     </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//State"/>
   </classes>
-  <classes referencesAsTarget="//@classes.0/@references.9">
+  <classes referencesAsTarget="//@classes.0/@references.8">
     <references presenceCondition="$true" target="//@classes.4">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/source"/>
     </references>
@@ -120,8 +105,8 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition"/>
   </classes>
-  <classes presenceCondition="~Heat &amp; ~Delay" referencesAsTarget="//@classes.0/@references.10">
-    <references presenceCondition="~Heat &amp; ~Delay" target="//@classes.9">
+  <classes presenceCondition="~Heat &amp; ~Delay" referencesAsTarget="//@classes.0/@references.9">
+    <references presenceCondition="~Heat &amp; ~Delay" target="//@classes.8">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/source"/>
     </references>
     <references presenceCondition="~Heat &amp; ~Delay" target="//@classes.3">
@@ -129,8 +114,11 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition"/>
   </classes>
-  <classes presenceCondition="Heat" referencesAsTarget="//@classes.0/@references.12">
-    <references presenceCondition="Heat" target="//@classes.9">
+  <classes presenceCondition="Heat" referencesAsTarget="//@classes.0/@references.11">
+    <attributes presenceCondition="Heat" value="SetHeat">
+      <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//FiringElement/action"/>
+    </attributes>
+    <references presenceCondition="Heat" target="//@classes.8">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/source"/>
     </references>
     <references presenceCondition="Heat" target="//@classes.1">
@@ -138,11 +126,11 @@
     </references>
     <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition"/>
   </classes>
-  <classes presenceCondition="Delay" referencesAsTarget="//@classes.0/@references.11">
+  <classes presenceCondition="Delay" referencesAsTarget="//@classes.0/@references.10">
     <attributes presenceCondition="Delay" value="SetDelay">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//FiringElement/action"/>
     </attributes>
-    <references presenceCondition="Delay" target="//@classes.9">
+    <references presenceCondition="Delay" target="//@classes.8">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition/source"/>
     </references>
     <references presenceCondition="Delay" target="//@classes.2">
