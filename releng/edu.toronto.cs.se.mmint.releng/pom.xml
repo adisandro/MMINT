@@ -238,6 +238,7 @@
     <module>../../examples/MMPL/edu.toronto.cs.se.mmint.examples.mmpl</module>
     <module>../../examples/MoDELS20/edu.toronto.cs.se.mmint.example.models20</module>
     <module>../../examples/MODELS21/edu.toronto.cs.se.mmint.examples.models21</module>
+    <module>../../examples/MOM24/edu.toronto.cs.se.mmint.examples.mom24</module>
     <module>../../examples/SAFECOMP24/edu.toronto.cs.se.mmint.examples.safecomp24</module>
     <module>../../examples/SCICO23/edu.toronto.cs.se.mmint.examples.scico23</module>
     <module>../../examples/SOSYM22/edu.toronto.cs.se.mmint.examples.sosym22</module>
@@ -276,6 +277,7 @@
     <module>../../features/edu.toronto.cs.se.mmint.examples.ifm24.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.formalise24.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.models21.feature</module>
+    <module>../../features/edu.toronto.cs.se.mmint.examples.mom24.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.safecomp24.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.scico23.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.sosym22.feature</module>
