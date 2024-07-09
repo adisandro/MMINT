@@ -87,8 +87,9 @@ public class ToProductLine extends OperatorImpl {
     var diagramExtensionDescription = org.eclipse.sirius.diagram.description.DescriptionFactory.eINSTANCE.createDiagramExtensionDescription();
     diagramExtensionDescription.setName("StateMachineProductLineDiagram");
     
-//    var group = DescriptionFactory.eINSTANCE.createGroup();
-//    group.setName("StateMachineProductLine");
+    //TRying to create the layer
+    var group = DescriptionFactory.eINSTANCE.createGroup();
+    group.setName("StateMachineProductLine");
     
     for (Viewpoint originalViewpoint : siriusSpec.getOwnedViewpoints()) {
     	for (RepresentationDescription representation : originalViewpoint.getOwnedRepresentations()) {
