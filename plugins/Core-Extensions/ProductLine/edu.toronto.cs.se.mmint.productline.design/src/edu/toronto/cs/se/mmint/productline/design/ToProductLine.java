@@ -16,9 +16,11 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.sirius.diagram.description.DiagramDescription;
 import org.eclipse.sirius.diagram.description.EdgeMapping;
 import org.eclipse.sirius.diagram.description.NodeMapping;
+import org.eclipse.sirius.diagram.description.style.StyleFactory;
 import org.eclipse.sirius.viewpoint.description.DescriptionFactory;
 import org.eclipse.sirius.viewpoint.description.Group;
 import org.eclipse.sirius.viewpoint.description.RepresentationDescription;
@@ -48,16 +50,18 @@ public class ToProductLine extends OperatorImpl {
     public static final String SUFFIX = "_pl";
     public Model modelType;
     public Group plSiriusSpec;
-    public DescriptionFactory viewpointFactory;
-    public org.eclipse.sirius.diagram.description.DescriptionFactory diagramFactory;
+    public DescriptionFactory vDescFactory;
+    public org.eclipse.sirius.diagram.description.DescriptionFactory dDescFactory;
+    public StyleFactory dStyleFactory;
     public String path;
     public MID mid;
 
     public Out(Map<String, MID> outputMIDsByName, String workingPath, In in) throws MMINTException {
       this.modelType = in.specModel.getMetatype();
-      this.viewpointFactory = DescriptionFactory.eINSTANCE;
-      this.diagramFactory = org.eclipse.sirius.diagram.description.DescriptionFactory.eINSTANCE;
-      this.plSiriusSpec = this.viewpointFactory.createGroup();
+      this.vDescFactory = DescriptionFactory.eINSTANCE;
+      this.dDescFactory = org.eclipse.sirius.diagram.description.DescriptionFactory.eINSTANCE;
+      this.dStyleFactory = StyleFactory.eINSTANCE;
+      this.plSiriusSpec = this.vDescFactory.createGroup();
       this.path = workingPath + IPath.SEPARATOR + in.specModel.getName() + Out.SUFFIX + "." +
                   in.specModel.getFileExtension();
       this.mid = outputMIDsByName.get(Out.MODEL);
@@ -81,19 +85,28 @@ public class ToProductLine extends OperatorImpl {
     var siriusSpec = (Group) this.in.specModel.getEMFInstanceRoot();
     this.out.plSiriusSpec.setName(siriusSpec.getName() + ".productline");
 
-    var viewpoint = this.out.viewpointFactory.createViewpoint();
+    var viewpoint = this.out.vDescFactory.createViewpoint();
     viewpoint.setName("StateMachineProductLineViewpoint");
 
-    var diagramExtensionDescription = this.out.diagramFactory.createDiagramExtensionDescription();
+    var diagramExtensionDescription = this.out.dDescFactory.createDiagramExtensionDescription();
     diagramExtensionDescription.setName("StateMachineProductLineDiagram");
+//    var layers = diagramExtensionDescription.getLayers();
 
     //TRying to create the layer
-    var group = this.out.viewpointFactory.createGroup();
+    var group = this.out.vDescFactory.createGroup();
     group.setName("StateMachineProductLine");
 
     for (var originalViewpoint : siriusSpec.getOwnedViewpoints()) {
       for (var representation : originalViewpoint.getOwnedRepresentations()) {
         var originalDiagram = (DiagramDescription) representation;
+        /** READ ME
+         *  here are the layers: you should get the mappings from them, not directly from the originalDiagram
+         *  you can just assume a single default layer for now
+         */
+//        var defaultLayer = originalDiagram.getDefaultLayer();
+//        var newDefaultLayer = this.out.dDescFactory.createLayer();
+//        var additionalLayers = originalDiagram.getAdditionalLayers();
+//        var additionalLayer = this.out.dDescFactory.createAdditionalLayer();
         for (var originalNodeMapping : originalDiagram.getNodeMappings()) {
           var productLineNodeMapping = createProductLineNodeMapping(originalNodeMapping);
           ((DiagramDescription) diagramExtensionDescription).getNodeMappings().add(productLineNodeMapping);
@@ -110,13 +123,22 @@ public class ToProductLine extends OperatorImpl {
   }
 
   private NodeMapping createProductLineNodeMapping(NodeMapping originalNodeMapping) {
-    var nodeMapping = this.out.diagramFactory.createNodeMapping();
+    var nodeMapping = this.out.dDescFactory.createNodeMapping();
     nodeMapping.setName("PL" + originalNodeMapping.getName());
     nodeMapping.setDomainClass(originalNodeMapping.getDomainClass());
     nodeMapping.setSemanticCandidatesExpression(originalNodeMapping.getSemanticCandidatesExpression());
 
     // Copy styles and tools from the original node mapping
-//    nodeMapping.setStyle(originalNodeMapping.getStyle());
+    /** READ ME
+     *  doing a copy like the following is tricky, do not try it for other elements:
+     *  here it works because a style is a self-contained leaf element in the diagram, and it's the most efficient solution
+     *  (you still need to update things such as label expressions)
+     */
+    var newStyle = EcoreUtil.copy(originalNodeMapping.getStyle());
+    nodeMapping.setStyle(newStyle);
+    /** READ ME
+     *  tools are under layers and then under sections, you can't get them from the mappings
+     */
 //    for (NodeCreationDescription createTool : originalNodeMapping.getCreate()) {
 //      var productLineCreateTool = ToolFactory.eINSTANCE.createNodeCreationDescription();
 //      productLineCreateTool.setName("PL" + createTool.getName());
@@ -129,7 +151,7 @@ public class ToProductLine extends OperatorImpl {
   }
 
   private EdgeMapping createProductLineEdgeMapping(EdgeMapping originalEdgeMapping) {
-    var edgeMapping = this.out.diagramFactory.createEdgeMapping();
+    var edgeMapping = this.out.dDescFactory.createEdgeMapping();
     edgeMapping.setName("PL" + originalEdgeMapping.getName());
     edgeMapping.setDomainClass(originalEdgeMapping.getDomainClass());
     edgeMapping.setSemanticCandidatesExpression(originalEdgeMapping.getSemanticCandidatesExpression());
