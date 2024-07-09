@@ -16,8 +16,17 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.sirius.diagram.description.DiagramDescription;
+import org.eclipse.sirius.diagram.description.EdgeMapping;
+import org.eclipse.sirius.diagram.description.NodeMapping;
+import org.eclipse.sirius.diagram.description.tool.EdgeCreationDescription;
+import org.eclipse.sirius.diagram.description.tool.NodeCreationDescription;
+import org.eclipse.sirius.diagram.description.tool.ToolFactory;
 import org.eclipse.sirius.viewpoint.description.DescriptionFactory;
 import org.eclipse.sirius.viewpoint.description.Group;
+import org.eclipse.sirius.viewpoint.description.RepresentationDescription;
+import org.eclipse.sirius.viewpoint.description.RepresentationElementMapping;
+import org.eclipse.sirius.viewpoint.description.Viewpoint;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -71,7 +80,71 @@ public class ToProductLine extends OperatorImpl {
   private void toProductLine() throws Exception {
     var siriusSpec = (Group) this.in.specModel.getEMFInstanceRoot();
     this.out.plSiriusSpec.setName(siriusSpec.getName() + ".productline");
+
+    var viewpoint = DescriptionFactory.eINSTANCE.createViewpoint();
+    viewpoint.setName("StateMachineProductLineViewpoint");
+
+    var diagramExtensionDescription = org.eclipse.sirius.diagram.description.DescriptionFactory.eINSTANCE.createDiagramExtensionDescription();
+    diagramExtensionDescription.setName("StateMachineProductLineDiagram");
+    
+//    var group = DescriptionFactory.eINSTANCE.createGroup();
+//    group.setName("StateMachineProductLine");
+    
+    for (Viewpoint originalViewpoint : siriusSpec.getOwnedViewpoints()) {
+    	for (RepresentationDescription representation : originalViewpoint.getOwnedRepresentations()) {
+                DiagramDescription originalDiagram = (DiagramDescription) representation;
+                for (NodeMapping originalNodeMapping : originalDiagram.getNodeMappings()) {
+                    NodeMapping productLineNodeMapping = createProductLineNodeMapping(originalNodeMapping);
+                    ((DiagramDescription) diagramExtensionDescription).getNodeMappings().add(productLineNodeMapping);
+                }
+                for (EdgeMapping originalEdgeMapping : originalDiagram.getEdgeMappings()) {
+                    EdgeMapping productLineEdgeMapping = createProductLineEdgeMapping(originalEdgeMapping);
+                    ((DiagramDescription) diagramExtensionDescription).getEdgeMappings().add(productLineEdgeMapping);
+                }
+        }
+    }
+
+    viewpoint.getOwnedRepresentations().add((RepresentationDescription) diagramExtensionDescription);
+    this.out.plSiriusSpec.getOwnedViewpoints().add(viewpoint);
   }
+
+  private NodeMapping createProductLineNodeMapping(NodeMapping originalNodeMapping) {
+	    var nodeMapping = org.eclipse.sirius.diagram.description.DescriptionFactory.eINSTANCE.createNodeMapping();
+	    nodeMapping.setName("PL" + originalNodeMapping.getName());
+	    nodeMapping.setDomainClass(originalNodeMapping.getDomainClass());
+	    nodeMapping.setSemanticCandidatesExpression(originalNodeMapping.getSemanticCandidatesExpression());
+	    
+	    // Copy styles and tools from the original node mapping
+//	    nodeMapping.setStyle(originalNodeMapping.getStyle());
+//	    for (NodeCreationDescription createTool : originalNodeMapping.getCreate()) {
+//	        var productLineCreateTool = ToolFactory.eINSTANCE.createNodeCreationDescription();
+//	        productLineCreateTool.setName("PL" + createTool.getName());
+//	        productLineCreateTool.setForceRefresh(createTool.isForceRefresh());
+//	        productLineCreateTool.setName(createTool.getName());
+//	        nodeMapping.getCreate().add(productLineCreateTool);
+//	    }
+
+	    return nodeMapping;
+	}
+  
+  private EdgeMapping createProductLineEdgeMapping(EdgeMapping originalEdgeMapping) {
+	    var edgeMapping = ((org.eclipse.sirius.diagram.description.DescriptionFactory) DescriptionFactory.eINSTANCE).createEdgeMapping();
+	    edgeMapping.setName("PL" + originalEdgeMapping.getName());
+	    edgeMapping.setDomainClass(originalEdgeMapping.getDomainClass());
+	    edgeMapping.setSemanticCandidatesExpression(originalEdgeMapping.getSemanticCandidatesExpression());
+	    
+	    // Copy styles and tools from the original edge mapping
+//	    edgeMapping.setStyle(originalEdgeMapping.getStyle());
+//	    for (EdgeCreationDescription createTool : originalEdgeMapping.getCreate()) {
+//	        var productLineCreateTool = ToolFactory.eINSTANCE.createEdgeCreationDescription();
+//	        productLineCreateTool.setName("PL" + createTool.getName());
+//	        productLineCreateTool.setForceRefresh(createTool.isForceRefresh());
+//	        productLineCreateTool.setName(createTool.getName());
+//	        edgeMapping.getCreate().add(productLineCreateTool);
+//	    }
+
+	    return edgeMapping;
+	}
 
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
