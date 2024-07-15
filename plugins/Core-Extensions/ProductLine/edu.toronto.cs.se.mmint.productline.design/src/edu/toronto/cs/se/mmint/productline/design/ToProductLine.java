@@ -17,13 +17,19 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.sirius.diagram.description.ContainerMapping;
 import org.eclipse.sirius.diagram.description.DiagramDescription;
 import org.eclipse.sirius.diagram.description.EdgeMapping;
 import org.eclipse.sirius.diagram.description.NodeMapping;
 import org.eclipse.sirius.diagram.description.style.StyleFactory;
+import org.eclipse.sirius.diagram.description.tool.ContainerCreationDescription;
+import org.eclipse.sirius.diagram.description.tool.EdgeCreationDescription;
+import org.eclipse.sirius.diagram.description.tool.NodeCreationDescription;
+import org.eclipse.sirius.diagram.description.tool.ToolFactory;
 import org.eclipse.sirius.viewpoint.description.DescriptionFactory;
 import org.eclipse.sirius.viewpoint.description.Group;
 import org.eclipse.sirius.viewpoint.description.RepresentationDescription;
+import org.eclipse.sirius.viewpoint.description.style.BasicLabelStyleDescription;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -53,6 +59,7 @@ public class ToProductLine extends OperatorImpl {
     public DescriptionFactory vDescFactory;
     public org.eclipse.sirius.diagram.description.DescriptionFactory dDescFactory;
     public StyleFactory dStyleFactory;
+    public ToolFactory dToolFactory;
     public String path;
     public MID mid;
 
@@ -61,6 +68,7 @@ public class ToProductLine extends OperatorImpl {
       this.vDescFactory = DescriptionFactory.eINSTANCE;
       this.dDescFactory = org.eclipse.sirius.diagram.description.DescriptionFactory.eINSTANCE;
       this.dStyleFactory = StyleFactory.eINSTANCE;
+      this.dToolFactory = ToolFactory.eINSTANCE;
       this.plSiriusSpec = this.vDescFactory.createGroup();
       this.path = workingPath + IPath.SEPARATOR + in.specModel.getName() + Out.SUFFIX + "." +
                   in.specModel.getFileExtension();
@@ -90,30 +98,77 @@ public class ToProductLine extends OperatorImpl {
 
     var diagramExtensionDescription = this.out.dDescFactory.createDiagramExtensionDescription();
     diagramExtensionDescription.setName("StateMachineProductLineDiagram");
-//    var layers = diagramExtensionDescription.getLayers();
-
-    //TRying to create the layer
-    var group = this.out.vDescFactory.createGroup();
-    group.setName("StateMachineProductLine");
 
     for (var originalViewpoint : siriusSpec.getOwnedViewpoints()) {
       for (var representation : originalViewpoint.getOwnedRepresentations()) {
         var originalDiagram = (DiagramDescription) representation;
-        /** READ ME
-         *  here are the layers: you should get the mappings from them, not directly from the originalDiagram
-         *  you can just assume a single default layer for now
-         */
-//        var defaultLayer = originalDiagram.getDefaultLayer();
-//        var newDefaultLayer = this.out.dDescFactory.createLayer();
-//        var additionalLayers = originalDiagram.getAdditionalLayers();
-//        var additionalLayer = this.out.dDescFactory.createAdditionalLayer();
-        for (var originalNodeMapping : originalDiagram.getNodeMappings()) {
-          var productLineNodeMapping = createProductLineNodeMapping(originalNodeMapping);
-          ((DiagramDescription) diagramExtensionDescription).getNodeMappings().add(productLineNodeMapping);
+        
+        // Handle default layer
+        var defaultLayer = originalDiagram.getDefaultLayer();
+        var newDefaultLayer = this.out.dDescFactory.createLayer();
+        newDefaultLayer.setName("State Machine Product Line");
+        ((DiagramDescription) diagramExtensionDescription).setDefaultLayer(newDefaultLayer);
+        
+        // Node Mappings
+        for (var originalNodeMapping : defaultLayer.getNodeMappings()) {
+            var productLineNodeMapping = createProductLineNodeMapping(originalNodeMapping);
+            newDefaultLayer.getNodeMappings().add(productLineNodeMapping);
         }
-        for (var originalEdgeMapping : originalDiagram.getEdgeMappings()) {
-          var productLineEdgeMapping = createProductLineEdgeMapping(originalEdgeMapping);
-          ((DiagramDescription) diagramExtensionDescription).getEdgeMappings().add(productLineEdgeMapping);
+        // Edge Mappings
+        for (var originalEdgeMapping : defaultLayer.getEdgeMappings()) {
+            var productLineEdgeMapping = createProductLineEdgeMapping(originalEdgeMapping);
+            newDefaultLayer.getEdgeMappings().add(productLineEdgeMapping);
+        }
+        // Container mappings
+        for (var originalContainerMapping : defaultLayer.getContainerMappings()) {
+            var productLineContainerMapping = createProductLineContainerMapping(originalContainerMapping);
+            newDefaultLayer.getContainerMappings().add(productLineContainerMapping);
+            
+         // Sub-Node Mappings
+            for (var originalSubNodeMapping : originalContainerMapping.getSubNodeMappings()) {
+            	/*
+            	 * QUESTION 7
+            	 */
+                var productLineSubNodeMapping = createProductLineNodeMapping(originalSubNodeMapping);
+                productLineContainerMapping.getSubNodeMappings().add(productLineSubNodeMapping);
+            }
+        }
+        // Creation Tools
+        /*
+         * QUESTION 4
+         */
+        for (var section : defaultLayer.getToolSections()) {
+            var newSection = this.out.dToolFactory.createToolSection();
+            newSection.setName(section.getName());
+            newDefaultLayer.getToolSections().add(newSection);
+
+            // Node Creation Tools
+            for (var createTool : section.getOwnedTools()) {
+            	if (createTool instanceof NodeCreationDescription) {
+            		var productLineCreateTool = createProductLineNodeCreationTool((NodeCreationDescription) createTool);
+                    newSection.getOwnedTools().add(productLineCreateTool);
+            	}
+            	/*
+            	 * QUESTION 6
+            	 */
+//            	var productLineCreateTool = EcoreUtil.copy((NodeCreationDescription) createTool);
+//                productLineCreateTool.setName("PL" + createTool.getName());
+//                newSection.getOwnedTools().add(productLineCreateTool);
+            }
+
+            // Edge Creation Tools
+            for (var createTool : section.getOwnedTools()) {
+            	if (createTool instanceof EdgeCreationDescription) {
+            		var productLineCreateTool = createProductLineEdgeCreationTool((EdgeCreationDescription) createTool);
+                    newSection.getOwnedTools().add(productLineCreateTool);
+            	}
+            }
+
+            // Container Creation Tools
+            for (var createTool : section.getOwnedTools()) {
+                var productLineCreateTool = createProductLineContainerCreationTool((ContainerCreationDescription) createTool);
+                newSection.getOwnedTools().add(productLineCreateTool);
+            }
         }
       }
     }
@@ -125,27 +180,19 @@ public class ToProductLine extends OperatorImpl {
   private NodeMapping createProductLineNodeMapping(NodeMapping originalNodeMapping) {
     var nodeMapping = this.out.dDescFactory.createNodeMapping();
     nodeMapping.setName("PL" + originalNodeMapping.getName());
-    nodeMapping.setDomainClass(originalNodeMapping.getDomainClass());
-    nodeMapping.setSemanticCandidatesExpression(originalNodeMapping.getSemanticCandidatesExpression());
-
-    // Copy styles and tools from the original node mapping
-    /** READ ME
-     *  doing a copy like the following is tricky, do not try it for other elements:
-     *  here it works because a style is a self-contained leaf element in the diagram, and it's the most efficient solution
-     *  (you still need to update things such as label expressions)
+    nodeMapping.setLabel("PL" + originalNodeMapping.getLabel());
+    nodeMapping.setDomainClass("productline.class");
+    nodeMapping.setSemanticCandidatesExpression("feature:classes");
+    nodeMapping.setPreconditionExpression("aql: self.type.name = " + originalNodeMapping.getName());
+    /*
+     * QUESTION 1
      */
+    // nodeMapping.setSynchronizationLock(originalNodeMapping.getSynchronizationLock());
+
+    // Copy styles and update label expressions
     var newStyle = EcoreUtil.copy(originalNodeMapping.getStyle());
     nodeMapping.setStyle(newStyle);
-    /** READ ME
-     *  tools are under layers and then under sections, you can't get them from the mappings
-     */
-//    for (NodeCreationDescription createTool : originalNodeMapping.getCreate()) {
-//      var productLineCreateTool = ToolFactory.eINSTANCE.createNodeCreationDescription();
-//      productLineCreateTool.setName("PL" + createTool.getName());
-//      productLineCreateTool.setForceRefresh(createTool.isForceRefresh());
-//      productLineCreateTool.setName(createTool.getName());
-//      nodeMapping.getCreate().add(productLineCreateTool);
-//    }
+    newStyle.setLabelExpression("service: getStateMachinePLElementLabel");
 
     return nodeMapping;
   }
@@ -153,21 +200,75 @@ public class ToProductLine extends OperatorImpl {
   private EdgeMapping createProductLineEdgeMapping(EdgeMapping originalEdgeMapping) {
     var edgeMapping = this.out.dDescFactory.createEdgeMapping();
     edgeMapping.setName("PL" + originalEdgeMapping.getName());
-    edgeMapping.setDomainClass(originalEdgeMapping.getDomainClass());
-    edgeMapping.setSemanticCandidatesExpression(originalEdgeMapping.getSemanticCandidatesExpression());
-
-    // Copy styles and tools from the original edge mapping
-//    edgeMapping.setStyle(originalEdgeMapping.getStyle());
-//    for (EdgeCreationDescription createTool : originalEdgeMapping.getCreate()) {
-//      var productLineCreateTool = ToolFactory.eINSTANCE.createEdgeCreationDescription();
-//      productLineCreateTool.setName("PL" + createTool.getName());
-//      productLineCreateTool.setForceRefresh(createTool.isForceRefresh());
-//      productLineCreateTool.setName(createTool.getName());
-//      edgeMapping.getCreate().add(productLineCreateTool);
-//    }
+    edgeMapping.setLabel(originalEdgeMapping.getLabel());
+    edgeMapping.setDomainClass("productline.class");
+    edgeMapping.setSemanticCandidatesExpression("feature:classes");
+    edgeMapping.setPreconditionExpression("aql: self.type.name = " + originalEdgeMapping.getName());
+    edgeMapping.setSourceFinderExpression(originalEdgeMapping.getSourceFinderExpression());
+    edgeMapping.setTargetFinderExpression(originalEdgeMapping.getTargetFinderExpression());
+    /*
+     * QUESTION 2
+     */
+//    edgeMapping.setSourceMapping(originalEdgeMapping.getSourceMapping());
+    
+ // Copy styles and update label expressions
+    /*
+     * QUESTION 3
+     */
+    var newStyle = EcoreUtil.copy(originalEdgeMapping.getStyle());
+    edgeMapping.setStyle(newStyle);
+    /*
+     * QUESTION 5
+     */
+    ((BasicLabelStyleDescription) newStyle).setLabelExpression(((BasicLabelStyleDescription) originalEdgeMapping.getStyle()).getLabelExpression());
 
     return edgeMapping;
   }
+  
+  private ContainerMapping createProductLineContainerMapping(ContainerMapping originalContainerMapping) {
+	    var containerMapping = this.out.dDescFactory.createContainerMapping();
+	    containerMapping.setName("PL" + originalContainerMapping.getName());
+	    containerMapping.setLabel("PL" + originalContainerMapping.getLabel());
+	    containerMapping.setDomainClass("productline.class");
+	    containerMapping.setSemanticCandidatesExpression("feature:classes");
+	    containerMapping.setChildrenPresentation(originalContainerMapping.getChildrenPresentation());
+	    containerMapping.setPreconditionExpression("aql: self.type.name = " + originalContainerMapping.getName());
+	    
+
+//	    // Container Style
+//	    if (originalContainerMapping.getName().equals("State")) {
+//	        var style = this.out.dStyleFactory.;
+//	        style.setColor("light_yellow");
+//	        style.setGradientColor("light_yellow_to_light_yellow");
+//	        containerMapping.setStyle(style);
+//	    }
+
+	    return containerMapping;
+	}
+  
+  private NodeCreationDescription createProductLineNodeCreationTool(NodeCreationDescription originalCreateTool) {
+	    var createTool = this.out.dToolFactory.createNodeCreationDescription();
+	    createTool.setName("PL" + originalCreateTool.getName());
+	    createTool.setForceRefresh(originalCreateTool.isForceRefresh());
+
+	    return createTool;
+	}
+
+	private EdgeCreationDescription createProductLineEdgeCreationTool(EdgeCreationDescription originalCreateTool) {
+	    var createTool = this.out.dToolFactory.createEdgeCreationDescription();
+	    createTool.setName("PL" + originalCreateTool.getName());
+	    createTool.setForceRefresh(originalCreateTool.isForceRefresh());
+
+	    return createTool;
+	}
+
+	private ContainerCreationDescription createProductLineContainerCreationTool(ContainerCreationDescription originalCreateTool) {
+	    var createTool = this.out.dToolFactory.createContainerCreationDescription();
+	    createTool.setName("PL" + originalCreateTool.getName());
+	    createTool.setForceRefresh(originalCreateTool.isForceRefresh());
+
+	    return createTool;
+	}
 
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
