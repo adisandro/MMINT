@@ -13,16 +13,20 @@
 package edu.toronto.cs.se.mmint.productline.design;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.sirius.diagram.description.AdditionalLayer;
 import org.eclipse.sirius.diagram.description.ContainerMapping;
 import org.eclipse.sirius.diagram.description.DiagramDescription;
 import org.eclipse.sirius.diagram.description.EdgeMapping;
 import org.eclipse.sirius.diagram.description.NodeMapping;
 import org.eclipse.sirius.diagram.description.style.StyleFactory;
 import org.eclipse.sirius.diagram.description.tool.ContainerCreationDescription;
+import org.eclipse.sirius.diagram.description.tool.DirectEditLabel;
 import org.eclipse.sirius.diagram.description.tool.EdgeCreationDescription;
 import org.eclipse.sirius.diagram.description.tool.NodeCreationDescription;
 import org.eclipse.sirius.diagram.description.tool.ToolFactory;
@@ -30,6 +34,7 @@ import org.eclipse.sirius.viewpoint.description.DescriptionFactory;
 import org.eclipse.sirius.viewpoint.description.Group;
 import org.eclipse.sirius.viewpoint.description.RepresentationDescription;
 import org.eclipse.sirius.viewpoint.description.style.BasicLabelStyleDescription;
+// import org.eclipse.sirius.viewpoint.description.tool.ToolFactory;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -60,6 +65,7 @@ public class ToProductLine extends OperatorImpl {
     public org.eclipse.sirius.diagram.description.DescriptionFactory dDescFactory;
     public StyleFactory dStyleFactory;
     public ToolFactory dToolFactory;
+    public org.eclipse.sirius.viewpoint.description.tool.ToolFactory vToolFactory;
     public String path;
     public MID mid;
 
@@ -69,6 +75,7 @@ public class ToProductLine extends OperatorImpl {
       this.dDescFactory = org.eclipse.sirius.diagram.description.DescriptionFactory.eINSTANCE;
       this.dStyleFactory = StyleFactory.eINSTANCE;
       this.dToolFactory = ToolFactory.eINSTANCE;
+      this.vToolFactory = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE;
       this.plSiriusSpec = this.vDescFactory.createGroup();
       this.path = workingPath + IPath.SEPARATOR + in.specModel.getName() + Out.SUFFIX + "." +
                   in.specModel.getFileExtension();
@@ -98,6 +105,8 @@ public class ToProductLine extends OperatorImpl {
 
     var diagramExtensionDescription = this.out.dDescFactory.createDiagramExtensionDescription();
     diagramExtensionDescription.setName("StateMachineProductLineDiagram");
+    
+    Map<String, Object> map = new HashMap<>();
 
     for (var originalViewpoint : siriusSpec.getOwnedViewpoints()) {
       for (var representation : originalViewpoint.getOwnedRepresentations()) {
@@ -105,75 +114,70 @@ public class ToProductLine extends OperatorImpl {
         
         // Handle default layer
         var defaultLayer = originalDiagram.getDefaultLayer();
-        var newDefaultLayer = this.out.dDescFactory.createLayer();
-        newDefaultLayer.setName("State Machine Product Line");
-        ((DiagramDescription) diagramExtensionDescription).setDefaultLayer(newDefaultLayer);
+        var newLayer = this.out.dDescFactory.createAdditionalLayer();
+        newLayer.setName("State Machine Product Line");
+        diagramExtensionDescription.getLayers().add(newLayer);
         
         // Node Mappings
         for (var originalNodeMapping : defaultLayer.getNodeMappings()) {
             var productLineNodeMapping = createProductLineNodeMapping(originalNodeMapping);
-            newDefaultLayer.getNodeMappings().add(productLineNodeMapping);
+            newLayer.getNodeMappings().add(productLineNodeMapping);
+            map.put(originalNodeMapping.getLabel(), productLineNodeMapping);
         }
         // Edge Mappings
         for (var originalEdgeMapping : defaultLayer.getEdgeMappings()) {
             var productLineEdgeMapping = createProductLineEdgeMapping(originalEdgeMapping);
-            newDefaultLayer.getEdgeMappings().add(productLineEdgeMapping);
+            newLayer.getEdgeMappings().add(productLineEdgeMapping);
+            /*
+             * QUESTION 3
+             */
+            map.put(originalEdgeMapping.getLabel(), productLineEdgeMapping);
         }
         // Container mappings
         for (var originalContainerMapping : defaultLayer.getContainerMappings()) {
             var productLineContainerMapping = createProductLineContainerMapping(originalContainerMapping);
-            newDefaultLayer.getContainerMappings().add(productLineContainerMapping);
+            newLayer.getContainerMappings().add(productLineContainerMapping);
+            map.put(originalContainerMapping.getLabel(), productLineContainerMapping);
             
          // Sub-Node Mappings
             for (var originalSubNodeMapping : originalContainerMapping.getSubNodeMappings()) {
-            	/*
-            	 * QUESTION 7
-            	 */
                 var productLineSubNodeMapping = createProductLineNodeMapping(originalSubNodeMapping);
                 productLineContainerMapping.getSubNodeMappings().add(productLineSubNodeMapping);
+                map.put(originalSubNodeMapping.getLabel(), productLineSubNodeMapping);
             }
+            
+            
         }
         // Creation Tools
-        /*
-         * QUESTION 4
-         */
         for (var section : defaultLayer.getToolSections()) {
             var newSection = this.out.dToolFactory.createToolSection();
-            newSection.setName(section.getName());
-            newDefaultLayer.getToolSections().add(newSection);
+            newSection.setName("CreateStateMachine");
+            newSection.setLabel("Create State Machine");
+            newLayer.getToolSections().add(newSection);
 
-            // Node Creation Tools
             for (var createTool : section.getOwnedTools()) {
+            	// Node Creation Tools
             	if (createTool instanceof NodeCreationDescription) {
-            		var productLineCreateTool = createProductLineNodeCreationTool((NodeCreationDescription) createTool);
+            		var productLineCreateTool = createProductLineNodeCreationTool((NodeCreationDescription) createTool, map);
                     newSection.getOwnedTools().add(productLineCreateTool);
             	}
-            	/*
-            	 * QUESTION 6
-            	 */
-//            	var productLineCreateTool = EcoreUtil.copy((NodeCreationDescription) createTool);
-//                productLineCreateTool.setName("PL" + createTool.getName());
-//                newSection.getOwnedTools().add(productLineCreateTool);
-            }
-
-            // Edge Creation Tools
-            for (var createTool : section.getOwnedTools()) {
+            	// Edge Creation Tools
             	if (createTool instanceof EdgeCreationDescription) {
-            		var productLineCreateTool = createProductLineEdgeCreationTool((EdgeCreationDescription) createTool);
+            		var productLineCreateTool = createProductLineEdgeCreationTool((EdgeCreationDescription) createTool, map);
                     newSection.getOwnedTools().add(productLineCreateTool);
             	}
-            }
-
-            // Container Creation Tools
-            for (var createTool : section.getOwnedTools()) {
-                var productLineCreateTool = createProductLineContainerCreationTool((ContainerCreationDescription) createTool);
-                newSection.getOwnedTools().add(productLineCreateTool);
+            	// Container Creation Tools
+            	if (createTool instanceof ContainerCreationDescription) {
+            		var productLineCreateTool = createProductLineContainerCreationTool((ContainerCreationDescription) createTool, map);
+                    newSection.getOwnedTools().add(productLineCreateTool);
+            	}
+            	
             }
         }
       }
     }
 
-    viewpoint.getOwnedRepresentations().add((RepresentationDescription) diagramExtensionDescription);
+    viewpoint.getOwnedRepresentationExtensions().add(diagramExtensionDescription);
     this.out.plSiriusSpec.getOwnedViewpoints().add(viewpoint);
   }
 
@@ -184,10 +188,7 @@ public class ToProductLine extends OperatorImpl {
     nodeMapping.setDomainClass("productline.class");
     nodeMapping.setSemanticCandidatesExpression("feature:classes");
     nodeMapping.setPreconditionExpression("aql: self.type.name = " + originalNodeMapping.getName());
-    /*
-     * QUESTION 1
-     */
-    // nodeMapping.setSynchronizationLock(originalNodeMapping.getSynchronizationLock());
+    nodeMapping.setSynchronizationLock(originalNodeMapping.isSynchronizationLock());
 
     // Copy styles and update label expressions
     var newStyle = EcoreUtil.copy(originalNodeMapping.getStyle());
@@ -204,23 +205,24 @@ public class ToProductLine extends OperatorImpl {
     edgeMapping.setDomainClass("productline.class");
     edgeMapping.setSemanticCandidatesExpression("feature:classes");
     edgeMapping.setPreconditionExpression("aql: self.type.name = " + originalEdgeMapping.getName());
-    edgeMapping.setSourceFinderExpression(originalEdgeMapping.getSourceFinderExpression());
-    edgeMapping.setTargetFinderExpression(originalEdgeMapping.getTargetFinderExpression());
-    /*
-     * QUESTION 2
-     */
-//    edgeMapping.setSourceMapping(originalEdgeMapping.getSourceMapping());
+    edgeMapping.setSourceFinderExpression("aql: self.references->select(r | r.type.name = 'source')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'transitionsAsSource')->collect(r | r.eContainer()))");
+    edgeMapping.setTargetFinderExpression("aql: self.references->select(r | r.type.name = 'target')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'transitionsAsTarget')->collect(r | r.eContainer()))");
+    edgeMapping.setSynchronizationLock(originalEdgeMapping.isSynchronizationLock());
+    for (var originalSourceMapping : originalEdgeMapping.getSourceMapping()) {
+        var newSourceMapping = this.out.dDescFactory.createNodeMapping();
+        newSourceMapping.setName("PL" + originalSourceMapping.getName());
+        edgeMapping.getSourceMapping().add(newSourceMapping);
+    }
+    for (var originalTargetMapping : originalEdgeMapping.getTargetMapping()) {
+        var newTargetMapping = this.out.dDescFactory.createNodeMapping();
+        newTargetMapping.setName("PL" + originalTargetMapping.getName());
+        edgeMapping.getTargetMapping().add(newTargetMapping);
+    }
     
  // Copy styles and update label expressions
-    /*
-     * QUESTION 3
-     */
     var newStyle = EcoreUtil.copy(originalEdgeMapping.getStyle());
     edgeMapping.setStyle(newStyle);
-    /*
-     * QUESTION 5
-     */
-    ((BasicLabelStyleDescription) newStyle).setLabelExpression(((BasicLabelStyleDescription) originalEdgeMapping.getStyle()).getLabelExpression());
+    newStyle.getCenterLabelStyleDescription().setLabelExpression("service: getStateMachinePLElementLabel");
 
     return edgeMapping;
   }
@@ -233,39 +235,77 @@ public class ToProductLine extends OperatorImpl {
 	    containerMapping.setSemanticCandidatesExpression("feature:classes");
 	    containerMapping.setChildrenPresentation(originalContainerMapping.getChildrenPresentation());
 	    containerMapping.setPreconditionExpression("aql: self.type.name = " + originalContainerMapping.getName());
-	    
-
-//	    // Container Style
-//	    if (originalContainerMapping.getName().equals("State")) {
-//	        var style = this.out.dStyleFactory.;
-//	        style.setColor("light_yellow");
-//	        style.setGradientColor("light_yellow_to_light_yellow");
-//	        containerMapping.setStyle(style);
-//	    }
+	    containerMapping.setSynchronizationLock(originalContainerMapping.isSynchronizationLock());
+	    /*
+	     * QUESTION 2
+	     */
+	    DirectEditLabel label = this.out.dToolFactory.createDirectEditLabel();
+	    label.setInputLabelExpression("Direct Label Edit EditPresenceCondition");
+	    containerMapping.setLabelDirectEdit(label);
+	    // Copy styles and update label expressions
+	    var newStyle = EcoreUtil.copy(originalContainerMapping.getStyle());
+	    containerMapping.setStyle(newStyle);
+	    newStyle.setLabelExpression("service: getStateMachinePLElementLabel");
 
 	    return containerMapping;
 	}
   
-  private NodeCreationDescription createProductLineNodeCreationTool(NodeCreationDescription originalCreateTool) {
+  private NodeCreationDescription createProductLineNodeCreationTool(NodeCreationDescription originalCreateTool, Map<String, Object> map) {
 	    var createTool = this.out.dToolFactory.createNodeCreationDescription();
 	    createTool.setName("PL" + originalCreateTool.getName());
-	    createTool.setForceRefresh(originalCreateTool.isForceRefresh());
+	    createTool.setLabel("PL" + originalCreateTool.getLabel());
+	    String newString = originalCreateTool.getLabel().replace(" ", "");
+	    /*
+	     * QUESTION 4
+	     */
+	    for (var originalMapping : originalCreateTool.getNodeMappings()) {
+	    	/*
+	    	 * QUESTION 5
+	    	 */
+	    	NodeMapping newMapping = (NodeMapping) map.get(originalMapping.getName());
+	    	createTool.getNodeMappings().add(newMapping);
+	    }
+	    
+	    createTool.setIconPath("/edu.toronto.cs.se.modelepedia.statemachine.edit/icons/full/obj16/"+newString+".gif");
+//	    originalCreateTool.getInitialOperation().getFirstModelOperations();
+	    /*
+	     * QUESTION 7
+	     */
+//	    var initialOperation = this.out.vToolFactory.createInitialOperation().getFirstModelOperations();
+//	    var operations = this.out.vToolFactory.createFirstModelOperations();
+//	    operations.setBrowseExpression("var:container");
+//	    var subOperations = this.out.vToolFactory.createCreateInstance();
+//	    subOperations.setTypeName(originalCreateTool.getTypeName());
+//	    subOperations.setReferenceName(originalCreateTool.getReferenceName());
+//	    operations.getSubModelOperations().add(subOperations);
+//	    initialOperation.setFirstModelOperations(operations);
+//	    createTool.setInitialOperation(initialOperation);
+	    
+//	    createTool.setForceRefresh(originalCreateTool.isForceRefresh());
 
 	    return createTool;
 	}
 
-	private EdgeCreationDescription createProductLineEdgeCreationTool(EdgeCreationDescription originalCreateTool) {
+	private EdgeCreationDescription createProductLineEdgeCreationTool(EdgeCreationDescription originalCreateTool, Map<String, Object> map) {
 	    var createTool = this.out.dToolFactory.createEdgeCreationDescription();
 	    createTool.setName("PL" + originalCreateTool.getName());
-	    createTool.setForceRefresh(originalCreateTool.isForceRefresh());
-
+	    createTool.setName("PL" + originalCreateTool.getName());
+	    createTool.setLabel("PL" + originalCreateTool.getLabel());
+	    /*
+	     * QUESTION 6
+	     */
+	    String newString = originalCreateTool.getLabel().replace(" ", "");
+	    EdgeMapping newMapping = (EdgeMapping) map.get(newString);
+	    createTool.getEdgeMappings().add(newMapping);
+	    createTool.setIconPath("/edu.toronto.cs.se.modelepedia.statemachine.edit/icons/full/obj16/"+newString+".gif");
+	    
 	    return createTool;
 	}
 
-	private ContainerCreationDescription createProductLineContainerCreationTool(ContainerCreationDescription originalCreateTool) {
+	private ContainerCreationDescription createProductLineContainerCreationTool(ContainerCreationDescription originalCreateTool, Map<String, Object> map) {
 	    var createTool = this.out.dToolFactory.createContainerCreationDescription();
 	    createTool.setName("PL" + originalCreateTool.getName());
-	    createTool.setForceRefresh(originalCreateTool.isForceRefresh());
+//	    createTool.setForceRefresh(originalCreateTool.isForceRefresh());
 
 	    return createTool;
 	}
@@ -275,7 +315,9 @@ public class ToProductLine extends OperatorImpl {
                                 Map<String, MID> outputMIDsByName) throws Exception {
     init(inputsByName, outputMIDsByName);
     toProductLine();
-
+    /*
+     * ISSUE 1
+     */
     return this.out.packed();
   }
 }
