@@ -262,17 +262,18 @@ public class ToProductLine extends OperatorImpl {
 	     
         container.setName("container");
         containerView.setName("containerView");
-//        createTool.getVariable().;
+        // createTool.setVariable(container);
+        createTool.setViewVariable(containerView);
         
         /*
          * QUESTION 2: We didn't discuss this in the meeting but I'm assuming the initial operation does need
          * to be created before we can get it?
+         * 
+         * EDIIT: I THINK THIS NOW MAKES SENSE. DON'T NEED TO CAST
          */
-	    var initialOperation = this.out.vToolFactory.createInitialOperation();
+	    var initialOperation = this.out.vToolFactory.createInitialNodeCreationOperation();
 	    createTool.setInitialOperation((InitialNodeCreationOperation) initialOperation);
-	    /*
-	     * QUESTION 3: Just checking the approach?
-	     */
+	    
 	    var changeContext = this.out.vToolFactory.createChangeContext();
 	    changeContext.setBrowseExpression("var:container");
 	    createTool.getInitialOperation().setFirstModelOperations(changeContext);
@@ -304,7 +305,7 @@ public class ToProductLine extends OperatorImpl {
 	    	createTool.getEdgeMappings().add(newMapping);
 	    }
 	    /*
-	     * QUESTION 4:
+	     * QUESTION 3:
 	     * Are source and target variables and source and target view variables the same type as above?
 	     * If not what are they?
 	     */
@@ -318,7 +319,7 @@ public class ToProductLine extends OperatorImpl {
         target.setName("target");
         targetView.setName("targetView");
         
-        var initialOperation = this.out.vToolFactory.createInitialOperation();
+        var initialOperation = this.out.vToolFactory.createInitEdgeCreationOperation();
 	    createTool.setInitialOperation((InitEdgeCreationOperation) initialOperation);
 	    
 	    var changeContext = this.out.vToolFactory.createChangeContext();
@@ -365,7 +366,7 @@ public class ToProductLine extends OperatorImpl {
 	    container.setName("container");
         containerView.setName("containerView");
         
-        var initialOperation = this.out.vToolFactory.createInitialOperation();
+        var initialOperation = this.out.vToolFactory.createInitialNodeCreationOperation();
 	    createTool.setInitialOperation((InitialNodeCreationOperation) initialOperation);
 	    
 	    var changeContext = this.out.vToolFactory.createChangeContext();
