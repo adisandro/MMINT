@@ -19,4 +19,4 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mmint;visibility:=reexport,
  edu.toronto.cs.se.mmint.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-22
+Bundle-RequiredExecutionEnvironment: JavaSE-23

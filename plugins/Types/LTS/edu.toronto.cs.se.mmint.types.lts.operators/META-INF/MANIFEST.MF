@@ -5,7 +5,7 @@ Bundle-SymbolicName: edu.toronto.cs.se.mmint.types.lts.operators;singleton:=true
 Bundle-Version: 2.22.99.qualifier
 Bundle-Vendor: %providerName
 Automatic-Module-Name: edu.toronto.cs.se.mmint.types.lts.operators
-Bundle-RequiredExecutionEnvironment: JavaSE-22
+Bundle-RequiredExecutionEnvironment: JavaSE-23
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.validation,

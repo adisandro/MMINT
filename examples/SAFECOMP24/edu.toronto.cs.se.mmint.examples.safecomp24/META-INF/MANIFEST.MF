@@ -6,7 +6,7 @@ Bundle-Version: 2.22.99.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmint.examples.safecomp24.gsn.provider.AMLASrEditPlugin$Implementation
 Automatic-Module-Name: edu.toronto.cs.se.mmint.examples.safecomp24
-Bundle-RequiredExecutionEnvironment: JavaSE-22
+Bundle-RequiredExecutionEnvironment: JavaSE-23
 Export-Package: edu.toronto.cs.se.mmint.examples.safecomp24.gsn,
  edu.toronto.cs.se.mmint.examples.safecomp24.gsn.impl,
  edu.toronto.cs.se.mmint.examples.safecomp24.gsn.provider,

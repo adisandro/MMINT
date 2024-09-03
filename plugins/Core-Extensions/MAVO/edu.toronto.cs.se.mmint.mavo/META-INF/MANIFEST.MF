@@ -5,7 +5,7 @@ Bundle-SymbolicName: edu.toronto.cs.se.mmint.mavo;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.mmint.mavo
 Bundle-Version: 2.22.99.qualifier
 Bundle-ClassPath: .
-Bundle-RequiredExecutionEnvironment: JavaSE-22
+Bundle-RequiredExecutionEnvironment: JavaSE-23
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin

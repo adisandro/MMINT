@@ -13,6 +13,6 @@ Require-Bundle: org.eclipse.ui,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.types.lts
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-22
+Bundle-RequiredExecutionEnvironment: JavaSE-23
 Bundle-Vendor: %providerName
 Automatic-Module-Name: edu.toronto.cs.se.mmint.types.lts.design
