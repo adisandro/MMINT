@@ -19,6 +19,7 @@ import java.util.Map;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.sirius.diagram.description.ContainerMapping;
+import org.eclipse.sirius.diagram.description.DescriptionFactory;
 import org.eclipse.sirius.diagram.description.DiagramDescription;
 import org.eclipse.sirius.diagram.description.DiagramElementMapping;
 import org.eclipse.sirius.diagram.description.EdgeMapping;
@@ -28,7 +29,6 @@ import org.eclipse.sirius.diagram.description.tool.ContainerCreationDescription;
 import org.eclipse.sirius.diagram.description.tool.EdgeCreationDescription;
 import org.eclipse.sirius.diagram.description.tool.NodeCreationDescription;
 import org.eclipse.sirius.diagram.description.tool.ToolFactory;
-import org.eclipse.sirius.viewpoint.description.DescriptionFactory;
 import org.eclipse.sirius.viewpoint.description.Group;
 
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -56,20 +56,20 @@ public class ToProductLine extends OperatorImpl {
     public static final String SUFFIX = "_pl";
     public Model modelType;
     public Group plSiriusSpec;
-    public DescriptionFactory vDescFactory;
-    public org.eclipse.sirius.diagram.description.DescriptionFactory dDescFactory;
-    public StyleFactory dStyleFactory;
+    public DescriptionFactory dDescFactory;
     public ToolFactory dToolFactory;
+    public StyleFactory dStyleFactory;
+    public org.eclipse.sirius.viewpoint.description.DescriptionFactory vDescFactory;
     public org.eclipse.sirius.viewpoint.description.tool.ToolFactory vToolFactory;
     public String path;
     public MID mid;
 
     public Out(Map<String, MID> outputMIDsByName, String workingPath, In in) throws MMINTException {
       this.modelType = in.specModel.getMetatype();
-      this.vDescFactory = DescriptionFactory.eINSTANCE;
-      this.dDescFactory = org.eclipse.sirius.diagram.description.DescriptionFactory.eINSTANCE;
-      this.dStyleFactory = StyleFactory.eINSTANCE;
+      this.dDescFactory = DescriptionFactory.eINSTANCE;
       this.dToolFactory = ToolFactory.eINSTANCE;
+      this.dStyleFactory = StyleFactory.eINSTANCE;
+      this.vDescFactory = org.eclipse.sirius.viewpoint.description.DescriptionFactory.eINSTANCE;
       this.vToolFactory = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE;
       this.plSiriusSpec = this.vDescFactory.createGroup();
       this.path = workingPath + IPath.SEPARATOR + in.specModel.getName() + Out.SUFFIX + "." +
@@ -237,22 +237,18 @@ public class ToProductLine extends OperatorImpl {
     var createTool = this.out.dToolFactory.createNodeCreationDescription();
     createTool.setName("PL" + originalCreateTool.getName());
     createTool.setLabel("PL" + originalCreateTool.getLabel());
+    createTool.setVariable(null);
 
     for (var originalMapping : originalCreateTool.getNodeMappings()) {
       var newMapping = (NodeMapping) map.get(originalMapping.getName());
       createTool.getNodeMappings().add(newMapping);
     }
-    /*
-     * QUESTION 1: How do I add these to the actual creation tool? Are these the right elements in the first
-     * place?
-     */
-    var container = this.out.vToolFactory.createNameVariable();
-    // or do we use createSelectContainerVariable()? or createElementVariable()?
+    var container = this.out.dToolFactory.createNodeCreationVariable();
     var containerView = this.out.vToolFactory.createContainerViewVariable();
 
     container.setName("container");
     containerView.setName("containerView");
-    // createTool.setVariable(container);
+    createTool.setVariable(container);
     createTool.setViewVariable(containerView);
 
     /*
