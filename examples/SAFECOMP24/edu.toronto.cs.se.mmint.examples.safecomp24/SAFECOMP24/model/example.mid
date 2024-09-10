@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
-  <models uri="/SAFECOMP24/model/ac.gsn" name="ac" metatypeUri="http://se.cs.toronto.edu/modelepedia/GSN" dynamic="true" fileExtension="gsn" editors="//@editors.0"/>
-  <editors xsi:type="editor:Diagram" uri="/SAFECOMP24/representations.aird#_oWSBQMH5Ee6cTbrGiZOvzA" name="GSN Sirius Diagram for model /SAFECOMP24/model/ac.gsn" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_GSN" dynamic="true" modelUri="/SAFECOMP24/model/ac.gsn" id="edu.toronto.cs.se.modelepedia.gsn.design" wizardId="edu.toronto.cs.se.modelepedia.gsn.presentation.GSNModelWizardID">
-    <fileExtensions>aird</fileExtensions>
-  </editors>
-  <extendibleTable key="/SAFECOMP24/model/ac.gsn" value="//@models.0"/>
-</mid:MID>
