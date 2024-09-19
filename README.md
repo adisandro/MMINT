@@ -97,6 +97,8 @@ Follow these steps to install MMINT-PL:
 
 ### About MMINT
 
+* <a name="paper-mom24"></a> [From Products to Product Lines: a Model-based Methodology]()  
+MoM@MODELS 24 | Install: `Examples > MMINT - MOM24` | [Readme](examples/MOM24/edu.toronto.cs.se.mmint.examples.mom24/MOM24/README.md)
 * <a name="paper-scico23"></a> [MMINT-A: A Framework for Model-Based Safety Assurance](https://doi.org/10.1016/j.scico.2023.103004)  
 SciCo Vol. 231 | Install: `Examples > MMINT - SCICO23` | [Readme](examples/SCICO23/edu.toronto.cs.se.mmint.examples.scico23/SCICO23/README.md)
 * <a name="paper-vamos23"></a> [Adding Product-Line Capabilities to Your Favourite Modeling Language](https://doi.org/10.1145/3571788.3571791)  

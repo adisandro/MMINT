@@ -1,1 +1,5 @@
 ## MoM@MODELS 2024 paper
+
+[From Products to Product Lines: a Model-based Methodology]()
+
+To effectively manage collections of system and software products, industries are increasingly relying on model-based solutions and product lines (PLs). PLs enable developing, analyzing, and maintaining multiple related products. However, adopting PLs requires tool developers and users to extend existing model management (MoM) frameworks so that they are able to support the lifecycle management of PL models. In this paper, we describe a methodology for doing so. Our methodology identifies four key model management components required to define, transform, and evolve PL models, and relates them to each other and to traditional MoM components. To support rigorous reasoning about MoM of PLs, we combine existing techniques for PL modelling, PL modelling operators, and relations between product and PL models into a unified formal framework. We present an exemplar application of our methodology which extends a product-level modelling tool to support MoM for a product line of medical devices.
