@@ -2,12 +2,21 @@
 <mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
   <models uri="/MOM24/model/WashingMachine.productline" name="WashingMachine" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.0"/>
   <models uri="/MOM24/model/Heat.statemachine" name="Heat" metatypeUri="http://se.cs.toronto.edu/modelepedia/StateMachine" dynamic="true" origin="CREATED" fileExtension="statemachine" editors="//@editors.1"/>
+  <models uri="/MOM24/model/Heat.productline" name="Heat" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" origin="CREATED" fileExtension="productline" editors="//@editors.2"/>
   <editors xsi:type="editor:Diagram" uri="/MOM24/representations.aird#_rXsIUJrfEe60HpawhqlevQ" name="ProductLine Sirius Diagram for model /MOM24/model/WashingMachine.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.design" dynamic="true" modelUri="/MOM24/model/WashingMachine.productline" id="edu.toronto.cs.se.mmint.productline.design" wizardId="edu.toronto.cs.se.mmint.productline.presentation.PLModelWizardID">
     <fileExtensions>aird</fileExtensions>
   </editors>
   <editors xsi:type="editor:Diagram" uri="/MOM24/representations.aird#__iw74HbYEe-ID5q2UD4pSw" name="StateMachine representation for model /MOM24/model/Heat.statemachine" metatypeUri="http://se.cs.toronto.edu/modelepedia/Representation_StateMachine" dynamic="true" modelUri="/MOM24/model/Heat.statemachine" id="edu.toronto.cs.se.modelepedia.statemachine.design" wizardId="edu.toronto.cs.se.modelepedia.statemachine.presentation.StateMachineModelWizardID">
     <fileExtensions>aird</fileExtensions>
   </editors>
+  <editors xsi:type="editor:Diagram" uri="/MOM24/representations.aird#_qCg0kHbaEe-ID5q2UD4pSw" name="ProductLine Sirius Diagram for model /MOM24/model/Heat.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.design" dynamic="true" modelUri="/MOM24/model/Heat.productline" id="edu.toronto.cs.se.mmint.productline.design" wizardId="edu.toronto.cs.se.mmint.productline.presentation.PLModelWizardID">
+    <fileExtensions>aird</fileExtensions>
+  </editors>
+  <operators uri="" name="ToProductLine" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine" dynamic="true" workingPath="/MOM24/model" executionTime="1481877784">
+    <inputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <outputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+  </operators>
   <extendibleTable key="/MOM24/model/WashingMachine.productline" value="//@models.0"/>
   <extendibleTable key="/MOM24/model/Heat.statemachine" value="//@models.1"/>
+  <extendibleTable key="/MOM24/model/Heat.productline" value="//@models.2"/>
 </mid:MID>
