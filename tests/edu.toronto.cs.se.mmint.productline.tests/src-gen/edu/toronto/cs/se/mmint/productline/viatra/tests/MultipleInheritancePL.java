@@ -945,7 +945,7 @@ public final class MultipleInheritancePL extends BaseGeneratedEMFQuerySpecificat
 
   @Override
   public MultipleInheritancePL.Match newMatch(final Object... parameters) {
-    return MultipleInheritancePL.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (edu.toronto.cs.se.mmint.productline.PLElement) parameters[1], (edu.toronto.cs.se.mmint.productline.PLElement) parameters[2], (edu.toronto.cs.se.mmint.productline.PLElement) parameters[3], (edu.toronto.cs.se.mmint.productline.PLElement) parameters[4]);
+    return MultipleInheritancePL.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (PLElement) parameters[1], (PLElement) parameters[2], (PLElement) parameters[3], (PLElement) parameters[4]);
   }
 
   /**

@@ -1056,7 +1056,7 @@ public final class Reference extends BaseGeneratedEMFQuerySpecification<Referenc
 
   @Override
   public Reference.Match newMatch(final Object... parameters) {
-    return Reference.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (java.lang.String) parameters[1], (edu.toronto.cs.se.mmint.productline.Class) parameters[2], (java.lang.String) parameters[3], (edu.toronto.cs.se.mmint.productline.Reference) parameters[4], (java.lang.String) parameters[5]);
+    return Reference.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (String) parameters[1], (edu.toronto.cs.se.mmint.productline.Class) parameters[2], (String) parameters[3], (edu.toronto.cs.se.mmint.productline.Reference) parameters[4], (String) parameters[5]);
   }
 
   /**

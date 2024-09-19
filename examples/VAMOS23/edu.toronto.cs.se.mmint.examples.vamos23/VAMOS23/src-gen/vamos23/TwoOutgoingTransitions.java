@@ -486,7 +486,7 @@ public final class TwoOutgoingTransitions extends BaseGeneratedEMFQuerySpecifica
 
   @Override
   public TwoOutgoingTransitions.Match newMatch(final Object... parameters) {
-    return TwoOutgoingTransitions.Match.newMatch((edu.toronto.cs.se.modelepedia.statemachine.State) parameters[0]);
+    return TwoOutgoingTransitions.Match.newMatch((State) parameters[0]);
   }
 
   /**

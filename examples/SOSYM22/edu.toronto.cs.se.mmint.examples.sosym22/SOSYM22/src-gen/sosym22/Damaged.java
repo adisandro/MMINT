@@ -484,7 +484,7 @@ public final class Damaged extends BaseGeneratedEMFQuerySpecification<Damaged.Ma
 
   @Override
   public Damaged.Match newMatch(final Object... parameters) {
-    return Damaged.Match.newMatch((edu.toronto.cs.se.mmint.types.lts.State) parameters[0]);
+    return Damaged.Match.newMatch((State) parameters[0]);
   }
 
   /**

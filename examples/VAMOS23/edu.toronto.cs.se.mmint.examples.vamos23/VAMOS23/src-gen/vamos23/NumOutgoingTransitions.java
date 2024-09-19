@@ -636,7 +636,7 @@ public final class NumOutgoingTransitions extends BaseGeneratedEMFQuerySpecifica
 
   @Override
   public NumOutgoingTransitions.Match newMatch(final Object... parameters) {
-    return NumOutgoingTransitions.Match.newMatch((edu.toronto.cs.se.modelepedia.statemachine.State) parameters[0], (java.lang.Integer) parameters[1]);
+    return NumOutgoingTransitions.Match.newMatch((State) parameters[0], (Integer) parameters[1]);
   }
 
   /**

@@ -489,7 +489,7 @@ public final class LeximaxName extends BaseGeneratedEMFQuerySpecification<Lexima
 
   @Override
   public LeximaxName.Match newMatch(final Object... parameters) {
-    return LeximaxName.Match.newMatch((java.lang.String) parameters[0]);
+    return LeximaxName.Match.newMatch((String) parameters[0]);
   }
 
   /**

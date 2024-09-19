@@ -487,7 +487,7 @@ public final class TestMinCD extends BaseGeneratedEMFQuerySpecification<TestMinC
 
   @Override
   public TestMinCD.Match newMatch(final Object... parameters) {
-    return TestMinCD.Match.newMatch((java.lang.String) parameters[0]);
+    return TestMinCD.Match.newMatch((String) parameters[0]);
   }
 
   /**

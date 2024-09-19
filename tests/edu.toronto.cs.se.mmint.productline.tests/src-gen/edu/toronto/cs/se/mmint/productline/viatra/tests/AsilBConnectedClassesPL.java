@@ -1055,7 +1055,7 @@ public final class AsilBConnectedClassesPL extends BaseGeneratedEMFQuerySpecific
 
   @Override
   public AsilBConnectedClassesPL.Match newMatch(final Object... parameters) {
-    return AsilBConnectedClassesPL.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (edu.toronto.cs.se.mmint.productline.Class) parameters[1], (edu.toronto.cs.se.mmint.productline.PLElement) parameters[2], (edu.toronto.cs.se.mmint.productline.PLElement) parameters[3], (edu.toronto.cs.se.mmint.productline.PLElement) parameters[4], (edu.toronto.cs.se.mmint.mid.relationship.Mapping) parameters[5]);
+    return AsilBConnectedClassesPL.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (edu.toronto.cs.se.mmint.productline.Class) parameters[1], (PLElement) parameters[2], (PLElement) parameters[3], (PLElement) parameters[4], (Mapping) parameters[5]);
   }
 
   /**

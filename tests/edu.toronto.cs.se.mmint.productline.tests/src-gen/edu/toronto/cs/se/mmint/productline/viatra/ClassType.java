@@ -639,7 +639,7 @@ public final class ClassType extends BaseGeneratedEMFQuerySpecification<ClassTyp
 
   @Override
   public ClassType.Match newMatch(final Object... parameters) {
-    return ClassType.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (java.lang.String) parameters[1]);
+    return ClassType.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (String) parameters[1]);
   }
 
   /**

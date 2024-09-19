@@ -742,7 +742,7 @@ public final class ConnectedEMFObjectsWithMapping extends BaseGeneratedEMFQueryS
 
   @Override
   public ConnectedEMFObjectsWithMapping.Match newMatch(final Object... parameters) {
-    return ConnectedEMFObjectsWithMapping.Match.newMatch((org.eclipse.emf.ecore.EObject) parameters[0], (org.eclipse.emf.ecore.EObject) parameters[1], (edu.toronto.cs.se.mmint.mid.relationship.Mapping) parameters[2]);
+    return ConnectedEMFObjectsWithMapping.Match.newMatch((EObject) parameters[0], (EObject) parameters[1], (Mapping) parameters[2]);
   }
 
   /**

@@ -840,7 +840,7 @@ public final class TestMultipleEdgesPL extends BaseGeneratedEMFQuerySpecificatio
 
   @Override
   public TestMultipleEdgesPL.Match newMatch(final Object... parameters) {
-    return TestMultipleEdgesPL.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (edu.toronto.cs.se.mmint.productline.PLElement) parameters[1], (edu.toronto.cs.se.mmint.productline.PLElement) parameters[2], (edu.toronto.cs.se.mmint.productline.PLElement) parameters[3]);
+    return TestMultipleEdgesPL.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (PLElement) parameters[1], (PLElement) parameters[2], (PLElement) parameters[3]);
   }
 
   /**

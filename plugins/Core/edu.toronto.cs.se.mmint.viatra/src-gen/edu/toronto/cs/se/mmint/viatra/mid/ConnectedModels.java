@@ -635,7 +635,7 @@ public final class ConnectedModels extends BaseGeneratedEMFQuerySpecification<Co
 
   @Override
   public ConnectedModels.Match newMatch(final Object... parameters) {
-    return ConnectedModels.Match.newMatch((edu.toronto.cs.se.mmint.mid.Model) parameters[0], (edu.toronto.cs.se.mmint.mid.Model) parameters[1]);
+    return ConnectedModels.Match.newMatch((Model) parameters[0], (Model) parameters[1]);
   }
 
   /**

@@ -629,7 +629,7 @@ public final class ConnectedEMFObjects extends BaseGeneratedEMFQuerySpecificatio
 
   @Override
   public ConnectedEMFObjects.Match newMatch(final Object... parameters) {
-    return ConnectedEMFObjects.Match.newMatch((org.eclipse.emf.ecore.EObject) parameters[0], (org.eclipse.emf.ecore.EObject) parameters[1]);
+    return ConnectedEMFObjects.Match.newMatch((EObject) parameters[0], (EObject) parameters[1]);
   }
 
   /**

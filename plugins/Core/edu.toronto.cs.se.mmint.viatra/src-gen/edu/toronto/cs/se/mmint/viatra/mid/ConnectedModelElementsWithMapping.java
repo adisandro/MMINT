@@ -745,7 +745,7 @@ public final class ConnectedModelElementsWithMapping extends BaseGeneratedEMFQue
 
   @Override
   public ConnectedModelElementsWithMapping.Match newMatch(final Object... parameters) {
-    return ConnectedModelElementsWithMapping.Match.newMatch((edu.toronto.cs.se.mmint.mid.ModelElement) parameters[0], (edu.toronto.cs.se.mmint.mid.ModelElement) parameters[1], (edu.toronto.cs.se.mmint.mid.relationship.Mapping) parameters[2]);
+    return ConnectedModelElementsWithMapping.Match.newMatch((ModelElement) parameters[0], (ModelElement) parameters[1], (Mapping) parameters[2]);
   }
 
   /**

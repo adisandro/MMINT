@@ -951,7 +951,7 @@ public final class Attribute extends BaseGeneratedEMFQuerySpecification<Attribut
 
   @Override
   public Attribute.Match newMatch(final Object... parameters) {
-    return Attribute.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (java.lang.String) parameters[1], (edu.toronto.cs.se.mmint.productline.Attribute) parameters[2], (java.lang.String) parameters[3], (java.lang.String) parameters[4]);
+    return Attribute.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (String) parameters[1], (edu.toronto.cs.se.mmint.productline.Attribute) parameters[2], (String) parameters[3], (String) parameters[4]);
   }
 
   /**

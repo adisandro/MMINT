@@ -634,7 +634,7 @@ public final class SubAttributes extends BaseGeneratedEMFQuerySpecification<SubA
 
   @Override
   public SubAttributes.Match newMatch(final Object... parameters) {
-    return SubAttributes.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[0], (edu.toronto.cs.se.modelepedia.classdiagram.Attribute) parameters[1]);
+    return SubAttributes.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[0], (Attribute) parameters[1]);
   }
 
   /**

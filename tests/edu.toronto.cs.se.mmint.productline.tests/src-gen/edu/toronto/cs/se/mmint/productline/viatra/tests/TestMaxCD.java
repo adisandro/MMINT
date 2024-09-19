@@ -487,7 +487,7 @@ public final class TestMaxCD extends BaseGeneratedEMFQuerySpecification<TestMaxC
 
   @Override
   public TestMaxCD.Match newMatch(final Object... parameters) {
-    return TestMaxCD.Match.newMatch((java.lang.String) parameters[0]);
+    return TestMaxCD.Match.newMatch((String) parameters[0]);
   }
 
   /**

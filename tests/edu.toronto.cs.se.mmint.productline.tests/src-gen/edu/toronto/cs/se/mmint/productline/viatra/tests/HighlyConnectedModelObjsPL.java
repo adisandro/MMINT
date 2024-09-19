@@ -733,7 +733,7 @@ public final class HighlyConnectedModelObjsPL extends BaseGeneratedEMFQuerySpeci
 
   @Override
   public HighlyConnectedModelObjsPL.Match newMatch(final Object... parameters) {
-    return HighlyConnectedModelObjsPL.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (edu.toronto.cs.se.mmint.productline.Class) parameters[1], (edu.toronto.cs.se.mmint.mid.relationship.Mapping) parameters[2]);
+    return HighlyConnectedModelObjsPL.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (edu.toronto.cs.se.mmint.productline.Class) parameters[1], (Mapping) parameters[2]);
   }
 
   /**

@@ -750,7 +750,7 @@ public final class SuperAssociations extends BaseGeneratedEMFQuerySpecification<
 
   @Override
   public SuperAssociations.Match newMatch(final Object... parameters) {
-    return SuperAssociations.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[0], (edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[1], (edu.toronto.cs.se.modelepedia.classdiagram.Association) parameters[2]);
+    return SuperAssociations.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[0], (edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[1], (Association) parameters[2]);
   }
 
   /**

@@ -631,7 +631,7 @@ public final class TestAttributePL extends BaseGeneratedEMFQuerySpecification<Te
 
   @Override
   public TestAttributePL.Match newMatch(final Object... parameters) {
-    return TestAttributePL.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (edu.toronto.cs.se.mmint.productline.PLElement) parameters[1]);
+    return TestAttributePL.Match.newMatch((edu.toronto.cs.se.mmint.productline.Class) parameters[0], (PLElement) parameters[1]);
   }
 
   /**

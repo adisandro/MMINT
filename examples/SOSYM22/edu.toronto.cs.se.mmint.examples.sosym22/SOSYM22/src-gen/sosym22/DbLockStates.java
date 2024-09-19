@@ -490,7 +490,7 @@ public final class DbLockStates extends BaseGeneratedEMFQuerySpecification<DbLoc
 
   @Override
   public DbLockStates.Match newMatch(final Object... parameters) {
-    return DbLockStates.Match.newMatch((edu.toronto.cs.se.mmint.types.lts.State) parameters[0]);
+    return DbLockStates.Match.newMatch((State) parameters[0]);
   }
 
   /**

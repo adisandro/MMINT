@@ -486,7 +486,7 @@ public final class PublicAttributes extends BaseGeneratedEMFQuerySpecification<P
 
   @Override
   public PublicAttributes.Match newMatch(final Object... parameters) {
-    return PublicAttributes.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Attribute) parameters[0]);
+    return PublicAttributes.Match.newMatch((Attribute) parameters[0]);
   }
 
   /**

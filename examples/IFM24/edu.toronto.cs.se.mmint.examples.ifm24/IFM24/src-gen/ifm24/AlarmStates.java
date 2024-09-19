@@ -491,7 +491,7 @@ public final class AlarmStates extends BaseGeneratedEMFQuerySpecification<AlarmS
 
   @Override
   public AlarmStates.Match newMatch(final Object... parameters) {
-    return AlarmStates.Match.newMatch((edu.toronto.cs.se.modelepedia.statemachine.State) parameters[0]);
+    return AlarmStates.Match.newMatch((State) parameters[0]);
   }
 
   /**

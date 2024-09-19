@@ -631,7 +631,7 @@ public final class TestAttribute2CD extends BaseGeneratedEMFQuerySpecification<T
 
   @Override
   public TestAttribute2CD.Match newMatch(final Object... parameters) {
-    return TestAttribute2CD.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[0], (java.lang.String) parameters[1]);
+    return TestAttribute2CD.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[0], (String) parameters[1]);
   }
 
   /**

@@ -637,7 +637,7 @@ public final class ClassAssociations extends BaseGeneratedEMFQuerySpecification<
 
   @Override
   public ClassAssociations.Match newMatch(final Object... parameters) {
-    return ClassAssociations.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[0], (java.lang.Integer) parameters[1]);
+    return ClassAssociations.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[0], (Integer) parameters[1]);
   }
 
   /**

@@ -632,7 +632,7 @@ public final class AllConnectedModels extends BaseGeneratedEMFQuerySpecification
 
   @Override
   public AllConnectedModels.Match newMatch(final Object... parameters) {
-    return AllConnectedModels.Match.newMatch((edu.toronto.cs.se.mmint.mid.Model) parameters[0], (edu.toronto.cs.se.mmint.mid.Model) parameters[1]);
+    return AllConnectedModels.Match.newMatch((Model) parameters[0], (Model) parameters[1]);
   }
 
   /**

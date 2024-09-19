@@ -736,7 +736,7 @@ public final class TestMaxPL extends BaseGeneratedEMFQuerySpecification<TestMaxP
 
   @Override
   public TestMaxPL.Match newMatch(final Object... parameters) {
-    return TestMaxPL.Match.newMatch((edu.toronto.cs.se.mmint.productline.PLElement) parameters[0], (edu.toronto.cs.se.mmint.productline.PLElement) parameters[1], (java.lang.String) parameters[2]);
+    return TestMaxPL.Match.newMatch((PLElement) parameters[0], (PLElement) parameters[1], (String) parameters[2]);
   }
 
   /**

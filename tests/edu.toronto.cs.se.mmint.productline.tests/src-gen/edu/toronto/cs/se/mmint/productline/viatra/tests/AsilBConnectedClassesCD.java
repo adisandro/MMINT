@@ -637,7 +637,7 @@ public final class AsilBConnectedClassesCD extends BaseGeneratedEMFQuerySpecific
 
   @Override
   public AsilBConnectedClassesCD.Match newMatch(final Object... parameters) {
-    return AsilBConnectedClassesCD.Match.newMatch((edu.toronto.cs.se.modelepedia.gsn.Goal) parameters[0], (edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[1]);
+    return AsilBConnectedClassesCD.Match.newMatch((Goal) parameters[0], (edu.toronto.cs.se.modelepedia.classdiagram.Class) parameters[1]);
   }
 
   /**

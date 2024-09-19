@@ -636,7 +636,7 @@ public final class NumClasses extends BaseGeneratedEMFQuerySpecification<NumClas
 
   @Override
   public NumClasses.Match newMatch(final Object... parameters) {
-    return NumClasses.Match.newMatch((edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagram) parameters[0], (java.lang.Integer) parameters[1]);
+    return NumClasses.Match.newMatch((ClassDiagram) parameters[0], (Integer) parameters[1]);
   }
 
   /**

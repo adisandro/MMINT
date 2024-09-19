@@ -483,7 +483,7 @@ public final class NoOutgoingTransitions extends BaseGeneratedEMFQuerySpecificat
 
   @Override
   public NoOutgoingTransitions.Match newMatch(final Object... parameters) {
-    return NoOutgoingTransitions.Match.newMatch((edu.toronto.cs.se.mmint.types.lts.State) parameters[0]);
+    return NoOutgoingTransitions.Match.newMatch((State) parameters[0]);
   }
 
   /**

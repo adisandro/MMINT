@@ -635,7 +635,7 @@ public final class HighlyConnectedModelObjsCD extends BaseGeneratedEMFQuerySpeci
 
   @Override
   public HighlyConnectedModelObjsCD.Match newMatch(final Object... parameters) {
-    return HighlyConnectedModelObjsCD.Match.newMatch((org.eclipse.emf.ecore.EObject) parameters[0], (java.lang.Integer) parameters[1]);
+    return HighlyConnectedModelObjsCD.Match.newMatch((EObject) parameters[0], (Integer) parameters[1]);
   }
 
   /**

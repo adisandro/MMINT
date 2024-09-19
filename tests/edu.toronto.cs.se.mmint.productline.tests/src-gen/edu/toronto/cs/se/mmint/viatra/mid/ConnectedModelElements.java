@@ -629,7 +629,7 @@ public final class ConnectedModelElements extends BaseGeneratedEMFQuerySpecifica
 
   @Override
   public ConnectedModelElements.Match newMatch(final Object... parameters) {
-    return ConnectedModelElements.Match.newMatch((edu.toronto.cs.se.mmint.mid.ModelElement) parameters[0], (edu.toronto.cs.se.mmint.mid.ModelElement) parameters[1]);
+    return ConnectedModelElements.Match.newMatch((ModelElement) parameters[0], (ModelElement) parameters[1]);
   }
 
   /**
