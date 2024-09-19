@@ -8,7 +8,7 @@
     <tycho-version>5.0.0-SNAPSHOT</tycho-version>
     <acceleo-version>3.6.4</acceleo-version>
     <mavendeps-version>3.8.0</mavendeps-version>
-    <ecj-version>3.39.0</ecj-version>
+    <ecj-version>3.39.100-SNAPSHOT</ecj-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <repositories>
@@ -54,7 +54,7 @@
     </pluginRepository>
     <pluginRepository>
       <id>Ecj</id>
-      <url>https://repo.eclipse.org/content/repositories/eclipse-staging</url>
+      <url>https://repo.eclipse.org/content/repositories/eclipse-snapshots</url>
     </pluginRepository>
   </pluginRepositories>
   <build>
