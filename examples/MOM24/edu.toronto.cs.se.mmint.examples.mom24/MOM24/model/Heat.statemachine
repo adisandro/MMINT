@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<statemachine:StateMachine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:statemachine="http://se.cs.toronto.edu/modelepedia/StateMachine"/>
+<statemachine:StateMachine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:statemachine="http://se.cs.toronto.edu/modelepedia/StateMachine">
+  <states xsi:type="statemachine:State" name="Init" transitionsAsSource="//@transitions.0"/>
+  <states xsi:type="statemachine:State" name="Wash" transitionsAsSource="//@transitions.2" transitionsAsTarget="//@transitions.1"/>
+  <states xsi:type="statemachine:State" name="Heat" transitionsAsSource="//@transitions.1" transitionsAsTarget="//@transitions.0"/>
+  <states xsi:type="statemachine:State" name="Idle" transitionsAsSource="//@transitions.3" transitionsAsTarget="//@transitions.2 //@transitions.3"/>
+  <transitions action="SetHeat" trigger="" source="//@states.0" target="//@states.2"/>
+  <transitions source="//@states.2" target="//@states.1"/>
+  <transitions source="//@states.1" target="//@states.3"/>
+  <transitions source="//@states.3" target="//@states.3"/>
+</statemachine:StateMachine>

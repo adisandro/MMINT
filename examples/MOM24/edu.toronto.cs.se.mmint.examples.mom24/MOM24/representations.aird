@@ -15,7 +15,7 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" uid="_9SMAYHbYEe-ID5q2UD4pSw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="__i43sHbYEe-ID5q2UD4pSw" name="Heat" repPath="#__iw74HbYEe-ID5q2UD4pSw" changeId="1726785982156">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="__i43sHbYEe-ID5q2UD4pSw" name="Heat" repPath="#__iw74HbYEe-ID5q2UD4pSw" changeId="1726786322483">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']"/>
         <target xmi:type="statemachine:StateMachine" href="model/Heat.statemachine#/"/>
       </ownedRepresentationDescriptors>
@@ -989,12 +989,180 @@
   <diagram:DSemanticDiagram uid="__iw74HbYEe-ID5q2UD4pSw">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="__i9JIHbYEe-ID5q2UD4pSw" source="GMF_DIAGRAMS">
       <data xmi:type="notation:Diagram" xmi:id="__i9JIXbYEe-ID5q2UD4pSw" type="Sirius" element="__iw74HbYEe-ID5q2UD4pSw" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_UuO0EHbZEe-ID5q2UD4pSw" type="2003" element="_Ut9uUHbZEe-ID5q2UD4pSw">
+          <children xmi:type="notation:Node" xmi:id="_UuO0E3bZEe-ID5q2UD4pSw" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_UuPbIHbZEe-ID5q2UD4pSw" type="7004">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_UuPbIXbZEe-ID5q2UD4pSw"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_UuPbInbZEe-ID5q2UD4pSw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_UuO0EXbZEe-ID5q2UD4pSw" fontName="Cantarell" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UuO0EnbZEe-ID5q2UD4pSw" x="380" y="760" width="83"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_ZuUp0HbZEe-ID5q2UD4pSw" type="2003" element="_ZuJDoHbZEe-ID5q2UD4pSw">
+          <children xmi:type="notation:Node" xmi:id="_ZuUp03bZEe-ID5q2UD4pSw" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_ZuVQ4HbZEe-ID5q2UD4pSw" type="7004">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_ZuVQ4XbZEe-ID5q2UD4pSw"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_ZuVQ4nbZEe-ID5q2UD4pSw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_ZuUp0XbZEe-ID5q2UD4pSw" fontName="Cantarell" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZuUp0nbZEe-ID5q2UD4pSw" x="380" y="960" width="83"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_agKWcHbZEe-ID5q2UD4pSw" type="2003" element="_agAlcHbZEe-ID5q2UD4pSw">
+          <children xmi:type="notation:Node" xmi:id="_agKWc3bZEe-ID5q2UD4pSw" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_agKWdHbZEe-ID5q2UD4pSw" type="7004">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_agKWdXbZEe-ID5q2UD4pSw"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_agKWdnbZEe-ID5q2UD4pSw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_agKWcXbZEe-ID5q2UD4pSw" fontName="Cantarell" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_agKWcnbZEe-ID5q2UD4pSw" x="220" y="880" width="83"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_bZB4IHbZEe-ID5q2UD4pSw" type="2003" element="_bY5VQHbZEe-ID5q2UD4pSw">
+          <children xmi:type="notation:Node" xmi:id="_bZB4I3bZEe-ID5q2UD4pSw" type="5007"/>
+          <children xmi:type="notation:Node" xmi:id="_bZB4JHbZEe-ID5q2UD4pSw" type="7004">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_bZB4JXbZEe-ID5q2UD4pSw"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_bZB4JnbZEe-ID5q2UD4pSw"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_bZB4IXbZEe-ID5q2UD4pSw" fontName="Cantarell" fontHeight="10"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bZB4InbZEe-ID5q2UD4pSw" x="380" y="1060" width="83"/>
+        </children>
         <styles xmi:type="notation:DiagramStyle" xmi:id="__i9JInbYEe-ID5q2UD4pSw"/>
+        <edges xmi:type="notation:Edge" xmi:id="_gwCZEHbZEe-ID5q2UD4pSw" type="4001" element="_gv2L0HbZEe-ID5q2UD4pSw" source="_UuO0EHbZEe-ID5q2UD4pSw" target="_agKWcHbZEe-ID5q2UD4pSw">
+          <children xmi:type="notation:Node" xmi:id="_gwDAIHbZEe-ID5q2UD4pSw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gwDAIXbZEe-ID5q2UD4pSw" x="20" y="58"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_gwDnMHbZEe-ID5q2UD4pSw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gwDnMXbZEe-ID5q2UD4pSw" y="11"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_gwEOQHbZEe-ID5q2UD4pSw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gwEOQXbZEe-ID5q2UD4pSw" y="11"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_gwCZEXbZEe-ID5q2UD4pSw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_gwCZEnbZEe-ID5q2UD4pSw" fontName="Cantarell" fontHeight="10"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gwCZE3bZEe-ID5q2UD4pSw" points="[-7, 6, 86, -80]$[-88, 80, 5, -6]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gwFcYHbZEe-ID5q2UD4pSw" id="(0.08641975308641975,0.7843137254901961)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gwFcYXbZEe-ID5q2UD4pSw" id="(0.9135802469135802,0.11764705882352941)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_hPptQHbZEe-ID5q2UD4pSw" type="4001" element="_hPhxdHbZEe-ID5q2UD4pSw" source="_agKWcHbZEe-ID5q2UD4pSw" target="_ZuUp0HbZEe-ID5q2UD4pSw">
+          <children xmi:type="notation:Node" xmi:id="_hPptRHbZEe-ID5q2UD4pSw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hPptRXbZEe-ID5q2UD4pSw" x="2" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_hPptRnbZEe-ID5q2UD4pSw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hPptR3bZEe-ID5q2UD4pSw" x="-4" y="9"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_hPqUUHbZEe-ID5q2UD4pSw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hPqUUXbZEe-ID5q2UD4pSw" x="-1" y="9"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_hPptQXbZEe-ID5q2UD4pSw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_hPptQnbZEe-ID5q2UD4pSw" fontName="Cantarell" fontHeight="10"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_hPptQ3bZEe-ID5q2UD4pSw" points="[13, 9, -96, -68]$[98, 69, -11, -8]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_hPqUUnbZEe-ID5q2UD4pSw" id="(0.7654320987654321,0.8235294117647058)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_hPqUU3bZEe-ID5q2UD4pSw" id="(0.13580246913580246,0.7647058823529411)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_h7tiAHbZEe-ID5q2UD4pSw" type="4001" element="_h7mNSHbZEe-ID5q2UD4pSw" source="_ZuUp0HbZEe-ID5q2UD4pSw" target="_bZB4IHbZEe-ID5q2UD4pSw">
+          <children xmi:type="notation:Node" xmi:id="_h7tiBHbZEe-ID5q2UD4pSw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_h7tiBXbZEe-ID5q2UD4pSw" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_h7tiBnbZEe-ID5q2UD4pSw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_h7tiB3bZEe-ID5q2UD4pSw" y="10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_h7tiCHbZEe-ID5q2UD4pSw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_h7tiCXbZEe-ID5q2UD4pSw" y="10"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_h7tiAXbZEe-ID5q2UD4pSw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_h7tiAnbZEe-ID5q2UD4pSw" fontName="Cantarell" fontHeight="10"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_h7tiA3bZEe-ID5q2UD4pSw" points="[0, 0, 0, -49]$[0, 49, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_h7uJEHbZEe-ID5q2UD4pSw" id="(0.5061728395061729,1.0)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_h7uJEXbZEe-ID5q2UD4pSw" id="(0.5061728395061729,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Edge" xmi:id="_iZiGdHbZEe-ID5q2UD4pSw" type="4001" element="_iZb_0HbZEe-ID5q2UD4pSw" source="_bZB4IHbZEe-ID5q2UD4pSw" target="_bZB4IHbZEe-ID5q2UD4pSw">
+          <children xmi:type="notation:Node" xmi:id="_iZiGeHbZEe-ID5q2UD4pSw" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iZiGeXbZEe-ID5q2UD4pSw" x="-12" y="-6"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_iZitgHbZEe-ID5q2UD4pSw" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iZitgXbZEe-ID5q2UD4pSw" x="13" y="-10"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_iZitgnbZEe-ID5q2UD4pSw" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iZitg3bZEe-ID5q2UD4pSw" x="20" y="5"/>
+          </children>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_iZiGdXbZEe-ID5q2UD4pSw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_iZiGdnbZEe-ID5q2UD4pSw" fontName="Cantarell" fontHeight="10"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_iZiGd3bZEe-ID5q2UD4pSw" points="[-6, -8, 3, -47]$[-6, -28, 3, -67]$[-86, -28, -77, -67]$[-86, 17, -77, -22]$[-26, 17, -17, -22]$[-26, 17, -17, -22]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rG6GQHbZEe-ID5q2UD4pSw" id="(0.32098765432098764,0.1568627450980392)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_iZithXbZEe-ID5q2UD4pSw" id="(0.20987654320987653,0.9215686274509803)"/>
+        </edges>
       </data>
     </ownedAnnotationEntries>
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="__jHhMHbYEe-ID5q2UD4pSw" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="__jIIQHbYEe-ID5q2UD4pSw"/>
     </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_Ut9uUHbZEe-ID5q2UD4pSw" name="Init" outgoingEdges="_gv2L0HbZEe-ID5q2UD4pSw">
+      <target xmi:type="statemachine:State" href="model/Heat.statemachine#//@states.0"/>
+      <semanticElements xmi:type="statemachine:State" href="model/Heat.statemachine#//@states.0"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_Ut9uUXbZEe-ID5q2UD4pSw" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundColor="255,245,181" foregroundColor="255,245,181">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_ZuJDoHbZEe-ID5q2UD4pSw" name="Wash" outgoingEdges="_h7mNSHbZEe-ID5q2UD4pSw" incomingEdges="_hPhxdHbZEe-ID5q2UD4pSw">
+      <target xmi:type="statemachine:State" href="model/Heat.statemachine#//@states.1"/>
+      <semanticElements xmi:type="statemachine:State" href="model/Heat.statemachine#//@states.1"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_ZuJDoXbZEe-ID5q2UD4pSw" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundColor="255,245,181" foregroundColor="255,245,181">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_agAlcHbZEe-ID5q2UD4pSw" name="Heat" outgoingEdges="_hPhxdHbZEe-ID5q2UD4pSw" incomingEdges="_gv2L0HbZEe-ID5q2UD4pSw">
+      <target xmi:type="statemachine:State" href="model/Heat.statemachine#//@states.2"/>
+      <semanticElements xmi:type="statemachine:State" href="model/Heat.statemachine#//@states.2"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_agAlcXbZEe-ID5q2UD4pSw" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundColor="255,245,181" foregroundColor="255,245,181">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_bY5VQHbZEe-ID5q2UD4pSw" name="Idle" outgoingEdges="_iZb_0HbZEe-ID5q2UD4pSw" incomingEdges="_h7mNSHbZEe-ID5q2UD4pSw _iZb_0HbZEe-ID5q2UD4pSw">
+      <target xmi:type="statemachine:State" href="model/Heat.statemachine#//@states.3"/>
+      <semanticElements xmi:type="statemachine:State" href="model/Heat.statemachine#//@states.3"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_bY5VQXbZEe-ID5q2UD4pSw" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundColor="255,245,181" foregroundColor="255,245,181">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_gv2L0HbZEe-ID5q2UD4pSw" name=" /SetHeat" sourceNode="_Ut9uUHbZEe-ID5q2UD4pSw" targetNode="_agAlcHbZEe-ID5q2UD4pSw">
+      <target xmi:type="statemachine:Transition" href="model/Heat.statemachine#//@transitions.0"/>
+      <semanticElements xmi:type="statemachine:Transition" href="model/Heat.statemachine#//@transitions.0"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_gv2L0XbZEe-ID5q2UD4pSw" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_gv2L0nbZEe-ID5q2UD4pSw" labelSize="10" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_hPhxdHbZEe-ID5q2UD4pSw" name=" " sourceNode="_agAlcHbZEe-ID5q2UD4pSw" targetNode="_ZuJDoHbZEe-ID5q2UD4pSw">
+      <target xmi:type="statemachine:Transition" href="model/Heat.statemachine#//@transitions.1"/>
+      <semanticElements xmi:type="statemachine:Transition" href="model/Heat.statemachine#//@transitions.1"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_hPhxdXbZEe-ID5q2UD4pSw" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_hPhxdnbZEe-ID5q2UD4pSw" labelSize="10" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_h7mNSHbZEe-ID5q2UD4pSw" name=" " sourceNode="_ZuJDoHbZEe-ID5q2UD4pSw" targetNode="_bY5VQHbZEe-ID5q2UD4pSw">
+      <target xmi:type="statemachine:Transition" href="model/Heat.statemachine#//@transitions.2"/>
+      <semanticElements xmi:type="statemachine:Transition" href="model/Heat.statemachine#//@transitions.2"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_h7mNSXbZEe-ID5q2UD4pSw" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_h7mNSnbZEe-ID5q2UD4pSw" labelSize="10" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_iZb_0HbZEe-ID5q2UD4pSw" name=" " sourceNode="_bY5VQHbZEe-ID5q2UD4pSw" targetNode="_bY5VQHbZEe-ID5q2UD4pSw">
+      <target xmi:type="statemachine:Transition" href="model/Heat.statemachine#//@transitions.3"/>
+      <semanticElements xmi:type="statemachine:Transition" href="model/Heat.statemachine#//@transitions.3"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_iZb_0XbZEe-ID5q2UD4pSw" size="2" strokeColor="0,0,0">
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_iZb_0nbZEe-ID5q2UD4pSw" labelSize="10" showIcon="false"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+    </ownedDiagramElements>
     <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="__i0mQHbYEe-ID5q2UD4pSw"/>
     <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer"/>
