@@ -12,18 +12,22 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.operators.variability;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
+import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 
 public class RemoveFeature extends OperatorImpl {
@@ -61,7 +65,7 @@ public class RemoveFeature extends OperatorImpl {
     public Map<String, Model> packed() throws Exception {
       var plRemovedModel = this.plModelType.createInstanceAndEditor(this.plRemoved,
                                                                     FileUtils.getUniquePath(this.path, true, false),
-                                                                    this.mid);;
+                                                                    this.mid);
       return Map.of(Out.MODEL, plRemovedModel);
     }
   }
@@ -78,9 +82,36 @@ public class RemoveFeature extends OperatorImpl {
   }
 
   protected void remove() throws Exception {
-    for (var plIter = this.out.plRemoved.eAllContents(); plIter.hasNext();) {
-      var plElem = plIter.next();
+    var feature = MIDDialogs.getStringInput("Remove feature", "Insert the feature to remove", null);
+    var featureValues = Map.of(feature, this.featureSubstitute);
+    var reasoner = this.out.plRemoved.getReasoner();
+    var featureLiteral = (this.featureSubstitute) ? reasoner.getTrueLiteral() : reasoner.getFalseLiteral();
+    // remove from feature model
+    var featureConstraint = this.out.plRemoved.getFeaturesConstraint();
+    if (featureConstraint.contains(feature)) {
+      if (!reasoner.checkConsistency(featureConstraint, featureValues)) {
+        throw new MMINTException("Feature model '" + featureConstraint + "' is unsatisfiable when removing feature '" +
+                                 feature + "'");
+      }
+      featureConstraint = reasoner.simplify(featureConstraint.replace(feature, featureLiteral));
+      this.out.plRemoved.setFeaturesConstraint(featureConstraint);
     }
+    // remove from presence conditions
+    var toRemove = new HashSet<PLElement>();
+    for (var plIter = this.out.plRemoved.eAllContents(); plIter.hasNext();) {
+      var plModelObj = (PLElement) plIter.next();
+      var pc = plModelObj.getPresenceCondition();
+      if (pc.contains(feature)) {
+        if (reasoner.checkConsistency(pc, featureValues)) {
+          pc = reasoner.simplify(pc.replace(feature, featureLiteral));
+          plModelObj.setPresenceCondition(pc);
+        }
+        else {
+          toRemove.add(plModelObj);
+        }
+      }
+    }
+    EcoreUtil.deleteAll(toRemove, false);
   }
 
   @Override

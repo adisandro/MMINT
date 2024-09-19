@@ -365,7 +365,7 @@
             <parameter>
                <type
                      name="pl"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.variability.RemoveFeature/productLine">
+                     uri="edu.toronto.cs.se.mmint.productline.operators.variability.RemoveFeature/pl">
                </type>
                <typeEndpoint
                      targetTypeUri="model://edu.toronto.cs.se.mmint.productline">
@@ -375,8 +375,8 @@
          <outputs>
             <parameter>
                <type
-                     name="pplRemoved"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.variability.RemoveFeature/productLineRemoved">
+                     name="plRemoved"
+                     uri="edu.toronto.cs.se.mmint.productline.operators.variability.RemoveFeature/plRemoved">
                </type>
                <typeEndpoint
                      targetTypeUri="model://edu.toronto.cs.se.mmint.productline">
