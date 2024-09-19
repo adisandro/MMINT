@@ -10,6 +10,12 @@
     <modelElems uri="/MOM24/model/WashingMachine.productline#//@classes.3_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
+    <modelElems uri="/MOM24/model/WashingMachine.productline#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MOM24/model/WashingMachine.productline#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
   </models>
   <models uri="/MOM24/model/Heat.statemachine" name="Heat" metatypeUri="http://se.cs.toronto.edu/modelepedia/StateMachine" dynamic="true" origin="CREATED" fileExtension="statemachine" editors="//@editors.1"/>
   <models uri="/MOM24/model/Heat.productline" name="Heat" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" origin="CREATED" fileExtension="productline" editors="//@editors.2">
@@ -20,6 +26,12 @@
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
     <modelElems uri="/MOM24/model/Heat.productline#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Heat &amp; ~Delay" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MOM24/model/Heat.productline#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Heat &amp; ~Delay" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
+      <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
+    </modelElems>
+    <modelElems uri="/MOM24/model/Heat.productline#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" name="Class Heat &amp; ~Delay" metatypeUri="http://se.cs.toronto.edu/mmint/Model#//ModelElement" dynamic="true">
       <eInfo className="Class" featureName="classes" relatedClassName="ProductLine"/>
     </modelElems>
   </models>
@@ -38,15 +50,27 @@
       <modelElemEndpoints uri="" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Overlap/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.2"/>
       <modelElemEndpoints uri="" name="Class Heat &amp; ~Delay" metatypeUri="http://se.cs.toronto.edu/mmint/Overlap/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2/@modelElems.2"/>
     </mappings>
+    <mappings uri="" name="Wash-Idle" metatypeUri="http://se.cs.toronto.edu/mmint/Overlap/Mapping" dynamic="true" modelElemEndpointRefs="//@models.3/@mappingRefs.3/@modelElemEndpointRefs.0 //@models.3/@mappingRefs.3/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Overlap/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.3"/>
+      <modelElemEndpoints uri="" name="Class Heat &amp; ~Delay" metatypeUri="http://se.cs.toronto.edu/mmint/Overlap/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2/@modelElems.3"/>
+    </mappings>
+    <mappings uri="" name="Idle-Idle" metatypeUri="http://se.cs.toronto.edu/mmint/Overlap/Mapping" dynamic="true" modelElemEndpointRefs="//@models.3/@mappingRefs.4/@modelElemEndpointRefs.0 //@models.3/@mappingRefs.4/@modelElemEndpointRefs.1">
+      <modelElemEndpoints uri="" name="Class $true" metatypeUri="http://se.cs.toronto.edu/mmint/Overlap/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0/@modelElems.4"/>
+      <modelElemEndpoints uri="" name="Class Heat &amp; ~Delay" metatypeUri="http://se.cs.toronto.edu/mmint/Overlap/Mapping-ModelElem/ModelElemEndpoint" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2/@modelElems.4"/>
+    </mappings>
     <modelEndpointRefs referencedObject="//@models.3/@modelEndpoints.0" modifiable="true">
       <modelElemRefs referencedObject="//@models.0/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.3/@mappingRefs.0/@modelElemEndpointRefs.0"/>
       <modelElemRefs referencedObject="//@models.0/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.3/@mappingRefs.1/@modelElemEndpointRefs.0"/>
       <modelElemRefs referencedObject="//@models.0/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.3/@mappingRefs.2/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.3" modifiable="true" modelElemEndpointRefs="//@models.3/@mappingRefs.3/@modelElemEndpointRefs.0"/>
+      <modelElemRefs referencedObject="//@models.0/@modelElems.4" modifiable="true" modelElemEndpointRefs="//@models.3/@mappingRefs.4/@modelElemEndpointRefs.0"/>
     </modelEndpointRefs>
     <modelEndpointRefs referencedObject="//@models.3/@modelEndpoints.1" modifiable="true">
       <modelElemRefs referencedObject="//@models.2/@modelElems.0" modifiable="true" modelElemEndpointRefs="//@models.3/@mappingRefs.0/@modelElemEndpointRefs.1"/>
       <modelElemRefs referencedObject="//@models.2/@modelElems.1" modifiable="true" modelElemEndpointRefs="//@models.3/@mappingRefs.1/@modelElemEndpointRefs.1"/>
       <modelElemRefs referencedObject="//@models.2/@modelElems.2" modifiable="true" modelElemEndpointRefs="//@models.3/@mappingRefs.2/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.2/@modelElems.3" modifiable="true" modelElemEndpointRefs="//@models.3/@mappingRefs.3/@modelElemEndpointRefs.1"/>
+      <modelElemRefs referencedObject="//@models.2/@modelElems.4" modifiable="true" modelElemEndpointRefs="//@models.3/@mappingRefs.4/@modelElemEndpointRefs.1"/>
     </modelEndpointRefs>
     <mappingRefs referencedObject="//@models.3/@mappings.0" modifiable="true">
       <modelElemEndpointRefs referencedObject="//@models.3/@mappings.0/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.3/@modelEndpointRefs.0/@modelElemRefs.0"/>
@@ -59,6 +83,14 @@
     <mappingRefs referencedObject="//@models.3/@mappings.2" modifiable="true">
       <modelElemEndpointRefs referencedObject="//@models.3/@mappings.2/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.3/@modelEndpointRefs.0/@modelElemRefs.2"/>
       <modelElemEndpointRefs referencedObject="//@models.3/@mappings.2/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.3/@modelEndpointRefs.1/@modelElemRefs.2"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.3/@mappings.3" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.3/@mappings.3/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.3/@modelEndpointRefs.0/@modelElemRefs.3"/>
+      <modelElemEndpointRefs referencedObject="//@models.3/@mappings.3/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.3/@modelEndpointRefs.1/@modelElemRefs.3"/>
+    </mappingRefs>
+    <mappingRefs referencedObject="//@models.3/@mappings.4" modifiable="true">
+      <modelElemEndpointRefs referencedObject="//@models.3/@mappings.4/@modelElemEndpoints.0" modifiable="true" modelElemRef="//@models.3/@modelEndpointRefs.0/@modelElemRefs.4"/>
+      <modelElemEndpointRefs referencedObject="//@models.3/@mappings.4/@modelElemEndpoints.1" modifiable="true" modelElemRef="//@models.3/@modelEndpointRefs.1/@modelElemRefs.4"/>
     </mappingRefs>
   </models>
   <editors xsi:type="editor:Diagram" uri="/MOM24/representations.aird#_rXsIUJrfEe60HpawhqlevQ" name="ProductLine Sirius Diagram for model /MOM24/model/WashingMachine.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.design" dynamic="true" modelUri="/MOM24/model/WashingMachine.productline" id="edu.toronto.cs.se.mmint.productline.design" wizardId="edu.toronto.cs.se.mmint.productline.presentation.PLModelWizardID">
@@ -83,4 +115,8 @@
   <extendibleTable key="/MOM24/model/Heat.productline#//@classes.1_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.0"/>
   <extendibleTable key="/MOM24/model/Heat.productline#//@classes.2_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.1"/>
   <extendibleTable key="/MOM24/model/Heat.productline#//@classes.4_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.2"/>
+  <extendibleTable key="/MOM24/model/WashingMachine.productline#//@classes.5_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.3"/>
+  <extendibleTable key="/MOM24/model/WashingMachine.productline#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.0/@modelElems.4"/>
+  <extendibleTable key="/MOM24/model/Heat.productline#//@classes.7_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.3"/>
+  <extendibleTable key="/MOM24/model/Heat.productline#//@classes.8_AS_http://se.cs.toronto.edu/mmint/Model#//ModelElement" value="//@models.2/@modelElems.4"/>
 </mid:MID>

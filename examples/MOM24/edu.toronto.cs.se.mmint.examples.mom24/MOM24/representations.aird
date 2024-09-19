@@ -10,7 +10,7 @@
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']"/>
         <target xmi:type="productline:ProductLine" href="model/WashingMachine.productline#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_qChboHbaEe-ID5q2UD4pSw" name="Heat" repPath="#_qCg0kHbaEe-ID5q2UD4pSw" changeId="1726787402772">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_qChboHbaEe-ID5q2UD4pSw" name="Heat" repPath="#_qCg0kHbaEe-ID5q2UD4pSw" changeId="1726788563353">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']"/>
         <target xmi:type="productline:ProductLine" href="model/Heat.productline#/"/>
       </ownedRepresentationDescriptors>
@@ -1244,10 +1244,6 @@
               <styles xmi:type="notation:FontStyle" xmi:id="_qCto5HbaEe-ID5q2UD4pSw" fontName="Cantarell" fontHeight="12"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_qCto5XbaEe-ID5q2UD4pSw"/>
             </children>
-            <children xmi:type="notation:Node" xmi:id="_qCto5nbaEe-ID5q2UD4pSw" visible="false" type="3010" element="_qCke9XbaEe-ID5q2UD4pSw">
-              <styles xmi:type="notation:FontStyle" xmi:id="_qCto53baEe-ID5q2UD4pSw" fontName="Cantarell" fontHeight="12"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_qCto6HbaEe-ID5q2UD4pSw"/>
-            </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_qCrMqHbaEe-ID5q2UD4pSw"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_qCrMqXbaEe-ID5q2UD4pSw"/>
           </children>
@@ -1744,14 +1740,6 @@
         <target xmi:type="productline:Attribute" href="model/Heat.productline#//@classes.5/@attributes.0"/>
         <semanticElements xmi:type="productline:Attribute" href="model/Heat.productline#//@classes.5/@attributes.0"/>
         <ownedStyle xmi:type="diagram:Square" uid="_qCke9HbaEe-ID5q2UD4pSw" labelSize="12" showIcon="false" labelPosition="node">
-          <description xmi:type="style:SquareDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']/@subNodeMappings[name='AttributeNode']/@style"/>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']/@subNodeMappings[name='AttributeNode']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_qCke9XbaEe-ID5q2UD4pSw" name="(Heat &amp; ~Delay) trigger: " visible="false">
-        <target xmi:type="productline:Attribute" href="model/Heat.productline#//@classes.5/@attributes.1"/>
-        <semanticElements xmi:type="productline:Attribute" href="model/Heat.productline#//@classes.5/@attributes.1"/>
-        <ownedStyle xmi:type="diagram:Square" uid="_qClGAHbaEe-ID5q2UD4pSw" labelSize="12" showIcon="false" labelPosition="node">
           <description xmi:type="style:SquareDescription" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']/@subNodeMappings[name='AttributeNode']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@containerMappings[name='ClassContainer']/@subNodeMappings[name='AttributeNode']"/>

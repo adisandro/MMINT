@@ -79,9 +79,6 @@
     <attributes presenceCondition="Heat &amp; ~Delay" value="SetHeat">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//FiringElement/action"/>
     </attributes>
-    <attributes presenceCondition="Heat &amp; ~Delay" value="">
-      <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//FiringElement/trigger"/>
-    </attributes>
     <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//Transition"/>
   </classes>
   <classes presenceCondition="Heat &amp; ~Delay" referencesAsTarget="//@classes.0/@references.5 //@classes.2/@references.1 //@classes.3/@references.0">
