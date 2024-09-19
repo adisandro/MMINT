@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:productline="model://edu.toronto.cs.se.mmint.productline" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/filter/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/filter http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
-  <viewpoint:DAnalysis uid="_oXlNUJrfEe60HpawhqlevQ" selectedViews="_pzH-QJrfEe60HpawhqlevQ _qAg6AJrfEe60HpawhqlevQ" version="15.4.1.202403191723">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:productline="model://edu.toronto.cs.se.mmint.productline" xmlns:statemachine="http://se.cs.toronto.edu/modelepedia/StateMachine" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/filter/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/filter http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
+  <viewpoint:DAnalysis uid="_oXlNUJrfEe60HpawhqlevQ" selectedViews="_pzH-QJrfEe60HpawhqlevQ _qAg6AJrfEe60HpawhqlevQ _9SMAYHbYEe-ID5q2UD4pSw" version="15.4.1.202403191723">
     <semanticResources>model/WashingMachine.productline</semanticResources>
+    <semanticResources>model/Heat.statemachine</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_pzH-QJrfEe60HpawhqlevQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_rXsvYJrfEe60HpawhqlevQ" name="WashingMachine" repPath="#_rXsIUJrfEe60HpawhqlevQ" changeId="1726784617896">
@@ -11,6 +12,13 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" uid="_qAg6AJrfEe60HpawhqlevQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.mmint.types.statemachine.productline.design/description/statemachine.productline.odesign#//@ownedViewpoints[name='StateMachineProductLineViewpoint']"/>
+    </ownedViews>
+    <ownedViews xmi:type="viewpoint:DView" uid="_9SMAYHbYEe-ID5q2UD4pSw">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="__i43sHbYEe-ID5q2UD4pSw" name="Heat" repPath="#__iw74HbYEe-ID5q2UD4pSw" changeId="1726785982156">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']"/>
+        <target xmi:type="statemachine:StateMachine" href="model/Heat.statemachine#/"/>
+      </ownedRepresentationDescriptors>
     </ownedViews>
   </viewpoint:DAnalysis>
   <diagram:DSemanticDiagram uid="_rXsIUJrfEe60HpawhqlevQ">
@@ -977,5 +985,19 @@
     <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer"/>
     <activatedLayers xmi:type="description_1:AdditionalLayer" href="platform:/plugin/edu.toronto.cs.se.mmint.types.statemachine.productline.design/description/statemachine.productline.odesign#//@ownedViewpoints[name='StateMachineProductLineViewpoint']/@ownedRepresentationExtensions[name='StateMachineProductLineDiagram']/@layers[name='StateMachineProductLine']"/>
     <target xmi:type="productline:ProductLine" href="model/WashingMachine.productline#/"/>
+  </diagram:DSemanticDiagram>
+  <diagram:DSemanticDiagram uid="__iw74HbYEe-ID5q2UD4pSw">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="__i9JIHbYEe-ID5q2UD4pSw" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="__i9JIXbYEe-ID5q2UD4pSw" type="Sirius" element="__iw74HbYEe-ID5q2UD4pSw" measurementUnit="Pixel">
+        <styles xmi:type="notation:DiagramStyle" xmi:id="__i9JInbYEe-ID5q2UD4pSw"/>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="__jHhMHbYEe-ID5q2UD4pSw" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="__jIIQHbYEe-ID5q2UD4pSw"/>
+    </ownedAnnotationEntries>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="__i0mQHbYEe-ID5q2UD4pSw"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer"/>
+    <target xmi:type="statemachine:StateMachine" href="model/Heat.statemachine#/"/>
   </diagram:DSemanticDiagram>
 </xmi:XMI>
