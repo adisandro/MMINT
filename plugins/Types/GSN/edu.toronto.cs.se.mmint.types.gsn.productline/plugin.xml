@@ -29,7 +29,7 @@
                uri="edu.toronto.cs.se.mmint.types.gsn.productline.operators.GSNToProductLine"
                class="edu.toronto.cs.se.mmint.types.gsn.productline.operators.GSNToProductLine">
             <superType
-                  uri="edu.toronto.cs.se.mmint.productline.operators.ToProductLine">
+                  uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine">
             </superType>
          </type>
          <inputs>
@@ -38,7 +38,7 @@
                      name="product"
                      uri="edu.toronto.cs.se.mmint.types.gsn.productline.operators.GSNToProductLine/product">
                   <superType
-                        uri="edu.toronto.cs.se.mmint.productline.operators.ToProductLine/product">
+                        uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine/product">
                   </superType>
                </type>
                <typeEndpoint
@@ -52,7 +52,7 @@
                      name="productLine"
                      uri="edu.toronto.cs.se.mmint.types.gsn.productline.operators.GSNToProductLine/productLine">
                   <superType
-                        uri="edu.toronto.cs.se.mmint.productline.operators.ToProductLine/productLine">
+                        uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine/productLine">
                   </superType>
                </type>
                <typeEndpoint

@@ -21,4 +21,7 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mmint.kotlin
 Bundle-Vendor: %providerName
 Export-Package: edu.toronto.cs.se.mmint.productline.operators,
+ edu.toronto.cs.se.mmint.productline.operators.bridge,
+ edu.toronto.cs.se.mmint.productline.operators.lift,
+ edu.toronto.cs.se.mmint.productline.operators.variability,
  edu.toronto.cs.se.mmint.productline.viatra.reasoning

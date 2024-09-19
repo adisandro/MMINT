@@ -10,7 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package edu.toronto.cs.se.mmint.productline.operators;
+package edu.toronto.cs.se.mmint.productline.operators.lift;
 
 import edu.toronto.cs.se.mmint.operator.propagate.ModelRelPropagation2;
 

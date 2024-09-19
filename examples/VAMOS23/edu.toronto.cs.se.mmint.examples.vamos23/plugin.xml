@@ -47,7 +47,7 @@
                uri="edu.toronto.cs.se.mmint.examples.vamos23.operators.CDMAVOToCDProductLine"
                class="edu.toronto.cs.se.mmint.examples.vamos23.operators.CDMAVOToCDProductLine">
             <superType
-                  uri="edu.toronto.cs.se.mmint.productline.operators.ToProductLine">
+                  uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine">
             </superType>
          </type>
          <inputs>
@@ -56,7 +56,7 @@
                      name="product"
                      uri="edu.toronto.cs.se.mmint.examples.vamos23.operators.CDMAVOToCDProductLine/product">
                   <superType
-                        uri="edu.toronto.cs.se.mmint.productline.operators.ToProductLine/product">
+                        uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine/product">
                   </superType>
                </type>
                <typeEndpoint
@@ -70,7 +70,7 @@
                      name="productLine"
                      uri="edu.toronto.cs.se.mmint.examples.vamos23.operators.CDMAVOToCDProductLine/productLine">
                   <superType
-                        uri="edu.toronto.cs.se.mmint.productline.operators.ToProductLine/productLine">
+                        uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine/productLine">
                   </superType>
                </type>
                <typeEndpoint
@@ -89,7 +89,7 @@
                uri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine"
                class="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine">
             <superType
-                  uri="edu.toronto.cs.se.mmint.productline.operators.ToProductLine">
+                  uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine">
             </superType>
          </type>
          <inputs>
@@ -98,7 +98,7 @@
                      name="product"
                      uri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine/product">
                   <superType
-                        uri="edu.toronto.cs.se.mmint.productline.operators.ToProductLine/product">
+                        uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine/product">
                   </superType>
                </type>
                <typeEndpoint
@@ -112,7 +112,7 @@
                      name="productLine"
                      uri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine/productLine">
                   <superType
-                        uri="edu.toronto.cs.se.mmint.productline.operators.ToProductLine/productLine">
+                        uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine/productLine">
                   </superType>
                </type>
                <typeEndpoint
