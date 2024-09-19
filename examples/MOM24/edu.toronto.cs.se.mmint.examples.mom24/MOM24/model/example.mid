@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models uri="/MOM24/model/WashingMachine1.productline" name="WashingMachine1" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.0"/>
+  <models uri="/MOM24/model/WashingMachine3.productline" name="WashingMachine3" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.1"/>
+  <editors xsi:type="editor:Diagram" uri="/MOM24/representations.aird#_7v2BcDMMEe-uU4OjOUHrZg" name="ProductLine Sirius Diagram for model /MOM24/model/WashingMachine1.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.design" dynamic="true" modelUri="/MOM24/model/WashingMachine1.productline" id="edu.toronto.cs.se.mmint.productline.design" wizardId="edu.toronto.cs.se.mmint.productline.presentation.PLModelWizardID">
+    <fileExtensions>aird</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/MOM24/representations.aird#_86CjsDMMEe-uU4OjOUHrZg" name="ProductLine Sirius Diagram for model /MOM24/model/WashingMachine3.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.design" dynamic="true" modelUri="/MOM24/model/WashingMachine3.productline" id="edu.toronto.cs.se.mmint.productline.design" wizardId="edu.toronto.cs.se.mmint.productline.presentation.PLModelWizardID">
+    <fileExtensions>aird</fileExtensions>
+  </editors>
+  <extendibleTable key="/MOM24/model/WashingMachine1.productline" value="//@models.0"/>
+  <extendibleTable key="/MOM24/model/WashingMachine3.productline" value="//@models.1"/>
+</mid:MID>
