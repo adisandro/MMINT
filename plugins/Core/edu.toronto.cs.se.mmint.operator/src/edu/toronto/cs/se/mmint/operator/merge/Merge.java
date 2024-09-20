@@ -180,7 +180,12 @@ public class Merge extends OperatorImpl {
     FileUtils.setModelObjectFeature(mergedModelObj, attributeName, attributeValue);
   }
 
-  private void copyAttributes(EObject origModelObj, EObject newModelObj, boolean isMerged) throws MMINTException {
+  protected void copyAttribute(String attributeName, EObject modelObj, EObject mergedModelObj) throws MMINTException {
+    FileUtils.setModelObjectFeature(mergedModelObj, attributeName,
+                                    FileUtils.getModelObjectFeature(modelObj, attributeName));
+  }
+
+  private void manageAttributes(EObject origModelObj, EObject newModelObj, boolean isMerged) throws MMINTException {
     for (var attribute : origModelObj.eClass().getEAllAttributes()) {
       if (!attribute.isChangeable() || attribute.isDerived()) {
         continue;
@@ -190,8 +195,7 @@ public class Merge extends OperatorImpl {
         mergeAttribute(attributeName, origModelObj, newModelObj);
       }
       else {
-        FileUtils.setModelObjectFeature(newModelObj, attributeName,
-                                        FileUtils.getModelObjectFeature(origModelObj, attributeName));
+        copyAttribute(attributeName, origModelObj, newModelObj);
       }
     }
   }
@@ -210,7 +214,7 @@ public class Merge extends OperatorImpl {
 
     // copy elements from model1
     allModelObjs.put(rootModelObj1, rootMergedModelObj);
-    copyAttributes(rootModelObj1, rootMergedModelObj, false);
+    manageAttributes(rootModelObj1, rootMergedModelObj, false);
     for (var iter1 = rootModelObj1.eAllContents(); iter1.hasNext(); ) {
       var modelObj1 = iter1.next();
       var mergedModelObj = modelFactory.create(modelObj1.eClass());
@@ -222,7 +226,7 @@ public class Merge extends OperatorImpl {
         mergedModelObjs.put(modelElemUri2, mergedModelObj);
       }
       // attributes
-      copyAttributes(modelObj1, mergedModelObj, false);
+      manageAttributes(modelObj1, mergedModelObj, false);
       // containment (pre-requisite for proper creation of trace rel)
       var containerObj1 = modelObj1.eContainer();
       if (containerObj1 != null) { // non-root
@@ -247,7 +251,7 @@ public class Merge extends OperatorImpl {
     // copy elements from model2
     var rootModelObj2 = this.in.model2.getEMFInstanceRoot();
     allModelObjs.put(rootModelObj2, rootMergedModelObj);
-    copyAttributes(rootModelObj2, rootMergedModelObj, true);
+    manageAttributes(rootModelObj2, rootMergedModelObj, true);
     for (var iter2 = rootModelObj2.eAllContents(); iter2.hasNext(); ) {
       var modelObj2 = iter2.next();
       var modelElemUri2 = MIDRegistry.getModelElementUri(modelObj2);
@@ -255,7 +259,7 @@ public class Merge extends OperatorImpl {
       var mergedModelObj = (isMerged) ? mergedModelObjs.get(modelElemUri2) : modelFactory.create(modelObj2.eClass());
       allModelObjs.put(modelObj2, mergedModelObj);
       // attributes
-      copyAttributes(modelObj2, mergedModelObj, isMerged);
+      manageAttributes(modelObj2, mergedModelObj, isMerged);
       // containment (pre-requisite for proper creation of trace rel)
       var containerObj2 = modelObj2.eContainer();
       if (containerObj2 != null && // non-root

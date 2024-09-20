@@ -95,10 +95,25 @@ public class PLMerge extends Merge {
       }
       default -> super.mergeAttribute(attributeName, modelObj, mergedModelObj);
     }
-    /**TODO MMINT[PL] Add to input constraint:
-     *  1) checks for compatible overlap types (merge based on eclasses, pl based on type ref)
-     *  2) pls must have same feature model
+    /**TODO MMINT[PL]
+     *  1) input constraint check for compatible overlap types (merge based on eclasses, pl based on type ref)
+     *  2) modify ToProductLine to ask for presence condition to be applied to all elements
+     *  3) modify PLMerge to ask for feature being merged
+     *  4) check compatibility of changes with SPLC
      */
+  }
+
+  @Override
+  @PLPipeline.Modify
+  protected void copyAttribute(String attributeName, EObject modelObj, EObject mergedModelObj)
+                               throws MMINTException {
+    switch (attributeName) {
+      case "presenceCondition" -> {
+        var copiedPc = (String) FileUtils.getModelObjectFeature(modelObj, attributeName);
+        FileUtils.setModelObjectFeature(mergedModelObj, attributeName, copiedPc);
+      }
+      default -> super.copyAttribute(attributeName, modelObj, mergedModelObj);
+    }
   }
 
   @Override
