@@ -484,7 +484,7 @@ public final class InvalidElems extends BaseGeneratedEMFQuerySpecification<Inval
 
   @Override
   public InvalidElems.Match newMatch(final Object... parameters) {
-    return InvalidElems.Match.newMatch((edu.toronto.cs.se.modelepedia.gsn.ArgumentElement) parameters[0]);
+    return InvalidElems.Match.newMatch((ArgumentElement) parameters[0]);
   }
 
   /**

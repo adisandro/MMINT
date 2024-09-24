@@ -479,7 +479,7 @@ public final class NumInvalidElems extends BaseGeneratedEMFQuerySpecification<Nu
 
   @Override
   public NumInvalidElems.Match newMatch(final Object... parameters) {
-    return NumInvalidElems.Match.newMatch((java.lang.Integer) parameters[0]);
+    return NumInvalidElems.Match.newMatch((Integer) parameters[0]);
   }
 
   /**
