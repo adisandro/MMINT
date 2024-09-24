@@ -37,6 +37,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.productline.Class;
@@ -53,6 +54,7 @@ public class ToProductLine extends OperatorImpl {
     public final static String PROP_REASONERNAME = "reasonerName";
     public final static String MODEL = "product";
     public IPLFeaturesTrait reasoner;
+    public String presenceCondition;
     public Model productModel;
 
     public In(Map<String, Model> inputsByName) {
@@ -68,6 +70,9 @@ public class ToProductLine extends OperatorImpl {
         this.reasoner = (reasonerName == null) ?
           MIDDialogs.selectReasoner(IPLFeaturesTrait.class, "Product Line features", null) :
           (IPLFeaturesTrait) MMINT.getReasoner(reasonerName);
+        this.presenceCondition = MIDDialogs.getStringInput(
+          "Create Product Line", "Insert the presence condition to use for all model elements",
+          this.reasoner.getTrueLiteral());
       }
       catch (Exception e) {
         throw new IllegalArgumentException();
@@ -93,18 +98,16 @@ public class ToProductLine extends OperatorImpl {
     public final static String MODEL = "productLine";
     public Model plModelType;
     public ProductLine productLine;
-    public String trueLiteral;
     public String plPath;
     public MID mid;
 
     public Out(Map<String, MID> outputMIDsByName, String workingPath, In in) throws MMINTException {
       this.plModelType = MIDTypeRegistry.<Model>getType(Out.MODEL_TYPE_ID);
-      this.trueLiteral = in.reasoner.getTrueLiteral();
       this.productLine = PLFactory.eINSTANCE.createProductLine();
       this.productLine.setMetamodel(in.productModel.getMetatype().getEMFTypeRoot());
       this.productLine.setReasonerName(in.reasoner.getName());
-      this.plPath = workingPath + IPath.SEPARATOR + in.productModel.getName() + "." +
-                    this.plModelType.getFileExtension();
+      this.plPath = FileUtils.getUniquePath(workingPath + IPath.SEPARATOR + in.productModel.getName() + "." +
+                                            this.plModelType.getFileExtension(), true, false);
       this.mid = outputMIDsByName.get(Out.MODEL);
     }
 
@@ -134,7 +137,7 @@ public class ToProductLine extends OperatorImpl {
   }
 
   protected void addPLClass(Class plClass, EObject modelObj, EClass plType, Map<String, Class> plClasses) {
-    addPLClass(plClass, MIDRegistry.getModelElementUri(modelObj), this.out.trueLiteral, plType, plClasses);
+    addPLClass(plClass, MIDRegistry.getModelElementUri(modelObj), this.in.presenceCondition, plType, plClasses);
   }
 
   protected Class createPLClass(EObject modelObj, EClass plType, Map<String, Class> plClasses) {
@@ -184,7 +187,7 @@ public class ToProductLine extends OperatorImpl {
       }
       var plSource = plClasses.get(MIDRegistry.getModelElementUri(pModelObj));
       for (var plTarget : plTargets) {
-        plSource.addReference(pReference, plTarget, this.out.trueLiteral);
+        plSource.addReference(pReference, plTarget, this.in.presenceCondition);
       }
     }
   }

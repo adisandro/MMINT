@@ -93,7 +93,6 @@ public class PLMerge extends Merge {
     }
     /**TODO MMINT[PL]
      *  1) input constraint check for compatible overlap types (merge based on eclasses, pl based on type ref)
-     *  2) modify ToProductLine to ask for presence condition to be applied to all elements
      *  3) modify PLMerge to ask for feature being merged
      *  4) check compatibility of changes with SPLC
      */

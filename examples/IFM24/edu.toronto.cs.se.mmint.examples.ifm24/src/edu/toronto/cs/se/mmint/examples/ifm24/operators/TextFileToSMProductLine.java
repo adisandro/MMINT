@@ -126,7 +126,7 @@ public class TextFileToSMProductLine extends ToProductLine {
         // state
         var tokens = line.split(",");
         var stateName = tokens[0].substring(1, tokens[0].length()-1);
-        var pc = this.out.trueLiteral;
+        var pc = this.in.presenceCondition;
         var plState = PLFactory.eINSTANCE.createClass();
         if (tokens.length > 1) {
           tokens[1] = tokens[1].strip();
