@@ -30,15 +30,12 @@ import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.kotlin.PLKotlinConverter;
 import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
-import edu.toronto.cs.se.mmint.productline.reasoning.PLPipeline;
 
-@PLPipeline.Intercept
 public class PLMerge extends Merge {
   private IPLFeaturesTrait reasoner;
   private String pcMergeSyntax;
 
   @Override
-  @PLPipeline.Modify
   protected Map<String, String> getOverlapModelElementUris() {
     var overlapUris = super.getOverlapModelElementUris();
     // explicitly add product roots (assuming they're the first class created in the PL)
@@ -82,7 +79,6 @@ public class PLMerge extends Merge {
   }
 
   @Override
-  @PLPipeline.Modify
   protected void mergeAttribute(String attributeName, EObject modelObj, EObject mergedModelObj)
                                throws MMINTException {
     switch (attributeName) {
@@ -104,7 +100,6 @@ public class PLMerge extends Merge {
   }
 
   @Override
-  @PLPipeline.Modify
   protected void copyAttribute(String attributeName, EObject modelObj, EObject mergedModelObj)
                                throws MMINTException {
     switch (attributeName) {
@@ -131,7 +126,6 @@ public class PLMerge extends Merge {
   }
 
   @Override
-  @PLPipeline.Modify
   protected Tree<? extends Object> kMerge(Tree<Object> kModel1, Tree<Object> kModel2, Map<String, String> overlap) {
     return EntryKt.mergePL(kModel1, kModel2, overlap, this.reasoner);
   }
