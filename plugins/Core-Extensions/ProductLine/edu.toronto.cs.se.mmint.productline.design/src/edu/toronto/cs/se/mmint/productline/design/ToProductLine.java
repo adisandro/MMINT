@@ -91,15 +91,18 @@ public class ToProductLine extends OperatorImpl {
   }
 
   private void toProductLine() throws Exception {
-
+    // .odesign root
     var siriusSpec = (Group) this.in.specModel.getEMFInstanceRoot();
     this.out.plSiriusSpec.setName(siriusSpec.getName() + ".productline");
-
-    var viewpoint = this.out.vDescFactory.createViewpoint();
-    viewpoint.setName("StateMachineProductLineViewpoint");
-
-    var diagramExtensionDescription = this.out.dDescFactory.createDiagramExtensionDescription();
-    diagramExtensionDescription.setName("StateMachineProductLineDiagram");
+    // viewpoint
+    var viewpoint = siriusSpec.getOwnedViewpoints().get(0);
+    var plViewpoint = this.out.vDescFactory.createViewpoint();
+    plViewpoint.setName("PL" + viewpoint.getName());
+    // diagram extension
+    var plDiagramExt = this.out.dDescFactory.createDiagramExtensionDescription();
+    plDiagramExt.setName("StateMachineProductLineDiagram");
+    plDiagramExt.setViewpointURI("viewpoint:/edu.toronto.cs.se.mmint.productline.design/ProductLineViewpoint");
+    plDiagramExt.setRepresentationName("ProductLineDiagram");
 
     Map<String, DiagramElementMapping> map = new HashMap<>();
 
@@ -111,7 +114,7 @@ public class ToProductLine extends OperatorImpl {
         var defaultLayer = originalDiagram.getDefaultLayer();
         var newLayer = this.out.dDescFactory.createAdditionalLayer();
         newLayer.setName("State Machine Product Line");
-        diagramExtensionDescription.getLayers().add(newLayer);
+        plDiagramExt.getLayers().add(newLayer);
 
         // Node Mappings
         for (var originalNodeMapping : defaultLayer.getNodeMappings()) {
@@ -167,8 +170,8 @@ public class ToProductLine extends OperatorImpl {
       }
     }
 
-    viewpoint.getOwnedRepresentationExtensions().add(diagramExtensionDescription);
-    this.out.plSiriusSpec.getOwnedViewpoints().add(viewpoint);
+    plViewpoint.getOwnedRepresentationExtensions().add(plDiagramExt);
+    this.out.plSiriusSpec.getOwnedViewpoints().add(plViewpoint);
   }
 
   private NodeMapping createProductLineNodeMapping(NodeMapping originalNodeMapping) {
