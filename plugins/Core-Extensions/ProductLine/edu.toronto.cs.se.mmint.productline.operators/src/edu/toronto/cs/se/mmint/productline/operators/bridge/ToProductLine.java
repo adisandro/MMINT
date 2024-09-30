@@ -56,7 +56,7 @@ public class ToProductLine extends OperatorImpl {
     public final static String PROP_PRESENCECONDITION = "presenceCondition";
     public final static String MODEL = "product";
     public IPLFeaturesTrait reasoner;
-    public String presenceCondition;
+    public String pc;
     public Model productModel;
 
     public In(Map<String, Model> inputsByName) {
@@ -66,15 +66,17 @@ public class ToProductLine extends OperatorImpl {
       }
     }
 
-    public In(Map<String, Model> inputsByName, @Nullable String reasonerName) {
+    public In(Map<String, Model> inputsByName, @Nullable String reasonerName, @Nullable String presenceCondition) {
       this(inputsByName);
       try {
         this.reasoner = (reasonerName == null) ?
           MIDDialogs.selectReasoner(IPLFeaturesTrait.class, "Product Line features", null) :
           (IPLFeaturesTrait) MMINT.getReasoner(reasonerName);
-        this.presenceCondition = MIDDialogs.getStringInput(
-          "Convert to Product Line", "Insert the presence condition to annotate all model elements with",
-          this.reasoner.getTrueLiteral());
+        if (presenceCondition == null) {
+          this.pc = MIDDialogs.getStringInput("Convert to Product Line",
+                                              "Insert the presence condition to annotate all model elements with",
+                                              this.reasoner.getTrueLiteral());
+        }
       }
       catch (Exception e) {
         throw new IllegalArgumentException();
@@ -123,10 +125,12 @@ public class ToProductLine extends OperatorImpl {
   @Override
   public void readInputProperties(Properties inputProperties) throws MMINTException {
     this.reasonerName = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, In.PROP_REASONERNAME, null);
+    this.presenceCondition = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, In.PROP_PRESENCECONDITION,
+                                                                          null);
   }
 
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
-    this.in = new In(inputsByName, this.reasonerName);
+    this.in = new In(inputsByName, this.reasonerName, this.presenceCondition);
     this.out = new Out(outputMIDsByName, getWorkingPath(), this.in);
   }
 
@@ -139,7 +143,7 @@ public class ToProductLine extends OperatorImpl {
   }
 
   protected void addPLClass(Class plClass, EObject modelObj, EClass plType, Map<String, Class> plClasses) {
-    addPLClass(plClass, MIDRegistry.getModelElementUri(modelObj), this.in.presenceCondition, plType, plClasses);
+    addPLClass(plClass, MIDRegistry.getModelElementUri(modelObj), this.in.pc, plType, plClasses);
   }
 
   protected Class createPLClass(EObject modelObj, EClass plType, Map<String, Class> plClasses) {
@@ -189,7 +193,7 @@ public class ToProductLine extends OperatorImpl {
       }
       var plSource = plClasses.get(MIDRegistry.getModelElementUri(pModelObj));
       for (var plTarget : plTargets) {
-        plSource.addReference(pReference, plTarget, this.in.presenceCondition);
+        plSource.addReference(pReference, plTarget, this.in.pc);
       }
     }
   }

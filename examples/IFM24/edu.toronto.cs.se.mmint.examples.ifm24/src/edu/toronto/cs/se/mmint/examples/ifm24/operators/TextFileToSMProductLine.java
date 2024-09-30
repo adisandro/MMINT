@@ -46,11 +46,12 @@ public class TextFileToSMProductLine extends ToProductLine {
   @Override
   public void readInputProperties(Properties inputProperties) throws MMINTException {
     this.reasonerName = "LogicNG";
+    this.presenceCondition = "$true";
   }
 
   @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
-    this.in = new In(inputsByName, this.reasonerName);
+    this.in = new In(inputsByName, this.reasonerName, this.presenceCondition);
     this.out = new TextFileToSMPLOut(outputMIDsByName, getWorkingPath(), this.in);
   }
 
@@ -126,7 +127,7 @@ public class TextFileToSMProductLine extends ToProductLine {
         // state
         var tokens = line.split(",");
         var stateName = tokens[0].substring(1, tokens[0].length()-1);
-        var pc = this.in.presenceCondition;
+        var pc = this.in.pc;
         var plState = PLFactory.eINSTANCE.createClass();
         if (tokens.length > 1) {
           tokens[1] = tokens[1].strip();
