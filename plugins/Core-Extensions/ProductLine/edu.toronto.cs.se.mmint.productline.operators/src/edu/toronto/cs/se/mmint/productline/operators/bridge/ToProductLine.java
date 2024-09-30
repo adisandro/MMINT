@@ -49,9 +49,11 @@ public class ToProductLine extends OperatorImpl {
   protected In in;
   protected Out out;
   protected @Nullable String reasonerName;
+  protected @Nullable String presenceCondition;
 
   public static class In {
     public final static String PROP_REASONERNAME = "reasonerName";
+    public final static String PROP_PRESENCECONDITION = "presenceCondition";
     public final static String MODEL = "product";
     public IPLFeaturesTrait reasoner;
     public String presenceCondition;
@@ -71,7 +73,7 @@ public class ToProductLine extends OperatorImpl {
           MIDDialogs.selectReasoner(IPLFeaturesTrait.class, "Product Line features", null) :
           (IPLFeaturesTrait) MMINT.getReasoner(reasonerName);
         this.presenceCondition = MIDDialogs.getStringInput(
-          "Create Product Line", "Insert the presence condition to use for all model elements",
+          "Convert to Product Line", "Insert the presence condition to annotate all model elements with",
           this.reasoner.getTrueLiteral());
       }
       catch (Exception e) {

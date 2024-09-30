@@ -94,7 +94,7 @@ public class PLMerge extends Merge {
     /**TODO MMINT[PL]
      *  1) input constraint check for compatible overlap types (merge based on eclasses, pl based on type ref)
      *  3) modify PLMerge to ask for feature being merged
-     *  4) check compatibility of changes with SPLC
+     *  4) check compatibility of changes with SPLC: the discriminant is equal or different feature models
      */
   }
 
