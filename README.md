@@ -40,7 +40,6 @@ Add the following update sites to Eclipse (`Help > Install New Software > Availa
   * `http://download.eclipse.org/modeling/emft/henshin/updates/release`
   * `https://static.incquerylabs.com/projects/massif/release/0.7.0/repository`
   * `https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2024-06`
-  * `http://download.eclipse.org/viatra/updates/release/2.9.1`
 
 Then, install the following components (`Help > Install New Software`):
   * `Acceleo`

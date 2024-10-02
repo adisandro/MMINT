@@ -42,11 +42,6 @@
       <layout>p2</layout>
       <url>https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2024-06</url>
     </repository>
-    <repository>
-      <id>Viatra</id>
-      <layout>p2</layout>
-      <url>http://download.eclipse.org/viatra/updates/release/2.9.1</url>
-    </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
