@@ -85,8 +85,10 @@ public class GSNPLImportTemplate extends AbstractExternalJavaAction {
           .createInstance(templateSC, templatePath, null);
         var toPL = MIDTypeRegistry.<Operator>getType(
           "edu.toronto.cs.se.mmint.types.gsn.productline.operators.GSNToProductLine");
+        var reasoner = this.pl.getReasoner();
         var properties = new Properties();
-        properties.setProperty(ToProductLine.In.PROP_REASONERNAME, this.pl.getReasonerName());
+        properties.setProperty(ToProductLine.In.PROP_REASONERNAME, reasoner.getName());
+        properties.setProperty(ToProductLine.In.PROP_PRESENCECONDITION, reasoner.getTrueLiteral());
         var toPLOut = toPL.startInstance(toPL.checkAllowedInputs(ECollections.asEList(templateModel)), properties,
                                          ECollections.emptyEList(), Map.of(), null);
         var templatePL = (ProductLine) toPLOut.getOutputsByName().get("productLine").getEMFInstanceRoot();
