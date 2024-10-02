@@ -125,4 +125,5 @@
    <repository-reference location="https://download.eclipse.org/modeling/mdt/papyrus/components/sysml16/2022-12" enabled="true" />
    <repository-reference location="https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2024-06" enabled="true" />
    <repository-reference location="https://download.eclipse.org/justj/jres/latest" enabled="true" />
+   <repository-reference location="http://download.eclipse.org/viatra/updates/release/2.9.1" enabled="true" />
 </site>
