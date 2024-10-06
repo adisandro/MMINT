@@ -45,7 +45,7 @@ import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 
-public class ToProducts extends ToProduct {
+public class DeriveAll extends Derive {
   protected Ins in;
   protected Outs out;
 
@@ -94,12 +94,12 @@ public class ToProducts extends ToProduct {
 
   public static class Outs {
     public final static String MODELS = "products";
-    public ToProducts operator;
+    public DeriveAll operator;
     public MID mid;
     public List<EObject> products;
     public Map<Class, EObject> traceLinks;
 
-    public Outs(ToProducts operator, Map<String, MID> outputMIDsByName) {
+    public Outs(DeriveAll operator, Map<String, MID> outputMIDsByName) {
       this.operator = operator;
       this.mid = outputMIDsByName.get(Outs.MODELS);
       this.products = new ArrayList<>();
@@ -130,7 +130,7 @@ public class ToProducts extends ToProduct {
         if (!(plModel instanceof ModelRel plRel)) {
           continue;
         }
-        var pRel = this.operator.toProduct(plRel, plModelToPModel, this.traceLinks, this.mid);
+        var pRel = this.operator.derive(plRel, plModelToPModel, this.traceLinks, this.mid);
         pModels.add(i, pRel);
       }
 
@@ -176,7 +176,7 @@ public class ToProducts extends ToProduct {
     this.presenceConditionCache = new HashMap<>();
   }
 
-  protected ModelRel toProduct(ModelRel plRel, Map<Model, Model> plModelToPModel, Map<Class, EObject> traceLinks, MID mid) throws MMINTException {
+  protected ModelRel derive(ModelRel plRel, Map<Model, Model> plModelToPModel, Map<Class, EObject> traceLinks, MID mid) throws MMINTException {
     // TODO MMINT[PL] Handle PLModelRels with presence conditions
     var pEndpoints = plRel.getModelEndpoints().stream()
       .map(me -> plModelToPModel.get(me.getTarget()))
@@ -215,9 +215,9 @@ public class ToProducts extends ToProduct {
   }
 
   @Override
-  protected void toProduct() throws MMINTException {
+  protected void derive() throws MMINTException {
     for (var pl : this.in.pls) {
-      this.out.products.add(toProduct(pl, this.out.traceLinks));
+      this.out.products.add(derive(pl, this.out.traceLinks));
     }
   }
 
@@ -225,7 +225,7 @@ public class ToProducts extends ToProduct {
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
     init(inputsByName, outputMIDsByName);
-    toProduct();
+    derive();
 
     return this.out.packed();
   }

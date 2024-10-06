@@ -55,19 +55,19 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="ToProduct"
-               uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct"
-               class="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct">
+               name="Derive"
+               uri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive"
+               class="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct$Constraint"
+               implementation="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive$Constraint"
                language="Java">
          </constraint>
          <inputs>
             <parameter>
                <type
                      name="productLine"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/productLine">
+                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/productLine">
                </type>
                <typeEndpoint
                      targetTypeUri="model://edu.toronto.cs.se.mmint.productline">
@@ -78,7 +78,7 @@
             <parameter>
                <type
                      name="product"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/product">
+                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/product">
                </type>
                <typeEndpoint
                      targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
@@ -87,7 +87,7 @@
             <parameter>
                <type
                      name="trace"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/trace">
+                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/trace">
                </type>
                <typeEndpoint
                      targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
@@ -101,19 +101,19 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="ToProducts"
-               uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProducts"
-               class="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProducts">
+               name="DeriveAll"
+               uri="edu.toronto.cs.se.mmint.productline.operators.bridge.DeriveAll"
+               class="edu.toronto.cs.se.mmint.productline.operators.bridge.DeriveAll">
          </type>
          <constraint
-               implementation="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProducts$Constraints"
+               implementation="edu.toronto.cs.se.mmint.productline.operators.bridge.DeriveAll$Constraints"
                language="Java">
          </constraint>
          <inputs>
             <parameter>
                <type
                      name="productLines"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProducts/productLines">
+                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.DeriveAll/productLines">
                </type>
                <typeEndpoint
                      upperBound="-1"
@@ -125,7 +125,7 @@
             <parameter>
                <type
                      name="products"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProducts/products">
+                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.DeriveAll/products">
                </type>
                <typeEndpoint
                      upperBound="-1"
@@ -196,8 +196,8 @@
       <operatorType>
          <type
                name="Merge"
-               uri="edu.toronto.cs.se.mmint.productline.operators.lift.PLMerge"
-               class="edu.toronto.cs.se.mmint.productline.operators.lift.PLMerge">
+               uri="edu.toronto.cs.se.mmint.productline.operators.bridge.PLMerge"
+               class="edu.toronto.cs.se.mmint.productline.operators.bridge.PLMerge">
             <superType
                   uri="http://se.cs.toronto.edu/mmint/Operator_Merge">
             </superType>
@@ -206,7 +206,7 @@
             <parameter>
              <type
                    name="overlap"
-                   uri="edu.toronto.cs.se.mmint.productline.operators.lift.PLMerge/overlap">
+                   uri="edu.toronto.cs.se.mmint.productline.operators.bridge.PLMerge/overlap">
                 <superType
                       uri="http://se.cs.toronto.edu/mmint/Operator_Merge-Overlap/overlap">
                 </superType>
@@ -220,7 +220,7 @@
             <parameter>
              <type
                    name="merged"
-                   uri="edu.toronto.cs.se.mmint.productline.operators.lift.PLMerge/merged">
+                   uri="edu.toronto.cs.se.mmint.productline.operators.bridge.PLMerge/merged">
                 <superType
                       uri="http://se.cs.toronto.edu/mmint/Operator_Merge-Model/merged">
                 </superType>
@@ -232,7 +232,7 @@
             <parameter>
              <type
                    name="trace1"
-                   uri="edu.toronto.cs.se.mmint.productline.operators.lift.PLMerge/trace1">
+                   uri="edu.toronto.cs.se.mmint.productline.operators.bridge.PLMerge/trace1">
                 <superType
                       uri="http://se.cs.toronto.edu/mmint/Operator_Merge-ModelRel/trace1">
                 </superType>
@@ -244,7 +244,7 @@
             <parameter>
              <type
                    name="trace2"
-                   uri="edu.toronto.cs.se.mmint.productline.operators.lift.PLMerge/trace2">
+                   uri="edu.toronto.cs.se.mmint.productline.operators.bridge.PLMerge/trace2">
                 <superType
                       uri="http://se.cs.toronto.edu/mmint/Operator_Merge-ModelRel/trace2">
                 </superType>
@@ -256,7 +256,7 @@
             <parameter>
              <type
                    name="mergeTrace"
-                   uri="edu.toronto.cs.se.mmint.productline.operators.lift.PLMerge/mergeTrace">
+                   uri="edu.toronto.cs.se.mmint.productline.operators.bridge.PLMerge/mergeTrace">
                 <superType
                       uri="http://se.cs.toronto.edu/mmint/Operator_Merge-ModelRel/mergeTrace">
                 </superType>

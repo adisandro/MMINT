@@ -44,7 +44,7 @@ import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 
-public class ToProduct extends RandomOperatorImpl {
+public class Derive extends RandomOperatorImpl {
   protected In in;
   protected Out out;
   protected IPLFeaturesTrait featureReasoner;
@@ -81,13 +81,13 @@ public class ToProduct extends RandomOperatorImpl {
     public final static String MODEL = "product";
     public final static String MODELREL = "trace";
     public final static String PRODUCT_SUFFIX = "_prod";
-    public ToProduct operator;
+    public Derive operator;
     public MID productMID;
     public MID traceMID;
     public EObject product;
     public Map<Class, EObject> traceLinks;
 
-    public Out(ToProduct operator, Map<String, MID> outputMIDsByName) {
+    public Out(Derive operator, Map<String, MID> outputMIDsByName) {
       this.operator = operator;
       this.productMID = outputMIDsByName.get(Out.MODEL);
       this.traceMID = outputMIDsByName.get(Out.MODELREL);
@@ -175,7 +175,7 @@ public class ToProduct extends RandomOperatorImpl {
     return canInstantiateFeatures(plElement.getPresenceCondition());
   }
 
-  protected EObject toProduct(ProductLine pl, Map<Class, EObject> traceLinks) throws MMINTException {
+  protected EObject derive(ProductLine pl, Map<Class, EObject> traceLinks) throws MMINTException {
     if (!canInstantiateFeatures(pl)) {
       throw new MMINTException("The constraint on features is not satisfiable");
     }
@@ -218,15 +218,15 @@ public class ToProduct extends RandomOperatorImpl {
     return product;
   }
 
-  protected void toProduct() throws MMINTException {
-    this.out.product = toProduct(this.in.pl, this.out.traceLinks);
+  protected void derive() throws MMINTException {
+    this.out.product = derive(this.in.pl, this.out.traceLinks);
   }
 
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
     init(inputsByName, outputMIDsByName);
-    toProduct();
+    derive();
 
     return this.out.packed();
   }
