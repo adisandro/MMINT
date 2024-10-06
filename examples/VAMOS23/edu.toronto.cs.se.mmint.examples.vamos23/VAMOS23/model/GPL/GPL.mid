@@ -2261,30 +2261,30 @@
   <editors uri="/VAMOS23/model/GPL/GPL_prod4.classdiagram" name="ClassDiagram tree for model /VAMOS23/model/GPL/GPL_prod4.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram" dynamic="true" modelUri="/VAMOS23/model/GPL/GPL_prod4.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
     <fileExtensions>classdiagram</fileExtensions>
   </editors>
-  <operators xsi:type="operator:RandomOperator" uri="" name="ToProduct" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct" dynamic="true" workingPath="/VAMOS23/model/GPL" executionTime="2269880856">
-    <inputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
-    <outputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
-    <outputs uri="" name="trace" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/trace" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+  <operators xsi:type="operator:RandomOperator" uri="" name="Derive" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive" dynamic="true" workingPath="/VAMOS23/model/GPL" executionTime="2269880856">
+    <inputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <outputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <outputs uri="" name="trace" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/trace" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
   </operators>
-  <operators xsi:type="operator:RandomOperator" uri="" name="ToProduct" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct" dynamic="true" workingPath="/VAMOS23/model/GPL" executionTime="1045934986">
-    <inputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
-    <outputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
-    <outputs uri="" name="trace" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/trace" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
+  <operators xsi:type="operator:RandomOperator" uri="" name="Derive" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive" dynamic="true" workingPath="/VAMOS23/model/GPL" executionTime="1045934986">
+    <inputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <outputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+    <outputs uri="" name="trace" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/trace" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
   </operators>
-  <operators xsi:type="operator:RandomOperator" uri="" name="ToProduct" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct" dynamic="true" workingPath="/VAMOS23/model/GPL" executionTime="1041192958">
-    <inputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
-    <outputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
-    <outputs uri="" name="trace" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/trace" dynamic="true" lowerBound="1" upperBound="1" target="//@models.6"/>
+  <operators xsi:type="operator:RandomOperator" uri="" name="Derive" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive" dynamic="true" workingPath="/VAMOS23/model/GPL" executionTime="1041192958">
+    <inputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <outputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
+    <outputs uri="" name="trace" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/trace" dynamic="true" lowerBound="1" upperBound="1" target="//@models.6"/>
   </operators>
-  <operators xsi:type="operator:RandomOperator" uri="" name="ToProduct" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct" dynamic="true" workingPath="/VAMOS23/model/GPL" executionTime="1567019345">
-    <inputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
-    <outputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.7"/>
-    <outputs uri="" name="trace" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/trace" dynamic="true" lowerBound="1" upperBound="1" target="//@models.8"/>
+  <operators xsi:type="operator:RandomOperator" uri="" name="Derive" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive" dynamic="true" workingPath="/VAMOS23/model/GPL" executionTime="1567019345">
+    <inputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <outputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.7"/>
+    <outputs uri="" name="trace" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/trace" dynamic="true" lowerBound="1" upperBound="1" target="//@models.8"/>
   </operators>
-  <operators xsi:type="operator:RandomOperator" uri="" name="ToProduct" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct" dynamic="true" workingPath="/VAMOS23/model/GPL" executionTime="1210570510">
-    <inputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
-    <outputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.9"/>
-    <outputs uri="" name="trace" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/trace" dynamic="true" lowerBound="1" upperBound="1" target="//@models.10"/>
+  <operators xsi:type="operator:RandomOperator" uri="" name="Derive" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive" dynamic="true" workingPath="/VAMOS23/model/GPL" executionTime="1210570510">
+    <inputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <outputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.9"/>
+    <outputs uri="" name="trace" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/trace" dynamic="true" lowerBound="1" upperBound="1" target="//@models.10"/>
   </operators>
   <extendibleTable key="/MMPL/model/GPL/GPL.productline" value="//@models.0"/>
   <extendibleTable key="/VAMOS23/model/GPL/GPL_prod0.classdiagram" value="//@models.1"/>

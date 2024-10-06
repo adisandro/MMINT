@@ -1,6 +1,8 @@
-## Integrated Formal Methods 2024 paper
+## iFM 2024 paper
 
 PLACIDUS: Engineering Product Lines of Rigorous Assurance Cases
+
+In critical software engineering, structured assurance cases (ACs) are used to demonstrate how key properties (e.g., safety, security) are supported by evidence artifacts (e.g., test results, proofs). ACs can also be studied as formal objects in themselves, such that formal methods can be used to establish their correctness. Creating rigorous ACs is particularly challenging in the context of software product lines (SPLs), wherein a family of related software products is engineered simultaneously. Since creating individual ACs for each product is infeasible, AC development methodology must be lifted to the level of product lines. In this work, we propose PLACIDUS, a methodology for integrating formal methods and software product line engineering to develop provably correct ACs for SPLs. To provide rigorous foundations for PLACIDUS, we define a variability-aware AC language and formalize its semantics using the proof assistant Lean. We provide tool support for PLACIDUS as part of an Eclipse-based model management framework. Finally, we demonstrate the feasibility of PLACIDUS by developing an AC for a product line of medical devices.
 
 ### Instructions to reproduce the examples
 

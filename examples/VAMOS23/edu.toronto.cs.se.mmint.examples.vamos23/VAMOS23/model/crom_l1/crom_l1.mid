@@ -658,10 +658,10 @@
   <editors uri="/VAMOS23/model/crom_l1/crom_l1_prod0.classdiagram" name="ClassDiagram tree for model /VAMOS23/model/crom_l1/crom_l1_prod0.classdiagram" metatypeUri="http://se.cs.toronto.edu/modelepedia/Tree_ClassDiagram" dynamic="true" modelUri="/VAMOS23/model/crom_l1/crom_l1_prod0.classdiagram" id="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramEditorID" wizardId="edu.toronto.cs.se.modelepedia.classdiagram.presentation.ClassDiagramModelWizardID">
     <fileExtensions>classdiagram</fileExtensions>
   </editors>
-  <operators xsi:type="operator:RandomOperator" uri="" name="ToProduct" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct" dynamic="true" workingPath="/VAMOS23/model/crom_l1" executionTime="1526130697">
-    <inputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
-    <outputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
-    <outputs uri="" name="trace" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProduct/trace" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+  <operators xsi:type="operator:RandomOperator" uri="" name="Derive" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive" dynamic="true" workingPath="/VAMOS23/model/crom_l1" executionTime="1526130697">
+    <inputs uri="" name="productLine" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/productLine" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <outputs uri="" name="product" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/product" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <outputs uri="" name="trace" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/trace" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
   </operators>
   <extendibleTable key="/MMPL/model/RoleBasedModelling/crom_l1.productline" value="//@models.0"/>
   <extendibleTable key="/VAMOS23/model/crom_l1/crom_l1_prod0.classdiagram" value="//@models.1"/>

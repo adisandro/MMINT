@@ -20,13 +20,13 @@
     <inputs uri="" name="model2" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.lift.PLRandomMatch/model2" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
     <outputs uri="" name="overlap" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.lift.PLRandomMatch/overlap" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
   </operators>
-  <operators uri="" name="ToProducts" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProducts" dynamic="true">
-    <inputs uri="" name="productLines0" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProducts/productLines" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
-    <inputs uri="" name="productLines1" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProducts/productLines" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
-    <inputs uri="" name="productLines2" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProducts/productLines" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
-    <outputs uri="" name="products0" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProducts/products" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
-    <outputs uri="" name="products1" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProducts/products" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
-    <outputs uri="" name="products2" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProducts/products" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
+  <operators uri="" name="DeriveAll" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.DeriveAll" dynamic="true">
+    <inputs uri="" name="productLines0" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.DeriveAll/productLines" dynamic="true" lowerBound="1" upperBound="1" target="//@models.0"/>
+    <inputs uri="" name="productLines1" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.DeriveAll/productLines" dynamic="true" lowerBound="1" upperBound="1" target="//@models.1"/>
+    <inputs uri="" name="productLines2" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.DeriveAll/productLines" dynamic="true" lowerBound="1" upperBound="1" target="//@models.2"/>
+    <outputs uri="" name="products0" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.DeriveAll/products" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
+    <outputs uri="" name="products1" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.DeriveAll/products" dynamic="true" lowerBound="1" upperBound="1" target="//@models.4"/>
+    <outputs uri="" name="products2" level="WORKFLOWS" metatypeUri="edu.toronto.cs.se.mmint.productline.operators.bridge.DeriveAll/products" dynamic="true" lowerBound="1" upperBound="1" target="//@models.5"/>
   </operators>
   <operators uri="" name="MMWorkflow" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MMWorkflow" dynamic="true">
     <inputs uri="" name="model1" level="WORKFLOWS" metatypeUri="http://se.cs.toronto.edu/mmint/MMWorkflow/model1" dynamic="true" lowerBound="1" upperBound="1" target="//@models.3"/>
