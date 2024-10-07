@@ -98,27 +98,25 @@ Follow these steps to install MMINT-PL:
 
 ### About MMINT
 
-* <a name="paper-mom24"></a> [From Products to Product Lines: a Model-based Methodology]()  
+* <a name="paper-mom24"></a> From Products to Product Lines: a Model-based Methodology  
 MoM@MODELS 24 | Install: `Examples > MMINT - MOM24` | [Readme](examples/MOM24/edu.toronto.cs.se.mmint.examples.mom24/MOM24/README.md)
 * <a name="paper-scico23"></a> [MMINT-A: A Framework for Model-Based Safety Assurance](https://doi.org/10.1016/j.scico.2023.103004)  
 SciCo Vol. 231 | Install: `Examples > MMINT - SCICO23` | [Readme](examples/SCICO23/edu.toronto.cs.se.mmint.examples.scico23/SCICO23/README.md)
 * <a name="paper-vamos23"></a> [Adding Product-Line Capabilities to Your Favourite Modeling Language](https://doi.org/10.1145/3571788.3571791)  
 VaMoS 23 | Install: `Examples > MMINT - VAMOS23` | [Readme](examples/VAMOS23/edu.toronto.cs.se.mmint.examples.vamos23/VAMOS23/README.md)
 * [MMINT-A 2.0: Tool Support for the Lifecycle of Model-Based Safety Artifacts](https://doi.org/10.1145/3417990.3422012)  
-MoDELS 20 | Install: `Examples > MMINT - MoDELS20` | [Readme](examples/MoDELS20/edu.toronto.cs.se.mmint.example.models20/MoDELS20/README.md)
+MODELS 20 | Install: `Examples > MMINT - MoDELS20` | [Readme](examples/MoDELS20/edu.toronto.cs.se.mmint.example.models20/MoDELS20/README.md)
 * [MMINT-A: A Tool for Automated Change Impact Assessment on Assurance Cases](https://doi.org/10.1007/978-3-319-99229-7_7)  
 SAFECOMP 18
 * [MU-MMINT: An IDE for Model Uncertainty](https://doi.org/10.1109/ICSE.2015.226)  
 ICSE 15
 * [MMINT: A Graphical Tool for Interactive Model Management](http://ceur-ws.org/Vol-1554/PD_MoDELS_2015_paper_6.pdf)  
-MoDELS 15
+MODELS 15
 
 ### Using MMINT
 
 * <a name="paper-ifm24"></a> PLACIDUS: Engineering Product Lines of Rigorous Assurance Cases  
-iFM 24 (submitted) | Install: `Examples > MMINT - IFM24` | [Readme](examples/IFM24/edu.toronto.cs.se.mmint.examples.ifm24/IFM24/README.md)
-* <a name="paper-issre24"></a> Arguing Reliability of Machine Learning-based Components  
-ISSRE 24 (submitted) | Install: `Examples > MMINT - ISSRE24` | [Readme](examples/ISSRE24/edu.toronto.cs.se.mmint.examples.issre24/ISSRE24/README.md)
+iFM 24 (accepted) | Install: `Examples > MMINT - IFM24` | [Readme](examples/IFM24/edu.toronto.cs.se.mmint.examples.ifm24/IFM24/README.md)
 * <a name="paper-sosym22"></a> [The ForeMoSt Approach to Building Valid Model-Based Safety Arguments](https://doi.org/10.1007/s10270-022-01063-4)  
 SoSyM Vol. 22-5 | Install: `Examples > MMINT - SOSYM22` | [Readme](examples/SOSYM22/edu.toronto.cs.se.mmint.examples.sosym22/SOSYM22/README.md)
 * [Validating Safety Arguments with Lean](https://doi.org/10.1007/978-3-030-92124-8_2)  
@@ -132,11 +130,11 @@ JASE Vol. 1-1 | Install: `Examples > MMINT - JASE20` | [Readme](examples/JASE20/
 * [Heterogeneous Megamodel Management using Collection Operators](https://doi.org/10.1007/s10270-019-00738-9)  
 SoSyM Vol. 19-1 | Install: `Examples > SoSyM18` | [Readme](examples/SOSYM18/README.md)
 * [Querying Automotive System Models and Safety Artifacts with MMINT and Viatra](https://doi.org/10.1109/MODELS-C.2019.00008)  
-MASE@MoDELS 19 | Install: `Examples > MMINT - MASE19` | [Readme](examples/MASE19/edu.toronto.cs.se.mmint.example.mase19/MASE19/README.md)
+MASE@MODELS 19 | Install: `Examples > MMINT - MASE19` | [Readme](examples/MASE19/edu.toronto.cs.se.mmint.example.mase19/MASE19/README.md)
 * [Migrating Automotive Product Lines: A Case Study](https://doi.org/10.1007/978-3-319-21155-8_7)  
 ICMT 15
 * [Enriching megamodel management with collection-based operators](https://doi.org/10.1109/MODELS.2015.7338254)  
-MoDELS 15
+MODELS 15
 * [Lifting model transformations to product lines](https://doi.org/10.1145/2568225.2568267)  
 ICSE 14
 * [Supporting early decision-making in the presence of uncertainty](https://doi.org/10.1109/RE.2014.6912245)  
@@ -144,5 +142,5 @@ RE 14
 * [Managing requirements uncertainty with partial models](https://doi.org/10.1007/s00766-013-0170-y)  
 REJ Vol. 18-2
 * [Transformation of Models Containing Uncertainty](https://doi.org/10.1007/978-3-642-41533-3_41)  
-MoDELS 13
+MODELS 13
 
