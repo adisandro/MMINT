@@ -53,6 +53,8 @@ public class ToProductLine extends OperatorImpl {
 
   private static class Out {
     public final static String MODEL = "plSiriusSpec";
+    public static final String ID_PREFIX = "PL";
+    public static final String LABEL_PREFIX = "Product Line ";
     public static final String SUFFIX = "_pl";
     public Model modelType;
     public Group plSiriusSpec;
@@ -91,152 +93,146 @@ public class ToProductLine extends OperatorImpl {
   }
 
   private void toProductLine() throws Exception {
+    var mappings = new HashMap<String, DiagramElementMapping>();
     // .odesign root
     var siriusSpec = (Group) this.in.specModel.getEMFInstanceRoot();
     this.out.plSiriusSpec.setName(siriusSpec.getName() + ".productline");
-    // viewpoint
-    var viewpoint = siriusSpec.getOwnedViewpoints().get(0);
-    var plViewpoint = this.out.vDescFactory.createViewpoint();
-    plViewpoint.setName("PL" + viewpoint.getName());
-    // diagram extension
-    var plDiagramExt = this.out.dDescFactory.createDiagramExtensionDescription();
-    plDiagramExt.setName("StateMachineProductLineDiagram");
-    plDiagramExt.setViewpointURI("viewpoint:/edu.toronto.cs.se.mmint.productline.design/ProductLineViewpoint");
-    plDiagramExt.setRepresentationName("ProductLineDiagram");
-
-    Map<String, DiagramElementMapping> map = new HashMap<>();
-
-    for (var originalViewpoint : siriusSpec.getOwnedViewpoints()) {
-      for (var representation : originalViewpoint.getOwnedRepresentations()) {
-        var originalDiagram = (DiagramDescription) representation;
-
-        // Handle default layer
-        var defaultLayer = originalDiagram.getDefaultLayer();
-        var newLayer = this.out.dDescFactory.createAdditionalLayer();
-        newLayer.setName("State Machine Product Line");
-        plDiagramExt.getLayers().add(newLayer);
-
-        // Node Mappings
-        for (var originalNodeMapping : defaultLayer.getNodeMappings()) {
-          var productLineNodeMapping = createProductLineNodeMapping(originalNodeMapping);
-          newLayer.getNodeMappings().add(productLineNodeMapping);
-          map.put(originalNodeMapping.getName(), productLineNodeMapping);
+    // viewpoints
+    for (var viewpoint : siriusSpec.getOwnedViewpoints()) {
+      var plViewpoint = this.out.vDescFactory.createViewpoint();
+      plViewpoint.setName(Out.ID_PREFIX + viewpoint.getName());
+      plViewpoint.setLabel(Out.LABEL_PREFIX + viewpoint.getLabel());
+      this.out.plSiriusSpec.getOwnedViewpoints().add(plViewpoint);
+      // representations
+      for (var representation : viewpoint.getOwnedRepresentations()) {
+        if (!(representation instanceof DiagramDescription diagram)) {
+          continue;
         }
-        // Edge Mappings
-        for (var originalEdgeMapping : defaultLayer.getEdgeMappings()) {
-          var productLineEdgeMapping = createProductLineEdgeMapping(originalEdgeMapping, map);
-          newLayer.getEdgeMappings().add(productLineEdgeMapping);
-          map.put(originalEdgeMapping.getName(), productLineEdgeMapping);
+        // diagram extension
+        var plDiagramExt = this.out.dDescFactory.createDiagramExtensionDescription();
+        plDiagramExt.setName(Out.ID_PREFIX + representation.getName());
+        plDiagramExt.setViewpointURI("viewpoint:/edu.toronto.cs.se.mmint.productline.design/ProductLineViewpoint");
+        plDiagramExt.setRepresentationName("ProductLineDiagram");
+        plViewpoint.getOwnedRepresentationExtensions().add(plDiagramExt);
+        // default layer
+        var layer = diagram.getDefaultLayer();
+        var plLayer = this.out.dDescFactory.createAdditionalLayer();
+        plLayer.setName(Out.ID_PREFIX + layer.getName());
+        plLayer.setLabel(Out.LABEL_PREFIX + layer.getLabel());
+        plDiagramExt.getLayers().add(plLayer);
+        // node mappings
+        for (var nodeMapping : layer.getNodeMappings()) {
+          var plNodeMapping = createPLNodeMapping(nodeMapping);
+          plLayer.getNodeMappings().add(plNodeMapping);
+          mappings.put(nodeMapping.getName(), plNodeMapping);
         }
-        // Container mappings
-        for (var originalContainerMapping : defaultLayer.getContainerMappings()) {
-          var productLineContainerMapping = createProductLineContainerMapping(originalContainerMapping);
-          newLayer.getContainerMappings().add(productLineContainerMapping);
-          map.put(originalContainerMapping.getName(), productLineContainerMapping);
-
-          // Sub-Node Mappings
-          for (var originalSubNodeMapping : originalContainerMapping.getSubNodeMappings()) {
-            var productLineSubNodeMapping = createProductLineNodeMapping(originalSubNodeMapping);
-            productLineContainerMapping.getSubNodeMappings().add(productLineSubNodeMapping);
-            map.put(originalSubNodeMapping.getName(), productLineSubNodeMapping);
+        // edge mappings
+        for (var edgeMapping : layer.getEdgeMappings()) {
+          var plEdgeMapping = createPLEdgeMapping(edgeMapping, mappings);
+          plLayer.getEdgeMappings().add(plEdgeMapping);
+          mappings.put(edgeMapping.getName(), plEdgeMapping);
+        }
+        // container mappings
+        for (var containerMapping : layer.getContainerMappings()) {
+          var plContainerMapping = createPLContainerMapping(containerMapping);
+          plLayer.getContainerMappings().add(plContainerMapping);
+          mappings.put(containerMapping.getName(), plContainerMapping);
+          // subnode Mappings
+          for (var subnodeMapping : containerMapping.getSubNodeMappings()) {
+            var plSubnodeMapping = createPLNodeMapping(subnodeMapping);
+            plContainerMapping.getSubNodeMappings().add(plSubnodeMapping);
+            mappings.put(subnodeMapping.getName(), plSubnodeMapping);
           }
-
         }
-        // Creation Tools
-        for (var section : defaultLayer.getToolSections()) {
-          var newSection = this.out.dToolFactory.createToolSection();
-          newSection.setName("CreateStateMachine");
-          newSection.setLabel("Create State Machine");
-          newLayer.getToolSections().add(newSection);
-
-          for (var createTool : section.getOwnedTools()) {
-            // Node Creation Tools
-            if (createTool instanceof NodeCreationDescription) {
-              var productLineCreateTool = createProductLineNodeCreationTool((NodeCreationDescription) createTool, map);
-              newSection.getOwnedTools().add(productLineCreateTool);
+        // tool sections
+        for (var section : layer.getToolSections()) {
+          var plSection = this.out.dToolFactory.createToolSection();
+          plSection.setName("CreateStateMachine");
+          plSection.setLabel("Create State Machine");
+          plLayer.getToolSections().add(plSection);
+          // creation tools
+          for (var tool : section.getOwnedTools()) {
+            // nodes
+            if (tool instanceof NodeCreationDescription nodeTool) {
+              var plTool = createPLNodeCreationTool(nodeTool, mappings);
+              plSection.getOwnedTools().add(plTool);
             }
-            // Edge Creation Tools
-            if (createTool instanceof EdgeCreationDescription) {
-              var productLineCreateTool = createProductLineEdgeCreationTool((EdgeCreationDescription) createTool, map);
-              newSection.getOwnedTools().add(productLineCreateTool);
+            // edges
+            if (tool instanceof EdgeCreationDescription edgeTool) {
+              var plTool = createPLEdgeCreationTool(edgeTool, mappings);
+              plSection.getOwnedTools().add(plTool);
             }
-            // Container Creation Tools
-            if (createTool instanceof ContainerCreationDescription) {
-              var productLineCreateTool = createProductLineContainerCreationTool((ContainerCreationDescription) createTool, map);
-              newSection.getOwnedTools().add(productLineCreateTool);
+            // containers
+            if (tool instanceof ContainerCreationDescription containerTool) {
+              var plTool = createPLContainerCreationTool(containerTool, mappings);
+              plSection.getOwnedTools().add(plTool);
             }
           }
         }
       }
     }
-
-    plViewpoint.getOwnedRepresentationExtensions().add(plDiagramExt);
-    this.out.plSiriusSpec.getOwnedViewpoints().add(plViewpoint);
   }
 
-  private NodeMapping createProductLineNodeMapping(NodeMapping originalNodeMapping) {
-    var nodeMapping = this.out.dDescFactory.createNodeMapping();
-    nodeMapping.setName("PL" + originalNodeMapping.getName());
-    nodeMapping.setLabel("PL" + originalNodeMapping.getLabel());
-    nodeMapping.setDomainClass("productline.class");
-    nodeMapping.setSemanticCandidatesExpression("feature:classes");
-    nodeMapping.setPreconditionExpression("aql: self.type.name = " + originalNodeMapping.getName());
-    nodeMapping.setSynchronizationLock(originalNodeMapping.isSynchronizationLock());
-
+  private NodeMapping createPLNodeMapping(NodeMapping nodeMapping) {
+    var plNodeMapping = this.out.dDescFactory.createNodeMapping();
+    plNodeMapping.setName(Out.ID_PREFIX + nodeMapping.getName());
+    plNodeMapping.setLabel("PL" + nodeMapping.getLabel());
+    plNodeMapping.setDomainClass("productline.class");
+    plNodeMapping.setSemanticCandidatesExpression("feature:classes");
+    plNodeMapping.setPreconditionExpression("aql: self.type.name = " + nodeMapping.getName());
+    plNodeMapping.setSynchronizationLock(nodeMapping.isSynchronizationLock());
     // Copy styles and update label expressions
-    var newStyle = EcoreUtil.copy(originalNodeMapping.getStyle());
-    nodeMapping.setStyle(newStyle);
-    newStyle.setLabelExpression("service: getStateMachinePLElementLabel");
+    var plStyle = EcoreUtil.copy(nodeMapping.getStyle());
+    plNodeMapping.setStyle(plStyle);
+    plStyle.setLabelExpression("service: getStateMachinePLElementLabel");
 
-    return nodeMapping;
+    return plNodeMapping;
   }
 
-  private EdgeMapping createProductLineEdgeMapping(EdgeMapping originalEdgeMapping, Map<String, DiagramElementMapping> map) {
-    var edgeMapping = this.out.dDescFactory.createEdgeMapping();
-    edgeMapping.setName("PL" + originalEdgeMapping.getName());
-    edgeMapping.setLabel(originalEdgeMapping.getLabel());
-    edgeMapping.setDomainClass("productline.class");
-    edgeMapping.setSemanticCandidatesExpression("feature:classes");
-    edgeMapping.setPreconditionExpression("aql: self.type.name = " + originalEdgeMapping.getName());
-    edgeMapping.setSourceFinderExpression("aql: self.references->select(r | r.type.name = 'source')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'transitionsAsSource')->collect(r | r.eContainer()))");
-    edgeMapping.setTargetFinderExpression("aql: self.references->select(r | r.type.name = 'target')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'transitionsAsTarget')->collect(r | r.eContainer()))");
-    edgeMapping.setSynchronizationLock(originalEdgeMapping.isSynchronizationLock());
-    for (var originalSourceMapping : originalEdgeMapping.getSourceMapping()) {
-      var newSourceMapping = map.get(originalSourceMapping.getName());
-      edgeMapping.getSourceMapping().add(newSourceMapping);
+  private EdgeMapping createPLEdgeMapping(EdgeMapping edgeMapping, Map<String, DiagramElementMapping> mappings) {
+    var plEdgeMapping = this.out.dDescFactory.createEdgeMapping();
+    plEdgeMapping.setName("PL" + edgeMapping.getName());
+    plEdgeMapping.setLabel(edgeMapping.getLabel());
+    plEdgeMapping.setDomainClass("productline.class");
+    plEdgeMapping.setSemanticCandidatesExpression("feature:classes");
+    plEdgeMapping.setPreconditionExpression("aql: self.type.name = " + edgeMapping.getName());
+    plEdgeMapping.setSourceFinderExpression("aql: self.references->select(r | r.type.name = 'source')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'transitionsAsSource')->collect(r | r.eContainer()))");
+    plEdgeMapping.setTargetFinderExpression("aql: self.references->select(r | r.type.name = 'target')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'transitionsAsTarget')->collect(r | r.eContainer()))");
+    plEdgeMapping.setSynchronizationLock(edgeMapping.isSynchronizationLock());
+    for (var srcMapping : edgeMapping.getSourceMapping()) {
+      var plSrcMapping = mappings.get(srcMapping.getName());
+      plEdgeMapping.getSourceMapping().add(plSrcMapping);
     }
-    for (var originalTargetMapping : originalEdgeMapping.getTargetMapping()) {
-      var newTargetMapping = map.get(originalTargetMapping.getName());
-      edgeMapping.getTargetMapping().add(newTargetMapping);
+    for (var tgtMapping : edgeMapping.getTargetMapping()) {
+      var plTgtMapping = mappings.get(tgtMapping.getName());
+      plEdgeMapping.getTargetMapping().add(plTgtMapping);
     }
-
     // Copy styles and update label expressions
-    var newStyle = EcoreUtil.copy(originalEdgeMapping.getStyle());
-    edgeMapping.setStyle(newStyle);
-    newStyle.getCenterLabelStyleDescription().setLabelExpression("service: getStateMachinePLElementLabel");
+    var plStyle = EcoreUtil.copy(edgeMapping.getStyle());
+    plEdgeMapping.setStyle(plStyle);
+    plStyle.getCenterLabelStyleDescription().setLabelExpression("service: getStateMachinePLElementLabel");
 
-    return edgeMapping;
+    return plEdgeMapping;
   }
 
-  private ContainerMapping createProductLineContainerMapping(ContainerMapping originalContainerMapping) {
-    var containerMapping = this.out.dDescFactory.createContainerMapping();
-    containerMapping.setName("PL" + originalContainerMapping.getName());
-    containerMapping.setLabel("PL" + originalContainerMapping.getLabel());
-    containerMapping.setDomainClass("productline.class");
-    containerMapping.setSemanticCandidatesExpression("feature:classes");
-    containerMapping.setChildrenPresentation(originalContainerMapping.getChildrenPresentation());
-    containerMapping.setPreconditionExpression("aql: self.type.name = " + originalContainerMapping.getName());
-    containerMapping.setSynchronizationLock(originalContainerMapping.isSynchronizationLock());
-
+  private ContainerMapping createPLContainerMapping(ContainerMapping containerMapping) {
+    var plContainerMapping = this.out.dDescFactory.createContainerMapping();
+    plContainerMapping.setName("PL" + containerMapping.getName());
+    plContainerMapping.setLabel("PL" + containerMapping.getLabel());
+    plContainerMapping.setDomainClass("productline.class");
+    plContainerMapping.setSemanticCandidatesExpression("feature:classes");
+    plContainerMapping.setChildrenPresentation(containerMapping.getChildrenPresentation());
+    plContainerMapping.setPreconditionExpression("aql: self.type.name = " + containerMapping.getName());
+    plContainerMapping.setSynchronizationLock(containerMapping.isSynchronizationLock());
     // Copy styles and update label expressions
-    var newStyle = EcoreUtil.copy(originalContainerMapping.getStyle());
-    containerMapping.setStyle(newStyle);
-    newStyle.setLabelExpression("service: getStateMachinePLElementLabel");
+    var plStyle = EcoreUtil.copy(containerMapping.getStyle());
+    plContainerMapping.setStyle(plStyle);
+    plStyle.setLabelExpression("service: getStateMachinePLElementLabel");
 
-    return containerMapping;
+    return plContainerMapping;
   }
 
-  private NodeCreationDescription createProductLineNodeCreationTool(NodeCreationDescription originalCreateTool, Map<String, DiagramElementMapping> map) {
+  private NodeCreationDescription createPLNodeCreationTool(NodeCreationDescription originalCreateTool, Map<String, DiagramElementMapping> map) {
     var createTool = this.out.dToolFactory.createNodeCreationDescription();
     createTool.setName("PL" + originalCreateTool.getName());
     createTool.setLabel("PL" + originalCreateTool.getLabel());
@@ -284,7 +280,7 @@ public class ToProductLine extends OperatorImpl {
     return createTool;
   }
 
-  private EdgeCreationDescription createProductLineEdgeCreationTool(EdgeCreationDescription originalCreateTool, Map<String, DiagramElementMapping> map) {
+  private EdgeCreationDescription createPLEdgeCreationTool(EdgeCreationDescription originalCreateTool, Map<String, DiagramElementMapping> map) {
     var createTool = this.out.dToolFactory.createEdgeCreationDescription();
     createTool.setName("PL" + originalCreateTool.getName());
     createTool.setLabel("PL" + originalCreateTool.getLabel());
@@ -340,7 +336,7 @@ public class ToProductLine extends OperatorImpl {
     return createTool;
   }
 
-  private ContainerCreationDescription createProductLineContainerCreationTool(ContainerCreationDescription originalCreateTool, Map<String, DiagramElementMapping> map) {
+  private ContainerCreationDescription createPLContainerCreationTool(ContainerCreationDescription originalCreateTool, Map<String, DiagramElementMapping> map) {
     var createTool = this.out.dToolFactory.createContainerCreationDescription();
     createTool.setName("PL" + originalCreateTool.getName());
     createTool.setLabel("PL" + originalCreateTool.getLabel());
