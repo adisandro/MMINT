@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: VAMOS23;singleton:=true
-Bundle-Version: 2.23.0.qualifier
+Bundle-Version: 2.23.99.qualifier
 Bundle-Vendor: %providerName
 Export-Package: vamos23
 Require-Bundle: org.eclipse.emf.ecore,

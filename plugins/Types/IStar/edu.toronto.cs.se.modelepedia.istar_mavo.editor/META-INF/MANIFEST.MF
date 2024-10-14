@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.istar_mavo.editor;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.istar.mavo.editor
-Bundle-Version: 2.23.0.qualifier
+Bundle-Version: 2.23.99.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.istar_mavo.presentation.IStar_MAVOEditorPlugin$Implementation
 Bundle-Vendor: %providerName

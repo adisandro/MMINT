@@ -14,7 +14,7 @@
 <feature
       id="edu.toronto.cs.se.mmint.examples.splc23.feature"
       label="MMINT - SPLC23 paper"
-      version="2.23.0.qualifier"
+      version="2.23.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="">
