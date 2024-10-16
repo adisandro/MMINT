@@ -18,6 +18,7 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.sirius.diagram.description.AbstractNodeMapping;
 import org.eclipse.sirius.diagram.description.ContainerMapping;
 import org.eclipse.sirius.diagram.description.DescriptionFactory;
 import org.eclipse.sirius.diagram.description.DiagramDescription;
@@ -26,15 +27,18 @@ import org.eclipse.sirius.diagram.description.EdgeMapping;
 import org.eclipse.sirius.diagram.description.NodeMapping;
 import org.eclipse.sirius.diagram.description.style.StyleFactory;
 import org.eclipse.sirius.diagram.description.tool.ContainerCreationDescription;
+import org.eclipse.sirius.diagram.description.tool.DirectEditLabel;
 import org.eclipse.sirius.diagram.description.tool.EdgeCreationDescription;
 import org.eclipse.sirius.diagram.description.tool.NodeCreationDescription;
 import org.eclipse.sirius.diagram.description.tool.ToolFactory;
 import org.eclipse.sirius.viewpoint.description.Group;
 
+import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
@@ -55,9 +59,11 @@ public class SiriusToProductLine extends OperatorImpl {
     public final static String MODEL = "plSiriusSpec";
     public static final String ID_PREFIX = "PL";
     public static final String LABEL_PREFIX = "Product Line ";
-    public static final String SUFFIX = "_pl";
+    public static final String SUFFIX = ".productline";
     public Model modelType;
-    public Group plSiriusSpec;
+    public Group plBaseSpec;
+    public DirectEditLabel plLabel;
+    public Group plSpec;
     public DescriptionFactory dDescFactory;
     public ToolFactory dToolFactory;
     public StyleFactory dStyleFactory;
@@ -66,43 +72,52 @@ public class SiriusToProductLine extends OperatorImpl {
     public String path;
     public MID mid;
 
-    public Out(Map<String, MID> outputMIDsByName, String workingPath, In in) throws MMINTException {
+    public Out(Map<String, MID> outputMIDsByName, String workingPath, In in) throws Exception {
       this.modelType = in.specModel.getMetatype();
       this.dDescFactory = DescriptionFactory.eINSTANCE;
       this.dToolFactory = ToolFactory.eINSTANCE;
       this.dStyleFactory = StyleFactory.eINSTANCE;
       this.vDescFactory = org.eclipse.sirius.viewpoint.description.DescriptionFactory.eINSTANCE;
       this.vToolFactory = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE;
-      this.plSiriusSpec = this.vDescFactory.createGroup();
+      var plBaseDiagram = MIDTypeRegistry.<Diagram>getType("edu.toronto.cs.se.mmint.productline.design");
+      var plBaseSpecPath = MIDTypeRegistry.getBundlePath(plBaseDiagram, "description" + IPath.SEPARATOR +
+                                                                        "productline.odesign");
+      this.plBaseSpec = (Group) FileUtils.readModelFile(plBaseSpecPath, null, false);
+      this.plLabel = (DirectEditLabel)
+        ((DiagramDescription) this.plBaseSpec.getOwnedViewpoints().get(0).getOwnedRepresentations().get(0))
+          .getDefaultLayer().getToolSections().get(0).getOwnedTools().get(3);
+      this.plSpec = this.vDescFactory.createGroup();
       this.path = workingPath + IPath.SEPARATOR + in.specModel.getName() + Out.SUFFIX + "." +
                   in.specModel.getFileExtension();
       this.mid = outputMIDsByName.get(Out.MODEL);
     }
 
     public Map<String, Model> packed() throws MMINTException, IOException {
-      var plSpecModel = this.modelType.createInstanceAndEditor(this.plSiriusSpec,
+      var plSpecModel = this.modelType.createInstanceAndEditor(this.plSpec,
                                                                FileUtils.getUniquePath(this.path, true, false),
                                                                this.mid);
       return Map.of(Out.MODEL, plSpecModel);
     }
   }
 
-  private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
+  private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     this.in = new In(inputsByName);
     this.out = new Out(outputMIDsByName, getWorkingPath(), this.in);
   }
 
   private void toProductLine() throws Exception {
-    var mappings = new HashMap<String, DiagramElementMapping>();
+    var plMappings = new HashMap<String, DiagramElementMapping>();
     // .odesign root
-    var siriusSpec = (Group) this.in.specModel.getEMFInstanceRoot();
-    this.out.plSiriusSpec.setName(siriusSpec.getName() + ".productline");
+    var spec = (Group) this.in.specModel.getEMFInstanceRoot();
+    this.out.plSpec.setName(spec.getName() + ".productline");
     // viewpoints
-    for (var viewpoint : siriusSpec.getOwnedViewpoints()) {
+    for (var viewpoint : spec.getOwnedViewpoints()) {
       var plViewpoint = this.out.vDescFactory.createViewpoint();
       plViewpoint.setName(Out.ID_PREFIX + viewpoint.getName());
-      plViewpoint.setLabel(Out.LABEL_PREFIX + viewpoint.getLabel());
-      this.out.plSiriusSpec.getOwnedViewpoints().add(plViewpoint);
+      if (viewpoint.getLabel() != null) {
+        plViewpoint.setLabel(Out.LABEL_PREFIX + viewpoint.getLabel());
+      }
+      this.out.plSpec.getOwnedViewpoints().add(plViewpoint);
       // representations
       for (var representation : viewpoint.getOwnedRepresentations()) {
         if (!(representation instanceof DiagramDescription diagram)) {
@@ -110,7 +125,8 @@ public class SiriusToProductLine extends OperatorImpl {
         }
         // diagram extension
         var plDiagramExt = this.out.dDescFactory.createDiagramExtensionDescription();
-        plDiagramExt.setName(Out.ID_PREFIX + representation.getName());
+        plDiagramExt.setName(Out.ID_PREFIX +
+          ((representation.getLabel() == null) ? representation.getName() : representation.getLabel()));
         plDiagramExt.setViewpointURI("viewpoint:/edu.toronto.cs.se.mmint.productline.design/ProductLineViewpoint");
         plDiagramExt.setRepresentationName("ProductLineDiagram");
         plViewpoint.getOwnedRepresentationExtensions().add(plDiagramExt);
@@ -118,71 +134,79 @@ public class SiriusToProductLine extends OperatorImpl {
         var layer = diagram.getDefaultLayer();
         var plLayer = this.out.dDescFactory.createAdditionalLayer();
         plLayer.setName(Out.ID_PREFIX + layer.getName());
-        plLayer.setLabel(Out.LABEL_PREFIX + layer.getLabel());
+        if (layer.getLabel() != null) {
+          plLayer.setLabel(Out.LABEL_PREFIX + layer.getLabel());
+        }
         plDiagramExt.getLayers().add(plLayer);
         // node mappings
         for (var nodeMapping : layer.getNodeMappings()) {
           var plNodeMapping = createPLNodeMapping(nodeMapping);
           plLayer.getNodeMappings().add(plNodeMapping);
-          mappings.put(nodeMapping.getName(), plNodeMapping);
-        }
-        // edge mappings
-        for (var edgeMapping : layer.getEdgeMappings()) {
-          var plEdgeMapping = createPLEdgeMapping(edgeMapping, mappings);
-          plLayer.getEdgeMappings().add(plEdgeMapping);
-          mappings.put(edgeMapping.getName(), plEdgeMapping);
+          plMappings.put(nodeMapping.getName(), plNodeMapping);
         }
         // container mappings
         for (var containerMapping : layer.getContainerMappings()) {
           var plContainerMapping = createPLContainerMapping(containerMapping);
           plLayer.getContainerMappings().add(plContainerMapping);
-          mappings.put(containerMapping.getName(), plContainerMapping);
+          plMappings.put(containerMapping.getName(), plContainerMapping);
           // subnode Mappings
           for (var subnodeMapping : containerMapping.getSubNodeMappings()) {
-            var plSubnodeMapping = createPLNodeMapping(subnodeMapping);
+            var plSubnodeMapping = createPLSubnodeMapping(subnodeMapping);
             plContainerMapping.getSubNodeMappings().add(plSubnodeMapping);
-            mappings.put(subnodeMapping.getName(), plSubnodeMapping);
+            plMappings.put(subnodeMapping.getName(), plSubnodeMapping);
           }
         }
-        // tool sections
-        for (var section : layer.getToolSections()) {
-          var plSection = this.out.dToolFactory.createToolSection();
-          plSection.setName("CreateStateMachine");
-          plSection.setLabel("Create State Machine");
-          plLayer.getToolSections().add(plSection);
-          // creation tools
-          for (var tool : section.getOwnedTools()) {
-            // nodes
-            if (tool instanceof NodeCreationDescription nodeTool) {
-              var plTool = createPLNodeCreationTool(nodeTool, mappings);
-              plSection.getOwnedTools().add(plTool);
-            }
-            // edges
-            if (tool instanceof EdgeCreationDescription edgeTool) {
-              var plTool = createPLEdgeCreationTool(edgeTool, mappings);
-              plSection.getOwnedTools().add(plTool);
-            }
-            // containers
-            if (tool instanceof ContainerCreationDescription containerTool) {
-              var plTool = createPLContainerCreationTool(containerTool, mappings);
-              plSection.getOwnedTools().add(plTool);
-            }
-          }
+        // edge mappings
+        for (var edgeMapping : layer.getEdgeMappings()) {
+          var plEdgeMapping = createPLEdgeMapping(edgeMapping, plMappings);
+          plLayer.getEdgeMappings().add(plEdgeMapping);
+          plMappings.put(edgeMapping.getName(), plEdgeMapping);
         }
+//        // tool sections
+//        for (var section : layer.getToolSections()) {
+//          var plSection = this.out.dToolFactory.createToolSection();
+//          plSection.setName("CreateStateMachine");
+//          plSection.setLabel("Create State Machine");
+//          plLayer.getToolSections().add(plSection);
+//          // creation tools
+//          for (var tool : section.getOwnedTools()) {
+//            // nodes
+//            if (tool instanceof NodeCreationDescription nodeTool) {
+//              var plTool = createPLNodeCreationTool(nodeTool, mappings);
+//              plSection.getOwnedTools().add(plTool);
+//            }
+//            // edges
+//            if (tool instanceof EdgeCreationDescription edgeTool) {
+//              var plTool = createPLEdgeCreationTool(edgeTool, mappings);
+//              plSection.getOwnedTools().add(plTool);
+//            }
+//            // containers
+//            if (tool instanceof ContainerCreationDescription containerTool) {
+//              var plTool = createPLContainerCreationTool(containerTool, mappings);
+//              plSection.getOwnedTools().add(plTool);
+//            }
+//          }
+//        }
       }
     }
   }
 
-  private NodeMapping createPLNodeMapping(NodeMapping nodeMapping) {
+  private void addPLNodeMapping(AbstractNodeMapping nodeMapping, AbstractNodeMapping plNodeMapping) {
     var domainClass = nodeMapping.getDomainClass();
     var classType = domainClass.substring(domainClass.lastIndexOf(".") + 1);
-    var plNodeMapping = this.out.dDescFactory.createNodeMapping();
     plNodeMapping.setName(Out.ID_PREFIX + nodeMapping.getName());
-    plNodeMapping.setLabel(nodeMapping.getLabel());
+    if (nodeMapping.getLabel() != null) {
+      plNodeMapping.setLabel(nodeMapping.getLabel());
+    }
     plNodeMapping.setDomainClass("productline.Class");
     plNodeMapping.setSemanticCandidatesExpression("feature:classes");
-    plNodeMapping.setLabelDirectEdit(null);
-    plNodeMapping.setPreconditionExpression("aql: self.type.name = " + classType);
+    plNodeMapping.setLabelDirectEdit(this.out.plLabel);
+    plNodeMapping.setPreconditionExpression("aql: self.type.name = '" + classType + "'");
+  }
+
+  private NodeMapping createPLNodeMapping(NodeMapping nodeMapping) {
+    var plNodeMapping = this.out.dDescFactory.createNodeMapping();
+    addPLNodeMapping(nodeMapping, plNodeMapping);
     var plStyle = EcoreUtil.copy(nodeMapping.getStyle());
     plStyle.setLabelExpression("service: getPLStateMachineElementLabel"); //TODO
     plNodeMapping.setStyle(plStyle);
@@ -190,47 +214,51 @@ public class SiriusToProductLine extends OperatorImpl {
     return plNodeMapping;
   }
 
-  private EdgeMapping createPLEdgeMapping(EdgeMapping edgeMapping, Map<String, DiagramElementMapping> mappings) {
-    var plEdgeMapping = this.out.dDescFactory.createEdgeMapping();
-    plEdgeMapping.setName("PL" + edgeMapping.getName());
-    plEdgeMapping.setLabel(edgeMapping.getLabel());
-    plEdgeMapping.setDomainClass("productline.class");
-    plEdgeMapping.setSemanticCandidatesExpression("feature:classes");
-    plEdgeMapping.setPreconditionExpression("aql: self.type.name = " + edgeMapping.getName());
-    plEdgeMapping.setSourceFinderExpression("aql: self.references->select(r | r.type.name = 'source')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'transitionsAsSource')->collect(r | r.eContainer()))");
-    plEdgeMapping.setTargetFinderExpression("aql: self.references->select(r | r.type.name = 'target')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'transitionsAsTarget')->collect(r | r.eContainer()))");
-    plEdgeMapping.setSynchronizationLock(edgeMapping.isSynchronizationLock());
-    for (var srcMapping : edgeMapping.getSourceMapping()) {
-      var plSrcMapping = mappings.get(srcMapping.getName());
-      plEdgeMapping.getSourceMapping().add(plSrcMapping);
-    }
-    for (var tgtMapping : edgeMapping.getTargetMapping()) {
-      var plTgtMapping = mappings.get(tgtMapping.getName());
-      plEdgeMapping.getTargetMapping().add(plTgtMapping);
-    }
-    // Copy styles and update label expressions
-    var plStyle = EcoreUtil.copy(edgeMapping.getStyle());
-    plEdgeMapping.setStyle(plStyle);
-    plStyle.getCenterLabelStyleDescription().setLabelExpression("service: getStateMachinePLElementLabel");
-
-    return plEdgeMapping;
-  }
-
   private ContainerMapping createPLContainerMapping(ContainerMapping containerMapping) {
     var plContainerMapping = this.out.dDescFactory.createContainerMapping();
-    plContainerMapping.setName("PL" + containerMapping.getName());
-    plContainerMapping.setLabel("PL" + containerMapping.getLabel());
-    plContainerMapping.setDomainClass("productline.class");
-    plContainerMapping.setSemanticCandidatesExpression("feature:classes");
+    addPLNodeMapping(containerMapping, plContainerMapping);
     plContainerMapping.setChildrenPresentation(containerMapping.getChildrenPresentation());
-    plContainerMapping.setPreconditionExpression("aql: self.type.name = " + containerMapping.getName());
-    plContainerMapping.setSynchronizationLock(containerMapping.isSynchronizationLock());
-    // Copy styles and update label expressions
     var plStyle = EcoreUtil.copy(containerMapping.getStyle());
+    plStyle.setLabelExpression("service: getPLStateMachineElementLabel"); //TODO
     plContainerMapping.setStyle(plStyle);
-    plStyle.setLabelExpression("service: getStateMachinePLElementLabel");
 
     return plContainerMapping;
+  }
+
+  private NodeMapping createPLSubnodeMapping(NodeMapping subnodeMapping) {
+    var plSubnodeMapping = createPLNodeMapping(subnodeMapping);
+    plSubnodeMapping.setSemanticCandidatesExpression("aql: self.eContainer(productline::ProductLine).classes");
+    plSubnodeMapping.setPreconditionExpression(plSubnodeMapping.getPreconditionExpression() +
+      " and self.referencesAsTarget.eContainer(productline::Class)->includes(container)");
+
+    return plSubnodeMapping;
+  }
+
+  private EdgeMapping createPLEdgeMapping(EdgeMapping edgeMapping, Map<String, DiagramElementMapping> plMappings) {
+    var domainClass = edgeMapping.getDomainClass();
+    var classType = domainClass.substring(domainClass.lastIndexOf(".") + 1);
+    var plEdgeMapping = this.out.dDescFactory.createEdgeMapping();
+    plEdgeMapping.setName(Out.ID_PREFIX + edgeMapping.getName());
+    if (edgeMapping.getLabel() != null) {
+      plEdgeMapping.setLabel(edgeMapping.getLabel());
+    }
+    plEdgeMapping.setDomainClass("productline.Class");
+    plEdgeMapping.setSemanticCandidatesExpression("feature:classes");
+    plEdgeMapping.setLabelDirectEdit(this.out.plLabel);
+    plEdgeMapping.setPreconditionExpression("aql: self.type.name = '" + classType + "'");
+    for (var srcMapping : edgeMapping.getSourceMapping()) {
+      plEdgeMapping.getSourceMapping().add(plMappings.get(srcMapping.getName()));
+    }
+    plEdgeMapping.setSourceFinderExpression("aql: self.references->select(r | r.type.name = 'source')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'transitionsAsSource')->collect(r | r.eContainer()))");
+    for (var tgtMapping : edgeMapping.getTargetMapping()) {
+      plEdgeMapping.getTargetMapping().add(plMappings.get(tgtMapping.getName()));
+    }
+    plEdgeMapping.setTargetFinderExpression("aql: self.references->select(r | r.type.name = 'target')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'transitionsAsTarget')->collect(r | r.eContainer()))");
+    var plStyle = EcoreUtil.copy(edgeMapping.getStyle());
+    plStyle.getCenterLabelStyleDescription().setLabelExpression("service: getStateMachinePLElementLabel");
+    plEdgeMapping.setStyle(plStyle);
+
+    return plEdgeMapping;
   }
 
   private NodeCreationDescription createPLNodeCreationTool(NodeCreationDescription originalCreateTool, Map<String, DiagramElementMapping> map) {
