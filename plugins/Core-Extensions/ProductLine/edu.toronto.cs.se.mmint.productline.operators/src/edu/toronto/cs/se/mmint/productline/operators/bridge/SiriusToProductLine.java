@@ -10,7 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package edu.toronto.cs.se.mmint.productline.design;
+package edu.toronto.cs.se.mmint.productline.operators.bridge;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -38,7 +38,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
-public class ToProductLine extends OperatorImpl {
+public class SiriusToProductLine extends OperatorImpl {
   private In in;
   private Out out;
 
@@ -174,17 +174,18 @@ public class ToProductLine extends OperatorImpl {
   }
 
   private NodeMapping createPLNodeMapping(NodeMapping nodeMapping) {
+    var domainClass = nodeMapping.getDomainClass();
+    var classType = domainClass.substring(domainClass.lastIndexOf(".") + 1);
     var plNodeMapping = this.out.dDescFactory.createNodeMapping();
     plNodeMapping.setName(Out.ID_PREFIX + nodeMapping.getName());
-    plNodeMapping.setLabel("PL" + nodeMapping.getLabel());
-    plNodeMapping.setDomainClass("productline.class");
+    plNodeMapping.setLabel(nodeMapping.getLabel());
+    plNodeMapping.setDomainClass("productline.Class");
     plNodeMapping.setSemanticCandidatesExpression("feature:classes");
-    plNodeMapping.setPreconditionExpression("aql: self.type.name = " + nodeMapping.getName());
-    plNodeMapping.setSynchronizationLock(nodeMapping.isSynchronizationLock());
-    // Copy styles and update label expressions
+    plNodeMapping.setLabelDirectEdit(null);
+    plNodeMapping.setPreconditionExpression("aql: self.type.name = " + classType);
     var plStyle = EcoreUtil.copy(nodeMapping.getStyle());
+    plStyle.setLabelExpression("service: getPLStateMachineElementLabel"); //TODO
     plNodeMapping.setStyle(plStyle);
-    plStyle.setLabelExpression("service: getStateMachinePLElementLabel");
 
     return plNodeMapping;
   }
