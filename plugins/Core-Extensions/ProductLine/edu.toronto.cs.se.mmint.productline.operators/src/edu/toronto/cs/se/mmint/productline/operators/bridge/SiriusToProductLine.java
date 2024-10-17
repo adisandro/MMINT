@@ -18,6 +18,7 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.sirius.diagram.description.AbstractNodeMapping;
 import org.eclipse.sirius.diagram.description.ContainerMapping;
 import org.eclipse.sirius.diagram.description.DescriptionFactory;
@@ -32,6 +33,11 @@ import org.eclipse.sirius.diagram.description.tool.EdgeCreationDescription;
 import org.eclipse.sirius.diagram.description.tool.NodeCreationDescription;
 import org.eclipse.sirius.diagram.description.tool.ToolFactory;
 import org.eclipse.sirius.viewpoint.description.Group;
+import org.eclipse.sirius.viewpoint.description.IdentifiedElement;
+import org.eclipse.sirius.viewpoint.description.style.BasicLabelStyleDescription;
+import org.eclipse.sirius.viewpoint.description.tool.ChangeContext;
+import org.eclipse.sirius.viewpoint.description.tool.CreateInstance;
+import org.eclipse.sirius.viewpoint.description.tool.MappingBasedToolDescription;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -113,10 +119,7 @@ public class SiriusToProductLine extends OperatorImpl {
     // viewpoints
     for (var viewpoint : spec.getOwnedViewpoints()) {
       var plViewpoint = this.out.vDescFactory.createViewpoint();
-      plViewpoint.setName(Out.ID_PREFIX + viewpoint.getName());
-      if (viewpoint.getLabel() != null) {
-        plViewpoint.setLabel(Out.LABEL_PREFIX + viewpoint.getLabel());
-      }
+      addPLIdentifiedElement(viewpoint, plViewpoint, Out.LABEL_PREFIX);
       this.out.plSpec.getOwnedViewpoints().add(plViewpoint);
       // representations
       for (var representation : viewpoint.getOwnedRepresentations()) {
@@ -133,10 +136,7 @@ public class SiriusToProductLine extends OperatorImpl {
         // default layer
         var layer = diagram.getDefaultLayer();
         var plLayer = this.out.dDescFactory.createAdditionalLayer();
-        plLayer.setName(Out.ID_PREFIX + layer.getName());
-        if (layer.getLabel() != null) {
-          plLayer.setLabel(Out.LABEL_PREFIX + layer.getLabel());
-        }
+        addPLIdentifiedElement(layer, plLayer, Out.LABEL_PREFIX);
         plDiagramExt.getLayers().add(plLayer);
         // node mappings
         for (var nodeMapping : layer.getNodeMappings()) {
@@ -162,53 +162,71 @@ public class SiriusToProductLine extends OperatorImpl {
           plLayer.getEdgeMappings().add(plEdgeMapping);
           plMappings.put(edgeMapping.getName(), plEdgeMapping);
         }
-//        // tool sections
-//        for (var section : layer.getToolSections()) {
-//          var plSection = this.out.dToolFactory.createToolSection();
-//          plSection.setName("CreateStateMachine");
-//          plSection.setLabel("Create State Machine");
-//          plLayer.getToolSections().add(plSection);
-//          // creation tools
-//          for (var tool : section.getOwnedTools()) {
-//            // nodes
-//            if (tool instanceof NodeCreationDescription nodeTool) {
-//              var plTool = createPLNodeCreationTool(nodeTool, mappings);
-//              plSection.getOwnedTools().add(plTool);
-//            }
-//            // edges
+        // tool sections
+        for (var section : layer.getToolSections()) {
+          var plSection = this.out.dToolFactory.createToolSection();
+          addPLIdentifiedElement(section, plSection, null);
+          plLayer.getToolSections().add(plSection);
+          for (var tool : section.getOwnedTools()) {
+            // node creation
+            if (tool instanceof NodeCreationDescription nodeTool) {
+              var plTool = createPLNodeCreationTool(nodeTool, plMappings);
+              plSection.getOwnedTools().add(plTool);
+            }
+//            // edge creation
 //            if (tool instanceof EdgeCreationDescription edgeTool) {
-//              var plTool = createPLEdgeCreationTool(edgeTool, mappings);
+//              var plTool = createPLEdgeCreationTool(edgeTool, plMappings);
 //              plSection.getOwnedTools().add(plTool);
 //            }
-//            // containers
+//            // container creation
 //            if (tool instanceof ContainerCreationDescription containerTool) {
-//              var plTool = createPLContainerCreationTool(containerTool, mappings);
+//              var plTool = createPLContainerCreationTool(containerTool, plMappings);
 //              plSection.getOwnedTools().add(plTool);
 //            }
-//          }
-//        }
+          }
+        }
       }
     }
   }
 
-  private void addPLNodeMapping(AbstractNodeMapping nodeMapping, AbstractNodeMapping plNodeMapping) {
-    var domainClass = nodeMapping.getDomainClass();
-    var classType = domainClass.substring(domainClass.lastIndexOf(".") + 1);
-    plNodeMapping.setName(Out.ID_PREFIX + nodeMapping.getName());
-    if (nodeMapping.getLabel() != null) {
-      plNodeMapping.setLabel(nodeMapping.getLabel());
+  private String getClassType(String domainClass) {
+    var i = domainClass.lastIndexOf(".");
+    return (i < 0) ? domainClass : domainClass.substring(i+1);
+  }
+
+  private void addPLIdentifiedElement(IdentifiedElement elem, IdentifiedElement plElem, @Nullable String labelPrefix) {
+    plElem.setName(Out.ID_PREFIX + elem.getName());
+    if (elem.getLabel() != null) {
+      var plLabel = elem.getLabel();
+      if (labelPrefix != null) {
+        plLabel = labelPrefix + plLabel;
+      }
+      plElem.setLabel(plLabel);
     }
+  }
+
+  private void addPLDiagramMapping(DiagramElementMapping diagMapping, DiagramElementMapping plDiagMapping,
+                                   String classType) {
+    addPLIdentifiedElement(diagMapping, plDiagMapping, null);
+    plDiagMapping.setSemanticCandidatesExpression("feature:classes");
+    plDiagMapping.setLabelDirectEdit(this.out.plLabel);
+    plDiagMapping.setPreconditionExpression("aql: self.type.name = '" + classType + "'");
+  }
+
+  private void addPLNodeMapping(AbstractNodeMapping nodeMapping, AbstractNodeMapping plNodeMapping) {
     plNodeMapping.setDomainClass("productline.Class");
-    plNodeMapping.setSemanticCandidatesExpression("feature:classes");
-    plNodeMapping.setLabelDirectEdit(this.out.plLabel);
-    plNodeMapping.setPreconditionExpression("aql: self.type.name = '" + classType + "'");
+    addPLDiagramMapping(nodeMapping, plNodeMapping, getClassType(nodeMapping.getDomainClass()));
+  }
+
+  private void addPLStyleExpression(BasicLabelStyleDescription plStyle) {
+    plStyle.setLabelExpression("service: getPLStateMachineElementLabel"); //TODO settle on a name
   }
 
   private NodeMapping createPLNodeMapping(NodeMapping nodeMapping) {
     var plNodeMapping = this.out.dDescFactory.createNodeMapping();
     addPLNodeMapping(nodeMapping, plNodeMapping);
     var plStyle = EcoreUtil.copy(nodeMapping.getStyle());
-    plStyle.setLabelExpression("service: getPLStateMachineElementLabel"); //TODO
+    addPLStyleExpression(plStyle);
     plNodeMapping.setStyle(plStyle);
 
     return plNodeMapping;
@@ -219,7 +237,7 @@ public class SiriusToProductLine extends OperatorImpl {
     addPLNodeMapping(containerMapping, plContainerMapping);
     plContainerMapping.setChildrenPresentation(containerMapping.getChildrenPresentation());
     var plStyle = EcoreUtil.copy(containerMapping.getStyle());
-    plStyle.setLabelExpression("service: getPLStateMachineElementLabel"); //TODO
+    addPLStyleExpression(plStyle);
     plContainerMapping.setStyle(plStyle);
 
     return plContainerMapping;
@@ -235,17 +253,10 @@ public class SiriusToProductLine extends OperatorImpl {
   }
 
   private EdgeMapping createPLEdgeMapping(EdgeMapping edgeMapping, Map<String, DiagramElementMapping> plMappings) {
-    var domainClass = edgeMapping.getDomainClass();
-    var classType = domainClass.substring(domainClass.lastIndexOf(".") + 1);
     var plEdgeMapping = this.out.dDescFactory.createEdgeMapping();
-    plEdgeMapping.setName(Out.ID_PREFIX + edgeMapping.getName());
-    if (edgeMapping.getLabel() != null) {
-      plEdgeMapping.setLabel(edgeMapping.getLabel());
-    }
+    addPLDiagramMapping(edgeMapping, plEdgeMapping, getClassType(edgeMapping.getDomainClass()));
     plEdgeMapping.setDomainClass("productline.Class");
-    plEdgeMapping.setSemanticCandidatesExpression("feature:classes");
-    plEdgeMapping.setLabelDirectEdit(this.out.plLabel);
-    plEdgeMapping.setPreconditionExpression("aql: self.type.name = '" + classType + "'");
+    plEdgeMapping.setUseDomainElement(edgeMapping.isUseDomainElement());
     for (var srcMapping : edgeMapping.getSourceMapping()) {
       plEdgeMapping.getSourceMapping().add(plMappings.get(srcMapping.getName()));
     }
@@ -255,58 +266,86 @@ public class SiriusToProductLine extends OperatorImpl {
     }
     plEdgeMapping.setTargetFinderExpression("aql: self.references->select(r | r.type.name = 'target')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'transitionsAsTarget')->collect(r | r.eContainer()))");
     var plStyle = EcoreUtil.copy(edgeMapping.getStyle());
-    plStyle.getCenterLabelStyleDescription().setLabelExpression("service: getStateMachinePLElementLabel");
     plEdgeMapping.setStyle(plStyle);
+    var plBeginLabel = plStyle.getBeginLabelStyleDescription();
+    if (plBeginLabel != null) {
+      addPLStyleExpression(plBeginLabel);
+    }
+    var plCenterLabel = plStyle.getCenterLabelStyleDescription();
+    if (plCenterLabel != null) {
+      addPLStyleExpression(plCenterLabel);
+    }
+    var plEndLabel = plStyle.getEndLabelStyleDescription();
+    if (plEndLabel != null) {
+      addPLStyleExpression(plEndLabel);
+    }
 
     return plEdgeMapping;
   }
 
-  private NodeCreationDescription createPLNodeCreationTool(NodeCreationDescription originalCreateTool, Map<String, DiagramElementMapping> map) {
-    var createTool = this.out.dToolFactory.createNodeCreationDescription();
-    createTool.setName("PL" + originalCreateTool.getName());
-    createTool.setLabel("PL" + originalCreateTool.getLabel());
-    createTool.setVariable(null);
+  private void addPLMappingTool(MappingBasedToolDescription mappingTool, MappingBasedToolDescription plMappingTool) {
+    //TODO possibly remove if no additional operation identified
+    addPLIdentifiedElement(mappingTool, plMappingTool, null);
+  }
 
-    for (var originalMapping : originalCreateTool.getNodeMappings()) {
-      var newMapping = (NodeMapping) map.get(originalMapping.getName());
-      createTool.getNodeMappings().add(newMapping);
+  private NodeCreationDescription createPLNodeCreationTool(NodeCreationDescription nodeTool,
+                                                           Map<String, DiagramElementMapping> plMappings) {
+    var plNodeTool = this.out.dToolFactory.createNodeCreationDescription();
+    addPLMappingTool(nodeTool, plNodeTool);
+    if (nodeTool.getIconPath() != null) {
+      plNodeTool.setIconPath(nodeTool.getIconPath());
     }
-    var container = this.out.dToolFactory.createNodeCreationVariable();
-    var containerView = this.out.vToolFactory.createContainerViewVariable();
+    for (var nodeMapping : nodeTool.getNodeMappings()) {
+      plNodeTool.getNodeMappings().add((NodeMapping) plMappings.get(nodeMapping.getName()));
+    }
+    // tool vars
+    var toolVar = nodeTool.getVariable();
+    if (toolVar != null) {
+      var plToolVar = this.out.dToolFactory.createNodeCreationVariable();
+      plToolVar.setName(toolVar.getName());
+      plNodeTool.setVariable(plToolVar);
+    }
+    var toolViewVar = nodeTool.getViewVariable();
+    if (toolViewVar != null) {
+      var plToolViewVar = this.out.vToolFactory.createContainerViewVariable();
+      plToolViewVar.setName(toolViewVar.getName());
+      plNodeTool.setViewVariable(plToolViewVar);
+    }
+    // convert tool creation op to java custom op
+    var plInitialOp = this.out.vToolFactory.createInitialNodeCreationOperation();
+    plNodeTool.setInitialOperation(plInitialOp);
+    var plChangeOp = this.out.vToolFactory.createChangeContext();
+    plChangeOp.setBrowseExpression("var:container");
+    plInitialOp.setFirstModelOperations(plChangeOp);
+    String classType = null;
+    var firstOp = nodeTool.getInitialOperation().getFirstModelOperations();
+    if (firstOp instanceof CreateInstance creationOp) {
+      classType = getClassType(creationOp.getTypeName());
+    }
+    else if (firstOp instanceof ChangeContext changeOp) {
+      for (var subOp : changeOp.getSubModelOperations()) {
+        if (subOp instanceof CreateInstance creationOp) {
+          classType = getClassType(creationOp.getTypeName());
+          break;
+        }
+      }
+    }
+    if (classType != null) {
+      var plJavaOp = this.out.vToolFactory.createExternalJavaAction();
+      plJavaOp.setName(Out.ID_PREFIX + "Create" + classType);
+      plJavaOp.setId("edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.PLStateMachineCreateNode"); //TODO
+      var plParam = this.out.vToolFactory.createExternalJavaActionParameter();
+      plParam.setName("classType");
+      plParam.setValue(classType);
+      plJavaOp.getParameters().add(plParam);
+      plChangeOp.getSubModelOperations().add(plJavaOp);
+      if (nodeTool.getIconPath() == null) {
+        //TODO
+        plNodeTool.setIconPath("/edu.toronto.cs.se.modelepedia.statemachine.edit/icons/full/obj16/" + classType + ".gif");
+      }
+    }
 
-    container.setName("container");
-    containerView.setName("containerView");
-    createTool.setVariable(container);
-    createTool.setViewVariable(containerView);
-
-    /*
-     * QUESTION 2: We didn't discuss this in the meeting but I'm assuming the initial operation does need
-     * to be created before we can get it?
-     *
-     * EDIIT: I THINK THIS NOW MAKES SENSE. DON'T NEED TO CAST
-     */
-    var initialOperation = this.out.vToolFactory.createInitialNodeCreationOperation();
-    createTool.setInitialOperation(initialOperation);
-
-    var changeContext = this.out.vToolFactory.createChangeContext();
-    changeContext.setBrowseExpression("var:container");
-    createTool.getInitialOperation().setFirstModelOperations(changeContext);
-    var javaAction = this.out.vToolFactory.createExternalJavaAction();
-    javaAction.setName("PL"+originalCreateTool.getName());
-    javaAction.setLabel("PL"+originalCreateTool.getName());
-    javaAction.setId("edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.StateMachinePLCreateNode");
-    var parameter = this.out.vToolFactory.createExternalJavaActionParameter();
-    parameter.setName("classType");
-    var value = originalCreateTool.getName().substring(6); //Removing Create (6 letters)
-    parameter.setValue(value);
-    javaAction.getParameters().add(parameter);
-    changeContext.getSubModelOperations().add(javaAction);
-
-    var newString = originalCreateTool.getLabel().replace(" ", "");
-    createTool.setIconPath("/edu.toronto.cs.se.modelepedia.statemachine.edit/icons/full/obj16/"+newString+".gif");
-    createTool.setForceRefresh(true);
-
-    return createTool;
+    return plNodeTool;
   }
 
   private EdgeCreationDescription createPLEdgeCreationTool(EdgeCreationDescription originalCreateTool, Map<String, DiagramElementMapping> map) {
