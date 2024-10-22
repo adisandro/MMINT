@@ -37,7 +37,7 @@ import org.eclipse.sirius.viewpoint.description.IdentifiedElement;
 import org.eclipse.sirius.viewpoint.description.style.BasicLabelStyleDescription;
 import org.eclipse.sirius.viewpoint.description.tool.ChangeContext;
 import org.eclipse.sirius.viewpoint.description.tool.CreateInstance;
-import org.eclipse.sirius.viewpoint.description.tool.InitialNodeCreationOperation;
+import org.eclipse.sirius.viewpoint.description.tool.ExternalJavaAction;
 import org.eclipse.sirius.viewpoint.description.tool.ModelOperation;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
@@ -122,6 +122,9 @@ public class SiriusToProductLine extends OperatorImpl {
       var plViewpoint = this.out.vDescFactory.createViewpoint();
       addPLIdentifiedElement(viewpoint, plViewpoint, Out.LABEL_PREFIX);
       this.out.plSpec.getOwnedViewpoints().add(plViewpoint);
+      var plJavaExt = this.out.vDescFactory.createJavaExtension();
+      plJavaExt.setQualifiedClassName("edu.toronto.cs.se.mmint.types.statemachine.productline.design.PLStateMachineServices"); //TODO
+      plViewpoint.getOwnedJavaExtensions().add(plJavaExt);
       // representations
       for (var representation : viewpoint.getOwnedRepresentations()) {
         if (!(representation instanceof DiagramDescription diagram)) {
@@ -179,11 +182,11 @@ public class SiriusToProductLine extends OperatorImpl {
               var plTool = createPLContainerCreationTool(containerTool, plMappings);
               plSection.getOwnedTools().add(plTool);
             }
-//            // edge creation
-//            if (tool instanceof EdgeCreationDescription edgeTool) {
-//              var plTool = createPLEdgeCreationTool(edgeTool, plMappings);
-//              plSection.getOwnedTools().add(plTool);
-//            }
+            // edge creation
+            if (tool instanceof EdgeCreationDescription edgeTool) {
+              var plTool = createPLEdgeCreationTool(edgeTool, plMappings);
+              plSection.getOwnedTools().add(plTool);
+            }
           }
         }
       }
@@ -284,12 +287,10 @@ public class SiriusToProductLine extends OperatorImpl {
     return plEdgeMapping;
   }
 
-  private record PLCreateOp(InitialNodeCreationOperation op, @Nullable String classType) {};
+  private record PLCreateOp(ChangeContext op, @Nullable String classType) {};
   private PLCreateOp addPLCreateOp(ModelOperation firstOp) {
-    var plInitialOp = this.out.vToolFactory.createInitialNodeCreationOperation();
     var plChangeOp = this.out.vToolFactory.createChangeContext();
     plChangeOp.setBrowseExpression("var:container");
-    plInitialOp.setFirstModelOperations(plChangeOp);
     String classType = null;
     if (firstOp instanceof CreateInstance creationOp) {
       classType = getClassType(creationOp.getTypeName());
@@ -313,7 +314,7 @@ public class SiriusToProductLine extends OperatorImpl {
       plChangeOp.getSubModelOperations().add(plJavaOp);
     }
 
-    return new PLCreateOp(plInitialOp, classType);
+    return new PLCreateOp(plChangeOp, classType);
   }
 
   private NodeCreationDescription createPLNodeCreationTool(NodeCreationDescription nodeTool,
@@ -340,8 +341,10 @@ public class SiriusToProductLine extends OperatorImpl {
       plNodeTool.setViewVariable(plToolViewVar);
     }
     // tool ops
+    var plInitialOp = this.out.vToolFactory.createInitialNodeCreationOperation();
+    plNodeTool.setInitialOperation(plInitialOp);
     var plCreateOp = addPLCreateOp(nodeTool.getInitialOperation().getFirstModelOperations());
-    plNodeTool.setInitialOperation(plCreateOp.op());
+    plInitialOp.setFirstModelOperations(plCreateOp.op());
     // tool icon
     if (nodeTool.getIconPath() != null) {
       plNodeTool.setIconPath(nodeTool.getIconPath());
@@ -375,8 +378,10 @@ public class SiriusToProductLine extends OperatorImpl {
       plContainerTool.setViewVariable(plToolViewVar);
     }
     // tool ops
+    var plInitialOp = this.out.vToolFactory.createInitialNodeCreationOperation();
+    plContainerTool.setInitialOperation(plInitialOp);
     var plCreateOp = addPLCreateOp(containerTool.getInitialOperation().getFirstModelOperations());
-    plContainerTool.setInitialOperation(plCreateOp.op());
+    plInitialOp.setFirstModelOperations(plCreateOp.op());
     // tool icon
     if (containerTool.getIconPath() != null) {
       plContainerTool.setIconPath(containerTool.getIconPath());
@@ -389,60 +394,64 @@ public class SiriusToProductLine extends OperatorImpl {
     return plContainerTool;
   }
 
-  private EdgeCreationDescription createPLEdgeCreationTool(EdgeCreationDescription originalCreateTool, Map<String, DiagramElementMapping> map) {
-    var createTool = this.out.dToolFactory.createEdgeCreationDescription();
-    createTool.setName("PL" + originalCreateTool.getName());
-    createTool.setLabel("PL" + originalCreateTool.getLabel());
-
-    for (var originalMapping : originalCreateTool.getEdgeMappings()) {
-      var newMapping = (EdgeMapping) map.get(originalMapping.getName());
-      createTool.getEdgeMappings().add(newMapping);
+  private EdgeCreationDescription createPLEdgeCreationTool(EdgeCreationDescription edgeTool,
+                                                           Map<String, DiagramElementMapping> plMappings) {
+    var plEdgeTool = this.out.dToolFactory.createEdgeCreationDescription();
+    addPLIdentifiedElement(edgeTool, plEdgeTool, null);
+    for (var edgeMapping : edgeTool.getEdgeMappings()) {
+      plEdgeTool.getEdgeMappings().add((EdgeMapping) plMappings.get(edgeMapping.getName()));
     }
-    /*
-     * QUESTION 3:
-     * Are source and target variables and source and target view variables the same type as above?
-     * If not what are they?
-     */
-    var source = this.out.vToolFactory.createNameVariable();
-    var sourceView = this.out.vToolFactory.createContainerViewVariable();
-    var target = this.out.vToolFactory.createNameVariable();
-    var targetView = this.out.vToolFactory.createContainerViewVariable();
+    // tool vars
+    var srcVar = edgeTool.getSourceVariable();
+    if (srcVar != null) {
+      var plSrcVar = this.out.dToolFactory.createSourceEdgeCreationVariable();
+      plSrcVar.setName(srcVar.getName());
+      plEdgeTool.setSourceVariable(plSrcVar);
+    }
+    var tgtVar = edgeTool.getTargetVariable();
+    if (tgtVar != null) {
+      var plTgtVar = this.out.dToolFactory.createTargetEdgeCreationVariable();
+      plTgtVar.setName(tgtVar.getName());
+      plEdgeTool.setTargetVariable(plTgtVar);
+    }
+    var srcViewVar = edgeTool.getSourceViewVariable();
+    if (srcViewVar != null) {
+      var plSrcViewVar = this.out.dToolFactory.createSourceEdgeViewCreationVariable();
+      plSrcViewVar.setName(srcViewVar.getName());
+      plEdgeTool.setSourceViewVariable(plSrcViewVar);
+    }
+    var tgtViewVar = edgeTool.getTargetViewVariable();
+    if (tgtViewVar != null) {
+      var plTgtViewVar = this.out.dToolFactory.createTargetEdgeViewCreationVariable();
+      plTgtViewVar.setName(tgtViewVar.getName());
+      plEdgeTool.setTargetViewVariable(plTgtViewVar);
+    }
+    // tool ops
+    var plInitialOp = this.out.vToolFactory.createInitEdgeCreationOperation();
+    plEdgeTool.setInitialOperation(plInitialOp);
+    var plCreateOp = addPLCreateOp(edgeTool.getInitialOperation().getFirstModelOperations());
+    var plChangeOp = plCreateOp.op();
+    plInitialOp.setFirstModelOperations(plChangeOp);
+    //TODO Edge java class, with different parameter order
+    var plJavaOp = (ExternalJavaAction) plChangeOp.getSubModelOperations().get(0);
+    var plParam = this.out.vToolFactory.createExternalJavaActionParameter();
+    plParam.setName("source");
+    plParam.setValue("var:source");
+    plJavaOp.getParameters().add(plParam);
+    plParam = this.out.vToolFactory.createExternalJavaActionParameter();
+    plParam.setName("target");
+    plParam.setValue("var:target");
+    plJavaOp.getParameters().add(plParam);
+    // tool icon
+    if (edgeTool.getIconPath() != null) {
+      plEdgeTool.setIconPath(edgeTool.getIconPath());
+    }
+    else if (plCreateOp.classType() != null) {
+      //TODO
+      plEdgeTool.setIconPath("/edu.toronto.cs.se.modelepedia.statemachine.edit/icons/full/obj16/" + plCreateOp.classType() + ".gif");
+    }
 
-    source.setName("source");
-    sourceView.setName("sourceView");
-    target.setName("target");
-    targetView.setName("targetView");
-
-    var initialOperation = this.out.vToolFactory.createInitEdgeCreationOperation();
-    createTool.setInitialOperation(initialOperation);
-
-    var changeContext = this.out.vToolFactory.createChangeContext();
-    changeContext.setBrowseExpression("var:container");
-    createTool.getInitialOperation().setFirstModelOperations(changeContext);
-    var javaAction = this.out.vToolFactory.createExternalJavaAction();
-    javaAction.setName("PL"+originalCreateTool.getName());
-    javaAction.setLabel("PL"+originalCreateTool.getName());
-    javaAction.setId("edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.StateMachinePLCreateEdge");
-    var parameterSource = this.out.vToolFactory.createExternalJavaActionParameter();
-    var parameterTarget = this.out.vToolFactory.createExternalJavaActionParameter();
-    var parameter = this.out.vToolFactory.createExternalJavaActionParameter();
-    parameter.setName("classType");
-    var value = originalCreateTool.getName().substring(6); //Removing Create (6 letters)
-    parameter.setValue(value);
-    parameterSource.setName("source");
-    parameterSource.setValue("var:source");
-    parameterTarget.setName("target");
-    parameterTarget.setValue("var:target");
-    javaAction.getParameters().add(parameter);
-    javaAction.getParameters().add(parameterSource);
-    javaAction.getParameters().add(parameterTarget);
-    changeContext.getSubModelOperations().add(javaAction);
-
-    var newString = originalCreateTool.getLabel().replace(" ", "");
-    createTool.setIconPath("/edu.toronto.cs.se.modelepedia.statemachine.edit/icons/full/obj16/"+newString+".gif");
-
-    createTool.setForceRefresh(true);
-    return createTool;
+    return plEdgeTool;
   }
 
   @Override
