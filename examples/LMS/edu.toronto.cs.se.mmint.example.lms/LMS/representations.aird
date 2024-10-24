@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:classdiagram="http://se.cs.toronto.edu/modelepedia/ClassDiagram" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:sequencediagram="http://se.cs.toronto.edu/modelepedia/SequenceDiagram" xmlns:statemachine="http://se.cs.toronto.edu/modelepedia/StateMachine" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
-  <viewpoint:DAnalysis uid="_7f880CixEeihd4XNMicbhg" selectedViews="_8__zQCixEeihd4XNMicbhg _gM9EMDFNEei61fNVf9iDmw _Wp0aYDeKEeiiaopkbdiBVA _wPUbQFIgEeiDs4ksJr_mDA" version="15.2.0.202303281325">
+  <viewpoint:DAnalysis uid="_7f880CixEeihd4XNMicbhg" selectedViews="_8__zQCixEeihd4XNMicbhg _gM9EMDFNEei61fNVf9iDmw _Wp0aYDeKEeiiaopkbdiBVA _wPUbQFIgEeiDs4ksJr_mDA" version="15.4.1.202403191723">
     <semanticResources>model/lms_sc.gsn</semanticResources>
     <semanticResources>model/lms_sd_drivingstraight.sequencediagram</semanticResources>
     <semanticResources>model/lms_sd_failurestate.sequencediagram</semanticResources>
@@ -42,20 +42,20 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" uid="_Wp0aYDeKEeiiaopkbdiBVA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_XRCycDeKEeiiaopkbdiBVA" name="new StateMachineRepresentation" repPath="#_XRCycTeKEeiiaopkbdiBVA" changeId="1687208664553">
-        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_XRCycDeKEeiiaopkbdiBVA" name="new StateMachineRepresentation" repPath="#_XRCycTeKEeiiaopkbdiBVA" changeId="1729774745426">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']"/>
         <target xmi:type="statemachine:StateMachine" href="model/lms_state_lms.statemachine#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_yUpNUDgnEei7EsYpFSabdQ" name="new StateMachineRepresentation" repPath="#_yUp0YDgnEei7EsYpFSabdQ" changeId="1687208664553">
-        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_yUpNUDgnEei7EsYpFSabdQ" name="new StateMachineRepresentation" repPath="#_yUp0YDgnEei7EsYpFSabdQ" changeId="1729774749610">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']"/>
         <target xmi:type="statemachine:StateMachine" href="model/lms_state_ldws.statemachine#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_X6yP4DkzEeib4JGfM9PMXA" name="new StateMachineRepresentation" repPath="#_X6yP4TkzEeib4JGfM9PMXA" changeId="1687208664553">
-        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_X6yP4DkzEeib4JGfM9PMXA" name="new StateMachineRepresentation" repPath="#_X6yP4TkzEeib4JGfM9PMXA" changeId="1729774752598">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']"/>
         <target xmi:type="statemachine:StateMachine" href="model/lms_state_lcs.statemachine#/"/>
       </ownedRepresentationDescriptors>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_ks0X8DkzEeib4JGfM9PMXA" name="new StateMachineRepresentation" repPath="#_ks0_ADkzEeib4JGfM9PMXA" changeId="1687208664553">
-        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_ks0X8DkzEeib4JGfM9PMXA" name="new StateMachineRepresentation" repPath="#_ks0_ADkzEeib4JGfM9PMXA" changeId="1729774755674">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']"/>
         <target xmi:type="statemachine:StateMachine" href="model/lms_state_lks.statemachine#/"/>
       </ownedRepresentationDescriptors>
     </ownedViews>
@@ -5571,10 +5571,10 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:Dot" uid="_utzaADeZEeiVqPAtz1JhiA" showIcon="false" labelPosition="node" backgroundColor="0,0,0">
-        <description xmi:type="style:DotDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@nodeMappings[name='InitialState']/@style"/>
+      <ownedStyle xmi:type="diagram:Dot" uid="_utzaADeZEeiVqPAtz1JhiA" labelSize="10" showIcon="false" labelPosition="node" backgroundColor="0,0,0">
+        <description xmi:type="style:DotDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@nodeMappings[name='InitialState']/@style"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@nodeMappings[name='InitialState']"/>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@nodeMappings[name='InitialState']"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_vNrz8DeZEeiVqPAtz1JhiA" name="Active" outgoingEdges="_2LIBkDglEei7EsYpFSabdQ _u4X4kD9rEei4B8YkoQeSTg _u4ZGsD9rEei4B8YkoQeSTg _u4ZGsz9rEei4B8YkoQeSTg" incomingEdges="_u4U1QD9rEei4B8YkoQeSTg _u4WqcD9rEei4B8YkoQeSTg _u4XRgD9rEei4B8YkoQeSTg _u4Ztwj9rEei4B8YkoQeSTg _u4aU0D9rEei4B8YkoQeSTg">
       <target xmi:type="statemachine:State" href="model/lms_state_lms.statemachine#//@states.1"/>
@@ -5582,10 +5582,10 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_vNsbADeZEeiVqPAtz1JhiA" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']/@style"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_vNsbADeZEeiVqPAtz1JhiA" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundColor="255,245,181" foregroundColor="255,245,181">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']/@style"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']"/>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_yjhHUDeZEeiVqPAtz1JhiA" name="System Alert" outgoingEdges="_u4XRgD9rEei4B8YkoQeSTg _u4XRgz9rEei4B8YkoQeSTg _u4YfoD9rEei4B8YkoQeSTg" incomingEdges="_u4X4kD9rEei4B8YkoQeSTg">
       <target xmi:type="statemachine:State" href="model/lms_state_lms.statemachine#//@states.2"/>
@@ -5593,10 +5593,10 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_yjhHUTeZEeiVqPAtz1JhiA" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']/@style"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_yjhHUTeZEeiVqPAtz1JhiA" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundColor="255,245,181" foregroundColor="255,245,181">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']/@style"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']"/>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_1I4nEDeZEeiVqPAtz1JhiA" name="Inactive" outgoingEdges="_u4Ztwj9rEei4B8YkoQeSTg _u4aU0D9rEei4B8YkoQeSTg" incomingEdges="_2LIBkDglEei7EsYpFSabdQ _u4YfoD9rEei4B8YkoQeSTg _u4ZGsD9rEei4B8YkoQeSTg _u4ZGsz9rEei4B8YkoQeSTg">
       <target xmi:type="statemachine:State" href="model/lms_state_lms.statemachine#//@states.3"/>
@@ -5604,10 +5604,10 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_1I4nETeZEeiVqPAtz1JhiA" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']/@style"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_1I4nETeZEeiVqPAtz1JhiA" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundColor="255,245,181" foregroundColor="255,245,181">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']/@style"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']"/>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_4Aj-0DeZEeiVqPAtz1JhiA" name="LKS taking control of the vehicle" outgoingEdges="_u4WqcD9rEei4B8YkoQeSTg" incomingEdges="_u4XRgz9rEei4B8YkoQeSTg">
       <target xmi:type="statemachine:State" href="model/lms_state_lms.statemachine#//@states.4"/>
@@ -5615,113 +5615,113 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_4Aj-0TeZEeiVqPAtz1JhiA" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']/@style"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_4Aj-0TeZEeiVqPAtz1JhiA" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundColor="255,245,181" foregroundColor="255,245,181">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']/@style"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']"/>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_2LIBkDglEei7EsYpFSabdQ" name="driver disables system [LMS IsActive == false]" sourceNode="_vNrz8DeZEeiVqPAtz1JhiA" targetNode="_1I4nEDeZEeiVqPAtz1JhiA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_2LIBkDglEei7EsYpFSabdQ" name="LMS IsActive == false /driver disables system" sourceNode="_vNrz8DeZEeiVqPAtz1JhiA" targetNode="_1I4nEDeZEeiVqPAtz1JhiA">
       <target xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.8"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.8"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_2LIBkTglEei7EsYpFSabdQ" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_2LIBkjglEei7EsYpFSabdQ" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_2LIBkjglEei7EsYpFSabdQ" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4U1QD9rEei4B8YkoQeSTg" name="system turned on [Speed > minSpeed]" sourceNode="_utyy8DeZEeiVqPAtz1JhiA" targetNode="_vNrz8DeZEeiVqPAtz1JhiA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4U1QD9rEei4B8YkoQeSTg" name="Speed > minSpeed /system turned on" sourceNode="_utyy8DeZEeiVqPAtz1JhiA" targetNode="_vNrz8DeZEeiVqPAtz1JhiA">
       <target xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.0"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.0"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_u4VcUD9rEei4B8YkoQeSTg" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4VcUT9rEei4B8YkoQeSTg" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4VcUT9rEei4B8YkoQeSTg" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4WqcD9rEei4B8YkoQeSTg" name="vehicle returned to desired lane " sourceNode="_4Aj-0DeZEeiVqPAtz1JhiA" targetNode="_vNrz8DeZEeiVqPAtz1JhiA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4WqcD9rEei4B8YkoQeSTg" name=" /vehicle returned to desired lane" sourceNode="_4Aj-0DeZEeiVqPAtz1JhiA" targetNode="_vNrz8DeZEeiVqPAtz1JhiA">
       <target xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.1"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.1"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_u4WqcT9rEei4B8YkoQeSTg" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4Wqcj9rEei4B8YkoQeSTg" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4Wqcj9rEei4B8YkoQeSTg" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4XRgD9rEei4B8YkoQeSTg" name="human measures taken for lane departure " sourceNode="_yjhHUDeZEeiVqPAtz1JhiA" targetNode="_vNrz8DeZEeiVqPAtz1JhiA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4XRgD9rEei4B8YkoQeSTg" name=" /human measures taken for lane departure" sourceNode="_yjhHUDeZEeiVqPAtz1JhiA" targetNode="_vNrz8DeZEeiVqPAtz1JhiA">
       <target xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.2"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.2"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_u4XRgT9rEei4B8YkoQeSTg" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4XRgj9rEei4B8YkoQeSTg" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4XRgj9rEei4B8YkoQeSTg" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4XRgz9rEei4B8YkoQeSTg" name="vehicle straying out of desired lane " sourceNode="_yjhHUDeZEeiVqPAtz1JhiA" targetNode="_4Aj-0DeZEeiVqPAtz1JhiA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4XRgz9rEei4B8YkoQeSTg" name=" /vehicle straying out of desired lane" sourceNode="_yjhHUDeZEeiVqPAtz1JhiA" targetNode="_4Aj-0DeZEeiVqPAtz1JhiA">
       <target xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.3"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.3"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_u4XRhD9rEei4B8YkoQeSTg" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4XRhT9rEei4B8YkoQeSTg" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4XRhT9rEei4B8YkoQeSTg" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4X4kD9rEei4B8YkoQeSTg" name="SupervisoryControlSystem WarningIndicatorOn() [LMS isActive == true]" sourceNode="_vNrz8DeZEeiVqPAtz1JhiA" targetNode="_yjhHUDeZEeiVqPAtz1JhiA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4X4kD9rEei4B8YkoQeSTg" name="LMS isActive == true /SupervisoryControlSystem WarningIndicatorOn()" sourceNode="_vNrz8DeZEeiVqPAtz1JhiA" targetNode="_yjhHUDeZEeiVqPAtz1JhiA">
       <target xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.4"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.4"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_u4X4kT9rEei4B8YkoQeSTg" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4X4kj9rEei4B8YkoQeSTg" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4X4kj9rEei4B8YkoQeSTg" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4YfoD9rEei4B8YkoQeSTg" name="LMS Subsystem TurnOff() " sourceNode="_yjhHUDeZEeiVqPAtz1JhiA" targetNode="_1I4nEDeZEeiVqPAtz1JhiA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4YfoD9rEei4B8YkoQeSTg" name=" /LMS Subsystem TurnOff()" sourceNode="_yjhHUDeZEeiVqPAtz1JhiA" targetNode="_1I4nEDeZEeiVqPAtz1JhiA">
       <target xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.5"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.5"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_u4YfoT9rEei4B8YkoQeSTg" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4Yfoj9rEei4B8YkoQeSTg" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4Yfoj9rEei4B8YkoQeSTg" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4ZGsD9rEei4B8YkoQeSTg" name="intentional lane departure [LMS IsActive == false]" sourceNode="_vNrz8DeZEeiVqPAtz1JhiA" targetNode="_1I4nEDeZEeiVqPAtz1JhiA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4ZGsD9rEei4B8YkoQeSTg" name="LMS IsActive == false /intentional lane departure" sourceNode="_vNrz8DeZEeiVqPAtz1JhiA" targetNode="_1I4nEDeZEeiVqPAtz1JhiA">
       <target xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.6"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.6"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_u4ZGsT9rEei4B8YkoQeSTg" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4ZGsj9rEei4B8YkoQeSTg" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4ZGsj9rEei4B8YkoQeSTg" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4ZGsz9rEei4B8YkoQeSTg" name="ambiguous lane markings [LMS CheckStatus == false]" sourceNode="_vNrz8DeZEeiVqPAtz1JhiA" targetNode="_1I4nEDeZEeiVqPAtz1JhiA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4ZGsz9rEei4B8YkoQeSTg" name="LMS CheckStatus == false /ambiguous lane markings" sourceNode="_vNrz8DeZEeiVqPAtz1JhiA" targetNode="_1I4nEDeZEeiVqPAtz1JhiA">
       <target xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.7"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.7"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_u4ZtwD9rEei4B8YkoQeSTg" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4ZtwT9rEei4B8YkoQeSTg" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4ZtwT9rEei4B8YkoQeSTg" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4Ztwj9rEei4B8YkoQeSTg" name="return to a normal driving scenario [LMS IsActive == true]" sourceNode="_1I4nEDeZEeiVqPAtz1JhiA" targetNode="_vNrz8DeZEeiVqPAtz1JhiA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4Ztwj9rEei4B8YkoQeSTg" name="LMS IsActive == true /return to a normal driving scenario" sourceNode="_1I4nEDeZEeiVqPAtz1JhiA" targetNode="_vNrz8DeZEeiVqPAtz1JhiA">
       <target xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.9"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.9"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_u4Ztwz9rEei4B8YkoQeSTg" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4ZtxD9rEei4B8YkoQeSTg" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4ZtxD9rEei4B8YkoQeSTg" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4aU0D9rEei4B8YkoQeSTg" name="LMS Subsystem TurnOn() [LMS IsActive == true]" sourceNode="_1I4nEDeZEeiVqPAtz1JhiA" targetNode="_vNrz8DeZEeiVqPAtz1JhiA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_u4aU0D9rEei4B8YkoQeSTg" name="LMS IsActive == true /LMS Subsystem TurnOn()" sourceNode="_1I4nEDeZEeiVqPAtz1JhiA" targetNode="_vNrz8DeZEeiVqPAtz1JhiA">
       <target xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.10"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_lms.statemachine#//@transitions.10"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_u4aU0T9rEei4B8YkoQeSTg" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4aU0j9rEei4B8YkoQeSTg" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_u4aU0j9rEei4B8YkoQeSTg" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']"/>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_XRCydDeKEeiiaopkbdiBVA"/>
-    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer"/>
     <target xmi:type="statemachine:StateMachine" href="model/lms_state_lms.statemachine#/"/>
   </diagram:DSemanticDiagram>
   <diagram:DSemanticDiagram uid="_yUp0YDgnEei7EsYpFSabdQ">
@@ -5816,10 +5816,10 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_z4JAYDgnEei7EsYpFSabdQ" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']/@style"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_z4JAYDgnEei7EsYpFSabdQ" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundColor="255,245,181" foregroundColor="255,245,181">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']/@style"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']"/>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_3CD-sDgnEei7EsYpFSabdQ" name="LDWS Inactive" outgoingEdges="_DsgroDkmEeib4JGfM9PMXA" incomingEdges="_pAiOkDgwEei7EsYpFSabdQ">
       <target xmi:type="statemachine:State" href="model/lms_state_ldws.statemachine#//@states.1"/>
@@ -5827,10 +5827,10 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_3CD-sTgnEei7EsYpFSabdQ" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']/@style"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_3CD-sTgnEei7EsYpFSabdQ" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundColor="255,245,181" foregroundColor="255,245,181">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']/@style"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']"/>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNode" uid="_76BMIDgnEei7EsYpFSabdQ" outgoingEdges="_8zXO8DgnEei7EsYpFSabdQ" width="3" height="3" resizeKind="NSEW">
       <target xmi:type="statemachine:InitialState" href="model/lms_state_ldws.statemachine#//@states.2"/>
@@ -5838,41 +5838,41 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:Dot" uid="_76BMITgnEei7EsYpFSabdQ" showIcon="false" labelPosition="node" backgroundColor="0,0,0">
-        <description xmi:type="style:DotDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@nodeMappings[name='InitialState']/@style"/>
+      <ownedStyle xmi:type="diagram:Dot" uid="_76BMITgnEei7EsYpFSabdQ" labelSize="10" showIcon="false" labelPosition="node" backgroundColor="0,0,0">
+        <description xmi:type="style:DotDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@nodeMappings[name='InitialState']/@style"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@nodeMappings[name='InitialState']"/>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@nodeMappings[name='InitialState']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_8zXO8DgnEei7EsYpFSabdQ" name="Vehicle On [Speed > 5 MPH]" sourceNode="_76BMIDgnEei7EsYpFSabdQ" targetNode="_z4IZUDgnEei7EsYpFSabdQ">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_8zXO8DgnEei7EsYpFSabdQ" name="Speed > 5 MPH /Vehicle On" sourceNode="_76BMIDgnEei7EsYpFSabdQ" targetNode="_z4IZUDgnEei7EsYpFSabdQ">
       <target xmi:type="statemachine:Transition" href="model/lms_state_ldws.statemachine#//@transitions.0"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_ldws.statemachine#//@transitions.0"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_8zXO8TgnEei7EsYpFSabdQ" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_8zXO8jgnEei7EsYpFSabdQ" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_8zXO8jgnEei7EsYpFSabdQ" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_pAiOkDgwEei7EsYpFSabdQ" name="LDWS TurnOff() [LDWS CheckConditions() == false]" sourceNode="_z4IZUDgnEei7EsYpFSabdQ" targetNode="_3CD-sDgnEei7EsYpFSabdQ">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_pAiOkDgwEei7EsYpFSabdQ" name="LDWS CheckConditions() == false /LDWS TurnOff()" sourceNode="_z4IZUDgnEei7EsYpFSabdQ" targetNode="_3CD-sDgnEei7EsYpFSabdQ">
       <target xmi:type="statemachine:Transition" href="model/lms_state_ldws.statemachine#//@transitions.1"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_ldws.statemachine#//@transitions.1"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_pAi1oDgwEei7EsYpFSabdQ" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_pAi1oTgwEei7EsYpFSabdQ" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_pAi1oTgwEei7EsYpFSabdQ" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_DsgroDkmEeib4JGfM9PMXA" name="LDWS TurnOn() [LDWS CheckConditions() == true]" sourceNode="_3CD-sDgnEei7EsYpFSabdQ" targetNode="_z4IZUDgnEei7EsYpFSabdQ">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_DsgroDkmEeib4JGfM9PMXA" name="LDWS CheckConditions() == true /LDWS TurnOn()" sourceNode="_3CD-sDgnEei7EsYpFSabdQ" targetNode="_z4IZUDgnEei7EsYpFSabdQ">
       <target xmi:type="statemachine:Transition" href="model/lms_state_ldws.statemachine#//@transitions.2"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_ldws.statemachine#//@transitions.2"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_Dsh5wDkmEeib4JGfM9PMXA" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Dsh5wTkmEeib4JGfM9PMXA" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_Dsh5wTkmEeib4JGfM9PMXA" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']"/>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_yUp0YzgnEei7EsYpFSabdQ"/>
-    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer"/>
     <target xmi:type="statemachine:StateMachine" href="model/lms_state_ldws.statemachine#/"/>
   </diagram:DSemanticDiagram>
   <diagram:DSemanticDiagram uid="_X6yP4TkzEeib4JGfM9PMXA">
@@ -5967,10 +5967,10 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:Dot" uid="_X6yP5TkzEeib4JGfM9PMXA" showIcon="false" labelPosition="node" backgroundColor="0,0,0">
-        <description xmi:type="style:DotDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@nodeMappings[name='InitialState']/@style"/>
+      <ownedStyle xmi:type="diagram:Dot" uid="_X6yP5TkzEeib4JGfM9PMXA" labelSize="10" showIcon="false" labelPosition="node" backgroundColor="0,0,0">
+        <description xmi:type="style:DotDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@nodeMappings[name='InitialState']/@style"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@nodeMappings[name='InitialState']"/>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@nodeMappings[name='InitialState']"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_X6yP5jkzEeib4JGfM9PMXA" name="LCS Active" outgoingEdges="_X6yP7TkzEeib4JGfM9PMXA" incomingEdges="_X6yP6jkzEeib4JGfM9PMXA _X6yP8DkzEeib4JGfM9PMXA">
       <target xmi:type="statemachine:State" href="model/lms_state_lcs.statemachine#//@states.0"/>
@@ -5978,10 +5978,10 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_X6yP5zkzEeib4JGfM9PMXA" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']/@style"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_X6yP5zkzEeib4JGfM9PMXA" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundColor="255,245,181" foregroundColor="255,245,181">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']/@style"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']"/>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_X6yP6DkzEeib4JGfM9PMXA" name="LCS Inactive" outgoingEdges="_X6yP8DkzEeib4JGfM9PMXA" incomingEdges="_X6yP7TkzEeib4JGfM9PMXA">
       <target xmi:type="statemachine:State" href="model/lms_state_lcs.statemachine#//@states.1"/>
@@ -5989,41 +5989,41 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_X6yP6TkzEeib4JGfM9PMXA" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']/@style"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_X6yP6TkzEeib4JGfM9PMXA" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundColor="255,245,181" foregroundColor="255,245,181">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']/@style"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']"/>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_X6yP6jkzEeib4JGfM9PMXA" name="Vehicle On [Speed > 5 MPH]" sourceNode="_X6yP5DkzEeib4JGfM9PMXA" targetNode="_X6yP5jkzEeib4JGfM9PMXA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_X6yP6jkzEeib4JGfM9PMXA" name="Speed > 5 MPH /Vehicle On" sourceNode="_X6yP5DkzEeib4JGfM9PMXA" targetNode="_X6yP5jkzEeib4JGfM9PMXA">
       <target xmi:type="statemachine:Transition" href="model/lms_state_lcs.statemachine#//@transitions.0"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_lcs.statemachine#//@transitions.0"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_X6yP6zkzEeib4JGfM9PMXA" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_X6yP7DkzEeib4JGfM9PMXA" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_X6yP7DkzEeib4JGfM9PMXA" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_X6yP7TkzEeib4JGfM9PMXA" name="LCS TurnOff() [LCS CheckConditions() == false]" sourceNode="_X6yP5jkzEeib4JGfM9PMXA" targetNode="_X6yP6DkzEeib4JGfM9PMXA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_X6yP7TkzEeib4JGfM9PMXA" name="LCS CheckConditions() == false /LCS TurnOff()" sourceNode="_X6yP5jkzEeib4JGfM9PMXA" targetNode="_X6yP6DkzEeib4JGfM9PMXA">
       <target xmi:type="statemachine:Transition" href="model/lms_state_lcs.statemachine#//@transitions.1"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_lcs.statemachine#//@transitions.1"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_X6yP7jkzEeib4JGfM9PMXA" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_X6yP7zkzEeib4JGfM9PMXA" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_X6yP7zkzEeib4JGfM9PMXA" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_X6yP8DkzEeib4JGfM9PMXA" name="LCS TurnOn() [LCS CheckConditions() == true]" sourceNode="_X6yP6DkzEeib4JGfM9PMXA" targetNode="_X6yP5jkzEeib4JGfM9PMXA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_X6yP8DkzEeib4JGfM9PMXA" name="LCS CheckConditions() == true /LCS TurnOn()" sourceNode="_X6yP6DkzEeib4JGfM9PMXA" targetNode="_X6yP5jkzEeib4JGfM9PMXA">
       <target xmi:type="statemachine:Transition" href="model/lms_state_lcs.statemachine#//@transitions.2"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_lcs.statemachine#//@transitions.2"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_X6yP8TkzEeib4JGfM9PMXA" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_X6yP8jkzEeib4JGfM9PMXA" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_X6yP8jkzEeib4JGfM9PMXA" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']"/>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_X6yP8zkzEeib4JGfM9PMXA"/>
-    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer"/>
     <target xmi:type="statemachine:StateMachine" href="model/lms_state_lcs.statemachine#/"/>
   </diagram:DSemanticDiagram>
   <diagram:DSemanticDiagram uid="_ks0_ADkzEeib4JGfM9PMXA">
@@ -6118,10 +6118,10 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:Dot" uid="_ks0_BDkzEeib4JGfM9PMXA" showIcon="false" labelPosition="node" backgroundColor="0,0,0">
-        <description xmi:type="style:DotDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@nodeMappings[name='InitialState']/@style"/>
+      <ownedStyle xmi:type="diagram:Dot" uid="_ks0_BDkzEeib4JGfM9PMXA" labelSize="10" showIcon="false" labelPosition="node" backgroundColor="0,0,0">
+        <description xmi:type="style:DotDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@nodeMappings[name='InitialState']/@style"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@nodeMappings[name='InitialState']"/>
+      <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@nodeMappings[name='InitialState']"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_ks0_BTkzEeib4JGfM9PMXA" name="LKS Active" outgoingEdges="_ks0_DDkzEeib4JGfM9PMXA" incomingEdges="_ks0_CTkzEeib4JGfM9PMXA _ks0_DzkzEeib4JGfM9PMXA">
       <target xmi:type="statemachine:State" href="model/lms_state_lks.statemachine#//@states.0"/>
@@ -6129,10 +6129,10 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_ks0_BjkzEeib4JGfM9PMXA" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']/@style"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_ks0_BjkzEeib4JGfM9PMXA" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundColor="255,245,181" foregroundColor="255,245,181">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']/@style"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']"/>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']"/>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_ks0_BzkzEeib4JGfM9PMXA" name="LKS Inactive" outgoingEdges="_ks0_DzkzEeib4JGfM9PMXA" incomingEdges="_ks0_DDkzEeib4JGfM9PMXA">
       <target xmi:type="statemachine:State" href="model/lms_state_lks.statemachine#//@states.1"/>
@@ -6140,41 +6140,41 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_ks0_CDkzEeib4JGfM9PMXA" showIcon="false" borderSize="1" borderSizeComputationExpression="1" foregroundColor="255,255,255">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']/@style"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_ks0_CDkzEeib4JGfM9PMXA" labelSize="10" showIcon="false" borderSize="1" borderSizeComputationExpression="1" backgroundColor="255,245,181" foregroundColor="255,245,181">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']/@style"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']"/>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ks0_CTkzEeib4JGfM9PMXA" name="Vehicle On [Speed > 5 MPH]" sourceNode="_ks0_AzkzEeib4JGfM9PMXA" targetNode="_ks0_BTkzEeib4JGfM9PMXA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ks0_CTkzEeib4JGfM9PMXA" name="Speed > 5 MPH /Vehicle On" sourceNode="_ks0_AzkzEeib4JGfM9PMXA" targetNode="_ks0_BTkzEeib4JGfM9PMXA">
       <target xmi:type="statemachine:Transition" href="model/lms_state_lks.statemachine#//@transitions.0"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_lks.statemachine#//@transitions.0"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_ks0_CjkzEeib4JGfM9PMXA" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_ks0_CzkzEeib4JGfM9PMXA" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_ks0_CzkzEeib4JGfM9PMXA" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ks0_DDkzEeib4JGfM9PMXA" name="LKS TurnOff() [LKS CheckConditions() == false]" sourceNode="_ks0_BTkzEeib4JGfM9PMXA" targetNode="_ks0_BzkzEeib4JGfM9PMXA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ks0_DDkzEeib4JGfM9PMXA" name="LKS CheckConditions() == false /LKS TurnOff()" sourceNode="_ks0_BTkzEeib4JGfM9PMXA" targetNode="_ks0_BzkzEeib4JGfM9PMXA">
       <target xmi:type="statemachine:Transition" href="model/lms_state_lks.statemachine#//@transitions.1"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_lks.statemachine#//@transitions.1"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_ks0_DTkzEeib4JGfM9PMXA" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_ks0_DjkzEeib4JGfM9PMXA" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_ks0_DjkzEeib4JGfM9PMXA" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ks0_DzkzEeib4JGfM9PMXA" name="LKS TurnOn() [LKS CheckConditions() == true]" sourceNode="_ks0_BzkzEeib4JGfM9PMXA" targetNode="_ks0_BTkzEeib4JGfM9PMXA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_ks0_DzkzEeib4JGfM9PMXA" name="LKS CheckConditions() == true /LKS TurnOn()" sourceNode="_ks0_BzkzEeib4JGfM9PMXA" targetNode="_ks0_BTkzEeib4JGfM9PMXA">
       <target xmi:type="statemachine:Transition" href="model/lms_state_lks.statemachine#//@transitions.2"/>
       <semanticElements xmi:type="statemachine:Transition" href="model/lms_state_lks.statemachine#//@transitions.2"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_ks0_EDkzEeib4JGfM9PMXA" size="2" strokeColor="0,0,0">
-        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_ks0_ETkzEeib4JGfM9PMXA" showIcon="false"/>
+        <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']/@style"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_ks0_ETkzEeib4JGfM9PMXA" labelSize="10" showIcon="false"/>
       </ownedStyle>
-      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']"/>
+      <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']"/>
     </ownedDiagramElements>
-    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']"/>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']"/>
     <filterVariableHistory xmi:type="diagram:FilterVariableHistory" uid="_ks0_EjkzEeib4JGfM9PMXA"/>
-    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/edu.toronto.cs.se.modelepedia.statemachine.design/description/statemachine.odesign#//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer"/>
     <target xmi:type="statemachine:StateMachine" href="model/lms_state_lks.statemachine#/"/>
   </diagram:DSemanticDiagram>
   <diagram:DSemanticDiagram uid="_8SXUYGgvEeihGP6yb4cCyQ">

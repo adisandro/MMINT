@@ -31,8 +31,8 @@
            modelTypeUri="http://se.cs.toronto.edu/modelepedia/StateMachine"
            wizardId="edu.toronto.cs.se.modelepedia.statemachine.presentation.StateMachineModelWizardID">
         <type
-              name="StateMachine representation"
-              uri="http://se.cs.toronto.edu/modelepedia/Representation_StateMachine">
+              name="StateMachine Sirius Diagram"
+              uri="edu.toronto.cs.se.modelepedia.statemachine.design">
         </type>
      </editorType>
   </extension>

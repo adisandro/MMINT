@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="statemachine" version="12.0.0.2017041100">
   <ownedViewpoints name="StateMachineViewpoint" modelFileExtension="statemachine">
-    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="http://se.cs.toronto.edu/modelepedia/Representation_StateMachine" label="StateMachineRepresentation" domainClass="statemachine.StateMachine" enablePopupBars="true">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="edu.toronto.cs.se.modelepedia.statemachine.design" label="State Machine Diagram" domainClass="statemachine.StateMachine" enablePopupBars="true">
       <metamodel href="../../edu.toronto.cs.se.modelepedia.statemachine/model/statemachine.ecore#/"/>
       <defaultLayer name="Default">
         <nodeMappings name="InitialState" semanticCandidatesExpression="feature:states" domainClass="statemachine.InitialState">
@@ -18,7 +18,7 @@
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </nodeMappings>
-        <edgeMappings name="Transition" semanticCandidatesExpression="feature:transitions" sourceMapping="//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State'] //@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@nodeMappings[name='InitialState'] //@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@nodeMappings[name='FinalState']" targetMapping="//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State'] //@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@nodeMappings[name='InitialState'] //@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@nodeMappings[name='FinalState']" targetFinderExpression="feature:target" sourceFinderExpression="feature:source" domainClass="statemachine.Transition" useDomainElement="true">
+        <edgeMappings name="Transition" semanticCandidatesExpression="feature:transitions" sourceMapping="//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State'] //@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@nodeMappings[name='InitialState'] //@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@nodeMappings[name='FinalState']" targetMapping="//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State'] //@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@nodeMappings[name='InitialState'] //@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@nodeMappings[name='FinalState']" targetFinderExpression="feature:target" sourceFinderExpression="feature:source" domainClass="statemachine.Transition" useDomainElement="true">
           <style sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription labelSize="10" showIcon="false" labelExpression="aql:let action = if self.action != null and self.action != '' then '/' + self.action else '' endif in self.trigger + ' ' + action">
@@ -42,7 +42,7 @@
           </style>
         </containerMappings>
         <toolSections name="Create">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateInitialState" label="Initial State" nodeMappings="//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@nodeMappings[name='InitialState']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateInitialState" label="Initial State" nodeMappings="//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@nodeMappings[name='InitialState']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -51,7 +51,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateFinalState" label="Final State" nodeMappings="//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@nodeMappings[name='FinalState']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateFinalState" label="Final State" nodeMappings="//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@nodeMappings[name='FinalState']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -60,7 +60,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CreateState" label="State" containerMappings="//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CreateState" label="State" containerMappings="//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -69,7 +69,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateInternalAction" label="Internal Action" nodeMappings="//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@containerMappings[name='State']/@subNodeMappings[name='InternalAction']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateInternalAction" label="Internal Action" nodeMappings="//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@containerMappings[name='State']/@subNodeMappings[name='InternalAction']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -78,7 +78,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreateTransition" label="Transition" edgeMappings="//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='http%3A%2F%2Fse.cs.toronto.edu%2Fmodelepedia%2FRepresentation_StateMachine']/@defaultLayer/@edgeMappings[name='Transition']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreateTransition" label="Transition" edgeMappings="//@ownedViewpoints[name='StateMachineViewpoint']/@ownedRepresentations[name='edu.toronto.cs.se.modelepedia.statemachine.design']/@defaultLayer/@edgeMappings[name='Transition']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
