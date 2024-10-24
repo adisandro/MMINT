@@ -12,13 +12,16 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.mid.productline.impl;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLHeavyTypeFactory;
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage;
 import edu.toronto.cs.se.mmint.mid.productline.PLBinaryMapping;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDHeavyTypeFactory;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage;
 import edu.toronto.cs.se.mmint.mid.productline.PLMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.BinaryMappingImpl;
 import edu.toronto.cs.se.mmint.productline.PLElement;
@@ -76,7 +79,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
    */
   @Override
   protected EClass eStaticClass() {
-    return MIDPLPackage.Literals.PL_BINARY_MAPPING;
+    return PLMIDPackage.Literals.PL_BINARY_MAPPING;
   }
 
   /**
@@ -98,7 +101,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
     var oldPresenceCondition = this.presenceCondition;
     this.presenceCondition = newPresenceCondition;
     if (eNotificationRequired()) {
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPLPackage.PL_BINARY_MAPPING__PRESENCE_CONDITION,
+      eNotify(new ENotificationImpl(this, Notification.SET, PLMIDPackage.PL_BINARY_MAPPING__PRESENCE_CONDITION,
                                     oldPresenceCondition, this.presenceCondition));
     }
   }
@@ -111,7 +114,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case MIDPLPackage.PL_BINARY_MAPPING__PRESENCE_CONDITION:
+    case PLMIDPackage.PL_BINARY_MAPPING__PRESENCE_CONDITION:
       return getPresenceCondition();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -125,7 +128,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case MIDPLPackage.PL_BINARY_MAPPING__PRESENCE_CONDITION:
+    case PLMIDPackage.PL_BINARY_MAPPING__PRESENCE_CONDITION:
       setPresenceCondition((String) newValue);
       return;
     }
@@ -140,7 +143,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case MIDPLPackage.PL_BINARY_MAPPING__PRESENCE_CONDITION:
+    case PLMIDPackage.PL_BINARY_MAPPING__PRESENCE_CONDITION:
       setPresenceCondition(PLBinaryMappingImpl.PRESENCE_CONDITION_EDEFAULT);
       return;
     }
@@ -155,7 +158,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case MIDPLPackage.PL_BINARY_MAPPING__PRESENCE_CONDITION:
+    case PLMIDPackage.PL_BINARY_MAPPING__PRESENCE_CONDITION:
       return PLBinaryMappingImpl.PRESENCE_CONDITION_EDEFAULT == null ? this.presenceCondition != null
         : !PLBinaryMappingImpl.PRESENCE_CONDITION_EDEFAULT.equals(this.presenceCondition);
     }
@@ -171,7 +174,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
     if (baseClass == PLElement.class) {
       return switch (derivedFeatureID) {
-      case MIDPLPackage.PL_BINARY_MAPPING__PRESENCE_CONDITION -> PLPackage.PL_ELEMENT__PRESENCE_CONDITION;
+      case PLMIDPackage.PL_BINARY_MAPPING__PRESENCE_CONDITION -> PLPackage.PL_ELEMENT__PRESENCE_CONDITION;
       default -> -1;
       };
     }
@@ -192,7 +195,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
     if (baseClass == PLElement.class) {
       return switch (baseFeatureID) {
-      case PLPackage.PL_ELEMENT__PRESENCE_CONDITION -> MIDPLPackage.PL_BINARY_MAPPING__PRESENCE_CONDITION;
+      case PLPackage.PL_ELEMENT__PRESENCE_CONDITION -> PLMIDPackage.PL_BINARY_MAPPING__PRESENCE_CONDITION;
       default -> -1;
       };
     }
@@ -202,6 +205,50 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
       };
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+    if (baseClass == PLElement.class) {
+      return switch (baseOperationID) {
+      case PLPackage.PL_ELEMENT___GET_PRODUCT_LINE -> PLMIDPackage.PL_BINARY_MAPPING___GET_PRODUCT_LINE;
+      case PLPackage.PL_ELEMENT___IS_ALWAYS_PRESENT -> PLMIDPackage.PL_BINARY_MAPPING___IS_ALWAYS_PRESENT;
+      case PLPackage.PL_ELEMENT___GET_PRESENCE_CONDITION_LABEL__BOOLEAN -> PLMIDPackage.PL_BINARY_MAPPING___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
+      default -> -1;
+      };
+    }
+    if (baseClass == PLMapping.class) {
+      return switch (baseOperationID) {
+      case PLMIDPackage.PL_MAPPING___TO_MID_CUSTOM_PRINT_LABEL -> PLMIDPackage.PL_BINARY_MAPPING___TO_MID_CUSTOM_PRINT_LABEL;
+      case PLMIDPackage.PL_MAPPING___TO_MID_CUSTOM_EDIT_LABEL -> PLMIDPackage.PL_BINARY_MAPPING___TO_MID_CUSTOM_EDIT_LABEL;
+      case PLMIDPackage.PL_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING -> PLMIDPackage.PL_BINARY_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING;
+      default -> -1;
+      };
+    }
+    return super.eDerivedOperationID(baseOperationID, baseClass);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+    switch (operationID) {
+    case PLMIDPackage.PL_BINARY_MAPPING___GET_PRODUCT_LINE:
+      return getProductLine();
+    case PLMIDPackage.PL_BINARY_MAPPING___IS_ALWAYS_PRESENT:
+      return isAlwaysPresent();
+    case PLMIDPackage.PL_BINARY_MAPPING___GET_PRESENCE_CONDITION_LABEL__BOOLEAN:
+      return getPresenceConditionLabel((Boolean) arguments.get(0));
+    }
+    return super.eInvoke(operationID, arguments);
   }
 
   /**
@@ -227,7 +274,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
    */
   @Override
   public ProductLine getProductLine() {
-    return MIDPLHeavyTypeFactory.getProductLine(this);
+    return PLMIDHeavyTypeFactory.getProductLine(this);
   }
 
   /**

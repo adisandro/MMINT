@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage;
-import edu.toronto.cs.se.mmint.mid.productline.impl.MIDPLPackageImpl;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage;
+import edu.toronto.cs.se.mmint.mid.productline.impl.PLMIDPackageImpl;
 import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
@@ -151,18 +151,18 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     MIDPackage.eINSTANCE.eClass();
 
     // Obtain or create and register interdependencies
-    Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(MIDPLPackage.eNS_URI);
-    var theMIDPLPackage = (MIDPLPackageImpl) (registeredPackage instanceof MIDPLPackageImpl
+    Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(PLMIDPackage.eNS_URI);
+    var thePLMIDPackage = (PLMIDPackageImpl) (registeredPackage instanceof PLMIDPackageImpl
       ? registeredPackage
-      : MIDPLPackage.eINSTANCE);
+      : PLMIDPackage.eINSTANCE);
 
     // Create package meta-data objects
     thePLPackage.createPackageContents();
-    theMIDPLPackage.createPackageContents();
+    thePLMIDPackage.createPackageContents();
 
     // Initialize created meta-data
     thePLPackage.initializePackageContents();
-    theMIDPLPackage.initializePackageContents();
+    thePLMIDPackage.initializePackageContents();
 
     // Mark meta-data to indicate it can't be changed
     thePLPackage.freeze();

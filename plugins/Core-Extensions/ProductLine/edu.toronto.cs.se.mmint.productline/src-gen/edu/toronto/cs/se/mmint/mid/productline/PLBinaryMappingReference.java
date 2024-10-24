@@ -20,7 +20,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage#getPLBinaryMappingReference()
+ * @see edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage#getPLBinaryMappingReference()
  * @model
  * @generated
  */

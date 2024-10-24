@@ -14,7 +14,7 @@ package edu.toronto.cs.se.mmint.mid.productline.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage;
 import edu.toronto.cs.se.mmint.mid.productline.PLModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.ModelRelImpl;
 
@@ -42,7 +42,7 @@ public class PLModelRelImpl extends ModelRelImpl implements PLModelRel {
    */
   @Override
   protected EClass eStaticClass() {
-    return MIDPLPackage.Literals.PL_MODEL_REL;
+    return PLMIDPackage.Literals.PL_MODEL_REL;
   }
 
 } //PLModelRelImpl

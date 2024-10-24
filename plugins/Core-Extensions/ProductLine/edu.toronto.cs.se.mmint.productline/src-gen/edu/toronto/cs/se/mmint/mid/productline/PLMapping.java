@@ -21,7 +21,7 @@ import edu.toronto.cs.se.mmint.productline.PLElement;
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage#getPLMapping()
+ * @see edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage#getPLMapping()
  * @model
  * @generated
  */

@@ -4,7 +4,7 @@
     modelDirectory="/edu.toronto.cs.se.mmint.productline/src-gen" creationIcons="false"
     editDirectory="/edu.toronto.cs.se.mmint.productline.edit/src-gen" editorDirectory="/edu.toronto.cs.se.mmint.productline.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.mmint.productline" modelName="PL" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="22.0"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="23.0"
     copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mid"
     operationReflection="true" importOrganizing="true">
   <foreignModel>productline.ecore</foreignModel>
@@ -99,7 +99,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Attribute/type"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="MIDPL" basePackage="edu.toronto.cs.se.mmint.mid" disposableProviderFactory="true"
+  <genPackages prefix="PLMID" basePackage="edu.toronto.cs.se.mmint.mid" disposableProviderFactory="true"
       childCreationExtenders="true" fileExtensions="mid" ecorePackage="mid.productline.ecore#/">
     <genClasses ecoreClass="mid.productline.ecore#//PLModelRel"/>
     <genClasses ecoreClass="mid.productline.ecore#//PLBinaryModelRel"/>

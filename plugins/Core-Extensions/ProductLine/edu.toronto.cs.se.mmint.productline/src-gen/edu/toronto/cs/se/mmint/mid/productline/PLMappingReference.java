@@ -20,7 +20,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage#getPLMappingReference()
+ * @see edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage#getPLMappingReference()
  * @model
  * @generated
  */

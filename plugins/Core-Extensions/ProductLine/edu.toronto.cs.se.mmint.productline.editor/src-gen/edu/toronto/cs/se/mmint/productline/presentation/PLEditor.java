@@ -122,7 +122,7 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 
 import edu.toronto.cs.se.mmint.mid.editor.provider.EditorItemProviderAdapterFactory;
 import edu.toronto.cs.se.mmint.mid.operator.provider.OperatorItemProviderAdapterFactory;
-import edu.toronto.cs.se.mmint.mid.productline.provider.MIDPLItemProviderAdapterFactory;
+import edu.toronto.cs.se.mmint.mid.productline.provider.PLMIDItemProviderAdapterFactory;
 import edu.toronto.cs.se.mmint.mid.provider.MIDItemProviderAdapterFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.provider.RelationshipItemProviderAdapterFactory;
 import edu.toronto.cs.se.mmint.productline.provider.PLItemProviderAdapterFactory;
@@ -669,7 +669,7 @@ public class PLEditor extends MultiPageEditorPart implements IEditingDomainProvi
 
     this.adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
     this.adapterFactory.addAdapterFactory(new PLItemProviderAdapterFactory());
-    this.adapterFactory.addAdapterFactory(new MIDPLItemProviderAdapterFactory());
+    this.adapterFactory.addAdapterFactory(new PLMIDItemProviderAdapterFactory());
     this.adapterFactory.addAdapterFactory(new MIDItemProviderAdapterFactory());
     this.adapterFactory.addAdapterFactory(new RelationshipItemProviderAdapterFactory());
     this.adapterFactory.addAdapterFactory(new EditorItemProviderAdapterFactory());

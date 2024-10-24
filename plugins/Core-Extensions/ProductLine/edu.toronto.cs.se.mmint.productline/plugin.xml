@@ -18,7 +18,7 @@
   <extension point="edu.toronto.cs.se.mmint.relationships">
     <relationshipType>
       <modelType>
-        <type class="edu.toronto.cs.se.mmint.mid.productline.MIDPLHeavyTypeFactory" name="PLModelRel" uri="rel://edu.toronto.cs.se.mmint.mid.productline.PLModelRel"/>
+        <type class="edu.toronto.cs.se.mmint.mid.productline.PLMIDHeavyTypeFactory" name="PLModelRel" uri="rel://edu.toronto.cs.se.mmint.mid.productline.PLModelRel"/>
       </modelType>
       <modelTypeEndpoint>
         <type name="PLModelEndpoint" uri="edu.toronto.cs.se.mmint.mid.productline.PLModelRel.PLModelEndpoint"/>
@@ -35,7 +35,7 @@
         </modelElemType>
       </modelTypeEndpoint>
       <mappingType>
-        <type class="edu.toronto.cs.se.mmint.mid.productline.MIDPLHeavyTypeFactory" name="PLMapping" uri="edu.toronto.cs.se.mmint.mid.productline.PLModelRel.PLMapping"/>
+        <type class="edu.toronto.cs.se.mmint.mid.productline.PLMIDHeavyTypeFactory" name="PLMapping" uri="edu.toronto.cs.se.mmint.mid.productline.PLModelRel.PLMapping"/>
         <modelElemTypeEndpoint>
           <type name="PLModelElementEndpoint" uri="edu.toronto.cs.se.mmint.mid.productline.PLModelRel.PLMapping.PLModelElementEndpoint"/>
           <typeEndpoint lowerBound="1" targetTypeUri="model://edu.toronto.cs.se.mmint.productline#//PLElement" upperBound="-1"/>
@@ -47,14 +47,20 @@
       </mappingType>
     </relationshipType>
   </extension>
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <!-- @generated productline -->
-    <package class="edu.toronto.cs.se.mmint.productline.PLPackage" genModel="model/productline.genmodel" uri="model://edu.toronto.cs.se.mmint.productline"/>
-  </extension>
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <!-- @generated productline -->
-    <package class="edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage" genModel="model/productline.genmodel" uri="rel://edu.toronto.cs.se.mmint.mid.productline.PLModelRel"/>
-  </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated productline -->
+      <package
+            uri="model://edu.toronto.cs.se.mmint.productline"
+            class="edu.toronto.cs.se.mmint.productline.PLPackage"
+            genModel="model/productline.genmodel"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated productline -->
+      <package
+            uri="rel://edu.toronto.cs.se.mmint.mid.productline.PLModelRel"
+            class="edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage"
+            genModel="model/productline.genmodel"/>
+   </extension>
   <extension id="edu.toronto.cs.se.mmint.productline.viatra.Pl" point="org.eclipse.viatra.query.runtime.queryspecification">
     <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:edu.toronto.cs.se.mmint.productline.viatra.Pl" id="edu.toronto.cs.se.mmint.productline.viatra.Pl">
       <query-specification fqn="edu.toronto.cs.se.mmint.productline.viatra.classType"/>

@@ -20,10 +20,10 @@ import org.eclipse.emf.ecore.EObject;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage;
 import edu.toronto.cs.se.mmint.mid.productline.PLBinaryMapping;
 import edu.toronto.cs.se.mmint.mid.productline.PLBinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.productline.PLBinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage;
 import edu.toronto.cs.se.mmint.mid.productline.PLMapping;
 import edu.toronto.cs.se.mmint.mid.productline.PLMappingReference;
 import edu.toronto.cs.se.mmint.mid.productline.PLModelRel;
@@ -41,17 +41,17 @@ import edu.toronto.cs.se.mmint.productline.PLElement;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage
+ * @see edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage
  * @generated
  */
-public class MIDPLAdapterFactory extends AdapterFactoryImpl {
+public class PLMIDAdapterFactory extends AdapterFactoryImpl {
   /**
    * The cached model package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected static MIDPLPackage modelPackage;
+  protected static PLMIDPackage modelPackage;
 
   /**
    * Creates an instance of the adapter factory.
@@ -59,9 +59,9 @@ public class MIDPLAdapterFactory extends AdapterFactoryImpl {
    * <!-- end-user-doc -->
    * @generated
    */
-  public MIDPLAdapterFactory() {
-    if (MIDPLAdapterFactory.modelPackage == null) {
-      MIDPLAdapterFactory.modelPackage = MIDPLPackage.eINSTANCE;
+  public PLMIDAdapterFactory() {
+    if (PLMIDAdapterFactory.modelPackage == null) {
+      PLMIDAdapterFactory.modelPackage = PLMIDPackage.eINSTANCE;
     }
   }
 
@@ -75,11 +75,11 @@ public class MIDPLAdapterFactory extends AdapterFactoryImpl {
    */
   @Override
   public boolean isFactoryForType(Object object) {
-    if (object == MIDPLAdapterFactory.modelPackage) {
+    if (object == PLMIDAdapterFactory.modelPackage) {
       return true;
     }
     if (object instanceof EObject) {
-      return ((EObject) object).eClass().getEPackage() == MIDPLAdapterFactory.modelPackage;
+      return ((EObject) object).eClass().getEPackage() == PLMIDAdapterFactory.modelPackage;
     }
     return false;
   }
@@ -90,7 +90,7 @@ public class MIDPLAdapterFactory extends AdapterFactoryImpl {
    * <!-- end-user-doc -->
    * @generated
    */
-  protected MIDPLSwitch<Adapter> modelSwitch = new MIDPLSwitch<>() {
+  protected PLMIDSwitch<Adapter> modelSwitch = new PLMIDSwitch<>() {
     @Override
     public Adapter casePLModelRel(PLModelRel object) {
       return createPLModelRelAdapter();
@@ -445,4 +445,4 @@ public class MIDPLAdapterFactory extends AdapterFactoryImpl {
     return null;
   }
 
-} //MIDPLAdapterFactory
+} //PLMIDAdapterFactory

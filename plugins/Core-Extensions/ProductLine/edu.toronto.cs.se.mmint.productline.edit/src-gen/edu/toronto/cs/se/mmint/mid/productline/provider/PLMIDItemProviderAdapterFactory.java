@@ -38,8 +38,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLFactory;
-import edu.toronto.cs.se.mmint.mid.productline.util.MIDPLAdapterFactory;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDFactory;
+import edu.toronto.cs.se.mmint.mid.productline.util.PLMIDAdapterFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
@@ -56,7 +56,7 @@ import edu.toronto.cs.se.mmint.productline.provider.PLEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MIDPLItemProviderAdapterFactory extends MIDPLAdapterFactory implements ComposeableAdapterFactory,
+public class PLMIDItemProviderAdapterFactory extends PLMIDAdapterFactory implements ComposeableAdapterFactory,
   IChangeNotifier, IDisposable {
   /**
    * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -88,7 +88,7 @@ public class MIDPLItemProviderAdapterFactory extends MIDPLAdapterFactory impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public MIDPLItemProviderAdapterFactory() {
+  public PLMIDItemProviderAdapterFactory() {
     this.supportedTypes.add(IEditingDomainItemProvider.class);
     this.supportedTypes.add(IStructuredItemContentProvider.class);
     this.supportedTypes.add(ITreeItemContentProvider.class);
@@ -407,10 +407,10 @@ public class MIDPLItemProviderAdapterFactory extends MIDPLAdapterFactory impleme
        */
       @Override
       public Object caseMID(MID object) {
-        this.newChildDescriptors.add(createChildParameter(MIDPackage.Literals.MID__MODELS, MIDPLFactory.eINSTANCE
+        this.newChildDescriptors.add(createChildParameter(MIDPackage.Literals.MID__MODELS, PLMIDFactory.eINSTANCE
                                                                                                             .createPLModelRel()));
 
-        this.newChildDescriptors.add(createChildParameter(MIDPackage.Literals.MID__MODELS, MIDPLFactory.eINSTANCE
+        this.newChildDescriptors.add(createChildParameter(MIDPackage.Literals.MID__MODELS, PLMIDFactory.eINSTANCE
                                                                                                             .createPLBinaryModelRel()));
 
         return null;
@@ -499,16 +499,16 @@ public class MIDPLItemProviderAdapterFactory extends MIDPLAdapterFactory impleme
       @Override
       public Object caseModelRel(ModelRel object) {
         this.newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.MODEL_REL__MAPPINGS,
-                                                     MIDPLFactory.eINSTANCE.createPLMapping()));
+                                                     PLMIDFactory.eINSTANCE.createPLMapping()));
 
         this.newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.MODEL_REL__MAPPINGS,
-                                                     MIDPLFactory.eINSTANCE.createPLBinaryMapping()));
+                                                     PLMIDFactory.eINSTANCE.createPLBinaryMapping()));
 
         this.newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.MODEL_REL__MAPPING_REFS,
-                                                     MIDPLFactory.eINSTANCE.createPLMappingReference()));
+                                                     PLMIDFactory.eINSTANCE.createPLMappingReference()));
 
         this.newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.MODEL_REL__MAPPING_REFS,
-                                                     MIDPLFactory.eINSTANCE.createPLBinaryMappingReference()));
+                                                     PLMIDFactory.eINSTANCE.createPLBinaryMappingReference()));
 
         return null;
       }
@@ -521,16 +521,16 @@ public class MIDPLItemProviderAdapterFactory extends MIDPLAdapterFactory impleme
       @Override
       public Object caseExtendibleElementReference(ExtendibleElementReference object) {
         this.newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-                                                     MIDPLFactory.eINSTANCE.createPLModelRel()));
+                                                     PLMIDFactory.eINSTANCE.createPLModelRel()));
 
         this.newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-                                                     MIDPLFactory.eINSTANCE.createPLBinaryModelRel()));
+                                                     PLMIDFactory.eINSTANCE.createPLBinaryModelRel()));
 
         this.newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-                                                     MIDPLFactory.eINSTANCE.createPLMapping()));
+                                                     PLMIDFactory.eINSTANCE.createPLMapping()));
 
         this.newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-                                                     MIDPLFactory.eINSTANCE.createPLBinaryMapping()));
+                                                     PLMIDFactory.eINSTANCE.createPLBinaryMapping()));
 
         return null;
       }

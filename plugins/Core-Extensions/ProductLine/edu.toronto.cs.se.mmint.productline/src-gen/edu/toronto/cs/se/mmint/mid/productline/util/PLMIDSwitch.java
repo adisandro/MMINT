@@ -19,10 +19,10 @@ import org.eclipse.emf.ecore.util.Switch;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage;
 import edu.toronto.cs.se.mmint.mid.productline.PLBinaryMapping;
 import edu.toronto.cs.se.mmint.mid.productline.PLBinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.productline.PLBinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage;
 import edu.toronto.cs.se.mmint.mid.productline.PLMapping;
 import edu.toronto.cs.se.mmint.mid.productline.PLMappingReference;
 import edu.toronto.cs.se.mmint.mid.productline.PLModelRel;
@@ -45,17 +45,17 @@ import edu.toronto.cs.se.mmint.productline.PLElement;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage
+ * @see edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage
  * @generated
  */
-public class MIDPLSwitch<T> extends Switch<T> {
+public class PLMIDSwitch<T> extends Switch<T> {
   /**
    * The cached model package
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected static MIDPLPackage modelPackage;
+  protected static PLMIDPackage modelPackage;
 
   /**
    * Creates an instance of the switch.
@@ -63,9 +63,9 @@ public class MIDPLSwitch<T> extends Switch<T> {
    * <!-- end-user-doc -->
    * @generated
    */
-  public MIDPLSwitch() {
-    if (MIDPLSwitch.modelPackage == null) {
-      MIDPLSwitch.modelPackage = MIDPLPackage.eINSTANCE;
+  public PLMIDSwitch() {
+    if (PLMIDSwitch.modelPackage == null) {
+      PLMIDSwitch.modelPackage = PLMIDPackage.eINSTANCE;
     }
   }
 
@@ -79,7 +79,7 @@ public class MIDPLSwitch<T> extends Switch<T> {
    */
   @Override
   protected boolean isSwitchFor(EPackage ePackage) {
-    return ePackage == MIDPLSwitch.modelPackage;
+    return ePackage == PLMIDSwitch.modelPackage;
   }
 
   /**
@@ -92,7 +92,7 @@ public class MIDPLSwitch<T> extends Switch<T> {
   @Override
   protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
-    case MIDPLPackage.PL_MODEL_REL: {
+    case PLMIDPackage.PL_MODEL_REL: {
       var plModelRel = (PLModelRel) theEObject;
       var result = casePLModelRel(plModelRel);
       if (result == null) {
@@ -112,7 +112,7 @@ public class MIDPLSwitch<T> extends Switch<T> {
       }
       return result;
     }
-    case MIDPLPackage.PL_BINARY_MODEL_REL: {
+    case PLMIDPackage.PL_BINARY_MODEL_REL: {
       var plBinaryModelRel = (PLBinaryModelRel) theEObject;
       var result = casePLBinaryModelRel(plBinaryModelRel);
       if (result == null) {
@@ -138,7 +138,7 @@ public class MIDPLSwitch<T> extends Switch<T> {
       }
       return result;
     }
-    case MIDPLPackage.PL_MAPPING: {
+    case PLMIDPackage.PL_MAPPING: {
       var plMapping = (PLMapping) theEObject;
       var result = casePLMapping(plMapping);
       if (result == null) {
@@ -155,7 +155,7 @@ public class MIDPLSwitch<T> extends Switch<T> {
       }
       return result;
     }
-    case MIDPLPackage.PL_BINARY_MAPPING: {
+    case PLMIDPackage.PL_BINARY_MAPPING: {
       var plBinaryMapping = (PLBinaryMapping) theEObject;
       var result = casePLBinaryMapping(plBinaryMapping);
       if (result == null) {
@@ -178,7 +178,7 @@ public class MIDPLSwitch<T> extends Switch<T> {
       }
       return result;
     }
-    case MIDPLPackage.PL_MAPPING_REFERENCE: {
+    case PLMIDPackage.PL_MAPPING_REFERENCE: {
       var plMappingReference = (PLMappingReference) theEObject;
       var result = casePLMappingReference(plMappingReference);
       if (result == null) {
@@ -192,7 +192,7 @@ public class MIDPLSwitch<T> extends Switch<T> {
       }
       return result;
     }
-    case MIDPLPackage.PL_BINARY_MAPPING_REFERENCE: {
+    case PLMIDPackage.PL_BINARY_MAPPING_REFERENCE: {
       var plBinaryMappingReference = (PLBinaryMappingReference) theEObject;
       var result = casePLBinaryMappingReference(plBinaryMappingReference);
       if (result == null) {
@@ -488,4 +488,4 @@ public class MIDPLSwitch<T> extends Switch<T> {
     return null;
   }
 
-} //MIDPLSwitch
+} //PLMIDSwitch

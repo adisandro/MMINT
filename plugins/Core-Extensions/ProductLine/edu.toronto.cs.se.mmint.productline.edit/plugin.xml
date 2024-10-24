@@ -31,7 +31,7 @@
       <!-- @generated productline -->
       <factory
             uri="rel://edu.toronto.cs.se.mmint.mid.productline.PLModelRel"
-            class="edu.toronto.cs.se.mmint.mid.productline.provider.MIDPLItemProviderAdapterFactory"
+            class="edu.toronto.cs.se.mmint.mid.productline.provider.PLMIDItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -44,9 +44,10 @@
       <!-- @generated productline -->
       <extender
             uri="http://se.cs.toronto.edu/mmint/MID"
-            class="edu.toronto.cs.se.mmint.mid.productline.provider.MIDPLItemProviderAdapterFactory$MIDChildCreationExtender"/>
+            class="edu.toronto.cs.se.mmint.mid.productline.provider.PLMIDItemProviderAdapterFactory$MIDChildCreationExtender"/>
       <extender
             uri="http://se.cs.toronto.edu/mmint/MID/Relationship"
-            class="edu.toronto.cs.se.mmint.mid.productline.provider.MIDPLItemProviderAdapterFactory$RelationshipChildCreationExtender"/>
+            class="edu.toronto.cs.se.mmint.mid.productline.provider.PLMIDItemProviderAdapterFactory$RelationshipChildCreationExtender"/>
    </extension>
+
 </plugin>

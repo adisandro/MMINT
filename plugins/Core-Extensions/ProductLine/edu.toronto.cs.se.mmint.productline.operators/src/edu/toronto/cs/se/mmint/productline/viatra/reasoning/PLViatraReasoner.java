@@ -61,7 +61,7 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.productline.PLElement;
@@ -97,7 +97,7 @@ public class PLViatraReasoner extends ViatraReasoner {
   private String featuresConstraint;
 
   public PLViatraReasoner() throws Exception {
-    var plModelRelType = MIDTypeRegistry.<ModelRel>getType(MIDPLPackage.eNS_URI);
+    var plModelRelType = MIDTypeRegistry.<ModelRel>getType(PLMIDPackage.eNS_URI);
     var libFilePath = MIDTypeRegistry.getBundlePath(plModelRelType, PLViatraReasoner.VIATRA_LIB_PATH);
     var libVqlRoot = getVQLRoot(libFilePath, false);
     this.libRefPattern = super.getPattern(libVqlRoot, PLViatraReasoner.LIB_REFERENCE_PATTERN);

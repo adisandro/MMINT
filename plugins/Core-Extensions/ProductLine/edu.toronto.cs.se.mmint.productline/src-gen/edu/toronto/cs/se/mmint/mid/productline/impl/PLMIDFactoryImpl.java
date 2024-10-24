@@ -18,11 +18,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLFactory;
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage;
 import edu.toronto.cs.se.mmint.mid.productline.PLBinaryMapping;
 import edu.toronto.cs.se.mmint.mid.productline.PLBinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.productline.PLBinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDFactory;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage;
 import edu.toronto.cs.se.mmint.mid.productline.PLMapping;
 import edu.toronto.cs.se.mmint.mid.productline.PLMappingReference;
 import edu.toronto.cs.se.mmint.mid.productline.PLModelRel;
@@ -33,24 +33,24 @@ import edu.toronto.cs.se.mmint.mid.productline.PLModelRel;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MIDPLFactoryImpl extends EFactoryImpl implements MIDPLFactory {
+public class PLMIDFactoryImpl extends EFactoryImpl implements PLMIDFactory {
   /**
    * Creates the default factory implementation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static MIDPLFactory init() {
+  public static PLMIDFactory init() {
     try {
-      var theMIDPLFactory = (MIDPLFactory) EPackage.Registry.INSTANCE.getEFactory(MIDPLPackage.eNS_URI);
-      if (theMIDPLFactory != null) {
-        return theMIDPLFactory;
+      var thePLMIDFactory = (PLMIDFactory) EPackage.Registry.INSTANCE.getEFactory(PLMIDPackage.eNS_URI);
+      if (thePLMIDFactory != null) {
+        return thePLMIDFactory;
       }
     }
     catch (Exception exception) {
       EcorePlugin.INSTANCE.log(exception);
     }
-    return new MIDPLFactoryImpl();
+    return new PLMIDFactoryImpl();
   }
 
   /**
@@ -59,7 +59,7 @@ public class MIDPLFactoryImpl extends EFactoryImpl implements MIDPLFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public MIDPLFactoryImpl() {
+  public PLMIDFactoryImpl() {
     super();
   }
 
@@ -71,12 +71,12 @@ public class MIDPLFactoryImpl extends EFactoryImpl implements MIDPLFactory {
   @Override
   public EObject create(EClass eClass) {
     return switch (eClass.getClassifierID()) {
-    case MIDPLPackage.PL_MODEL_REL -> createPLModelRel();
-    case MIDPLPackage.PL_BINARY_MODEL_REL -> createPLBinaryModelRel();
-    case MIDPLPackage.PL_MAPPING -> createPLMapping();
-    case MIDPLPackage.PL_BINARY_MAPPING -> createPLBinaryMapping();
-    case MIDPLPackage.PL_MAPPING_REFERENCE -> createPLMappingReference();
-    case MIDPLPackage.PL_BINARY_MAPPING_REFERENCE -> createPLBinaryMappingReference();
+    case PLMIDPackage.PL_MODEL_REL -> createPLModelRel();
+    case PLMIDPackage.PL_BINARY_MODEL_REL -> createPLBinaryModelRel();
+    case PLMIDPackage.PL_MAPPING -> createPLMapping();
+    case PLMIDPackage.PL_BINARY_MAPPING -> createPLBinaryMapping();
+    case PLMIDPackage.PL_MAPPING_REFERENCE -> createPLMappingReference();
+    case PLMIDPackage.PL_BINARY_MAPPING_REFERENCE -> createPLBinaryMappingReference();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     };
   }
@@ -153,8 +153,8 @@ public class MIDPLFactoryImpl extends EFactoryImpl implements MIDPLFactory {
    * @generated
    */
   @Override
-  public MIDPLPackage getMIDPLPackage() {
-    return (MIDPLPackage) getEPackage();
+  public PLMIDPackage getPLMIDPackage() {
+    return (PLMIDPackage) getEPackage();
   }
 
   /**
@@ -164,8 +164,8 @@ public class MIDPLFactoryImpl extends EFactoryImpl implements MIDPLFactory {
    * @generated
    */
   @Deprecated
-  public static MIDPLPackage getPackage() {
-    return MIDPLPackage.eINSTANCE;
+  public static PLMIDPackage getPackage() {
+    return PLMIDPackage.eINSTANCE;
   }
 
-} //MIDPLFactoryImpl
+} //PLMIDFactoryImpl

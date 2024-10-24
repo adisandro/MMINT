@@ -23,8 +23,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage;
 import edu.toronto.cs.se.mmint.mid.productline.PLBinaryMapping;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.provider.BinaryMappingItemProvider;
 import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.provider.PLEditPlugin;
@@ -126,7 +126,7 @@ public class PLBinaryMappingItemProvider extends BinaryMappingItemProvider {
     updateChildren(notification);
 
     switch (notification.getFeatureID(PLBinaryMapping.class)) {
-    case MIDPLPackage.PL_BINARY_MAPPING__PRESENCE_CONDITION:
+    case PLMIDPackage.PL_BINARY_MAPPING__PRESENCE_CONDITION:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     }

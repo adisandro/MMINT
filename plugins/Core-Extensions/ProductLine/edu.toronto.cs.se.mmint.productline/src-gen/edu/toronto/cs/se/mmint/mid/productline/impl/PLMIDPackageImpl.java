@@ -13,15 +13,16 @@
 package edu.toronto.cs.se.mmint.mid.productline.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLFactory;
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage;
 import edu.toronto.cs.se.mmint.mid.productline.PLBinaryMapping;
 import edu.toronto.cs.se.mmint.mid.productline.PLBinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.productline.PLBinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDFactory;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage;
 import edu.toronto.cs.se.mmint.mid.productline.PLMapping;
 import edu.toronto.cs.se.mmint.mid.productline.PLMappingReference;
 import edu.toronto.cs.se.mmint.mid.productline.PLModelRel;
@@ -35,7 +36,7 @@ import edu.toronto.cs.se.mmint.productline.impl.PLPackageImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MIDPLPackageImpl extends EPackageImpl implements MIDPLPackage {
+public class PLMIDPackageImpl extends EPackageImpl implements PLMIDPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -89,12 +90,12 @@ public class MIDPLPackageImpl extends EPackageImpl implements MIDPLPackage {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.eclipse.emf.ecore.EPackage.Registry
-   * @see edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage#eNS_URI
+   * @see edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage#eNS_URI
    * @see #init()
    * @generated
    */
-  private MIDPLPackageImpl() {
-    super(MIDPLPackage.eNS_URI, MIDPLFactory.eINSTANCE);
+  private PLMIDPackageImpl() {
+    super(PLMIDPackage.eNS_URI, PLMIDFactory.eINSTANCE);
   }
 
   /**
@@ -107,7 +108,7 @@ public class MIDPLPackageImpl extends EPackageImpl implements MIDPLPackage {
   /**
    * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
    *
-   * <p>This method is used to initialize {@link MIDPLPackage#eINSTANCE} when that field is accessed.
+   * <p>This method is used to initialize {@link PLMIDPackage#eINSTANCE} when that field is accessed.
    * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -116,18 +117,18 @@ public class MIDPLPackageImpl extends EPackageImpl implements MIDPLPackage {
    * @see #initializePackageContents()
    * @generated
    */
-  public static MIDPLPackage init() {
-    if (MIDPLPackageImpl.isInited) {
-      return (MIDPLPackage) EPackage.Registry.INSTANCE.getEPackage(MIDPLPackage.eNS_URI);
+  public static PLMIDPackage init() {
+    if (PLMIDPackageImpl.isInited) {
+      return (PLMIDPackage) EPackage.Registry.INSTANCE.getEPackage(PLMIDPackage.eNS_URI);
     }
 
     // Obtain or create and register package
-    var registeredMIDPLPackage = EPackage.Registry.INSTANCE.get(MIDPLPackage.eNS_URI);
-    var theMIDPLPackage = registeredMIDPLPackage instanceof MIDPLPackageImpl
-      ? (MIDPLPackageImpl) registeredMIDPLPackage
-      : new MIDPLPackageImpl();
+    var registeredPLMIDPackage = EPackage.Registry.INSTANCE.get(PLMIDPackage.eNS_URI);
+    var thePLMIDPackage = registeredPLMIDPackage instanceof PLMIDPackageImpl
+      ? (PLMIDPackageImpl) registeredPLMIDPackage
+      : new PLMIDPackageImpl();
 
-    MIDPLPackageImpl.isInited = true;
+    PLMIDPackageImpl.isInited = true;
 
     // Initialize simple dependencies
     MIDPackage.eINSTANCE.eClass();
@@ -138,19 +139,19 @@ public class MIDPLPackageImpl extends EPackageImpl implements MIDPLPackage {
       : PLPackage.eINSTANCE);
 
     // Create package meta-data objects
-    theMIDPLPackage.createPackageContents();
+    thePLMIDPackage.createPackageContents();
     thePLPackage.createPackageContents();
 
     // Initialize created meta-data
-    theMIDPLPackage.initializePackageContents();
+    thePLMIDPackage.initializePackageContents();
     thePLPackage.initializePackageContents();
 
     // Mark meta-data to indicate it can't be changed
-    theMIDPLPackage.freeze();
+    thePLMIDPackage.freeze();
 
     // Update the registry and return the package
-    EPackage.Registry.INSTANCE.put(MIDPLPackage.eNS_URI, theMIDPLPackage);
-    return theMIDPLPackage;
+    EPackage.Registry.INSTANCE.put(PLMIDPackage.eNS_URI, thePLMIDPackage);
+    return thePLMIDPackage;
   }
 
   /**
@@ -189,6 +190,36 @@ public class MIDPLPackageImpl extends EPackageImpl implements MIDPLPackage {
    * @generated
    */
   @Override
+  public EOperation getPLMapping__ToMIDCustomPrintLabel() {
+    return this.plMappingEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getPLMapping__ToMIDCustomEditLabel() {
+    return this.plMappingEClass.getEOperations().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getPLMapping__UpdateMIDCustomLabel__String() {
+    return this.plMappingEClass.getEOperations().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getPLBinaryMapping() {
     return this.plBinaryMappingEClass;
   }
@@ -209,6 +240,16 @@ public class MIDPLPackageImpl extends EPackageImpl implements MIDPLPackage {
    * @generated
    */
   @Override
+  public EOperation getPLMappingReference__GetObject() {
+    return this.plMappingReferenceEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getPLBinaryMappingReference() {
     return this.plBinaryMappingReferenceEClass;
   }
@@ -219,8 +260,18 @@ public class MIDPLPackageImpl extends EPackageImpl implements MIDPLPackage {
    * @generated
    */
   @Override
-  public MIDPLFactory getMIDPLFactory() {
-    return (MIDPLFactory) getEFactoryInstance();
+  public EOperation getPLBinaryMappingReference__GetObject() {
+    return this.plBinaryMappingReferenceEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public PLMIDFactory getPLMIDFactory() {
+    return (PLMIDFactory) getEFactoryInstance();
   }
 
   /**
@@ -244,17 +295,22 @@ public class MIDPLPackageImpl extends EPackageImpl implements MIDPLPackage {
     this.isCreated = true;
 
     // Create classes and their features
-    this.plModelRelEClass = createEClass(MIDPLPackage.PL_MODEL_REL);
+    this.plModelRelEClass = createEClass(PLMIDPackage.PL_MODEL_REL);
 
-    this.plBinaryModelRelEClass = createEClass(MIDPLPackage.PL_BINARY_MODEL_REL);
+    this.plBinaryModelRelEClass = createEClass(PLMIDPackage.PL_BINARY_MODEL_REL);
 
-    this.plMappingEClass = createEClass(MIDPLPackage.PL_MAPPING);
+    this.plMappingEClass = createEClass(PLMIDPackage.PL_MAPPING);
+    createEOperation(this.plMappingEClass, PLMIDPackage.PL_MAPPING___TO_MID_CUSTOM_PRINT_LABEL);
+    createEOperation(this.plMappingEClass, PLMIDPackage.PL_MAPPING___TO_MID_CUSTOM_EDIT_LABEL);
+    createEOperation(this.plMappingEClass, PLMIDPackage.PL_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING);
 
-    this.plBinaryMappingEClass = createEClass(MIDPLPackage.PL_BINARY_MAPPING);
+    this.plBinaryMappingEClass = createEClass(PLMIDPackage.PL_BINARY_MAPPING);
 
-    this.plMappingReferenceEClass = createEClass(MIDPLPackage.PL_MAPPING_REFERENCE);
+    this.plMappingReferenceEClass = createEClass(PLMIDPackage.PL_MAPPING_REFERENCE);
+    createEOperation(this.plMappingReferenceEClass, PLMIDPackage.PL_MAPPING_REFERENCE___GET_OBJECT);
 
-    this.plBinaryMappingReferenceEClass = createEClass(MIDPLPackage.PL_BINARY_MAPPING_REFERENCE);
+    this.plBinaryMappingReferenceEClass = createEClass(PLMIDPackage.PL_BINARY_MAPPING_REFERENCE);
+    createEOperation(this.plBinaryMappingReferenceEClass, PLMIDPackage.PL_BINARY_MAPPING_REFERENCE___GET_OBJECT);
   }
 
   /**
@@ -278,9 +334,9 @@ public class MIDPLPackageImpl extends EPackageImpl implements MIDPLPackage {
     this.isInitialized = true;
 
     // Initialize package
-    setName(MIDPLPackage.eNAME);
-    setNsPrefix(MIDPLPackage.eNS_PREFIX);
-    setNsURI(MIDPLPackage.eNS_URI);
+    setName(PLMIDPackage.eNAME);
+    setNsPrefix(PLMIDPackage.eNS_PREFIX);
+    setNsURI(PLMIDPackage.eNS_URI);
 
     // Obtain other dependent packages
     var theRelationshipPackage = (RelationshipPackage) EPackage.Registry.INSTANCE.getEPackage(RelationshipPackage.eNS_URI);
@@ -302,7 +358,7 @@ public class MIDPLPackageImpl extends EPackageImpl implements MIDPLPackage {
     this.plBinaryMappingReferenceEClass.getESuperTypes().add(theRelationshipPackage.getBinaryMappingReference());
     this.plBinaryMappingReferenceEClass.getESuperTypes().add(this.getPLMappingReference());
 
-    // Initialize classes and features; add operations and parameters
+    // Initialize classes, features, and operations; add parameters
     initEClass(this.plModelRelEClass, PLModelRel.class, "PLModelRel", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
                EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
@@ -311,11 +367,14 @@ public class MIDPLPackageImpl extends EPackageImpl implements MIDPLPackage {
 
     initEClass(this.plMappingEClass, PLMapping.class, "PLMapping", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    addEOperation(this.plMappingEClass, this.ecorePackage.getEString(), "toMIDCustomPrintLabel", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    initEOperation(getPLMapping__ToMIDCustomPrintLabel(), this.ecorePackage.getEString(), "toMIDCustomPrintLabel", 1, 1,
+                   EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    addEOperation(this.plMappingEClass, this.ecorePackage.getEString(), "toMIDCustomEditLabel", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    initEOperation(getPLMapping__ToMIDCustomEditLabel(), this.ecorePackage.getEString(), "toMIDCustomEditLabel", 1, 1,
+                   EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    var op = addEOperation(this.plMappingEClass, null, "updateMIDCustomLabel", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    var op = initEOperation(getPLMapping__UpdateMIDCustomLabel__String(), null, "updateMIDCustomLabel", 0, 1,
+                                   EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEString(), "newLabel", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     initEClass(this.plBinaryMappingEClass, PLBinaryMapping.class, "PLBinaryMapping", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
@@ -324,15 +383,16 @@ public class MIDPLPackageImpl extends EPackageImpl implements MIDPLPackage {
     initEClass(this.plMappingReferenceEClass, PLMappingReference.class, "PLMappingReference", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
                EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    addEOperation(this.plMappingReferenceEClass, this.getPLMapping(), "getObject", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    initEOperation(getPLMappingReference__GetObject(), this.getPLMapping(), "getObject", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     initEClass(this.plBinaryMappingReferenceEClass, PLBinaryMappingReference.class, "PLBinaryMappingReference", !EPackageImpl.IS_ABSTRACT,
                !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    addEOperation(this.plBinaryMappingReferenceEClass, this.getPLBinaryMapping(), "getObject", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    initEOperation(getPLBinaryMappingReference__GetObject(), this.getPLBinaryMapping(), "getObject", 1, 1, EPackageImpl.IS_UNIQUE,
+                   EPackageImpl.IS_ORDERED);
 
     // Create resource
-    createResource(MIDPLPackage.eNS_URI);
+    createResource(PLMIDPackage.eNS_URI);
   }
 
-} //MIDPLPackageImpl
+} //PLMIDPackageImpl

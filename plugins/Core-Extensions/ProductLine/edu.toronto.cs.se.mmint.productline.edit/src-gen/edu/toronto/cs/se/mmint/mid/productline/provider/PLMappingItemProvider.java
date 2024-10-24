@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage;
 import edu.toronto.cs.se.mmint.mid.productline.PLMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.provider.MappingItemProvider;
 import edu.toronto.cs.se.mmint.productline.PLPackage;
@@ -126,7 +126,7 @@ public class PLMappingItemProvider extends MappingItemProvider {
     updateChildren(notification);
 
     switch (notification.getFeatureID(PLMapping.class)) {
-    case MIDPLPackage.PL_MAPPING__PRESENCE_CONDITION:
+    case PLMIDPackage.PL_MAPPING__PRESENCE_CONDITION:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     }

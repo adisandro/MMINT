@@ -12,12 +12,15 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.mid.productline.impl;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLHeavyTypeFactory;
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDHeavyTypeFactory;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage;
 import edu.toronto.cs.se.mmint.mid.productline.PLMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.MappingImpl;
 import edu.toronto.cs.se.mmint.productline.PLElement;
@@ -75,7 +78,7 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
    */
   @Override
   protected EClass eStaticClass() {
-    return MIDPLPackage.Literals.PL_MAPPING;
+    return PLMIDPackage.Literals.PL_MAPPING;
   }
 
   /**
@@ -97,7 +100,7 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
     var oldPresenceCondition = this.presenceCondition;
     this.presenceCondition = newPresenceCondition;
     if (eNotificationRequired()) {
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPLPackage.PL_MAPPING__PRESENCE_CONDITION,
+      eNotify(new ENotificationImpl(this, Notification.SET, PLMIDPackage.PL_MAPPING__PRESENCE_CONDITION,
                                     oldPresenceCondition, this.presenceCondition));
     }
   }
@@ -110,7 +113,7 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case MIDPLPackage.PL_MAPPING__PRESENCE_CONDITION:
+    case PLMIDPackage.PL_MAPPING__PRESENCE_CONDITION:
       return getPresenceCondition();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -124,7 +127,7 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case MIDPLPackage.PL_MAPPING__PRESENCE_CONDITION:
+    case PLMIDPackage.PL_MAPPING__PRESENCE_CONDITION:
       setPresenceCondition((String) newValue);
       return;
     }
@@ -139,7 +142,7 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case MIDPLPackage.PL_MAPPING__PRESENCE_CONDITION:
+    case PLMIDPackage.PL_MAPPING__PRESENCE_CONDITION:
       setPresenceCondition(PLMappingImpl.PRESENCE_CONDITION_EDEFAULT);
       return;
     }
@@ -154,7 +157,7 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case MIDPLPackage.PL_MAPPING__PRESENCE_CONDITION:
+    case PLMIDPackage.PL_MAPPING__PRESENCE_CONDITION:
       return PLMappingImpl.PRESENCE_CONDITION_EDEFAULT == null ? this.presenceCondition != null
         : !PLMappingImpl.PRESENCE_CONDITION_EDEFAULT.equals(this.presenceCondition);
     }
@@ -170,7 +173,7 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
     if (baseClass == PLElement.class) {
       return switch (derivedFeatureID) {
-      case MIDPLPackage.PL_MAPPING__PRESENCE_CONDITION -> PLPackage.PL_ELEMENT__PRESENCE_CONDITION;
+      case PLMIDPackage.PL_MAPPING__PRESENCE_CONDITION -> PLPackage.PL_ELEMENT__PRESENCE_CONDITION;
       default -> -1;
       };
     }
@@ -186,11 +189,47 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
     if (baseClass == PLElement.class) {
       return switch (baseFeatureID) {
-      case PLPackage.PL_ELEMENT__PRESENCE_CONDITION -> MIDPLPackage.PL_MAPPING__PRESENCE_CONDITION;
+      case PLPackage.PL_ELEMENT__PRESENCE_CONDITION -> PLMIDPackage.PL_MAPPING__PRESENCE_CONDITION;
       default -> -1;
       };
     }
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+    if (baseClass == PLElement.class) {
+      return switch (baseOperationID) {
+      case PLPackage.PL_ELEMENT___GET_PRODUCT_LINE -> PLMIDPackage.PL_MAPPING___GET_PRODUCT_LINE;
+      case PLPackage.PL_ELEMENT___IS_ALWAYS_PRESENT -> PLMIDPackage.PL_MAPPING___IS_ALWAYS_PRESENT;
+      case PLPackage.PL_ELEMENT___GET_PRESENCE_CONDITION_LABEL__BOOLEAN -> PLMIDPackage.PL_MAPPING___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
+      default -> -1;
+      };
+    }
+    return super.eDerivedOperationID(baseOperationID, baseClass);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+    switch (operationID) {
+    case PLMIDPackage.PL_MAPPING___GET_PRODUCT_LINE:
+      return getProductLine();
+    case PLMIDPackage.PL_MAPPING___IS_ALWAYS_PRESENT:
+      return isAlwaysPresent();
+    case PLMIDPackage.PL_MAPPING___GET_PRESENCE_CONDITION_LABEL__BOOLEAN:
+      return getPresenceConditionLabel((Boolean) arguments.get(0));
+    }
+    return super.eInvoke(operationID, arguments);
   }
 
   /**
@@ -216,7 +255,7 @@ public class PLMappingImpl extends MappingImpl implements PLMapping {
    */
   @Override
   public ProductLine getProductLine() {
-    return MIDPLHeavyTypeFactory.getProductLine(this);
+    return PLMIDHeavyTypeFactory.getProductLine(this);
   }
 
   /**

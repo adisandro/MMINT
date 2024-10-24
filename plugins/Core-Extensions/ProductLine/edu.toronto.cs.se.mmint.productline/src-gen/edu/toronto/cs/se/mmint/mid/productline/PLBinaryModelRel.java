@@ -20,7 +20,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage#getPLBinaryModelRel()
+ * @see edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage#getPLBinaryModelRel()
  * @model
  * @generated
  */

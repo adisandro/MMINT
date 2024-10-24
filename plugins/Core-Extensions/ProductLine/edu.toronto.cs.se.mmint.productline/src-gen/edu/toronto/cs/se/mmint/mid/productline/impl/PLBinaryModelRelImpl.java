@@ -14,8 +14,8 @@ package edu.toronto.cs.se.mmint.mid.productline.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLPackage;
 import edu.toronto.cs.se.mmint.mid.productline.PLBinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.impl.BinaryModelRelImpl;
 
 /**
@@ -42,7 +42,7 @@ public class PLBinaryModelRelImpl extends BinaryModelRelImpl implements PLBinary
    */
   @Override
   protected EClass eStaticClass() {
-    return MIDPLPackage.Literals.PL_BINARY_MODEL_REL;
+    return PLMIDPackage.Literals.PL_BINARY_MODEL_REL;
   }
 
 } //PLBinaryModelRelImpl

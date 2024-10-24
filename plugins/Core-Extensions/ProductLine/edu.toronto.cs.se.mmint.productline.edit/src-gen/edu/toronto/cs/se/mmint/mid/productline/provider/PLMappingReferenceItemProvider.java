@@ -20,7 +20,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLFactory;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDFactory;
 import edu.toronto.cs.se.mmint.mid.productline.PLMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.provider.MappingReferenceItemProvider;
@@ -116,16 +116,16 @@ public class PLMappingReferenceItemProvider extends MappingReferenceItemProvider
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
     newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-                                                 MIDPLFactory.eINSTANCE.createPLModelRel()));
+                                                 PLMIDFactory.eINSTANCE.createPLModelRel()));
 
     newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-                                                 MIDPLFactory.eINSTANCE.createPLBinaryModelRel()));
+                                                 PLMIDFactory.eINSTANCE.createPLBinaryModelRel()));
 
     newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-                                                 MIDPLFactory.eINSTANCE.createPLMapping()));
+                                                 PLMIDFactory.eINSTANCE.createPLMapping()));
 
     newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT,
-                                                 MIDPLFactory.eINSTANCE.createPLBinaryMapping()));
+                                                 PLMIDFactory.eINSTANCE.createPLBinaryMapping()));
   }
 
   /**

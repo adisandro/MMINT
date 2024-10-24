@@ -20,7 +20,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLFactory;
+import edu.toronto.cs.se.mmint.mid.productline.PLMIDFactory;
 import edu.toronto.cs.se.mmint.mid.productline.PLModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.provider.ModelRelItemProvider;
@@ -117,16 +117,16 @@ public class PLModelRelItemProvider extends ModelRelItemProvider {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
     newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.MODEL_REL__MAPPINGS,
-                                                 MIDPLFactory.eINSTANCE.createPLMapping()));
+                                                 PLMIDFactory.eINSTANCE.createPLMapping()));
 
     newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.MODEL_REL__MAPPINGS,
-                                                 MIDPLFactory.eINSTANCE.createPLBinaryMapping()));
+                                                 PLMIDFactory.eINSTANCE.createPLBinaryMapping()));
 
     newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.MODEL_REL__MAPPING_REFS,
-                                                 MIDPLFactory.eINSTANCE.createPLMappingReference()));
+                                                 PLMIDFactory.eINSTANCE.createPLMappingReference()));
 
     newChildDescriptors.add(createChildParameter(RelationshipPackage.Literals.MODEL_REL__MAPPING_REFS,
-                                                 MIDPLFactory.eINSTANCE.createPLBinaryMappingReference()));
+                                                 PLMIDFactory.eINSTANCE.createPLBinaryMappingReference()));
   }
 
   /**

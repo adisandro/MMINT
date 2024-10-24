@@ -17,14 +17,12 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.extensions.ExtensionPointType;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.productline.MIDPLFactory;
-import edu.toronto.cs.se.mmint.mid.productline.PLMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 
-public class MIDPLHeavyTypeFactory extends MIDHeavyTypeFactory {
+public class PLMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
 
   public static ProductLine getProductLine(PLMapping plMapping) {
     return plMapping.getModelElemEndpoints().stream()
@@ -38,8 +36,8 @@ public class MIDPLHeavyTypeFactory extends MIDHeavyTypeFactory {
   @Override
   public ModelRel createHeavyModelRelType(ExtensionPointType extensionType, boolean isBinary) throws MMINTException {
     var newPLModelRelType = (isBinary) ?
-      MIDPLFactory.eINSTANCE.createPLBinaryModelRel() :
-      MIDPLFactory.eINSTANCE.createPLModelRel();
+      PLMIDFactory.eINSTANCE.createPLBinaryModelRel() :
+        PLMIDFactory.eINSTANCE.createPLModelRel();
     super.addHeavyModelRelType(newPLModelRelType, extensionType.getUri(), extensionType.getSupertypeUri(),
                                extensionType.getName(), extensionType.isAbstract());
 
@@ -51,8 +49,8 @@ public class MIDPLHeavyTypeFactory extends MIDHeavyTypeFactory {
                             ExtensionPointType extensionType, boolean isBinary, ModelRel containerModelRelType)
                               throws MMINTException {
     var newPLMappingType = (isBinary) ?
-      MIDPLFactory.eINSTANCE.createPLBinaryMapping() :
-      MIDPLFactory.eINSTANCE.createPLMapping();
+      PLMIDFactory.eINSTANCE.createPLBinaryMapping() :
+      PLMIDFactory.eINSTANCE.createPLMapping();
 
     return super.addHeavyMappingTypeAndMappingTypeReference(newPLMappingType, extensionType.getUri(),
                                                             extensionType.getSupertypeUri(), extensionType.getName(),
