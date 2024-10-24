@@ -51,7 +51,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateInitialState" id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.StateMachinePLCreateNode">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateInitialState" id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.PLStateMachineCreateNode">
                   <parameters name="classType" value="InitialState"/>
                 </subModelOperations>
               </firstModelOperations>
@@ -62,7 +62,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateFinalState" id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.StateMachinePLCreateNode">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateFinalState" id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.PLStateMachineCreateNode">
                   <parameters name="classType" value="FinalState"/>
                 </subModelOperations>
               </firstModelOperations>
@@ -73,7 +73,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateState" id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.StateMachinePLCreateNode">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateState" id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.PLStateMachineCreateNode">
                   <parameters name="classType" value="State"/>
                 </subModelOperations>
               </firstModelOperations>
@@ -84,7 +84,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateInternalAction" id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.StateMachinePLCreateNode">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateInternalAction" id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.PLStateMachineCreateNode">
                   <parameters name="classType" value="StateAction"/>
                 </subModelOperations>
               </firstModelOperations>
@@ -97,10 +97,10 @@
             <targetViewVariable name="targetView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateTransition" id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.StateMachinePLCreateEdge">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateTransition" id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.PLStateMachineCreateEdge">
+                  <parameters name="classType" value="Transition"/>
                   <parameters name="source" value="var:source"/>
                   <parameters name="target" value="var:target"/>
-                  <parameters name="classType" value="Transition"/>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>

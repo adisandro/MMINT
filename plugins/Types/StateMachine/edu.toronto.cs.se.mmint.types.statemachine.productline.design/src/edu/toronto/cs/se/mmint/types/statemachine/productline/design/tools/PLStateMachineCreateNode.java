@@ -22,7 +22,7 @@ import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.design.tools.CreateNode;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
 
-public class StateMachinePLCreateNode extends CreateNode {
+public class PLStateMachineCreateNode extends CreateNode {
 
   @Override
   protected Command getCommand(TransactionalEditingDomain domain, EObject container, String classType) {

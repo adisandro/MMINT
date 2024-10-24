@@ -43,9 +43,9 @@ public abstract class CreateEdge extends AbstractExternalJavaAction {
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
+    var classType = (String) arg1.get("classType");
     var srcClass = (Class) arg1.get("source");
     var tgtClass = (Class) arg1.get("target");
-    var classType = (String) arg1.get("classType");
     var sSession = SessionManager.INSTANCE.getSession(srcClass);
     var sDomain = sSession.getTransactionalEditingDomain();
     sDomain.getCommandStack().execute(getCommand(sDomain, srcClass, tgtClass, classType));

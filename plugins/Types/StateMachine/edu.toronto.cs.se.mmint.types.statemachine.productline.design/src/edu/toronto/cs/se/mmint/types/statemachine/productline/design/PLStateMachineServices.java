@@ -19,10 +19,10 @@ import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.design.PLServices;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
 
-public class StateMachinePLServices extends PLServices {
+public class PLStateMachineServices extends PLServices {
 
   // use different method names to allow full disabling of StateMachine layer
-  public String getStateMachinePLElementLabel(EObject self) {
+  public String getPLStateMachineElementLabel(EObject self) {
     var pc = ((PLElement) self).getPresenceConditionLabel(true);
     var label = switch (self) {
       case Class c when StateMachinePackage.eINSTANCE.getState() == c.getType() -> {
