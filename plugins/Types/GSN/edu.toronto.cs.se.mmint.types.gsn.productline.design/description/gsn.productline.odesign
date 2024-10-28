@@ -17,7 +17,7 @@
               </style>
             </conditionnalStyles>
           </borderedNodeMappings>
-          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getGSNPLElementLabel" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" width="20" height="10">
+          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" width="20" height="10">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
@@ -25,14 +25,14 @@
         </nodeMappings>
         <nodeMappings name="PLStrategyNode" preconditionExpression="aql: self.type.name = 'Strategy' or self.type.eAllSuperTypes->exists(s | s.name = 'Strategy')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class" reusedBorderedNodeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLGoalNode']/@borderedNodeMappings[name='PLRelationshipDecoratorNode']">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
-          <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="service: getGSNPLElementLabel" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Strategy.svg">
+          <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Strategy.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </nodeMappings>
         <nodeMappings name="PLSolutionNode" preconditionExpression="aql: self.type.name = 'Solution' or self.type.eAllSuperTypes->exists(s | s.name = 'Solution')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
-          <style xsi:type="style:DotDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getGSNPLElementLabel" sizeComputationExpression="15" labelPosition="node" resizeKind="NSEW">
+          <style xsi:type="style:DotDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" sizeComputationExpression="15" labelPosition="node" resizeKind="NSEW">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
@@ -40,14 +40,14 @@
         </nodeMappings>
         <nodeMappings name="PLContextNode" preconditionExpression="aql: self.type.name = 'Context' or self.type.eAllSuperTypes->exists(s | s.name = 'Context')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
-          <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="service: getGSNPLElementLabel" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Context.svg">
+          <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Context.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </nodeMappings>
         <nodeMappings name="PLJustificationNode" preconditionExpression="aql: self.type.name = 'Justification' or self.type.eAllSuperTypes->exists(s | s.name = 'Justification')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
-          <style xsi:type="style:EllipseNodeDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getGSNPLElementLabel" labelPosition="node" resizeKind="NSEW" horizontalDiameterComputationExpression="20" verticalDiameterComputationExpression="10">
+          <style xsi:type="style:EllipseNodeDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" labelPosition="node" resizeKind="NSEW" horizontalDiameterComputationExpression="20" verticalDiameterComputationExpression="10">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
@@ -55,7 +55,7 @@
         </nodeMappings>
         <nodeMappings name="PLAssumptionNode" preconditionExpression="aql: self.type.name = 'Assumption' or self.type.eAllSuperTypes->exists(s | s.name = 'Assumption')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
-          <style xsi:type="style:EllipseNodeDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getGSNPLElementLabel" labelPosition="node" resizeKind="NSEW" horizontalDiameterComputationExpression="20" verticalDiameterComputationExpression="10">
+          <style xsi:type="style:EllipseNodeDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" labelPosition="node" resizeKind="NSEW" horizontalDiameterComputationExpression="20" verticalDiameterComputationExpression="10">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
@@ -65,7 +65,7 @@
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
           <style targetArrow="InputFillClosedArrow">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <centerLabelStyleDescription labelSize="10" showIcon="false" labelExpression="service: getGSNPLElementLabel">
+            <centerLabelStyleDescription labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel">
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
           </style>
@@ -74,7 +74,7 @@
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
           <style targetArrow="InputClosedArrow">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <centerLabelStyleDescription showIcon="false" labelExpression="service: getGSNPLElementLabel">
+            <centerLabelStyleDescription showIcon="false" labelExpression="service: getPLGSNElementLabel">
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
           </style>

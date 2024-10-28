@@ -38,7 +38,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 
-public class VQLQueryAnalysis implements IGSNPLAnalysis {
+public class VQLQueryAnalysis implements IPLGSNAnalysis {
 
   public static ResultPrinter PL_NAME_PRINTER = (result) -> {
     if (result instanceof Class plClass) {
@@ -108,10 +108,10 @@ public class VQLQueryAnalysis implements IGSNPLAnalysis {
   }
 
   @Override
-  public void import_(GSNPLAnalyticTemplate plTemplate, ProductLine productLine) throws Exception {
+  public void import_(PLGSNAnalyticTemplate plTemplate, ProductLine productLine) throws Exception {
     var types = GSNPackage.eINSTANCE;
-    var builder = new GSNPLBuilder(productLine);
-    var queryStrategy = (GSNPLArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
+    var builder = new PLGSNBuilder(productLine);
+    var queryStrategy = (PLGSNArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
       .filter(c -> c.getType() == types.getStrategy())
       .findFirst().get();
     var desc = queryStrategy.getAttribute(types.getArgumentElement_Description()).get(0)
@@ -123,15 +123,15 @@ public class VQLQueryAnalysis implements IGSNPLAnalysis {
   }
 
   @Override
-  public void instantiate(GSNPLAnalyticTemplate plTemplate) throws Exception {
+  public void instantiate(PLGSNAnalyticTemplate plTemplate) throws Exception {
     var types = GSNPackage.eINSTANCE;
     var productLine = (ProductLine) plTemplate.eContainer();
-    var builder = new GSNPLBuilder(productLine);
+    var builder = new PLGSNBuilder(productLine);
     // get template elems
-    var queryStrategy = (GSNPLArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
+    var queryStrategy = (PLGSNArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
       .filter(c -> c.getType() == types.getStrategy())
       .findFirst().get();
-    var safetyGoal = (GSNPLArgumentElement) queryStrategy
+    var safetyGoal = (PLGSNArgumentElement) queryStrategy
       .getReference(types.getSupporter_Supports()).get(0)
       .getReference(types.getSupportedBy_Source()).get(0);
     var filesCtx = queryStrategy
@@ -140,13 +140,13 @@ public class VQLQueryAnalysis implements IGSNPLAnalysis {
     var scenarioGoal = queryStrategy
       .getReference(types.getSupportable_SupportedBy()).get(3)
       .getReference(types.getSupportedBy_Target()).get(0);
-    var resultStrategy = (GSNPLArgumentElement) scenarioGoal
+    var resultStrategy = (PLGSNArgumentElement) scenarioGoal
       .getReference(types.getSupportable_SupportedBy()).get(0)
       .getReference(types.getSupportedBy_Target()).get(0);
     var resultCtx = scenarioGoal
       .getReference(types.getContextualizable_InContextOf()).get(0)
       .getReference(types.getInContextOf_Context()).get(0);
-    var resultGoal = (GSNPLArgumentElement) resultStrategy
+    var resultGoal = (PLGSNArgumentElement) resultStrategy
       .getReference(types.getSupportable_SupportedBy()).get(0)
       .getReference(types.getSupportedBy_Target()).get(0);
     safetyGoal.instantiate(plTemplate);

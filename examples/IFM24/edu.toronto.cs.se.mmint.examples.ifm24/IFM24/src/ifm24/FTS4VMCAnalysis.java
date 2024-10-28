@@ -32,7 +32,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
 
-public class FTS4VMCAnalysis implements IGSNPLAnalysis {
+public class FTS4VMCAnalysis implements IPLGSNAnalysis {
 
   private String presenceCondition2Dot(String pc) {
     return pc.replace("&", "and").replace("|", "or").replace("~", "not ").replace("$true", "True");
@@ -69,10 +69,10 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
   }
 
   @Override
-  public void import_(GSNPLAnalyticTemplate plTemplate, ProductLine productLine) throws Exception {
+  public void import_(PLGSNAnalyticTemplate plTemplate, ProductLine productLine) throws Exception {
     var types = GSNPackage.eINSTANCE;
-    var builder = new GSNPLBuilder(productLine);
-    var mcStrategy = (GSNPLArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
+    var builder = new PLGSNBuilder(productLine);
+    var mcStrategy = (PLGSNArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
       .filter(c -> c.getType() == types.getStrategy())
       .findFirst().get();
     var desc = mcStrategy.getAttribute(types.getArgumentElement_Description()).get(0)
@@ -84,22 +84,22 @@ public class FTS4VMCAnalysis implements IGSNPLAnalysis {
   }
 
   @Override
-  public void instantiate(GSNPLAnalyticTemplate plTemplate) throws Exception {
+  public void instantiate(PLGSNAnalyticTemplate plTemplate) throws Exception {
     var types = GSNPackage.eINSTANCE;
     var productLine = (ProductLine) plTemplate.eContainer();
-    var builder = new GSNPLBuilder(productLine);
+    var builder = new PLGSNBuilder(productLine);
     // convert model to .dot file
-    var mcStrategy = (GSNPLArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
+    var mcStrategy = (PLGSNArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
       .filter(c -> c.getType() == types.getStrategy())
       .findFirst().get();
-    var safetyGoal = (GSNPLArgumentElement) mcStrategy
+    var safetyGoal = (PLGSNArgumentElement) mcStrategy
       .getReference(types.getSupporter_Supports()).get(0)
       .getReference(types.getSupportedBy_Source()).get(0);
     String modelPath;
     var otherTemplate = safetyGoal.getReference(types.getArgumentElement_Templates());
     var isConnected =
       !otherTemplate.isEmpty() &&
-      ((GSNPLTemplate) otherTemplate.get(0)).getAttribute(types.getTemplate_Id()).get(0).equals("QueryAnalysis");
+      ((PLGSNTemplate) otherTemplate.get(0)).getAttribute(types.getTemplate_Id()).get(0).equals("QueryAnalysis");
     if (isConnected) {
       // connected with query analysis template, extract model from it
       var otherFilesCtx = safetyGoal

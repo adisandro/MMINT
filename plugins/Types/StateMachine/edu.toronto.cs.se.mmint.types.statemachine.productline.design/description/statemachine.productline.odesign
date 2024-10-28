@@ -5,7 +5,7 @@
       <layers name="StateMachineProductLine" label="State Machine Product Line">
         <nodeMappings name="PLInitialState" preconditionExpression="aql: self.type.name = 'InitialState'" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
-          <style xsi:type="style:DotDescription" labelSize="10" showIcon="false" labelExpression="service: getStateMachinePLElementLabel" labelPosition="node" resizeKind="NSEW">
+          <style xsi:type="style:DotDescription" labelSize="10" showIcon="false" labelExpression="service: getPLStateMachineElementLabel" labelPosition="node" resizeKind="NSEW">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -13,7 +13,7 @@
         </nodeMappings>
         <nodeMappings name="PLFinalState" preconditionExpression="aql: self.type.name = 'FinalState'" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
-          <style xsi:type="style:DotDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getStateMachinePLElementLabel" labelPosition="node" resizeKind="NSEW">
+          <style xsi:type="style:DotDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getPLStateMachineElementLabel" labelPosition="node" resizeKind="NSEW">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
@@ -23,7 +23,7 @@
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
           <style sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <centerLabelStyleDescription labelSize="10" showIcon="false" labelExpression="service: getStateMachinePLElementLabel">
+            <centerLabelStyleDescription labelSize="10" showIcon="false" labelExpression="service: getPLStateMachineElementLabel">
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
           </style>
@@ -32,13 +32,13 @@
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
           <subNodeMappings name="PLInternalAction" preconditionExpression="aql: self.type.name = 'StateAction' and self.referencesAsTarget.eContainer(productline::Class)->includes(container)" semanticCandidatesExpression="aql: self.eContainer(productline::ProductLine).classes" domainClass="productline.Class">
             <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
-            <style xsi:type="style:SquareDescription" labelSize="10" showIcon="false" labelExpression="service: getStateMachinePLElementLabel" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+            <style xsi:type="style:SquareDescription" labelSize="10" showIcon="false" labelExpression="service: getPLStateMachineElementLabel" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_yellow']"/>
             </style>
           </subNodeMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getStateMachinePLElementLabel" roundedCorner="true">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getPLStateMachineElementLabel" roundedCorner="true">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_yellow']"/>
