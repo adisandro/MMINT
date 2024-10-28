@@ -23,15 +23,15 @@
    <extension
          point="org.eclipse.sirius.externalJavaAction">
       <javaActions
-            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLImportTemplate"
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLGSNImportTemplate"
             id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLImportTemplate">
       </javaActions>
       <javaActions
-            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLInstantiateTemplate"
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLGSNInstantiateTemplate"
             id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLInstantiateTemplate">
       </javaActions>
       <javaActions
-            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLValidateTemplate"
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLGSNValidateTemplate"
             id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLValidateTemplate">
       </javaActions>
       <javaActions

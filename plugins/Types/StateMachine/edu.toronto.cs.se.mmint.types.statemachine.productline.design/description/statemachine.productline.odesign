@@ -108,6 +108,6 @@
         </toolSections>
       </layers>
     </ownedRepresentationExtensions>
-    <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint.types.statemachine.productline.design.StateMachinePLServices"/>
+    <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint.types.statemachine.productline.design.PLStateMachineServices"/>
   </ownedViewpoints>
 </description:Group>

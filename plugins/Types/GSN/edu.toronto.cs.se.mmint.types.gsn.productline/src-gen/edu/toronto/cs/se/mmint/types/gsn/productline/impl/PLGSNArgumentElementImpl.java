@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.EClass;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.productline.impl.ClassImpl;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
@@ -33,13 +33,13 @@ import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
  *
  * @generated
  */
-public class GSNPLArgumentElementImpl extends ClassImpl implements GSNPLArgumentElement {
+public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgumentElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected GSNPLArgumentElementImpl() {
+  protected PLGSNArgumentElementImpl() {
     super();
   }
 
@@ -50,14 +50,14 @@ public class GSNPLArgumentElementImpl extends ClassImpl implements GSNPLArgument
    */
   @Override
   protected EClass eStaticClass() {
-    return GSNPLPackage.Literals.GSNPL_ARGUMENT_ELEMENT;
+    return PLGSNPackage.Literals.GSNPL_ARGUMENT_ELEMENT;
   }
 
   /**
    * @generated NOT
    */
   @Override
-  public void instantiate(GSNPLTemplate template) throws Exception {
+  public void instantiate(PLGSNTemplate template) throws Exception {
     var title = "Instantiate placeholder text";
     //TODO abstract into function
     var node = getType().getName() + " " + String.join(",", getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()));
@@ -83,7 +83,7 @@ public class GSNPLArgumentElementImpl extends ClassImpl implements GSNPLArgument
    * @generated NOT
    */
   @Override
-  public void validate(GSNPLTemplate template) throws Exception {
+  public void validate(PLGSNTemplate template) throws Exception {
     var validAttrs = getAttributes().stream()
       .filter(a -> a.getType() == GSNPackage.eINSTANCE.getArgumentElement_Valid());
     if (getAttributes().stream()
@@ -106,17 +106,17 @@ public class GSNPLArgumentElementImpl extends ClassImpl implements GSNPLArgument
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case GSNPLPackage.GSNPL_ARGUMENT_ELEMENT___VALIDATE__GSNPLTEMPLATE:
+      case PLGSNPackage.GSNPL_ARGUMENT_ELEMENT___VALIDATE__GSNPLTEMPLATE:
         try {
-          validate((GSNPLTemplate)arguments.get(0));
+          validate((PLGSNTemplate)arguments.get(0));
           return null;
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case GSNPLPackage.GSNPL_ARGUMENT_ELEMENT___INSTANTIATE__GSNPLTEMPLATE:
+      case PLGSNPackage.GSNPL_ARGUMENT_ELEMENT___INSTANTIATE__GSNPLTEMPLATE:
         try {
-          instantiate((GSNPLTemplate)arguments.get(0));
+          instantiate((PLGSNTemplate)arguments.get(0));
           return null;
         }
         catch (Throwable throwable) {

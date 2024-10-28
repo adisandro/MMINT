@@ -12,7 +12,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.productline;
 
-import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis;
+import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
 
 
 /**
@@ -21,17 +21,17 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis;
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage#getGSNPLAnalyticTemplate()
+ * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage#getGSNPLAnalyticTemplate()
  * @model
  * @generated
  */
-public interface GSNPLAnalyticTemplate extends GSNPLTemplate {
+public interface PLGSNAnalyticTemplate extends PLGSNTemplate {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @model kind="operation" dataType="edu.toronto.cs.se.mmint.types.gsn.productline.IGSNPLAnalysis" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */
-  IGSNPLAnalysis getAnalysis() throws Exception;
+  IPLGSNAnalysis getAnalysis() throws Exception;
 
 } // GSNPLAnalysisTemplate

@@ -18,7 +18,7 @@
       <!-- @generated gsn.productline -->
       <factory
             uri="model://edu.toronto.cs.se.mmint.types.gsn.productline"
-            class="edu.toronto.cs.se.mmint.types.gsn.productline.provider.GSNPLItemProviderAdapterFactory"
+            class="edu.toronto.cs.se.mmint.types.gsn.productline.provider.PLGSNItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -31,7 +31,7 @@
       <!-- @generated gsn.productline -->
       <extender
             uri="model://edu.toronto.cs.se.mmint.productline"
-            class="edu.toronto.cs.se.mmint.types.gsn.productline.provider.GSNPLItemProviderAdapterFactory$PLChildCreationExtender"/>
+            class="edu.toronto.cs.se.mmint.types.gsn.productline.provider.PLGSNItemProviderAdapterFactory$PLChildCreationExtender"/>
    </extension>
 
 </plugin>

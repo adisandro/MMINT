@@ -85,7 +85,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateGoal" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateGoal" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLGSNCreateNode">
                   <parameters name="classType" value="Goal"/>
                 </subModelOperations>
               </firstModelOperations>
@@ -96,7 +96,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateStrategy" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateStrategy" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLGSNCreateNode">
                   <parameters name="classType" value="Strategy"/>
                 </subModelOperations>
               </firstModelOperations>
@@ -107,7 +107,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateSolution" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateSolution" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLGSNCreateNode">
                   <parameters name="classType" value="Solution"/>
                 </subModelOperations>
               </firstModelOperations>
@@ -118,7 +118,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateContext" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateContext" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLGSNCreateNode">
                   <parameters name="classType" value="Context"/>
                 </subModelOperations>
               </firstModelOperations>
@@ -129,7 +129,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateJustification" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateJustification" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLGSNCreateNode">
                   <parameters name="classType" value="Justification"/>
                 </subModelOperations>
               </firstModelOperations>
@@ -140,7 +140,7 @@
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateAssumption" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateAssumption" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLGSNCreateNode">
                   <parameters name="classType" value="Assumption"/>
                 </subModelOperations>
               </firstModelOperations>
@@ -153,10 +153,10 @@
             <targetViewVariable name="targetView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateSupportedBy" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateEdge">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateSupportedBy" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLGSNCreateEdge">
+                  <parameters name="classType" value="SupportedBy"/>
                   <parameters name="source" value="var:source"/>
                   <parameters name="target" value="var:target"/>
-                  <parameters name="classType" value="SupportedBy"/>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
@@ -168,10 +168,10 @@
             <targetViewVariable name="targetView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
-                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateInContextOf" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateEdge">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateInContextOf" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLGSNCreateEdge">
+                  <parameters name="classType" value="InContextOf"/>
                   <parameters name="source" value="var:source"/>
                   <parameters name="target" value="var:target"/>
-                  <parameters name="classType" value="InContextOf"/>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
@@ -179,9 +179,9 @@
         </toolSections>
         <toolSections name="PLMenus">
           <ownedTools xsi:type="tool_1:GroupMenu" name="MMINTGroup" locationURI="menu:MMINT">
-            <itemDescriptions xsi:type="tool_1:ExternalJavaAction" name="PLImportTemplate" label="Import Template" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLImportTemplate"/>
-            <itemDescriptions xsi:type="tool_1:ExternalJavaAction" name="PLInstantiateTemplate" label="Instantiate Template" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLInstantiateTemplate"/>
-            <itemDescriptions xsi:type="tool_1:ExternalJavaAction" name="PLValidateTemplate" label="Validate Template" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLValidateTemplate"/>
+            <itemDescriptions xsi:type="tool_1:ExternalJavaAction" name="PLImportTemplate" label="Import Template" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLGSNImportTemplate"/>
+            <itemDescriptions xsi:type="tool_1:ExternalJavaAction" name="PLInstantiateTemplate" label="Instantiate Template" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLGSNInstantiateTemplate"/>
+            <itemDescriptions xsi:type="tool_1:ExternalJavaAction" name="PLValidateTemplate" label="Validate Template" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLGSNValidateTemplate"/>
           </ownedTools>
         </toolSections>
         <decorationDescriptionsSet>
@@ -196,7 +196,7 @@
         </customization>
       </layers>
     </ownedRepresentationExtensions>
-    <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint.types.gsn.productline.design.GSNPLServices"/>
+    <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint.types.gsn.productline.design.PLGSNServices"/>
   </ownedViewpoints>
   <extensions xsi:type="properties:ViewExtensionDescription" name="PLProperties">
     <categories name="PLCategory">

@@ -17,10 +17,10 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import edu.toronto.cs.se.mmint.productline.PLElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,17 +32,17 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage
+ * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage
  * @generated
  */
-public class GSNPLSwitch<T> extends Switch<T> {
+public class PLGSNSwitch<T> extends Switch<T> {
   /**
    * The cached model package
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected static GSNPLPackage modelPackage;
+  protected static PLGSNPackage modelPackage;
 
   /**
    * Creates an instance of the switch.
@@ -50,9 +50,9 @@ public class GSNPLSwitch<T> extends Switch<T> {
    * <!-- end-user-doc -->
    * @generated
    */
-  public GSNPLSwitch() {
-    if (GSNPLSwitch.modelPackage == null) {
-      GSNPLSwitch.modelPackage = GSNPLPackage.eINSTANCE;
+  public PLGSNSwitch() {
+    if (PLGSNSwitch.modelPackage == null) {
+      PLGSNSwitch.modelPackage = PLGSNPackage.eINSTANCE;
     }
   }
 
@@ -66,7 +66,7 @@ public class GSNPLSwitch<T> extends Switch<T> {
    */
   @Override
   protected boolean isSwitchFor(EPackage ePackage) {
-    return ePackage == GSNPLSwitch.modelPackage;
+    return ePackage == PLGSNSwitch.modelPackage;
   }
 
   /**
@@ -79,8 +79,8 @@ public class GSNPLSwitch<T> extends Switch<T> {
   @Override
   protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
-      case GSNPLPackage.GSNPL_ARGUMENT_ELEMENT: {
-        var gsnplArgumentElement = (GSNPLArgumentElement)theEObject;
+      case PLGSNPackage.GSNPL_ARGUMENT_ELEMENT: {
+        var gsnplArgumentElement = (PLGSNArgumentElement)theEObject;
         var result = caseGSNPLArgumentElement(gsnplArgumentElement);
         if (result == null) {
           result = caseClass(gsnplArgumentElement);
@@ -93,8 +93,8 @@ public class GSNPLSwitch<T> extends Switch<T> {
         }
         return result;
       }
-      case GSNPLPackage.GSNPL_TEMPLATE: {
-        var gsnplTemplate = (GSNPLTemplate)theEObject;
+      case PLGSNPackage.GSNPL_TEMPLATE: {
+        var gsnplTemplate = (PLGSNTemplate)theEObject;
         var result = caseGSNPLTemplate(gsnplTemplate);
         if (result == null) {
           result = caseClass(gsnplTemplate);
@@ -107,8 +107,8 @@ public class GSNPLSwitch<T> extends Switch<T> {
         }
         return result;
       }
-      case GSNPLPackage.GSNPL_ANALYTIC_TEMPLATE: {
-        var gsnplAnalyticTemplate = (GSNPLAnalyticTemplate)theEObject;
+      case PLGSNPackage.GSNPL_ANALYTIC_TEMPLATE: {
+        var gsnplAnalyticTemplate = (PLGSNAnalyticTemplate)theEObject;
         var result = caseGSNPLAnalyticTemplate(gsnplAnalyticTemplate);
         if (result == null) {
           result = caseGSNPLTemplate(gsnplAnalyticTemplate);
@@ -139,7 +139,7 @@ public class GSNPLSwitch<T> extends Switch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseGSNPLArgumentElement(GSNPLArgumentElement object) {
+  public T caseGSNPLArgumentElement(PLGSNArgumentElement object) {
     return null;
   }
 
@@ -154,7 +154,7 @@ public class GSNPLSwitch<T> extends Switch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseGSNPLTemplate(GSNPLTemplate object) {
+  public T caseGSNPLTemplate(PLGSNTemplate object) {
     return null;
   }
 
@@ -169,7 +169,7 @@ public class GSNPLSwitch<T> extends Switch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseGSNPLAnalyticTemplate(GSNPLAnalyticTemplate object) {
+  public T caseGSNPLAnalyticTemplate(PLGSNAnalyticTemplate object) {
     return null;
   }
 

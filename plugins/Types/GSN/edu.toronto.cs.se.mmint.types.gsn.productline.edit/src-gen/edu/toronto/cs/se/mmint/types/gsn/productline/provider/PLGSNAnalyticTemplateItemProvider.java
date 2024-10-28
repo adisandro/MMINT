@@ -20,22 +20,22 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GSNPLAnalyticTemplateItemProvider extends GSNPLTemplateItemProvider {
+public class PLGSNAnalyticTemplateItemProvider extends PLGSNTemplateItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public GSNPLAnalyticTemplateItemProvider(AdapterFactory adapterFactory) {
+  public PLGSNAnalyticTemplateItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -73,7 +73,7 @@ public class GSNPLAnalyticTemplateItemProvider extends GSNPLTemplateItemProvider
    */
   @Override
   public String getText(Object object) {
-    var label = ((GSNPLAnalyticTemplate)object).getPresenceCondition();
+    var label = ((PLGSNAnalyticTemplate)object).getPresenceCondition();
     return label == null || label.length() == 0 ?
       getString("_UI_GSNPLAnalyticTemplate_type") :
       getString("_UI_GSNPLAnalyticTemplate_type") + " " + label;

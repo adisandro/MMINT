@@ -19,12 +19,12 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import edu.toronto.cs.se.mmint.productline.PLPackage;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLFactory;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
@@ -34,7 +34,7 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class GSNPLPackageImpl extends EPackageImpl implements GSNPLPackage {
+public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -71,12 +71,12 @@ public class GSNPLPackageImpl extends EPackageImpl implements GSNPLPackage {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.eclipse.emf.ecore.EPackage.Registry
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage#eNS_URI
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage#eNS_URI
    * @see #init()
    * @generated
    */
-  private GSNPLPackageImpl() {
-    super(GSNPLPackage.eNS_URI, GSNPLFactory.eINSTANCE);
+  private PLGSNPackageImpl() {
+    super(PLGSNPackage.eNS_URI, PLGSNFactory.eINSTANCE);
   }
   /**
    * <!-- begin-user-doc -->
@@ -88,7 +88,7 @@ public class GSNPLPackageImpl extends EPackageImpl implements GSNPLPackage {
   /**
    * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
    *
-   * <p>This method is used to initialize {@link GSNPLPackage#eINSTANCE} when that field is accessed.
+   * <p>This method is used to initialize {@link PLGSNPackage#eINSTANCE} when that field is accessed.
    * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -97,16 +97,16 @@ public class GSNPLPackageImpl extends EPackageImpl implements GSNPLPackage {
    * @see #initializePackageContents()
    * @generated
    */
-  public static GSNPLPackage init() {
-    if (GSNPLPackageImpl.isInited) {
-      return (GSNPLPackage)EPackage.Registry.INSTANCE.getEPackage(GSNPLPackage.eNS_URI);
+  public static PLGSNPackage init() {
+    if (PLGSNPackageImpl.isInited) {
+      return (PLGSNPackage)EPackage.Registry.INSTANCE.getEPackage(PLGSNPackage.eNS_URI);
     }
 
     // Obtain or create and register package
-    var registeredGSNPLPackage = EPackage.Registry.INSTANCE.get(GSNPLPackage.eNS_URI);
-    var theGSNPLPackage = registeredGSNPLPackage instanceof GSNPLPackageImpl ? (GSNPLPackageImpl)registeredGSNPLPackage : new GSNPLPackageImpl();
+    var registeredGSNPLPackage = EPackage.Registry.INSTANCE.get(PLGSNPackage.eNS_URI);
+    var theGSNPLPackage = registeredGSNPLPackage instanceof PLGSNPackageImpl ? (PLGSNPackageImpl)registeredGSNPLPackage : new PLGSNPackageImpl();
 
-    GSNPLPackageImpl.isInited = true;
+    PLGSNPackageImpl.isInited = true;
 
     // Initialize simple dependencies
     GSNPackage.eINSTANCE.eClass();
@@ -123,7 +123,7 @@ public class GSNPLPackageImpl extends EPackageImpl implements GSNPLPackage {
     theGSNPLPackage.freeze();
 
     // Update the registry and return the package
-    EPackage.Registry.INSTANCE.put(GSNPLPackage.eNS_URI, theGSNPLPackage);
+    EPackage.Registry.INSTANCE.put(PLGSNPackage.eNS_URI, theGSNPLPackage);
     return theGSNPLPackage;
   }
 
@@ -233,8 +233,8 @@ public class GSNPLPackageImpl extends EPackageImpl implements GSNPLPackage {
    * @generated
    */
   @Override
-  public GSNPLFactory getGSNPLFactory() {
-    return (GSNPLFactory)getEFactoryInstance();
+  public PLGSNFactory getGSNPLFactory() {
+    return (PLGSNFactory)getEFactoryInstance();
   }
 
   /**
@@ -258,20 +258,20 @@ public class GSNPLPackageImpl extends EPackageImpl implements GSNPLPackage {
     this.isCreated = true;
 
     // Create classes and their features
-    this.gsnplArgumentElementEClass = createEClass(GSNPLPackage.GSNPL_ARGUMENT_ELEMENT);
-    createEOperation(this.gsnplArgumentElementEClass, GSNPLPackage.GSNPL_ARGUMENT_ELEMENT___VALIDATE__GSNPLTEMPLATE);
-    createEOperation(this.gsnplArgumentElementEClass, GSNPLPackage.GSNPL_ARGUMENT_ELEMENT___INSTANTIATE__GSNPLTEMPLATE);
+    this.gsnplArgumentElementEClass = createEClass(PLGSNPackage.GSNPL_ARGUMENT_ELEMENT);
+    createEOperation(this.gsnplArgumentElementEClass, PLGSNPackage.GSNPL_ARGUMENT_ELEMENT___VALIDATE__GSNPLTEMPLATE);
+    createEOperation(this.gsnplArgumentElementEClass, PLGSNPackage.GSNPL_ARGUMENT_ELEMENT___INSTANTIATE__GSNPLTEMPLATE);
 
-    this.gsnplTemplateEClass = createEClass(GSNPLPackage.GSNPL_TEMPLATE);
-    createEOperation(this.gsnplTemplateEClass, GSNPLPackage.GSNPL_TEMPLATE___VALIDATE);
-    createEOperation(this.gsnplTemplateEClass, GSNPLPackage.GSNPL_TEMPLATE___IMPORT____PRODUCTLINE);
-    createEOperation(this.gsnplTemplateEClass, GSNPLPackage.GSNPL_TEMPLATE___INSTANTIATE);
+    this.gsnplTemplateEClass = createEClass(PLGSNPackage.GSNPL_TEMPLATE);
+    createEOperation(this.gsnplTemplateEClass, PLGSNPackage.GSNPL_TEMPLATE___VALIDATE);
+    createEOperation(this.gsnplTemplateEClass, PLGSNPackage.GSNPL_TEMPLATE___IMPORT____PRODUCTLINE);
+    createEOperation(this.gsnplTemplateEClass, PLGSNPackage.GSNPL_TEMPLATE___INSTANTIATE);
 
-    this.gsnplAnalyticTemplateEClass = createEClass(GSNPLPackage.GSNPL_ANALYTIC_TEMPLATE);
-    createEOperation(this.gsnplAnalyticTemplateEClass, GSNPLPackage.GSNPL_ANALYTIC_TEMPLATE___GET_ANALYSIS);
+    this.gsnplAnalyticTemplateEClass = createEClass(PLGSNPackage.GSNPL_ANALYTIC_TEMPLATE);
+    createEOperation(this.gsnplAnalyticTemplateEClass, PLGSNPackage.GSNPL_ANALYTIC_TEMPLATE___GET_ANALYSIS);
 
     // Create data types
-    this.igsnplAnalysisEDataType = createEDataType(GSNPLPackage.IGSNPL_ANALYSIS);
+    this.igsnplAnalysisEDataType = createEDataType(PLGSNPackage.IGSNPL_ANALYSIS);
   }
 
   /**
@@ -295,9 +295,9 @@ public class GSNPLPackageImpl extends EPackageImpl implements GSNPLPackage {
     this.isInitialized = true;
 
     // Initialize package
-    setName(GSNPLPackage.eNAME);
-    setNsPrefix(GSNPLPackage.eNS_PREFIX);
-    setNsURI(GSNPLPackage.eNS_URI);
+    setName(PLGSNPackage.eNAME);
+    setNsPrefix(PLGSNPackage.eNS_PREFIX);
+    setNsURI(PLGSNPackage.eNS_URI);
 
     // Obtain other dependent packages
     var thePLPackage = (PLPackage)EPackage.Registry.INSTANCE.getEPackage(PLPackage.eNS_URI);
@@ -313,7 +313,7 @@ public class GSNPLPackageImpl extends EPackageImpl implements GSNPLPackage {
     this.gsnplAnalyticTemplateEClass.getESuperTypes().add(this.getGSNPLTemplate());
 
     // Initialize classes, features, and operations; add parameters
-    initEClass(this.gsnplArgumentElementEClass, GSNPLArgumentElement.class, "GSNPLArgumentElement", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.gsnplArgumentElementEClass, PLGSNArgumentElement.class, "GSNPLArgumentElement", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     var op = initEOperation(getGSNPLArgumentElement__Validate__GSNPLTemplate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.getGSNPLTemplate(), "template", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
@@ -323,7 +323,7 @@ public class GSNPLPackageImpl extends EPackageImpl implements GSNPLPackage {
     addEParameter(op, this.getGSNPLTemplate(), "template", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
-    initEClass(this.gsnplTemplateEClass, GSNPLTemplate.class, "GSNPLTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.gsnplTemplateEClass, PLGSNTemplate.class, "GSNPLTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     op = initEOperation(getGSNPLTemplate__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
@@ -335,16 +335,16 @@ public class GSNPLPackageImpl extends EPackageImpl implements GSNPLPackage {
     op = initEOperation(getGSNPLTemplate__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
-    initEClass(this.gsnplAnalyticTemplateEClass, GSNPLAnalyticTemplate.class, "GSNPLAnalyticTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.gsnplAnalyticTemplateEClass, PLGSNAnalyticTemplate.class, "GSNPLAnalyticTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     op = initEOperation(getGSNPLAnalyticTemplate__GetAnalysis(), this.getIGSNPLAnalysis(), "getAnalysis", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
     // Initialize data types
-    initEDataType(this.igsnplAnalysisEDataType, IGSNPLAnalysis.class, "IGSNPLAnalysis", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.igsnplAnalysisEDataType, IPLGSNAnalysis.class, "IGSNPLAnalysis", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
-    createResource(GSNPLPackage.eNS_URI);
+    createResource(PLGSNPackage.eNS_URI);
   }
 
 } //GSNPLPackageImpl

@@ -2,31 +2,31 @@
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
     modelDirectory="/edu.toronto.cs.se.mmint.types.gsn.productline/src-gen"
     editDirectory="/edu.toronto.cs.se.mmint.types.gsn.productline.edit/src-gen" editorDirectory="/edu.toronto.cs.se.mmint.types.gsn.productline.editor/src-gen"
-    modelPluginID="edu.toronto.cs.se.mmint.types.gsn.productline" modelName="GSNPL"
+    modelPluginID="edu.toronto.cs.se.mmint.types.gsn.productline" modelName="PLGSN"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="22.0" copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.genmodel#//gsn ../../edu.toronto.cs.se.mmint.types.gsn.templates/model/gsn.templates.genmodel#//templates ../../edu.toronto.cs.se.mmint.productline/model/productline.genmodel#//productline"
+    complianceLevel="23.0" copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.genmodel#//gsn ../../edu.toronto.cs.se.mmint.types.gsn.templates/model/gsn.templates.genmodel#//templates ../../edu.toronto.cs.se.mmint.productline/model/productline.genmodel#//productline"
     operationReflection="true" importOrganizing="true">
   <foreignModel>gsn.productline.ecore</foreignModel>
-  <genPackages prefix="GSNPL" basePackage="edu.toronto.cs.se.mmint.types.gsn" disposableProviderFactory="true"
+  <genPackages prefix="PLGSN" basePackage="edu.toronto.cs.se.mmint.types.gsn" disposableProviderFactory="true"
       childCreationExtenders="true" fileExtensions="productline" ecorePackage="gsn.productline.ecore#/">
-    <genDataTypes ecoreDataType="gsn.productline.ecore#//IGSNPLAnalysis"/>
-    <genClasses ecoreClass="gsn.productline.ecore#//GSNPLArgumentElement">
-      <genOperations ecoreOperation="gsn.productline.ecore#//GSNPLArgumentElement/validate">
-        <genParameters ecoreParameter="gsn.productline.ecore#//GSNPLArgumentElement/validate/template"/>
+    <genDataTypes ecoreDataType="gsn.productline.ecore#//IPLGSNAnalysis"/>
+    <genClasses ecoreClass="gsn.productline.ecore#//PLGSNArgumentElement">
+      <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNArgumentElement/validate">
+        <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNArgumentElement/validate/template"/>
       </genOperations>
-      <genOperations ecoreOperation="gsn.productline.ecore#//GSNPLArgumentElement/instantiate">
-        <genParameters ecoreParameter="gsn.productline.ecore#//GSNPLArgumentElement/instantiate/template"/>
+      <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNArgumentElement/instantiate">
+        <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNArgumentElement/instantiate/template"/>
       </genOperations>
     </genClasses>
-    <genClasses ecoreClass="gsn.productline.ecore#//GSNPLTemplate">
-      <genOperations ecoreOperation="gsn.productline.ecore#//GSNPLTemplate/validate"/>
-      <genOperations ecoreOperation="gsn.productline.ecore#//GSNPLTemplate/import_">
-        <genParameters ecoreParameter="gsn.productline.ecore#//GSNPLTemplate/import_/productLine"/>
+    <genClasses ecoreClass="gsn.productline.ecore#//PLGSNTemplate">
+      <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/validate"/>
+      <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/import_">
+        <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNTemplate/import_/productLine"/>
       </genOperations>
-      <genOperations ecoreOperation="gsn.productline.ecore#//GSNPLTemplate/instantiate"/>
+      <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/instantiate"/>
     </genClasses>
-    <genClasses ecoreClass="gsn.productline.ecore#//GSNPLAnalyticTemplate">
-      <genOperations ecoreOperation="gsn.productline.ecore#//GSNPLAnalyticTemplate/getAnalysis"/>
+    <genClasses ecoreClass="gsn.productline.ecore#//PLGSNAnalyticTemplate">
+      <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNAnalyticTemplate/getAnalysis"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

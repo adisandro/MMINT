@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLFactory;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
@@ -30,11 +30,11 @@ public class GSNToProductLine extends ToProductLine {
   protected Class createPLClass(EObject modelObj, EClass plType, Map<String, Class> plClasses) {
     var plClass = switch (plType) {
       case EClass e when GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate().isSuperTypeOf(e) ->
-        GSNPLFactory.eINSTANCE.createGSNPLAnalyticTemplate();
+        PLGSNFactory.eINSTANCE.createGSNPLAnalyticTemplate();
       case EClass e when GSNPackage.eINSTANCE.getTemplate().isSuperTypeOf(e) ->
-        GSNPLFactory.eINSTANCE.createGSNPLTemplate();
+        PLGSNFactory.eINSTANCE.createGSNPLTemplate();
       case EClass e when GSNPackage.eINSTANCE.getArgumentElement().isSuperTypeOf(e) ->
-        GSNPLFactory.eINSTANCE.createGSNPLArgumentElement();
+        PLGSNFactory.eINSTANCE.createGSNPLArgumentElement();
       default -> PLFactory.eINSTANCE.createClass();
     };
     addPLClass(plClass, modelObj, plType, plClasses);

@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.EClass;
 
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.impl.ClassImpl;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 /**
@@ -32,13 +32,13 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
  *
  * @generated
  */
-public class GSNPLTemplateImpl extends ClassImpl implements GSNPLTemplate {
+public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected GSNPLTemplateImpl() {
+  protected PLGSNTemplateImpl() {
     super();
   }
 
@@ -49,7 +49,7 @@ public class GSNPLTemplateImpl extends ClassImpl implements GSNPLTemplate {
    */
   @Override
   protected EClass eStaticClass() {
-    return GSNPLPackage.Literals.GSNPL_TEMPLATE;
+    return PLGSNPackage.Literals.GSNPL_TEMPLATE;
   }
 
   /**
@@ -72,8 +72,8 @@ public class GSNPLTemplateImpl extends ClassImpl implements GSNPLTemplate {
   @Override
   public void instantiate() throws Exception {
     var plElements = getStreamOfReference(GSNPackage.eINSTANCE.getTemplate_Elements())
-      .filter(e -> e instanceof GSNPLArgumentElement)
-      .map(e -> (GSNPLArgumentElement) e)
+      .filter(e -> e instanceof PLGSNArgumentElement)
+      .map(e -> (PLGSNArgumentElement) e)
       .collect(Collectors.toList());
     for (var plElement : plElements) {
       if (plElement.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Valid()).stream()
@@ -92,8 +92,8 @@ public class GSNPLTemplateImpl extends ClassImpl implements GSNPLTemplate {
   @Override
   public void validate() throws Exception {
     var plElements = getStreamOfReference(GSNPackage.eINSTANCE.getTemplate_Elements())
-      .filter(e -> e instanceof GSNPLArgumentElement)
-      .map(e -> (GSNPLArgumentElement) e)
+      .filter(e -> e instanceof PLGSNArgumentElement)
+      .map(e -> (PLGSNArgumentElement) e)
       .collect(Collectors.toList());
     for (var plElement : plElements) {
       if (plElement.eContainer() == null) { // == deleted
@@ -111,7 +111,7 @@ public class GSNPLTemplateImpl extends ClassImpl implements GSNPLTemplate {
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case GSNPLPackage.GSNPL_TEMPLATE___VALIDATE:
+      case PLGSNPackage.GSNPL_TEMPLATE___VALIDATE:
         try {
           validate();
           return null;
@@ -119,7 +119,7 @@ public class GSNPLTemplateImpl extends ClassImpl implements GSNPLTemplate {
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case GSNPLPackage.GSNPL_TEMPLATE___IMPORT____PRODUCTLINE:
+      case PLGSNPackage.GSNPL_TEMPLATE___IMPORT____PRODUCTLINE:
         try {
           import_((ProductLine)arguments.get(0));
           return null;
@@ -127,7 +127,7 @@ public class GSNPLTemplateImpl extends ClassImpl implements GSNPLTemplate {
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case GSNPLPackage.GSNPL_TEMPLATE___INSTANTIATE:
+      case PLGSNPackage.GSNPL_TEMPLATE___INSTANTIATE:
         try {
           instantiate();
           return null;

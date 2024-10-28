@@ -19,17 +19,17 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage
+ * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage
  * @generated
  */
-public interface GSNPLFactory extends EFactory {
+public interface PLGSNFactory extends EFactory {
   /**
    * The singleton instance of the factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  GSNPLFactory eINSTANCE = edu.toronto.cs.se.mmint.types.gsn.productline.impl.GSNPLFactoryImpl.init();
+  PLGSNFactory eINSTANCE = edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNFactoryImpl.init();
 
   /**
    * Returns a new object of class '<em>Argument Element</em>'.
@@ -38,7 +38,7 @@ public interface GSNPLFactory extends EFactory {
    * @return a new object of class '<em>Argument Element</em>'.
    * @generated
    */
-  GSNPLArgumentElement createGSNPLArgumentElement();
+  PLGSNArgumentElement createGSNPLArgumentElement();
 
   /**
    * Returns a new object of class '<em>Template</em>'.
@@ -47,7 +47,7 @@ public interface GSNPLFactory extends EFactory {
    * @return a new object of class '<em>Template</em>'.
    * @generated
    */
-  GSNPLTemplate createGSNPLTemplate();
+  PLGSNTemplate createGSNPLTemplate();
 
   /**
    * Returns a new object of class '<em>Analytic Template</em>'.
@@ -56,7 +56,7 @@ public interface GSNPLFactory extends EFactory {
    * @return a new object of class '<em>Analytic Template</em>'.
    * @generated
    */
-  GSNPLAnalyticTemplate createGSNPLAnalyticTemplate();
+  PLGSNAnalyticTemplate createGSNPLAnalyticTemplate();
 
   /**
    * Returns the package supported by this factory.
@@ -65,6 +65,6 @@ public interface GSNPLFactory extends EFactory {
    * @return the package supported by this factory.
    * @generated
    */
-  GSNPLPackage getGSNPLPackage();
+  PLGSNPackage getGSNPLPackage();
 
 } //GSNPLFactory

@@ -35,11 +35,11 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 
-public class GSNPLImportTemplate extends AbstractExternalJavaAction {
+public class PLGSNImportTemplate extends AbstractExternalJavaAction {
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -92,7 +92,7 @@ public class GSNPLImportTemplate extends AbstractExternalJavaAction {
         var toPLOut = toPL.startInstance(toPL.checkAllowedInputs(ECollections.asEList(templateModel)), properties,
                                          ECollections.emptyEList(), Map.of(), null);
         var templatePL = (ProductLine) toPLOut.getOutputsByName().get("productLine").getEMFInstanceRoot();
-        var plTemplate = (GSNPLTemplate) templatePL.getClasses().stream()
+        var plTemplate = (PLGSNTemplate) templatePL.getClasses().stream()
           .filter(c -> c.instanceOf(GSNPackage.eINSTANCE.getTemplate()))
           .findFirst().get();
         plTemplate.import_(this.pl);

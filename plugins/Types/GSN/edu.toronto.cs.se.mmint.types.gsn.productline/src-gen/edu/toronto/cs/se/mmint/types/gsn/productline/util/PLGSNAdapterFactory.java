@@ -18,27 +18,27 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.productline.PLElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage
+ * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage
  * @generated
  */
-public class GSNPLAdapterFactory extends AdapterFactoryImpl {
+public class PLGSNAdapterFactory extends AdapterFactoryImpl {
   /**
    * The cached model package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected static GSNPLPackage modelPackage;
+  protected static PLGSNPackage modelPackage;
 
   /**
    * Creates an instance of the adapter factory.
@@ -46,9 +46,9 @@ public class GSNPLAdapterFactory extends AdapterFactoryImpl {
    * <!-- end-user-doc -->
    * @generated
    */
-  public GSNPLAdapterFactory() {
-    if (GSNPLAdapterFactory.modelPackage == null) {
-      GSNPLAdapterFactory.modelPackage = GSNPLPackage.eINSTANCE;
+  public PLGSNAdapterFactory() {
+    if (PLGSNAdapterFactory.modelPackage == null) {
+      PLGSNAdapterFactory.modelPackage = PLGSNPackage.eINSTANCE;
     }
   }
 
@@ -62,11 +62,11 @@ public class GSNPLAdapterFactory extends AdapterFactoryImpl {
    */
   @Override
   public boolean isFactoryForType(Object object) {
-    if (object == GSNPLAdapterFactory.modelPackage) {
+    if (object == PLGSNAdapterFactory.modelPackage) {
       return true;
     }
     if (object instanceof EObject) {
-      return ((EObject)object).eClass().getEPackage() == GSNPLAdapterFactory.modelPackage;
+      return ((EObject)object).eClass().getEPackage() == PLGSNAdapterFactory.modelPackage;
     }
     return false;
   }
@@ -77,18 +77,18 @@ public class GSNPLAdapterFactory extends AdapterFactoryImpl {
    * <!-- end-user-doc -->
    * @generated
    */
-  protected GSNPLSwitch<Adapter> modelSwitch =
-    new GSNPLSwitch<>() {
+  protected PLGSNSwitch<Adapter> modelSwitch =
+    new PLGSNSwitch<>() {
       @Override
-      public Adapter caseGSNPLArgumentElement(GSNPLArgumentElement object) {
+      public Adapter caseGSNPLArgumentElement(PLGSNArgumentElement object) {
         return createGSNPLArgumentElementAdapter();
       }
       @Override
-      public Adapter caseGSNPLTemplate(GSNPLTemplate object) {
+      public Adapter caseGSNPLTemplate(PLGSNTemplate object) {
         return createGSNPLTemplateAdapter();
       }
       @Override
-      public Adapter caseGSNPLAnalyticTemplate(GSNPLAnalyticTemplate object) {
+      public Adapter caseGSNPLAnalyticTemplate(PLGSNAnalyticTemplate object) {
         return createGSNPLAnalyticTemplateAdapter();
       }
       @Override
@@ -120,13 +120,13 @@ public class GSNPLAdapterFactory extends AdapterFactoryImpl {
 
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement <em>Argument Element</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement <em>Argument Element</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement
    * @generated
    */
   public Adapter createGSNPLArgumentElementAdapter() {
@@ -134,13 +134,13 @@ public class GSNPLAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate <em>Template</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate <em>Template</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate
    * @generated
    */
   public Adapter createGSNPLTemplateAdapter() {
@@ -148,13 +148,13 @@ public class GSNPLAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate <em>Analytic Template</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate <em>Analytic Template</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate
    * @generated
    */
   public Adapter createGSNPLAnalyticTemplateAdapter() {

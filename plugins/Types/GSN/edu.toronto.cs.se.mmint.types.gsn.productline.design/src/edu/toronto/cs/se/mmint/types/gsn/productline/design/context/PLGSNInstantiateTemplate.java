@@ -27,11 +27,11 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
-public class GSNPLInstantiateTemplate extends AbstractExternalJavaAction {
+public class PLGSNInstantiateTemplate extends AbstractExternalJavaAction {
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -39,7 +39,7 @@ public class GSNPLInstantiateTemplate extends AbstractExternalJavaAction {
       return false;
     }
     var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    if (!(modelObj instanceof GSNPLArgumentElement plTemplateElem)) {
+    if (!(modelObj instanceof PLGSNArgumentElement plTemplateElem)) {
       return false;
     }
     var plTemplates = plTemplateElem.getReference(GSNPackage.eINSTANCE.getArgumentElement_Templates());
@@ -55,9 +55,9 @@ public class GSNPLInstantiateTemplate extends AbstractExternalJavaAction {
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var plTemplateElem = (GSNPLArgumentElement) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
+    var plTemplateElem = (PLGSNArgumentElement) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
     var plTemplates = plTemplateElem.getStreamOfReference(GSNPackage.eINSTANCE.getArgumentElement_Templates())
-      .map(c -> (GSNPLTemplate) c)
+      .map(c -> (PLGSNTemplate) c)
       .collect(Collectors.toList());
     var sSession = SessionManager.INSTANCE.getSession(plTemplateElem);
     var sDomain = sSession.getTransactionalEditingDomain();
@@ -65,9 +65,9 @@ public class GSNPLInstantiateTemplate extends AbstractExternalJavaAction {
   }
 
   private class GSNPLInstantiateTemplateCommand extends RecordingCommand {
-    List<GSNPLTemplate> plTemplates;
+    List<PLGSNTemplate> plTemplates;
 
-    public GSNPLInstantiateTemplateCommand(TransactionalEditingDomain domain, List<GSNPLTemplate> plTemplates) {
+    public GSNPLInstantiateTemplateCommand(TransactionalEditingDomain domain, List<PLGSNTemplate> plTemplates) {
       super(domain);
       this.plTemplates = plTemplates;
     }

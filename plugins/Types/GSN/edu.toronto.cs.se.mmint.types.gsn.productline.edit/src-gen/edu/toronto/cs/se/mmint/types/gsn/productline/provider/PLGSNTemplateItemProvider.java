@@ -22,22 +22,22 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import edu.toronto.cs.se.mmint.productline.provider.ClassItemProvider;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GSNPLArgumentElementItemProvider extends ClassItemProvider {
+public class PLGSNTemplateItemProvider extends ClassItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public GSNPLArgumentElementItemProvider(AdapterFactory adapterFactory) {
+  public PLGSNTemplateItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -57,14 +57,14 @@ public class GSNPLArgumentElementItemProvider extends ClassItemProvider {
   }
 
   /**
-   * This returns GSNPLArgumentElement.gif.
+   * This returns GSNPLTemplate.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/GSNPLArgumentElement"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/GSNPLTemplate"));
   }
 
   /**
@@ -75,10 +75,10 @@ public class GSNPLArgumentElementItemProvider extends ClassItemProvider {
    */
   @Override
   public String getText(Object object) {
-    var label = ((GSNPLArgumentElement)object).getPresenceCondition();
+    var label = ((PLGSNTemplate)object).getPresenceCondition();
     return label == null || label.length() == 0 ?
-      getString("_UI_GSNPLArgumentElement_type") :
-      getString("_UI_GSNPLArgumentElement_type") + " " + label;
+      getString("_UI_GSNPLTemplate_type") :
+      getString("_UI_GSNPLTemplate_type") + " " + label;
   }
 
 
@@ -115,7 +115,7 @@ public class GSNPLArgumentElementItemProvider extends ClassItemProvider {
    */
   @Override
   public ResourceLocator getResourceLocator() {
-    return GSNPLEditPlugin.INSTANCE;
+    return PLGSNEditPlugin.INSTANCE;
   }
 
 }

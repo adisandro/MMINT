@@ -25,14 +25,14 @@ import edu.toronto.cs.se.modelepedia.gsn.provider.GSNEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public final class GSNPLEditPlugin extends EMFPlugin {
+public final class PLGSNEditPlugin extends EMFPlugin {
   /**
    * Keep track of the singleton.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final GSNPLEditPlugin INSTANCE = new GSNPLEditPlugin();
+  public static final PLGSNEditPlugin INSTANCE = new PLGSNEditPlugin();
 
   /**
    * Keep track of the singleton.
@@ -48,7 +48,7 @@ public final class GSNPLEditPlugin extends EMFPlugin {
    * <!-- end-user-doc -->
    * @generated
    */
-  public GSNPLEditPlugin() {
+  public PLGSNEditPlugin() {
     super
       (new ResourceLocator [] {
          GSNEditPlugin.INSTANCE,
@@ -66,7 +66,7 @@ public final class GSNPLEditPlugin extends EMFPlugin {
    */
   @Override
   public ResourceLocator getPluginResourceLocator() {
-    return GSNPLEditPlugin.plugin;
+    return PLGSNEditPlugin.plugin;
   }
 
   /**
@@ -77,7 +77,7 @@ public final class GSNPLEditPlugin extends EMFPlugin {
    * @generated
    */
   public static Implementation getPlugin() {
-    return GSNPLEditPlugin.plugin;
+    return PLGSNEditPlugin.plugin;
   }
 
   /**
@@ -98,7 +98,7 @@ public final class GSNPLEditPlugin extends EMFPlugin {
 
       // Remember the static instance.
       //
-      GSNPLEditPlugin.plugin = this;
+      PLGSNEditPlugin.plugin = this;
     }
   }
 

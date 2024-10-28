@@ -24,9 +24,9 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
-import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
+import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 
 /**
@@ -36,13 +36,13 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
  *
  * @generated
  */
-public class GSNPLAnalyticTemplateImpl extends GSNPLTemplateImpl implements GSNPLAnalyticTemplate {
+public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGSNAnalyticTemplate {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected GSNPLAnalyticTemplateImpl() {
+  protected PLGSNAnalyticTemplateImpl() {
     super();
   }
 
@@ -53,7 +53,7 @@ public class GSNPLAnalyticTemplateImpl extends GSNPLTemplateImpl implements GSNP
    */
   @Override
   protected EClass eStaticClass() {
-    return GSNPLPackage.Literals.GSNPL_ANALYTIC_TEMPLATE;
+    return PLGSNPackage.Literals.GSNPL_ANALYTIC_TEMPLATE;
   }
 
   /**
@@ -64,7 +64,7 @@ public class GSNPLAnalyticTemplateImpl extends GSNPLTemplateImpl implements GSNP
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case GSNPLPackage.GSNPL_ANALYTIC_TEMPLATE___GET_ANALYSIS:
+      case PLGSNPackage.GSNPL_ANALYTIC_TEMPLATE___GET_ANALYSIS:
         try {
           return getAnalysis();
         }
@@ -79,7 +79,7 @@ public class GSNPLAnalyticTemplateImpl extends GSNPLTemplateImpl implements GSNP
    * @generated NOT
    */
   @Override
-  public IGSNPLAnalysis getAnalysis() throws Exception {
+  public IPLGSNAnalysis getAnalysis() throws Exception {
     var javaPath = getAttribute(GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_AnalysisPath());
     if (javaPath.isEmpty()) {
       throw new MMINTException("Missing analysis runner Java path");
@@ -92,7 +92,7 @@ public class GSNPLAnalyticTemplateImpl extends GSNPLTemplateImpl implements GSNP
         classLoader = bundle.adapt(BundleWiring.class).getClassLoader();
       }
     }
-    return (IGSNPLAnalysis) FileUtils.loadClassFromWorkspace(javaPath.get(0), classLoader);
+    return (IPLGSNAnalysis) FileUtils.loadClassFromWorkspace(javaPath.get(0), classLoader);
   }
 
   /**

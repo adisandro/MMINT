@@ -21,11 +21,11 @@ import edu.toronto.cs.se.mmint.productline.ProductLine;
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage#getGSNPLTemplate()
+ * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage#getGSNPLTemplate()
  * @model
  * @generated
  */
-public interface GSNPLTemplate extends edu.toronto.cs.se.mmint.productline.Class {
+public interface PLGSNTemplate extends edu.toronto.cs.se.mmint.productline.Class {
 
   /**
    * <!-- begin-user-doc -->

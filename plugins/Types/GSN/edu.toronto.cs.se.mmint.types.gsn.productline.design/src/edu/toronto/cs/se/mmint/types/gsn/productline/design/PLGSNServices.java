@@ -19,10 +19,10 @@ import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.design.PLServices;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
-public class GSNPLServices extends PLServices {
+public class PLGSNServices extends PLServices {
 
   // use different method names to allow full disabling of GSN layer
-  public String getGSNPLElementLabel(EObject self) {
+  public String getPLGSNElementLabel(EObject self) {
     var pc = ((PLElement) self).getPresenceConditionLabel(true);
     var label = switch (self) {
       case Class c when c.instanceOf(GSNPackage.eINSTANCE.getArgumentElement()) -> {

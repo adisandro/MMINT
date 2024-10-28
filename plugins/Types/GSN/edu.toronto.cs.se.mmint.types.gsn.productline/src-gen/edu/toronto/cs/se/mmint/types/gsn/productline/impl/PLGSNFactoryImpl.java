@@ -19,12 +19,12 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLFactory;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,16 +32,16 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis;
  * <!-- end-user-doc -->
  * @generated
  */
-public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
+public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
   /**
    * Creates the default factory implementation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static GSNPLFactory init() {
+  public static PLGSNFactory init() {
     try {
-      var theGSNPLFactory = (GSNPLFactory)EPackage.Registry.INSTANCE.getEFactory(GSNPLPackage.eNS_URI);
+      var theGSNPLFactory = (PLGSNFactory)EPackage.Registry.INSTANCE.getEFactory(PLGSNPackage.eNS_URI);
       if (theGSNPLFactory != null) {
         return theGSNPLFactory;
       }
@@ -49,7 +49,7 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
     catch (Exception exception) {
       EcorePlugin.INSTANCE.log(exception);
     }
-    return new GSNPLFactoryImpl();
+    return new PLGSNFactoryImpl();
   }
 
   /**
@@ -58,7 +58,7 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public GSNPLFactoryImpl() {
+  public PLGSNFactoryImpl() {
     super();
   }
 
@@ -70,9 +70,9 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
   @Override
   public EObject create(EClass eClass) {
     return switch (eClass.getClassifierID()) {
-    case GSNPLPackage.GSNPL_ARGUMENT_ELEMENT -> createGSNPLArgumentElement();
-    case GSNPLPackage.GSNPL_TEMPLATE -> createGSNPLTemplate();
-    case GSNPLPackage.GSNPL_ANALYTIC_TEMPLATE -> createGSNPLAnalyticTemplate();
+    case PLGSNPackage.GSNPL_ARGUMENT_ELEMENT -> createGSNPLArgumentElement();
+    case PLGSNPackage.GSNPL_TEMPLATE -> createGSNPLTemplate();
+    case PLGSNPackage.GSNPL_ANALYTIC_TEMPLATE -> createGSNPLAnalyticTemplate();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     };
   }
@@ -85,7 +85,7 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
   @Override
   public Object createFromString(EDataType eDataType, String initialValue) {
     return switch (eDataType.getClassifierID()) {
-    case GSNPLPackage.IGSNPL_ANALYSIS -> createIGSNPLAnalysisFromString(eDataType, initialValue);
+    case PLGSNPackage.IGSNPL_ANALYSIS -> createIGSNPLAnalysisFromString(eDataType, initialValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -98,7 +98,7 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
   @Override
   public String convertToString(EDataType eDataType, Object instanceValue) {
     return switch (eDataType.getClassifierID()) {
-    case GSNPLPackage.IGSNPL_ANALYSIS -> convertIGSNPLAnalysisToString(eDataType, instanceValue);
+    case PLGSNPackage.IGSNPL_ANALYSIS -> convertIGSNPLAnalysisToString(eDataType, instanceValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -109,8 +109,8 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
    * @generated
    */
   @Override
-  public GSNPLArgumentElement createGSNPLArgumentElement() {
-    GSNPLArgumentElementImpl gsnplArgumentElement = new GSNPLArgumentElementImpl();
+  public PLGSNArgumentElement createGSNPLArgumentElement() {
+    PLGSNArgumentElementImpl gsnplArgumentElement = new PLGSNArgumentElementImpl();
     return gsnplArgumentElement;
   }
 
@@ -120,8 +120,8 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
    * @generated
    */
   @Override
-  public GSNPLTemplate createGSNPLTemplate() {
-    GSNPLTemplateImpl gsnplTemplate = new GSNPLTemplateImpl();
+  public PLGSNTemplate createGSNPLTemplate() {
+    PLGSNTemplateImpl gsnplTemplate = new PLGSNTemplateImpl();
     return gsnplTemplate;
   }
 
@@ -131,8 +131,8 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
    * @generated
    */
   @Override
-  public GSNPLAnalyticTemplate createGSNPLAnalyticTemplate() {
-    GSNPLAnalyticTemplateImpl gsnplAnalyticTemplate = new GSNPLAnalyticTemplateImpl();
+  public PLGSNAnalyticTemplate createGSNPLAnalyticTemplate() {
+    PLGSNAnalyticTemplateImpl gsnplAnalyticTemplate = new PLGSNAnalyticTemplateImpl();
     return gsnplAnalyticTemplate;
   }
 
@@ -141,8 +141,8 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public IGSNPLAnalysis createIGSNPLAnalysisFromString(EDataType eDataType, String initialValue) {
-    return (IGSNPLAnalysis)super.createFromString(eDataType, initialValue);
+  public IPLGSNAnalysis createIGSNPLAnalysisFromString(EDataType eDataType, String initialValue) {
+    return (IPLGSNAnalysis)super.createFromString(eDataType, initialValue);
   }
 
   /**
@@ -160,8 +160,8 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
    * @generated
    */
   @Override
-  public GSNPLPackage getGSNPLPackage() {
-    return (GSNPLPackage)getEPackage();
+  public PLGSNPackage getGSNPLPackage() {
+    return (PLGSNPackage)getEPackage();
   }
 
   /**
@@ -171,8 +171,8 @@ public class GSNPLFactoryImpl extends EFactoryImpl implements GSNPLFactory {
    * @generated
    */
   @Deprecated
-  public static GSNPLPackage getPackage() {
-    return GSNPLPackage.eINSTANCE;
+  public static PLGSNPackage getPackage() {
+    return PLGSNPackage.eINSTANCE;
   }
 
 } //GSNPLFactoryImpl

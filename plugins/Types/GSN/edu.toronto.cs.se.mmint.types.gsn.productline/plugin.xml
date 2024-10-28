@@ -17,7 +17,7 @@
       <!-- @generated gsn.productline -->
       <package
             uri="model://edu.toronto.cs.se.mmint.types.gsn.productline"
-            class="edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage"
+            class="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage"
             genModel="model/gsn.productline.genmodel"/>
    </extension>
 

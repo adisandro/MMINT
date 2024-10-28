@@ -19,18 +19,18 @@ package edu.toronto.cs.se.mmint.types.gsn.productline;
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLPackage#getGSNPLArgumentElement()
+ * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage#getGSNPLArgumentElement()
  * @model
  * @generated
  */
-public interface GSNPLArgumentElement extends edu.toronto.cs.se.mmint.productline.Class {
+public interface PLGSNArgumentElement extends edu.toronto.cs.se.mmint.productline.Class {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */
-  void validate(GSNPLTemplate template) throws Exception;
+  void validate(PLGSNTemplate template) throws Exception;
 
   /**
    * <!-- begin-user-doc -->
@@ -38,6 +38,6 @@ public interface GSNPLArgumentElement extends edu.toronto.cs.se.mmint.productlin
    * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */
-  void instantiate(GSNPLTemplate template) throws Exception;
+  void instantiate(PLGSNTemplate template) throws Exception;
 
 } // GSNPLArgumentElement

@@ -39,8 +39,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.util.PLSwitch;
-import edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLFactory;
-import edu.toronto.cs.se.mmint.types.gsn.productline.util.GSNPLAdapterFactory;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
+import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -51,7 +51,7 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.util.GSNPLAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class GSNPLItemProviderAdapterFactory extends GSNPLAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class PLGSNItemProviderAdapterFactory extends PLGSNAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
   /**
    * This keeps track of the root adapter factory that delegates to this adapter factory.
    * <!-- begin-user-doc -->
@@ -82,7 +82,7 @@ public class GSNPLItemProviderAdapterFactory extends GSNPLAdapterFactory impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public GSNPLItemProviderAdapterFactory() {
+  public PLGSNItemProviderAdapterFactory() {
     this.supportedTypes.add(IEditingDomainItemProvider.class);
     this.supportedTypes.add(IStructuredItemContentProvider.class);
     this.supportedTypes.add(ITreeItemContentProvider.class);
@@ -91,15 +91,15 @@ public class GSNPLItemProviderAdapterFactory extends GSNPLAdapterFactory impleme
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement} instances.
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected GSNPLArgumentElementItemProvider gsnplArgumentElementItemProvider;
+  protected PLGSNArgumentElementItemProvider gsnplArgumentElementItemProvider;
 
   /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLArgumentElement}.
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -107,22 +107,22 @@ public class GSNPLItemProviderAdapterFactory extends GSNPLAdapterFactory impleme
   @Override
   public Adapter createGSNPLArgumentElementAdapter() {
     if (this.gsnplArgumentElementItemProvider == null) {
-      this.gsnplArgumentElementItemProvider = new GSNPLArgumentElementItemProvider(this);
+      this.gsnplArgumentElementItemProvider = new PLGSNArgumentElementItemProvider(this);
     }
 
     return this.gsnplArgumentElementItemProvider;
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate} instances.
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected GSNPLTemplateItemProvider gsnplTemplateItemProvider;
+  protected PLGSNTemplateItemProvider gsnplTemplateItemProvider;
 
   /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLTemplate}.
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -130,22 +130,22 @@ public class GSNPLItemProviderAdapterFactory extends GSNPLAdapterFactory impleme
   @Override
   public Adapter createGSNPLTemplateAdapter() {
     if (this.gsnplTemplateItemProvider == null) {
-      this.gsnplTemplateItemProvider = new GSNPLTemplateItemProvider(this);
+      this.gsnplTemplateItemProvider = new PLGSNTemplateItemProvider(this);
     }
 
     return this.gsnplTemplateItemProvider;
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate} instances.
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected GSNPLAnalyticTemplateItemProvider gsnplAnalyticTemplateItemProvider;
+  protected PLGSNAnalyticTemplateItemProvider gsnplAnalyticTemplateItemProvider;
 
   /**
-   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.GSNPLAnalyticTemplate}.
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -153,7 +153,7 @@ public class GSNPLItemProviderAdapterFactory extends GSNPLAdapterFactory impleme
   @Override
   public Adapter createGSNPLAnalyticTemplateAdapter() {
     if (this.gsnplAnalyticTemplateItemProvider == null) {
-      this.gsnplAnalyticTemplateItemProvider = new GSNPLAnalyticTemplateItemProvider(this);
+      this.gsnplAnalyticTemplateItemProvider = new PLGSNAnalyticTemplateItemProvider(this);
     }
 
     return this.gsnplAnalyticTemplateItemProvider;
@@ -325,17 +325,17 @@ public class GSNPLItemProviderAdapterFactory extends GSNPLAdapterFactory impleme
         this.newChildDescriptors.add
           (createChildParameter
             (PLPackage.Literals.PRODUCT_LINE__CLASSES,
-             GSNPLFactory.eINSTANCE.createGSNPLArgumentElement()));
+             PLGSNFactory.eINSTANCE.createGSNPLArgumentElement()));
 
         this.newChildDescriptors.add
           (createChildParameter
             (PLPackage.Literals.PRODUCT_LINE__CLASSES,
-             GSNPLFactory.eINSTANCE.createGSNPLTemplate()));
+             PLGSNFactory.eINSTANCE.createGSNPLTemplate()));
 
         this.newChildDescriptors.add
           (createChildParameter
             (PLPackage.Literals.PRODUCT_LINE__CLASSES,
-             GSNPLFactory.eINSTANCE.createGSNPLAnalyticTemplate()));
+             PLGSNFactory.eINSTANCE.createGSNPLAnalyticTemplate()));
 
         return null;
       }
@@ -370,7 +370,7 @@ public class GSNPLItemProviderAdapterFactory extends GSNPLAdapterFactory impleme
      */
     @Override
     public ResourceLocator getResourceLocator() {
-      return GSNPLEditPlugin.INSTANCE;
+      return PLGSNEditPlugin.INSTANCE;
     }
   }
 
