@@ -21,7 +21,7 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage#getGSNPLAnalyticTemplate()
+ * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage#getPLGSNAnalyticTemplate()
  * @model
  * @generated
  */
@@ -29,7 +29,7 @@ public interface PLGSNAnalyticTemplate extends PLGSNTemplate {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model kind="operation" dataType="edu.toronto.cs.se.mmint.types.gsn.productline.IGSNPLAnalysis" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
+   * @model kind="operation" dataType="edu.toronto.cs.se.mmint.types.gsn.productline.IPLGSNAnalysis" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */
   IPLGSNAnalysis getAnalysis() throws Exception;

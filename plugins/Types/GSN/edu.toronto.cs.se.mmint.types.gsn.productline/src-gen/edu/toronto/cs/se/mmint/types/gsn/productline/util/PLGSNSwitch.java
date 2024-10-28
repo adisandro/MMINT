@@ -79,45 +79,45 @@ public class PLGSNSwitch<T> extends Switch<T> {
   @Override
   protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
-      case PLGSNPackage.GSNPL_ARGUMENT_ELEMENT: {
-        var gsnplArgumentElement = (PLGSNArgumentElement)theEObject;
-        var result = caseGSNPLArgumentElement(gsnplArgumentElement);
+      case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT: {
+        var plgsnArgumentElement = (PLGSNArgumentElement)theEObject;
+        var result = casePLGSNArgumentElement(plgsnArgumentElement);
         if (result == null) {
-          result = caseClass(gsnplArgumentElement);
+          result = caseClass(plgsnArgumentElement);
         }
         if (result == null) {
-          result = casePLElement(gsnplArgumentElement);
-        }
-        if (result == null) {
-          result = defaultCase(theEObject);
-        }
-        return result;
-      }
-      case PLGSNPackage.GSNPL_TEMPLATE: {
-        var gsnplTemplate = (PLGSNTemplate)theEObject;
-        var result = caseGSNPLTemplate(gsnplTemplate);
-        if (result == null) {
-          result = caseClass(gsnplTemplate);
-        }
-        if (result == null) {
-          result = casePLElement(gsnplTemplate);
+          result = casePLElement(plgsnArgumentElement);
         }
         if (result == null) {
           result = defaultCase(theEObject);
         }
         return result;
       }
-      case PLGSNPackage.GSNPL_ANALYTIC_TEMPLATE: {
-        var gsnplAnalyticTemplate = (PLGSNAnalyticTemplate)theEObject;
-        var result = caseGSNPLAnalyticTemplate(gsnplAnalyticTemplate);
+      case PLGSNPackage.PLGSN_TEMPLATE: {
+        var plgsnTemplate = (PLGSNTemplate)theEObject;
+        var result = casePLGSNTemplate(plgsnTemplate);
         if (result == null) {
-          result = caseGSNPLTemplate(gsnplAnalyticTemplate);
+          result = caseClass(plgsnTemplate);
         }
         if (result == null) {
-          result = caseClass(gsnplAnalyticTemplate);
+          result = casePLElement(plgsnTemplate);
         }
         if (result == null) {
-          result = casePLElement(gsnplAnalyticTemplate);
+          result = defaultCase(theEObject);
+        }
+        return result;
+      }
+      case PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE: {
+        var plgsnAnalyticTemplate = (PLGSNAnalyticTemplate)theEObject;
+        var result = casePLGSNAnalyticTemplate(plgsnAnalyticTemplate);
+        if (result == null) {
+          result = casePLGSNTemplate(plgsnAnalyticTemplate);
+        }
+        if (result == null) {
+          result = caseClass(plgsnAnalyticTemplate);
+        }
+        if (result == null) {
+          result = casePLElement(plgsnAnalyticTemplate);
         }
         if (result == null) {
           result = defaultCase(theEObject);
@@ -139,7 +139,7 @@ public class PLGSNSwitch<T> extends Switch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseGSNPLArgumentElement(PLGSNArgumentElement object) {
+  public T casePLGSNArgumentElement(PLGSNArgumentElement object) {
     return null;
   }
 
@@ -154,7 +154,7 @@ public class PLGSNSwitch<T> extends Switch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseGSNPLTemplate(PLGSNTemplate object) {
+  public T casePLGSNTemplate(PLGSNTemplate object) {
     return null;
   }
 
@@ -169,7 +169,7 @@ public class PLGSNSwitch<T> extends Switch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseGSNPLAnalyticTemplate(PLGSNAnalyticTemplate object) {
+  public T casePLGSNAnalyticTemplate(PLGSNAnalyticTemplate object) {
     return null;
   }
 

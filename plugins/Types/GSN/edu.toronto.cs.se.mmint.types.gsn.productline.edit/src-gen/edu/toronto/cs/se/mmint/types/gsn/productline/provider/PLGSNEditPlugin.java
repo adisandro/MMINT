@@ -20,7 +20,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.provider.GSNTemplatesEditPlug
 import edu.toronto.cs.se.modelepedia.gsn.provider.GSNEditPlugin;
 
 /**
- * This is the central singleton for the GSNPL edit plugin.
+ * This is the central singleton for the PLGSN edit plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

@@ -41,9 +41,9 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
    */
   public static PLGSNFactory init() {
     try {
-      var theGSNPLFactory = (PLGSNFactory)EPackage.Registry.INSTANCE.getEFactory(PLGSNPackage.eNS_URI);
-      if (theGSNPLFactory != null) {
-        return theGSNPLFactory;
+      var thePLGSNFactory = (PLGSNFactory)EPackage.Registry.INSTANCE.getEFactory(PLGSNPackage.eNS_URI);
+      if (thePLGSNFactory != null) {
+        return thePLGSNFactory;
       }
     }
     catch (Exception exception) {
@@ -70,9 +70,9 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
   @Override
   public EObject create(EClass eClass) {
     return switch (eClass.getClassifierID()) {
-    case PLGSNPackage.GSNPL_ARGUMENT_ELEMENT -> createGSNPLArgumentElement();
-    case PLGSNPackage.GSNPL_TEMPLATE -> createGSNPLTemplate();
-    case PLGSNPackage.GSNPL_ANALYTIC_TEMPLATE -> createGSNPLAnalyticTemplate();
+    case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT -> createPLGSNArgumentElement();
+    case PLGSNPackage.PLGSN_TEMPLATE -> createPLGSNTemplate();
+    case PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE -> createPLGSNAnalyticTemplate();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     };
   }
@@ -85,7 +85,7 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
   @Override
   public Object createFromString(EDataType eDataType, String initialValue) {
     return switch (eDataType.getClassifierID()) {
-    case PLGSNPackage.IGSNPL_ANALYSIS -> createIGSNPLAnalysisFromString(eDataType, initialValue);
+    case PLGSNPackage.IPLGSN_ANALYSIS -> createIPLGSNAnalysisFromString(eDataType, initialValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -98,7 +98,7 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
   @Override
   public String convertToString(EDataType eDataType, Object instanceValue) {
     return switch (eDataType.getClassifierID()) {
-    case PLGSNPackage.IGSNPL_ANALYSIS -> convertIGSNPLAnalysisToString(eDataType, instanceValue);
+    case PLGSNPackage.IPLGSN_ANALYSIS -> convertIPLGSNAnalysisToString(eDataType, instanceValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -109,9 +109,9 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
    * @generated
    */
   @Override
-  public PLGSNArgumentElement createGSNPLArgumentElement() {
-    PLGSNArgumentElementImpl gsnplArgumentElement = new PLGSNArgumentElementImpl();
-    return gsnplArgumentElement;
+  public PLGSNArgumentElement createPLGSNArgumentElement() {
+    PLGSNArgumentElementImpl plgsnArgumentElement = new PLGSNArgumentElementImpl();
+    return plgsnArgumentElement;
   }
 
   /**
@@ -120,9 +120,9 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
    * @generated
    */
   @Override
-  public PLGSNTemplate createGSNPLTemplate() {
-    PLGSNTemplateImpl gsnplTemplate = new PLGSNTemplateImpl();
-    return gsnplTemplate;
+  public PLGSNTemplate createPLGSNTemplate() {
+    PLGSNTemplateImpl plgsnTemplate = new PLGSNTemplateImpl();
+    return plgsnTemplate;
   }
 
   /**
@@ -131,9 +131,9 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
    * @generated
    */
   @Override
-  public PLGSNAnalyticTemplate createGSNPLAnalyticTemplate() {
-    PLGSNAnalyticTemplateImpl gsnplAnalyticTemplate = new PLGSNAnalyticTemplateImpl();
-    return gsnplAnalyticTemplate;
+  public PLGSNAnalyticTemplate createPLGSNAnalyticTemplate() {
+    PLGSNAnalyticTemplateImpl plgsnAnalyticTemplate = new PLGSNAnalyticTemplateImpl();
+    return plgsnAnalyticTemplate;
   }
 
   /**
@@ -141,7 +141,7 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public IPLGSNAnalysis createIGSNPLAnalysisFromString(EDataType eDataType, String initialValue) {
+  public IPLGSNAnalysis createIPLGSNAnalysisFromString(EDataType eDataType, String initialValue) {
     return (IPLGSNAnalysis)super.createFromString(eDataType, initialValue);
   }
 
@@ -150,7 +150,7 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public String convertIGSNPLAnalysisToString(EDataType eDataType, Object instanceValue) {
+  public String convertIPLGSNAnalysisToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(eDataType, instanceValue);
   }
 
@@ -160,7 +160,7 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
    * @generated
    */
   @Override
-  public PLGSNPackage getGSNPLPackage() {
+  public PLGSNPackage getPLGSNPackage() {
     return (PLGSNPackage)getEPackage();
   }
 

@@ -55,14 +55,14 @@ public class PLGSNAnalyticTemplateItemProvider extends PLGSNTemplateItemProvider
   }
 
   /**
-   * This returns GSNPLAnalyticTemplate.gif.
+   * This returns PLGSNAnalyticTemplate.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/GSNPLAnalyticTemplate"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/PLGSNAnalyticTemplate"));
   }
 
   /**
@@ -75,8 +75,8 @@ public class PLGSNAnalyticTemplateItemProvider extends PLGSNTemplateItemProvider
   public String getText(Object object) {
     var label = ((PLGSNAnalyticTemplate)object).getPresenceCondition();
     return label == null || label.length() == 0 ?
-      getString("_UI_GSNPLAnalyticTemplate_type") :
-      getString("_UI_GSNPLAnalyticTemplate_type") + " " + label;
+      getString("_UI_PLGSNAnalyticTemplate_type") :
+      getString("_UI_PLGSNAnalyticTemplate_type") + " " + label;
   }
 
 

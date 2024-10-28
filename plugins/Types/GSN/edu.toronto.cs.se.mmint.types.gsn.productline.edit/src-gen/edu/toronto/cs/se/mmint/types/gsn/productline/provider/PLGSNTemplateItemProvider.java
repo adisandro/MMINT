@@ -57,14 +57,14 @@ public class PLGSNTemplateItemProvider extends ClassItemProvider {
   }
 
   /**
-   * This returns GSNPLTemplate.gif.
+   * This returns PLGSNTemplate.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/GSNPLTemplate"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/PLGSNTemplate"));
   }
 
   /**
@@ -77,8 +77,8 @@ public class PLGSNTemplateItemProvider extends ClassItemProvider {
   public String getText(Object object) {
     var label = ((PLGSNTemplate)object).getPresenceCondition();
     return label == null || label.length() == 0 ?
-      getString("_UI_GSNPLTemplate_type") :
-      getString("_UI_GSNPLTemplate_type") + " " + label;
+      getString("_UI_PLGSNTemplate_type") :
+      getString("_UI_PLGSNTemplate_type") + " " + label;
   }
 
 

@@ -19,7 +19,7 @@ package edu.toronto.cs.se.mmint.types.gsn.productline;
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage#getGSNPLArgumentElement()
+ * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage#getPLGSNArgumentElement()
  * @model
  * @generated
  */

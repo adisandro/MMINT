@@ -49,7 +49,7 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
    */
   @Override
   protected EClass eStaticClass() {
-    return PLGSNPackage.Literals.GSNPL_TEMPLATE;
+    return PLGSNPackage.Literals.PLGSN_TEMPLATE;
   }
 
   /**
@@ -111,7 +111,7 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case PLGSNPackage.GSNPL_TEMPLATE___VALIDATE:
+      case PLGSNPackage.PLGSN_TEMPLATE___VALIDATE:
         try {
           validate();
           return null;
@@ -119,7 +119,7 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case PLGSNPackage.GSNPL_TEMPLATE___IMPORT____PRODUCTLINE:
+      case PLGSNPackage.PLGSN_TEMPLATE___IMPORT____PRODUCTLINE:
         try {
           import_((ProductLine)arguments.get(0));
           return null;
@@ -127,7 +127,7 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case PLGSNPackage.GSNPL_TEMPLATE___INSTANTIATE:
+      case PLGSNPackage.PLGSN_TEMPLATE___INSTANTIATE:
         try {
           instantiate();
           return null;

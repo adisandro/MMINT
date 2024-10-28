@@ -30,11 +30,11 @@ public class GSNToProductLine extends ToProductLine {
   protected Class createPLClass(EObject modelObj, EClass plType, Map<String, Class> plClasses) {
     var plClass = switch (plType) {
       case EClass e when GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate().isSuperTypeOf(e) ->
-        PLGSNFactory.eINSTANCE.createGSNPLAnalyticTemplate();
+        PLGSNFactory.eINSTANCE.createPLGSNAnalyticTemplate();
       case EClass e when GSNPackage.eINSTANCE.getTemplate().isSuperTypeOf(e) ->
-        PLGSNFactory.eINSTANCE.createGSNPLTemplate();
+        PLGSNFactory.eINSTANCE.createPLGSNTemplate();
       case EClass e when GSNPackage.eINSTANCE.getArgumentElement().isSuperTypeOf(e) ->
-        PLGSNFactory.eINSTANCE.createGSNPLArgumentElement();
+        PLGSNFactory.eINSTANCE.createPLGSNArgumentElement();
       default -> PLFactory.eINSTANCE.createClass();
     };
     addPLClass(plClass, modelObj, plType, plClasses);

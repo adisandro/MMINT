@@ -73,10 +73,10 @@ public interface PLGSNPackage extends EPackage {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNArgumentElementImpl
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getGSNPLArgumentElement()
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getPLGSNArgumentElement()
    * @generated
    */
-  int GSNPL_ARGUMENT_ELEMENT = 0;
+  int PLGSN_ARGUMENT_ELEMENT = 0;
 
   /**
    * The feature id for the '<em><b>Presence Condition</b></em>' attribute.
@@ -85,7 +85,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT__PRESENCE_CONDITION = PLPackage.CLASS__PRESENCE_CONDITION;
+  int PLGSN_ARGUMENT_ELEMENT__PRESENCE_CONDITION = PLPackage.CLASS__PRESENCE_CONDITION;
 
   /**
    * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
@@ -94,7 +94,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT__ATTRIBUTES = PLPackage.CLASS__ATTRIBUTES;
+  int PLGSN_ARGUMENT_ELEMENT__ATTRIBUTES = PLPackage.CLASS__ATTRIBUTES;
 
   /**
    * The feature id for the '<em><b>References</b></em>' containment reference list.
@@ -103,7 +103,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT__REFERENCES = PLPackage.CLASS__REFERENCES;
+  int PLGSN_ARGUMENT_ELEMENT__REFERENCES = PLPackage.CLASS__REFERENCES;
 
   /**
    * The feature id for the '<em><b>References As Target</b></em>' reference list.
@@ -112,7 +112,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT__REFERENCES_AS_TARGET = PLPackage.CLASS__REFERENCES_AS_TARGET;
+  int PLGSN_ARGUMENT_ELEMENT__REFERENCES_AS_TARGET = PLPackage.CLASS__REFERENCES_AS_TARGET;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -121,7 +121,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT__TYPE = PLPackage.CLASS__TYPE;
+  int PLGSN_ARGUMENT_ELEMENT__TYPE = PLPackage.CLASS__TYPE;
 
   /**
    * The number of structural features of the '<em>Argument Element</em>' class.
@@ -130,7 +130,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT_FEATURE_COUNT = PLPackage.CLASS_FEATURE_COUNT + 0;
+  int PLGSN_ARGUMENT_ELEMENT_FEATURE_COUNT = PLPackage.CLASS_FEATURE_COUNT + 0;
 
   /**
    * The operation id for the '<em>Get Product Line</em>' operation.
@@ -139,7 +139,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT___GET_PRODUCT_LINE = PLPackage.CLASS___GET_PRODUCT_LINE;
+  int PLGSN_ARGUMENT_ELEMENT___GET_PRODUCT_LINE = PLPackage.CLASS___GET_PRODUCT_LINE;
 
   /**
    * The operation id for the '<em>Is Always Present</em>' operation.
@@ -148,7 +148,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT___IS_ALWAYS_PRESENT = PLPackage.CLASS___IS_ALWAYS_PRESENT;
+  int PLGSN_ARGUMENT_ELEMENT___IS_ALWAYS_PRESENT = PLPackage.CLASS___IS_ALWAYS_PRESENT;
 
   /**
    * The operation id for the '<em>Get Presence Condition Label</em>' operation.
@@ -157,7 +157,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = PLPackage.CLASS___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
+  int PLGSN_ARGUMENT_ELEMENT___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = PLPackage.CLASS___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
 
   /**
    * The operation id for the '<em>Get Stream Of Reference</em>' operation.
@@ -166,7 +166,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT___GET_STREAM_OF_REFERENCE__EREFERENCE = PLPackage.CLASS___GET_STREAM_OF_REFERENCE__EREFERENCE;
+  int PLGSN_ARGUMENT_ELEMENT___GET_STREAM_OF_REFERENCE__EREFERENCE = PLPackage.CLASS___GET_STREAM_OF_REFERENCE__EREFERENCE;
 
   /**
    * The operation id for the '<em>Get Reference</em>' operation.
@@ -175,7 +175,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT___GET_REFERENCE__EREFERENCE = PLPackage.CLASS___GET_REFERENCE__EREFERENCE;
+  int PLGSN_ARGUMENT_ELEMENT___GET_REFERENCE__EREFERENCE = PLPackage.CLASS___GET_REFERENCE__EREFERENCE;
 
   /**
    * The operation id for the '<em>Add Reference</em>' operation.
@@ -184,7 +184,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT___ADD_REFERENCE__EREFERENCE_CLASS_STRING = PLPackage.CLASS___ADD_REFERENCE__EREFERENCE_CLASS_STRING;
+  int PLGSN_ARGUMENT_ELEMENT___ADD_REFERENCE__EREFERENCE_CLASS_STRING = PLPackage.CLASS___ADD_REFERENCE__EREFERENCE_CLASS_STRING;
 
   /**
    * The operation id for the '<em>Add Reference</em>' operation.
@@ -193,7 +193,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT___ADD_REFERENCE__EREFERENCE_CLASS = PLPackage.CLASS___ADD_REFERENCE__EREFERENCE_CLASS;
+  int PLGSN_ARGUMENT_ELEMENT___ADD_REFERENCE__EREFERENCE_CLASS = PLPackage.CLASS___ADD_REFERENCE__EREFERENCE_CLASS;
 
   /**
    * The operation id for the '<em>Set Reference</em>' operation.
@@ -202,7 +202,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT___SET_REFERENCE__EREFERENCE_CLASS = PLPackage.CLASS___SET_REFERENCE__EREFERENCE_CLASS;
+  int PLGSN_ARGUMENT_ELEMENT___SET_REFERENCE__EREFERENCE_CLASS = PLPackage.CLASS___SET_REFERENCE__EREFERENCE_CLASS;
 
   /**
    * The operation id for the '<em>Get Stream Of Attribute</em>' operation.
@@ -211,7 +211,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = PLPackage.CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE;
+  int PLGSN_ARGUMENT_ELEMENT___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = PLPackage.CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE;
 
   /**
    * The operation id for the '<em>Get Attribute</em>' operation.
@@ -220,7 +220,16 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT___GET_ATTRIBUTE__EATTRIBUTE = PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE;
+  int PLGSN_ARGUMENT_ELEMENT___GET_ATTRIBUTE__EATTRIBUTE = PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE;
+
+  /**
+   * The operation id for the '<em>Get Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ARGUMENT_ELEMENT___GET_MANY_ATTRIBUTE__EATTRIBUTE = PLPackage.CLASS___GET_MANY_ATTRIBUTE__EATTRIBUTE;
 
   /**
    * The operation id for the '<em>Add Attribute</em>' operation.
@@ -229,7 +238,16 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING;
+  int PLGSN_ARGUMENT_ELEMENT___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING;
+
+  /**
+   * The operation id for the '<em>Add Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ARGUMENT_ELEMENT___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST = PLPackage.CLASS___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST;
 
   /**
    * The operation id for the '<em>Set Attribute</em>' operation.
@@ -238,7 +256,16 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT___SET_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING;
+  int PLGSN_ARGUMENT_ELEMENT___SET_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING;
+
+  /**
+   * The operation id for the '<em>Set Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ARGUMENT_ELEMENT___SET_MANY_ATTRIBUTE__EATTRIBUTE_ELIST = PLPackage.CLASS___SET_MANY_ATTRIBUTE__EATTRIBUTE_ELIST;
 
   /**
    * The operation id for the '<em>Instance Of</em>' operation.
@@ -247,7 +274,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT___INSTANCE_OF__ECLASS = PLPackage.CLASS___INSTANCE_OF__ECLASS;
+  int PLGSN_ARGUMENT_ELEMENT___INSTANCE_OF__ECLASS = PLPackage.CLASS___INSTANCE_OF__ECLASS;
 
   /**
    * The operation id for the '<em>Get EContainer</em>' operation.
@@ -256,7 +283,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT___GET_ECONTAINER = PLPackage.CLASS___GET_ECONTAINER;
+  int PLGSN_ARGUMENT_ELEMENT___GET_ECONTAINER = PLPackage.CLASS___GET_ECONTAINER;
 
   /**
    * The operation id for the '<em>Delete</em>' operation.
@@ -265,7 +292,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT___DELETE = PLPackage.CLASS___DELETE;
+  int PLGSN_ARGUMENT_ELEMENT___DELETE = PLPackage.CLASS___DELETE;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -274,7 +301,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT___VALIDATE__GSNPLTEMPLATE = PLPackage.CLASS_OPERATION_COUNT + 0;
+  int PLGSN_ARGUMENT_ELEMENT___VALIDATE__PLGSNTEMPLATE = PLPackage.CLASS_OPERATION_COUNT + 0;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -283,7 +310,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT___INSTANTIATE__GSNPLTEMPLATE = PLPackage.CLASS_OPERATION_COUNT + 1;
+  int PLGSN_ARGUMENT_ELEMENT___INSTANTIATE__PLGSNTEMPLATE = PLPackage.CLASS_OPERATION_COUNT + 1;
 
   /**
    * The number of operations of the '<em>Argument Element</em>' class.
@@ -292,17 +319,17 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ARGUMENT_ELEMENT_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 2;
+  int PLGSN_ARGUMENT_ELEMENT_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 2;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNTemplateImpl <em>Template</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNTemplateImpl
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getGSNPLTemplate()
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getPLGSNTemplate()
    * @generated
    */
-  int GSNPL_TEMPLATE = 1;
+  int PLGSN_TEMPLATE = 1;
 
   /**
    * The feature id for the '<em><b>Presence Condition</b></em>' attribute.
@@ -311,7 +338,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE__PRESENCE_CONDITION = PLPackage.CLASS__PRESENCE_CONDITION;
+  int PLGSN_TEMPLATE__PRESENCE_CONDITION = PLPackage.CLASS__PRESENCE_CONDITION;
 
   /**
    * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
@@ -320,7 +347,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE__ATTRIBUTES = PLPackage.CLASS__ATTRIBUTES;
+  int PLGSN_TEMPLATE__ATTRIBUTES = PLPackage.CLASS__ATTRIBUTES;
 
   /**
    * The feature id for the '<em><b>References</b></em>' containment reference list.
@@ -329,7 +356,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE__REFERENCES = PLPackage.CLASS__REFERENCES;
+  int PLGSN_TEMPLATE__REFERENCES = PLPackage.CLASS__REFERENCES;
 
   /**
    * The feature id for the '<em><b>References As Target</b></em>' reference list.
@@ -338,7 +365,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE__REFERENCES_AS_TARGET = PLPackage.CLASS__REFERENCES_AS_TARGET;
+  int PLGSN_TEMPLATE__REFERENCES_AS_TARGET = PLPackage.CLASS__REFERENCES_AS_TARGET;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -347,7 +374,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE__TYPE = PLPackage.CLASS__TYPE;
+  int PLGSN_TEMPLATE__TYPE = PLPackage.CLASS__TYPE;
 
   /**
    * The number of structural features of the '<em>Template</em>' class.
@@ -356,7 +383,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE_FEATURE_COUNT = PLPackage.CLASS_FEATURE_COUNT + 0;
+  int PLGSN_TEMPLATE_FEATURE_COUNT = PLPackage.CLASS_FEATURE_COUNT + 0;
 
   /**
    * The operation id for the '<em>Get Product Line</em>' operation.
@@ -365,7 +392,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___GET_PRODUCT_LINE = PLPackage.CLASS___GET_PRODUCT_LINE;
+  int PLGSN_TEMPLATE___GET_PRODUCT_LINE = PLPackage.CLASS___GET_PRODUCT_LINE;
 
   /**
    * The operation id for the '<em>Is Always Present</em>' operation.
@@ -374,7 +401,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___IS_ALWAYS_PRESENT = PLPackage.CLASS___IS_ALWAYS_PRESENT;
+  int PLGSN_TEMPLATE___IS_ALWAYS_PRESENT = PLPackage.CLASS___IS_ALWAYS_PRESENT;
 
   /**
    * The operation id for the '<em>Get Presence Condition Label</em>' operation.
@@ -383,7 +410,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = PLPackage.CLASS___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
+  int PLGSN_TEMPLATE___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = PLPackage.CLASS___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
 
   /**
    * The operation id for the '<em>Get Stream Of Reference</em>' operation.
@@ -392,7 +419,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___GET_STREAM_OF_REFERENCE__EREFERENCE = PLPackage.CLASS___GET_STREAM_OF_REFERENCE__EREFERENCE;
+  int PLGSN_TEMPLATE___GET_STREAM_OF_REFERENCE__EREFERENCE = PLPackage.CLASS___GET_STREAM_OF_REFERENCE__EREFERENCE;
 
   /**
    * The operation id for the '<em>Get Reference</em>' operation.
@@ -401,7 +428,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___GET_REFERENCE__EREFERENCE = PLPackage.CLASS___GET_REFERENCE__EREFERENCE;
+  int PLGSN_TEMPLATE___GET_REFERENCE__EREFERENCE = PLPackage.CLASS___GET_REFERENCE__EREFERENCE;
 
   /**
    * The operation id for the '<em>Add Reference</em>' operation.
@@ -410,7 +437,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS_STRING = PLPackage.CLASS___ADD_REFERENCE__EREFERENCE_CLASS_STRING;
+  int PLGSN_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS_STRING = PLPackage.CLASS___ADD_REFERENCE__EREFERENCE_CLASS_STRING;
 
   /**
    * The operation id for the '<em>Add Reference</em>' operation.
@@ -419,7 +446,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS = PLPackage.CLASS___ADD_REFERENCE__EREFERENCE_CLASS;
+  int PLGSN_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS = PLPackage.CLASS___ADD_REFERENCE__EREFERENCE_CLASS;
 
   /**
    * The operation id for the '<em>Set Reference</em>' operation.
@@ -428,7 +455,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___SET_REFERENCE__EREFERENCE_CLASS = PLPackage.CLASS___SET_REFERENCE__EREFERENCE_CLASS;
+  int PLGSN_TEMPLATE___SET_REFERENCE__EREFERENCE_CLASS = PLPackage.CLASS___SET_REFERENCE__EREFERENCE_CLASS;
 
   /**
    * The operation id for the '<em>Get Stream Of Attribute</em>' operation.
@@ -437,7 +464,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = PLPackage.CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE;
+  int PLGSN_TEMPLATE___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = PLPackage.CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE;
 
   /**
    * The operation id for the '<em>Get Attribute</em>' operation.
@@ -446,7 +473,16 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___GET_ATTRIBUTE__EATTRIBUTE = PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE;
+  int PLGSN_TEMPLATE___GET_ATTRIBUTE__EATTRIBUTE = PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE;
+
+  /**
+   * The operation id for the '<em>Get Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_TEMPLATE___GET_MANY_ATTRIBUTE__EATTRIBUTE = PLPackage.CLASS___GET_MANY_ATTRIBUTE__EATTRIBUTE;
 
   /**
    * The operation id for the '<em>Add Attribute</em>' operation.
@@ -455,7 +491,16 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING;
+  int PLGSN_TEMPLATE___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING;
+
+  /**
+   * The operation id for the '<em>Add Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_TEMPLATE___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST = PLPackage.CLASS___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST;
 
   /**
    * The operation id for the '<em>Set Attribute</em>' operation.
@@ -464,7 +509,16 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___SET_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING;
+  int PLGSN_TEMPLATE___SET_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING;
+
+  /**
+   * The operation id for the '<em>Set Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_TEMPLATE___SET_MANY_ATTRIBUTE__EATTRIBUTE_ELIST = PLPackage.CLASS___SET_MANY_ATTRIBUTE__EATTRIBUTE_ELIST;
 
   /**
    * The operation id for the '<em>Instance Of</em>' operation.
@@ -473,7 +527,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___INSTANCE_OF__ECLASS = PLPackage.CLASS___INSTANCE_OF__ECLASS;
+  int PLGSN_TEMPLATE___INSTANCE_OF__ECLASS = PLPackage.CLASS___INSTANCE_OF__ECLASS;
 
   /**
    * The operation id for the '<em>Get EContainer</em>' operation.
@@ -482,7 +536,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___GET_ECONTAINER = PLPackage.CLASS___GET_ECONTAINER;
+  int PLGSN_TEMPLATE___GET_ECONTAINER = PLPackage.CLASS___GET_ECONTAINER;
 
   /**
    * The operation id for the '<em>Delete</em>' operation.
@@ -491,7 +545,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___DELETE = PLPackage.CLASS___DELETE;
+  int PLGSN_TEMPLATE___DELETE = PLPackage.CLASS___DELETE;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -500,7 +554,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___VALIDATE = PLPackage.CLASS_OPERATION_COUNT + 0;
+  int PLGSN_TEMPLATE___VALIDATE = PLPackage.CLASS_OPERATION_COUNT + 0;
 
   /**
    * The operation id for the '<em>Import </em>' operation.
@@ -509,7 +563,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___IMPORT____PRODUCTLINE = PLPackage.CLASS_OPERATION_COUNT + 1;
+  int PLGSN_TEMPLATE___IMPORT____PRODUCTLINE = PLPackage.CLASS_OPERATION_COUNT + 1;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -518,7 +572,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE___INSTANTIATE = PLPackage.CLASS_OPERATION_COUNT + 2;
+  int PLGSN_TEMPLATE___INSTANTIATE = PLPackage.CLASS_OPERATION_COUNT + 2;
 
   /**
    * The number of operations of the '<em>Template</em>' class.
@@ -527,17 +581,17 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_TEMPLATE_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 3;
+  int PLGSN_TEMPLATE_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 3;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNAnalyticTemplateImpl <em>Analytic Template</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNAnalyticTemplateImpl
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getGSNPLAnalyticTemplate()
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getPLGSNAnalyticTemplate()
    * @generated
    */
-  int GSNPL_ANALYTIC_TEMPLATE = 2;
+  int PLGSN_ANALYTIC_TEMPLATE = 2;
 
   /**
    * The feature id for the '<em><b>Presence Condition</b></em>' attribute.
@@ -546,7 +600,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE__PRESENCE_CONDITION = PLGSNPackage.GSNPL_TEMPLATE__PRESENCE_CONDITION;
+  int PLGSN_ANALYTIC_TEMPLATE__PRESENCE_CONDITION = PLGSNPackage.PLGSN_TEMPLATE__PRESENCE_CONDITION;
 
   /**
    * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
@@ -555,7 +609,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE__ATTRIBUTES = PLGSNPackage.GSNPL_TEMPLATE__ATTRIBUTES;
+  int PLGSN_ANALYTIC_TEMPLATE__ATTRIBUTES = PLGSNPackage.PLGSN_TEMPLATE__ATTRIBUTES;
 
   /**
    * The feature id for the '<em><b>References</b></em>' containment reference list.
@@ -564,7 +618,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE__REFERENCES = PLGSNPackage.GSNPL_TEMPLATE__REFERENCES;
+  int PLGSN_ANALYTIC_TEMPLATE__REFERENCES = PLGSNPackage.PLGSN_TEMPLATE__REFERENCES;
 
   /**
    * The feature id for the '<em><b>References As Target</b></em>' reference list.
@@ -573,7 +627,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE__REFERENCES_AS_TARGET = PLGSNPackage.GSNPL_TEMPLATE__REFERENCES_AS_TARGET;
+  int PLGSN_ANALYTIC_TEMPLATE__REFERENCES_AS_TARGET = PLGSNPackage.PLGSN_TEMPLATE__REFERENCES_AS_TARGET;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -582,7 +636,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE__TYPE = PLGSNPackage.GSNPL_TEMPLATE__TYPE;
+  int PLGSN_ANALYTIC_TEMPLATE__TYPE = PLGSNPackage.PLGSN_TEMPLATE__TYPE;
 
   /**
    * The number of structural features of the '<em>Analytic Template</em>' class.
@@ -591,7 +645,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE_FEATURE_COUNT = PLGSNPackage.GSNPL_TEMPLATE_FEATURE_COUNT + 0;
+  int PLGSN_ANALYTIC_TEMPLATE_FEATURE_COUNT = PLGSNPackage.PLGSN_TEMPLATE_FEATURE_COUNT + 0;
 
   /**
    * The operation id for the '<em>Get Product Line</em>' operation.
@@ -600,7 +654,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___GET_PRODUCT_LINE = PLGSNPackage.GSNPL_TEMPLATE___GET_PRODUCT_LINE;
+  int PLGSN_ANALYTIC_TEMPLATE___GET_PRODUCT_LINE = PLGSNPackage.PLGSN_TEMPLATE___GET_PRODUCT_LINE;
 
   /**
    * The operation id for the '<em>Is Always Present</em>' operation.
@@ -609,7 +663,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___IS_ALWAYS_PRESENT = PLGSNPackage.GSNPL_TEMPLATE___IS_ALWAYS_PRESENT;
+  int PLGSN_ANALYTIC_TEMPLATE___IS_ALWAYS_PRESENT = PLGSNPackage.PLGSN_TEMPLATE___IS_ALWAYS_PRESENT;
 
   /**
    * The operation id for the '<em>Get Presence Condition Label</em>' operation.
@@ -618,7 +672,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = PLGSNPackage.GSNPL_TEMPLATE___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
+  int PLGSN_ANALYTIC_TEMPLATE___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = PLGSNPackage.PLGSN_TEMPLATE___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
 
   /**
    * The operation id for the '<em>Get Stream Of Reference</em>' operation.
@@ -627,7 +681,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___GET_STREAM_OF_REFERENCE__EREFERENCE = PLGSNPackage.GSNPL_TEMPLATE___GET_STREAM_OF_REFERENCE__EREFERENCE;
+  int PLGSN_ANALYTIC_TEMPLATE___GET_STREAM_OF_REFERENCE__EREFERENCE = PLGSNPackage.PLGSN_TEMPLATE___GET_STREAM_OF_REFERENCE__EREFERENCE;
 
   /**
    * The operation id for the '<em>Get Reference</em>' operation.
@@ -636,7 +690,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___GET_REFERENCE__EREFERENCE = PLGSNPackage.GSNPL_TEMPLATE___GET_REFERENCE__EREFERENCE;
+  int PLGSN_ANALYTIC_TEMPLATE___GET_REFERENCE__EREFERENCE = PLGSNPackage.PLGSN_TEMPLATE___GET_REFERENCE__EREFERENCE;
 
   /**
    * The operation id for the '<em>Add Reference</em>' operation.
@@ -645,7 +699,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS_STRING = PLGSNPackage.GSNPL_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS_STRING;
+  int PLGSN_ANALYTIC_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS_STRING = PLGSNPackage.PLGSN_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS_STRING;
 
   /**
    * The operation id for the '<em>Add Reference</em>' operation.
@@ -654,7 +708,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS = PLGSNPackage.GSNPL_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS;
+  int PLGSN_ANALYTIC_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS = PLGSNPackage.PLGSN_TEMPLATE___ADD_REFERENCE__EREFERENCE_CLASS;
 
   /**
    * The operation id for the '<em>Set Reference</em>' operation.
@@ -663,7 +717,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___SET_REFERENCE__EREFERENCE_CLASS = PLGSNPackage.GSNPL_TEMPLATE___SET_REFERENCE__EREFERENCE_CLASS;
+  int PLGSN_ANALYTIC_TEMPLATE___SET_REFERENCE__EREFERENCE_CLASS = PLGSNPackage.PLGSN_TEMPLATE___SET_REFERENCE__EREFERENCE_CLASS;
 
   /**
    * The operation id for the '<em>Get Stream Of Attribute</em>' operation.
@@ -672,7 +726,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = PLGSNPackage.GSNPL_TEMPLATE___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE;
+  int PLGSN_ANALYTIC_TEMPLATE___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = PLGSNPackage.PLGSN_TEMPLATE___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE;
 
   /**
    * The operation id for the '<em>Get Attribute</em>' operation.
@@ -681,7 +735,16 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___GET_ATTRIBUTE__EATTRIBUTE = PLGSNPackage.GSNPL_TEMPLATE___GET_ATTRIBUTE__EATTRIBUTE;
+  int PLGSN_ANALYTIC_TEMPLATE___GET_ATTRIBUTE__EATTRIBUTE = PLGSNPackage.PLGSN_TEMPLATE___GET_ATTRIBUTE__EATTRIBUTE;
+
+  /**
+   * The operation id for the '<em>Get Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ANALYTIC_TEMPLATE___GET_MANY_ATTRIBUTE__EATTRIBUTE = PLGSNPackage.PLGSN_TEMPLATE___GET_MANY_ATTRIBUTE__EATTRIBUTE;
 
   /**
    * The operation id for the '<em>Add Attribute</em>' operation.
@@ -690,7 +753,16 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLGSNPackage.GSNPL_TEMPLATE___ADD_ATTRIBUTE__EATTRIBUTE_STRING;
+  int PLGSN_ANALYTIC_TEMPLATE___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLGSNPackage.PLGSN_TEMPLATE___ADD_ATTRIBUTE__EATTRIBUTE_STRING;
+
+  /**
+   * The operation id for the '<em>Add Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ANALYTIC_TEMPLATE___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST = PLGSNPackage.PLGSN_TEMPLATE___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST;
 
   /**
    * The operation id for the '<em>Set Attribute</em>' operation.
@@ -699,7 +771,16 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___SET_ATTRIBUTE__EATTRIBUTE_STRING = PLGSNPackage.GSNPL_TEMPLATE___SET_ATTRIBUTE__EATTRIBUTE_STRING;
+  int PLGSN_ANALYTIC_TEMPLATE___SET_ATTRIBUTE__EATTRIBUTE_STRING = PLGSNPackage.PLGSN_TEMPLATE___SET_ATTRIBUTE__EATTRIBUTE_STRING;
+
+  /**
+   * The operation id for the '<em>Set Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ANALYTIC_TEMPLATE___SET_MANY_ATTRIBUTE__EATTRIBUTE_ELIST = PLGSNPackage.PLGSN_TEMPLATE___SET_MANY_ATTRIBUTE__EATTRIBUTE_ELIST;
 
   /**
    * The operation id for the '<em>Instance Of</em>' operation.
@@ -708,7 +789,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___INSTANCE_OF__ECLASS = PLGSNPackage.GSNPL_TEMPLATE___INSTANCE_OF__ECLASS;
+  int PLGSN_ANALYTIC_TEMPLATE___INSTANCE_OF__ECLASS = PLGSNPackage.PLGSN_TEMPLATE___INSTANCE_OF__ECLASS;
 
   /**
    * The operation id for the '<em>Get EContainer</em>' operation.
@@ -717,7 +798,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___GET_ECONTAINER = PLGSNPackage.GSNPL_TEMPLATE___GET_ECONTAINER;
+  int PLGSN_ANALYTIC_TEMPLATE___GET_ECONTAINER = PLGSNPackage.PLGSN_TEMPLATE___GET_ECONTAINER;
 
   /**
    * The operation id for the '<em>Delete</em>' operation.
@@ -726,7 +807,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___DELETE = PLGSNPackage.GSNPL_TEMPLATE___DELETE;
+  int PLGSN_ANALYTIC_TEMPLATE___DELETE = PLGSNPackage.PLGSN_TEMPLATE___DELETE;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -735,7 +816,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___VALIDATE = PLGSNPackage.GSNPL_TEMPLATE___VALIDATE;
+  int PLGSN_ANALYTIC_TEMPLATE___VALIDATE = PLGSNPackage.PLGSN_TEMPLATE___VALIDATE;
 
   /**
    * The operation id for the '<em>Import </em>' operation.
@@ -744,7 +825,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___IMPORT____PRODUCTLINE = PLGSNPackage.GSNPL_TEMPLATE___IMPORT____PRODUCTLINE;
+  int PLGSN_ANALYTIC_TEMPLATE___IMPORT____PRODUCTLINE = PLGSNPackage.PLGSN_TEMPLATE___IMPORT____PRODUCTLINE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -753,7 +834,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___INSTANTIATE = PLGSNPackage.GSNPL_TEMPLATE___INSTANTIATE;
+  int PLGSN_ANALYTIC_TEMPLATE___INSTANTIATE = PLGSNPackage.PLGSN_TEMPLATE___INSTANTIATE;
 
   /**
    * The operation id for the '<em>Get Analysis</em>' operation.
@@ -762,7 +843,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE___GET_ANALYSIS = PLGSNPackage.GSNPL_TEMPLATE_OPERATION_COUNT + 0;
+  int PLGSN_ANALYTIC_TEMPLATE___GET_ANALYSIS = PLGSNPackage.PLGSN_TEMPLATE_OPERATION_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Analytic Template</em>' class.
@@ -771,17 +852,17 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GSNPL_ANALYTIC_TEMPLATE_OPERATION_COUNT = PLGSNPackage.GSNPL_TEMPLATE_OPERATION_COUNT + 1;
+  int PLGSN_ANALYTIC_TEMPLATE_OPERATION_COUNT = PLGSNPackage.PLGSN_TEMPLATE_OPERATION_COUNT + 1;
 
   /**
-   * The meta object id for the '<em>IGSNPL Analysis</em>' data type.
+   * The meta object id for the '<em>IPLGSN Analysis</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getIGSNPLAnalysis()
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getIPLGSNAnalysis()
    * @generated
    */
-  int IGSNPL_ANALYSIS = 3;
+  int IPLGSN_ANALYSIS = 3;
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement <em>Argument Element</em>}'.
@@ -791,7 +872,7 @@ public interface PLGSNPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement
    * @generated
    */
-  EClass getGSNPLArgumentElement();
+  EClass getPLGSNArgumentElement();
 
   /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#validate(edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate) <em>Validate</em>}' operation.
@@ -801,7 +882,7 @@ public interface PLGSNPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#validate(edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate)
    * @generated
    */
-  EOperation getGSNPLArgumentElement__Validate__GSNPLTemplate();
+  EOperation getPLGSNArgumentElement__Validate__PLGSNTemplate();
 
   /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#instantiate(edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate) <em>Instantiate</em>}' operation.
@@ -811,7 +892,7 @@ public interface PLGSNPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#instantiate(edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate)
    * @generated
    */
-  EOperation getGSNPLArgumentElement__Instantiate__GSNPLTemplate();
+  EOperation getPLGSNArgumentElement__Instantiate__PLGSNTemplate();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate <em>Template</em>}'.
@@ -821,7 +902,7 @@ public interface PLGSNPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate
    * @generated
    */
-  EClass getGSNPLTemplate();
+  EClass getPLGSNTemplate();
 
   /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#validate() <em>Validate</em>}' operation.
@@ -831,7 +912,7 @@ public interface PLGSNPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#validate()
    * @generated
    */
-  EOperation getGSNPLTemplate__Validate();
+  EOperation getPLGSNTemplate__Validate();
 
   /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#import_(edu.toronto.cs.se.mmint.productline.ProductLine) <em>Import </em>}' operation.
@@ -841,7 +922,7 @@ public interface PLGSNPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#import_(edu.toronto.cs.se.mmint.productline.ProductLine)
    * @generated
    */
-  EOperation getGSNPLTemplate__Import___ProductLine();
+  EOperation getPLGSNTemplate__Import___ProductLine();
 
   /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#instantiate() <em>Instantiate</em>}' operation.
@@ -851,7 +932,7 @@ public interface PLGSNPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#instantiate()
    * @generated
    */
-  EOperation getGSNPLTemplate__Instantiate();
+  EOperation getPLGSNTemplate__Instantiate();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate <em>Analytic Template</em>}'.
@@ -861,7 +942,7 @@ public interface PLGSNPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate
    * @generated
    */
-  EClass getGSNPLAnalyticTemplate();
+  EClass getPLGSNAnalyticTemplate();
 
   /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate#getAnalysis() <em>Get Analysis</em>}' operation.
@@ -871,18 +952,18 @@ public interface PLGSNPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate#getAnalysis()
    * @generated
    */
-  EOperation getGSNPLAnalyticTemplate__GetAnalysis();
+  EOperation getPLGSNAnalyticTemplate__GetAnalysis();
 
   /**
-   * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis <em>IGSNPL Analysis</em>}'.
+   * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis <em>IPLGSN Analysis</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>IGSNPL Analysis</em>'.
+   * @return the meta object for data type '<em>IPLGSN Analysis</em>'.
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis
-   * @model instanceClass="edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IGSNPLAnalysis"
+   * @model instanceClass="edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis"
    * @generated
    */
-  EDataType getIGSNPLAnalysis();
+  EDataType getIPLGSNAnalysis();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -891,7 +972,7 @@ public interface PLGSNPackage extends EPackage {
    * @return the factory that creates the instances of the model.
    * @generated
    */
-  PLGSNFactory getGSNPLFactory();
+  PLGSNFactory getPLGSNFactory();
 
   /**
    * <!-- begin-user-doc -->
@@ -912,79 +993,79 @@ public interface PLGSNPackage extends EPackage {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNArgumentElementImpl
-     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getGSNPLArgumentElement()
+     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getPLGSNArgumentElement()
      * @generated
      */
-    EClass GSNPL_ARGUMENT_ELEMENT = PLGSNPackage.eINSTANCE.getGSNPLArgumentElement();
+    EClass PLGSN_ARGUMENT_ELEMENT = PLGSNPackage.eINSTANCE.getPLGSNArgumentElement();
     /**
      * The meta object literal for the '<em><b>Validate</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation GSNPL_ARGUMENT_ELEMENT___VALIDATE__GSNPLTEMPLATE = PLGSNPackage.eINSTANCE.getGSNPLArgumentElement__Validate__GSNPLTemplate();
+    EOperation PLGSN_ARGUMENT_ELEMENT___VALIDATE__PLGSNTEMPLATE = PLGSNPackage.eINSTANCE.getPLGSNArgumentElement__Validate__PLGSNTemplate();
     /**
      * The meta object literal for the '<em><b>Instantiate</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation GSNPL_ARGUMENT_ELEMENT___INSTANTIATE__GSNPLTEMPLATE = PLGSNPackage.eINSTANCE.getGSNPLArgumentElement__Instantiate__GSNPLTemplate();
+    EOperation PLGSN_ARGUMENT_ELEMENT___INSTANTIATE__PLGSNTEMPLATE = PLGSNPackage.eINSTANCE.getPLGSNArgumentElement__Instantiate__PLGSNTemplate();
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNTemplateImpl <em>Template</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNTemplateImpl
-     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getGSNPLTemplate()
+     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getPLGSNTemplate()
      * @generated
      */
-    EClass GSNPL_TEMPLATE = PLGSNPackage.eINSTANCE.getGSNPLTemplate();
+    EClass PLGSN_TEMPLATE = PLGSNPackage.eINSTANCE.getPLGSNTemplate();
     /**
      * The meta object literal for the '<em><b>Validate</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation GSNPL_TEMPLATE___VALIDATE = PLGSNPackage.eINSTANCE.getGSNPLTemplate__Validate();
+    EOperation PLGSN_TEMPLATE___VALIDATE = PLGSNPackage.eINSTANCE.getPLGSNTemplate__Validate();
     /**
      * The meta object literal for the '<em><b>Import </b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation GSNPL_TEMPLATE___IMPORT____PRODUCTLINE = PLGSNPackage.eINSTANCE.getGSNPLTemplate__Import___ProductLine();
+    EOperation PLGSN_TEMPLATE___IMPORT____PRODUCTLINE = PLGSNPackage.eINSTANCE.getPLGSNTemplate__Import___ProductLine();
     /**
      * The meta object literal for the '<em><b>Instantiate</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation GSNPL_TEMPLATE___INSTANTIATE = PLGSNPackage.eINSTANCE.getGSNPLTemplate__Instantiate();
+    EOperation PLGSN_TEMPLATE___INSTANTIATE = PLGSNPackage.eINSTANCE.getPLGSNTemplate__Instantiate();
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNAnalyticTemplateImpl <em>Analytic Template</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNAnalyticTemplateImpl
-     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getGSNPLAnalyticTemplate()
+     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getPLGSNAnalyticTemplate()
      * @generated
      */
-    EClass GSNPL_ANALYTIC_TEMPLATE = PLGSNPackage.eINSTANCE.getGSNPLAnalyticTemplate();
+    EClass PLGSN_ANALYTIC_TEMPLATE = PLGSNPackage.eINSTANCE.getPLGSNAnalyticTemplate();
     /**
      * The meta object literal for the '<em><b>Get Analysis</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation GSNPL_ANALYTIC_TEMPLATE___GET_ANALYSIS = PLGSNPackage.eINSTANCE.getGSNPLAnalyticTemplate__GetAnalysis();
+    EOperation PLGSN_ANALYTIC_TEMPLATE___GET_ANALYSIS = PLGSNPackage.eINSTANCE.getPLGSNAnalyticTemplate__GetAnalysis();
     /**
-     * The meta object literal for the '<em>IGSNPL Analysis</em>' data type.
+     * The meta object literal for the '<em>IPLGSN Analysis</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis
-     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getIGSNPLAnalysis()
+     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getIPLGSNAnalysis()
      * @generated
      */
-    EDataType IGSNPL_ANALYSIS = PLGSNPackage.eINSTANCE.getIGSNPLAnalysis();
+    EDataType IPLGSN_ANALYSIS = PLGSNPackage.eINSTANCE.getIPLGSNAnalysis();
 
   }
 

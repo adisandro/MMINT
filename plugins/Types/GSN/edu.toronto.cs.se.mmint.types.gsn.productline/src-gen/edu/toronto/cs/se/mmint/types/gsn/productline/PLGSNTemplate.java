@@ -21,7 +21,7 @@ import edu.toronto.cs.se.mmint.productline.ProductLine;
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage#getGSNPLTemplate()
+ * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage#getPLGSNTemplate()
  * @model
  * @generated
  */

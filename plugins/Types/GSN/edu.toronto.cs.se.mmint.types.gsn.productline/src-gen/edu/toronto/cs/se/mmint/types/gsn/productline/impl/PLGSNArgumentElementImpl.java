@@ -50,7 +50,7 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
    */
   @Override
   protected EClass eStaticClass() {
-    return PLGSNPackage.Literals.GSNPL_ARGUMENT_ELEMENT;
+    return PLGSNPackage.Literals.PLGSN_ARGUMENT_ELEMENT;
   }
 
   /**
@@ -106,7 +106,7 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case PLGSNPackage.GSNPL_ARGUMENT_ELEMENT___VALIDATE__GSNPLTEMPLATE:
+      case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___VALIDATE__PLGSNTEMPLATE:
         try {
           validate((PLGSNTemplate)arguments.get(0));
           return null;
@@ -114,7 +114,7 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case PLGSNPackage.GSNPL_ARGUMENT_ELEMENT___INSTANTIATE__GSNPLTEMPLATE:
+      case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___INSTANTIATE__PLGSNTEMPLATE:
         try {
           instantiate((PLGSNTemplate)arguments.get(0));
           return null;

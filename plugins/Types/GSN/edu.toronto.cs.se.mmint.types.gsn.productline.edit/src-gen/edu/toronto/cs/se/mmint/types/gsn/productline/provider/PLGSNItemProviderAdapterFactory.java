@@ -96,7 +96,7 @@ public class PLGSNItemProviderAdapterFactory extends PLGSNAdapterFactory impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  protected PLGSNArgumentElementItemProvider gsnplArgumentElementItemProvider;
+  protected PLGSNArgumentElementItemProvider plgsnArgumentElementItemProvider;
 
   /**
    * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement}.
@@ -105,12 +105,12 @@ public class PLGSNItemProviderAdapterFactory extends PLGSNAdapterFactory impleme
    * @generated
    */
   @Override
-  public Adapter createGSNPLArgumentElementAdapter() {
-    if (this.gsnplArgumentElementItemProvider == null) {
-      this.gsnplArgumentElementItemProvider = new PLGSNArgumentElementItemProvider(this);
+  public Adapter createPLGSNArgumentElementAdapter() {
+    if (this.plgsnArgumentElementItemProvider == null) {
+      this.plgsnArgumentElementItemProvider = new PLGSNArgumentElementItemProvider(this);
     }
 
-    return this.gsnplArgumentElementItemProvider;
+    return this.plgsnArgumentElementItemProvider;
   }
 
   /**
@@ -119,7 +119,7 @@ public class PLGSNItemProviderAdapterFactory extends PLGSNAdapterFactory impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  protected PLGSNTemplateItemProvider gsnplTemplateItemProvider;
+  protected PLGSNTemplateItemProvider plgsnTemplateItemProvider;
 
   /**
    * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate}.
@@ -128,12 +128,12 @@ public class PLGSNItemProviderAdapterFactory extends PLGSNAdapterFactory impleme
    * @generated
    */
   @Override
-  public Adapter createGSNPLTemplateAdapter() {
-    if (this.gsnplTemplateItemProvider == null) {
-      this.gsnplTemplateItemProvider = new PLGSNTemplateItemProvider(this);
+  public Adapter createPLGSNTemplateAdapter() {
+    if (this.plgsnTemplateItemProvider == null) {
+      this.plgsnTemplateItemProvider = new PLGSNTemplateItemProvider(this);
     }
 
-    return this.gsnplTemplateItemProvider;
+    return this.plgsnTemplateItemProvider;
   }
 
   /**
@@ -142,7 +142,7 @@ public class PLGSNItemProviderAdapterFactory extends PLGSNAdapterFactory impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  protected PLGSNAnalyticTemplateItemProvider gsnplAnalyticTemplateItemProvider;
+  protected PLGSNAnalyticTemplateItemProvider plgsnAnalyticTemplateItemProvider;
 
   /**
    * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate}.
@@ -151,12 +151,12 @@ public class PLGSNItemProviderAdapterFactory extends PLGSNAdapterFactory impleme
    * @generated
    */
   @Override
-  public Adapter createGSNPLAnalyticTemplateAdapter() {
-    if (this.gsnplAnalyticTemplateItemProvider == null) {
-      this.gsnplAnalyticTemplateItemProvider = new PLGSNAnalyticTemplateItemProvider(this);
+  public Adapter createPLGSNAnalyticTemplateAdapter() {
+    if (this.plgsnAnalyticTemplateItemProvider == null) {
+      this.plgsnAnalyticTemplateItemProvider = new PLGSNAnalyticTemplateItemProvider(this);
     }
 
-    return this.gsnplAnalyticTemplateItemProvider;
+    return this.plgsnAnalyticTemplateItemProvider;
   }
 
   /**
@@ -264,14 +264,14 @@ public class PLGSNItemProviderAdapterFactory extends PLGSNAdapterFactory impleme
    */
   @Override
   public void dispose() {
-    if (this.gsnplArgumentElementItemProvider != null) {
-      this.gsnplArgumentElementItemProvider.dispose();
+    if (this.plgsnArgumentElementItemProvider != null) {
+      this.plgsnArgumentElementItemProvider.dispose();
     }
-    if (this.gsnplTemplateItemProvider != null) {
-      this.gsnplTemplateItemProvider.dispose();
+    if (this.plgsnTemplateItemProvider != null) {
+      this.plgsnTemplateItemProvider.dispose();
     }
-    if (this.gsnplAnalyticTemplateItemProvider != null) {
-      this.gsnplAnalyticTemplateItemProvider.dispose();
+    if (this.plgsnAnalyticTemplateItemProvider != null) {
+      this.plgsnAnalyticTemplateItemProvider.dispose();
     }
   }
 
@@ -325,17 +325,17 @@ public class PLGSNItemProviderAdapterFactory extends PLGSNAdapterFactory impleme
         this.newChildDescriptors.add
           (createChildParameter
             (PLPackage.Literals.PRODUCT_LINE__CLASSES,
-             PLGSNFactory.eINSTANCE.createGSNPLArgumentElement()));
+             PLGSNFactory.eINSTANCE.createPLGSNArgumentElement()));
 
         this.newChildDescriptors.add
           (createChildParameter
             (PLPackage.Literals.PRODUCT_LINE__CLASSES,
-             PLGSNFactory.eINSTANCE.createGSNPLTemplate()));
+             PLGSNFactory.eINSTANCE.createPLGSNTemplate()));
 
         this.newChildDescriptors.add
           (createChildParameter
             (PLPackage.Literals.PRODUCT_LINE__CLASSES,
-             PLGSNFactory.eINSTANCE.createGSNPLAnalyticTemplate()));
+             PLGSNFactory.eINSTANCE.createPLGSNAnalyticTemplate()));
 
         return null;
       }

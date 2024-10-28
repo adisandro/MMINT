@@ -40,26 +40,25 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass gsnplArgumentElementEClass = null;
+  private EClass plgsnArgumentElementEClass = null;
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass gsnplTemplateEClass = null;
-
+  private EClass plgsnTemplateEClass = null;
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass gsnplAnalyticTemplateEClass = null;
+  private EClass plgsnAnalyticTemplateEClass = null;
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EDataType igsnplAnalysisEDataType = null;
+  private EDataType iplgsnAnalysisEDataType = null;
   /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
@@ -103,8 +102,8 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     }
 
     // Obtain or create and register package
-    var registeredGSNPLPackage = EPackage.Registry.INSTANCE.get(PLGSNPackage.eNS_URI);
-    var theGSNPLPackage = registeredGSNPLPackage instanceof PLGSNPackageImpl ? (PLGSNPackageImpl)registeredGSNPLPackage : new PLGSNPackageImpl();
+    var registeredPLGSNPackage = EPackage.Registry.INSTANCE.get(PLGSNPackage.eNS_URI);
+    var thePLGSNPackage = registeredPLGSNPackage instanceof PLGSNPackageImpl ? (PLGSNPackageImpl)registeredPLGSNPackage : new PLGSNPackageImpl();
 
     PLGSNPackageImpl.isInited = true;
 
@@ -114,17 +113,17 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     PLPackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
-    theGSNPLPackage.createPackageContents();
+    thePLGSNPackage.createPackageContents();
 
     // Initialize created meta-data
-    theGSNPLPackage.initializePackageContents();
+    thePLGSNPackage.initializePackageContents();
 
     // Mark meta-data to indicate it can't be changed
-    theGSNPLPackage.freeze();
+    thePLGSNPackage.freeze();
 
     // Update the registry and return the package
-    EPackage.Registry.INSTANCE.put(PLGSNPackage.eNS_URI, theGSNPLPackage);
-    return theGSNPLPackage;
+    EPackage.Registry.INSTANCE.put(PLGSNPackage.eNS_URI, thePLGSNPackage);
+    return thePLGSNPackage;
   }
 
   /**
@@ -133,8 +132,8 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EClass getGSNPLArgumentElement() {
-    return this.gsnplArgumentElementEClass;
+  public EClass getPLGSNArgumentElement() {
+    return this.plgsnArgumentElementEClass;
   }
 
   /**
@@ -143,8 +142,8 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EOperation getGSNPLArgumentElement__Validate__GSNPLTemplate() {
-    return this.gsnplArgumentElementEClass.getEOperations().get(0);
+  public EOperation getPLGSNArgumentElement__Validate__PLGSNTemplate() {
+    return this.plgsnArgumentElementEClass.getEOperations().get(0);
   }
 
   /**
@@ -153,8 +152,8 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EOperation getGSNPLArgumentElement__Instantiate__GSNPLTemplate() {
-    return this.gsnplArgumentElementEClass.getEOperations().get(1);
+  public EOperation getPLGSNArgumentElement__Instantiate__PLGSNTemplate() {
+    return this.plgsnArgumentElementEClass.getEOperations().get(1);
   }
 
   /**
@@ -163,8 +162,8 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EClass getGSNPLTemplate() {
-    return this.gsnplTemplateEClass;
+  public EClass getPLGSNTemplate() {
+    return this.plgsnTemplateEClass;
   }
 
   /**
@@ -173,8 +172,8 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EOperation getGSNPLTemplate__Validate() {
-    return this.gsnplTemplateEClass.getEOperations().get(0);
+  public EOperation getPLGSNTemplate__Validate() {
+    return this.plgsnTemplateEClass.getEOperations().get(0);
   }
 
   /**
@@ -183,8 +182,8 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EOperation getGSNPLTemplate__Import___ProductLine() {
-    return this.gsnplTemplateEClass.getEOperations().get(1);
+  public EOperation getPLGSNTemplate__Import___ProductLine() {
+    return this.plgsnTemplateEClass.getEOperations().get(1);
   }
 
   /**
@@ -193,8 +192,8 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EOperation getGSNPLTemplate__Instantiate() {
-    return this.gsnplTemplateEClass.getEOperations().get(2);
+  public EOperation getPLGSNTemplate__Instantiate() {
+    return this.plgsnTemplateEClass.getEOperations().get(2);
   }
 
   /**
@@ -203,8 +202,8 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EClass getGSNPLAnalyticTemplate() {
-    return this.gsnplAnalyticTemplateEClass;
+  public EClass getPLGSNAnalyticTemplate() {
+    return this.plgsnAnalyticTemplateEClass;
   }
 
   /**
@@ -213,8 +212,8 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EOperation getGSNPLAnalyticTemplate__GetAnalysis() {
-    return this.gsnplAnalyticTemplateEClass.getEOperations().get(0);
+  public EOperation getPLGSNAnalyticTemplate__GetAnalysis() {
+    return this.plgsnAnalyticTemplateEClass.getEOperations().get(0);
   }
 
   /**
@@ -223,8 +222,8 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EDataType getIGSNPLAnalysis() {
-    return this.igsnplAnalysisEDataType;
+  public EDataType getIPLGSNAnalysis() {
+    return this.iplgsnAnalysisEDataType;
   }
 
   /**
@@ -233,7 +232,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public PLGSNFactory getGSNPLFactory() {
+  public PLGSNFactory getPLGSNFactory() {
     return (PLGSNFactory)getEFactoryInstance();
   }
 
@@ -258,20 +257,20 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     this.isCreated = true;
 
     // Create classes and their features
-    this.gsnplArgumentElementEClass = createEClass(PLGSNPackage.GSNPL_ARGUMENT_ELEMENT);
-    createEOperation(this.gsnplArgumentElementEClass, PLGSNPackage.GSNPL_ARGUMENT_ELEMENT___VALIDATE__GSNPLTEMPLATE);
-    createEOperation(this.gsnplArgumentElementEClass, PLGSNPackage.GSNPL_ARGUMENT_ELEMENT___INSTANTIATE__GSNPLTEMPLATE);
+    this.plgsnArgumentElementEClass = createEClass(PLGSNPackage.PLGSN_ARGUMENT_ELEMENT);
+    createEOperation(this.plgsnArgumentElementEClass, PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___VALIDATE__PLGSNTEMPLATE);
+    createEOperation(this.plgsnArgumentElementEClass, PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___INSTANTIATE__PLGSNTEMPLATE);
 
-    this.gsnplTemplateEClass = createEClass(PLGSNPackage.GSNPL_TEMPLATE);
-    createEOperation(this.gsnplTemplateEClass, PLGSNPackage.GSNPL_TEMPLATE___VALIDATE);
-    createEOperation(this.gsnplTemplateEClass, PLGSNPackage.GSNPL_TEMPLATE___IMPORT____PRODUCTLINE);
-    createEOperation(this.gsnplTemplateEClass, PLGSNPackage.GSNPL_TEMPLATE___INSTANTIATE);
+    this.plgsnTemplateEClass = createEClass(PLGSNPackage.PLGSN_TEMPLATE);
+    createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___VALIDATE);
+    createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___IMPORT____PRODUCTLINE);
+    createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___INSTANTIATE);
 
-    this.gsnplAnalyticTemplateEClass = createEClass(PLGSNPackage.GSNPL_ANALYTIC_TEMPLATE);
-    createEOperation(this.gsnplAnalyticTemplateEClass, PLGSNPackage.GSNPL_ANALYTIC_TEMPLATE___GET_ANALYSIS);
+    this.plgsnAnalyticTemplateEClass = createEClass(PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE);
+    createEOperation(this.plgsnAnalyticTemplateEClass, PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE___GET_ANALYSIS);
 
     // Create data types
-    this.igsnplAnalysisEDataType = createEDataType(PLGSNPackage.IGSNPL_ANALYSIS);
+    this.iplgsnAnalysisEDataType = createEDataType(PLGSNPackage.IPLGSN_ANALYSIS);
   }
 
   /**
@@ -308,40 +307,40 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    this.gsnplArgumentElementEClass.getESuperTypes().add(thePLPackage.getClass_());
-    this.gsnplTemplateEClass.getESuperTypes().add(thePLPackage.getClass_());
-    this.gsnplAnalyticTemplateEClass.getESuperTypes().add(this.getGSNPLTemplate());
+    this.plgsnArgumentElementEClass.getESuperTypes().add(thePLPackage.getClass_());
+    this.plgsnTemplateEClass.getESuperTypes().add(thePLPackage.getClass_());
+    this.plgsnAnalyticTemplateEClass.getESuperTypes().add(this.getPLGSNTemplate());
 
     // Initialize classes, features, and operations; add parameters
-    initEClass(this.gsnplArgumentElementEClass, PLGSNArgumentElement.class, "GSNPLArgumentElement", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.plgsnArgumentElementEClass, PLGSNArgumentElement.class, "PLGSNArgumentElement", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    var op = initEOperation(getGSNPLArgumentElement__Validate__GSNPLTemplate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.getGSNPLTemplate(), "template", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    var op = initEOperation(getPLGSNArgumentElement__Validate__PLGSNTemplate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.getPLGSNTemplate(), "template", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
-    op = initEOperation(getGSNPLArgumentElement__Instantiate__GSNPLTemplate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.getGSNPLTemplate(), "template", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getPLGSNArgumentElement__Instantiate__PLGSNTemplate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.getPLGSNTemplate(), "template", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
-    initEClass(this.gsnplTemplateEClass, PLGSNTemplate.class, "GSNPLTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.plgsnTemplateEClass, PLGSNTemplate.class, "PLGSNTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    op = initEOperation(getGSNPLTemplate__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getPLGSNTemplate__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
-    op = initEOperation(getGSNPLTemplate__Import___ProductLine(), null, "import_", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getPLGSNTemplate__Import___ProductLine(), null, "import_", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, thePLPackage.getProductLine(), "productLine", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
-    op = initEOperation(getGSNPLTemplate__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getPLGSNTemplate__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
-    initEClass(this.gsnplAnalyticTemplateEClass, PLGSNAnalyticTemplate.class, "GSNPLAnalyticTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEClass(this.plgsnAnalyticTemplateEClass, PLGSNAnalyticTemplate.class, "PLGSNAnalyticTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    op = initEOperation(getGSNPLAnalyticTemplate__GetAnalysis(), this.getIGSNPLAnalysis(), "getAnalysis", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getPLGSNAnalyticTemplate__GetAnalysis(), this.getIPLGSNAnalysis(), "getAnalysis", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
     // Initialize data types
-    initEDataType(this.igsnplAnalysisEDataType, IPLGSNAnalysis.class, "IGSNPLAnalysis", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.iplgsnAnalysisEDataType, IPLGSNAnalysis.class, "IPLGSNAnalysis", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(PLGSNPackage.eNS_URI);

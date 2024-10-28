@@ -53,7 +53,7 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
    */
   @Override
   protected EClass eStaticClass() {
-    return PLGSNPackage.Literals.GSNPL_ANALYTIC_TEMPLATE;
+    return PLGSNPackage.Literals.PLGSN_ANALYTIC_TEMPLATE;
   }
 
   /**
@@ -64,7 +64,7 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case PLGSNPackage.GSNPL_ANALYTIC_TEMPLATE___GET_ANALYSIS:
+      case PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE___GET_ANALYSIS:
         try {
           return getAnalysis();
         }

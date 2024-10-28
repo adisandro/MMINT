@@ -61,7 +61,7 @@ public class PLGSNBuilder {
   }
 
   public PLGSNArgumentElement createGoal(String id, String description, @Nullable String presenceCondition) {
-    var plGoal = this.gsnPLfactory.createGSNPLArgumentElement();
+    var plGoal = this.gsnPLfactory.createPLGSNArgumentElement();
     plGoal.setType(this.gsnTypes.getGoal());
     plGoal.setPresenceCondition(presenceCondition);
     addGoal(plGoal, id, description);

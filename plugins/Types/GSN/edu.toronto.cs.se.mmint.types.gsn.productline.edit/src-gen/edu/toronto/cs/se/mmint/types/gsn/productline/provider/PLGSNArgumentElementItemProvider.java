@@ -57,14 +57,14 @@ public class PLGSNArgumentElementItemProvider extends ClassItemProvider {
   }
 
   /**
-   * This returns GSNPLArgumentElement.gif.
+   * This returns PLGSNArgumentElement.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/GSNPLArgumentElement"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/PLGSNArgumentElement"));
   }
 
   /**
@@ -77,8 +77,8 @@ public class PLGSNArgumentElementItemProvider extends ClassItemProvider {
   public String getText(Object object) {
     var label = ((PLGSNArgumentElement)object).getPresenceCondition();
     return label == null || label.length() == 0 ?
-      getString("_UI_GSNPLArgumentElement_type") :
-      getString("_UI_GSNPLArgumentElement_type") + " " + label;
+      getString("_UI_PLGSNArgumentElement_type") :
+      getString("_UI_PLGSNArgumentElement_type") + " " + label;
   }
 
 

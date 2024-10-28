@@ -80,16 +80,16 @@ public class PLGSNAdapterFactory extends AdapterFactoryImpl {
   protected PLGSNSwitch<Adapter> modelSwitch =
     new PLGSNSwitch<>() {
       @Override
-      public Adapter caseGSNPLArgumentElement(PLGSNArgumentElement object) {
-        return createGSNPLArgumentElementAdapter();
+      public Adapter casePLGSNArgumentElement(PLGSNArgumentElement object) {
+        return createPLGSNArgumentElementAdapter();
       }
       @Override
-      public Adapter caseGSNPLTemplate(PLGSNTemplate object) {
-        return createGSNPLTemplateAdapter();
+      public Adapter casePLGSNTemplate(PLGSNTemplate object) {
+        return createPLGSNTemplateAdapter();
       }
       @Override
-      public Adapter caseGSNPLAnalyticTemplate(PLGSNAnalyticTemplate object) {
-        return createGSNPLAnalyticTemplateAdapter();
+      public Adapter casePLGSNAnalyticTemplate(PLGSNAnalyticTemplate object) {
+        return createPLGSNAnalyticTemplateAdapter();
       }
       @Override
       public Adapter casePLElement(PLElement object) {
@@ -129,7 +129,7 @@ public class PLGSNAdapterFactory extends AdapterFactoryImpl {
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement
    * @generated
    */
-  public Adapter createGSNPLArgumentElementAdapter() {
+  public Adapter createPLGSNArgumentElementAdapter() {
     return null;
   }
 
@@ -143,7 +143,7 @@ public class PLGSNAdapterFactory extends AdapterFactoryImpl {
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate
    * @generated
    */
-  public Adapter createGSNPLTemplateAdapter() {
+  public Adapter createPLGSNTemplateAdapter() {
     return null;
   }
 
@@ -157,7 +157,7 @@ public class PLGSNAdapterFactory extends AdapterFactoryImpl {
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate
    * @generated
    */
-  public Adapter createGSNPLAnalyticTemplateAdapter() {
+  public Adapter createPLGSNAnalyticTemplateAdapter() {
     return null;
   }
 

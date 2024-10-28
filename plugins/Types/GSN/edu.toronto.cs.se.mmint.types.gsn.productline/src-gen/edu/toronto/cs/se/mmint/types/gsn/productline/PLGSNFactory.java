@@ -38,7 +38,7 @@ public interface PLGSNFactory extends EFactory {
    * @return a new object of class '<em>Argument Element</em>'.
    * @generated
    */
-  PLGSNArgumentElement createGSNPLArgumentElement();
+  PLGSNArgumentElement createPLGSNArgumentElement();
 
   /**
    * Returns a new object of class '<em>Template</em>'.
@@ -47,7 +47,7 @@ public interface PLGSNFactory extends EFactory {
    * @return a new object of class '<em>Template</em>'.
    * @generated
    */
-  PLGSNTemplate createGSNPLTemplate();
+  PLGSNTemplate createPLGSNTemplate();
 
   /**
    * Returns a new object of class '<em>Analytic Template</em>'.
@@ -56,7 +56,7 @@ public interface PLGSNFactory extends EFactory {
    * @return a new object of class '<em>Analytic Template</em>'.
    * @generated
    */
-  PLGSNAnalyticTemplate createGSNPLAnalyticTemplate();
+  PLGSNAnalyticTemplate createPLGSNAnalyticTemplate();
 
   /**
    * Returns the package supported by this factory.
@@ -65,6 +65,6 @@ public interface PLGSNFactory extends EFactory {
    * @return the package supported by this factory.
    * @generated
    */
-  PLGSNPackage getGSNPLPackage();
+  PLGSNPackage getPLGSNPackage();
 
 } //GSNPLFactory
