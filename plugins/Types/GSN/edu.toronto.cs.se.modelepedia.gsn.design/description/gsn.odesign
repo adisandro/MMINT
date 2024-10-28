@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="gsn" version="12.0.0.2017041100">
   <ownedViewpoints name="GSNViewpoint" modelFileExtension="gsn">
-    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="GSNRepresentation" domainClass="gsn.SafetyCase">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="GSNRepresentation" label="GSN Diagram" domainClass="gsn.SafetyCase">
       <metamodel href="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#/"/>
       <layout xsi:type="description_1:CompositeLayout"/>
-      <defaultLayer name="Default">
+      <defaultLayer name="Default" label="GSN">
         <nodeMappings name="GoalNode" semanticCandidatesExpression="feature:goals" domainClass="gsn.Goal">
           <borderedNodeMappings name="AsilNode" semanticCandidatesExpression="feature:asil" domainClass="gsn.ASIL">
             <borderedNodeMappings name="AsilImpactNode" semanticCandidatesExpression="feature:status" domainClass="gsn.ImpactAnnotation">

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:properties="http://www.eclipse.org/sirius/properties/1.0.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="gsn.productline" version="12.0.0.2017041100">
-  <ownedViewpoints name="GSNProductLineViewpoint" modelFileExtension="productline">
-    <ownedRepresentationExtensions xsi:type="description_1:DiagramExtensionDescription" name="GSNProductLineDiagram" viewpointURI="viewpoint:/edu.toronto.cs.se.mmint.productline.design/ProductLineViewpoint" representationName="ProductLineDiagram">
+  <ownedViewpoints name="PLGSNViewpoint" modelFileExtension="productline">
+    <ownedRepresentationExtensions xsi:type="description_1:DiagramExtensionDescription" name="PL GSN Diagram" viewpointURI="viewpoint:/edu.toronto.cs.se.mmint.productline.design/ProductLineViewpoint" representationName="ProductLineDiagram">
       <metamodel href="../../edu.toronto.cs.se.mmint.productline/model/productline.ecore#/"/>
-      <layers name="GSNProductLine" label="GSN Product Line">
+      <layers name="GSNDefault" label="PL GSN">
         <nodeMappings name="PLGoalNode" preconditionExpression="aql: self.type.name = 'Goal' or self.type.eAllSuperTypes->exists(s | s.name = 'Goal')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
           <borderedNodeMappings name="PLRelationshipDecoratorNode" preconditionExpression="aql: self.type.name = 'RelationshipDecorator'" domainClass="productline.Class">
@@ -23,7 +23,7 @@
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </nodeMappings>
-        <nodeMappings name="PLStrategyNode" preconditionExpression="aql: self.type.name = 'Strategy' or self.type.eAllSuperTypes->exists(s | s.name = 'Strategy')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class" reusedBorderedNodeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLGoalNode']/@borderedNodeMappings[name='PLRelationshipDecoratorNode']">
+        <nodeMappings name="PLStrategyNode" preconditionExpression="aql: self.type.name = 'Strategy' or self.type.eAllSuperTypes->exists(s | s.name = 'Strategy')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class" reusedBorderedNodeMappings="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLGoalNode']/@borderedNodeMappings[name='PLRelationshipDecoratorNode']">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
           <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Strategy.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -61,7 +61,7 @@
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </nodeMappings>
-        <edgeMappings name="PLSupportedByEdge" preconditionExpression="aql: self.type.name = 'SupportedBy'" semanticCandidatesExpression="feature:classes" sourceMapping="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLGoalNode'] //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLStrategyNode'] //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLGoalNode']/@borderedNodeMappings[name='PLRelationshipDecoratorNode']" targetMapping="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLGoalNode'] //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLStrategyNode'] //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLSolutionNode']" targetFinderExpression="aql: self.references->select(r | r.type.name = 'target')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'supports')->collect(r | r.eContainer()))" sourceFinderExpression="aql: self.references->select(r | r.type.name = 'source')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'supportedBy')->collect(r | r.eContainer()))" domainClass="productline.Class" useDomainElement="true">
+        <edgeMappings name="PLSupportedByEdge" preconditionExpression="aql: self.type.name = 'SupportedBy'" semanticCandidatesExpression="feature:classes" sourceMapping="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLGoalNode'] //@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLStrategyNode'] //@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLGoalNode']/@borderedNodeMappings[name='PLRelationshipDecoratorNode']" targetMapping="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLGoalNode'] //@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLStrategyNode'] //@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLSolutionNode']" targetFinderExpression="aql: self.references->select(r | r.type.name = 'target')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'supports')->collect(r | r.eContainer()))" sourceFinderExpression="aql: self.references->select(r | r.type.name = 'source')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'supportedBy')->collect(r | r.eContainer()))" domainClass="productline.Class" useDomainElement="true">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
           <style targetArrow="InputFillClosedArrow">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -70,7 +70,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="PLInContextOfEdge" preconditionExpression="aql: self.type.name = 'InContextOf'" semanticCandidatesExpression="feature:classes" sourceMapping="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLGoalNode'] //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLStrategyNode'] //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLGoalNode']/@borderedNodeMappings[name='PLRelationshipDecoratorNode']" targetMapping="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLContextNode'] //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLAssumptionNode'] //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLJustificationNode']" targetFinderExpression="aql: self.references->select(r | r.type.name = 'context')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'contextOf')->collect(r | r.eContainer()))" sourceFinderExpression="aql: self.references->select(r | r.type.name = 'contextOf')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'inContextOf')->collect(r | r.eContainer()))" domainClass="productline.Class" useDomainElement="true">
+        <edgeMappings name="PLInContextOfEdge" preconditionExpression="aql: self.type.name = 'InContextOf'" semanticCandidatesExpression="feature:classes" sourceMapping="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLGoalNode'] //@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLStrategyNode'] //@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLGoalNode']/@borderedNodeMappings[name='PLRelationshipDecoratorNode']" targetMapping="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLContextNode'] //@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLAssumptionNode'] //@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLJustificationNode']" targetFinderExpression="aql: self.references->select(r | r.type.name = 'context')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'contextOf')->collect(r | r.eContainer()))" sourceFinderExpression="aql: self.references->select(r | r.type.name = 'contextOf')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'inContextOf')->collect(r | r.eContainer()))" domainClass="productline.Class" useDomainElement="true">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
           <style targetArrow="InputClosedArrow">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -80,7 +80,7 @@
           </style>
         </edgeMappings>
         <toolSections name="CreateGSN" label="Create GSN">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateGoal" label="Goal" nodeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLGoalNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Goal.gif">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateGoal" label="Goal" nodeMappings="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLGoalNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Goal.gif">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -91,7 +91,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateStrategy" label="Strategy" nodeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLStrategyNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Strategy.gif">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateStrategy" label="Strategy" nodeMappings="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLStrategyNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Strategy.gif">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -102,7 +102,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateSolution" label="Solution" nodeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLSolutionNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Solution.gif">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateSolution" label="Solution" nodeMappings="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLSolutionNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Solution.gif">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -113,7 +113,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateContext" label="Context" nodeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLContextNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Context.gif">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateContext" label="Context" nodeMappings="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLContextNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Context.gif">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -124,7 +124,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateJustification" label="Justification" nodeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLJustificationNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Justification.gif">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateJustification" label="Justification" nodeMappings="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLJustificationNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Justification.gif">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -135,7 +135,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateAssumption" label="Assumption" nodeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLAssumptionNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Assumption.gif">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateAssumption" label="Assumption" nodeMappings="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLAssumptionNode']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Assumption.gif">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -146,7 +146,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="PLCreateSupportedBy" label="Supported-by Link" edgeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@edgeMappings[name='PLSupportedByEdge']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/SupportedBy.gif">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="PLCreateSupportedBy" label="Supported-by Link" edgeMappings="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@edgeMappings[name='PLSupportedByEdge']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/SupportedBy.gif">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -161,7 +161,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="PLCreateInContextOf" label="In-context-of Link" edgeMappings="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@edgeMappings[name='PLInContextOfEdge']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/InContextOf.gif">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="PLCreateInContextOf" label="In-context-of Link" edgeMappings="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@edgeMappings[name='PLInContextOfEdge']" iconPath="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/InContextOf.gif">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -189,7 +189,7 @@
         </decorationDescriptionsSet>
         <customization>
           <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql: self.oclIsKindOf(productline::Class) and self.oclAsType(productline::Class).attributes->exists(a | a.type.name = 'valid' and a.value = 'false')">
-            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLAssumptionNode']/@style //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLContextNode']/@style //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLGoalNode']/@style //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLJustificationNode']/@style //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLSolutionNode']/@style //@ownedViewpoints[name='GSNProductLineViewpoint']/@ownedRepresentationExtensions[name='GSNProductLineDiagram']/@layers[name='GSNProductLine']/@nodeMappings[name='PLStrategyNode']/@style" referenceName="labelColor">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" appliedOn="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLAssumptionNode']/@style //@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLContextNode']/@style //@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLGoalNode']/@style //@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLJustificationNode']/@style //@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLSolutionNode']/@style //@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLStrategyNode']/@style" referenceName="labelColor">
               <value href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
             </featureCustomizations>
           </vsmElementCustomizations>
