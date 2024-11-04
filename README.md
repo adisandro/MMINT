@@ -97,7 +97,7 @@ Follow these steps to install MMINT-PL:
 
 ### About MMINT
 
-* <a name="paper-mom24"></a> From Products to Product Lines: a Model-based Methodology  
+* <a name="paper-mom24"></a> [From Products to Product Lines: a Model-based Methodology](https://doi.org/10.1145/3652620.3688220)  
 MoM@MODELS 24 | Install: `Examples > MMINT - MOM24` | [Readme](examples/MOM24/edu.toronto.cs.se.mmint.examples.mom24/MOM24/README.md)
 * <a name="paper-scico23"></a> [MMINT-A: A Framework for Model-Based Safety Assurance](https://doi.org/10.1016/j.scico.2023.103004)  
 SciCo Vol. 231 | Install: `Examples > MMINT - SCICO23` | [Readme](examples/SCICO23/edu.toronto.cs.se.mmint.examples.scico23/SCICO23/README.md)
@@ -115,7 +115,7 @@ MODELS 15
 ### Using MMINT
 
 * <a name="paper-ifm24"></a> PLACIDUS: Engineering Product Lines of Rigorous Assurance Cases  
-iFM 24 (accepted) | Install: `Examples > MMINT - IFM24` | [Readme](examples/IFM24/edu.toronto.cs.se.mmint.examples.ifm24/IFM24/README.md)
+iFM 24 | Install: `Examples > MMINT - IFM24` | [Readme](examples/IFM24/edu.toronto.cs.se.mmint.examples.ifm24/IFM24/README.md)
 * <a name="paper-sosym22"></a> [The ForeMoSt Approach to Building Valid Model-Based Safety Arguments](https://doi.org/10.1007/s10270-022-01063-4)  
 SoSyM Vol. 22-5 | Install: `Examples > MMINT - SOSYM22` | [Readme](examples/SOSYM22/edu.toronto.cs.se.mmint.examples.sosym22/SOSYM22/README.md)
 * [Validating Safety Arguments with Lean](https://doi.org/10.1007/978-3-030-92124-8_2)  
