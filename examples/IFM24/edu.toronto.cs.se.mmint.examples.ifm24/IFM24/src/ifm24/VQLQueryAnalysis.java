@@ -60,7 +60,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var safetyCase = (SafetyCase) template.eContainer();
     var builder = new GSNTemplatesBuilder(safetyCase);
     var templateElems = template.getElements();
-    var queryStrategy = template.getElements().stream()
+    var queryStrategy = templateElems.stream()
       .filter(Strategy.class::isInstance)
       .map(Strategy.class::cast)
       .findFirst().get();
