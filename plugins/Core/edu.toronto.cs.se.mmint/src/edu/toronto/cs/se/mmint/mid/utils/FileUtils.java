@@ -583,7 +583,9 @@ public class FileUtils {
     var emfUri = FileUtils.createEMFUri(projectName + IPath.SEPARATOR + "bin" + IPath.SEPARATOR, true);
     var url = java.net.URI.create(emfUri.toString()).toURL();
     try (var loader = new URLClassLoader(new URL[] {url}, bundleLoader)) {
-      return loader.loadClass(binaryName).getConstructor().newInstance();
+      var mainClass = loader.loadClass(binaryName).getConstructor().newInstance();
+      mainClass.getClass().getNestMembers(); // loads nested members as a side effect
+      return mainClass;
     }
   }
 }
