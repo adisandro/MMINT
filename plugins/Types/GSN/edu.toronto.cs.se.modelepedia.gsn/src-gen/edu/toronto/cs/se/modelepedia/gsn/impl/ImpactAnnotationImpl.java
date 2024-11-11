@@ -44,7 +44,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
    * @generated
    * @ordered
    */
-  protected static final ImpactType TYPE_EDEFAULT = ImpactType.REVISE;
+  protected static final ImpactType TYPE_EDEFAULT = ImpactType.REUSE;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' attribute.

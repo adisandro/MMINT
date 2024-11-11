@@ -129,10 +129,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ImpactType">
-    <eLiterals name="Revise" value="1"/>
-    <eLiterals name="RecheckContent" value="2" literal="RecheckContent"/>
-    <eLiterals name="RecheckState" value="3" literal="RecheckState"/>
-    <eLiterals name="Reuse" value="4" literal="Reuse"/>
+    <eLiterals name="REUSE" value="1" literal="REUSE"/>
+    <eLiterals name="RECHECK" value="2" literal="RECHECK"/>
+    <eLiterals name="REVISE" value="3" literal="REVISE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Template">
     <eOperations name="validate" eExceptions="#//Exception"/>

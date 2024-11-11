@@ -1127,7 +1127,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     op = initEOperation(getTemplate__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
-    op = initEOperation(getTemplate__Import___SafetyCase(), null, "import_", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getTemplate__Import___SafetyCase(), null, "import_", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.getSafetyCase(), "safetyCase", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
@@ -1147,10 +1147,9 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     addEEnumLiteral(this.asilLevelEEnum, ASILLevel.QM);
 
     initEEnum(this.impactTypeEEnum, ImpactType.class, "ImpactType");
-    addEEnumLiteral(this.impactTypeEEnum, ImpactType.REVISE);
-    addEEnumLiteral(this.impactTypeEEnum, ImpactType.RECHECK_CONTENT);
-    addEEnumLiteral(this.impactTypeEEnum, ImpactType.RECHECK_STATE);
     addEEnumLiteral(this.impactTypeEEnum, ImpactType.REUSE);
+    addEEnumLiteral(this.impactTypeEEnum, ImpactType.RECHECK);
+    addEEnumLiteral(this.impactTypeEEnum, ImpactType.REVISE);
 
     initEEnum(this.decoratorTypeEEnum, DecoratorType.class, "DecoratorType");
     addEEnumLiteral(this.decoratorTypeEEnum, DecoratorType.MULTIPLE);

@@ -70,8 +70,8 @@ public class GSNAnnotateSlice extends AnnotateSlice {
     annotation.setSource(cause);
     var impactType = switch (annotationId) {
       case SliceType.DEL, SliceType.REVISE -> ImpactType.REVISE;
-      case SliceType.MOD, SliceType.RECHECK, GSNSliceType.RECHECK_CONTENT -> ImpactType.RECHECK_CONTENT;
-      case GSNSliceType.RECHECK_STATE -> ImpactType.RECHECK_STATE;
+      case SliceType.MOD, SliceType.RECHECK, GSNSliceType.RECHECK_CONTENT -> ImpactType.RECHECK;
+      case GSNSliceType.RECHECK_STATE -> ImpactType.RECHECK;
       case SliceType.ADD -> ImpactType.REUSE; //TODO MMINT[SLICE] Not supported yet
       default -> ImpactType.REUSE;
     };

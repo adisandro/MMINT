@@ -4,7 +4,7 @@
     editDirectory="/edu.toronto.cs.se.modelepedia.gsn.edit/src-gen" editorDirectory="/edu.toronto.cs.se.modelepedia.gsn.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.modelepedia.gsn" modelName="GSN" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     testsDirectory="/edu.toronto.cs.se.modelepedia.gsn.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="21.0" copyrightFields="false" editPluginID="edu.toronto.cs.se.modelepedia.gsn.edit"
+    complianceLevel="23.0" copyrightFields="false" editPluginID="edu.toronto.cs.se.modelepedia.gsn.edit"
     editorPluginID="edu.toronto.cs.se.modelepedia.gsn.editor" language="" operationReflection="true">
   <foreignModel>gsn.ecore</foreignModel>
   <genPackages prefix="GSN" basePackage="edu.toronto.cs.se.modelepedia" disposableProviderFactory="true"
@@ -17,10 +17,9 @@
       <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ASILLevel/QM"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="gsn.ecore#//ImpactType">
-      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ImpactType/Revise"/>
-      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ImpactType/RecheckContent"/>
-      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ImpactType/RecheckState"/>
-      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ImpactType/Reuse"/>
+      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ImpactType/REUSE"/>
+      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ImpactType/RECHECK"/>
+      <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//ImpactType/REVISE"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="gsn.ecore#//DecoratorType">
       <genEnumLiterals ecoreEnumLiteral="gsn.ecore#//DecoratorType/MULTIPLE"/>
@@ -41,7 +40,7 @@
     <genClasses image="false" ecoreClass="gsn.ecore#//ArgumentElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//ArgumentElement/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//ArgumentElement/description"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EReference gsn.ecore#//ArgumentElement/status"/>
+      <genFeatures createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//ArgumentElement/status"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//ArgumentElement/templates"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//ArgumentElement/valid"/>
       <genOperations ecoreOperation="gsn.ecore#//ArgumentElement/validate">

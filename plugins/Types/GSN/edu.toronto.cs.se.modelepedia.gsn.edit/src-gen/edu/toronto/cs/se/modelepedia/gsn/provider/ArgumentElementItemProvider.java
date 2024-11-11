@@ -32,6 +32,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 /**
@@ -220,6 +221,11 @@ public class ArgumentElementItemProvider extends ItemProviderAdapter implements 
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
+
+    newChildDescriptors.add
+      (createChildParameter
+        (GSNPackage.Literals.ARGUMENT_ELEMENT__STATUS,
+         GSNFactory.eINSTANCE.createImpactAnnotation()));
   }
 
   /**

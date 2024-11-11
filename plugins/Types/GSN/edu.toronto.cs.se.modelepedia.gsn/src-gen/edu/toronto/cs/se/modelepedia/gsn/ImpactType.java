@@ -28,80 +28,59 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum ImpactType implements Enumerator {
   /**
-   * The '<em><b>Revise</b></em>' literal object.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see #REVISE_VALUE
-   * @generated
-   * @ordered
-   */
-  REVISE(1, "Revise", "Revise"),
-
-  /**
-   * The '<em><b>Recheck Content</b></em>' literal object.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see #RECHECK_CONTENT_VALUE
-   * @generated
-   * @ordered
-   */
-  RECHECK_CONTENT(2, "RecheckContent", "RecheckContent"),
-
-  /**
-   * The '<em><b>Recheck State</b></em>' literal object.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see #RECHECK_STATE_VALUE
-   * @generated
-   * @ordered
-   */
-  RECHECK_STATE(3, "RecheckState", "RecheckState"),
-
-  /**
-   * The '<em><b>Reuse</b></em>' literal object.
+   * The '<em><b>REUSE</b></em>' literal object.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #REUSE_VALUE
    * @generated
    * @ordered
    */
-  REUSE(4, "Reuse", "Reuse");
-
-  /**
-   * The '<em><b>Revise</b></em>' literal value.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see #REVISE
-   * @model name="Revise"
+  REUSE(1, "REUSE", "REUSE"), /**
+   * The '<em><b>RECHECK</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #RECHECK_VALUE
    * @generated
    * @ordered
    */
-  public static final int REVISE_VALUE = 1;
-
-  /**
-   * The '<em><b>Recheck Content</b></em>' literal value.
+  RECHECK(2, "RECHECK", "RECHECK"), /**
+   * The '<em><b>REVISE</b></em>' literal object.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see #RECHECK_CONTENT
-   * @model name="RecheckContent"
+   * @see #REVISE_VALUE
    * @generated
    * @ordered
    */
-  public static final int RECHECK_CONTENT_VALUE = 2;
+  REVISE(3, "REVISE", "REVISE");
 
   /**
-   * The '<em><b>Recheck State</b></em>' literal value.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @see #RECHECK_STATE
-   * @model name="RecheckState"
-   * @generated
-   * @ordered
-   */
-  public static final int RECHECK_STATE_VALUE = 3;
-
-  /**
-   * The '<em><b>Reuse</b></em>' literal value.
+   * The '<em><b>REUSE</b></em>' literal value.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #REUSE
-   * @model name="Reuse"
+   * @model
    * @generated
    * @ordered
    */
-  public static final int REUSE_VALUE = 4;
+  public static final int REUSE_VALUE = 1;
+
+  /**
+   * The '<em><b>RECHECK</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #RECHECK
+   * @model
+   * @generated
+   * @ordered
+   */
+  public static final int RECHECK_VALUE = 2;
+
+  /**
+   * The '<em><b>REVISE</b></em>' literal value.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @see #REVISE
+   * @model
+   * @generated
+   * @ordered
+   */
+  public static final int REVISE_VALUE = 3;
 
   /**
    * An array of all the '<em><b>Impact Type</b></em>' enumerators.
@@ -109,10 +88,9 @@ public enum ImpactType implements Enumerator {
    * @generated
    */
   private static final ImpactType[] VALUES_ARRAY = new ImpactType[] {
-      REVISE,
-      RECHECK_CONTENT,
-      RECHECK_STATE,
       REUSE,
+      RECHECK,
+      REVISE,
     };
 
   /**
@@ -169,10 +147,9 @@ public enum ImpactType implements Enumerator {
    */
   public static ImpactType get(int value) {
     switch (value) {
-      case REVISE_VALUE: return REVISE;
-      case RECHECK_CONTENT_VALUE: return RECHECK_CONTENT;
-      case RECHECK_STATE_VALUE: return RECHECK_STATE;
       case REUSE_VALUE: return REUSE;
+      case RECHECK_VALUE: return RECHECK;
+      case REVISE_VALUE: return REVISE;
     }
     return null;
   }
