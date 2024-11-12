@@ -62,6 +62,10 @@
             actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.ValidateTemplateElement"
             id="edu.toronto.cs.se.modelepedia.gsn.design.context.ValidateTemplateElement">
       </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.ChangeImpact"
+            id="edu.toronto.cs.se.modelepedia.gsn.design.context.ChangeImpact">
+      </javaActions>
    </extension>
 
 </plugin>
