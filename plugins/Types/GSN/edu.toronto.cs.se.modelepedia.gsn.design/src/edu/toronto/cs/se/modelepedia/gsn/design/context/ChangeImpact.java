@@ -16,7 +16,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -24,17 +26,13 @@ import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
+import edu.toronto.cs.se.modelepedia.gsn.Goal;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 
 public class ChangeImpact extends AbstractExternalJavaAction {
-  /**PLAN:
-   * 1) Devise mechanism to attach semantics to starting set (basic: change, deletion; template: extra info)
-   * 2) Baseline loop must not be localized to individual elements:
-   * 2a) recursive, with trace until that point and priority among annotations
-   * 2b) stop condition if already impacted and less priority
-   * 2c) invokes template impact if found (how to get in and out of it, what are the boundaries?)
-   * 2d) visited and impacted should not be separate, visited is just impacted with reuse (vs not impacted at all)
-   */
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -66,8 +64,51 @@ public class ChangeImpact extends AbstractExternalJavaAction {
       this.modelObjs = modelObjs;
     }
 
+    private void impact(ArgumentElement impactedObj, List<EObject> trace, Object change) {
+      var status = impactedObj.getStatus();
+      var lastImpactType = trace.stream()
+        .filter(o -> o instanceof ArgumentElement)
+        .map(o -> ((ArgumentElement) o).getStatus().getType())
+        .findFirst()
+        .orElse(ImpactType.RECHECK); //TODO: derive from change
+      // stop condition: already impacted with equal or more priority
+      if (status != null && status.getType().compareTo(lastImpactType) >= 0) {
+        return;
+      }
+      if (status == null) {
+        status = GSNFactory.eINSTANCE.createImpactAnnotation();
+        impactedObj.setStatus(status);
+      }
+      // impact rules
+      status.setType(lastImpactType); //TODO: customize for each impactedObj type
+      switch (impactedObj) {
+        case Goal goal -> {
+          for (var supportedBy : goal.getSupportedBy()) {
+            var newTrace = Stream.concat(Stream.of(supportedBy, goal), trace.stream())
+                                 .collect(Collectors.toUnmodifiableList());
+            impact(supportedBy.getTarget(), newTrace, change);
+          }
+        }
+        //TODO: add all types and abstract behavior if repeated
+        default -> {}
+      }
+    }
+
     @Override
     protected void doExecute() {
+      /**PLAN:
+       * 1) Devise mechanism to attach semantics to starting set (basic: change, deletion; template: extra info)
+       * 2) Invoke template impact if found (how to get in and out of it, what are the boundaries?)
+       */
+      try {
+        //TODO: who resets all impact annotations?
+        for (var modelObj : this.modelObjs) {
+          impact(modelObj, List.of(), "change");
+        }
+      }
+      catch (Exception e) {
+        MMINTException.print(IStatus.ERROR, "Error running change impact", e);
+      }
     }
   }
 }
