@@ -1493,13 +1493,22 @@ public interface GSNTemplatesPackage extends EPackage {
   int ANALYTIC_TEMPLATE___GET_ANALYSIS = GSNPackage.TEMPLATE_OPERATION_COUNT + 0;
 
   /**
+   * The operation id for the '<em>Impact</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANALYTIC_TEMPLATE___IMPACT__ARGUMENTELEMENT_ELIST_OBJECT = GSNPackage.TEMPLATE_OPERATION_COUNT + 1;
+
+  /**
    * The number of operations of the '<em>Analytic Template</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANALYTIC_TEMPLATE_OPERATION_COUNT = GSNPackage.TEMPLATE_OPERATION_COUNT + 1;
+  int ANALYTIC_TEMPLATE_OPERATION_COUNT = GSNPackage.TEMPLATE_OPERATION_COUNT + 2;
 
   /**
    * The meta object id for the '<em>Builder</em>' data type.
@@ -1887,6 +1896,16 @@ public interface GSNTemplatesPackage extends EPackage {
   EOperation getAnalyticTemplate__GetAnalysis();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#impact(edu.toronto.cs.se.modelepedia.gsn.ArgumentElement, org.eclipse.emf.common.util.EList, java.lang.Object) <em>Impact</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Impact</em>' operation.
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#impact(edu.toronto.cs.se.modelepedia.gsn.ArgumentElement, org.eclipse.emf.common.util.EList, java.lang.Object)
+   * @generated
+   */
+  EOperation getAnalyticTemplate__Impact__ArgumentElement_EList_Object();
+
+  /**
    * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder <em>Builder</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2244,6 +2263,14 @@ public interface GSNTemplatesPackage extends EPackage {
      * @generated
      */
     EOperation ANALYTIC_TEMPLATE___GET_ANALYSIS = GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate__GetAnalysis();
+
+    /**
+     * The meta object literal for the '<em><b>Impact</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation ANALYTIC_TEMPLATE___IMPACT__ARGUMENTELEMENT_ELIST_OBJECT = GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate__Impact__ArgumentElement_EList_Object();
 
     /**
      * The meta object literal for the '<em>Builder</em>' data type.

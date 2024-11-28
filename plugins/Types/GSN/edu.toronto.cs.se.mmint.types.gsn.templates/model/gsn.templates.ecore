@@ -65,6 +65,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnalyticTemplate" eSuperTypes="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Template">
     <eOperations name="getAnalysis" eType="#//IAnalysis" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
+    <eOperations name="impact" upperBound="-1" eType="ecore:EClass ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//ArgumentElement"
+        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
+      <eParameters name="impactedObj" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//ArgumentElement"/>
+      <eParameters name="trace" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <eParameters name="change" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="analysisPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="loaderBundleName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

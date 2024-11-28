@@ -12,7 +12,11 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis;
+import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 
 /**
@@ -26,9 +30,8 @@ import edu.toronto.cs.se.modelepedia.gsn.Template;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getAnalysisPath <em>Analysis Path</em>}</li>
- * <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getLoaderBundleName <em>Loader Bundle
- * Name</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getAnalysisPath <em>Analysis Path</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getLoaderBundleName <em>Loader Bundle Name</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getAnalyticTemplate()
@@ -87,5 +90,13 @@ public interface AnalyticTemplate extends Template {
    * @generated
    */
   IAnalysis getAnalysis() throws Exception;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" impactedObjRequired="true" traceMany="true" changeRequired="true"
+   * @generated
+   */
+  EList<ArgumentElement> impact(ArgumentElement impactedObj, EList<EObject> trace, Object change) throws Exception;
 
 } // AnalysisTemplate

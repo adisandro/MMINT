@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -27,10 +28,15 @@ import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.gsn.Context;
+import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
+import edu.toronto.cs.se.modelepedia.gsn.Strategy;
+import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 
 public class ChangeImpact extends AbstractExternalJavaAction {
 
@@ -64,13 +70,29 @@ public class ChangeImpact extends AbstractExternalJavaAction {
       this.modelObjs = modelObjs;
     }
 
-    private void impact(ArgumentElement impactedObj, List<EObject> trace, Object change) {
+    private void impactSupporters(Supportable supportable, List<EObject> trace, Object change) throws Exception {
+      for (var supportedBy : supportable.getSupportedBy()) {
+        var newTrace = Stream.concat(Stream.of(supportedBy, supportable), trace.stream())
+                             .collect(Collectors.toUnmodifiableList());
+        impact(supportedBy.getTarget(), newTrace, change);
+      }
+    }
+
+    private void impactContexts(Contextualizable contextualizable, List<EObject> trace, Object change) throws Exception {
+      for (var inContextOf : contextualizable.getInContextOf()) {
+        var newTrace = Stream.concat(Stream.of(inContextOf, contextualizable), trace.stream())
+                             .collect(Collectors.toUnmodifiableList());
+        impact(inContextOf.getContext(), newTrace, change);
+      }
+    }
+
+    private void impact(ArgumentElement impactedObj, List<EObject> trace, Object change) throws Exception {
       var status = impactedObj.getStatus();
       var lastImpactType = trace.stream()
         .filter(o -> o instanceof ArgumentElement)
         .map(o -> ((ArgumentElement) o).getStatus().getType())
         .findFirst()
-        .orElse(ImpactType.RECHECK); //TODO: derive from change
+        .orElse(ImpactType.REVISE); //TODO: derive from change
       // stop condition: already impacted with equal or more priority
       if (status != null && status.getType().compareTo(lastImpactType) >= 0) {
         return;
@@ -80,17 +102,37 @@ public class ChangeImpact extends AbstractExternalJavaAction {
         impactedObj.setStatus(status);
       }
       // impact rules
-      status.setType(lastImpactType); //TODO: customize for each impactedObj type
       switch (impactedObj) {
-        case Goal goal -> {
-          for (var supportedBy : goal.getSupportedBy()) {
-            var newTrace = Stream.concat(Stream.of(supportedBy, goal), trace.stream())
+        case ArgumentElement elem when elem.getTemplates().stream().anyMatch(t -> t instanceof AnalyticTemplate) -> {
+          // TODO this forces each analysis to have an impact method, the default behavior should be a fallback
+          for (var template : elem.getTemplates()) {
+            if (!(template instanceof AnalyticTemplate analyticTemplate)) {
+              continue;
+            }
+            var nextElems = analyticTemplate.impact(elem, ECollections.asEList(trace), change);
+            var newTrace = Stream.concat(Stream.of(analyticTemplate), trace.stream())
                                  .collect(Collectors.toUnmodifiableList());
-            impact(supportedBy.getTarget(), newTrace, change);
+            for (var nextElem : nextElems) {
+              impact(nextElem, newTrace, change);
+            }
           }
         }
-        //TODO: add all types and abstract behavior if repeated
-        default -> {}
+        case Goal goal -> {
+          status.setType(lastImpactType);
+          impactSupporters(goal, trace, change);
+          impactContexts(goal, trace, change);
+        }
+        case Strategy strategy -> {
+          status.setType(lastImpactType);
+          impactSupporters(strategy, trace, change);
+          impactContexts(strategy, trace, change);
+        }
+        case Context context -> {
+          status.setType(lastImpactType);
+        }
+        default -> {
+          status.setType(lastImpactType);
+        }
       }
     }
 
@@ -98,10 +140,9 @@ public class ChangeImpact extends AbstractExternalJavaAction {
     protected void doExecute() {
       /**PLAN:
        * 1) Devise mechanism to attach semantics to starting set (basic: change, deletion; template: extra info)
-       * 2) Invoke template impact if found (how to get in and out of it, what are the boundaries?)
        */
       try {
-        //TODO: who resets all impact annotations?
+        //TODO: who resets all impact annotations? add extra command
         for (var modelObj : this.modelObjs) {
           impact(modelObj, List.of(), "change");
         }
