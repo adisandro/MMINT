@@ -8,7 +8,7 @@
     <tycho-version>5.0.0-SNAPSHOT</tycho-version>
     <acceleo-version>3.6.4</acceleo-version>
     <mavendeps-version>3.8.1</mavendeps-version>
-    <ecj-version>3.40.0.v20241112-0530</ecj-version>
+    <ecj-version>3.40.100.v20241127-0801</ecj-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <repositories>
