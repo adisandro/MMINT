@@ -29,6 +29,7 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactStep;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
@@ -94,6 +95,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
     case GSNPackage.IMPACT_ANNOTATION -> createImpactAnnotation();
     case GSNPackage.TEMPLATE -> createTemplate();
     case GSNPackage.RELATIONSHIP_DECORATOR -> createRelationshipDecorator();
+    case GSNPackage.IMPACT_STEP -> createImpactStep();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     };
   }
@@ -262,6 +264,17 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
   public RelationshipDecorator createRelationshipDecorator() {
     RelationshipDecoratorImpl relationshipDecorator = new RelationshipDecoratorImpl();
     return relationshipDecorator;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ImpactStep createImpactStep() {
+    ImpactStepImpl impactStep = new ImpactStepImpl();
+    return impactStep;
   }
 
   /**

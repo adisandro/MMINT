@@ -387,6 +387,29 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.ImpactStep} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ImpactStepItemProvider impactStepItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.gsn.ImpactStep}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createImpactStepAdapter() {
+    if (this.impactStepItemProvider == null) {
+      this.impactStepItemProvider = new ImpactStepItemProvider(this);
+    }
+
+    return this.impactStepItemProvider;
+  }
+
+  /**
    * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.gsn.Undeveloped} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -577,6 +600,9 @@ public class GSNItemProviderAdapterFactory extends GSNAdapterFactory implements 
     }
     if (this.relationshipDecoratorItemProvider != null) {
       this.relationshipDecoratorItemProvider.dispose();
+    }
+    if (this.impactStepItemProvider != null) {
+      this.impactStepItemProvider.dispose();
     }
   }
 

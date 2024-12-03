@@ -36,6 +36,7 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactStep;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
@@ -180,6 +181,13 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   private EClass relationshipDecoratorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass impactStepEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -800,6 +808,16 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
+  public EOperation getTemplate__Impact__ImpactStep_Object() {
+    return this.templateEClass.getEOperations().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getRelationshipDecorator() {
     return this.relationshipDecoratorEClass;
   }
@@ -822,6 +840,46 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   @Override
   public EAttribute getRelationshipDecorator_Cardinality() {
     return (EAttribute)this.relationshipDecoratorEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getImpactStep() {
+    return this.impactStepEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getImpactStep_Impacted() {
+    return (EReference)this.impactStepEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getImpactStep_Trace() {
+    return (EReference)this.impactStepEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getImpactStep__Next__Object() {
+    return this.impactStepEClass.getEOperations().get(0);
   }
 
   /**
@@ -983,10 +1041,16 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___VALIDATE);
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___IMPORT____SAFETYCASE);
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___INSTANTIATE);
+    createEOperation(this.templateEClass, GSNPackage.TEMPLATE___IMPACT__IMPACTSTEP_OBJECT);
 
     this.relationshipDecoratorEClass = createEClass(GSNPackage.RELATIONSHIP_DECORATOR);
     createEAttribute(this.relationshipDecoratorEClass, GSNPackage.RELATIONSHIP_DECORATOR__TYPE);
     createEAttribute(this.relationshipDecoratorEClass, GSNPackage.RELATIONSHIP_DECORATOR__CARDINALITY);
+
+    this.impactStepEClass = createEClass(GSNPackage.IMPACT_STEP);
+    createEReference(this.impactStepEClass, GSNPackage.IMPACT_STEP__IMPACTED);
+    createEReference(this.impactStepEClass, GSNPackage.IMPACT_STEP__TRACE);
+    createEOperation(this.impactStepEClass, GSNPackage.IMPACT_STEP___NEXT__OBJECT);
 
     // Create enums
     this.asilLevelEEnum = createEEnum(GSNPackage.ASIL_LEVEL);
@@ -1134,9 +1198,22 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     op = initEOperation(getTemplate__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
+    op = initEOperation(getTemplate__Impact__ImpactStep_Object(), this.getImpactStep(), "impact", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.getImpactStep(), "step", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEJavaObject(), "change", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEException(op, this.getException());
+
     initEClass(this.relationshipDecoratorEClass, RelationshipDecorator.class, "RelationshipDecorator", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getRelationshipDecorator_Type(), this.getDecoratorType(), "type", null, 1, 1, RelationshipDecorator.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getRelationshipDecorator_Cardinality(), this.ecorePackage.getEInt(), "cardinality", "-1", 0, 1, RelationshipDecorator.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+
+    initEClass(this.impactStepEClass, ImpactStep.class, "ImpactStep", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getImpactStep_Impacted(), this.getArgumentElement(), null, "impacted", null, 1, 1, ImpactStep.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEReference(getImpactStep_Trace(), this.ecorePackage.getEObject(), null, "trace", null, 0, -1, ImpactStep.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+
+    op = initEOperation(getImpactStep__Next__Object(), null, "next", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEJavaObject(), "change", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEException(op, this.getException());
 
     // Initialize enums and add enum literals
     initEEnum(this.asilLevelEEnum, ASILLevel.class, "ASILLevel");

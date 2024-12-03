@@ -101,10 +101,21 @@
         <genParameters ecoreParameter="gsn.ecore#//Template/import_/safetyCase"/>
       </genOperations>
       <genOperations ecoreOperation="gsn.ecore#//Template/instantiate"/>
+      <genOperations ecoreOperation="gsn.ecore#//Template/impact">
+        <genParameters ecoreParameter="gsn.ecore#//Template/impact/step"/>
+        <genParameters ecoreParameter="gsn.ecore#//Template/impact/change"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="gsn.ecore#//RelationshipDecorator">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//RelationshipDecorator/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//RelationshipDecorator/cardinality"/>
+    </genClasses>
+    <genClasses ecoreClass="gsn.ecore#//ImpactStep">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//ImpactStep/impacted"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//ImpactStep/trace"/>
+      <genOperations ecoreOperation="gsn.ecore#//ImpactStep/next">
+        <genParameters ecoreParameter="gsn.ecore#//ImpactStep/next/change"/>
+      </genOperations>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

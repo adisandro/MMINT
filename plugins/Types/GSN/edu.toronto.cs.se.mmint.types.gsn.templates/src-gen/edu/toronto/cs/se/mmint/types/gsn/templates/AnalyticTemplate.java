@@ -12,11 +12,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis;
-import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 
 /**
@@ -90,13 +86,5 @@ public interface AnalyticTemplate extends Template {
    * @generated
    */
   IAnalysis getAnalysis() throws Exception;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" impactedObjRequired="true" traceMany="true" changeRequired="true"
-   * @generated
-   */
-  EList<ArgumentElement> impact(ArgumentElement impactedObj, EList<EObject> trace, Object change) throws Exception;
 
 } // AnalysisTemplate

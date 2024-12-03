@@ -104,4 +104,19 @@ public interface Template extends EObject {
    */
   void instantiate() throws Exception;
 
+  /**
+   * <!-- begin-user-doc --> Calculates the impact of a change on this template.
+   *
+   * @param step
+   *          The current step of the impact propagation (current model object and impact trace so far).
+   * @param change
+   *          The original change.
+   * @return A list of the next steps of the impact propagation.
+   * @throws Exception
+   *           If the impact can not be calculated. <!-- end-user-doc -->
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepRequired="true" changeRequired="true"
+   * @generated
+   */
+  EList<ImpactStep> impact(ImpactStep step, Object change) throws Exception;
+
 } // Template

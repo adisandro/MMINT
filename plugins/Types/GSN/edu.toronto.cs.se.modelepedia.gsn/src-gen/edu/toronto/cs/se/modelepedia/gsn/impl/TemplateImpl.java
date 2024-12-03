@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -28,6 +29,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactStep;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
@@ -195,6 +198,19 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
   }
 
   /**
+   * @generated NOT
+   */
+  @Override
+  public EList<ImpactStep> impact(ImpactStep step, Object change) throws Exception {
+    var lastImpactType = step.getTrace().stream()
+      .filter(o -> o instanceof ArgumentElement)
+      .map(o -> ((ArgumentElement) o).getStatus().getType())
+      .findFirst()
+      .orElse(ImpactType.REVISE); //TODO: derive from change
+    return ECollections.asEList(((ImpactStepImpl) step).nextArgumentElements(change, lastImpactType));
+  }
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -322,6 +338,13 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
         try {
           instantiate();
           return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case GSNPackage.TEMPLATE___IMPACT__IMPACTSTEP_OBJECT:
+        try {
+          return impact((ImpactStep)arguments.get(0), arguments.get(1));
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);

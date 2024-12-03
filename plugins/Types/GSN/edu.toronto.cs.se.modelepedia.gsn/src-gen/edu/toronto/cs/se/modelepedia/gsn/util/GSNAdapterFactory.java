@@ -29,6 +29,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactStep;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
 import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
@@ -174,6 +175,10 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
       @Override
       public Adapter caseRelationshipDecorator(RelationshipDecorator object) {
         return createRelationshipDecoratorAdapter();
+      }
+      @Override
+      public Adapter caseImpactStep(ImpactStep object) {
+        return createImpactStepAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object) {
@@ -442,6 +447,20 @@ public class GSNAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createRelationshipDecoratorAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.gsn.ImpactStep <em>Impact Step</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.modelepedia.gsn.ImpactStep
+   * @generated
+   */
+  public Adapter createImpactStepAdapter() {
     return null;
   }
 

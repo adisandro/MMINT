@@ -604,16 +604,6 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
    * @generated
    */
   @Override
-  public EOperation getAnalyticTemplate__Impact__ArgumentElement_EList_Object() {
-    return this.analyticTemplateEClass.getEOperations().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EDataType getGSNTemplatesBuilder() {
     return this.gsnTemplatesBuilderEDataType;
   }
@@ -710,7 +700,6 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
     createEAttribute(this.analyticTemplateEClass, GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS_PATH);
     createEAttribute(this.analyticTemplateEClass, GSNTemplatesPackage.ANALYTIC_TEMPLATE__LOADER_BUNDLE_NAME);
     createEOperation(this.analyticTemplateEClass, GSNTemplatesPackage.ANALYTIC_TEMPLATE___GET_ANALYSIS);
-    createEOperation(this.analyticTemplateEClass, GSNTemplatesPackage.ANALYTIC_TEMPLATE___IMPACT__ARGUMENTELEMENT_ELIST_OBJECT);
 
     // Create data types
     this.gsnTemplatesBuilderEDataType = createEDataType(GSNTemplatesPackage.GSN_TEMPLATES_BUILDER);
@@ -828,12 +817,6 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
     initEAttribute(getAnalyticTemplate_LoaderBundleName(), this.ecorePackage.getEString(), "loaderBundleName", null, 0, 1, AnalyticTemplate.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     op = initEOperation(getAnalyticTemplate__GetAnalysis(), this.getIAnalysis(), "getAnalysis", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEException(op, theGSNPackage.getException());
-
-    op = initEOperation(getAnalyticTemplate__Impact__ArgumentElement_EList_Object(), theGSNPackage.getArgumentElement(), "impact", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, theGSNPackage.getArgumentElement(), "impactedObj", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEObject(), "trace", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEJavaObject(), "change", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
     // Initialize data types

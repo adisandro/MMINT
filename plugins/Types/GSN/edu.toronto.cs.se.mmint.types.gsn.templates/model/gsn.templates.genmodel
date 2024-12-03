@@ -63,11 +63,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.templates.ecore#//AnalyticTemplate/analysisPath"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.templates.ecore#//AnalyticTemplate/loaderBundleName"/>
       <genOperations ecoreOperation="gsn.templates.ecore#//AnalyticTemplate/getAnalysis"/>
-      <genOperations ecoreOperation="gsn.templates.ecore#//AnalyticTemplate/impact">
-        <genParameters ecoreParameter="gsn.templates.ecore#//AnalyticTemplate/impact/impactedObj"/>
-        <genParameters ecoreParameter="gsn.templates.ecore#//AnalyticTemplate/impact/trace"/>
-        <genParameters ecoreParameter="gsn.templates.ecore#//AnalyticTemplate/impact/change"/>
-      </genOperations>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

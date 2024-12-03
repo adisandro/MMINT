@@ -20,7 +20,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.osgi.framework.wiring.BundleWiring;
 
@@ -30,7 +29,7 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis;
-import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactStep;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl;
 
@@ -236,13 +235,6 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case GSNTemplatesPackage.ANALYTIC_TEMPLATE___IMPACT__ARGUMENTELEMENT_ELIST_OBJECT:
-        try {
-          return impact((ArgumentElement)arguments.get(0), (EList<EObject>)arguments.get(1), arguments.get(2));
-        }
-        catch (Throwable throwable) {
-          throw new InvocationTargetException(throwable);
-        }
     }
     return super.eInvoke(operationID, arguments);
   }
@@ -335,10 +327,9 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
    * @generated NOT
    */
   @Override
-  public EList<ArgumentElement> impact(ArgumentElement impactedObj, EList<EObject> trace,
-                                       Object change) throws Exception {
+  public EList<ImpactStep> impact(ImpactStep step, Object change) throws Exception {
     var analysis = getAnalysis();
-    return ECollections.asEList(analysis.impact(this, impactedObj, trace, change));
+    return ECollections.asEList(analysis.impact(this, step, change));
   }
 
 } //AnalysisTemplateImpl

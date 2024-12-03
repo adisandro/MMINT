@@ -34,6 +34,7 @@ import edu.toronto.cs.se.modelepedia.gsn.DecoratorType;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactStep;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
@@ -134,6 +135,7 @@ public class GSNValidator extends EObjectValidator {
     case GSNPackage.IMPACT_ANNOTATION -> validateImpactAnnotation((ImpactAnnotation)value, diagnostics, context);
     case GSNPackage.TEMPLATE -> validateTemplate((Template)value, diagnostics, context);
     case GSNPackage.RELATIONSHIP_DECORATOR -> validateRelationshipDecorator((RelationshipDecorator)value, diagnostics, context);
+    case GSNPackage.IMPACT_STEP -> validateImpactStep((ImpactStep)value, diagnostics, context);
     case GSNPackage.ASIL_LEVEL -> validateASILLevel((ASILLevel)value, diagnostics, context);
     case GSNPackage.IMPACT_TYPE -> validateImpactType((ImpactType)value, diagnostics, context);
     case GSNPackage.DECORATOR_TYPE -> validateDecoratorType((DecoratorType)value, diagnostics, context);
@@ -617,6 +619,15 @@ public class GSNValidator extends EObjectValidator {
          Diagnostic.ERROR,
          GSNValidator.DIAGNOSTIC_SOURCE,
          0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validateImpactStep(ImpactStep impactStep, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(impactStep, diagnostics, context);
   }
 
   /**
