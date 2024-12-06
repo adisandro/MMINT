@@ -30,7 +30,7 @@ public interface IAnalysis {
       .filter(o -> o instanceof ArgumentElement)
       .map(o -> ((ArgumentElement) o).getStatus().getType())
       .findFirst()
-      .orElse(ImpactType.REVISE); //TODO: derive from change
+      .orElse(ImpactType.RECHECK); //TODO: derive from change
     return ((ImpactStepImpl) step).nextArgumentElements(change, lastImpactType);
   }
   default boolean runsFirst() {

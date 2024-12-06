@@ -206,7 +206,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
       .filter(o -> o instanceof ArgumentElement)
       .map(o -> ((ArgumentElement) o).getStatus().getType())
       .findFirst()
-      .orElse(ImpactType.REVISE); //TODO: derive from change
+      .orElse(ImpactType.RECHECK); //TODO: derive from change
     return ECollections.asEList(((ImpactStepImpl) step).nextArgumentElements(change, lastImpactType));
   }
 

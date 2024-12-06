@@ -223,7 +223,7 @@ public class ImpactStepImpl extends MinimalEObjectImpl.Container implements Impa
       .filter(o -> o instanceof ArgumentElement)
       .map(o -> ((ArgumentElement) o).getStatus().getType())
       .findFirst()
-      .orElse(ImpactType.REVISE); //TODO: derive from change
+      .orElse(ImpactType.RECHECK); //TODO: derive from change
     // stop condition: already impacted with equal or more priority
     if (status != null && status.getType().compareTo(lastImpactType) >= 0) {
       return;
