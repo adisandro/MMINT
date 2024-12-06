@@ -13,11 +13,8 @@
 package edu.toronto.cs.se.modelepedia.gsn.design.context;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -25,11 +22,10 @@ import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
-import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
+import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 
-public class ChangeImpact extends AbstractExternalJavaAction {
+public class ResetImpact extends AbstractExternalJavaAction {
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -38,41 +34,37 @@ public class ChangeImpact extends AbstractExternalJavaAction {
       arg0.stream()
         .map(DSemanticDecorator.class::cast)
         .map(DSemanticDecorator::getTarget)
-        .allMatch(o -> o instanceof ArgumentElement e && e.getStatus() == null);
+        .anyMatch(o -> o instanceof ArgumentElement e && e.getStatus() != null);
   }
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var modelObjs = arg0.stream()
+    var modelObj = arg0.stream()
       .map(DSemanticDecorator.class::cast)
       .map(DSemanticDecorator::getTarget)
-      .map(ArgumentElement.class::cast)
-      .collect(Collectors.toList());
-    var sSession = SessionManager.INSTANCE.getSession(modelObjs.get(0));
+      .filter(o -> o instanceof ArgumentElement)
+      .findFirst().get();
+    var safetyCase = (SafetyCase) modelObj.eContainer();
+    var sSession = SessionManager.INSTANCE.getSession(safetyCase);
     var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(new ChangeImpactCommand(sDomain, modelObjs));
+    sDomain.getCommandStack().execute(new ResetImpactCommand(sDomain, safetyCase));
   }
 
-  private class ChangeImpactCommand extends RecordingCommand {
-    List<ArgumentElement> modelObjs;
+  private class ResetImpactCommand extends RecordingCommand {
+    SafetyCase safetyCase;
 
-    public ChangeImpactCommand(TransactionalEditingDomain domain, List<ArgumentElement> modelObjs) {
+    public ResetImpactCommand(TransactionalEditingDomain domain, SafetyCase safetyCase) {
       super(domain);
-      this.modelObjs = modelObjs;
+      this.safetyCase = safetyCase;
     }
 
     @Override
     protected void doExecute() {
-      try {
-        //TODO: Devise mechanism to attach semantics to starting set (basic: change, deletion; template: extra info)
-        for (var modelObj : this.modelObjs) {
-          var startStep = GSNFactory.eINSTANCE.createImpactStep();
-          startStep.setImpacted(modelObj);
-          startStep.next("change");
+      for (var iter = this.safetyCase.eAllContents(); iter.hasNext();) {
+        var modelObj = iter.next();
+        if (modelObj instanceof ArgumentElement elem && elem.getStatus() != null) {
+          elem.setStatus(null);
         }
-      }
-      catch (Exception e) {
-        MMINTException.print(IStatus.ERROR, "Error running change impact", e);
       }
     }
   }

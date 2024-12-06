@@ -66,6 +66,10 @@
             actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.ChangeImpact"
             id="edu.toronto.cs.se.modelepedia.gsn.design.context.ChangeImpact">
       </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.modelepedia.gsn.design.context.ResetImpact"
+            id="edu.toronto.cs.se.modelepedia.gsn.design.context.ResetImpact">
+      </javaActions>
    </extension>
 
 </plugin>
