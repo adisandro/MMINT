@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
-import edu.toronto.cs.se.modelepedia.gsn.Context;
+import edu.toronto.cs.se.modelepedia.gsn.Contextual;
 import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
@@ -200,8 +200,8 @@ public class ImpactStepImpl extends MinimalEObjectImpl.Container implements Impa
         nextSteps.addAll(nextSupporters(strategy, trace, change));
         nextSteps.addAll(nextContexts(strategy, trace, change));
       }
-      case Context context -> {
-        status.setType(lastImpactType);
+      case Contextual context -> {
+        status.setType(ImpactType.REUSE);
       }
       default -> {
         status.setType(lastImpactType);
