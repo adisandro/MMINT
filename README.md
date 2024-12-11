@@ -38,7 +38,6 @@ Binary packages for the current development version of MMINT are similarly avail
 Add the following update sites to Eclipse (`Help > Install New Software > Available Software Sites`):
   * `https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/2024-12`
   * `http://download.eclipse.org/modeling/emft/henshin/updates/release`
-  * `https://static.incquerylabs.com/projects/massif/release/0.7.0/repository`
   * `https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2024-06`
 
 Then, install the following components (`Help > Install New Software`):
@@ -46,7 +45,6 @@ Then, install the following components (`Help > Install New Software`):
   * `ATL SDK - ATL Transformation Language SDK`
   * `Henshin SDK`
   * `M2E - Maven Integration for Eclipse`
-  * `Massif Core`
   * `Papyrus for UML`
   * `Sirius Properties Views - Specifier Support`
   * `Sirius Specifier Environment`
