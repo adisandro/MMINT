@@ -141,7 +141,6 @@
     <module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.mmint.mavo</module>
     <module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.mmint.mavo.edit</module>
     <module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.modelepedia.mavo.operator</module>
-    <module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.modelepedia.mavo.uml</module>
     <module>../../plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline</module>
     <module>../../plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline.design</module>
     <module>../../plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline.edit</module>
