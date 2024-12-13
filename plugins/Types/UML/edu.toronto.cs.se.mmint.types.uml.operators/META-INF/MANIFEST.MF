@@ -13,7 +13,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.acceleo.engine,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint,
- edu.toronto.cs.se.mmint.papyrus,
  edu.toronto.cs.se.mmint.primitive,
  edu.toronto.cs.se.mmint.lean,
  edu.toronto.cs.se.mmint.types.gsn.templates

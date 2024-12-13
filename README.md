@@ -45,7 +45,6 @@ Then, install the following components (`Help > Install New Software`):
   * `ATL SDK - ATL Transformation Language SDK`
   * `Henshin SDK`
   * `M2E - Maven Integration for Eclipse`
-  * `Papyrus for UML`
   * `Sirius Properties Views - Specifier Support`
   * `Sirius Specifier Environment`
   * `VIATRA Query and Transformation SDK`

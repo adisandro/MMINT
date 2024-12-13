@@ -36,7 +36,6 @@
       <import plugin="org.eclipse.uml2.uml"/>
       <import plugin="org.eclipse.acceleo.engine"/>
       <import plugin="edu.toronto.cs.se.mmint"/>
-      <import plugin="edu.toronto.cs.se.mmint.papyrus"/>
       <import plugin="edu.toronto.cs.se.mmint.primitive"/>
       <import plugin="edu.toronto.cs.se.mmint.lean"/>
       <import plugin="edu.toronto.cs.se.modelepedia.gsn"/>

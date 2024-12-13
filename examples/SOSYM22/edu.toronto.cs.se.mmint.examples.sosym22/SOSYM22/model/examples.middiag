@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:papyrus="model://edu.toronto.cs.se.mmint.papyrus" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship" xsi:schemaLocation="http://se.cs.toronto.edu/mmint/MID/Relationship http://se.cs.toronto.edu/mmint/MID#//relationship">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mid="http://se.cs.toronto.edu/mmint/MID" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:relationship="http://se.cs.toronto.edu/mmint/MID/Relationship" xsi:schemaLocation="http://se.cs.toronto.edu/mmint/MID/Relationship http://se.cs.toronto.edu/mmint/MID#//relationship">
   <notation:Diagram xmi:id="_aHMRIF6dEeuzRqps9eyyPw" type="MID" name="examples.middiag" measurementUnit="Pixel">
     <children xmi:type="notation:Node" xmi:id="_eiL1wF6dEeuzRqps9eyyPw" type="2001">
       <children xmi:type="notation:DecorationNode" xmi:id="_eiO5EF6dEeuzRqps9eyyPw" type="5001"/>
@@ -52,7 +52,7 @@
       <styles xmi:type="notation:DescriptionStyle" xmi:id="_g-8m8ZULEeyCb7jDzvzUDw"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_g-8m8pULEeyCb7jDzvzUDw" fontName="Cantarell" fontHeight="10"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_g-8m85ULEeyCb7jDzvzUDw" hint="Mid"/>
-      <element xmi:type="papyrus:UMLModel" href="examples.mid#//@models.5"/>
+      <element xmi:type="mid:Model" href="examples.mid#//@models.5"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_g-8m9JULEeyCb7jDzvzUDw" x="944" y="144"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_jX7QgJULEeyCb7jDzvzUDw" type="2003">

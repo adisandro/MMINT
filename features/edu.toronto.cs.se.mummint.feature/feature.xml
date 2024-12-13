@@ -47,7 +47,6 @@ Famelis, Rick Salay, Naama Ben-David. All rights reserved.
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.gmf.runtime.notation"/>
-      <import plugin="edu.toronto.cs.se.mmint.papyrus"/>
    </requires>
 
    <plugin

@@ -84,12 +84,10 @@ sets of related models.
       <import plugin="org.eclipse.viatra.query.patternlanguage.emf"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.sirius.diagram"/>
-      <import plugin="org.eclipse.papyrus.uml.diagram.wizards"/>
       <import plugin="org.eclipse.gmf.runtime.notation"/>
       <import feature="org.eclipse.emf.sdk"/>
       <import feature="org.eclipse.emf.validation.sdk"/>
       <import feature="org.eclipse.ocl.all.sdk"/>
-      <import feature="org.eclipse.papyrus.sdk.feature"/>
       <import feature="org.eclipse.acceleo"/>
       <import feature="org.eclipse.sirius.specifier"/>
       <import feature="org.eclipse.sirius.specifier.properties.feature"/>
@@ -182,20 +180,6 @@ sets of related models.
 
    <plugin
          id="edu.toronto.cs.se.mmint.primitive.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.mmint.papyrus"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.mmint.papyrus.edit"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Blocks="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Blocks" xmlns:PortsAndFlows="http://www.eclipse.org/papyrus/sysml/1.6/SysML/PortsAndFlows" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/sysml/1.6/SysML/Blocks http://www.eclipse.org/papyrus/sysml/1.6/SysML#//blocks http://www.eclipse.org/papyrus/sysml/1.6/SysML/PortsAndFlows http://www.eclipse.org/papyrus/sysml/1.6/SysML#//portsandflows">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <uml:Model xmi:id="_3LqMYJMsEeyoYr_v8A8d5A" name="lacu">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_3ONKEJMsEeyoYr_v8A8d5A">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
-    </packageImport>
-    <packageImport xmi:type="uml:PackageImport" xmi:id="_3OWUAJMsEeyoYr_v8A8d5A">
-      <importedPackage xmi:type="uml:Package" href="pathmap://SysML16_LIBRARIES/SysML-Standard-Library.uml#SysML.package_packagedElement_Libraries"/>
     </packageImport>
     <packagedElement xmi:type="uml:Class" xmi:id="_3O8J4JMsEeyoYr_v8A8d5A" name="LACU">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_ZxBd4JMtEeyN6vUpA7jb5Q" name="armposition_1" type="_bJj-IJMtEeyN6vUpA7jb5Q" aggregation="composite"/>
@@ -58,89 +55,5 @@
     <packagedElement xmi:type="uml:InformationFlow" xmi:id="_Kcuo4JM3EeyN6vUpA7jb5Q" name="ItemFlow12" informationSource="_PvuJUJMzEeyN6vUpA7jb5Q" informationTarget="_jF0T8JM2EeyN6vUpA7jb5Q"/>
     <packagedElement xmi:type="uml:InformationFlow" xmi:id="_tGkxwJM3EeyN6vUpA7jb5Q" name="ItemFlow13" informationSource="_s2BpwJM2EeyN6vUpA7jb5Q" informationTarget="_TDJFEJM3EeyN6vUpA7jb5Q"/>
     <packagedElement xmi:type="uml:InformationFlow" xmi:id="_th7RAJM3EeyN6vUpA7jb5Q" name="ItemFlow14" informationSource="_tUKXQJM2EeyN6vUpA7jb5Q" informationTarget="_TfSOgJM3EeyN6vUpA7jb5Q"/>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3MvxgJMsEeyoYr_v8A8d5A">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3Mzb4JMsEeyoYr_v8A8d5A" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#/"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML"/>
-    </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3OI4oJMsEeyoYr_v8A8d5A">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3OI4oZMsEeyoYr_v8A8d5A" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#//activities"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML.package_packagedElement_Activities"/>
-    </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3OKt0JMsEeyoYr_v8A8d5A">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3OKt0ZMsEeyoYr_v8A8d5A" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#//allocations"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML.package_packagedElement_Allocations"/>
-    </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3OLU4JMsEeyoYr_v8A8d5A">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3OLU4ZMsEeyoYr_v8A8d5A" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#//blocks"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML.package_packagedElement_Blocks"/>
-    </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3OLU4pMsEeyoYr_v8A8d5A">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3OLU45MsEeyoYr_v8A8d5A" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#//constraintblocks"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML.package_packagedElement_ConstraintBlocks"/>
-    </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3OLU5JMsEeyoYr_v8A8d5A">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3OL78JMsEeyoYr_v8A8d5A" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#//deprecatedelements"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML.package_packagedElement_DeprecatedElements"/>
-    </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3OL78ZMsEeyoYr_v8A8d5A">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3OL78pMsEeyoYr_v8A8d5A" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#//modelelements"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML.package_packagedElement_ModelElements"/>
-    </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3OL785MsEeyoYr_v8A8d5A">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3OL79JMsEeyoYr_v8A8d5A" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#//portsandflows"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML.package_packagedElement_Ports_u0026Flows"/>
-    </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3OMjAJMsEeyoYr_v8A8d5A">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3OMjAZMsEeyoYr_v8A8d5A" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/sysml/1.6/SysML#//requirements"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML16_PROFILES/SysML.profile.uml#SysML.package_packagedElement_Requirements"/>
-    </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3OMjApMsEeyoYr_v8A8d5A">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3OMjA5MsEeyoYr_v8A8d5A" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
-    </profileApplication>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_0v6bUJMvEeyN6vUpA7jb5Q">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0v9eoJMvEeyN6vUpA7jb5Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
-    </profileApplication>
   </uml:Model>
-  <Blocks:Block xmi:id="_3POdwJMsEeyoYr_v8A8d5A" base_Class="_3O8J4JMsEeyoYr_v8A8d5A"/>
-  <Blocks:Block xmi:id="_bJvkUJMtEeyN6vUpA7jb5Q" base_Class="_bJj-IJMtEeyN6vUpA7jb5Q"/>
-  <PortsAndFlows:ItemFlow xmi:id="_5sdfwJMtEeyN6vUpA7jb5Q" base_InformationFlow="_5sbDgJMtEeyN6vUpA7jb5Q"/>
-  <PortsAndFlows:ItemFlow xmi:id="_xWHqcJMuEeyN6vUpA7jb5Q" base_InformationFlow="_xWEAEJMuEeyN6vUpA7jb5Q"/>
-  <Blocks:Block xmi:id="_qhxMUJMvEeyN6vUpA7jb5Q" base_Class="_qhth8JMvEeyN6vUpA7jb5Q"/>
-  <PortsAndFlows:ItemFlow xmi:id="_xNG7kJMyEeyN6vUpA7jb5Q" base_InformationFlow="_xNDRMJMyEeyN6vUpA7jb5Q"/>
-  <Blocks:Block xmi:id="_5iEbYJMyEeyN6vUpA7jb5Q" base_Class="_5iBYEJMyEeyN6vUpA7jb5Q"/>
-  <PortsAndFlows:ItemFlow xmi:id="_hPoq4JM1EeyN6vUpA7jb5Q" base_InformationFlow="_hPmOoJM1EeyN6vUpA7jb5Q"/>
-  <PortsAndFlows:ItemFlow xmi:id="_nG6nUJM1EeyN6vUpA7jb5Q" base_InformationFlow="_nG288JM1EeyN6vUpA7jb5Q"/>
-  <PortsAndFlows:ItemFlow xmi:id="_v-KU0JM1EeyN6vUpA7jb5Q" base_InformationFlow="_v-HRgJM1EeyN6vUpA7jb5Q"/>
-  <PortsAndFlows:ItemFlow xmi:id="_5y6MYJM1EeyN6vUpA7jb5Q" base_InformationFlow="_5y2iAJM1EeyN6vUpA7jb5Q"/>
-  <PortsAndFlows:ItemFlow xmi:id="_86uR4JM1EeyN6vUpA7jb5Q" base_InformationFlow="_86r1oJM1EeyN6vUpA7jb5Q"/>
-  <PortsAndFlows:ItemFlow xmi:id="_1_M0wJM2EeyN6vUpA7jb5Q" base_InformationFlow="_1_JKYJM2EeyN6vUpA7jb5Q"/>
-  <PortsAndFlows:ItemFlow xmi:id="_8aVsMJM2EeyN6vUpA7jb5Q" base_InformationFlow="_8aSo4JM2EeyN6vUpA7jb5Q"/>
-  <PortsAndFlows:ItemFlow xmi:id="_IDjLAJM3EeyN6vUpA7jb5Q" base_InformationFlow="_IDgHsJM3EeyN6vUpA7jb5Q"/>
-  <PortsAndFlows:ItemFlow xmi:id="_KcxsMJM3EeyN6vUpA7jb5Q" base_InformationFlow="_Kcuo4JM3EeyN6vUpA7jb5Q"/>
-  <PortsAndFlows:ItemFlow xmi:id="_tGn1EJM3EeyN6vUpA7jb5Q" base_InformationFlow="_tGkxwJM3EeyN6vUpA7jb5Q"/>
-  <PortsAndFlows:ItemFlow xmi:id="_th9tQJM3EeyN6vUpA7jb5Q" base_InformationFlow="_th7RAJM3EeyN6vUpA7jb5Q"/>
 </xmi:XMI>
