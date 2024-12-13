@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.modelepedia.graph.feature"
       label="Modelepedia Graph"
-      version="2.23.99.qualifier"
+      version="2.24.0.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description>
