@@ -26,9 +26,7 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="edu.toronto.cs.se.mavo"/>
       <import plugin="edu.toronto.cs.se.mmint"/>
-      <import plugin="edu.toronto.cs.se.mavo.edit"/>
       <import plugin="edu.toronto.cs.se.mmint.edit"/>
       <import plugin="org.eclipse.acceleo.engine"/>
       <import plugin="org.eclipse.emf.validation"/>
@@ -54,7 +52,6 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.draw2d"/>
       <import plugin="org.eclipse.gmf.runtime.draw2d.ui"/>
       <import plugin="org.eclipse.gef"/>
-      <import plugin="edu.toronto.cs.se.mmint.mavo"/>
       <import feature="edu.toronto.cs.se.modelepedia.z3.feature"/>
    </requires>
 
@@ -80,42 +77,7 @@ Famelis, Rick Salay. All rights reserved.
          unpack="false"/>
 
    <plugin
-         id="edu.toronto.cs.se.modelepedia.istar_mavo"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.istar_mavo.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.istar_mavo.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.istar_mavo.operator"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="edu.toronto.cs.se.modelepedia.istar.diagram"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.istar_mavo.diagram"
          download-size="0"
          install-size="0"
          version="0.0.0"

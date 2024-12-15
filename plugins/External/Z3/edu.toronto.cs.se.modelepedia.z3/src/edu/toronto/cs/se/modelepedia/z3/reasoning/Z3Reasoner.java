@@ -35,7 +35,6 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mavo.library.MAVOUtils;
-import edu.toronto.cs.se.mmint.mavo.reasoning.IMAVOTrait;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -51,14 +50,14 @@ import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavio
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3Solver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
-import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
+import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreToSMTLIB;
 import edu.toronto.cs.se.modelepedia.z3.mavo.MAVOConcretizationHighlighter;
 import edu.toronto.cs.se.modelepedia.z3.mavo.MAVORefiner;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOUtils;
 
 //TODO MMINT[Z3] Support refinement and highlighting for the complex full-MAVO encoding
-public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IPLFeaturesTrait {
+public class Z3Reasoner implements IModelConstraintTrait, IPLFeaturesTrait {
 
 	public enum MAVOCheckStrategy { DOUBLE_CHECK, SINGLE_CHECK_IF_FALSE, SINGLE_CHECK }
 	public final static String ECOREMAVOTOSMTLIB_OPERATOR_URI = "http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB";
@@ -111,7 +110,7 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IPLFeature
 			//TODO MMINT[Z3] Support non-mavo models (create acceleo transformation, check constraint once)
 			throw new MMINTException("Model " + model.getName() + " is not a MAVO model");
 		}
-		var ecore2smt = (EcoreMAVOToSMTLIB) MIDTypeRegistry.<Operator>getType(Z3Reasoner.ECOREMAVOTOSMTLIB_OPERATOR_URI);
+		var ecore2smt = (EcoreToSMTLIB) MIDTypeRegistry.<Operator>getType(Z3Reasoner.ECOREMAVOTOSMTLIB_OPERATOR_URI);
 		if (ecore2smt == null) {
 			throw new MMINTException("Can't find " + Z3Reasoner.ECOREMAVOTOSMTLIB_OPERATOR_URI + " operator type");
 		}
@@ -119,7 +118,7 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IPLFeature
 		EList<Model> inputModels = new BasicEList<>();
 		inputModels.add(model);
 		EList<OperatorInput> inputs = null;
-		for (EcoreMAVOToSMTLIB ecore2smtCustom : MIDTypeHierarchy.getSubtypes(ecore2smt)) { // check for custom encoders
+		for (EcoreToSMTLIB ecore2smtCustom : MIDTypeHierarchy.getSubtypes(ecore2smt)) { // check for custom encoders
 			//TODO MMINT[Z3] Sort by subtype level to allow most specific to run
 			inputs = ecore2smtCustom.checkAllowedInputs(inputModels);
 			if (inputs != null) {
@@ -130,7 +129,7 @@ public class Z3Reasoner implements IModelConstraintTrait, IMAVOTrait, IPLFeature
 		if (inputs == null) { // use default encoder
 			inputs = ecore2smt.checkAllowedInputs(inputModels);
 		}
-		encoder = (EcoreMAVOToSMTLIB) encoder.startInstance(inputs, null, new BasicEList<>(), new HashMap<>(), null);
+		encoder = (EcoreToSMTLIB) encoder.startInstance(inputs, null, new BasicEList<>(), new HashMap<>(), null);
 		encoder.cleanup();
 
 		return encoder.getZ3MAVOModelParser();

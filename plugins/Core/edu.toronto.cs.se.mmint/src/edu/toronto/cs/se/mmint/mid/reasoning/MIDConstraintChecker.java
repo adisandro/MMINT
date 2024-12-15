@@ -435,18 +435,6 @@ public class MIDConstraintChecker {
 				}
 			}
 		}
-		// look for UML stereotypes
-		//TODO MMINT[UML] review
-//		if (modelObj instanceof NamedElement) {
-//			for (Stereotype stereotype : ((NamedElement) modelObj).getApplicableStereotypes()) {
-//				if (
-//					modelElemTypeEInfo.getClassName().equals(stereotype.getName()) ||
-//					stereotype.getName().equals(MAVOUtils.MAVO_UML_STEREOTYPE_EQUIVALENCE.get(modelElemTypeEInfo.getClassName()))
-//				) {
-//					return true;
-//				}
-//			}
-//		}
 
 		return false;
 	}

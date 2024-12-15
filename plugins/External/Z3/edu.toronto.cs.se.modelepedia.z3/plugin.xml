@@ -26,21 +26,29 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="EcoreMAVOToSMTLIB"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_EcoreMAVOToSMTLIB"
-               class="edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB">
+               name="EcoreToSMTLIB"
+               uri="http://se.cs.toronto.edu/modelepedia/Operator_EcoreToSMTLIB"
+               class="edu.toronto.cs.se.modelepedia.z3.EcoreToSMTLIB">
          </type>
          <inputs>
             <parameter>
 	           <type
-	                 name="mavo">
+	                 name="model">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	                 targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
 	           </typeEndpoint>
             </parameter>
          </inputs>
          <outputs>
+            <parameter>
+               <type
+                     name="smtlib">
+               </type>
+               <typeEndpoint
+                     targetTypeUri="http://se.cs.toronto.edu/mmint/File">
+               </typeEndpoint>
+            </parameter>
          </outputs>
       </operatorType>
    </extension>

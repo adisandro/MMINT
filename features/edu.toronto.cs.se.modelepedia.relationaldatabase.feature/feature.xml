@@ -48,11 +48,8 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.emf.validation"/>
       <import plugin="org.eclipse.gef"/>
       <import plugin="org.eclipse.emf.edit"/>
-      <import plugin="edu.toronto.cs.se.mavo"/>
       <import plugin="edu.toronto.cs.se.mmint"/>
-      <import plugin="edu.toronto.cs.se.mavo.edit"/>
       <import plugin="edu.toronto.cs.se.mmint.edit"/>
-      <import plugin="edu.toronto.cs.se.mmint.mavo"/>
    </requires>
 
    <plugin
@@ -78,34 +75,6 @@ Famelis, Rick Salay. All rights reserved.
 
    <plugin
          id="edu.toronto.cs.se.modelepedia.relationaldatabase.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.editor"
          download-size="0"
          install-size="0"
          version="0.0.0"
