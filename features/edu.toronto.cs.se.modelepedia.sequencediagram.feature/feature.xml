@@ -28,7 +28,6 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.emf.validation"/>
-      <import plugin="edu.toronto.cs.se.mavo"/>
       <import plugin="edu.toronto.cs.se.mmint.operator"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.sirius"/>

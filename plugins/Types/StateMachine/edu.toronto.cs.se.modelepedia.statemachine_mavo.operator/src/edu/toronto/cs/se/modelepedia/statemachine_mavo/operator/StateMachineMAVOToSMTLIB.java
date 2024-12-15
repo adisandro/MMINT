@@ -20,10 +20,10 @@ import org.eclipse.acceleo.engine.service.AbstractAcceleoGenerator;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mavo.MAVORoot;
-import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIB;
-import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreMAVOToSMTLIBListener;
+import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreToSMTLIB;
+import edu.toronto.cs.se.modelepedia.z3.mavo.EcoreToSMTLIBListener;
 
-public class StateMachineMAVOToSMTLIB extends EcoreMAVOToSMTLIB {
+public class StateMachineMAVOToSMTLIB extends EcoreToSMTLIB {
 
 	public class StateMachineMAVOToSMTLIBWithListeners_M2T extends StateMachineMAVOToSMTLIB_M2T {
 
@@ -36,7 +36,7 @@ public class StateMachineMAVOToSMTLIB extends EcoreMAVOToSMTLIB {
 	    public List<IAcceleoTextGenerationListener> getGenerationListeners() {
 
 			List<IAcceleoTextGenerationListener> listeners = new ArrayList<>();
-			smtListener = new EcoreMAVOToSMTLIBListener(mavoModelObjs, isMayOnly);
+			smtListener = new EcoreToSMTLIBListener(mavoModelObjs, isMayOnly);
 			listeners.add(smtListener);
 
 			return listeners;

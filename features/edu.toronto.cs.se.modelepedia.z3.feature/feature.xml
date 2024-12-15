@@ -24,9 +24,7 @@ Famelis, Rick Salay. All rights reserved.
       <import plugin="org.eclipse.gmf.runtime.notation"/>
       <import plugin="org.eclipse.osgi"/>
       <import plugin="org.eclipse.emf.validation"/>
-      <import plugin="edu.toronto.cs.se.mavo"/>
       <import plugin="edu.toronto.cs.se.mmint"/>
-      <import plugin="edu.toronto.cs.se.mmint.mavo"/>
       <import plugin="org.eclipse.emf.henshin.interpreter"/>
       <import plugin="org.eclipse.emf.henshin.trace"/>
       <import plugin="org.eclipse.ui"/>

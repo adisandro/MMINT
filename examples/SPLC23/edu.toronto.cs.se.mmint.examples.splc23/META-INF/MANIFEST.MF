@@ -11,7 +11,6 @@ Require-Bundle: org.eclipse.emf.common.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.validation,
  org.eclipse.jdt.annotation;resolution:=optional,
- edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.classdiagram,
  edu.toronto.cs.se.mmint.productline

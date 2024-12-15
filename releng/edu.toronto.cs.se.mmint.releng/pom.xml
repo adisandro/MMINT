@@ -129,11 +129,6 @@
     <module>../../plugins/Core-Extensions/Recommended/edu.toronto.cs.se.modelepedia.operator</module>
     <module>../../plugins/Core-Extensions/Kleisli/edu.toronto.cs.se.modelepedia.kleisli</module>
     <module>../../plugins/Core-Extensions/Kleisli/edu.toronto.cs.se.modelepedia.kleisli.edit</module>
-    <module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.mavo</module>
-    <module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.mavo.edit</module>
-    <module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.mmint.mavo</module>
-    <module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.mmint.mavo.edit</module>
-    <module>../../plugins/Core-Extensions/MAVO/edu.toronto.cs.se.modelepedia.mavo.operator</module>
     <module>../../plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline</module>
     <module>../../plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline.design</module>
     <module>../../plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline.edit</module>
@@ -150,16 +145,6 @@
     <module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram.edit</module>
     <module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram.editor</module>
     <module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram.operator</module>
-    <module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo</module>
-    <module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo.diagram</module>
-    <module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo.edit</module>
-    <module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo.editor</module>
-    <module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram_mavo.operator</module>
-    <module>../../plugins/Types/Graph/edu.toronto.cs.se.modelepedia.graph_mavo</module>
-    <module>../../plugins/Types/Graph/edu.toronto.cs.se.modelepedia.graph_mavo.diagram</module>
-    <module>../../plugins/Types/Graph/edu.toronto.cs.se.modelepedia.graph_mavo.edit</module>
-    <module>../../plugins/Types/Graph/edu.toronto.cs.se.modelepedia.graph_mavo.editor</module>
-    <module>../../plugins/Types/Graph/edu.toronto.cs.se.modelepedia.graph_mavo.operator</module>
     <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.gsn</module>
     <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.gsn.design</module>
     <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.gsn.edit</module>
@@ -175,11 +160,6 @@
     <module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar.diagram</module>
     <module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar.edit</module>
     <module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar.editor</module>
-    <module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo</module>
-    <module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo.diagram</module>
-    <module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo.edit</module>
-    <module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo.editor</module>
-    <module>../../plugins/Types/IStar/edu.toronto.cs.se.modelepedia.istar_mavo.operator</module>
     <module>../../plugins/Types/LTS/edu.toronto.cs.se.mmint.types.lts</module>
     <module>../../plugins/Types/LTS/edu.toronto.cs.se.mmint.types.lts.design</module>
     <module>../../plugins/Types/LTS/edu.toronto.cs.se.mmint.types.lts.edit</module>
@@ -189,10 +169,6 @@
     <module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase.diagram</module>
     <module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase.edit</module>
     <module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase.editor</module>
-    <module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase_mavo</module>
-    <module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.diagram</module>
-    <module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.edit</module>
-    <module>../../plugins/Types/RelationalDatabase/edu.toronto.cs.se.modelepedia.relationaldatabase_mavo.editor</module>
     <module>../../plugins/Types/SequenceDiagram/edu.toronto.cs.se.modelepedia.sequencediagram</module>
     <module>../../plugins/Types/SequenceDiagram/edu.toronto.cs.se.modelepedia.sequencediagram.design</module>
     <module>../../plugins/Types/SequenceDiagram/edu.toronto.cs.se.modelepedia.sequencediagram.edit</module>
@@ -204,17 +180,8 @@
     <module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine.edit</module>
     <module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine.editor</module>
     <module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine.operator</module>
-    <module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo</module>
-    <module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.diagram</module>
-    <module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.edit</module>
-    <module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.editor</module>
-    <module>../../plugins/Types/StateMachine/edu.toronto.cs.se.modelepedia.statemachine_mavo.operator</module>
     <module>../../plugins/Types/StateMachine/edu.toronto.cs.se.mmint.types.statemachine.productline.design</module>
     <module>../../plugins/Types/UML/edu.toronto.cs.se.mmint.types.uml.operators</module>
-    <module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo</module>
-    <module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.diagram</module>
-    <module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.edit</module>
-    <module>../../examples/ICSE15/edu.toronto.cs.se.modelepedia.icse15_sequencediagram_mavo.editor</module>
     <module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15</module>
     <module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java</module>
     <module>../../examples/MODELS15/edu.toronto.cs.se.modelepedia.models15_java.edit</module>
@@ -240,7 +207,6 @@
     <module>../../features/edu.toronto.cs.se.mmint.types.lts.feature</module>
     <module>../../features/edu.toronto.cs.se.mminta.feature</module>
     <module>../../features/edu.toronto.cs.se.mmintpl.feature</module>
-    <module>../../features/edu.toronto.cs.se.mummint.feature</module>
     <module>../../features/edu.toronto.cs.se.mmintpl.types.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.kotlin.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.lean.feature</module>
@@ -249,16 +215,12 @@
     <module>../../features/edu.toronto.cs.se.modelepedia.z3.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.kleisli.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.classdiagram.feature</module>
-    <module>../../features/edu.toronto.cs.se.modelepedia.classdiagram_mavo.feature</module>
-    <module>../../features/edu.toronto.cs.se.modelepedia.graph.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.istar.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.relationaldatabase.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.gsn.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.sequencediagram.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.statemachine.feature</module>
-    <module>../../features/edu.toronto.cs.se.modelepedia.statemachine_mavo.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.models15.feature</module>
-    <module>../../features/edu.toronto.cs.se.modelepedia.icse15.feature</module>
     <module>../../features/edu.toronto.cs.se.modelepedia.sosym18.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.example.jase20.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.example.mase19.feature</module>

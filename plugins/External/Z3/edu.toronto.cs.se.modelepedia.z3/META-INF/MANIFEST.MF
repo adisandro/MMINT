@@ -14,13 +14,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.osgi,
  org.eclipse.emf.validation,
  org.eclipse.jdt.annotation;resolution:=optional,
- edu.toronto.cs.se.mavo,
  edu.toronto.cs.se.mmint,
- edu.toronto.cs.se.mmint.mavo,
  edu.toronto.cs.se.mmint.productline
 Export-Package: com.microsoft.z3,
  edu.toronto.cs.se.modelepedia.z3,
- edu.toronto.cs.se.modelepedia.z3.mavo,
  edu.toronto.cs.se.modelepedia.z3.reasoning
 Bundle-ClassPath: .,
  lib/com.microsoft.z3.jar

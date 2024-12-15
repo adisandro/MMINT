@@ -33,15 +33,12 @@
       <import plugin="org.eclipse.emf.common.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.validation"/>
-      <import plugin="edu.toronto.cs.se.mavo"/>
       <import plugin="edu.toronto.cs.se.mmint"/>
       <import plugin="edu.toronto.cs.se.modelepedia.classdiagram"/>
-      <import plugin="edu.toronto.cs.se.modelepedia.classdiagram_mavo"/>
       <import plugin="edu.toronto.cs.se.mmint.productline"/>
       <import plugin="edu.toronto.cs.se.mmint.productline.operators"/>
       <import feature="edu.toronto.cs.se.mmintpl.feature"/>
       <import feature="edu.toronto.cs.se.modelepedia.classdiagram.feature"/>
-      <import feature="edu.toronto.cs.se.modelepedia.classdiagram_mavo.feature"/>
    </requires>
 
    <plugin
