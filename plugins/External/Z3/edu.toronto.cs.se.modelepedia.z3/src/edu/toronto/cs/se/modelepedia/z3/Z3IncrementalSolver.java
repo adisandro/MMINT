@@ -18,7 +18,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.jdt.annotation.NonNull;
 
 import com.microsoft.z3.BoolExpr;
 import com.microsoft.z3.Context;
@@ -47,7 +46,7 @@ public class Z3IncrementalSolver {
 		this.decls.clear();
 	}
 
-	private boolean isValidSymbol(@NonNull String smtSymbol) {
+	private boolean isValidSymbol(String smtSymbol) {
 		if (smtSymbol.contains(Z3Utils.Z3_MODEL_SEPARATOR)) {
 			return false;
 		}
@@ -60,7 +59,7 @@ public class Z3IncrementalSolver {
 		}
 	}
 
-	private @NonNull Z3Model runCheckSatAndGetModel(@NonNull String smtEncoding) throws Z3Exception {
+	private Z3Model runCheckSatAndGetModel(String smtEncoding) throws Z3Exception {
 		BoolExpr[] expr;
 		if (this.sorts.isEmpty() || this.decls.isEmpty()) {
 			// parse baseline encoding
@@ -106,7 +105,7 @@ public class Z3IncrementalSolver {
 	}
 
 	// first check sat and get model as baseline
-	public @NonNull Z3Model firstCheckSatAndGetModel(@NonNull String smtEncoding) {
+	public Z3Model firstCheckSatAndGetModel(String smtEncoding) {
 		var config = new HashMap<String, String>();
 		config.put("model", "true");
 		try {
@@ -125,7 +124,7 @@ public class Z3IncrementalSolver {
 	}
 
 	// incremental check sat and get model
-	public @NonNull Z3Model checkSatAndGetModel(@NonNull String smtEncoding, @NonNull Z3IncrementalBehavior incBehavior) {
+	public Z3Model checkSatAndGetModel(String smtEncoding, Z3IncrementalBehavior incBehavior) {
 
 		if (this.sorts.isEmpty() || this.decls.isEmpty()) {
 			MMINTException.print(IStatus.INFO, "No incremental model found, invoking firstCheckSatAndGetModel() instead", null);

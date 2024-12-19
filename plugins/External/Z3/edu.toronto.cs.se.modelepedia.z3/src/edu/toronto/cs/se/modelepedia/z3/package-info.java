@@ -11,6 +11,6 @@
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
 @NonNullByDefault
-package edu.toronto.cs.se.modelepedia.z3.reasoning;
+package edu.toronto.cs.se.modelepedia.z3;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
