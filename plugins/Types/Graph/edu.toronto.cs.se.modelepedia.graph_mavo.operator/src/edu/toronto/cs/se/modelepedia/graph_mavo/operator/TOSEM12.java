@@ -40,8 +40,8 @@ import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver.Z3IncrementalBehavior;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model;
 import edu.toronto.cs.se.modelepedia.z3.Z3Model.Z3Result;
+import edu.toronto.cs.se.modelepedia.z3.operators.Z3MAVOModelParser;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
-import edu.toronto.cs.se.modelepedia.z3.mavo.Z3MAVOModelParser;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3Reasoner;
 import edu.toronto.cs.se.modelepedia.z3.reasoning.Z3Reasoner.MAVOCheckStrategy;
 
