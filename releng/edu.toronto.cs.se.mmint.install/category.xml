@@ -12,9 +12,6 @@
    <feature url="features/edu.toronto.cs.se.mmintpl.feature_2.24.99.qualifier.jar" id="edu.toronto.cs.se.mmintpl.feature" version="2.24.99.qualifier">
       <category name="Modeling"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.mummint.feature_2.24.99.qualifier.jar" id="edu.toronto.cs.se.mummint.feature" version="2.24.99.qualifier">
-      <category name="Modeling"/>
-   </feature>
    <feature url="features/edu.toronto.cs.se.mmintpl.types.feature_2.24.99.qualifier.jar" id="edu.toronto.cs.se.mmintpl.types.feature" version="2.24.99.qualifier">
       <category name="Modeling"/>
    </feature>
