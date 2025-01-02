@@ -1,4 +1,4 @@
-# MMINT ![Build and Deploy](https://github.com/adisandro/MMINT/workflows/Build%20and%20Deploy/badge.svg)
+# MMINT [![Build and Deploy](https://github.com/adisandro/MMINT/actions/workflows/build_and_deploy.yml/badge.svg)](https://github.com/adisandro/MMINT/actions/workflows/build_and_deploy.yml)
 
 **Model Management INTeractive (MMINT)** is an Eclipse-based workbench for graphical, interactive model management. MMINT allows modelers to do rapid prototyping and exploratory modeling while seamlessly keeping track of all relevant artifacts in their workspace. MMINT is developed by the Software Engineering group at the [University of Toronto](https://web.cs.toronto.edu), under the supervision of Professor [Marsha Chechik](http://www.cs.toronto.edu/~chechik).
 
