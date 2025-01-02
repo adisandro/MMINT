@@ -33,7 +33,6 @@ import org.eclipse.emf.henshin.model.Rule;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 import org.eclipse.emf.henshin.trace.Trace;
 
-import edu.toronto.cs.se.mavo.MAVOElement;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -42,6 +41,7 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
+import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.modelepedia.z3.Z3IncrementalSolver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
@@ -66,9 +66,9 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 	 *            The (A)dded model object.
 	 */
 	@Override
-	protected void transformModelObjAWhenLifted(MAVOElement modelObjA) {
+	protected void transformModelObjAWhenLifted(PLElement modelObjA) {
 
-		modelObjA.setFormulaVariable(LiftingHenshinTransformation.SMTLIB_APPLICABILITY_FUN_APPLY + (this.ruleApplicationsLifting+1) + Z3Utils.SMTLIB_PREDICATE_END);
+		modelObjA.setPresenceCondition(LiftingHenshinTransformation.SMTLIB_APPLICABILITY_FUN_APPLY + (this.ruleApplicationsLifting+1) + Z3Utils.SMTLIB_PREDICATE_END);
 	}
 
 	@Override
@@ -83,28 +83,28 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
     protected void updateLiterals() {
 
 		var countLiterals = 0;
-		for (MAVOElement modelObjCDN : this.modelObjsCDN) {
+		for (var modelObjCDN : this.modelObjsCDN) {
 			var modelObjCDNLiterals = this.modelObjsLiterals.get(modelObjCDN);
 			if (modelObjCDNLiterals == null) {
-				modelObjCDNLiterals = (modelObjCDN.getFormulaVariable().equals(Z3Utils.SMTLIB_TRUE)) ? new Integer(0) : new Integer(1);
+				modelObjCDNLiterals = (modelObjCDN.getPresenceCondition().equals(Z3Utils.SMTLIB_TRUE)) ? new Integer(0) : new Integer(1);
 				this.modelObjsLiterals.put(modelObjCDN, modelObjCDNLiterals);
 			}
 			countLiterals += modelObjCDNLiterals;
 		}
-		for (MAVOElement modelObjA : this.modelObjsA) {
+		for (var modelObjA : this.modelObjsA) {
 			this.modelObjsLiterals.put(modelObjA, new Integer(countLiterals));
 		}
 	}
 
 	@Override
-    protected void getMatchedModelObjs(Match match, Set<Node> nodes, Set<MAVOElement> modelObjs, Set<MAVOElement> allModelObjs) {
+    protected void getMatchedModelObjs(Match match, Set<Node> nodes, Set<PLElement> modelObjs, Set<PLElement> allModelObjs) {
 
 		for (Node node : nodes) {
 			var nodeTarget = match.getNodeTarget(node);
-			if (nodeTarget instanceof MAVOElement) {
-				allModelObjs.add((MAVOElement) nodeTarget);
-				if (((MAVOElement) nodeTarget).getFormulaVariable() != null) {
-					modelObjs.add((MAVOElement) nodeTarget);
+			if (nodeTarget instanceof PLElement) {
+				allModelObjs.add((PLElement) nodeTarget);
+				if (((PLElement) nodeTarget).getPresenceCondition() != null) {
+					modelObjs.add((PLElement) nodeTarget);
 				}
 			}
 		}
@@ -209,9 +209,8 @@ public class ProductLineHenshinTransformation extends LiftingHenshinTransformati
 			Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
 			Map<String, MID> outputMIDsByName) throws Exception {
 
-		// Using MAVO elements in this operator is a "trick" to reuse the
-		// formulaVariable field as the container of presence conditions. It works
-		// as long as all elements in the Henshin rules are MAVO elements, the only
+		// Using PL elements in this operator works
+		// as long as all elements in the Henshin rules are PL elements, the only
 		// exception being the root which is always present.
 
 		// input

@@ -3,4 +3,4 @@ A list of ideas/techniques used for MAVO models that could be adapted for PLs:
 - Highlight product within PL instead of generating new model
 - Outline with features and options to highlight model elements that contain a formula with them
 - Implement allsat and backbone
-- Lift hinshin with new separated metamodel
+- Lift henshin with new separated metamodel

@@ -78,7 +78,6 @@ public class ParallelComposition extends OperatorImpl {
 		var composedSM = StateMachineFactory.eINSTANCE.createStateMachine();
 		// create all states first..
 		for (AbstractState state1 : sm1.getStates()) {
-			//TODO MMINT[STATEMACHINE] Fix initial and final state not having mavo annotations
 			if (!(state1 instanceof State)) {
 				continue;
 			}

@@ -28,7 +28,6 @@ import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 import edu.toronto.cs.se.modelepedia.z3.Z3Solver;
 import edu.toronto.cs.se.modelepedia.z3.Z3Utils;
 
-//TODO MMINT[Z3] Support refinement and highlighting for the complex full-MAVO encoding
 public class Z3Reasoner implements IModelConstraintTrait, IPLFeaturesTrait {
 
   @Override

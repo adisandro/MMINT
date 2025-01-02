@@ -226,8 +226,9 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     public void setUri(String newUri) {
     var oldUri = this.uri;
     this.uri = newUri;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__URI, oldUri, this.uri));
+    }
   }
 
     /**
@@ -241,8 +242,9 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
       var oldSupertype = (InternalEObject)this.supertype;
       this.supertype = (ExtendibleElement)eResolveProxy(oldSupertype);
       if (this.supertype != oldSupertype) {
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
           eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE, oldSupertype, this.supertype));
+        }
       }
     }
     return this.supertype;
@@ -266,8 +268,9 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     public void setSupertype(ExtendibleElement newSupertype) {
     var oldSupertype = this.supertype;
     this.supertype = newSupertype;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE, oldSupertype, this.supertype));
+    }
   }
 
     /**
@@ -289,8 +292,9 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     public void setName(String newName) {
     var oldName = this.name;
     this.name = newName;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__NAME, oldName, this.name));
+    }
   }
 
     /**
@@ -312,8 +316,9 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     public void setLevel(MIDLevel newLevel) {
     var oldLevel = this.level;
     this.level = newLevel == null ? ExtendibleElementImpl.LEVEL_EDEFAULT : newLevel;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__LEVEL, oldLevel, this.level));
+    }
   }
 
     /**
@@ -335,8 +340,9 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     public void setMetatypeUri(String newMetatypeUri) {
     var oldMetatypeUri = this.metatypeUri;
     this.metatypeUri = newMetatypeUri;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__METATYPE_URI, oldMetatypeUri, this.metatypeUri));
+    }
   }
 
     /**
@@ -358,8 +364,9 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     public void setDynamic(boolean newDynamic) {
     var oldDynamic = this.dynamic;
     this.dynamic = newDynamic;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__DYNAMIC, oldDynamic, this.dynamic));
+    }
   }
 
     /**
@@ -382,7 +389,12 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     this.constraint = newConstraint;
     if (eNotificationRequired()) {
       var notification = new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, oldConstraint, newConstraint);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      if (msgs == null) {
+        msgs = notification;
+      }
+      else {
+        msgs.add(notification);
+      }
     }
     return msgs;
   }
@@ -396,15 +408,20 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     public void setConstraint(ExtendibleElementConstraint newConstraint) {
     if (newConstraint != this.constraint) {
       NotificationChain msgs = null;
-      if (this.constraint != null)
+      if (this.constraint != null) {
         msgs = ((InternalEObject)this.constraint).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, null, msgs);
-      if (newConstraint != null)
+      }
+      if (newConstraint != null) {
         msgs = ((InternalEObject)newConstraint).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, null, msgs);
+      }
       msgs = basicSetConstraint(newConstraint, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null) {
+        msgs.dispatch();
+      }
     }
-    else if (eNotificationRequired())
+    else if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, newConstraint, newConstraint));
+    }
   }
 
     /**
@@ -430,7 +447,9 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
       case MIDPackage.EXTENDIBLE_ELEMENT__SUPERTYPE:
-        if (resolve) return getSupertype();
+        if (resolve) {
+          return getSupertype();
+        }
         return basicGetSupertype();
       case MIDPackage.EXTENDIBLE_ELEMENT__URI:
         return getUri();
@@ -630,7 +649,9 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
    * @generated
    */
     public String toStringGen() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     var result = new StringBuilder(super.toString());
     result.append(" (uri: ");
@@ -882,18 +903,6 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
                     MIDTypeHierarchy.isSubtypeOf(metamodelUri, filteredSubtype.getUri())
                 ) {
                     metamodelSubtypes.add(filteredSubtype);
-                }
-                else { // try multiple inheritance
-                    //TODO MMINT[MID] this is too tailored for UML_MAVO
-                    for (var multipleInheritanceUri : MIDTypeHierarchy.getMultipleInheritanceUris(metamodelUri)) {
-                        if (
-                            multipleInheritanceUri.equals(filteredSubtype.getUri()) ||
-                            MIDTypeHierarchy.isSubtypeOf(filteredSubtype.getUri(), multipleInheritanceUri) ||
-                            MIDTypeHierarchy.isSubtypeOf(multipleInheritanceUri, filteredSubtype.getUri())
-                        ) {
-                            metamodelSubtypes.add(filteredSubtype);
-                        }
-                    }
                 }
             }
             return metamodelSubtypes;

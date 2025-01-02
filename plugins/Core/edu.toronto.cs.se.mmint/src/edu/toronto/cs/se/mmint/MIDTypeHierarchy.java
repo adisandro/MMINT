@@ -14,7 +14,6 @@ package edu.toronto.cs.se.mmint;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -575,24 +574,6 @@ public class MIDTypeHierarchy {
 			return allOperatorTypes;
 		}
 		return getSubtypes(type, MMINT.cachedTypeMID);
-	}
-
-	/**
-	 * Gets something hacky related to the multiple inheritance of a type in the
-	 * repository.
-	 *
-	 * @param typeUri
-	 *            The uri of the type.
-	 * @return That something hacky.
-	 */
-	public static Set<String> getMultipleInheritanceUris(String typeUri) {
-
-		Set<String> uris = MMINT.multipleInheritanceTable.get(typeUri);
-		if (uris == null) {
-			uris = new HashSet<>();
-		}
-
-		return uris;
 	}
 
 	/**

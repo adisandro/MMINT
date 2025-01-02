@@ -109,12 +109,6 @@ public class MMINT implements MMINTConstants {
 	static IViewProvider cachedMIDViewProvider;
 	/** The file containing the active instance MID (i.e. the one that triggered an operation) */
 	static IFile activeInstanceMIDFile;
-	/**
-	 * The table to have some very poor sort of multiple inheritance,
-	 * i.e. to have UML_MAVO properly recognized.
-	 * TODO MMINT[MID] redo when needed!
-	 */
-	static Map<String, Set<String>> multipleInheritanceTable;
 	/** The type MID filename. */
 	public static final String TYPEMID_FILENAME = "types" + MMINT.MODEL_FILEEXTENSION_SEPARATOR + MIDPackage.eNAME;
 
@@ -157,7 +151,6 @@ public class MMINT implements MMINTConstants {
 	 * - Address the issue of not inheriting Editor and Diagram types; this will fix a model type without editor, which is still able to use the reflective ecore
 	 * - Review and unify all mid apis (e.g. add possibility to pass name)
 	 * - Add createBinaryInstance/Subtype() to Mapping
-	 * - Rethink link icons in mids with/without MAVO (problem is they're detached from the label)
 	 * - Add documentation ->
 	 *   a) Prerequisite: review apis for mid construction and destruction
 	 *   b) Take every api function
@@ -219,7 +212,7 @@ public class MMINT implements MMINTConstants {
 	 */
 	public static Model createModelType(IConfigurationElement extensionConfig) throws MMINTException {
 
-		var extensionType = new ExtensionPointType(extensionConfig, MMINT.multipleInheritanceTable, MMINT.typeFactory);
+		var extensionType = new ExtensionPointType(extensionConfig, MMINT.typeFactory);
 		if (extensionType.getUri() == null) {
 			throw new MMINTException("Model type " + extensionType.getName() + " must have a uri");
 		}
@@ -629,9 +622,9 @@ public class MMINT implements MMINTConstants {
 			createSubtypeHierarchy(type, type, subtypeTable);
 		}
 		for (Model modelType : typeMID.getModels()) {
-			createConversionHierarchy(modelType, new ArrayList<String>(), conversionTable.get(modelType.getUri()));
+			createConversionHierarchy(modelType, new ArrayList<>(), conversionTable.get(modelType.getUri()));
 			for (Model modelSubtype : MIDTypeHierarchy.getSubtypes(modelType, typeMID)) {
-				createConversionHierarchy(modelType, new ArrayList<String>(), conversionTable.get(modelSubtype.getUri()));
+				createConversionHierarchy(modelType, new ArrayList<>(), conversionTable.get(modelSubtype.getUri()));
 			}
 		}
 	}
@@ -720,7 +713,6 @@ public class MMINT implements MMINTConstants {
 		MMINT.cachedTypeMID = MIDFactory.eINSTANCE.createMID();
 		MMINT.cachedTypeMID.setLevel(MIDLevel.TYPES);
 		MMINT.bundleTable = new HashMap<>();
-		MMINT.multipleInheritanceTable = new HashMap<>();
 		MMINT.typeFactory = new MIDHeavyTypeFactory();
     MMINT.traits = new HashMap<>();
 		MMINT.reasoners = new HashMap<>();

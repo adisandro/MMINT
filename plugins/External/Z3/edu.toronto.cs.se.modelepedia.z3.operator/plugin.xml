@@ -19,49 +19,6 @@
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type
-               name="MAVOHenshinTransformation"
-               uri="http://se.cs.toronto.edu/modelepedia/Operator_MAVOHenshinTransformation"
-               class="edu.toronto.cs.se.modelepedia.z3.operator.henshin.MAVOHenshinTransformation">
-         </type>
-         <constraint
-               implementation="edu.toronto.cs.se.modelepedia.z3.operator.henshin.LiftingHenshinTransformation$Constraint"
-               language="Java">
-         </constraint>
-         <inputs>
-            <parameter>
-	           <type
-	                 name="original">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
-	           </typeEndpoint>
-            </parameter>
-         </inputs>
-         <outputs>
-            <parameter>
-	           <type
-	                 name="transformed">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
-	           </typeEndpoint>
-            </parameter>
-            <parameter>
-	           <type
-	                 name="trace">
-	           </type>
-	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-	           </typeEndpoint>
-            </parameter>
-         </outputs>
-      </operatorType>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmint.operators">
-      <operatorType>
-         <type
                name="ProductLineHenshinTransformation"
                uri="http://se.cs.toronto.edu/modelepedia/Operator_ProductLineHenshinTransformation"
                class="edu.toronto.cs.se.modelepedia.z3.operator.henshin.ProductLineHenshinTransformation">
@@ -76,7 +33,7 @@
 	                 name="original">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	                 targetTypeUri="model://edu.toronto.cs.se.mmint.productline">
 	           </typeEndpoint>
             </parameter>
          </inputs>
@@ -86,7 +43,7 @@
 	                 name="transformed">
 	           </type>
 	           <typeEndpoint
-	                 targetTypeUri="http://se.cs.toronto.edu/MAVO">
+	                 targetTypeUri="model://edu.toronto.cs.se.mmint.productline">
 	           </typeEndpoint>
             </parameter>
             <parameter>
