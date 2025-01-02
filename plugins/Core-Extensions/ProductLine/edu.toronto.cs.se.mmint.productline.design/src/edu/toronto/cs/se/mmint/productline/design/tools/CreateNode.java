@@ -64,10 +64,14 @@ public abstract class CreateNode extends AbstractExternalJavaAction {
 
     protected abstract @Nullable EReference getContainmentType();
 
+    protected Class createClass(EClass classType) {
+      return PLFactory.eINSTANCE.createClass();
+    }
+
     @Override
     protected void doExecute() {
       var classType = (EClass) this.productLine.getMetamodel().getEClassifier(this.classType);
-      var clazz = PLFactory.eINSTANCE.createClass();
+      var clazz = createClass(classType);
       clazz.setType(classType);
       this.productLine.getClasses().add(clazz);
       var reference = PLFactory.eINSTANCE.createReference();

@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.design.tools;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -20,6 +21,7 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.design.tools.CreateNode;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 public class PLGSNCreateNode extends CreateNode {
@@ -38,6 +40,15 @@ public class PLGSNCreateNode extends CreateNode {
     @Override
     protected Class getContainer() {
       return this.productLine.getRoot(GSNPackage.eINSTANCE.getSafetyCase());
+    }
+
+    @Override
+    protected Class createClass(EClass classType) {
+      return switch (classType) {
+        case EClass e when GSNPackage.eINSTANCE.getArgumentElement().isSuperTypeOf(e) ->
+          PLGSNFactory.eINSTANCE.createPLGSNArgumentElement();
+        default -> super.createClass(classType);
+      };
     }
 
     @Override
