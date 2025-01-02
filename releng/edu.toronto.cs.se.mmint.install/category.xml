@@ -60,9 +60,6 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.models15.feature_2.24.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.models15.feature" version="2.24.99.qualifier">
       <category name="Examples"/>
    </feature>
-   <feature url="features/edu.toronto.cs.se.modelepedia.icse15.feature_2.24.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.icse15.feature" version="2.24.99.qualifier">
-      <category name="Examples"/>
-   </feature>
    <feature url="features/edu.toronto.cs.se.modelepedia.sosym18.feature_2.24.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.sosym18.feature" version="2.24.99.qualifier">
       <category name="Examples"/>
    </feature>
