@@ -31,7 +31,7 @@ public class PLGSNServices extends PLServices {
         var text = (id + "\n" + desc).strip();
         yield (pc.isBlank()) ? text : pc + " " + text;
       }
-      case Class c -> "";
+      case Class c -> pc;
       default -> getPLElementLabel(self);
     };
 

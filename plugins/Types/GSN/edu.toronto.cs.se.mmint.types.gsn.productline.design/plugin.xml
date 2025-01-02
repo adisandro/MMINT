@@ -35,12 +35,12 @@
             id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.GSNPLValidateTemplate">
       </javaActions>
       <javaActions
-            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode"
-            id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateNode">
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLGSNCreateNode"
+            id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLGSNCreateNode">
       </javaActions>
       <javaActions
-            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateEdge"
-            id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.GSNPLCreateEdge">
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLGSNCreateEdge"
+            id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLGSNCreateEdge">
       </javaActions>
    </extension>
 </plugin>

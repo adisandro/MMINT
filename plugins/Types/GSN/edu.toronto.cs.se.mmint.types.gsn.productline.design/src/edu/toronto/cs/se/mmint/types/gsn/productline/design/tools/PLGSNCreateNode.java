@@ -22,7 +22,7 @@ import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.design.tools.CreateNode;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
-public class GSNPLCreateNode extends CreateNode {
+public class PLGSNCreateNode extends CreateNode {
 
   @Override
   protected Command getCommand(TransactionalEditingDomain domain, EObject container, String classType) {

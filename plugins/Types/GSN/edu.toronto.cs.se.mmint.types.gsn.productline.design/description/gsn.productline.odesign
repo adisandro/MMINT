@@ -17,20 +17,47 @@
               </style>
             </conditionnalStyles>
           </borderedNodeMappings>
+          <borderedNodeMappings name="PLImpactNode" preconditionExpression="aql: self.type.name = 'ImpactAnnotation' or self.type.eAllSuperTypes->exists(s | s.name = 'ImpactAnnotation')" semanticCandidatesExpression="aql: self.references->select(r | r.type.name = 'status')->collect(r | r.target)" domainClass="productline.Class">
+            <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
+            <conditionnalStyles predicateExpression="aql: self.attributes->select(a | a.type.name = 'type')->first().value = 'REUSE'">
+              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" labelAlignment="LEFT" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Reuse.png">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <forbiddenSides>WEST</forbiddenSides>
+                <forbiddenSides>NORTH</forbiddenSides>
+              </style>
+            </conditionnalStyles>
+            <conditionnalStyles predicateExpression="aql: self.attributes->select(a | a.type.name = 'type')->first().value = 'RECHECK'">
+              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" labelAlignment="LEFT" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Recheck.png">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <forbiddenSides>WEST</forbiddenSides>
+                <forbiddenSides>NORTH</forbiddenSides>
+              </style>
+            </conditionnalStyles>
+            <conditionnalStyles predicateExpression="aql: self.attributes->select(a | a.type.name = 'type')->first().value = 'REVISE'">
+              <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" labelAlignment="LEFT" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Revise.png">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <forbiddenSides>WEST</forbiddenSides>
+                <forbiddenSides>NORTH</forbiddenSides>
+              </style>
+            </conditionnalStyles>
+          </borderedNodeMappings>
           <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" width="20" height="10">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </nodeMappings>
-        <nodeMappings name="PLStrategyNode" preconditionExpression="aql: self.type.name = 'Strategy' or self.type.eAllSuperTypes->exists(s | s.name = 'Strategy')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class" reusedBorderedNodeMappings="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLGoalNode']/@borderedNodeMappings[name='PLRelationshipDecoratorNode']">
+        <nodeMappings name="PLStrategyNode" preconditionExpression="aql: self.type.name = 'Strategy' or self.type.eAllSuperTypes->exists(s | s.name = 'Strategy')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class" reusedBorderedNodeMappings="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLGoalNode']/@borderedNodeMappings[name='PLRelationshipDecoratorNode'] //@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLGoalNode']/@borderedNodeMappings[name='PLImpactNode']">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
           <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Strategy.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </nodeMappings>
-        <nodeMappings name="PLSolutionNode" preconditionExpression="aql: self.type.name = 'Solution' or self.type.eAllSuperTypes->exists(s | s.name = 'Solution')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
+        <nodeMappings name="PLSolutionNode" preconditionExpression="aql: self.type.name = 'Solution' or self.type.eAllSuperTypes->exists(s | s.name = 'Solution')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class" reusedBorderedNodeMappings="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLGoalNode']/@borderedNodeMappings[name='PLImpactNode']">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
           <style xsi:type="style:DotDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" sizeComputationExpression="15" labelPosition="node" resizeKind="NSEW">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -38,14 +65,14 @@
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </nodeMappings>
-        <nodeMappings name="PLContextNode" preconditionExpression="aql: self.type.name = 'Context' or self.type.eAllSuperTypes->exists(s | s.name = 'Context')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
+        <nodeMappings name="PLContextNode" preconditionExpression="aql: self.type.name = 'Context' or self.type.eAllSuperTypes->exists(s | s.name = 'Context')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class" reusedBorderedNodeMappings="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLGoalNode']/@borderedNodeMappings[name='PLImpactNode']">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
           <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" sizeComputationExpression="20" labelPosition="node" resizeKind="NSEW" arcWidth="15" arcHeight="15" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Context.svg">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </nodeMappings>
-        <nodeMappings name="PLJustificationNode" preconditionExpression="aql: self.type.name = 'Justification' or self.type.eAllSuperTypes->exists(s | s.name = 'Justification')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
+        <nodeMappings name="PLJustificationNode" preconditionExpression="aql: self.type.name = 'Justification' or self.type.eAllSuperTypes->exists(s | s.name = 'Justification')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class" reusedBorderedNodeMappings="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLGoalNode']/@borderedNodeMappings[name='PLImpactNode']">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
           <style xsi:type="style:EllipseNodeDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" labelPosition="node" resizeKind="NSEW" horizontalDiameterComputationExpression="20" verticalDiameterComputationExpression="10">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -53,7 +80,7 @@
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </nodeMappings>
-        <nodeMappings name="PLAssumptionNode" preconditionExpression="aql: self.type.name = 'Assumption' or self.type.eAllSuperTypes->exists(s | s.name = 'Assumption')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
+        <nodeMappings name="PLAssumptionNode" preconditionExpression="aql: self.type.name = 'Assumption' or self.type.eAllSuperTypes->exists(s | s.name = 'Assumption')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class" reusedBorderedNodeMappings="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@nodeMappings[name='PLGoalNode']/@borderedNodeMappings[name='PLImpactNode']">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
           <style xsi:type="style:EllipseNodeDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" labelPosition="node" resizeKind="NSEW" horizontalDiameterComputationExpression="20" verticalDiameterComputationExpression="10">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
