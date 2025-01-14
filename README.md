@@ -42,9 +42,9 @@ Add the following update sites to Eclipse (`Help > Install New Software > Availa
 
 Then, install the following components (`Help > Install New Software`):
   * `Acceleo`
-  * `ATL SDK - ATL Transformation Language SDK`
   * `Henshin SDK`
   * `M2E - Maven Integration for Eclipse`
+  * `OCL Examples and Editors SDK`
   * `Sirius Properties Views - Specifier Support`
   * `Sirius Specifier Environment`
   * `VIATRA Query and Transformation SDK`
