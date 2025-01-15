@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.kotlin;singleton:=true
 Bundle-Vendor: %providerName
 Bundle-Version: 2.24.99.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-23
+Bundle-RequiredExecutionEnvironment: JavaSE-24
 Automatic-Module-Name: edu.toronto.cs.se.mmint.kotlin
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: target/dependency/kotlin-osgi-bundle.jar,

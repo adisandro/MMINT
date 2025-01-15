@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.lean;singleton:=true
 Bundle-Version: 2.24.99.qualifier
 Automatic-Module-Name: edu.toronto.cs.se.mmint.lean
-Bundle-RequiredExecutionEnvironment: JavaSE-23
+Bundle-RequiredExecutionEnvironment: JavaSE-24
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,

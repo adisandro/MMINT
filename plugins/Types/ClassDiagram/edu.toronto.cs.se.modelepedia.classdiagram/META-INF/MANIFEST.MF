@@ -7,7 +7,7 @@ Bundle-Version: 2.24.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-23
+Bundle-RequiredExecutionEnvironment: JavaSE-24
 Export-Package: edu.toronto.cs.se.modelepedia.classdiagram,
  edu.toronto.cs.se.modelepedia.classdiagram.impl,
  edu.toronto.cs.se.modelepedia.classdiagram.util
