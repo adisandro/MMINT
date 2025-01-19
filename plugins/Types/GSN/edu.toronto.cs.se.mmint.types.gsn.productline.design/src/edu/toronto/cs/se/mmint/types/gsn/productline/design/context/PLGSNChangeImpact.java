@@ -69,7 +69,7 @@ public class PLGSNChangeImpact extends AbstractExternalJavaAction {
         for (var plModelObj : this.plModelObjs) {
           var startStep = GSNFactory.eINSTANCE.createImpactStep();
           //startStep.setImpacted(plModelObj);
-          startStep.next("change");
+          startStep.impact("change");
         }
       }
       catch (Exception e) {

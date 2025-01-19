@@ -73,6 +73,14 @@ public interface ImpactStep extends EObject {
    * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" changeRequired="true"
    * @generated
    */
-  void next(Object change) throws Exception;
+  void impact(Object change) throws Exception;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model changeRequired="true" previousImpactRequired="true"
+   * @generated
+   */
+  EList<ImpactStep> nextSteps(Object change, ImpactType previousImpact);
 
 } // ImpactStep

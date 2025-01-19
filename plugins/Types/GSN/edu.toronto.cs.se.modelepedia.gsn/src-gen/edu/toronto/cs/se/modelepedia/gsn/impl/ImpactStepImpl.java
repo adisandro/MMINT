@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -183,20 +184,35 @@ public class ImpactStepImpl extends MinimalEObjectImpl.Container implements Impa
   /**
    * @generated NOT
    */
-  public List<ImpactStep> nextArgumentElements(Object change, ImpactType lastImpactType) {
+  private ImpactType getPreviousImpact(Object change) {
+    return getTrace().stream()
+      .filter(o -> o instanceof ArgumentElement)
+      .map(o -> ((ArgumentElement) o).getStatus().getType())
+      .findFirst()
+      .orElse(ImpactType.RECHECK); //TODO: derive from change
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public EList<ImpactStep> nextSteps(Object change, ImpactType previousImpact) {
     var element = getImpacted();
     var trace = getTrace();
     var status = element.getStatus();
+    if (previousImpact == null) {
+      previousImpact = getPreviousImpact(change);
+    }
     // impact rules
-    var nextSteps = new ArrayList<ImpactStep>();
+    var nextSteps = new BasicEList<ImpactStep>();
     switch (element) {
       case Goal goal -> {
-        status.setType(lastImpactType);
+        status.setType(previousImpact);
         nextSteps.addAll(nextSupporters(goal, trace, change));
         nextSteps.addAll(nextContexts(goal, trace, change));
       }
       case Strategy strategy -> {
-        status.setType(lastImpactType);
+        status.setType(previousImpact);
         nextSteps.addAll(nextSupporters(strategy, trace, change));
         nextSteps.addAll(nextContexts(strategy, trace, change));
       }
@@ -204,7 +220,7 @@ public class ImpactStepImpl extends MinimalEObjectImpl.Container implements Impa
         status.setType(ImpactType.REUSE);
       }
       default -> {
-        status.setType(lastImpactType);
+        status.setType(previousImpact);
       }
     };
 
@@ -215,17 +231,12 @@ public class ImpactStepImpl extends MinimalEObjectImpl.Container implements Impa
    * @generated NOT
    */
   @Override
-  public void next(Object change) throws Exception {
+  public void impact(Object change) throws Exception {
     var impacted = getImpacted();
-    var trace = getTrace();
     var status = impacted.getStatus();
-    var lastImpactType = trace.stream()
-      .filter(o -> o instanceof ArgumentElement)
-      .map(o -> ((ArgumentElement) o).getStatus().getType())
-      .findFirst()
-      .orElse(ImpactType.RECHECK); //TODO: derive from change
+    var previousImpact = getPreviousImpact(change);
     // stop condition: already impacted with equal or more priority
-    if (status != null && status.getType().compareTo(lastImpactType) >= 0) {
+    if (status != null && status.getType().compareTo(previousImpact) >= 0) {
       return;
     }
     if (status == null) {
@@ -235,7 +246,7 @@ public class ImpactStepImpl extends MinimalEObjectImpl.Container implements Impa
     // separate syntactic vs semantic (template) behavior
     List<ImpactStep> nextSteps = null;
     if (impacted.getTemplates().isEmpty()) {
-      nextSteps = nextArgumentElements(change, lastImpactType);
+      nextSteps = nextSteps(change, previousImpact);
     }
     else {
       for (var template : impacted.getTemplates()) {
@@ -244,7 +255,7 @@ public class ImpactStepImpl extends MinimalEObjectImpl.Container implements Impa
       }
     }
     for (var nextStep : nextSteps) {
-      nextStep.next(change);
+      nextStep.impact(change);
     }
   }
 
@@ -329,9 +340,9 @@ public class ImpactStepImpl extends MinimalEObjectImpl.Container implements Impa
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case GSNPackage.IMPACT_STEP___NEXT__OBJECT:
+      case GSNPackage.IMPACT_STEP___IMPACT__OBJECT:
         try {
-          next(arguments.get(0));
+          impact(arguments.get(0));
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);

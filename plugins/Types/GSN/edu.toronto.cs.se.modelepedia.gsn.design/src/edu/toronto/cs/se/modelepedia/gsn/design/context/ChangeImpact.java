@@ -68,7 +68,7 @@ public class ChangeImpact extends AbstractExternalJavaAction {
         for (var modelObj : this.modelObjs) {
           var startStep = GSNFactory.eINSTANCE.createImpactStep();
           startStep.setImpacted(modelObj);
-          startStep.next("change");
+          startStep.impact("change");
         }
       }
       catch (Exception e) {

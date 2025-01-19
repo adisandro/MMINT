@@ -878,8 +878,18 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EOperation getImpactStep__Next__Object() {
+  public EOperation getImpactStep__Impact__Object() {
     return this.impactStepEClass.getEOperations().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getImpactStep__NextSteps__Object_ImpactType() {
+    return this.impactStepEClass.getEOperations().get(1);
   }
 
   /**
@@ -1050,7 +1060,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     this.impactStepEClass = createEClass(GSNPackage.IMPACT_STEP);
     createEReference(this.impactStepEClass, GSNPackage.IMPACT_STEP__IMPACTED);
     createEReference(this.impactStepEClass, GSNPackage.IMPACT_STEP__TRACE);
-    createEOperation(this.impactStepEClass, GSNPackage.IMPACT_STEP___NEXT__OBJECT);
+    createEOperation(this.impactStepEClass, GSNPackage.IMPACT_STEP___IMPACT__OBJECT);
+    createEOperation(this.impactStepEClass, GSNPackage.IMPACT_STEP___NEXT_STEPS__OBJECT_IMPACTTYPE);
 
     // Create enums
     this.asilLevelEEnum = createEEnum(GSNPackage.ASIL_LEVEL);
@@ -1211,9 +1222,13 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     initEReference(getImpactStep_Impacted(), this.getArgumentElement(), null, "impacted", null, 1, 1, ImpactStep.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getImpactStep_Trace(), this.ecorePackage.getEObject(), null, "trace", null, 0, -1, ImpactStep.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    op = initEOperation(getImpactStep__Next__Object(), null, "next", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getImpactStep__Impact__Object(), null, "impact", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEJavaObject(), "change", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
+
+    op = initEOperation(getImpactStep__NextSteps__Object_ImpactType(), this.getImpactStep(), "nextSteps", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEJavaObject(), "change", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.getImpactType(), "previousImpact", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(this.asilLevelEEnum, ASILLevel.class, "ASILLevel");

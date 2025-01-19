@@ -166,8 +166,12 @@
   <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"/>
   <eClassifiers xsi:type="ecore:EDataType" name="GSNBuilder" instanceClassName="edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder"/>
   <eClassifiers xsi:type="ecore:EClass" name="ImpactStep">
-    <eOperations name="next" eExceptions="#//Exception">
+    <eOperations name="impact" eExceptions="#//Exception">
       <eParameters name="change" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    </eOperations>
+    <eOperations name="nextSteps" upperBound="-1" eType="#//ImpactStep">
+      <eParameters name="change" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+      <eParameters name="previousImpact" lowerBound="1" eType="#//ImpactType"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="impacted" lowerBound="1"
         eType="#//ArgumentElement"/>

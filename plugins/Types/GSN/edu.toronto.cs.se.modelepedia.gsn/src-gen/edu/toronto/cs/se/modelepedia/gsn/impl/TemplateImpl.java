@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactStep;
-import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
@@ -202,12 +201,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    */
   @Override
   public EList<ImpactStep> impact(ImpactStep step, Object change) throws Exception {
-    var lastImpactType = step.getTrace().stream()
-      .filter(o -> o instanceof ArgumentElement)
-      .map(o -> ((ArgumentElement) o).getStatus().getType())
-      .findFirst()
-      .orElse(ImpactType.RECHECK); //TODO: derive from change
-    return ECollections.asEList(((ImpactStepImpl) step).nextArgumentElements(change, lastImpactType));
+    return ECollections.asEList(step.nextSteps(change, null));
   }
 
   /**

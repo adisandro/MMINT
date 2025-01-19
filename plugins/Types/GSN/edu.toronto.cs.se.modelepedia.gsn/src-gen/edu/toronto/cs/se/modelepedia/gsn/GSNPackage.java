@@ -1914,13 +1914,22 @@ public interface GSNPackage extends EPackage {
   int IMPACT_STEP_FEATURE_COUNT = 2;
 
   /**
-   * The operation id for the '<em>Next</em>' operation.
+   * The operation id for the '<em>Impact</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IMPACT_STEP___NEXT__OBJECT = 0;
+  int IMPACT_STEP___IMPACT__OBJECT = 0;
+
+  /**
+   * The operation id for the '<em>Next Steps</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMPACT_STEP___NEXT_STEPS__OBJECT_IMPACTTYPE = 1;
 
   /**
    * The number of operations of the '<em>Impact Step</em>' class.
@@ -1929,7 +1938,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int IMPACT_STEP_OPERATION_COUNT = 1;
+  int IMPACT_STEP_OPERATION_COUNT = 2;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.ASILLevel <em>ASIL Level</em>}' enum. <!--
@@ -2608,14 +2617,24 @@ public interface GSNPackage extends EPackage {
   EReference getImpactStep_Trace();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.ImpactStep#next(java.lang.Object) <em>Next</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.ImpactStep#impact(java.lang.Object) <em>Impact</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Next</em>' operation.
-   * @see edu.toronto.cs.se.modelepedia.gsn.ImpactStep#next(java.lang.Object)
+   * @return the meta object for the '<em>Impact</em>' operation.
+   * @see edu.toronto.cs.se.modelepedia.gsn.ImpactStep#impact(java.lang.Object)
    * @generated
    */
-  EOperation getImpactStep__Next__Object();
+  EOperation getImpactStep__Impact__Object();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.ImpactStep#nextSteps(java.lang.Object, edu.toronto.cs.se.modelepedia.gsn.ImpactType) <em>Next Steps</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Next Steps</em>' operation.
+   * @see edu.toronto.cs.se.modelepedia.gsn.ImpactStep#nextSteps(java.lang.Object, edu.toronto.cs.se.modelepedia.gsn.ImpactType)
+   * @generated
+   */
+  EOperation getImpactStep__NextSteps__Object_ImpactType();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.Undeveloped <em>Undeveloped</em>}'.
@@ -3216,12 +3235,20 @@ public interface GSNPackage extends EPackage {
     EReference IMPACT_STEP__TRACE = GSNPackage.eINSTANCE.getImpactStep_Trace();
 
     /**
-     * The meta object literal for the '<em><b>Next</b></em>' operation.
+     * The meta object literal for the '<em><b>Impact</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation IMPACT_STEP___NEXT__OBJECT = GSNPackage.eINSTANCE.getImpactStep__Next__Object();
+    EOperation IMPACT_STEP___IMPACT__OBJECT = GSNPackage.eINSTANCE.getImpactStep__Impact__Object();
+
+    /**
+     * The meta object literal for the '<em><b>Next Steps</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation IMPACT_STEP___NEXT_STEPS__OBJECT_IMPACTTYPE = GSNPackage.eINSTANCE.getImpactStep__NextSteps__Object_ImpactType();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.UndevelopedImpl <em>Undeveloped</em>}' class.

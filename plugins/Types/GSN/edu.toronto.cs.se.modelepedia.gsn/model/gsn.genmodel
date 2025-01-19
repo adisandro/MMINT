@@ -113,8 +113,12 @@
     <genClasses ecoreClass="gsn.ecore#//ImpactStep">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//ImpactStep/impacted"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//ImpactStep/trace"/>
-      <genOperations ecoreOperation="gsn.ecore#//ImpactStep/next">
-        <genParameters ecoreParameter="gsn.ecore#//ImpactStep/next/change"/>
+      <genOperations ecoreOperation="gsn.ecore#//ImpactStep/impact">
+        <genParameters ecoreParameter="gsn.ecore#//ImpactStep/impact/change"/>
+      </genOperations>
+      <genOperations ecoreOperation="gsn.ecore#//ImpactStep/nextSteps">
+        <genParameters ecoreParameter="gsn.ecore#//ImpactStep/nextSteps/change"/>
+        <genParameters ecoreParameter="gsn.ecore#//ImpactStep/nextSteps/previousImpact"/>
       </genOperations>
     </genClasses>
   </genPackages>
