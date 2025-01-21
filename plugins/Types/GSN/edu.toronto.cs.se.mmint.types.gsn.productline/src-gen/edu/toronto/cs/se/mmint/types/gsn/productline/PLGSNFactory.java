@@ -59,6 +59,15 @@ public interface PLGSNFactory extends EFactory {
   PLGSNAnalyticTemplate createPLGSNAnalyticTemplate();
 
   /**
+   * Returns a new object of class '<em>Impact Step</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Impact Step</em>'.
+   * @generated
+   */
+  PLGSNImpactStep createPLGSNImpactStep();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

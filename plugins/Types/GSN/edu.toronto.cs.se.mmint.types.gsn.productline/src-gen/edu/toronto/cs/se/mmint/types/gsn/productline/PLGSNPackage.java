@@ -575,13 +575,22 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_TEMPLATE___INSTANTIATE = PLPackage.CLASS_OPERATION_COUNT + 2;
 
   /**
+   * The operation id for the '<em>Impact</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_TEMPLATE___IMPACT__PLGSNIMPACTSTEP_OBJECT = PLPackage.CLASS_OPERATION_COUNT + 3;
+
+  /**
    * The number of operations of the '<em>Template</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 3;
+  int PLGSN_TEMPLATE_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 4;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNAnalyticTemplateImpl <em>Analytic Template</em>}' class.
@@ -837,6 +846,15 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_ANALYTIC_TEMPLATE___INSTANTIATE = PLGSNPackage.PLGSN_TEMPLATE___INSTANTIATE;
 
   /**
+   * The operation id for the '<em>Impact</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ANALYTIC_TEMPLATE___IMPACT__PLGSNIMPACTSTEP_OBJECT = PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNIMPACTSTEP_OBJECT;
+
+  /**
    * The operation id for the '<em>Get Analysis</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -855,6 +873,250 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_ANALYTIC_TEMPLATE_OPERATION_COUNT = PLGSNPackage.PLGSN_TEMPLATE_OPERATION_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNImpactStepImpl <em>Impact Step</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNImpactStepImpl
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getPLGSNImpactStep()
+   * @generated
+   */
+  int PLGSN_IMPACT_STEP = 3;
+
+  /**
+   * The feature id for the '<em><b>Presence Condition</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP__PRESENCE_CONDITION = PLPackage.CLASS__PRESENCE_CONDITION;
+
+  /**
+   * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP__ATTRIBUTES = PLPackage.CLASS__ATTRIBUTES;
+
+  /**
+   * The feature id for the '<em><b>References</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP__REFERENCES = PLPackage.CLASS__REFERENCES;
+
+  /**
+   * The feature id for the '<em><b>References As Target</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP__REFERENCES_AS_TARGET = PLPackage.CLASS__REFERENCES_AS_TARGET;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP__TYPE = PLPackage.CLASS__TYPE;
+
+  /**
+   * The number of structural features of the '<em>Impact Step</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP_FEATURE_COUNT = PLPackage.CLASS_FEATURE_COUNT + 0;
+
+  /**
+   * The operation id for the '<em>Get Product Line</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___GET_PRODUCT_LINE = PLPackage.CLASS___GET_PRODUCT_LINE;
+
+  /**
+   * The operation id for the '<em>Is Always Present</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___IS_ALWAYS_PRESENT = PLPackage.CLASS___IS_ALWAYS_PRESENT;
+
+  /**
+   * The operation id for the '<em>Get Presence Condition Label</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = PLPackage.CLASS___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
+
+  /**
+   * The operation id for the '<em>Get Stream Of Reference</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___GET_STREAM_OF_REFERENCE__EREFERENCE = PLPackage.CLASS___GET_STREAM_OF_REFERENCE__EREFERENCE;
+
+  /**
+   * The operation id for the '<em>Get Reference</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___GET_REFERENCE__EREFERENCE = PLPackage.CLASS___GET_REFERENCE__EREFERENCE;
+
+  /**
+   * The operation id for the '<em>Add Reference</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___ADD_REFERENCE__EREFERENCE_CLASS_STRING = PLPackage.CLASS___ADD_REFERENCE__EREFERENCE_CLASS_STRING;
+
+  /**
+   * The operation id for the '<em>Add Reference</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___ADD_REFERENCE__EREFERENCE_CLASS = PLPackage.CLASS___ADD_REFERENCE__EREFERENCE_CLASS;
+
+  /**
+   * The operation id for the '<em>Set Reference</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___SET_REFERENCE__EREFERENCE_CLASS = PLPackage.CLASS___SET_REFERENCE__EREFERENCE_CLASS;
+
+  /**
+   * The operation id for the '<em>Get Stream Of Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = PLPackage.CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE;
+
+  /**
+   * The operation id for the '<em>Get Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___GET_ATTRIBUTE__EATTRIBUTE = PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE;
+
+  /**
+   * The operation id for the '<em>Get Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___GET_MANY_ATTRIBUTE__EATTRIBUTE = PLPackage.CLASS___GET_MANY_ATTRIBUTE__EATTRIBUTE;
+
+  /**
+   * The operation id for the '<em>Add Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING;
+
+  /**
+   * The operation id for the '<em>Add Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST = PLPackage.CLASS___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST;
+
+  /**
+   * The operation id for the '<em>Set Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___SET_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING;
+
+  /**
+   * The operation id for the '<em>Set Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___SET_MANY_ATTRIBUTE__EATTRIBUTE_ELIST = PLPackage.CLASS___SET_MANY_ATTRIBUTE__EATTRIBUTE_ELIST;
+
+  /**
+   * The operation id for the '<em>Instance Of</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___INSTANCE_OF__ECLASS = PLPackage.CLASS___INSTANCE_OF__ECLASS;
+
+  /**
+   * The operation id for the '<em>Get EContainer</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___GET_ECONTAINER = PLPackage.CLASS___GET_ECONTAINER;
+
+  /**
+   * The operation id for the '<em>Delete</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___DELETE = PLPackage.CLASS___DELETE;
+
+  /**
+   * The operation id for the '<em>Impact</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___IMPACT__OBJECT = PLPackage.CLASS_OPERATION_COUNT + 0;
+
+  /**
+   * The number of operations of the '<em>Impact Step</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 1;
+
+  /**
    * The meta object id for the '<em>IPLGSN Analysis</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -862,7 +1124,7 @@ public interface PLGSNPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getIPLGSNAnalysis()
    * @generated
    */
-  int IPLGSN_ANALYSIS = 3;
+  int IPLGSN_ANALYSIS = 4;
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement <em>Argument Element</em>}'.
@@ -935,6 +1197,16 @@ public interface PLGSNPackage extends EPackage {
   EOperation getPLGSNTemplate__Instantiate();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#impact(edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep, java.lang.Object) <em>Impact</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Impact</em>' operation.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#impact(edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep, java.lang.Object)
+   * @generated
+   */
+  EOperation getPLGSNTemplate__Impact__PLGSNImpactStep_Object();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate <em>Analytic Template</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -953,6 +1225,26 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    */
   EOperation getPLGSNAnalyticTemplate__GetAnalysis();
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep <em>Impact Step</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Impact Step</em>'.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep
+   * @generated
+   */
+  EClass getPLGSNImpactStep();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep#impact(java.lang.Object) <em>Impact</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Impact</em>' operation.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep#impact(java.lang.Object)
+   * @generated
+   */
+  EOperation getPLGSNImpactStep__Impact__Object();
 
   /**
    * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis <em>IPLGSN Analysis</em>}'.
@@ -1042,6 +1334,13 @@ public interface PLGSNPackage extends EPackage {
      */
     EOperation PLGSN_TEMPLATE___INSTANTIATE = PLGSNPackage.eINSTANCE.getPLGSNTemplate__Instantiate();
     /**
+     * The meta object literal for the '<em><b>Impact</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation PLGSN_TEMPLATE___IMPACT__PLGSNIMPACTSTEP_OBJECT = PLGSNPackage.eINSTANCE.getPLGSNTemplate__Impact__PLGSNImpactStep_Object();
+    /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNAnalyticTemplateImpl <em>Analytic Template</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1057,6 +1356,22 @@ public interface PLGSNPackage extends EPackage {
      * @generated
      */
     EOperation PLGSN_ANALYTIC_TEMPLATE___GET_ANALYSIS = PLGSNPackage.eINSTANCE.getPLGSNAnalyticTemplate__GetAnalysis();
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNImpactStepImpl <em>Impact Step</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNImpactStepImpl
+     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getPLGSNImpactStep()
+     * @generated
+     */
+    EClass PLGSN_IMPACT_STEP = PLGSNPackage.eINSTANCE.getPLGSNImpactStep();
+    /**
+     * The meta object literal for the '<em><b>Impact</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation PLGSN_IMPACT_STEP___IMPACT__OBJECT = PLGSNPackage.eINSTANCE.getPLGSNImpactStep__Impact__Object();
     /**
      * The meta object literal for the '<em>IPLGSN Analysis</em>' data type.
      * <!-- begin-user-doc -->

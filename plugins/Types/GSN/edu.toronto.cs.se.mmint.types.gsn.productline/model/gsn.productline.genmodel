@@ -24,9 +24,18 @@
         <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNTemplate/import_/productLine"/>
       </genOperations>
       <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/instantiate"/>
+      <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/impact">
+        <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNTemplate/impact/step"/>
+        <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNTemplate/impact/change"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="gsn.productline.ecore#//PLGSNAnalyticTemplate">
       <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNAnalyticTemplate/getAnalysis"/>
+    </genClasses>
+    <genClasses ecoreClass="gsn.productline.ecore#//PLGSNImpactStep">
+      <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNImpactStep/impact">
+        <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNImpactStep/impact/change"/>
+      </genOperations>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

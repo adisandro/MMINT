@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EClass;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.impl.ClassImpl;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
@@ -87,6 +88,18 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
   }
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<PLGSNImpactStep> impact(PLGSNImpactStep step, Object change) throws Exception {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
    * @generated NOT
    */
   @Override
@@ -131,6 +144,13 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
         try {
           instantiate();
           return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNIMPACTSTEP_OBJECT:
+        try {
+          return impact((PLGSNImpactStep)arguments.get(0), arguments.get(1));
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);

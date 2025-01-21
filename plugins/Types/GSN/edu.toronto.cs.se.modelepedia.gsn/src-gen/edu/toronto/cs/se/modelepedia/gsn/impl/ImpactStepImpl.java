@@ -233,20 +233,20 @@ public class ImpactStepImpl extends MinimalEObjectImpl.Container implements Impa
   @Override
   public void impact(Object change) throws Exception {
     var impacted = getImpacted();
-    var status = impacted.getStatus();
-    var previousImpact = getPreviousImpact(change);
+    var currImpact = impacted.getStatus();
+    var prevImpact = getPreviousImpact(change);
     // stop condition: already impacted with equal or more priority
-    if (status != null && status.getType().compareTo(previousImpact) >= 0) {
+    if (currImpact != null && currImpact.getType().compareTo(prevImpact) >= 0) {
       return;
     }
-    if (status == null) {
-      status = GSNFactory.eINSTANCE.createImpactAnnotation();
-      impacted.setStatus(status);
+    if (currImpact == null) {
+      currImpact = GSNFactory.eINSTANCE.createImpactAnnotation();
+      impacted.setStatus(currImpact);
     }
     // separate syntactic vs semantic (template) behavior
     List<ImpactStep> nextSteps = null;
     if (impacted.getTemplates().isEmpty()) {
-      nextSteps = nextSteps(change, previousImpact);
+      nextSteps = nextSteps(change, prevImpact);
     }
     else {
       for (var template : impacted.getTemplates()) {

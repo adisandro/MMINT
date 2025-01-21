@@ -27,7 +27,7 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
-import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 public class PLGSNChangeImpact extends AbstractExternalJavaAction {
@@ -67,8 +67,8 @@ public class PLGSNChangeImpact extends AbstractExternalJavaAction {
     protected void doExecute() {
       try {
         for (var plModelObj : this.plModelObjs) {
-          var startStep = GSNFactory.eINSTANCE.createImpactStep();
-          //startStep.setImpacted(plModelObj);
+          var startStep = PLGSNFactory.eINSTANCE.createPLGSNImpactStep();
+          startStep.addReference(GSNPackage.eINSTANCE.getImpactStep_Impacted(), plModelObj);
           startStep.impact("change");
         }
       }

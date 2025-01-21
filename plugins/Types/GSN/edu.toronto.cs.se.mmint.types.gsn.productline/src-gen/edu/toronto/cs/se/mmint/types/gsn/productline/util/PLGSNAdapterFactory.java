@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 
@@ -92,6 +93,10 @@ public class PLGSNAdapterFactory extends AdapterFactoryImpl {
         return createPLGSNAnalyticTemplateAdapter();
       }
       @Override
+      public Adapter casePLGSNImpactStep(PLGSNImpactStep object) {
+        return createPLGSNImpactStepAdapter();
+      }
+      @Override
       public Adapter casePLElement(PLElement object) {
         return createPLElementAdapter();
       }
@@ -158,6 +163,20 @@ public class PLGSNAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createPLGSNAnalyticTemplateAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep <em>Impact Step</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep
+   * @generated
+   */
+  public Adapter createPLGSNImpactStepAdapter() {
     return null;
   }
 

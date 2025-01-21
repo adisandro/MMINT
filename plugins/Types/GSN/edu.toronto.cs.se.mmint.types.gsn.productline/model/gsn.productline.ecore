@@ -16,9 +16,18 @@
       <eParameters name="productLine" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint.productline/model/productline.ecore#//ProductLine"/>
     </eOperations>
     <eOperations name="instantiate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
+    <eOperations name="impact" upperBound="-1" eType="#//PLGSNImpactStep" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
+      <eParameters name="step" lowerBound="1" eType="#//PLGSNImpactStep"/>
+      <eParameters name="change" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PLGSNAnalyticTemplate" eSuperTypes="#//PLGSNTemplate">
     <eOperations name="getAnalysis" eType="#//IPLGSNAnalysis" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="IPLGSNAnalysis" instanceClassName="edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PLGSNImpactStep" eSuperTypes="../../edu.toronto.cs.se.mmint.productline/model/productline.ecore#//Class">
+    <eOperations name="impact" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
+      <eParameters name="change" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    </eOperations>
+  </eClassifiers>
 </ecore:EPackage>

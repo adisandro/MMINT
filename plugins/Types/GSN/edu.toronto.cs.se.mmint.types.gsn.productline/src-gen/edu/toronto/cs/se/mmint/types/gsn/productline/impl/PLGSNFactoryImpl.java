@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
@@ -73,6 +74,7 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
     case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT -> createPLGSNArgumentElement();
     case PLGSNPackage.PLGSN_TEMPLATE -> createPLGSNTemplate();
     case PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE -> createPLGSNAnalyticTemplate();
+    case PLGSNPackage.PLGSN_IMPACT_STEP -> createPLGSNImpactStep();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     };
   }
@@ -134,6 +136,17 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
   public PLGSNAnalyticTemplate createPLGSNAnalyticTemplate() {
     PLGSNAnalyticTemplateImpl plgsnAnalyticTemplate = new PLGSNAnalyticTemplateImpl();
     return plgsnAnalyticTemplate;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public PLGSNImpactStep createPLGSNImpactStep() {
+    PLGSNImpactStepImpl plgsnImpactStep = new PLGSNImpactStepImpl();
+    return plgsnImpactStep;
   }
 
   /**

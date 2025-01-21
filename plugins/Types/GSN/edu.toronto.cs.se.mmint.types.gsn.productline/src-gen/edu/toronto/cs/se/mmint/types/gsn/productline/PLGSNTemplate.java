@@ -12,6 +12,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.productline;
 
+import org.eclipse.emf.common.util.EList;
+
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 
 
@@ -50,4 +52,12 @@ public interface PLGSNTemplate extends edu.toronto.cs.se.mmint.productline.Class
    * @generated
    */
   void instantiate() throws Exception;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepRequired="true" changeRequired="true"
+   * @generated
+   */
+  EList<PLGSNImpactStep> impact(PLGSNImpactStep step, Object change) throws Exception;
 } // GSNPLTemplate
