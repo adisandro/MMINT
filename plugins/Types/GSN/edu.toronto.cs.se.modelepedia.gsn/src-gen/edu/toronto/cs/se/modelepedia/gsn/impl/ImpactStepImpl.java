@@ -244,16 +244,8 @@ public class ImpactStepImpl extends MinimalEObjectImpl.Container implements Impa
       impacted.setStatus(currImpact);
     }
     // separate syntactic vs semantic (template) behavior
-    List<ImpactStep> nextSteps = null;
-    if (impacted.getTemplates().isEmpty()) {
-      nextSteps = nextSteps(change, prevImpact);
-    }
-    else {
-      for (var template : impacted.getTemplates()) {
-        nextSteps = template.impact(this, change);
-        break;
-      }
-    }
+    var templates = impacted.getTemplates();
+    var nextSteps = (templates.isEmpty()) ? nextSteps(change, prevImpact) : templates.get(0).impact(this, change);
     for (var nextStep : nextSteps) {
       nextStep.impact(change);
     }

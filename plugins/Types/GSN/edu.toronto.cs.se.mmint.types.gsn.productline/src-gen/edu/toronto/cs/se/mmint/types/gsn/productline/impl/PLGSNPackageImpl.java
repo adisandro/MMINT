@@ -259,6 +259,16 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
+  public EOperation getPLGSNImpactStep__NextSteps__Object_EList() {
+    return this.plgsnImpactStepEClass.getEOperations().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EDataType getIPLGSNAnalysis() {
     return this.iplgsnAnalysisEDataType;
   }
@@ -309,6 +319,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
 
     this.plgsnImpactStepEClass = createEClass(PLGSNPackage.PLGSN_IMPACT_STEP);
     createEOperation(this.plgsnImpactStepEClass, PLGSNPackage.PLGSN_IMPACT_STEP___IMPACT__OBJECT);
+    createEOperation(this.plgsnImpactStepEClass, PLGSNPackage.PLGSN_IMPACT_STEP___NEXT_STEPS__OBJECT_ELIST);
 
     // Create data types
     this.iplgsnAnalysisEDataType = createEDataType(PLGSNPackage.IPLGSN_ANALYSIS);
@@ -391,6 +402,10 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     op = initEOperation(getPLGSNImpactStep__Impact__Object(), null, "impact", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEJavaObject(), "change", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
+
+    op = initEOperation(getPLGSNImpactStep__NextSteps__Object_EList(), this.getPLGSNImpactStep(), "nextSteps", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEJavaObject(), "change", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, thePLPackage.getClass_(), "previousImpacts", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     // Initialize data types
     initEDataType(this.iplgsnAnalysisEDataType, IPLGSNAnalysis.class, "IPLGSNAnalysis", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);

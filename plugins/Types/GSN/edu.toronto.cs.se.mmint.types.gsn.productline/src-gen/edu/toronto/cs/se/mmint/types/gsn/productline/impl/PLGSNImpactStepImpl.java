@@ -13,7 +13,6 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -25,6 +24,7 @@ import edu.toronto.cs.se.mmint.productline.impl.ClassImpl;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 
@@ -75,6 +75,17 @@ public class PLGSNImpactStepImpl extends ClassImpl implements PLGSNImpactStep {
    * @generated NOT
    */
   @Override
+  public EList<PLGSNImpactStep> nextSteps(Object change, EList<Class> previousImpacts) {
+    if (previousImpacts == null) {
+      previousImpacts = getPreviousImpacts(change);
+    }
+    return ECollections.emptyEList();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
   public void impact(Object change) throws Exception {
     var impacted = getReference(GSNPackage.eINSTANCE.getImpactStep_Impacted()).get(0);
     var currImpacts = impacted.getReference(GSNPackage.eINSTANCE.getArgumentElement_Status());
@@ -103,10 +114,13 @@ public class PLGSNImpactStepImpl extends ClassImpl implements PLGSNImpactStep {
     }
     // separate syntactic vs semantic (template) behavior
     for (var currImpact : currImpacts) {
-      List<PLGSNImpactStep> nextSteps = null;
-//      for (var nextStep : nextSteps) {
-//        nextStep.impact(change);
-//      }
+      var templates = impacted.getReference(GSNPackage.eINSTANCE.getArgumentElement_Templates());
+      var nextSteps = (templates.isEmpty()) ?
+        nextSteps(change, prevImpacts) :
+        ((PLGSNTemplate) templates.get(0)).impact(this, change);
+      for (var nextStep : nextSteps) {
+        nextStep.impact(change);
+      }
     }
   }
 
@@ -116,6 +130,7 @@ public class PLGSNImpactStepImpl extends ClassImpl implements PLGSNImpactStep {
    * @generated
    */
   @Override
+  @SuppressWarnings("unchecked")
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
       case PLGSNPackage.PLGSN_IMPACT_STEP___IMPACT__OBJECT:
@@ -126,6 +141,8 @@ public class PLGSNImpactStepImpl extends ClassImpl implements PLGSNImpactStep {
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
+      case PLGSNPackage.PLGSN_IMPACT_STEP___NEXT_STEPS__OBJECT_ELIST:
+        return nextSteps(arguments.get(0), (EList<edu.toronto.cs.se.mmint.productline.Class>)arguments.get(1));
     }
     return super.eInvoke(operationID, arguments);
   }

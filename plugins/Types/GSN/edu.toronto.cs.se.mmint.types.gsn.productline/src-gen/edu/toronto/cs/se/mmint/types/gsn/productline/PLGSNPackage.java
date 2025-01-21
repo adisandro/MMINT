@@ -1108,13 +1108,22 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_IMPACT_STEP___IMPACT__OBJECT = PLPackage.CLASS_OPERATION_COUNT + 0;
 
   /**
+   * The operation id for the '<em>Next Steps</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_IMPACT_STEP___NEXT_STEPS__OBJECT_ELIST = PLPackage.CLASS_OPERATION_COUNT + 1;
+
+  /**
    * The number of operations of the '<em>Impact Step</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_IMPACT_STEP_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 1;
+  int PLGSN_IMPACT_STEP_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 2;
 
   /**
    * The meta object id for the '<em>IPLGSN Analysis</em>' data type.
@@ -1247,6 +1256,16 @@ public interface PLGSNPackage extends EPackage {
   EOperation getPLGSNImpactStep__Impact__Object();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep#nextSteps(java.lang.Object, org.eclipse.emf.common.util.EList) <em>Next Steps</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Next Steps</em>' operation.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep#nextSteps(java.lang.Object, org.eclipse.emf.common.util.EList)
+   * @generated
+   */
+  EOperation getPLGSNImpactStep__NextSteps__Object_EList();
+
+  /**
    * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis <em>IPLGSN Analysis</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1372,6 +1391,13 @@ public interface PLGSNPackage extends EPackage {
      * @generated
      */
     EOperation PLGSN_IMPACT_STEP___IMPACT__OBJECT = PLGSNPackage.eINSTANCE.getPLGSNImpactStep__Impact__Object();
+    /**
+     * The meta object literal for the '<em><b>Next Steps</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation PLGSN_IMPACT_STEP___NEXT_STEPS__OBJECT_ELIST = PLGSNPackage.eINSTANCE.getPLGSNImpactStep__NextSteps__Object_EList();
     /**
      * The meta object literal for the '<em>IPLGSN Analysis</em>' data type.
      * <!-- begin-user-doc -->

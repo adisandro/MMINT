@@ -36,6 +36,10 @@
       <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNImpactStep/impact">
         <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNImpactStep/impact/change"/>
       </genOperations>
+      <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNImpactStep/nextSteps">
+        <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNImpactStep/nextSteps/change"/>
+        <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNImpactStep/nextSteps/previousImpacts"/>
+      </genOperations>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

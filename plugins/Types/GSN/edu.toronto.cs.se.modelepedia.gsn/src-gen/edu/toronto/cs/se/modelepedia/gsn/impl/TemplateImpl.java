@@ -18,7 +18,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -201,7 +200,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    */
   @Override
   public EList<ImpactStep> impact(ImpactStep step, Object change) throws Exception {
-    return ECollections.asEList(step.nextSteps(change, null));
+    return step.nextSteps(change, null);
   }
 
   /**

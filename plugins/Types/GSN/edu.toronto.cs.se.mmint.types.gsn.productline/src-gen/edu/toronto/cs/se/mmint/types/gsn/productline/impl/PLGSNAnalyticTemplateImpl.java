@@ -16,6 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.osgi.framework.wiring.BundleWiring;
@@ -25,6 +26,7 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
@@ -137,6 +139,15 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
       super.validate();
       analysis.validate(this);
     }
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public EList<PLGSNImpactStep> impact(PLGSNImpactStep step, Object change) throws Exception {
+    var analysis = getAnalysis();
+    return ECollections.asEList(analysis.impact(this, step, change));
   }
 
 } //GSNPLAnalysisTemplateImpl

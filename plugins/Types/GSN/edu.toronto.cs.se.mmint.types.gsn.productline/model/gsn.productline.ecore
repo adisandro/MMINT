@@ -29,5 +29,9 @@
     <eOperations name="impact" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
       <eParameters name="change" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
     </eOperations>
+    <eOperations name="nextSteps" upperBound="-1" eType="#//PLGSNImpactStep">
+      <eParameters name="change" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+      <eParameters name="previousImpacts" upperBound="-1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint.productline/model/productline.ecore#//Class"/>
+    </eOperations>
   </eClassifiers>
 </ecore:EPackage>

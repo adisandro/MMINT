@@ -88,15 +88,11 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   @Override
   public EList<PLGSNImpactStep> impact(PLGSNImpactStep step, Object change) throws Exception {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
+    return step.nextSteps(change, null);
   }
 
   /**

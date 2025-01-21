@@ -12,6 +12,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.productline;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -31,5 +33,13 @@ public interface PLGSNImpactStep extends edu.toronto.cs.se.mmint.productline.Cla
    * @generated
    */
   void impact(Object change) throws Exception;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model changeRequired="true" previousImpactsMany="true"
+   * @generated
+   */
+  EList<PLGSNImpactStep> nextSteps(Object change, EList<edu.toronto.cs.se.mmint.productline.Class> previousImpacts);
 
 } // PLGSNImpactStep
