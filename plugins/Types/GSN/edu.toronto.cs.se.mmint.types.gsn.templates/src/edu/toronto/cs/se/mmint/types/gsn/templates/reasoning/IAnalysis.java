@@ -15,15 +15,15 @@ package edu.toronto.cs.se.mmint.types.gsn.templates.reasoning;
 import java.util.List;
 
 import edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate;
-import edu.toronto.cs.se.modelepedia.gsn.ImpactStep;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep;
 
 public interface IAnalysis {
   default void import_(AnalyticTemplate template, SafetyCase safetyCase) throws Exception {}
   default void instantiate(AnalyticTemplate template) throws Exception {}
   default void validate(AnalyticTemplate template) throws Exception {}
-  default List<ImpactStep> impact(AnalyticTemplate template, ImpactStep step, Object change) throws Exception {
-    return step.nextSteps(change, null);
+  default List<GSNImpactStep> impact(AnalyticTemplate template, GSNImpactStep step, Object change) throws Exception {
+    return step.nextSteps(change);
   }
   default boolean runsFirst() {
     return true;

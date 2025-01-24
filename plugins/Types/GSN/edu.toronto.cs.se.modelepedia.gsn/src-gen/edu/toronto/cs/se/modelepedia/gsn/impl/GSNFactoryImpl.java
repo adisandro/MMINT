@@ -29,7 +29,6 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
-import edu.toronto.cs.se.modelepedia.gsn.ImpactStep;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
@@ -41,6 +40,7 @@ import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.Undeveloped;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
@@ -95,7 +95,6 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
     case GSNPackage.IMPACT_ANNOTATION -> createImpactAnnotation();
     case GSNPackage.TEMPLATE -> createTemplate();
     case GSNPackage.RELATIONSHIP_DECORATOR -> createRelationshipDecorator();
-    case GSNPackage.IMPACT_STEP -> createImpactStep();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     };
   }
@@ -112,6 +111,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
     case GSNPackage.DECORATOR_TYPE -> createDecoratorTypeFromString(eDataType, initialValue);
     case GSNPackage.EXCEPTION -> createExceptionFromString(eDataType, initialValue);
     case GSNPackage.GSN_BUILDER -> createGSNBuilderFromString(eDataType, initialValue);
+    case GSNPackage.GSN_IMPACT_STEP -> createGSNImpactStepFromString(eDataType, initialValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -128,6 +128,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
     case GSNPackage.DECORATOR_TYPE -> convertDecoratorTypeToString(eDataType, instanceValue);
     case GSNPackage.EXCEPTION -> convertExceptionToString(eDataType, instanceValue);
     case GSNPackage.GSN_BUILDER -> convertGSNBuilderToString(eDataType, instanceValue);
+    case GSNPackage.GSN_IMPACT_STEP -> convertGSNImpactStepToString(eDataType, instanceValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -272,17 +273,6 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    * @generated
    */
   @Override
-  public ImpactStep createImpactStep() {
-    ImpactStepImpl impactStep = new ImpactStepImpl();
-    return impactStep;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Undeveloped createUndeveloped() {
     UndevelopedImpl undeveloped = new UndevelopedImpl();
     return undeveloped;
@@ -381,6 +371,24 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    * @generated
    */
   public String convertGSNBuilderToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(eDataType, instanceValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public GSNImpactStep createGSNImpactStepFromString(EDataType eDataType, String initialValue) {
+    return (GSNImpactStep)super.createFromString(eDataType, initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertGSNImpactStepToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(eDataType, instanceValue);
   }
 

@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -28,11 +29,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.ImpactStep;
 import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep;
 
 /**
  * <!-- begin-user-doc -->
@@ -199,8 +200,8 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    * @generated NOT
    */
   @Override
-  public EList<ImpactStep> impact(ImpactStep step, Object change) throws Exception {
-    return step.nextSteps(change, null);
+  public EList<GSNImpactStep> impact(GSNImpactStep step, Object change) throws Exception {
+    return ECollections.asEList(step.nextSteps(change));
   }
 
   /**
@@ -335,9 +336,9 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case GSNPackage.TEMPLATE___IMPACT__IMPACTSTEP_OBJECT:
+      case GSNPackage.TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT:
         try {
-          return impact((ImpactStep)arguments.get(0), arguments.get(1));
+          return impact((GSNImpactStep)arguments.get(0), arguments.get(1));
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);

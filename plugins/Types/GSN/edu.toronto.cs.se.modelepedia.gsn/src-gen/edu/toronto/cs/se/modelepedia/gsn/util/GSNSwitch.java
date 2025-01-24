@@ -28,7 +28,6 @@ import edu.toronto.cs.se.modelepedia.gsn.Decoratable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
-import edu.toronto.cs.se.modelepedia.gsn.ImpactStep;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
 import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
@@ -347,14 +346,6 @@ public class GSNSwitch<T> extends Switch<T> {
         }
         return result;
       }
-      case GSNPackage.IMPACT_STEP: {
-        var impactStep = (ImpactStep)theEObject;
-        var result = caseImpactStep(impactStep);
-        if (result == null) {
-          result = defaultCase(theEObject);
-        }
-        return result;
-      }
       default: return defaultCase(theEObject);
     }
   }
@@ -626,21 +617,6 @@ public class GSNSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseRelationshipDecorator(RelationshipDecorator object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Impact Step</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Impact Step</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseImpactStep(ImpactStep object) {
     return null;
   }
 

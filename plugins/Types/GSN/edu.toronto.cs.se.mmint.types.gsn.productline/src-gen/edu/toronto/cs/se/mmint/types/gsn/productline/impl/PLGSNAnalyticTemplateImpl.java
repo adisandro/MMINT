@@ -26,9 +26,9 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
+import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 
 /**

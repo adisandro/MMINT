@@ -16,7 +16,7 @@ import java.util.List;
 
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep;
+import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis;
 
 public interface IPLGSNAnalysis extends IAnalysis {
@@ -25,6 +25,6 @@ public interface IPLGSNAnalysis extends IAnalysis {
   default void validate(PLGSNAnalyticTemplate plTemplate) throws Exception {}
   default List<PLGSNImpactStep> impact(PLGSNAnalyticTemplate plTemplate, PLGSNImpactStep step, Object change)
                                       throws Exception {
-    return step.nextSteps(change, null);
+    return step.nextSteps(change);
   }
 }

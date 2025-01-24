@@ -36,7 +36,6 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
-import edu.toronto.cs.se.modelepedia.gsn.ImpactStep;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.InContextOf;
 import edu.toronto.cs.se.modelepedia.gsn.Justification;
@@ -50,6 +49,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.Undeveloped;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNValidator;
 
 /**
@@ -187,13 +187,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass impactStepEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass undevelopedEClass = null;
 
   /**
@@ -227,6 +220,13 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   private EDataType gsnBuilderEDataType = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType gsnImpactStepEDataType = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -808,7 +808,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EOperation getTemplate__Impact__ImpactStep_Object() {
+  public EOperation getTemplate__Impact__GSNImpactStep_Object() {
     return this.templateEClass.getEOperations().get(3);
   }
 
@@ -840,56 +840,6 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   @Override
   public EAttribute getRelationshipDecorator_Cardinality() {
     return (EAttribute)this.relationshipDecoratorEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getImpactStep() {
-    return this.impactStepEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getImpactStep_Impacted() {
-    return (EReference)this.impactStepEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getImpactStep_Trace() {
-    return (EReference)this.impactStepEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EOperation getImpactStep__Impact__Object() {
-    return this.impactStepEClass.getEOperations().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EOperation getImpactStep__NextSteps__Object_ImpactType() {
-    return this.impactStepEClass.getEOperations().get(1);
   }
 
   /**
@@ -947,6 +897,16 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   @Override
   public EDataType getGSNBuilder() {
     return this.gsnBuilderEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EDataType getGSNImpactStep() {
+    return this.gsnImpactStepEDataType;
   }
 
   /**
@@ -1051,17 +1011,11 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___VALIDATE);
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___IMPORT____SAFETYCASE);
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___INSTANTIATE);
-    createEOperation(this.templateEClass, GSNPackage.TEMPLATE___IMPACT__IMPACTSTEP_OBJECT);
+    createEOperation(this.templateEClass, GSNPackage.TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT);
 
     this.relationshipDecoratorEClass = createEClass(GSNPackage.RELATIONSHIP_DECORATOR);
     createEAttribute(this.relationshipDecoratorEClass, GSNPackage.RELATIONSHIP_DECORATOR__TYPE);
     createEAttribute(this.relationshipDecoratorEClass, GSNPackage.RELATIONSHIP_DECORATOR__CARDINALITY);
-
-    this.impactStepEClass = createEClass(GSNPackage.IMPACT_STEP);
-    createEReference(this.impactStepEClass, GSNPackage.IMPACT_STEP__IMPACTED);
-    createEReference(this.impactStepEClass, GSNPackage.IMPACT_STEP__TRACE);
-    createEOperation(this.impactStepEClass, GSNPackage.IMPACT_STEP___IMPACT__OBJECT);
-    createEOperation(this.impactStepEClass, GSNPackage.IMPACT_STEP___NEXT_STEPS__OBJECT_IMPACTTYPE);
 
     // Create enums
     this.asilLevelEEnum = createEEnum(GSNPackage.ASIL_LEVEL);
@@ -1071,6 +1025,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     // Create data types
     this.exceptionEDataType = createEDataType(GSNPackage.EXCEPTION);
     this.gsnBuilderEDataType = createEDataType(GSNPackage.GSN_BUILDER);
+    this.gsnImpactStepEDataType = createEDataType(GSNPackage.GSN_IMPACT_STEP);
   }
 
   /**
@@ -1209,26 +1164,14 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     op = initEOperation(getTemplate__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
-    op = initEOperation(getTemplate__Impact__ImpactStep_Object(), this.getImpactStep(), "impact", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.getImpactStep(), "step", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getTemplate__Impact__GSNImpactStep_Object(), this.getGSNImpactStep(), "impact", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.getGSNImpactStep(), "step", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.ecorePackage.getEJavaObject(), "change", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
     initEClass(this.relationshipDecoratorEClass, RelationshipDecorator.class, "RelationshipDecorator", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getRelationshipDecorator_Type(), this.getDecoratorType(), "type", null, 1, 1, RelationshipDecorator.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getRelationshipDecorator_Cardinality(), this.ecorePackage.getEInt(), "cardinality", "-1", 0, 1, RelationshipDecorator.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-
-    initEClass(this.impactStepEClass, ImpactStep.class, "ImpactStep", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getImpactStep_Impacted(), this.getArgumentElement(), null, "impacted", null, 1, 1, ImpactStep.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getImpactStep_Trace(), this.ecorePackage.getEObject(), null, "trace", null, 0, -1, ImpactStep.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-
-    op = initEOperation(getImpactStep__Impact__Object(), null, "impact", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEJavaObject(), "change", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEException(op, this.getException());
-
-    op = initEOperation(getImpactStep__NextSteps__Object_ImpactType(), this.getImpactStep(), "nextSteps", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEJavaObject(), "change", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.getImpactType(), "previousImpact", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(this.asilLevelEEnum, ASILLevel.class, "ASILLevel");
@@ -1251,6 +1194,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     // Initialize data types
     initEDataType(this.exceptionEDataType, Exception.class, "Exception", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEDataType(this.gsnBuilderEDataType, GSNBuilder.class, "GSNBuilder", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.gsnImpactStepEDataType, GSNImpactStep.class, "GSNImpactStep", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(GSNPackage.eNS_URI);

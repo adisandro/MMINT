@@ -138,15 +138,6 @@ public interface GSNFactory extends EFactory {
   RelationshipDecorator createRelationshipDecorator();
 
   /**
-   * Returns a new object of class '<em>Impact Step</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Impact Step</em>'.
-   * @generated
-   */
-  ImpactStep createImpactStep();
-
-  /**
    * Returns a new object of class '<em>Undeveloped</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

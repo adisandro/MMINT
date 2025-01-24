@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
-import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
@@ -74,7 +73,6 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
     case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT -> createPLGSNArgumentElement();
     case PLGSNPackage.PLGSN_TEMPLATE -> createPLGSNTemplate();
     case PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE -> createPLGSNAnalyticTemplate();
-    case PLGSNPackage.PLGSN_IMPACT_STEP -> createPLGSNImpactStep();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     };
   }
@@ -88,6 +86,7 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
   public Object createFromString(EDataType eDataType, String initialValue) {
     return switch (eDataType.getClassifierID()) {
     case PLGSNPackage.IPLGSN_ANALYSIS -> createIPLGSNAnalysisFromString(eDataType, initialValue);
+    case PLGSNPackage.PLGSN_IMPACT_STEP -> createPLGSNImpactStepFromString(eDataType, initialValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -101,6 +100,7 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
   public String convertToString(EDataType eDataType, Object instanceValue) {
     return switch (eDataType.getClassifierID()) {
     case PLGSNPackage.IPLGSN_ANALYSIS -> convertIPLGSNAnalysisToString(eDataType, instanceValue);
+    case PLGSNPackage.PLGSN_IMPACT_STEP -> convertPLGSNImpactStepToString(eDataType, instanceValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -143,17 +143,6 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public PLGSNImpactStep createPLGSNImpactStep() {
-    PLGSNImpactStepImpl plgsnImpactStep = new PLGSNImpactStepImpl();
-    return plgsnImpactStep;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public IPLGSNAnalysis createIPLGSNAnalysisFromString(EDataType eDataType, String initialValue) {
     return (IPLGSNAnalysis)super.createFromString(eDataType, initialValue);
   }
@@ -164,6 +153,24 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
    * @generated
    */
   public String convertIPLGSNAnalysisToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(eDataType, instanceValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep createPLGSNImpactStepFromString(EDataType eDataType, String initialValue) {
+    return (edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep)super.createFromString(eDataType, initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertPLGSNImpactStepToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(eDataType, instanceValue);
   }
 

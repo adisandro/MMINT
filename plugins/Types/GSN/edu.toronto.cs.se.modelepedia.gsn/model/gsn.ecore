@@ -139,8 +139,8 @@
       <eParameters name="safetyCase" lowerBound="1" eType="#//SafetyCase"/>
     </eOperations>
     <eOperations name="instantiate" eExceptions="#//Exception"/>
-    <eOperations name="impact" upperBound="-1" eType="#//ImpactStep" eExceptions="#//Exception">
-      <eParameters name="step" lowerBound="1" eType="#//ImpactStep"/>
+    <eOperations name="impact" upperBound="-1" eType="#//GSNImpactStep" eExceptions="#//Exception">
+      <eParameters name="step" lowerBound="1" eType="#//GSNImpactStep"/>
       <eParameters name="change" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" lowerBound="1"
@@ -165,17 +165,5 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"/>
   <eClassifiers xsi:type="ecore:EDataType" name="GSNBuilder" instanceClassName="edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ImpactStep">
-    <eOperations name="impact" eExceptions="#//Exception">
-      <eParameters name="change" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-    </eOperations>
-    <eOperations name="nextSteps" upperBound="-1" eType="#//ImpactStep">
-      <eParameters name="change" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-      <eParameters name="previousImpact" lowerBound="1" eType="#//ImpactType"/>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="impacted" lowerBound="1"
-        eType="#//ArgumentElement"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="trace" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="GSNImpactStep" instanceClassName="edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep"/>
 </ecore:EPackage>

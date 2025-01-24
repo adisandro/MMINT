@@ -15,6 +15,8 @@ package edu.toronto.cs.se.modelepedia.gsn;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Template</b></em>'.
@@ -114,9 +116,9 @@ public interface Template extends EObject {
    * @return A list of the next steps of the impact propagation.
    * @throws Exception
    *           If the impact can not be calculated. <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepRequired="true" changeRequired="true"
+   * @model dataType="edu.toronto.cs.se.modelepedia.gsn.GSNImpactStep" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.modelepedia.gsn.GSNImpactStep" stepRequired="true" changeRequired="true"
    * @generated
    */
-  EList<ImpactStep> impact(ImpactStep step, Object change) throws Exception;
+  EList<GSNImpactStep> impact(GSNImpactStep step, Object change) throws Exception;
 
 } // Template

@@ -27,7 +27,7 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
-import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep;
 
 public class ChangeImpact extends AbstractExternalJavaAction {
 
@@ -66,8 +66,7 @@ public class ChangeImpact extends AbstractExternalJavaAction {
       try {
         //TODO: Devise mechanism to attach semantics to starting set (basic: change, deletion; template: extra info)
         for (var modelObj : this.modelObjs) {
-          var startStep = GSNFactory.eINSTANCE.createImpactStep();
-          startStep.setImpacted(modelObj);
+          var startStep = new GSNImpactStep(modelObj);
           startStep.impact("change");
         }
       }

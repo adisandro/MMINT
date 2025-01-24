@@ -15,15 +15,16 @@ package edu.toronto.cs.se.mmint.types.gsn.productline.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.impl.ClassImpl;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 /**
@@ -92,7 +93,7 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
    */
   @Override
   public EList<PLGSNImpactStep> impact(PLGSNImpactStep step, Object change) throws Exception {
-    return step.nextSteps(change, null);
+    return ECollections.asEList(step.nextSteps(change));
   }
 
   /**

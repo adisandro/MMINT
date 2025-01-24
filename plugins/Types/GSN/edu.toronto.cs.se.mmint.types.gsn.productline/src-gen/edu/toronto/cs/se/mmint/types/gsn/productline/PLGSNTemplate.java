@@ -15,6 +15,7 @@ package edu.toronto.cs.se.mmint.types.gsn.productline;
 import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmint.productline.ProductLine;
+import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep;
 
 
 /**
@@ -56,7 +57,7 @@ public interface PLGSNTemplate extends edu.toronto.cs.se.mmint.productline.Class
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepRequired="true" changeRequired="true"
+   * @model dataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep" stepRequired="true" changeRequired="true"
    * @generated
    */
   EList<PLGSNImpactStep> impact(PLGSNImpactStep step, Object change) throws Exception;
