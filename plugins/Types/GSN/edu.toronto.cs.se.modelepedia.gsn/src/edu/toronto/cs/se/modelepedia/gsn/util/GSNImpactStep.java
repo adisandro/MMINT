@@ -28,21 +28,21 @@ import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 
 public class GSNImpactStep extends ImpactStep<ArgumentElement> {
 
-  public GSNImpactStep(ArgumentElement impacted) {
-    super(impacted);
-  }
-
   public GSNImpactStep(ArgumentElement impacted, List<EObject> trace) {
     super(impacted, trace);
   }
 
-  private List<GSNImpactStep> nextSupporters(Supportable supportable, List<EObject> trace, Object change) {
+  public GSNImpactStep(ArgumentElement impacted) {
+    super(impacted);
+  }
+
+  private List<GSNImpactStep> nextSupporters() {
     var nextSteps = new ArrayList<GSNImpactStep>();
-    for (var supportedBy : supportable.getSupportedBy()) {
+    for (var supportedBy : ((Supportable) this.impacted).getSupportedBy()) {
       var nextTrace = new ArrayList<EObject>();
       nextTrace.add(supportedBy);
-      nextTrace.add(supportable);
-      nextTrace.addAll(trace);
+      nextTrace.add(this.impacted);
+      nextTrace.addAll(this.trace);
       var nextStep = new GSNImpactStep(supportedBy.getTarget(), nextTrace);
       nextSteps.add(nextStep);
     }
@@ -50,13 +50,13 @@ public class GSNImpactStep extends ImpactStep<ArgumentElement> {
     return nextSteps;
   }
 
-  private List<GSNImpactStep> nextContexts(Contextualizable contextualizable, List<EObject> trace, Object change) {
+  private List<GSNImpactStep> nextContexts() {
     var nextSteps = new ArrayList<GSNImpactStep>();
-    for (var inContextOf : contextualizable.getInContextOf()) {
+    for (var inContextOf : ((Contextualizable) this.impacted).getInContextOf()) {
       var nextTrace = new ArrayList<EObject>();
       nextTrace.add(inContextOf);
-      nextTrace.add(contextualizable);
-      nextTrace.addAll(trace);
+      nextTrace.add(this.impacted);
+      nextTrace.addAll(this.trace);
       var nextStep = new GSNImpactStep(inContextOf.getContext(), nextTrace);
       nextSteps.add(nextStep);
     }
@@ -81,13 +81,13 @@ public class GSNImpactStep extends ImpactStep<ArgumentElement> {
     switch (this.impacted) {
       case Goal goal -> {
         currImpact.setType(prevImpact);
-        nextSteps.addAll(nextSupporters(goal, this.trace, change));
-        nextSteps.addAll(nextContexts(goal, this.trace, change));
+        nextSteps.addAll(nextSupporters());
+        nextSteps.addAll(nextContexts());
       }
       case Strategy strategy -> {
         currImpact.setType(prevImpact);
-        nextSteps.addAll(nextSupporters(strategy, this.trace, change));
-        nextSteps.addAll(nextContexts(strategy, this.trace, change));
+        nextSteps.addAll(nextSupporters());
+        nextSteps.addAll(nextContexts());
       }
       case Contextual context -> {
         currImpact.setType(ImpactType.REUSE);

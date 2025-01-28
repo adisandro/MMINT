@@ -21,14 +21,13 @@ public abstract class ImpactStep<T> {
   protected T impacted;
   protected List<EObject> trace;
 
-  public ImpactStep(T impacted) {
-    this.impacted = impacted;
-    this.trace = new ArrayList<>();
-  }
-
   public ImpactStep(T impacted, List<EObject> trace) {
     this.impacted = impacted;
     this.trace = trace;
+  }
+
+  public ImpactStep(T impacted) {
+    this(impacted, new ArrayList<>());
   }
 
   public abstract List<? extends ImpactStep<T>> nextSteps(Object change);
