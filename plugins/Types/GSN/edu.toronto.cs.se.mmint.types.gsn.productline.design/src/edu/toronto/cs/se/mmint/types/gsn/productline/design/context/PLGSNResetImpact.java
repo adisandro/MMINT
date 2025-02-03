@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.design.context;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
@@ -64,12 +65,9 @@ public class PLGSNResetImpact extends AbstractExternalJavaAction {
 
     @Override
     protected void doExecute() {
-      for (var iter = this.productLine.eAllContents(); iter.hasNext();) {
-        if (!(iter.next() instanceof PLGSNArgumentElement plElem)) {
-          continue;
-        }
-        plElem.getReference(GSNPackage.eINSTANCE.getArgumentElement_Status()).forEach(Class::delete);
-      }
+      List.copyOf(this.productLine.getClasses()).stream()
+        .filter(c -> c instanceof PLGSNArgumentElement)
+        .forEach(e -> e.getReference(GSNPackage.eINSTANCE.getArgumentElement_Status()).forEach(Class::delete));
     }
   }
 }

@@ -100,6 +100,7 @@ public class PLGSNImpactStep extends ImpactStep<PLGSNArgumentElement> {
       .findFirst()
       .orElseGet(() -> {
         var c = PLFactory.eINSTANCE.createClass();
+        c.setPresenceCondition(this.impacted.getPresenceCondition());
         c.setType(this.gsn.getImpactAnnotation());
         c.addAttribute(this.gsn.getImpactAnnotation_Type(), ImpactType.RECHECK.toString()); //TODO: derive from change
         return Map.of(ImpactType.REUSE, Optional.empty(),
