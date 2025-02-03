@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.productline.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -562,7 +563,7 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    */
   @Override
   public void delete() {
-    getReferencesAsTarget().stream().forEach(r -> ((Class) r.eContainer()).getReferences().remove(r));
+    List.copyOf(getReferencesAsTarget()).stream().forEach(r -> ((Class) r.eContainer()).getReferences().remove(r));
     getReferencesAsTarget().clear();
     getProductLine().getClasses().remove(this);
   }

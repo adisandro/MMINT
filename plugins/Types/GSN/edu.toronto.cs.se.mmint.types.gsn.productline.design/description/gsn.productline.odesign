@@ -210,6 +210,7 @@
             <itemDescriptions xsi:type="tool_1:ExternalJavaAction" name="PLInstantiateTemplate" label="Instantiate Template" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLGSNInstantiateTemplate"/>
             <itemDescriptions xsi:type="tool_1:ExternalJavaAction" name="PLValidateTemplate" label="Validate Template" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLGSNValidateTemplate"/>
             <itemDescriptions xsi:type="tool_1:ExternalJavaAction" name="PLChangeImpact" label="Change Impact" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLGSNChangeImpact"/>
+            <itemDescriptions xsi:type="tool_1:ExternalJavaAction" name="PLResetImpact" label="Reset Impact" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLGSNResetImpact"/>
           </ownedTools>
         </toolSections>
         <decorationDescriptionsSet>

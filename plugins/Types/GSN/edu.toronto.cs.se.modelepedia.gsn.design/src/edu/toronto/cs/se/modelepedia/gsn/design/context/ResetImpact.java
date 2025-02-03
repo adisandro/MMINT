@@ -61,10 +61,10 @@ public class ResetImpact extends AbstractExternalJavaAction {
     @Override
     protected void doExecute() {
       for (var iter = this.safetyCase.eAllContents(); iter.hasNext();) {
-        var modelObj = iter.next();
-        if (modelObj instanceof ArgumentElement elem && elem.getStatus() != null) {
-          elem.setStatus(null);
+        if (!(iter.next() instanceof ArgumentElement elem)) {
+          continue;
         }
+        elem.setStatus(null);
       }
     }
   }

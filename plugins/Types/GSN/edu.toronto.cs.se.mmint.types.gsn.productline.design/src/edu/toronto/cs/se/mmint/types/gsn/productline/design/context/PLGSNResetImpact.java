@@ -13,11 +13,8 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.design.context;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -25,12 +22,12 @@ import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
-import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.productline.Class;
+import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
-public class PLGSNChangeImpact extends AbstractExternalJavaAction {
+public class PLGSNResetImpact extends AbstractExternalJavaAction {
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -39,40 +36,39 @@ public class PLGSNChangeImpact extends AbstractExternalJavaAction {
       arg0.stream()
         .map(DSemanticDecorator.class::cast)
         .map(DSemanticDecorator::getTarget)
-        .allMatch(o -> o instanceof PLGSNArgumentElement e &&
-                       e.getReference(GSNPackage.eINSTANCE.getArgumentElement_Status()).isEmpty());
+        .anyMatch(o -> o instanceof PLGSNArgumentElement e &&
+                       !e.getReference(GSNPackage.eINSTANCE.getArgumentElement_Status()).isEmpty());
   }
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var plModelObjs = arg0.stream()
+    var plMmodelObj = arg0.stream()
       .map(DSemanticDecorator.class::cast)
       .map(DSemanticDecorator::getTarget)
+      .filter(o -> o instanceof PLGSNArgumentElement)
       .map(PLGSNArgumentElement.class::cast)
-      .collect(Collectors.toList());
-    var sSession = SessionManager.INSTANCE.getSession(plModelObjs.get(0));
+      .findFirst().get();
+    var productLine = plMmodelObj.getProductLine();
+    var sSession = SessionManager.INSTANCE.getSession(productLine);
     var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(new PLGSNChangeImpactCommand(sDomain, plModelObjs));
+    sDomain.getCommandStack().execute(new PLGSNResetImpactCommand(sDomain, productLine));
   }
 
-  private class PLGSNChangeImpactCommand extends RecordingCommand {
-    List<PLGSNArgumentElement> plModelObjs;
+  private class PLGSNResetImpactCommand extends RecordingCommand {
+    ProductLine productLine;
 
-    public PLGSNChangeImpactCommand(TransactionalEditingDomain domain, List<PLGSNArgumentElement> plModelObjs) {
+    public PLGSNResetImpactCommand(TransactionalEditingDomain domain, ProductLine productLine) {
       super(domain);
-      this.plModelObjs = plModelObjs;
+      this.productLine = productLine;
     }
 
     @Override
     protected void doExecute() {
-      try {
-        for (var plModelObj : this.plModelObjs) {
-          var startStep = new PLGSNImpactStep(plModelObj);
-          startStep.impact("change");
+      for (var iter = this.productLine.eAllContents(); iter.hasNext();) {
+        if (!(iter.next() instanceof PLGSNArgumentElement plElem)) {
+          continue;
         }
-      }
-      catch (Exception e) {
-        MMINTException.print(IStatus.ERROR, "Error running PL change impact", e);
+        plElem.getReference(GSNPackage.eINSTANCE.getArgumentElement_Status()).forEach(Class::delete);
       }
     }
   }

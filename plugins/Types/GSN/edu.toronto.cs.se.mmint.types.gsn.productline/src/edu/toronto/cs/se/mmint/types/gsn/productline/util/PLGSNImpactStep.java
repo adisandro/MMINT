@@ -23,20 +23,21 @@ import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.util.ImpactStep;
 
-public class PLGSNImpactStep extends ImpactStep<Class> {
+public class PLGSNImpactStep extends ImpactStep<PLGSNArgumentElement> {
   GSNPackage gsn;
 
-  public PLGSNImpactStep(Class impacted, List<EObject> trace) {
+  public PLGSNImpactStep(PLGSNArgumentElement impacted, List<EObject> trace) {
     super(impacted, trace);
     this.gsn = GSNPackage.eINSTANCE;
   }
 
-  public PLGSNImpactStep(Class impacted) {
+  public PLGSNImpactStep(PLGSNArgumentElement impacted) {
     super(impacted);
     this.gsn = GSNPackage.eINSTANCE;
   }
@@ -49,7 +50,7 @@ public class PLGSNImpactStep extends ImpactStep<Class> {
         nextTrace.add(plSupportedBy);
         nextTrace.add(this.impacted);
         nextTrace.addAll(this.trace);
-        var nextStep = new PLGSNImpactStep(plSupporter, nextTrace);
+        var nextStep = new PLGSNImpactStep((PLGSNArgumentElement) plSupporter, nextTrace);
         nextSteps.add(nextStep);
       }
     }
@@ -65,7 +66,7 @@ public class PLGSNImpactStep extends ImpactStep<Class> {
         nextTrace.add(plInContextOf);
         nextTrace.add(this.impacted);
         nextTrace.addAll(this.trace);
-        var nextStep = new PLGSNImpactStep(plContext, nextTrace);
+        var nextStep = new PLGSNImpactStep((PLGSNArgumentElement) plContext, nextTrace);
         nextSteps.add(nextStep);
       }
     }
@@ -73,17 +74,17 @@ public class PLGSNImpactStep extends ImpactStep<Class> {
     return nextSteps;
   }
 
-  private Map<ImpactType, Optional<Class>> getImpacts(List<Class> impactRefs) {
-    var impacts = new HashMap<ImpactType, Optional<Class>>();
-    for (var impact : impactRefs) {
+  private Map<ImpactType, Optional<Class>> getImpacts(List<Class> impacts) {
+    var impactMap = new HashMap<ImpactType, Optional<Class>>();
+    for (var impact : impacts) {
       var type = impact.getAttribute(this.gsn.getImpactAnnotation_Type()).get(0);
-      impacts.put(ImpactType.valueOf(type), Optional.of(impact));
+      impactMap.put(ImpactType.valueOf(type), Optional.of(impact));
     }
     for (var type : ImpactType.VALUES) {
-      impacts.computeIfAbsent(type, _ -> Optional.empty());
+      impactMap.computeIfAbsent(type, _ -> Optional.empty());
     }
 
-    return impacts;
+    return impactMap;
   }
 
   private Map<ImpactType, Optional<Class>> getCurrentImpacts() {
@@ -91,50 +92,44 @@ public class PLGSNImpactStep extends ImpactStep<Class> {
   }
 
   private Map<ImpactType, Optional<Class>> getPreviousImpacts(Object change) {
-    Map<ImpactType, Optional<Class>> prevImpacts = null;
-    for (var traceElem : this.trace) {
-      if (!(traceElem instanceof Class traceClass)) {
-        continue;
-      }
-      var impactRefs = traceClass.getReference(this.gsn.getArgumentElement_Status());
-      if (!impactRefs.isEmpty()) {
-        prevImpacts = getImpacts(impactRefs);
-        break;
-      }
-    }
-    if (prevImpacts == null) {
-      var c = PLFactory.eINSTANCE.createClass();
-      c.setType(this.gsn.getImpactAnnotation());
-      c.addAttribute(this.gsn.getImpactAnnotation_Type(), ImpactType.RECHECK.toString()); //TODO: derive from change
-      prevImpacts = Map.of(ImpactType.REUSE, Optional.empty(),
-                           ImpactType.RECHECK, Optional.of(c),
-                           ImpactType.REVISE, Optional.empty());
-    }
-
-    return prevImpacts;
+    return this.trace.stream()
+      .filter(t -> t instanceof PLGSNArgumentElement)
+      .map(t -> ((PLGSNArgumentElement) t).getReference(this.gsn.getArgumentElement_Status()))
+      .filter(r -> !r.isEmpty())
+      .map(r -> getImpacts(r))
+      .findFirst()
+      .orElseGet(() -> {
+        var c = PLFactory.eINSTANCE.createClass();
+        c.setType(this.gsn.getImpactAnnotation());
+        c.addAttribute(this.gsn.getImpactAnnotation_Type(), ImpactType.RECHECK.toString()); //TODO: derive from change
+        return Map.of(ImpactType.REUSE, Optional.empty(),
+                      ImpactType.RECHECK, Optional.of(c),
+                      ImpactType.REVISE, Optional.empty());
+      });
   }
 
-  private void enableImpact(Map<ImpactType, Optional<Class>> currImpacts, ImpactType type) {
+  private void addImpact(Map<ImpactType, Optional<Class>> currImpacts, ImpactType type) {
     currImpacts.get(type).ifPresentOrElse(
       c -> c.setPresenceCondition(this.impacted.getPresenceCondition()),
       () -> {
         var c = PLFactory.eINSTANCE.createClass();
         c.setPresenceCondition(this.impacted.getPresenceCondition());
         c.setType(this.gsn.getImpactAnnotation());
+        this.impacted.getProductLine().getClasses().add(c);
         c.addAttribute(this.gsn.getImpactAnnotation_Type(), type.toString());
         this.impacted.addReference(this.gsn.getArgumentElement_Status(), c);
       });
   }
 
-  private void disableImpact(Map<ImpactType, Optional<Class>> currImpacts, ImpactType type) {
-    currImpacts.get(type).ifPresent(c -> this.impacted.getReferences().removeIf(r -> r.getTarget() == c));
+  private void removeImpact(Map<ImpactType, Optional<Class>> currImpacts, ImpactType type) {
+    currImpacts.get(type).ifPresent(Class::delete);
   }
 
   private void copyImpact(Map<ImpactType, Optional<Class>> prevImpacts, Map<ImpactType, Optional<Class>> currImpacts) {
     for (var prevImpact : prevImpacts.entrySet()) {
       prevImpact.getValue().ifPresentOrElse(
-        _ -> enableImpact(currImpacts, prevImpact.getKey()),
-        () -> disableImpact(currImpacts, prevImpact.getKey()));
+        _ -> addImpact(currImpacts, prevImpact.getKey()),
+        () -> removeImpact(currImpacts, prevImpact.getKey()));
     }
   }
 
@@ -158,9 +153,9 @@ public class PLGSNImpactStep extends ImpactStep<Class> {
         nextSteps.addAll(nextContexts());
       }
       case EClass e when e.getEAllSuperTypes().stream().anyMatch(s -> s.getName().equals("Contextual")) -> {
-        enableImpact(currImpacts, ImpactType.REUSE);
-        disableImpact(currImpacts, ImpactType.RECHECK);
-        disableImpact(currImpacts, ImpactType.REVISE);
+        addImpact(currImpacts, ImpactType.REUSE);
+        removeImpact(currImpacts, ImpactType.RECHECK);
+        removeImpact(currImpacts, ImpactType.REVISE);
       }
       default -> {
         copyImpact(prevImpacts, currImpacts);
