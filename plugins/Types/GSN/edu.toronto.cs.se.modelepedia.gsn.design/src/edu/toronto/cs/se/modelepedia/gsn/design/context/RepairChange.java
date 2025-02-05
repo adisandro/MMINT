@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2024, 2025 Alessio Di Sandro.
+ * Copyright (c) 2025, 2025 Alessio Di Sandro.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -27,9 +27,10 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
-import edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
+import edu.toronto.cs.se.modelepedia.gsn.design.context.ChangeImpact.ChangeImpactCommand;
 
-public class ChangeImpact extends AbstractExternalJavaAction {
+public class RepairChange extends AbstractExternalJavaAction {
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -38,7 +39,8 @@ public class ChangeImpact extends AbstractExternalJavaAction {
       arg0.stream()
         .map(DSemanticDecorator.class::cast)
         .map(DSemanticDecorator::getTarget)
-        .allMatch(o -> o instanceof ArgumentElement e && e.getStatus() == null);
+        .allMatch(o -> o instanceof ArgumentElement e && e.getStatus() != null &&
+                  e.getStatus().getType() != ImpactType.REUSE);
   }
 
   @Override
@@ -50,13 +52,14 @@ public class ChangeImpact extends AbstractExternalJavaAction {
       .collect(Collectors.toList());
     var sSession = SessionManager.INSTANCE.getSession(modelObjs.get(0));
     var sDomain = sSession.getTransactionalEditingDomain();
+    sDomain.getCommandStack().execute(new RepairChangeCommand(sDomain, modelObjs));
     sDomain.getCommandStack().execute(new ChangeImpactCommand(sDomain, modelObjs));
   }
 
-  public static class ChangeImpactCommand extends RecordingCommand {
+  private class RepairChangeCommand extends RecordingCommand {
     List<ArgumentElement> modelObjs;
 
-    public ChangeImpactCommand(TransactionalEditingDomain domain, List<ArgumentElement> modelObjs) {
+    public RepairChangeCommand(TransactionalEditingDomain domain, List<ArgumentElement> modelObjs) {
       super(domain);
       this.modelObjs = modelObjs;
     }
@@ -64,14 +67,16 @@ public class ChangeImpact extends AbstractExternalJavaAction {
     @Override
     protected void doExecute() {
       try {
-        //TODO: Devise mechanism to attach semantics to starting set (basic: change, deletion; template: extra info)
         for (var modelObj : this.modelObjs) {
-          var startStep = new GSNImpactStep(modelObj);
-          startStep.impact("RECHECK");
+          var templates = modelObj.getTemplates();
+          if (templates.isEmpty()) {
+            continue;
+          }
+          templates.get(0).repair("RECHECK");
         }
       }
       catch (Exception e) {
-        MMINTException.print(IStatus.ERROR, "Error running change impact", e);
+        MMINTException.print(IStatus.ERROR, "Error repairing change", e);
       }
     }
   }

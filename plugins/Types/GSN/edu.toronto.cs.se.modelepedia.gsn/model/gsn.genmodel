@@ -106,6 +106,9 @@
         <genParameters ecoreParameter="gsn.ecore#//Template/impact/step"/>
         <genParameters ecoreParameter="gsn.ecore#//Template/impact/change"/>
       </genOperations>
+      <genOperations ecoreOperation="gsn.ecore#//Template/repair">
+        <genParameters ecoreParameter="gsn.ecore#//Template/repair/change"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="gsn.ecore#//RelationshipDecorator">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//RelationshipDecorator/type"/>

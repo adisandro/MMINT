@@ -1723,13 +1723,22 @@ public interface GSNPackage extends EPackage {
   int TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT = 3;
 
   /**
+   * The operation id for the '<em>Repair</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEMPLATE___REPAIR__OBJECT = 4;
+
+  /**
    * The number of operations of the '<em>Template</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TEMPLATE_OPERATION_COUNT = 4;
+  int TEMPLATE_OPERATION_COUNT = 5;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.RelationshipDecoratorImpl <em>Relationship Decorator</em>}' class.
@@ -2499,6 +2508,16 @@ public interface GSNPackage extends EPackage {
   EOperation getTemplate__Impact__GSNImpactStep_Object();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#repair(java.lang.Object) <em>Repair</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Repair</em>' operation.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#repair(java.lang.Object)
+   * @generated
+   */
+  EOperation getTemplate__Repair__Object();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator <em>Relationship Decorator</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3086,6 +3105,14 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EOperation TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT = GSNPackage.eINSTANCE.getTemplate__Impact__GSNImpactStep_Object();
+
+    /**
+     * The meta object literal for the '<em><b>Repair</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation TEMPLATE___REPAIR__OBJECT = GSNPackage.eINSTANCE.getTemplate__Repair__Object();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.RelationshipDecoratorImpl <em>Relationship Decorator</em>}' class.

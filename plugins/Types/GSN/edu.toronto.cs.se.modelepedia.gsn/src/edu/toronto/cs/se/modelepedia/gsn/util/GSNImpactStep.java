@@ -16,12 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Contextual;
 import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
@@ -84,6 +86,14 @@ public class GSNImpactStep extends ImpactStep<ArgumentElement> {
       });
   }
 
+  private void addImpact(@Nullable ImpactAnnotation currImpact, ImpactType type) {
+    if (currImpact == null) {
+      currImpact = GSNFactory.eINSTANCE.createImpactAnnotation();
+      this.impacted.setStatus(currImpact);
+    }
+    currImpact.setType(type);
+  }
+
   @Override
   public List<GSNImpactStep> nextSteps(Object change) {
     var currImpact = this.impacted.getStatus();
@@ -92,20 +102,20 @@ public class GSNImpactStep extends ImpactStep<ArgumentElement> {
     var nextSteps = new ArrayList<GSNImpactStep>();
     switch (this.impacted) {
       case Goal goal -> {
-        currImpact.setType(prevImpact);
+        addImpact(currImpact, prevImpact);
         nextSteps.addAll(nextSupporters());
         nextSteps.addAll(nextContexts());
       }
       case Strategy strategy -> {
-        currImpact.setType(prevImpact);
+        addImpact(currImpact, prevImpact);
         nextSteps.addAll(nextSupporters());
         nextSteps.addAll(nextContexts());
       }
       case Contextual context -> {
-        currImpact.setType(ImpactType.REUSE);
+        addImpact(currImpact, ImpactType.REUSE);
       }
       default -> {
-        currImpact.setType(prevImpact);
+        addImpact(currImpact, prevImpact);
       }
     };
 
@@ -119,10 +129,6 @@ public class GSNImpactStep extends ImpactStep<ArgumentElement> {
     // stop condition: already impacted with equal or more priority (REVISE > RECHECK > REUSE)
     if (currImpact != null && currImpact.getType().compareTo(prevImpact) >= 0) {
       return;
-    }
-    if (currImpact == null) {
-      currImpact = GSNFactory.eINSTANCE.createImpactAnnotation();
-      this.impacted.setStatus(currImpact);
     }
     // separate syntactic vs semantic (template) behavior
     var templates = this.impacted.getTemplates();

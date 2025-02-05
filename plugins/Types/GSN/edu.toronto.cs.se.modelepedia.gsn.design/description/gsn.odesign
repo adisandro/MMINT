@@ -266,6 +266,7 @@
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="ValidateTemplateElement" label="Validate Template Element" id="edu.toronto.cs.se.modelepedia.gsn.design.context.ValidateTemplateElement"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="ChangeImpact" label="Change Impact" id="edu.toronto.cs.se.modelepedia.gsn.design.context.ChangeImpact"/>
             <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="ResetImpact" label="Reset Impact" id="edu.toronto.cs.se.modelepedia.gsn.design.context.ResetImpact"/>
+            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="RepairChange" label="Repair Change" id="edu.toronto.cs.se.modelepedia.gsn.design.context.RepairChange"/>
           </ownedTools>
         </toolSections>
         <decorationDescriptionsSet>

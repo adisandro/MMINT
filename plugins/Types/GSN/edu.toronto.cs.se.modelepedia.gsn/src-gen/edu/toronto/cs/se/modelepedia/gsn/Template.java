@@ -121,4 +121,12 @@ public interface Template extends EObject {
    */
   EList<GSNImpactStep> impact(GSNImpactStep step, Object change) throws Exception;
 
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" changeRequired="true"
+   * @generated
+   */
+  void repair(Object change) throws Exception;
+
 } // Template

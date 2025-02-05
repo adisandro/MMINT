@@ -205,6 +205,14 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
   }
 
   /**
+   * @generated NOT
+   */
+  @Override
+  public void repair(Object change) throws Exception {
+    // do nothing
+  }
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -339,6 +347,14 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
       case GSNPackage.TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT:
         try {
           return impact((GSNImpactStep)arguments.get(0), arguments.get(1));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case GSNPackage.TEMPLATE___REPAIR__OBJECT:
+        try {
+          repair(arguments.get(0));
+          return null;
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
