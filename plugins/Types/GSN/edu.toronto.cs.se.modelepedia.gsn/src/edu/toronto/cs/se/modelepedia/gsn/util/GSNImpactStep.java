@@ -69,7 +69,19 @@ public class GSNImpactStep extends ImpactStep<ArgumentElement> {
       .filter(t -> t instanceof ArgumentElement)
       .map(t -> ((ArgumentElement) t).getStatus().getType())
       .findFirst()
-      .orElse(ImpactType.RECHECK); //TODO: derive from change
+      .orElseGet(() -> {
+        return switch (change) {
+          case String type -> {
+            try {
+              yield ImpactType.valueOf(type);
+            }
+            catch (IllegalArgumentException e) {
+              yield ImpactType.RECHECK;
+            }
+          }
+          default -> ImpactType.RECHECK;
+        };
+      });
   }
 
   @Override

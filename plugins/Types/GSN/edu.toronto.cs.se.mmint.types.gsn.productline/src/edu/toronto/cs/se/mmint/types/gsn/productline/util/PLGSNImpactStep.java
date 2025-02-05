@@ -99,13 +99,22 @@ public class PLGSNImpactStep extends ImpactStep<PLGSNArgumentElement> {
       .map(r -> getImpacts(r))
       .findFirst()
       .orElseGet(() -> {
+        var impactType = switch (change) {
+          case String type -> {
+            try {
+              yield ImpactType.valueOf(type);
+            }
+            catch (IllegalArgumentException e) {
+              yield ImpactType.RECHECK;
+            }
+          }
+          default -> ImpactType.RECHECK;
+        };
         var c = PLFactory.eINSTANCE.createClass();
         c.setPresenceCondition(this.impacted.getPresenceCondition());
         c.setType(this.gsn.getImpactAnnotation());
-        c.addAttribute(this.gsn.getImpactAnnotation_Type(), ImpactType.RECHECK.toString()); //TODO: derive from change
-        return Map.of(ImpactType.REUSE, Optional.empty(),
-                      ImpactType.RECHECK, Optional.of(c),
-                      ImpactType.REVISE, Optional.empty());
+        c.addAttribute(this.gsn.getImpactAnnotation_Type(), impactType.toString());
+        return getImpacts(List.of(c));
       });
   }
 

@@ -67,7 +67,7 @@ public class ChangeImpact extends AbstractExternalJavaAction {
         //TODO: Devise mechanism to attach semantics to starting set (basic: change, deletion; template: extra info)
         for (var modelObj : this.modelObjs) {
           var startStep = new GSNImpactStep(modelObj);
-          startStep.impact("change");
+          startStep.impact("RECHECK");
         }
       }
       catch (Exception e) {

@@ -68,7 +68,7 @@ public class PLGSNChangeImpact extends AbstractExternalJavaAction {
       try {
         for (var plModelObj : this.plModelObjs) {
           var startStep = new PLGSNImpactStep(plModelObj);
-          startStep.impact("change");
+          startStep.impact("RECHECK");
         }
       }
       catch (Exception e) {
