@@ -25,6 +25,7 @@ public interface IAnalysis {
   default List<GSNImpactStep> impact(AnalyticTemplate template, GSNImpactStep step, Object change) throws Exception {
     return step.nextSteps(change);
   }
+  default void repair(AnalyticTemplate template, Object change) throws Exception {}
   default boolean runsFirst() {
     return true;
   }

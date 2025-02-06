@@ -27,10 +27,12 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLGSNChangeImpact.PLGSNChangeImpactCommand;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 
-public class PLGSNChangeImpact extends AbstractExternalJavaAction {
+public class PLGSNRepairChange extends AbstractExternalJavaAction {
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -40,7 +42,10 @@ public class PLGSNChangeImpact extends AbstractExternalJavaAction {
         .map(DSemanticDecorator.class::cast)
         .map(DSemanticDecorator::getTarget)
         .allMatch(o -> o instanceof PLGSNArgumentElement e &&
-                       e.getReference(GSNPackage.eINSTANCE.getArgumentElement_Status()).isEmpty());
+                       !e.getReference(GSNPackage.eINSTANCE.getArgumentElement_Status()).isEmpty() &&
+                       e.getReference(GSNPackage.eINSTANCE.getArgumentElement_Status()).stream()
+                         .anyMatch(s -> !s.getAttribute(GSNPackage.eINSTANCE.getImpactAnnotation_Type()).get(0)
+                                          .equals(ImpactType.REUSE.toString())));
   }
 
   @Override
@@ -52,13 +57,14 @@ public class PLGSNChangeImpact extends AbstractExternalJavaAction {
       .collect(Collectors.toList());
     var sSession = SessionManager.INSTANCE.getSession(plModelObjs.get(0));
     var sDomain = sSession.getTransactionalEditingDomain();
+    sDomain.getCommandStack().execute(new PLGSNRepairChangeCommand(sDomain, plModelObjs));
     sDomain.getCommandStack().execute(new PLGSNChangeImpactCommand(sDomain, plModelObjs));
   }
 
-  public static class PLGSNChangeImpactCommand extends RecordingCommand {
+  private class PLGSNRepairChangeCommand extends RecordingCommand {
     List<PLGSNArgumentElement> plModelObjs;
 
-    public PLGSNChangeImpactCommand(TransactionalEditingDomain domain, List<PLGSNArgumentElement> plModelObjs) {
+    public PLGSNRepairChangeCommand(TransactionalEditingDomain domain, List<PLGSNArgumentElement> plModelObjs) {
       super(domain);
       this.plModelObjs = plModelObjs;
     }
@@ -67,12 +73,15 @@ public class PLGSNChangeImpact extends AbstractExternalJavaAction {
     protected void doExecute() {
       try {
         for (var plModelObj : this.plModelObjs) {
-          var startStep = new PLGSNImpactStep(plModelObj);
-          startStep.impact("RECHECK");
+          var templates = plModelObj.getReference(GSNPackage.eINSTANCE.getArgumentElement_Templates());
+          if (templates.isEmpty()) {
+            continue;
+          }
+          ((PLGSNTemplate) templates.get(0)).repair("RECHECK");
         }
       }
       catch (Exception e) {
-        MMINTException.print(IStatus.ERROR, "Error running PL change impact", e);
+        MMINTException.print(IStatus.ERROR, "Error repairing PL change", e);
       }
     }
   }

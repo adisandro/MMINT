@@ -20,6 +20,9 @@
       <eParameters name="step" lowerBound="1" eType="#//PLGSNImpactStep"/>
       <eParameters name="change" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
     </eOperations>
+    <eOperations name="repair" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
+      <eParameters name="change" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PLGSNAnalyticTemplate" eSuperTypes="#//PLGSNTemplate">
     <eOperations name="getAnalysis" eType="#//IPLGSNAnalysis" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>

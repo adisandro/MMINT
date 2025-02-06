@@ -43,6 +43,10 @@
             id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLGSNResetImpact">
       </javaActions>
       <javaActions
+            actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLGSNRepairChange"
+            id="edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLGSNRepairChange">
+      </javaActions>
+      <javaActions
             actionClass="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLGSNCreateNode"
             id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLGSNCreateNode">
       </javaActions>

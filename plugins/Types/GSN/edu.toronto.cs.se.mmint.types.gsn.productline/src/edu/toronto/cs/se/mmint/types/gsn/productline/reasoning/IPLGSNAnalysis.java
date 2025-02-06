@@ -27,4 +27,5 @@ public interface IPLGSNAnalysis extends IAnalysis {
                                       throws Exception {
     return step.nextSteps(change);
   }
+  default void repair(PLGSNAnalyticTemplate plTemplate, Object change) throws Exception {}
 }

@@ -25,6 +25,7 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
+import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep;
 
 /**
  * <!-- begin-user-doc -->
@@ -161,8 +162,8 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep createPLGSNImpactStepFromString(EDataType eDataType, String initialValue) {
-    return (edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep)super.createFromString(eDataType, initialValue);
+  public PLGSNImpactStep createPLGSNImpactStepFromString(EDataType eDataType, String initialValue) {
+    return (PLGSNImpactStep)super.createFromString(eDataType, initialValue);
   }
 
   /**

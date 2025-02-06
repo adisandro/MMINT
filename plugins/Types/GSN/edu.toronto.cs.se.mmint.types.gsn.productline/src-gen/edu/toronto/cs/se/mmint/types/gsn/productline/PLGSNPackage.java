@@ -584,13 +584,22 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_TEMPLATE___IMPACT__PLGSNIMPACTSTEP_OBJECT = PLPackage.CLASS_OPERATION_COUNT + 3;
 
   /**
+   * The operation id for the '<em>Repair</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_TEMPLATE___REPAIR__OBJECT = PLPackage.CLASS_OPERATION_COUNT + 4;
+
+  /**
    * The number of operations of the '<em>Template</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 4;
+  int PLGSN_TEMPLATE_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 5;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNAnalyticTemplateImpl <em>Analytic Template</em>}' class.
@@ -855,6 +864,15 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_ANALYTIC_TEMPLATE___IMPACT__PLGSNIMPACTSTEP_OBJECT = PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNIMPACTSTEP_OBJECT;
 
   /**
+   * The operation id for the '<em>Repair</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ANALYTIC_TEMPLATE___REPAIR__OBJECT = PLGSNPackage.PLGSN_TEMPLATE___REPAIR__OBJECT;
+
+  /**
    * The operation id for the '<em>Get Analysis</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -971,6 +989,16 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    */
   EOperation getPLGSNTemplate__Impact__PLGSNImpactStep_Object();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#repair(java.lang.Object) <em>Repair</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Repair</em>' operation.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#repair(java.lang.Object)
+   * @generated
+   */
+  EOperation getPLGSNTemplate__Repair__Object();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate <em>Analytic Template</em>}'.
@@ -1097,6 +1125,13 @@ public interface PLGSNPackage extends EPackage {
      * @generated
      */
     EOperation PLGSN_TEMPLATE___IMPACT__PLGSNIMPACTSTEP_OBJECT = PLGSNPackage.eINSTANCE.getPLGSNTemplate__Impact__PLGSNImpactStep_Object();
+    /**
+     * The meta object literal for the '<em><b>Repair</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation PLGSN_TEMPLATE___REPAIR__OBJECT = PLGSNPackage.eINSTANCE.getPLGSNTemplate__Repair__Object();
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNAnalyticTemplateImpl <em>Analytic Template</em>}' class.
      * <!-- begin-user-doc -->

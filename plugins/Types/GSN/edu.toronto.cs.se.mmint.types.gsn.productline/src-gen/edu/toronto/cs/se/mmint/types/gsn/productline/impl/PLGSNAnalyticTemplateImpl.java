@@ -150,4 +150,13 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
     return ECollections.asEList(analysis.impact(this, step, change));
   }
 
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void repair(Object change) throws Exception {
+    var analysis = getAnalysis();
+    analysis.repair(this, change);
+  }
+
 } //GSNPLAnalysisTemplateImpl

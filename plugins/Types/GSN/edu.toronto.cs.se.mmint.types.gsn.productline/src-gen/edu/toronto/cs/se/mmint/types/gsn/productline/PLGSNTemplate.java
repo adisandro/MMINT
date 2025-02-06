@@ -61,4 +61,12 @@ public interface PLGSNTemplate extends edu.toronto.cs.se.mmint.productline.Class
    * @generated
    */
   EList<PLGSNImpactStep> impact(PLGSNImpactStep step, Object change) throws Exception;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" changeRequired="true"
+   * @generated
+   */
+  void repair(Object change) throws Exception;
 } // GSNPLTemplate

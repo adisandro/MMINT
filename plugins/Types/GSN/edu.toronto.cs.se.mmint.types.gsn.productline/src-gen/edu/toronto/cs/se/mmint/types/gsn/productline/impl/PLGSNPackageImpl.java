@@ -25,6 +25,7 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
+import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
@@ -218,6 +219,16 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
+  public EOperation getPLGSNTemplate__Repair__Object() {
+    return this.plgsnTemplateEClass.getEOperations().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getPLGSNAnalyticTemplate() {
     return this.plgsnAnalyticTemplateEClass;
   }
@@ -292,6 +303,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___IMPORT____PRODUCTLINE);
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___INSTANTIATE);
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNIMPACTSTEP_OBJECT);
+    createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___REPAIR__OBJECT);
 
     this.plgsnAnalyticTemplateEClass = createEClass(PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE);
     createEOperation(this.plgsnAnalyticTemplateEClass, PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE___GET_ANALYSIS);
@@ -367,6 +379,10 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     addEParameter(op, this.ecorePackage.getEJavaObject(), "change", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
+    op = initEOperation(getPLGSNTemplate__Repair__Object(), null, "repair", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEJavaObject(), "change", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEException(op, theGSNPackage.getException());
+
     initEClass(this.plgsnAnalyticTemplateEClass, PLGSNAnalyticTemplate.class, "PLGSNAnalyticTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     op = initEOperation(getPLGSNAnalyticTemplate__GetAnalysis(), this.getIPLGSNAnalysis(), "getAnalysis", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
@@ -374,7 +390,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
 
     // Initialize data types
     initEDataType(this.iplgsnAnalysisEDataType, IPLGSNAnalysis.class, "IPLGSNAnalysis", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEDataType(this.plgsnImpactStepEDataType, edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep.class, "PLGSNImpactStep", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.plgsnImpactStepEDataType, PLGSNImpactStep.class, "PLGSNImpactStep", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(PLGSNPackage.eNS_URI);

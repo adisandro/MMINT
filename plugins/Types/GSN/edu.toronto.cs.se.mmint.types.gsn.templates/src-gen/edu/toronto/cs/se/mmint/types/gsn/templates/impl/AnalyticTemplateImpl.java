@@ -332,4 +332,13 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
     return ECollections.asEList(analysis.impact(this, step, change));
   }
 
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void repair(Object change) throws Exception {
+    var analysis = getAnalysis();
+    analysis.repair(this, change);
+  }
+
 } //AnalysisTemplateImpl

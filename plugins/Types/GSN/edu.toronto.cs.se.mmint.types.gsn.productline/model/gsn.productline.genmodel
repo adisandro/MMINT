@@ -29,6 +29,9 @@
         <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNTemplate/impact/step"/>
         <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNTemplate/impact/change"/>
       </genOperations>
+      <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/repair">
+        <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNTemplate/repair/change"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="gsn.productline.ecore#//PLGSNAnalyticTemplate">
       <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNAnalyticTemplate/getAnalysis"/>
