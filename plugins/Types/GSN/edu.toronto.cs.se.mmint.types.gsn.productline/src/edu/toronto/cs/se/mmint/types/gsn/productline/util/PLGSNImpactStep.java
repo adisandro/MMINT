@@ -30,7 +30,7 @@ import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.util.ImpactStep;
 
 public class PLGSNImpactStep extends ImpactStep<PLGSNArgumentElement> {
-  GSNPackage gsn;
+  private GSNPackage gsn;
 
   public PLGSNImpactStep(PLGSNArgumentElement impacted, List<EObject> trace) {
     super(impacted, trace);

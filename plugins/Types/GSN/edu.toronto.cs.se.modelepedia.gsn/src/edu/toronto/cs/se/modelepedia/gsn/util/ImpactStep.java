@@ -30,6 +30,14 @@ public abstract class ImpactStep<T> {
     this(impacted, new ArrayList<>());
   }
 
+  public T getImpacted() {
+    return this.impacted;
+  }
+
+  public List<EObject> getTrace() {
+    return this.trace;
+  }
+
   public abstract List<? extends ImpactStep<T>> nextSteps(Object change);
   public abstract void impact(Object change) throws Exception;
 }
