@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.ECollections;
@@ -52,6 +53,18 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
   @Override
   protected EClass eStaticClass() {
     return PLGSNPackage.Literals.PLGSN_TEMPLATE;
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public Optional<PLGSNArgumentElement> getElement(String id) {
+    return getStreamOfReference(GSNPackage.eINSTANCE.getTemplate_Elements())
+             .map(PLGSNArgumentElement.class::cast)
+             .filter(e -> !e.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_TemplateId()).isEmpty() &&
+                          id.equals(e.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_TemplateId()).get(0)))
+             .findFirst();
   }
 
   /**
@@ -129,6 +142,8 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
+      case PLGSNPackage.PLGSN_TEMPLATE___GET_ELEMENT__STRING:
+        return getElement((String)arguments.get(0));
       case PLGSNPackage.PLGSN_TEMPLATE___VALIDATE:
         try {
           validate();

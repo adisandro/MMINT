@@ -199,13 +199,22 @@ public interface GSNPackage extends EPackage {
   int ARGUMENT_ELEMENT__TEMPLATES = 3;
 
   /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARGUMENT_ELEMENT__TEMPLATE_ID = 4;
+
+  /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ARGUMENT_ELEMENT__VALID = 4;
+  int ARGUMENT_ELEMENT__VALID = 5;
 
   /**
    * The number of structural features of the '<em>Argument Element</em>' class.
@@ -214,7 +223,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ARGUMENT_ELEMENT_FEATURE_COUNT = 5;
+  int ARGUMENT_ELEMENT_FEATURE_COUNT = 6;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -287,6 +296,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int DECORATABLE__TEMPLATES = GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
+
+  /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECORATABLE__TEMPLATE_ID = GSNPackage.ARGUMENT_ELEMENT__TEMPLATE_ID;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -404,6 +422,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int SUPPORTABLE__TEMPLATES = GSNPackage.DECORATABLE__TEMPLATES;
+
+  /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTABLE__TEMPLATE_ID = GSNPackage.DECORATABLE__TEMPLATE_ID;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -605,6 +632,15 @@ public interface GSNPackage extends EPackage {
   int SUPPORTER__TEMPLATES = GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
 
   /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPPORTER__TEMPLATE_ID = GSNPackage.ARGUMENT_ELEMENT__TEMPLATE_ID;
+
+  /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -735,6 +771,15 @@ public interface GSNPackage extends EPackage {
   int CONTEXTUALIZABLE__TEMPLATES = GSNPackage.DECORATABLE__TEMPLATES;
 
   /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXTUALIZABLE__TEMPLATE_ID = GSNPackage.DECORATABLE__TEMPLATE_ID;
+
+  /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -842,6 +887,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int CONTEXTUAL__TEMPLATES = GSNPackage.ARGUMENT_ELEMENT__TEMPLATES;
+
+  /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXTUAL__TEMPLATE_ID = GSNPackage.ARGUMENT_ELEMENT__TEMPLATE_ID;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -991,6 +1045,15 @@ public interface GSNPackage extends EPackage {
   int GOAL__TEMPLATES = GSNPackage.SUPPORTABLE__TEMPLATES;
 
   /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GOAL__TEMPLATE_ID = GSNPackage.SUPPORTABLE__TEMPLATE_ID;
+
+  /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1120,6 +1183,15 @@ public interface GSNPackage extends EPackage {
   int STRATEGY__TEMPLATES = GSNPackage.SUPPORTABLE__TEMPLATES;
 
   /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRATEGY__TEMPLATE_ID = GSNPackage.SUPPORTABLE__TEMPLATE_ID;
+
+  /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1241,6 +1313,15 @@ public interface GSNPackage extends EPackage {
   int SOLUTION__TEMPLATES = GSNPackage.SUPPORTER__TEMPLATES;
 
   /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SOLUTION__TEMPLATE_ID = GSNPackage.SUPPORTER__TEMPLATE_ID;
+
+  /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1324,6 +1405,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int CONTEXT__TEMPLATES = GSNPackage.CONTEXTUAL__TEMPLATES;
+
+  /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT__TEMPLATE_ID = GSNPackage.CONTEXTUAL__TEMPLATE_ID;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -1411,6 +1501,15 @@ public interface GSNPackage extends EPackage {
   int JUSTIFICATION__TEMPLATES = GSNPackage.CONTEXTUAL__TEMPLATES;
 
   /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JUSTIFICATION__TEMPLATE_ID = GSNPackage.CONTEXTUAL__TEMPLATE_ID;
+
+  /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1495,6 +1594,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int ASSUMPTION__TEMPLATES = GSNPackage.CONTEXTUAL__TEMPLATES;
+
+  /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSUMPTION__TEMPLATE_ID = GSNPackage.CONTEXTUAL__TEMPLATE_ID;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -1687,13 +1795,22 @@ public interface GSNPackage extends EPackage {
   int TEMPLATE_FEATURE_COUNT = 2;
 
   /**
+   * The operation id for the '<em>Get Element</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEMPLATE___GET_ELEMENT__STRING = 0;
+
+  /**
    * The operation id for the '<em>Validate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TEMPLATE___VALIDATE = 0;
+  int TEMPLATE___VALIDATE = 1;
 
   /**
    * The operation id for the '<em>Import </em>' operation.
@@ -1702,7 +1819,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE___IMPORT____SAFETYCASE = 1;
+  int TEMPLATE___IMPORT____SAFETYCASE = 2;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1711,7 +1828,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE___INSTANTIATE = 2;
+  int TEMPLATE___INSTANTIATE = 3;
 
   /**
    * The operation id for the '<em>Impact</em>' operation.
@@ -1720,7 +1837,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT = 3;
+  int TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT = 4;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -1729,7 +1846,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE___REPAIR__OBJECT = 4;
+  int TEMPLATE___REPAIR__OBJECT = 5;
 
   /**
    * The number of operations of the '<em>Template</em>' class.
@@ -1738,7 +1855,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE_OPERATION_COUNT = 5;
+  int TEMPLATE_OPERATION_COUNT = 6;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.RelationshipDecoratorImpl <em>Relationship Decorator</em>}' class.
@@ -1785,6 +1902,15 @@ public interface GSNPackage extends EPackage {
    * @ordered
    */
   int RELATIONSHIP_DECORATOR__TEMPLATES = GSNPackage.SUPPORTABLE__TEMPLATES;
+
+  /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP_DECORATOR__TEMPLATE_ID = GSNPackage.SUPPORTABLE__TEMPLATE_ID;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -1945,6 +2071,16 @@ public interface GSNPackage extends EPackage {
   int GSN_IMPACT_STEP = 26;
 
   /**
+   * The meta object id for the '<em>Optional</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see java.util.Optional
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getOptional()
+   * @generated
+   */
+  int OPTIONAL = 27;
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase <em>Safety Case</em>}'. <!--
    * begin-user-doc --> <!-- end-user-doc -->
    *
@@ -2082,6 +2218,17 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   EReference getArgumentElement_Templates();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getTemplateId <em>Template Id</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Template Id</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getTemplateId()
+   * @see #getArgumentElement()
+   * @generated
+   */
+  EAttribute getArgumentElement_TemplateId();
 
   /**
    * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#isValid <em>Valid</em>}'.
@@ -2468,6 +2615,16 @@ public interface GSNPackage extends EPackage {
   EAttribute getTemplate_Id();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#getElement(java.lang.String) <em>Get Element</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Element</em>' operation.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#getElement(java.lang.String)
+   * @generated
+   */
+  EOperation getTemplate__GetElement__String();
+
+  /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#validate() <em>Validate</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2623,6 +2780,17 @@ public interface GSNPackage extends EPackage {
   EDataType getGSNImpactStep();
 
   /**
+   * Returns the meta object for data type '{@link java.util.Optional <em>Optional</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>Optional</em>'.
+   * @see java.util.Optional
+   * @model instanceClass="java.util.Optional" typeParameters="T"
+   * @generated
+   */
+  EDataType getOptional();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @return the factory that creates the instances of the model.
@@ -2748,6 +2916,14 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EReference ARGUMENT_ELEMENT__TEMPLATES = GSNPackage.eINSTANCE.getArgumentElement_Templates();
+
+    /**
+     * The meta object literal for the '<em><b>Template Id</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ARGUMENT_ELEMENT__TEMPLATE_ID = GSNPackage.eINSTANCE.getArgumentElement_TemplateId();
 
     /**
      * The meta object literal for the '<em><b>Valid</b></em>' attribute feature.
@@ -3075,6 +3251,14 @@ public interface GSNPackage extends EPackage {
     EAttribute TEMPLATE__ID = GSNPackage.eINSTANCE.getTemplate_Id();
 
     /**
+     * The meta object literal for the '<em><b>Get Element</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation TEMPLATE___GET_ELEMENT__STRING = GSNPackage.eINSTANCE.getTemplate__GetElement__String();
+
+    /**
      * The meta object literal for the '<em><b>Validate</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3206,6 +3390,16 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EDataType GSN_IMPACT_STEP = GSNPackage.eINSTANCE.getGSNImpactStep();
+
+    /**
+     * The meta object literal for the '<em>Optional</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see java.util.Optional
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getOptional()
+     * @generated
+     */
+    EDataType OPTIONAL = GSNPackage.eINSTANCE.getOptional();
 
   }
 

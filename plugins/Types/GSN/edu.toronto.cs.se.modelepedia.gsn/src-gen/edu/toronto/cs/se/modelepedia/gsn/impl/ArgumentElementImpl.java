@@ -110,6 +110,26 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   protected EList<Template> templates;
 
   /**
+   * The default value of the '{@link #getTemplateId() <em>Template Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTemplateId()
+   * @generated
+   * @ordered
+   */
+  protected static final String TEMPLATE_ID_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getTemplateId() <em>Template Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTemplateId()
+   * @generated
+   * @ordered
+   */
+  protected String templateId = ArgumentElementImpl.TEMPLATE_ID_EDEFAULT;
+
+  /**
    * The default value of the '{@link #isValid() <em>Valid</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -261,6 +281,30 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    * @generated
    */
   @Override
+  public String getTemplateId() {
+    return this.templateId;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setTemplateId(String newTemplateId) {
+    var oldTemplateId = this.templateId;
+    this.templateId = newTemplateId;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__TEMPLATE_ID, oldTemplateId, this.templateId));
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public boolean isValid() {
     return this.valid;
   }
@@ -324,6 +368,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
         return getStatus();
       case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
         return getTemplates();
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATE_ID:
+        return getTemplateId();
       case GSNPackage.ARGUMENT_ELEMENT__VALID:
         return isValid();
     }
@@ -351,6 +397,9 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
         getTemplates().clear();
         getTemplates().addAll((Collection<? extends Template>)newValue);
         return;
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATE_ID:
+        setTemplateId((String)newValue);
+        return;
       case GSNPackage.ARGUMENT_ELEMENT__VALID:
         setValid((Boolean)newValue);
         return;
@@ -377,6 +426,9 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
       case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
         getTemplates().clear();
         return;
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATE_ID:
+        setTemplateId(ArgumentElementImpl.TEMPLATE_ID_EDEFAULT);
+        return;
       case GSNPackage.ARGUMENT_ELEMENT__VALID:
         setValid(ArgumentElementImpl.VALID_EDEFAULT);
         return;
@@ -399,6 +451,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
         return this.status != null;
       case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
         return this.templates != null && !this.templates.isEmpty();
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATE_ID:
+        return ArgumentElementImpl.TEMPLATE_ID_EDEFAULT == null ? this.templateId != null : !ArgumentElementImpl.TEMPLATE_ID_EDEFAULT.equals(this.templateId);
       case GSNPackage.ARGUMENT_ELEMENT__VALID:
         return this.valid != ArgumentElementImpl.VALID_EDEFAULT;
     }
@@ -448,6 +502,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
     result.append(this.id);
     result.append(", description: ");
     result.append(this.description);
+    result.append(", templateId: ");
+    result.append(this.templateId);
     result.append(", valid: ");
     result.append(this.valid);
     result.append(')');

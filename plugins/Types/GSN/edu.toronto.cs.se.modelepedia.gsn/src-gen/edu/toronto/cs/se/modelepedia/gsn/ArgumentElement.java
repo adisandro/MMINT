@@ -113,6 +113,28 @@ public interface ArgumentElement extends EObject {
   EList<Template> getTemplates();
 
   /**
+   * Returns the value of the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Template Id</em>' attribute.
+   * @see #setTemplateId(String)
+   * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getArgumentElement_TemplateId()
+   * @model
+   * @generated
+   */
+  String getTemplateId();
+
+  /**
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getTemplateId <em>Template Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Template Id</em>' attribute.
+   * @see #getTemplateId()
+   * @generated
+   */
+  void setTemplateId(String value);
+
+  /**
    * Returns the value of the '<em><b>Valid</b></em>' attribute.
    * The default value is <code>"true"</code>.
    * <!-- begin-user-doc -->

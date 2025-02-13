@@ -48,6 +48,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="templates" upperBound="-1"
         eType="#//Template" eOpposite="#//Template/elements"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="templateId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="true"/>
   </eClassifiers>
@@ -134,6 +135,12 @@
     <eLiterals name="REVISE" value="3" literal="REVISE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Template">
+    <eOperations name="getElement" lowerBound="1">
+      <eGenericType eClassifier="#//Optional">
+        <eTypeArguments eClassifier="#//ArgumentElement"/>
+      </eGenericType>
+      <eParameters name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eOperations name="validate" eExceptions="#//Exception"/>
     <eOperations name="import_" eExceptions="#//Exception">
       <eParameters name="safetyCase" lowerBound="1" eType="#//SafetyCase"/>
@@ -169,4 +176,7 @@
   <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"/>
   <eClassifiers xsi:type="ecore:EDataType" name="GSNBuilder" instanceClassName="edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder"/>
   <eClassifiers xsi:type="ecore:EDataType" name="GSNImpactStep" instanceClassName="edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Optional" instanceClassName="java.util.Optional">
+    <eTypeParameters name="T"/>
+  </eClassifiers>
 </ecore:EPackage>

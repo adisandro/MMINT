@@ -66,6 +66,7 @@ public class ArgumentElementItemProvider extends ItemProviderAdapter implements 
       addDescriptionPropertyDescriptor(object);
       addStatusPropertyDescriptor(object);
       addTemplatesPropertyDescriptor(object);
+      addTemplateIdPropertyDescriptor(object);
       addValidPropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
@@ -157,6 +158,28 @@ public class ArgumentElementItemProvider extends ItemProviderAdapter implements 
   }
 
   /**
+   * This adds a property descriptor for the Template Id feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addTemplateIdPropertyDescriptor(Object object) {
+    this.itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_ArgumentElement_templateId_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_templateId_feature", "_UI_ArgumentElement_type"),
+         GSNPackage.Literals.ARGUMENT_ELEMENT__TEMPLATE_ID,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
    * This adds a property descriptor for the Valid feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -205,6 +228,7 @@ public class ArgumentElementItemProvider extends ItemProviderAdapter implements 
       case GSNPackage.ARGUMENT_ELEMENT__ID:
       case GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION:
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATE_ID:
       case GSNPackage.ARGUMENT_ELEMENT__VALID:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;

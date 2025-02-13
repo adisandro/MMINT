@@ -12,6 +12,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.productline;
 
+import java.util.Optional;
+
 import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmint.productline.ProductLine;
@@ -29,6 +31,14 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep;
  * @generated
  */
 public interface PLGSNTemplate extends edu.toronto.cs.se.mmint.productline.Class {
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model dataType="edu.toronto.cs.se.modelepedia.gsn.Optional&lt;edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement&gt;" required="true" idRequired="true"
+   * @generated
+   */
+  Optional<PLGSNArgumentElement> getElement(String id);
 
   /**
    * <!-- begin-user-doc -->

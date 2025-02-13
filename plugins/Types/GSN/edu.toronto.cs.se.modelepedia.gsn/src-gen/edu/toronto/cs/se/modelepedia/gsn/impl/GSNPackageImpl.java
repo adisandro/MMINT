@@ -13,6 +13,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
+import java.util.Optional;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -229,6 +231,13 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   private EDataType gsnImpactStepEDataType = null;
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType optionalEDataType = null;
+
+  /**
    * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
    * EPackage.Registry} by the package package URI value.
    * <p>
@@ -423,8 +432,18 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EAttribute getArgumentElement_Valid() {
+  public EAttribute getArgumentElement_TemplateId() {
     return (EAttribute)this.argumentElementEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getArgumentElement_Valid() {
+    return (EAttribute)this.argumentElementEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -778,7 +797,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EOperation getTemplate__Validate() {
+  public EOperation getTemplate__GetElement__String() {
     return this.templateEClass.getEOperations().get(0);
   }
 
@@ -788,7 +807,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EOperation getTemplate__Import___SafetyCase() {
+  public EOperation getTemplate__Validate() {
     return this.templateEClass.getEOperations().get(1);
   }
 
@@ -798,7 +817,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EOperation getTemplate__Instantiate() {
+  public EOperation getTemplate__Import___SafetyCase() {
     return this.templateEClass.getEOperations().get(2);
   }
 
@@ -808,7 +827,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EOperation getTemplate__Impact__GSNImpactStep_Object() {
+  public EOperation getTemplate__Instantiate() {
     return this.templateEClass.getEOperations().get(3);
   }
 
@@ -818,8 +837,18 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EOperation getTemplate__Repair__Object() {
+  public EOperation getTemplate__Impact__GSNImpactStep_Object() {
     return this.templateEClass.getEOperations().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getTemplate__Repair__Object() {
+    return this.templateEClass.getEOperations().get(5);
   }
 
   /**
@@ -920,6 +949,16 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
   }
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EDataType getOptional() {
+    return this.optionalEDataType;
+  }
+
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
@@ -961,6 +1000,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEAttribute(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION);
     createEReference(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__STATUS);
     createEReference(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__TEMPLATES);
+    createEAttribute(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__TEMPLATE_ID);
     createEAttribute(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__VALID);
     createEOperation(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT___VALIDATE__TEMPLATE);
     createEOperation(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE__TEMPLATE);
@@ -1018,6 +1058,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     this.templateEClass = createEClass(GSNPackage.TEMPLATE);
     createEReference(this.templateEClass, GSNPackage.TEMPLATE__ELEMENTS);
     createEAttribute(this.templateEClass, GSNPackage.TEMPLATE__ID);
+    createEOperation(this.templateEClass, GSNPackage.TEMPLATE___GET_ELEMENT__STRING);
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___VALIDATE);
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___IMPORT____SAFETYCASE);
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___INSTANTIATE);
@@ -1037,6 +1078,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     this.exceptionEDataType = createEDataType(GSNPackage.EXCEPTION);
     this.gsnBuilderEDataType = createEDataType(GSNPackage.GSN_BUILDER);
     this.gsnImpactStepEDataType = createEDataType(GSNPackage.GSN_IMPACT_STEP);
+    this.optionalEDataType = createEDataType(GSNPackage.OPTIONAL);
   }
 
   /**
@@ -1063,6 +1105,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     setNsURI(GSNPackage.eNS_URI);
 
     // Create type parameters
+    addETypeParameter(this.optionalEDataType, "T");
 
     // Set bounds for type parameters
 
@@ -1101,6 +1144,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     initEAttribute(getArgumentElement_Description(), this.ecorePackage.getEString(), "description", null, 0, 1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getArgumentElement_Status(), this.getImpactAnnotation(), null, "status", null, 0, 1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getArgumentElement_Templates(), this.getTemplate(), this.getTemplate_Elements(), "templates", null, 0, -1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEAttribute(getArgumentElement_TemplateId(), this.ecorePackage.getEString(), "templateId", null, 0, 1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getArgumentElement_Valid(), this.ecorePackage.getEBoolean(), "valid", "true", 1, 1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     var op = initEOperation(getArgumentElement__Validate__Template(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
@@ -1165,6 +1209,13 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     initEReference(getTemplate_Elements(), this.getArgumentElement(), this.getArgumentElement_Templates(), "elements", null, 1, -1, Template.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getTemplate_Id(), this.ecorePackage.getEString(), "id", null, 1, 1, Template.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
+    op = initEOperation(getTemplate__GetElement__String(), null, "getElement", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEString(), "id", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    var g1 = createEGenericType(this.getOptional());
+    var g2 = createEGenericType(this.getArgumentElement());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
     op = initEOperation(getTemplate__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
@@ -1210,6 +1261,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     initEDataType(this.exceptionEDataType, Exception.class, "Exception", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEDataType(this.gsnBuilderEDataType, GSNBuilder.class, "GSNBuilder", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEDataType(this.gsnImpactStepEDataType, GSNImpactStep.class, "GSNImpactStep", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.optionalEDataType, Optional.class, "Optional", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(GSNPackage.eNS_URI);

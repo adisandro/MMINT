@@ -20,6 +20,9 @@
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="gsn.productline.ecore#//PLGSNTemplate">
+      <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/getElement">
+        <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNTemplate/getElement/id"/>
+      </genOperations>
       <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/validate"/>
       <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/import_">
         <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNTemplate/import_/productLine"/>

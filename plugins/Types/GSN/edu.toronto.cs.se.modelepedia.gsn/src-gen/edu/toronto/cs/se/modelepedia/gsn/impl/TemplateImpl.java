@@ -15,6 +15,7 @@ package edu.toronto.cs.se.modelepedia.gsn.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -134,6 +135,14 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
     if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.TEMPLATE__ID, oldId, this.id));
     }
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public Optional<ArgumentElement> getElement(String id) {
+    return getElements().stream().filter(e -> id.equals(e.getTemplateId())).findFirst();
   }
 
   /**
@@ -320,6 +329,8 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
   @SuppressWarnings("unchecked")
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
+      case GSNPackage.TEMPLATE___GET_ELEMENT__STRING:
+        return getElement((String)arguments.get(0));
       case GSNPackage.TEMPLATE___VALIDATE:
         try {
           validate();

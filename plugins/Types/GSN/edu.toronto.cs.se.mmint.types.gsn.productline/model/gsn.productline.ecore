@@ -11,6 +11,12 @@
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PLGSNTemplate" eSuperTypes="../../edu.toronto.cs.se.mmint.productline/model/productline.ecore#//Class">
+    <eOperations name="getElement" lowerBound="1">
+      <eGenericType eClassifier="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Optional">
+        <eTypeArguments eClassifier="#//PLGSNArgumentElement"/>
+      </eGenericType>
+      <eParameters name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eOperations name="validate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
     <eOperations name="import_" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
       <eParameters name="productLine" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint.productline/model/productline.ecore#//ProductLine"/>

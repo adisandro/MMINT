@@ -13,6 +13,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
+import java.util.Optional;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -112,6 +114,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
     case GSNPackage.EXCEPTION -> createExceptionFromString(eDataType, initialValue);
     case GSNPackage.GSN_BUILDER -> createGSNBuilderFromString(eDataType, initialValue);
     case GSNPackage.GSN_IMPACT_STEP -> createGSNImpactStepFromString(eDataType, initialValue);
+    case GSNPackage.OPTIONAL -> createOptionalFromString(eDataType, initialValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -129,6 +132,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
     case GSNPackage.EXCEPTION -> convertExceptionToString(eDataType, instanceValue);
     case GSNPackage.GSN_BUILDER -> convertGSNBuilderToString(eDataType, instanceValue);
     case GSNPackage.GSN_IMPACT_STEP -> convertGSNImpactStepToString(eDataType, instanceValue);
+    case GSNPackage.OPTIONAL -> convertOptionalToString(eDataType, instanceValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -390,6 +394,24 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    */
   public String convertGSNImpactStepToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(eDataType, instanceValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Optional<?> createOptionalFromString(EDataType eDataType, String initialValue) {
+    return (Optional<?>)super.createFromString(initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertOptionalToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(instanceValue);
   }
 
   /**

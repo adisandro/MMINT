@@ -548,13 +548,22 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_TEMPLATE___DELETE = PLPackage.CLASS___DELETE;
 
   /**
+   * The operation id for the '<em>Get Element</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_TEMPLATE___GET_ELEMENT__STRING = PLPackage.CLASS_OPERATION_COUNT + 0;
+
+  /**
    * The operation id for the '<em>Validate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE___VALIDATE = PLPackage.CLASS_OPERATION_COUNT + 0;
+  int PLGSN_TEMPLATE___VALIDATE = PLPackage.CLASS_OPERATION_COUNT + 1;
 
   /**
    * The operation id for the '<em>Import </em>' operation.
@@ -563,7 +572,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE___IMPORT____PRODUCTLINE = PLPackage.CLASS_OPERATION_COUNT + 1;
+  int PLGSN_TEMPLATE___IMPORT____PRODUCTLINE = PLPackage.CLASS_OPERATION_COUNT + 2;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -572,7 +581,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE___INSTANTIATE = PLPackage.CLASS_OPERATION_COUNT + 2;
+  int PLGSN_TEMPLATE___INSTANTIATE = PLPackage.CLASS_OPERATION_COUNT + 3;
 
   /**
    * The operation id for the '<em>Impact</em>' operation.
@@ -581,7 +590,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE___IMPACT__PLGSNIMPACTSTEP_OBJECT = PLPackage.CLASS_OPERATION_COUNT + 3;
+  int PLGSN_TEMPLATE___IMPACT__PLGSNIMPACTSTEP_OBJECT = PLPackage.CLASS_OPERATION_COUNT + 4;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -590,7 +599,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE___REPAIR__OBJECT = PLPackage.CLASS_OPERATION_COUNT + 4;
+  int PLGSN_TEMPLATE___REPAIR__OBJECT = PLPackage.CLASS_OPERATION_COUNT + 5;
 
   /**
    * The number of operations of the '<em>Template</em>' class.
@@ -599,7 +608,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 5;
+  int PLGSN_TEMPLATE_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 6;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNAnalyticTemplateImpl <em>Analytic Template</em>}' class.
@@ -828,6 +837,15 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_ANALYTIC_TEMPLATE___DELETE = PLGSNPackage.PLGSN_TEMPLATE___DELETE;
 
   /**
+   * The operation id for the '<em>Get Element</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ANALYTIC_TEMPLATE___GET_ELEMENT__STRING = PLGSNPackage.PLGSN_TEMPLATE___GET_ELEMENT__STRING;
+
+  /**
    * The operation id for the '<em>Validate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -949,6 +967,16 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    */
   EClass getPLGSNTemplate();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#getElement(java.lang.String) <em>Get Element</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Element</em>' operation.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#getElement(java.lang.String)
+   * @generated
+   */
+  EOperation getPLGSNTemplate__GetElement__String();
 
   /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#validate() <em>Validate</em>}' operation.
@@ -1097,6 +1125,13 @@ public interface PLGSNPackage extends EPackage {
      * @generated
      */
     EClass PLGSN_TEMPLATE = PLGSNPackage.eINSTANCE.getPLGSNTemplate();
+    /**
+     * The meta object literal for the '<em><b>Get Element</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation PLGSN_TEMPLATE___GET_ELEMENT__STRING = PLGSNPackage.eINSTANCE.getPLGSNTemplate__GetElement__String();
     /**
      * The meta object literal for the '<em><b>Validate</b></em>' operation.
      * <!-- begin-user-doc -->
