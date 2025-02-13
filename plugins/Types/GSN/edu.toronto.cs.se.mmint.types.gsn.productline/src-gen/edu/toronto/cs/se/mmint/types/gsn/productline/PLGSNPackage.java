@@ -548,13 +548,13 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_TEMPLATE___DELETE = PLPackage.CLASS___DELETE;
 
   /**
-   * The operation id for the '<em>Get Element</em>' operation.
+   * The operation id for the '<em>Get Elements By Id</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE___GET_ELEMENT__STRING = PLPackage.CLASS_OPERATION_COUNT + 0;
+  int PLGSN_TEMPLATE___GET_ELEMENTS_BY_ID = PLPackage.CLASS_OPERATION_COUNT + 0;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -837,13 +837,13 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_ANALYTIC_TEMPLATE___DELETE = PLGSNPackage.PLGSN_TEMPLATE___DELETE;
 
   /**
-   * The operation id for the '<em>Get Element</em>' operation.
+   * The operation id for the '<em>Get Elements By Id</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_ANALYTIC_TEMPLATE___GET_ELEMENT__STRING = PLGSNPackage.PLGSN_TEMPLATE___GET_ELEMENT__STRING;
+  int PLGSN_ANALYTIC_TEMPLATE___GET_ELEMENTS_BY_ID = PLGSNPackage.PLGSN_TEMPLATE___GET_ELEMENTS_BY_ID;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -969,14 +969,14 @@ public interface PLGSNPackage extends EPackage {
   EClass getPLGSNTemplate();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#getElement(java.lang.String) <em>Get Element</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#getElementsById() <em>Get Elements By Id</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Get Element</em>' operation.
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#getElement(java.lang.String)
+   * @return the meta object for the '<em>Get Elements By Id</em>' operation.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#getElementsById()
    * @generated
    */
-  EOperation getPLGSNTemplate__GetElement__String();
+  EOperation getPLGSNTemplate__GetElementsById();
 
   /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#validate() <em>Validate</em>}' operation.
@@ -1126,12 +1126,12 @@ public interface PLGSNPackage extends EPackage {
      */
     EClass PLGSN_TEMPLATE = PLGSNPackage.eINSTANCE.getPLGSNTemplate();
     /**
-     * The meta object literal for the '<em><b>Get Element</b></em>' operation.
+     * The meta object literal for the '<em><b>Get Elements By Id</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation PLGSN_TEMPLATE___GET_ELEMENT__STRING = PLGSNPackage.eINSTANCE.getPLGSNTemplate__GetElement__String();
+    EOperation PLGSN_TEMPLATE___GET_ELEMENTS_BY_ID = PLGSNPackage.eINSTANCE.getPLGSNTemplate__GetElementsById();
     /**
      * The meta object literal for the '<em><b>Validate</b></em>' operation.
      * <!-- begin-user-doc -->

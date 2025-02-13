@@ -14,7 +14,6 @@
 package edu.toronto.cs.se.modelepedia.gsn.util;
 
 import java.util.Map;
-import java.util.Optional;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -141,7 +140,6 @@ public class GSNValidator extends EObjectValidator {
     case GSNPackage.EXCEPTION -> validateException((Exception)value, diagnostics, context);
     case GSNPackage.GSN_BUILDER -> validateGSNBuilder((GSNBuilder)value, diagnostics, context);
     case GSNPackage.GSN_IMPACT_STEP -> validateGSNImpactStep((GSNImpactStep)value, diagnostics, context);
-    case GSNPackage.OPTIONAL -> validateOptional((Optional<?>)value, diagnostics, context);
     default -> true;
     };
   }
@@ -679,15 +677,6 @@ public class GSNValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateGSNImpactStep(GSNImpactStep gsnImpactStep, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return true;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean validateOptional(Optional<?> optional, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return true;
   }
 

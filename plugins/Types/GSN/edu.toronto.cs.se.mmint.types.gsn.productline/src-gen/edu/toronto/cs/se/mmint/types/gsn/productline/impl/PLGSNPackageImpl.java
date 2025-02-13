@@ -179,7 +179,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EOperation getPLGSNTemplate__GetElement__String() {
+  public EOperation getPLGSNTemplate__GetElementsById() {
     return this.plgsnTemplateEClass.getEOperations().get(0);
   }
 
@@ -309,7 +309,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     createEOperation(this.plgsnArgumentElementEClass, PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___INSTANTIATE__PLGSNTEMPLATE);
 
     this.plgsnTemplateEClass = createEClass(PLGSNPackage.PLGSN_TEMPLATE);
-    createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___GET_ELEMENT__STRING);
+    createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___GET_ELEMENTS_BY_ID);
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___VALIDATE);
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___IMPORT____PRODUCTLINE);
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___INSTANTIATE);
@@ -375,10 +375,11 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
 
     initEClass(this.plgsnTemplateEClass, PLGSNTemplate.class, "PLGSNTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    op = initEOperation(getPLGSNTemplate__GetElement__String(), null, "getElement", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEString(), "id", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    var g1 = createEGenericType(theGSNPackage.getOptional());
-    var g2 = createEGenericType(this.getPLGSNArgumentElement());
+    op = initEOperation(getPLGSNTemplate__GetElementsById(), null, "getElementsById", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    var g1 = createEGenericType(this.ecorePackage.getEMap());
+    var g2 = createEGenericType(this.ecorePackage.getEString());
+    g1.getETypeArguments().add(g2);
+    g2 = createEGenericType(this.getPLGSNArgumentElement());
     g1.getETypeArguments().add(g2);
     initEOperation(op, g1);
 

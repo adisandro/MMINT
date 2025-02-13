@@ -1795,13 +1795,13 @@ public interface GSNPackage extends EPackage {
   int TEMPLATE_FEATURE_COUNT = 2;
 
   /**
-   * The operation id for the '<em>Get Element</em>' operation.
+   * The operation id for the '<em>Get Elements By Id</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TEMPLATE___GET_ELEMENT__STRING = 0;
+  int TEMPLATE___GET_ELEMENTS_BY_ID = 0;
 
   /**
    * The operation id for the '<em>Validate</em>' operation.
@@ -2069,16 +2069,6 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   int GSN_IMPACT_STEP = 26;
-
-  /**
-   * The meta object id for the '<em>Optional</em>' data type.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see java.util.Optional
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getOptional()
-   * @generated
-   */
-  int OPTIONAL = 27;
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase <em>Safety Case</em>}'. <!--
@@ -2615,14 +2605,14 @@ public interface GSNPackage extends EPackage {
   EAttribute getTemplate_Id();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#getElement(java.lang.String) <em>Get Element</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#getElementsById() <em>Get Elements By Id</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Get Element</em>' operation.
-   * @see edu.toronto.cs.se.modelepedia.gsn.Template#getElement(java.lang.String)
+   * @return the meta object for the '<em>Get Elements By Id</em>' operation.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#getElementsById()
    * @generated
    */
-  EOperation getTemplate__GetElement__String();
+  EOperation getTemplate__GetElementsById();
 
   /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#validate() <em>Validate</em>}' operation.
@@ -2778,17 +2768,6 @@ public interface GSNPackage extends EPackage {
    * @generated
    */
   EDataType getGSNImpactStep();
-
-  /**
-   * Returns the meta object for data type '{@link java.util.Optional <em>Optional</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>Optional</em>'.
-   * @see java.util.Optional
-   * @model instanceClass="java.util.Optional" typeParameters="T"
-   * @generated
-   */
-  EDataType getOptional();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -3251,12 +3230,12 @@ public interface GSNPackage extends EPackage {
     EAttribute TEMPLATE__ID = GSNPackage.eINSTANCE.getTemplate_Id();
 
     /**
-     * The meta object literal for the '<em><b>Get Element</b></em>' operation.
+     * The meta object literal for the '<em><b>Get Elements By Id</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation TEMPLATE___GET_ELEMENT__STRING = GSNPackage.eINSTANCE.getTemplate__GetElement__String();
+    EOperation TEMPLATE___GET_ELEMENTS_BY_ID = GSNPackage.eINSTANCE.getTemplate__GetElementsById();
 
     /**
      * The meta object literal for the '<em><b>Validate</b></em>' operation.
@@ -3390,16 +3369,6 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EDataType GSN_IMPACT_STEP = GSNPackage.eINSTANCE.getGSNImpactStep();
-
-    /**
-     * The meta object literal for the '<em>Optional</em>' data type.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see java.util.Optional
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getOptional()
-     * @generated
-     */
-    EDataType OPTIONAL = GSNPackage.eINSTANCE.getOptional();
 
   }
 

@@ -12,7 +12,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.productline;
 
-import java.util.Optional;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -35,10 +35,10 @@ public interface PLGSNTemplate extends edu.toronto.cs.se.mmint.productline.Class
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model dataType="edu.toronto.cs.se.modelepedia.gsn.Optional&lt;edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement&gt;" required="true" idRequired="true"
+   * @model kind="operation" required="true"
    * @generated
    */
-  Optional<PLGSNArgumentElement> getElement(String id);
+  Map<String, PLGSNArgumentElement> getElementsById();
 
   /**
    * <!-- begin-user-doc -->

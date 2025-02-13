@@ -29,9 +29,6 @@
     <genDataTypes ecoreDataType="gsn.ecore#//Exception"/>
     <genDataTypes ecoreDataType="gsn.ecore#//GSNBuilder"/>
     <genDataTypes ecoreDataType="gsn.ecore#//GSNImpactStep"/>
-    <genDataTypes ecoreDataType="gsn.ecore#//Optional">
-      <genTypeParameters ecoreTypeParameter="gsn.ecore#//Optional/T"/>
-    </genDataTypes>
     <genClasses ecoreClass="gsn.ecore#//SafetyCase">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/goals"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/strategies"/>
@@ -101,9 +98,7 @@
     <genClasses image="false" ecoreClass="gsn.ecore#//Template">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//Template/elements"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//Template/id"/>
-      <genOperations ecoreOperation="gsn.ecore#//Template/getElement">
-        <genParameters ecoreParameter="gsn.ecore#//Template/getElement/id"/>
-      </genOperations>
+      <genOperations ecoreOperation="gsn.ecore#//Template/getElementsById"/>
       <genOperations ecoreOperation="gsn.ecore#//Template/validate"/>
       <genOperations ecoreOperation="gsn.ecore#//Template/import_">
         <genParameters ecoreParameter="gsn.ecore#//Template/import_/safetyCase"/>

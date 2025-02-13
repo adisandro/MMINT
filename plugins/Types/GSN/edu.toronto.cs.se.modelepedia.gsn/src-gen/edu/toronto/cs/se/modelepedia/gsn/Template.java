@@ -12,7 +12,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn;
 
-import java.util.Optional;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -76,10 +76,10 @@ public interface Template extends EObject {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model dataType="edu.toronto.cs.se.modelepedia.gsn.Optional&lt;edu.toronto.cs.se.modelepedia.gsn.ArgumentElement&gt;" idRequired="true"
+   * @model kind="operation" required="true"
    * @generated
    */
-  Optional<ArgumentElement> getElement(String id);
+  Map<String, ArgumentElement> getElementsById();
 
   /**
    * <!-- begin-user-doc --> Validates the correctness of this instantiated template. The base implementation invokes
