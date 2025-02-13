@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:gsn.templates="model://edu.toronto.cs.se.mmint.types.gsn.templates">
-  <goals id="G0" description="{Safety goal}" templates="//@templates.0" valid="false">
+  <goals id="G0" description="{Safety goal}" templates="//@templates.0" templateId="safetyGoal" valid="false">
     <supportedBy target="//@strategies.0"/>
   </goals>
-  <goals id="G1" description="The query engine is correct" templates="//@templates.0" supports="//@strategies.0/@supportedBy.0"/>
-  <goals id="G2" description="The query specification in Ctx0 is correct" templates="//@templates.0" supports="//@strategies.0/@supportedBy.1"/>
-  <goals id="G3" description="The model in Ctx0 is correct" templates="//@templates.0" supports="//@strategies.0/@supportedBy.2"/>
-  <goals id="G4.X" description="Query result {X}, {safety goal}" templates="//@templates.0" valid="false" supports="//@strategies.1/@supportedBy.0"/>
-  <goals id="G4" description="For each scenario in Ctx1, {safety goal}" templates="//@templates.0" valid="false" supports="//@strategies.0/@supportedBy.3">
+  <goals id="G1" description="The query engine is correct" templates="//@templates.0" templateId="analysisGoal" supports="//@strategies.0/@supportedBy.0"/>
+  <goals id="G2" description="The query specification in Ctx0 is correct" templates="//@templates.0" templateId="queryGoal" supports="//@strategies.0/@supportedBy.1"/>
+  <goals id="G3" description="The model in Ctx0 is correct" templates="//@templates.0" templateId="modelGoal" supports="//@strategies.0/@supportedBy.2"/>
+  <goals id="G4.X" description="Query result {X}, {safety goal}" templates="//@templates.0" templateId="resultGoal" valid="false" supports="//@strategies.1/@supportedBy.0"/>
+  <goals id="G4" description="For each scenario in Ctx1, {safety goal}" templates="//@templates.0" templateId="scenarioGoal" valid="false" supports="//@strategies.0/@supportedBy.3">
     <supportedBy target="//@strategies.1"/>
     <inContextOf context="//@contexts.1"/>
   </goals>
-  <strategies id="S0" description="Argument over scenarios identified by model query" templates="//@templates.0" supports="//@goals.0/@supportedBy.0">
+  <strategies id="S0" description="Argument over scenarios identified by model query" templates="//@templates.0" templateId="queryStrategy" supports="//@goals.0/@supportedBy.0">
     <supportedBy target="//@goals.1"/>
     <supportedBy target="//@goals.2"/>
     <supportedBy target="//@goals.3"/>
     <supportedBy target="//@goals.5"/>
     <inContextOf context="//@contexts.0"/>
   </strategies>
-  <strategies id="S1" description="Decomposition over scenarios" templates="//@templates.0" supports="//@goals.5/@supportedBy.0">
+  <strategies id="S1" description="Decomposition over scenarios" templates="//@templates.0" templateId="resultStrategy" supports="//@goals.5/@supportedBy.0">
     <supportedBy target="//@goals.4"/>
   </strategies>
-  <contexts xsi:type="gsn.templates:FilesContext" id="Ctx0" description="Query '{query}' evaluated on model '{model}'" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.0"/>
-  <contexts id="Ctx1" description="{Query results}" templates="//@templates.0" valid="false" contextOf="//@goals.5/@inContextOf.0"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="Ctx0" description="Query '{query}' evaluated on model '{model}'" templates="//@templates.0" templateId="filesCtx" valid="false" contextOf="//@strategies.0/@inContextOf.0"/>
+  <contexts id="Ctx1" description="{Query results}" templates="//@templates.0" templateId="resultCtx" valid="false" contextOf="//@goals.5/@inContextOf.0"/>
   <templates xsi:type="gsn.templates:AnalyticTemplate" elements="//@goals.0 //@contexts.0 //@contexts.1 //@strategies.0 //@goals.2 //@goals.3 //@strategies.1 //@goals.4 //@goals.1 //@goals.5" id="QueryAnalysis" loaderBundleName="edu.toronto.cs.se.mmint.examples.ifm24"/>
 </gsn:SafetyCase>

@@ -70,47 +70,35 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
 
   @Override
   public void import_(PLGSNAnalyticTemplate plTemplate, ProductLine productLine) throws Exception {
-    var types = GSNPackage.eINSTANCE;
+    var gsn = GSNPackage.eINSTANCE;
     var builder = new PLGSNBuilder(productLine);
-    var mcStrategy = (PLGSNArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
-      .filter(c -> c.getType() == types.getStrategy())
-      .findFirst().get();
-    var desc = mcStrategy.getAttribute(types.getArgumentElement_Description()).get(0)
+    var mcStrategy = plTemplate.getElementsById().get("mcStrategy");
+    var desc = mcStrategy.getAttribute(gsn.getArgumentElement_Description()).get(0)
       .replace("model checking", "lifted model checking");
-    mcStrategy.setAttribute(types.getArgumentElement_Description(), desc);
-    var liftingGoal = builder.createGoal("G5", "The lifted model checker is correct", null);
-    plTemplate.addReference(types.getTemplate_Elements(), liftingGoal);
-    builder.addSupporter(mcStrategy, liftingGoal);
+    mcStrategy.setAttribute(gsn.getArgumentElement_Description(), desc);
+    var liftedGoal = builder.createGoal("G5", "The lifted model checker is correct", null);
+    liftedGoal.addAttribute(gsn.getArgumentElement_TemplateId(), "liftedGoal");
+    plTemplate.addReference(gsn.getTemplate_Elements(), liftedGoal);
+    builder.addSupporter(mcStrategy, liftedGoal);
   }
 
   @Override
   public void instantiate(PLGSNAnalyticTemplate plTemplate) throws Exception {
-    var types = GSNPackage.eINSTANCE;
-    var productLine = (ProductLine) plTemplate.eContainer();
-    var builder = new PLGSNBuilder(productLine);
+    var gsn = GSNPackage.eINSTANCE;
+    var templateElems = plTemplate.getElementsById();
     // convert model to .dot file
-    var mcStrategy = (PLGSNArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
-      .filter(c -> c.getType() == types.getStrategy())
-      .findFirst().get();
+    var mcStrategy = templateElems.get("mcStrategy");
     var safetyGoal = (PLGSNArgumentElement) mcStrategy
-      .getReference(types.getSupporter_Supports()).get(0)
-      .getReference(types.getSupportedBy_Source()).get(0);
+      .getReference(gsn.getSupporter_Supports()).get(0)
+      .getReference(gsn.getSupportedBy_Source()).get(0);
     String modelPath;
-    var otherTemplate = safetyGoal.getReference(types.getArgumentElement_Templates());
+    var otherTemplates = safetyGoal.getReference(gsn.getArgumentElement_Templates());
     var isConnected =
-      !otherTemplate.isEmpty() &&
-      ((PLGSNTemplate) otherTemplate.get(0)).getAttribute(types.getTemplate_Id()).get(0).equals("QueryAnalysis");
+      !otherTemplates.isEmpty() &&
+      otherTemplates.get(0).getAttribute(gsn.getTemplate_Id()).get(0).equals("QueryAnalysis");
     if (isConnected) {
       // connected with query analysis template, extract model from it
-      var otherFilesCtx = safetyGoal
-        .getReference(types.getSupporter_Supports()).get(0)
-        .getReference(types.getSupportedBy_Source()).get(0) // result strategy
-        .getReference(types.getSupporter_Supports()).get(0)
-        .getReference(types.getSupportedBy_Source()).get(0) // scenario goal
-        .getReference(types.getSupporter_Supports()).get(0)
-        .getReference(types.getSupportedBy_Source()).get(0) // query strategy
-        .getReference(types.getContextualizable_InContextOf()).get(0)
-        .getReference(types.getInContextOf_Context()).get(0);
+      var otherFilesCtx = ((PLGSNTemplate) otherTemplates.get(0)).getElementsById().get("filesCtx");
       var paths = otherFilesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
       modelPath = paths.get(1);
     }
@@ -130,7 +118,7 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     FileUtils.createTextFile(dotPath, dot, false);
     // run model checker and process results
     var dialogInitial = (isConnected) ?
-      safetyGoal.getAttribute(types.getArgumentElement_Description()).get(0).split("'")[1] :
+      safetyGoal.getAttribute(gsn.getArgumentElement_Description()).get(0).split("'")[1] :
       null;
     var property = MIDDialogs.getBigStringInput("Run Product Line analysis", "Insert model property to check",
                                                 dialogInitial);
@@ -139,13 +127,11 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     var propertyPath = FileUtils.replaceLastSegmentInPath(modelPath, PROPERTY_FILE);
     Files.writeString(Paths.get(propertyPath), property);
     //TODO change all ids to match connected?
-    var filesCtx = mcStrategy
-      .getReference(types.getContextualizable_InContextOf()).get(0)
-      .getReference(types.getInContextOf_Context()).get(0);
-    var filesDesc = filesCtx.getAttribute(types.getArgumentElement_Description()).get(0)
+    var filesCtx = templateElems.get("filesCtx");
+    var filesDesc = filesCtx.getAttribute(gsn.getArgumentElement_Description()).get(0)
       .replace("{property}", FileUtils.getLastSegmentFromPath(propertyPath))
       .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath));
-    filesCtx.setAttribute(types.getArgumentElement_Description(), filesDesc);
+    filesCtx.setAttribute(gsn.getArgumentElement_Description(), filesDesc);
     filesCtx.setManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
                               ECollections.asEList(List.of(propertyPath, modelPath)));
     final var RUN_SH = """
@@ -160,24 +146,20 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     Files.writeString(runPath, RUN_SH);
     var result = FileUtils.runShell(runPath.getParent().toString(), "bash", RUN_SH_FILE);
     Files.writeString(Paths.get(FileUtils.replaceLastSegmentInPath(modelPath, SAT_FILE)), result);
-    var satGoal = mcStrategy
-      .getReference(types.getSupportable_SupportedBy()).get(3)
-      .getReference(types.getSupportedBy_Target()).get(0);
-    var satGoalDesc = satGoal.getAttribute(types.getArgumentElement_Description()).get(0);
+    var satGoal = templateElems.get("satGoal");
+    var satGoalDesc = satGoal.getAttribute(gsn.getArgumentElement_Description()).get(0);
     var holds = (result.contains("TRUE")) ? "holds" : "does not hold";
-    satGoal.setAttribute(types.getArgumentElement_Description(), satGoalDesc.replace("{holds?}", holds));
-    var satSolution = satGoal
-      .getReference(types.getSupportable_SupportedBy()).get(0)
-      .getReference(types.getSupportedBy_Target()).get(0);
-    var satSolDesc = satSolution.getAttribute(types.getArgumentElement_Description()).get(0)
+    satGoal.setAttribute(gsn.getArgumentElement_Description(), satGoalDesc.replace("{holds?}", holds));
+    var satSolution = templateElems.get("satSolution");
+    var satSolDesc = satSolution.getAttribute(gsn.getArgumentElement_Description()).get(0)
       .replace("{output}", SAT_FILE);
-    satSolution.setAttribute(types.getArgumentElement_Description(), satSolDesc);
+    satSolution.setAttribute(gsn.getArgumentElement_Description(), satSolDesc);
     if (!safetyGoal.isAlwaysPresent()) {
       var pc = safetyGoal.getPresenceCondition();
-      plTemplate.getStreamOfReference(types.getTemplate_Elements()).forEach(e -> {
+      plTemplate.getStreamOfReference(gsn.getTemplate_Elements()).forEach(e -> {
         e.setPresenceCondition(pc);
-        e.getStreamOfReference(types.getSupportable_SupportedBy()).forEach(sb -> sb.setPresenceCondition(pc));
-        e.getStreamOfReference(types.getContextualizable_InContextOf()).forEach(ico -> ico.setPresenceCondition(pc));
+        e.getStreamOfReference(gsn.getSupportable_SupportedBy()).forEach(sb -> sb.setPresenceCondition(pc));
+        e.getStreamOfReference(gsn.getContextualizable_InContextOf()).forEach(ico -> ico.setPresenceCondition(pc));
       });
     }
   }

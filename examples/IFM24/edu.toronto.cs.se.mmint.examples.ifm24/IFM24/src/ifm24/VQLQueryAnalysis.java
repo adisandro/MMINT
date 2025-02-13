@@ -26,13 +26,13 @@ import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNBuilder;
 import edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
+import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
@@ -56,20 +56,16 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
 
   @Override
   public void instantiate(AnalyticTemplate template) throws Exception {
-    // get template elems
     var safetyCase = (SafetyCase) template.eContainer();
     var builder = new GSNTemplatesBuilder(safetyCase);
-    var templateElems = template.getElements();
-    var queryStrategy = templateElems.stream()
-      .filter(Strategy.class::isInstance)
-      .map(Strategy.class::cast)
-      .findFirst().get();
-    var safetyGoal = queryStrategy.getSupports().get(0).getSource();
-    var filesCtx = (FilesContext) queryStrategy.getInContextOf().get(0).getContext();
-    var scenarioGoal = (Goal) queryStrategy.getSupportedBy().get(3).getTarget();
-    var resultStrategy = (Strategy) scenarioGoal.getSupportedBy().get(0).getTarget();
-    var resultCtx = scenarioGoal.getInContextOf().get(0).getContext();
-    var resultGoal = resultStrategy.getSupportedBy().get(0).getTarget();
+    // get template elems
+    var templateElems = template.getElementsById();
+    var safetyGoal = (Goal) templateElems.get("safetyGoal");
+    var filesCtx = (FilesContext) templateElems.get("filesCtx");
+    var scenarioGoal = (Goal) templateElems.get("scenarioGoal");
+    var resultStrategy = (Strategy) templateElems.get("resultStrategy");
+    var resultCtx = (Context) templateElems.get("resultCtx");
+    var resultGoal = (Goal) templateElems.get("resultGoal");
     safetyGoal.instantiate(template);
     var safetyDesc = safetyGoal.getDescription();
     var resultId = resultGoal.getId();
@@ -80,7 +76,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var rootModelObj = FileUtils.readModelFile(modelPath, null, true);
     var querySpec = SiriusEvaluateQuery.selectQuery(rootModelObj);
     var queryResults = querySpec.evaluateQuery(rootModelObj, List.of());
-    templateElems.remove(resultGoal);
+    template.getElements().remove(resultGoal);
     safetyCase.getGoals().remove(resultGoal);
     resultStrategy.getSupportedBy().remove(0);
     filesCtx.setDescription(
@@ -100,7 +96,8 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
       resultCtxDesc += "\n'" + resultText + "'";
       resultGoal = builder.createGoal(resultId.replace("X", String.valueOf(i)),
                                       resultDesc.replace("{X}", "'" + resultText + "'"));
-      templateElems.add(resultGoal);
+      resultGoal.setTemplateId("resultGoal" + i);
+      template.getElements().add(resultGoal);
       builder.addSupporter(resultStrategy, resultGoal);
       i++;
     }
@@ -109,54 +106,39 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
 
   @Override
   public void import_(PLGSNAnalyticTemplate plTemplate, ProductLine productLine) throws Exception {
-    var types = GSNPackage.eINSTANCE;
+    var gsn = GSNPackage.eINSTANCE;
     var builder = new PLGSNBuilder(productLine);
-    var queryStrategy = (PLGSNArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
-      .filter(c -> c.getType() == types.getStrategy())
-      .findFirst().get();
-    var desc = queryStrategy.getAttribute(types.getArgumentElement_Description()).get(0)
+    var queryStrategy = plTemplate.getElementsById().get("queryStrategy");
+    var desc = queryStrategy.getAttribute(gsn.getArgumentElement_Description()).get(0)
       .replace("model query", "lifted model query");
-    queryStrategy.setAttribute(types.getArgumentElement_Description(), desc);
-    var liftingGoal = builder.createGoal("G5", "The lifted query engine is correct", null);
-    plTemplate.addReference(types.getTemplate_Elements(), liftingGoal);
-    builder.addSupporter(queryStrategy, liftingGoal);
+    queryStrategy.setAttribute(gsn.getArgumentElement_Description(), desc);
+    var liftedGoal = builder.createGoal("G5", "The lifted query engine is correct", null);
+    liftedGoal.addAttribute(gsn.getArgumentElement_TemplateId(), "liftedGoal");
+    plTemplate.addReference(gsn.getTemplate_Elements(), liftedGoal);
+    builder.addSupporter(queryStrategy, liftedGoal);
   }
 
   @Override
   public void instantiate(PLGSNAnalyticTemplate plTemplate) throws Exception {
-    var types = GSNPackage.eINSTANCE;
+    var gsn = GSNPackage.eINSTANCE;
     var productLine = (ProductLine) plTemplate.eContainer();
     var builder = new PLGSNBuilder(productLine);
     // get template elems
-    var queryStrategy = (PLGSNArgumentElement) plTemplate.getStreamOfReference(types.getTemplate_Elements())
-      .filter(c -> c.getType() == types.getStrategy())
-      .findFirst().get();
-    var safetyGoal = (PLGSNArgumentElement) queryStrategy
-      .getReference(types.getSupporter_Supports()).get(0)
-      .getReference(types.getSupportedBy_Source()).get(0);
-    var filesCtx = queryStrategy
-      .getReference(types.getContextualizable_InContextOf()).get(0)
-      .getReference(types.getInContextOf_Context()).get(0);
-    var scenarioGoal = queryStrategy
-      .getReference(types.getSupportable_SupportedBy()).get(3)
-      .getReference(types.getSupportedBy_Target()).get(0);
-    var resultStrategy = (PLGSNArgumentElement) scenarioGoal
-      .getReference(types.getSupportable_SupportedBy()).get(0)
-      .getReference(types.getSupportedBy_Target()).get(0);
-    var resultCtx = scenarioGoal
-      .getReference(types.getContextualizable_InContextOf()).get(0)
-      .getReference(types.getInContextOf_Context()).get(0);
-    var resultGoal = (PLGSNArgumentElement) resultStrategy
-      .getReference(types.getSupportable_SupportedBy()).get(0)
-      .getReference(types.getSupportedBy_Target()).get(0);
+    var templateElems = plTemplate.getElementsById();
+    var safetyGoal = templateElems.get("safetyGoal");
+    var filesCtx = templateElems.get("filesCtx");
+    var scenarioGoal = templateElems.get("scenarioGoal");
+    var resultStrategy = templateElems.get("resultStrategy");
+    var resultCtx = templateElems.get("resultCtx");
+    var resultGoal = templateElems.get("resultGoal");
     safetyGoal.instantiate(plTemplate);
-    var safetyDesc = safetyGoal.getAttribute(types.getArgumentElement_Description()).get(0);
-    var resultId = resultGoal.getAttribute(types.getArgumentElement_Id()).get(0);
-    var resultDesc = resultGoal.getAttribute(types.getArgumentElement_Description()).get(0)
+    var safetyDesc = safetyGoal.getAttribute(gsn.getArgumentElement_Description()).get(0);
+    var resultId = resultGoal.getAttribute(gsn.getArgumentElement_Id()).get(0);
+    var resultDesc = resultGoal.getAttribute(gsn.getArgumentElement_Description()).get(0)
       .replace("{safety goal}", safetyDesc);
-    var scenarioDesc = scenarioGoal.getAttribute(types.getArgumentElement_Description()).get(0)
+    var scenarioDesc = scenarioGoal.getAttribute(gsn.getArgumentElement_Description()).get(0)
                                    .replace("{safety goal}", safetyDesc);
-    scenarioGoal.setAttribute(types.getArgumentElement_Description(), scenarioDesc);
+    scenarioGoal.setAttribute(gsn.getArgumentElement_Description(), scenarioDesc);
     // run query and process results
     var modelPath = MIDDialogs.selectFile("Run Product Line analysis", "Select a Product Line model",
                                           "There are no Product Line models in the workspace", Set.of("productline"));
@@ -164,13 +146,13 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var querySpec = SiriusEvaluateQuery.selectQuery(rootModelObj);
     var queryResults = querySpec.evaluateQuery(rootModelObj, List.of());
     resultGoal.delete();
-    for (var supportedBy : resultGoal.getReference(types.getSupporter_Supports())) {
+    for (var supportedBy : resultGoal.getReference(gsn.getSupporter_Supports())) {
       supportedBy.delete();
     }
-    var filesDesc = filesCtx.getAttribute(types.getArgumentElement_Description()).get(0)
+    var filesDesc = filesCtx.getAttribute(gsn.getArgumentElement_Description()).get(0)
                             .replace("{query}", querySpec.query().toString())
                             .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath));
-    filesCtx.setAttribute(types.getArgumentElement_Description(), filesDesc);
+    filesCtx.setAttribute(gsn.getArgumentElement_Description(), filesDesc);
     filesCtx.setManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
                               ECollections.asEList(List.of(FileUtils.prependWorkspacePath(querySpec.filePath()),
                                                            FileUtils.prependWorkspacePath(modelPath))));
@@ -186,10 +168,11 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
       resultCtxDesc += "\n'" + resultText + "'";
       resultGoal = builder.createGoal(resultId.replace("X", String.valueOf(i)),
                                       resultDesc.replace("{X}", "'" + resultText + "'"), pc);
-      plTemplate.addReference(types.getTemplate_Elements(), resultGoal, pc);
+      resultGoal.addAttribute(gsn.getArgumentElement_TemplateId(), "resultGoal" + i);
+      plTemplate.addReference(gsn.getTemplate_Elements(), resultGoal, pc);
       builder.addSupporter(resultStrategy, resultGoal);
       i++;
     }
-    resultCtx.setAttribute(types.getArgumentElement_Description(), resultCtxDesc);
+    resultCtx.setAttribute(gsn.getArgumentElement_Description(), resultCtxDesc);
   }
 }
