@@ -24,7 +24,6 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.DomainDecompositionStrategy;
 import edu.toronto.cs.se.mmint.types.gsn.templates.DomainGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.DecompositionUtils;
-import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl;
 
 /**
@@ -129,10 +128,10 @@ public class DomainGoalImpl extends GoalImpl implements DomainGoal {
    * @generated NOT
    */
   @Override
-  public void validate(Template template) throws Exception {
+  public void validate() throws Exception {
     // the validity of this goal is managed by its supporting strategy
     var strategy = (DomainDecompositionStrategy) DecompositionUtils.moveOneStrategyUp(this);
-    strategy.validate(template);
+    strategy.validate();
   }
 
   /**

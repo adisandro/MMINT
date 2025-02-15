@@ -110,7 +110,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
   @Override
   public EList<ArgumentElement> getElements() {
     if (this.elements == null) {
-      this.elements = new EObjectWithInverseResolvingEList.ManyInverse<>(ArgumentElement.class, this, GSNPackage.TEMPLATE__ELEMENTS, GSNPackage.ARGUMENT_ELEMENT__TEMPLATES);
+      this.elements = new EObjectWithInverseResolvingEList<>(ArgumentElement.class, this, GSNPackage.TEMPLATE__ELEMENTS, GSNPackage.ARGUMENT_ELEMENT__TEMPLATE);
     }
     return this.elements;
   }
@@ -178,13 +178,13 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
           element.eContainer().eContainer() == null) {
         continue;
       }
-      element.instantiate(this);
+      element.instantiate();
     }
     for (var element : copyElements) {
       if (element.isValid() || element instanceof RelationshipDecorator || element.eContainer() == null) {
         continue;
       }
-      element.instantiate(this);
+      element.instantiate();
     }
   }
 
@@ -196,7 +196,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
       if (element.eContainer() == null) { // == deleted
         continue;
       }
-      element.validate(this);
+      element.validate();
     }
   }
 

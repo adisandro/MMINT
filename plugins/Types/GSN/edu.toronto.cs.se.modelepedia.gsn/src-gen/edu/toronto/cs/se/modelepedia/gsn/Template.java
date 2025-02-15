@@ -40,13 +40,13 @@ public interface Template extends EObject {
   /**
    * Returns the value of the '<em><b>Elements</b></em>' reference list.
    * The list contents are of type {@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement}.
-   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getTemplates <em>Templates</em>}'.
+   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getTemplate <em>Template</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Elements</em>' reference list.
    * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getTemplate_Elements()
-   * @see edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getTemplates
-   * @model opposite="templates" required="true"
+   * @see edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getTemplate
+   * @model opposite="template" required="true"
    * @generated
    */
   EList<ArgumentElement> getElements();

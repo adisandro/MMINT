@@ -42,15 +42,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//ArgumentElement/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//ArgumentElement/description"/>
       <genFeatures createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//ArgumentElement/status"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//ArgumentElement/templates"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gsn.ecore#//ArgumentElement/template"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//ArgumentElement/templateId"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//ArgumentElement/valid"/>
-      <genOperations ecoreOperation="gsn.ecore#//ArgumentElement/validate">
-        <genParameters ecoreParameter="gsn.ecore#//ArgumentElement/validate/template"/>
-      </genOperations>
-      <genOperations ecoreOperation="gsn.ecore#//ArgumentElement/instantiate">
-        <genParameters ecoreParameter="gsn.ecore#//ArgumentElement/instantiate/template"/>
-      </genOperations>
+      <genOperations ecoreOperation="gsn.ecore#//ArgumentElement/validate"/>
+      <genOperations ecoreOperation="gsn.ecore#//ArgumentElement/instantiate"/>
     </genClasses>
     <genClasses image="false" ecoreClass="gsn.ecore#//Decoratable">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//Decoratable/decorators"/>

@@ -13,7 +13,6 @@
 package edu.toronto.cs.se.modelepedia.gsn.design.context;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
@@ -38,7 +37,7 @@ public class ValidateTemplate extends AbstractExternalJavaAction {
       return false;
     }
     var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    if (!(modelObj instanceof ArgumentElement templateElem) || templateElem.getTemplates().isEmpty()) {
+    if (!(modelObj instanceof ArgumentElement templateElem) || templateElem.getTemplate() == null) {
       return false;
     }
     return true;
@@ -46,33 +45,31 @@ public class ValidateTemplate extends AbstractExternalJavaAction {
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var templates = ((ArgumentElement) ((DSemanticDecorator) arg0.iterator().next()).getTarget()).getTemplates();
-    var sSession = SessionManager.INSTANCE.getSession(templates.get(0));
+    var template = ((ArgumentElement) ((DSemanticDecorator) arg0.iterator().next()).getTarget()).getTemplate();
+    var sSession = SessionManager.INSTANCE.getSession(template);
     var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(new ValidateTemplateCommand(sDomain, templates));
+    sDomain.getCommandStack().execute(new ValidateTemplateCommand(sDomain, template));
   }
 
   private class ValidateTemplateCommand extends RecordingCommand {
-    List<Template> templates;
+    Template template;
 
-    public ValidateTemplateCommand(TransactionalEditingDomain domain, List<Template> templates) {
+    public ValidateTemplateCommand(TransactionalEditingDomain domain, Template template) {
       super(domain);
-      this.templates = templates;
+      this.template = template;
     }
 
     @Override
     protected void doExecute() {
       var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
       var title = "Validate Template";
-      for (var template : this.templates) {
-        var message = "The GSN template " + template.getId() + " is ";
-        try {
-          template.validate();
-          MessageDialog.openInformation(shell, title, message + "instantiated correctly");
-        }
-        catch (Exception e) {
-          MMINTException.print(IStatus.ERROR, message + "not instantiated correctly", e);
-        }
+      var message = "The GSN template " + this.template.getId() + " is ";
+      try {
+        this.template.validate();
+        MessageDialog.openInformation(shell, title, message + "instantiated correctly");
+      }
+      catch (Exception e) {
+        MMINTException.print(IStatus.ERROR, message + "not instantiated correctly", e);
       }
     }
   }

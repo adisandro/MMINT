@@ -13,7 +13,6 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -99,18 +98,28 @@ public interface ArgumentElement extends EObject {
   void setStatus(ImpactAnnotation value);
 
   /**
-   * Returns the value of the '<em><b>Templates</b></em>' reference list.
-   * The list contents are of type {@link edu.toronto.cs.se.modelepedia.gsn.Template}.
+   * Returns the value of the '<em><b>Template</b></em>' reference.
    * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.gsn.Template#getElements <em>Elements</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Templates</em>' reference list.
-   * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getArgumentElement_Templates()
+   * @return the value of the '<em>Template</em>' reference.
+   * @see #setTemplate(Template)
+   * @see edu.toronto.cs.se.modelepedia.gsn.GSNPackage#getArgumentElement_Template()
    * @see edu.toronto.cs.se.modelepedia.gsn.Template#getElements
    * @model opposite="elements"
    * @generated
    */
-  EList<Template> getTemplates();
+  Template getTemplate();
+
+  /**
+   * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.gsn.ArgumentElement#getTemplate <em>Template</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Template</em>' reference.
+   * @see #getTemplate()
+   * @generated
+   */
+  void setTemplate(Template value);
 
   /**
    * Returns the value of the '<em><b>Template Id</b></em>' attribute.
@@ -158,31 +167,19 @@ public interface ArgumentElement extends EObject {
   void setValid(boolean value);
 
   /**
-   * <!-- begin-user-doc --> Instantiates this template element. The base implementation searches and replaces
-   * placeholder text formatted like {placeholder} in the description.
-   *
-   * @param template
-   *          The template that contains this template element.
-   *
-   * @throws Exception
-   *           If this template element can not be instantiated. <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" templateRequired="true"
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */
-  void instantiate(Template template) throws Exception;
+  void validate() throws Exception;
 
   /**
-   * <!-- begin-user-doc --> Validates the correctness of this instantiated template element. The base implementation
-   * checks that no placeholder text formatted like {placeholder} is present in the description.
-   *
-   * @param template
-   *          The template that contains this template element.
-   *
-   * @throws Exception
-   *           If this template element has not been instantiated correctly. <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" templateRequired="true"
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */
-  void validate(Template template) throws Exception;
+  void instantiate() throws Exception;
 
 } // ArgumentElement

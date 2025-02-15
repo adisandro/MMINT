@@ -32,12 +32,8 @@
         eType="#//Template" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArgumentElement" abstract="true">
-    <eOperations name="validate" eExceptions="#//Exception">
-      <eParameters name="template" lowerBound="1" eType="#//Template"/>
-    </eOperations>
-    <eOperations name="instantiate" eExceptions="#//Exception">
-      <eParameters name="template" lowerBound="1" eType="#//Template"/>
-    </eOperations>
+    <eOperations name="validate" eExceptions="#//Exception"/>
+    <eOperations name="instantiate" eExceptions="#//Exception"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="gmf.label">
@@ -46,8 +42,8 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="status" eType="#//ImpactAnnotation"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="templates" upperBound="-1"
-        eType="#//Template" eOpposite="#//Template/elements"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="template" eType="#//Template"
+        eOpposite="#//Template/elements"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="templateId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="valid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="true"/>
@@ -154,7 +150,7 @@
       <eParameters name="change" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" lowerBound="1"
-        upperBound="-1" eType="#//ArgumentElement" eOpposite="#//ArgumentElement/templates"/>
+        upperBound="-1" eType="#//ArgumentElement" eOpposite="#//ArgumentElement/template"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RelationshipDecorator" eSuperTypes="#//Supportable #//Contextualizable">

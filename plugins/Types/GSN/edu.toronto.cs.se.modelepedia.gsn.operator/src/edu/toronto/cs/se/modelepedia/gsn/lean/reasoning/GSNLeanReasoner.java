@@ -34,7 +34,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionStrategy;
-import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyDecompositionTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.PropertyGoal;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNDecompositionTrait;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder;
@@ -189,10 +188,7 @@ public class GSNLeanReasoner extends LeanReasoner implements IGSNDecompositionTr
     justDesc = "Decomposition " + proof + " in " + getName() + ": " + justDesc;
     var just = builder.createJustification(justId, justDesc);
     builder.addInContextOf(strategy, just);
-    strategy.getTemplates().stream()
-      .filter(PropertyDecompositionTemplate.class::isInstance)
-      .findFirst()
-      .ifPresent(t -> t.getElements().add(just));
+    strategy.getTemplate().getElements().add(just);
     WorkspaceSynchronizer.getFile(instanceMID.eResource()).getParent()
       .refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
     if (!valid) {

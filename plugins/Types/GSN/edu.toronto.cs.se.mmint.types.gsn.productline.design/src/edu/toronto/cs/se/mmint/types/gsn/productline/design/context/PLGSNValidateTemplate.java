@@ -13,9 +13,7 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.design.context;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
@@ -41,7 +39,7 @@ public class PLGSNValidateTemplate extends AbstractExternalJavaAction {
     }
     var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
     if (!(modelObj instanceof PLGSNArgumentElement plTemplateElem) ||
-        plTemplateElem.getReference(GSNPackage.eINSTANCE.getArgumentElement_Templates()).isEmpty()) {
+        plTemplateElem.getReference(GSNPackage.eINSTANCE.getArgumentElement_Template()).isEmpty()) {
       return false;
     }
     return true;
@@ -50,36 +48,33 @@ public class PLGSNValidateTemplate extends AbstractExternalJavaAction {
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
     var plTemplateElem = (PLGSNArgumentElement) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    var plTemplates = plTemplateElem.getStreamOfReference(GSNPackage.eINSTANCE.getArgumentElement_Templates())
-      .map(c -> (PLGSNTemplate) c)
-      .collect(Collectors.toList());
+    var plTemplate = (PLGSNTemplate) plTemplateElem.getReference(GSNPackage.eINSTANCE.getArgumentElement_Template())
+                                                   .get(0);
     var sSession = SessionManager.INSTANCE.getSession(plTemplateElem);
     var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(new GSNPLValidateTemplateCommand(sDomain, plTemplates));
+    sDomain.getCommandStack().execute(new GSNPLValidateTemplateCommand(sDomain, plTemplate));
   }
 
   private class GSNPLValidateTemplateCommand extends RecordingCommand {
-    List<PLGSNTemplate> plTemplates;
+    PLGSNTemplate plTemplate;
 
-    public GSNPLValidateTemplateCommand(TransactionalEditingDomain domain, List<PLGSNTemplate> plTemplates) {
+    public GSNPLValidateTemplateCommand(TransactionalEditingDomain domain, PLGSNTemplate plTemplate) {
       super(domain);
-      this.plTemplates = plTemplates;
+      this.plTemplate = plTemplate;
     }
 
     @Override
     protected void doExecute() {
       var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
       var title = "Validate Template";
-      for (var plTemplate : this.plTemplates) {
-        var message = "The GSN template " +
-                      String.join(",", plTemplate.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id())) + " is ";
-        try {
-          plTemplate.validate();
-          MessageDialog.openInformation(shell, title, message + "instantiated correctly");
-        }
-        catch (Exception e) {
-          MMINTException.print(IStatus.ERROR, message + "not instantiated correctly", e);
-        }
+      var message = "The GSN template " +
+                    this.plTemplate.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()).get(0) + " is ";
+      try {
+        this.plTemplate.validate();
+        MessageDialog.openInformation(shell, title, message + "instantiated correctly");
+      }
+      catch (Exception e) {
+        MMINTException.print(IStatus.ERROR, message + "not instantiated correctly", e);
       }
     }
   }

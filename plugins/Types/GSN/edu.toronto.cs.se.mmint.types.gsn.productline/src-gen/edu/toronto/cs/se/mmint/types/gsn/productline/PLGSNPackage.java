@@ -295,22 +295,22 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_ARGUMENT_ELEMENT___DELETE = PLPackage.CLASS___DELETE;
 
   /**
-   * The operation id for the '<em>Validate</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PLGSN_ARGUMENT_ELEMENT___VALIDATE__PLGSNTEMPLATE = PLPackage.CLASS_OPERATION_COUNT + 0;
-
-  /**
    * The operation id for the '<em>Instantiate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_ARGUMENT_ELEMENT___INSTANTIATE__PLGSNTEMPLATE = PLPackage.CLASS_OPERATION_COUNT + 1;
+  int PLGSN_ARGUMENT_ELEMENT___INSTANTIATE = PLPackage.CLASS_OPERATION_COUNT + 0;
+
+  /**
+   * The operation id for the '<em>Validate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ARGUMENT_ELEMENT___VALIDATE = PLPackage.CLASS_OPERATION_COUNT + 1;
 
   /**
    * The number of operations of the '<em>Argument Element</em>' class.
@@ -557,22 +557,13 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_TEMPLATE___GET_ELEMENTS_BY_ID = PLPackage.CLASS_OPERATION_COUNT + 0;
 
   /**
-   * The operation id for the '<em>Validate</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PLGSN_TEMPLATE___VALIDATE = PLPackage.CLASS_OPERATION_COUNT + 1;
-
-  /**
    * The operation id for the '<em>Import </em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE___IMPORT____PRODUCTLINE = PLPackage.CLASS_OPERATION_COUNT + 2;
+  int PLGSN_TEMPLATE___IMPORT____PRODUCTLINE = PLPackage.CLASS_OPERATION_COUNT + 1;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -581,7 +572,16 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE___INSTANTIATE = PLPackage.CLASS_OPERATION_COUNT + 3;
+  int PLGSN_TEMPLATE___INSTANTIATE = PLPackage.CLASS_OPERATION_COUNT + 2;
+
+  /**
+   * The operation id for the '<em>Validate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_TEMPLATE___VALIDATE = PLPackage.CLASS_OPERATION_COUNT + 3;
 
   /**
    * The operation id for the '<em>Impact</em>' operation.
@@ -846,15 +846,6 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_ANALYTIC_TEMPLATE___GET_ELEMENTS_BY_ID = PLGSNPackage.PLGSN_TEMPLATE___GET_ELEMENTS_BY_ID;
 
   /**
-   * The operation id for the '<em>Validate</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PLGSN_ANALYTIC_TEMPLATE___VALIDATE = PLGSNPackage.PLGSN_TEMPLATE___VALIDATE;
-
-  /**
    * The operation id for the '<em>Import </em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -871,6 +862,15 @@ public interface PLGSNPackage extends EPackage {
    * @ordered
    */
   int PLGSN_ANALYTIC_TEMPLATE___INSTANTIATE = PLGSNPackage.PLGSN_TEMPLATE___INSTANTIATE;
+
+  /**
+   * The operation id for the '<em>Validate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ANALYTIC_TEMPLATE___VALIDATE = PLGSNPackage.PLGSN_TEMPLATE___VALIDATE;
 
   /**
    * The operation id for the '<em>Impact</em>' operation.
@@ -939,24 +939,24 @@ public interface PLGSNPackage extends EPackage {
   EClass getPLGSNArgumentElement();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#validate(edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate) <em>Validate</em>}' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Validate</em>' operation.
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#validate(edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate)
-   * @generated
-   */
-  EOperation getPLGSNArgumentElement__Validate__PLGSNTemplate();
-
-  /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#instantiate(edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate) <em>Instantiate</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#instantiate() <em>Instantiate</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Instantiate</em>' operation.
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#instantiate(edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate)
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#instantiate()
    * @generated
    */
-  EOperation getPLGSNArgumentElement__Instantiate__PLGSNTemplate();
+  EOperation getPLGSNArgumentElement__Instantiate();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#validate() <em>Validate</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Validate</em>' operation.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#validate()
+   * @generated
+   */
+  EOperation getPLGSNArgumentElement__Validate();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate <em>Template</em>}'.
@@ -1103,19 +1103,19 @@ public interface PLGSNPackage extends EPackage {
      */
     EClass PLGSN_ARGUMENT_ELEMENT = PLGSNPackage.eINSTANCE.getPLGSNArgumentElement();
     /**
-     * The meta object literal for the '<em><b>Validate</b></em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EOperation PLGSN_ARGUMENT_ELEMENT___VALIDATE__PLGSNTEMPLATE = PLGSNPackage.eINSTANCE.getPLGSNArgumentElement__Validate__PLGSNTemplate();
-    /**
      * The meta object literal for the '<em><b>Instantiate</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation PLGSN_ARGUMENT_ELEMENT___INSTANTIATE__PLGSNTEMPLATE = PLGSNPackage.eINSTANCE.getPLGSNArgumentElement__Instantiate__PLGSNTemplate();
+    EOperation PLGSN_ARGUMENT_ELEMENT___INSTANTIATE = PLGSNPackage.eINSTANCE.getPLGSNArgumentElement__Instantiate();
+    /**
+     * The meta object literal for the '<em><b>Validate</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation PLGSN_ARGUMENT_ELEMENT___VALIDATE = PLGSNPackage.eINSTANCE.getPLGSNArgumentElement__Validate();
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNTemplateImpl <em>Template</em>}' class.
      * <!-- begin-user-doc -->

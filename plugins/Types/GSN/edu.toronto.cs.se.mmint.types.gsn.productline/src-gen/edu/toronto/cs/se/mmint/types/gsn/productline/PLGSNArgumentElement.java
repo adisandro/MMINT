@@ -30,7 +30,7 @@ public interface PLGSNArgumentElement extends edu.toronto.cs.se.mmint.productlin
    * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */
-  void validate(PLGSNTemplate template) throws Exception;
+  void instantiate() throws Exception;
 
   /**
    * <!-- begin-user-doc -->
@@ -38,6 +38,6 @@ public interface PLGSNArgumentElement extends edu.toronto.cs.se.mmint.productlin
    * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */
-  void instantiate(PLGSNTemplate template) throws Exception;
+  void validate() throws Exception;
 
 } // GSNPLArgumentElement

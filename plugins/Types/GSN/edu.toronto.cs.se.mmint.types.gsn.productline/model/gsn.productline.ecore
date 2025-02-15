@@ -3,12 +3,8 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="productline" nsURI="model://edu.toronto.cs.se.mmint.types.gsn.productline"
     nsPrefix="gsn.productline">
   <eClassifiers xsi:type="ecore:EClass" name="PLGSNArgumentElement" eSuperTypes="../../edu.toronto.cs.se.mmint.productline/model/productline.ecore#//Class">
-    <eOperations name="validate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
-      <eParameters name="template" eType="#//PLGSNTemplate"/>
-    </eOperations>
-    <eOperations name="instantiate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
-      <eParameters name="template" eType="#//PLGSNTemplate"/>
-    </eOperations>
+    <eOperations name="instantiate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
+    <eOperations name="validate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PLGSNTemplate" eSuperTypes="../../edu.toronto.cs.se.mmint.productline/model/productline.ecore#//Class">
     <eOperations name="getElementsById" lowerBound="1">
@@ -17,11 +13,11 @@
         <eTypeArguments eClassifier="#//PLGSNArgumentElement"/>
       </eGenericType>
     </eOperations>
-    <eOperations name="validate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
     <eOperations name="import_" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
       <eParameters name="productLine" lowerBound="1" eType="ecore:EClass ../../edu.toronto.cs.se.mmint.productline/model/productline.ecore#//ProductLine"/>
     </eOperations>
     <eOperations name="instantiate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
+    <eOperations name="validate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
     <eOperations name="impact" upperBound="-1" eType="#//PLGSNImpactStep" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
       <eParameters name="step" lowerBound="1" eType="#//PLGSNImpactStep"/>
       <eParameters name="change" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>

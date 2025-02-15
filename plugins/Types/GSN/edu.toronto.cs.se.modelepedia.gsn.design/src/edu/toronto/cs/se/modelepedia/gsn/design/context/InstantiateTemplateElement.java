@@ -36,7 +36,7 @@ public class InstantiateTemplateElement extends AbstractExternalJavaAction {
     }
     var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
     if (!(modelObj instanceof ArgumentElement templateElem) ||
-        templateElem.getTemplates().isEmpty() ||
+        templateElem.getTemplate() == null ||
         templateElem.isValid()) {
       return false;
     }
@@ -61,16 +61,14 @@ public class InstantiateTemplateElement extends AbstractExternalJavaAction {
 
     @Override
     protected void doExecute() {
-      for (var template : this.templateElem.getTemplates()) {
-        try {
-          this.templateElem.instantiate(template);
-          this.templateElem.validate(template);
-        }
-        catch (MIDDialogCancellation e) {}
-        catch (Exception e) {
-          MMINTException.print(IStatus.ERROR, "Error instantiating GSN template element " + this.templateElem.getId(),
-                               e);
-        }
+      try {
+        this.templateElem.instantiate();
+        this.templateElem.validate();
+      }
+      catch (MIDDialogCancellation e) {}
+      catch (Exception e) {
+        MMINTException.print(IStatus.ERROR, "Error instantiating GSN template element " + this.templateElem.getId(),
+                             e);
       }
     }
   }

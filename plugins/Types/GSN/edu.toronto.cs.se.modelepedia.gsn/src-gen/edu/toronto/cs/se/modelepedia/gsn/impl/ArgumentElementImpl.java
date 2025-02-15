@@ -14,7 +14,6 @@
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -23,8 +22,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
@@ -100,14 +97,14 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   protected ImpactAnnotation status;
 
   /**
-   * The cached value of the '{@link #getTemplates() <em>Templates</em>}' reference list.
+   * The cached value of the '{@link #getTemplate() <em>Template</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTemplates()
+   * @see #getTemplate()
    * @generated
    * @ordered
    */
-  protected EList<Template> templates;
+  protected Template template;
 
   /**
    * The default value of the '{@link #getTemplateId() <em>Template Id</em>}' attribute.
@@ -268,11 +265,71 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    * @generated
    */
   @Override
-  public EList<Template> getTemplates() {
-    if (this.templates == null) {
-      this.templates = new EObjectWithInverseResolvingEList.ManyInverse<>(Template.class, this, GSNPackage.ARGUMENT_ELEMENT__TEMPLATES, GSNPackage.TEMPLATE__ELEMENTS);
+  public Template getTemplate() {
+    if (this.template != null && this.template.eIsProxy()) {
+      var oldTemplate = (InternalEObject)this.template;
+      this.template = (Template)eResolveProxy(oldTemplate);
+      if (this.template != oldTemplate) {
+        if (eNotificationRequired()) {
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GSNPackage.ARGUMENT_ELEMENT__TEMPLATE, oldTemplate, this.template));
+        }
+      }
     }
-    return this.templates;
+    return this.template;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Template basicGetTemplate() {
+    return this.template;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetTemplate(Template newTemplate, NotificationChain msgs) {
+    var oldTemplate = this.template;
+    this.template = newTemplate;
+    if (eNotificationRequired()) {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__TEMPLATE, oldTemplate, newTemplate);
+      if (msgs == null) {
+        msgs = notification;
+      }
+      else {
+        msgs.add(notification);
+      }
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setTemplate(Template newTemplate) {
+    if (newTemplate != this.template) {
+      NotificationChain msgs = null;
+      if (this.template != null) {
+        msgs = ((InternalEObject)this.template).eInverseRemove(this, GSNPackage.TEMPLATE__ELEMENTS, Template.class, msgs);
+      }
+      if (newTemplate != null) {
+        msgs = ((InternalEObject)newTemplate).eInverseAdd(this, GSNPackage.TEMPLATE__ELEMENTS, Template.class, msgs);
+      }
+      msgs = basicSetTemplate(newTemplate, msgs);
+      if (msgs != null) {
+        msgs.dispatch();
+      }
+    }
+    else if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNPackage.ARGUMENT_ELEMENT__TEMPLATE, newTemplate, newTemplate));
+    }
   }
 
   /**
@@ -332,8 +389,11 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplates()).basicAdd(otherEnd, msgs);
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATE:
+        if (this.template != null) {
+          msgs = ((InternalEObject)this.template).eInverseRemove(this, GSNPackage.TEMPLATE__ELEMENTS, Template.class, msgs);
+        }
+        return basicSetTemplate((Template)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -347,8 +407,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
     switch (featureID) {
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
         return basicSetStatus(null, msgs);
-      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
-        return ((InternalEList<?>)getTemplates()).basicRemove(otherEnd, msgs);
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATE:
+        return basicSetTemplate(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -366,8 +426,11 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
         return getDescription();
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
         return getStatus();
-      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
-        return getTemplates();
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATE:
+        if (resolve) {
+          return getTemplate();
+        }
+        return basicGetTemplate();
       case GSNPackage.ARGUMENT_ELEMENT__TEMPLATE_ID:
         return getTemplateId();
       case GSNPackage.ARGUMENT_ELEMENT__VALID:
@@ -393,9 +456,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
         setStatus((ImpactAnnotation)newValue);
         return;
-      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
-        getTemplates().clear();
-        getTemplates().addAll((Collection<? extends Template>)newValue);
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATE:
+        setTemplate((Template)newValue);
         return;
       case GSNPackage.ARGUMENT_ELEMENT__TEMPLATE_ID:
         setTemplateId((String)newValue);
@@ -423,8 +485,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
         setStatus((ImpactAnnotation)null);
         return;
-      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
-        getTemplates().clear();
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATE:
+        setTemplate((Template)null);
         return;
       case GSNPackage.ARGUMENT_ELEMENT__TEMPLATE_ID:
         setTemplateId(ArgumentElementImpl.TEMPLATE_ID_EDEFAULT);
@@ -449,8 +511,8 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
         return ArgumentElementImpl.DESCRIPTION_EDEFAULT == null ? this.description != null : !ArgumentElementImpl.DESCRIPTION_EDEFAULT.equals(this.description);
       case GSNPackage.ARGUMENT_ELEMENT__STATUS:
         return this.status != null;
-      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATES:
-        return this.templates != null && !this.templates.isEmpty();
+      case GSNPackage.ARGUMENT_ELEMENT__TEMPLATE:
+        return this.template != null;
       case GSNPackage.ARGUMENT_ELEMENT__TEMPLATE_ID:
         return ArgumentElementImpl.TEMPLATE_ID_EDEFAULT == null ? this.templateId != null : !ArgumentElementImpl.TEMPLATE_ID_EDEFAULT.equals(this.templateId);
       case GSNPackage.ARGUMENT_ELEMENT__VALID:
@@ -467,17 +529,17 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case GSNPackage.ARGUMENT_ELEMENT___VALIDATE__TEMPLATE:
+      case GSNPackage.ARGUMENT_ELEMENT___VALIDATE:
         try {
-          validate((Template)arguments.get(0));
+          validate();
           return null;
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE__TEMPLATE:
+      case GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE:
         try {
-          instantiate((Template)arguments.get(0));
+          instantiate();
           return null;
         }
         catch (Throwable throwable) {
@@ -514,7 +576,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    * @generated NOT
    */
   @Override
-  public void instantiate(Template template) throws Exception {
+  public void instantiate() throws Exception {
     var title = "Instantiate placeholder text";
     var node = eClass().getName() + " " + getId();
     while (true) {
@@ -534,7 +596,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    * @generated NOT
    */
   @Override
-  public void validate(Template template) throws Exception {
+  public void validate() throws Exception {
     if (GSNBuilder.findPattern(getDescription()).isPresent()) {
       setValid(false);
       throw new MMINTException(eClass().getName() + " " + getId() +

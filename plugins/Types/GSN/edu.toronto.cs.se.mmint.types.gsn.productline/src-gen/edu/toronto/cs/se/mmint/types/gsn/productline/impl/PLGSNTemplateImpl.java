@@ -97,7 +97,7 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
           plElement.eContainer() == null) {
         continue;
       }
-      plElement.instantiate(this);
+      plElement.instantiate();
     }
   }
 
@@ -114,7 +114,7 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
       if (plElement.eContainer() == null) { // == deleted
         continue;
       }
-      plElement.validate(this);
+      plElement.validate();
     }
   }
 
@@ -144,14 +144,6 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
     switch (operationID) {
       case PLGSNPackage.PLGSN_TEMPLATE___GET_ELEMENTS_BY_ID:
         return getElementsById();
-      case PLGSNPackage.PLGSN_TEMPLATE___VALIDATE:
-        try {
-          validate();
-          return null;
-        }
-        catch (Throwable throwable) {
-          throw new InvocationTargetException(throwable);
-        }
       case PLGSNPackage.PLGSN_TEMPLATE___IMPORT____PRODUCTLINE:
         try {
           import_((ProductLine)arguments.get(0));
@@ -163,6 +155,14 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
       case PLGSNPackage.PLGSN_TEMPLATE___INSTANTIATE:
         try {
           instantiate();
+          return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case PLGSNPackage.PLGSN_TEMPLATE___VALIDATE:
+        try {
+          validate();
           return null;
         }
         catch (Throwable throwable) {

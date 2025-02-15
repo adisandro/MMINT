@@ -13,7 +13,6 @@
 package edu.toronto.cs.se.modelepedia.gsn.design.context;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
@@ -40,8 +39,8 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
     if (!(modelObj instanceof ArgumentElement templateElem)) {
       return false;
     }
-    var templates = templateElem.getTemplates();
-    if (templates.isEmpty() || templates.stream().flatMap(t -> t.getElements().stream()).allMatch(e -> e.isValid())) {
+    var template = templateElem.getTemplate();
+    if (template == null || template.getElements().stream().allMatch(e -> e.isValid())) {
       return false;
     }
     return true;
@@ -49,31 +48,29 @@ public class InstantiateTemplate extends AbstractExternalJavaAction {
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var templates = ((ArgumentElement) ((DSemanticDecorator) arg0.iterator().next()).getTarget()).getTemplates();
-    var sSession = SessionManager.INSTANCE.getSession(templates.get(0));
+    var template = ((ArgumentElement) ((DSemanticDecorator) arg0.iterator().next()).getTarget()).getTemplate();
+    var sSession = SessionManager.INSTANCE.getSession(template);
     var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(new InstantiateTemplateCommand(sDomain, templates));
+    sDomain.getCommandStack().execute(new InstantiateTemplateCommand(sDomain, template));
   }
 
   private class InstantiateTemplateCommand extends RecordingCommand {
-    List<Template> templates;
+    Template template;
 
-    public InstantiateTemplateCommand(TransactionalEditingDomain domain, List<Template> templates) {
+    public InstantiateTemplateCommand(TransactionalEditingDomain domain, Template template) {
       super(domain);
-      this.templates = templates;
+      this.template = template;
     }
 
     @Override
     protected void doExecute() {
-      for (var template : this.templates) {
-        try {
-          template.instantiate();
-          template.validate();
-        }
-        catch (MIDDialogCancellation e) {}
-        catch (Exception e) {
-          MMINTException.print(IStatus.ERROR, "Error instantiating GSN template " + template.getId(), e);
-        }
+      try {
+        this.template.instantiate();
+        this.template.validate();
+      }
+      catch (MIDDialogCancellation e) {}
+      catch (Exception e) {
+        MMINTException.print(IStatus.ERROR, "Error instantiating GSN template " + this.template.getId(), e);
       }
       /**TODO MMINT[GSN]
        *  Delete links and delete template when deleting argument elements

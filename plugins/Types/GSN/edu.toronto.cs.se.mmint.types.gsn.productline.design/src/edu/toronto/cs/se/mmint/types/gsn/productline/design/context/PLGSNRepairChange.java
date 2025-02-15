@@ -73,11 +73,11 @@ public class PLGSNRepairChange extends AbstractExternalJavaAction {
     protected void doExecute() {
       try {
         for (var plModelObj : this.plModelObjs) {
-          var templates = plModelObj.getReference(GSNPackage.eINSTANCE.getArgumentElement_Templates());
-          if (templates.isEmpty()) {
+          var plTemplates = plModelObj.getReference(GSNPackage.eINSTANCE.getArgumentElement_Template());
+          if (plTemplates.isEmpty()) {
             continue;
           }
-          ((PLGSNTemplate) templates.get(0)).repair("RECHECK");
+          ((PLGSNTemplate) plTemplates.get(0)).repair("RECHECK");
         }
       }
       catch (Exception e) {

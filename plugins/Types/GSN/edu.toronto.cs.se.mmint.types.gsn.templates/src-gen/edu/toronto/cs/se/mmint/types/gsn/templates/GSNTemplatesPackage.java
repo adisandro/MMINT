@@ -108,6 +108,15 @@ public interface GSNTemplatesPackage extends EPackage {
   int DECOMPOSITION_TEMPLATE_FEATURE_COUNT = GSNPackage.TEMPLATE_FEATURE_COUNT + 0;
 
   /**
+   * The operation id for the '<em>Get Elements By Id</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_TEMPLATE___GET_ELEMENTS_BY_ID = GSNPackage.TEMPLATE___GET_ELEMENTS_BY_ID;
+
+  /**
    * The operation id for the '<em>Validate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -142,6 +151,15 @@ public interface GSNTemplatesPackage extends EPackage {
    * @ordered
    */
   int DECOMPOSITION_TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT = GSNPackage.TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT;
+
+  /**
+   * The operation id for the '<em>Repair</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_TEMPLATE___REPAIR__OBJECT = GSNPackage.TEMPLATE___REPAIR__OBJECT;
 
   /**
    * The operation id for the '<em>Decompose</em>' operation.
@@ -475,13 +493,22 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_DECOMPOSITION_STRATEGY__STATUS = GSNPackage.STRATEGY__STATUS;
 
   /**
-   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * The feature id for the '<em><b>Template</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY__TEMPLATES = GSNPackage.STRATEGY__TEMPLATES;
+  int DOMAIN_DECOMPOSITION_STRATEGY__TEMPLATE = GSNPackage.STRATEGY__TEMPLATE;
+
+  /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_DECOMPOSITION_STRATEGY__TEMPLATE_ID = GSNPackage.STRATEGY__TEMPLATE_ID;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -562,7 +589,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY___VALIDATE__TEMPLATE = GSNPackage.STRATEGY___VALIDATE__TEMPLATE;
+  int DOMAIN_DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.STRATEGY___VALIDATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -571,7 +598,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_STRATEGY___INSTANTIATE__TEMPLATE = GSNPackage.STRATEGY___INSTANTIATE__TEMPLATE;
+  int DOMAIN_DECOMPOSITION_STRATEGY___INSTANTIATE = GSNPackage.STRATEGY___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Domain Decomposition Strategy</em>' class.
@@ -620,13 +647,22 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_GOAL__STATUS = GSNPackage.GOAL__STATUS;
 
   /**
-   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * The feature id for the '<em><b>Template</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL__TEMPLATES = GSNPackage.GOAL__TEMPLATES;
+  int DOMAIN_GOAL__TEMPLATE = GSNPackage.GOAL__TEMPLATE;
+
+  /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_GOAL__TEMPLATE_ID = GSNPackage.GOAL__TEMPLATE_ID;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -716,7 +752,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL___VALIDATE__TEMPLATE = GSNPackage.GOAL___VALIDATE__TEMPLATE;
+  int DOMAIN_GOAL___VALIDATE = GSNPackage.GOAL___VALIDATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -725,7 +761,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_GOAL___INSTANTIATE__TEMPLATE = GSNPackage.GOAL___INSTANTIATE__TEMPLATE;
+  int DOMAIN_GOAL___INSTANTIATE = GSNPackage.GOAL___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Domain Goal</em>' class.
@@ -774,6 +810,15 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_DECOMPOSITION_TEMPLATE_FEATURE_COUNT = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE_FEATURE_COUNT + 0;
 
   /**
+   * The operation id for the '<em>Get Elements By Id</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_DECOMPOSITION_TEMPLATE___GET_ELEMENTS_BY_ID = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___GET_ELEMENTS_BY_ID;
+
+  /**
    * The operation id for the '<em>Validate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -808,6 +853,15 @@ public interface GSNTemplatesPackage extends EPackage {
    * @ordered
    */
   int DOMAIN_DECOMPOSITION_TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT;
+
+  /**
+   * The operation id for the '<em>Repair</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_DECOMPOSITION_TEMPLATE___REPAIR__OBJECT = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___REPAIR__OBJECT;
 
   /**
    * The operation id for the '<em>Decompose</em>' operation.
@@ -948,13 +1002,22 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_DECOMPOSITION_STRATEGY__STATUS = GSNPackage.STRATEGY__STATUS;
 
   /**
-   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * The feature id for the '<em><b>Template</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY__TEMPLATES = GSNPackage.STRATEGY__TEMPLATES;
+  int PROPERTY_DECOMPOSITION_STRATEGY__TEMPLATE = GSNPackage.STRATEGY__TEMPLATE;
+
+  /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_STRATEGY__TEMPLATE_ID = GSNPackage.STRATEGY__TEMPLATE_ID;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -1044,7 +1107,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY___VALIDATE__TEMPLATE = GSNPackage.STRATEGY___VALIDATE__TEMPLATE;
+  int PROPERTY_DECOMPOSITION_STRATEGY___VALIDATE = GSNPackage.STRATEGY___VALIDATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1053,7 +1116,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_STRATEGY___INSTANTIATE__TEMPLATE = GSNPackage.STRATEGY___INSTANTIATE__TEMPLATE;
+  int PROPERTY_DECOMPOSITION_STRATEGY___INSTANTIATE = GSNPackage.STRATEGY___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Property Decomposition Strategy</em>' class.
@@ -1102,13 +1165,22 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_GOAL__STATUS = GSNPackage.GOAL__STATUS;
 
   /**
-   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * The feature id for the '<em><b>Template</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL__TEMPLATES = GSNPackage.GOAL__TEMPLATES;
+  int PROPERTY_GOAL__TEMPLATE = GSNPackage.GOAL__TEMPLATE;
+
+  /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_GOAL__TEMPLATE_ID = GSNPackage.GOAL__TEMPLATE_ID;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -1207,7 +1279,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL___VALIDATE__TEMPLATE = GSNPackage.GOAL___VALIDATE__TEMPLATE;
+  int PROPERTY_GOAL___VALIDATE = GSNPackage.GOAL___VALIDATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1216,7 +1288,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_GOAL___INSTANTIATE__TEMPLATE = GSNPackage.GOAL___INSTANTIATE__TEMPLATE;
+  int PROPERTY_GOAL___INSTANTIATE = GSNPackage.GOAL___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Property Goal</em>' class.
@@ -1266,6 +1338,15 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_DECOMPOSITION_TEMPLATE_FEATURE_COUNT = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE_FEATURE_COUNT + 0;
 
   /**
+   * The operation id for the '<em>Get Elements By Id</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_TEMPLATE___GET_ELEMENTS_BY_ID = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___GET_ELEMENTS_BY_ID;
+
+  /**
    * The operation id for the '<em>Validate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1300,6 +1381,15 @@ public interface GSNTemplatesPackage extends EPackage {
    * @ordered
    */
   int PROPERTY_DECOMPOSITION_TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT;
+
+  /**
+   * The operation id for the '<em>Repair</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_TEMPLATE___REPAIR__OBJECT = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___REPAIR__OBJECT;
 
   /**
    * The operation id for the '<em>Decompose</em>' operation.
@@ -1357,13 +1447,22 @@ public interface GSNTemplatesPackage extends EPackage {
   int FILES_CONTEXT__STATUS = GSNPackage.CONTEXT__STATUS;
 
   /**
-   * The feature id for the '<em><b>Templates</b></em>' reference list.
+   * The feature id for the '<em><b>Template</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FILES_CONTEXT__TEMPLATES = GSNPackage.CONTEXT__TEMPLATES;
+  int FILES_CONTEXT__TEMPLATE = GSNPackage.CONTEXT__TEMPLATE;
+
+  /**
+   * The feature id for the '<em><b>Template Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FILES_CONTEXT__TEMPLATE_ID = GSNPackage.CONTEXT__TEMPLATE_ID;
 
   /**
    * The feature id for the '<em><b>Valid</b></em>' attribute.
@@ -1408,7 +1507,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FILES_CONTEXT___VALIDATE__TEMPLATE = GSNPackage.CONTEXT___VALIDATE__TEMPLATE;
+  int FILES_CONTEXT___VALIDATE = GSNPackage.CONTEXT___VALIDATE;
 
   /**
    * The operation id for the '<em>Instantiate</em>' operation.
@@ -1417,7 +1516,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FILES_CONTEXT___INSTANTIATE__TEMPLATE = GSNPackage.CONTEXT___INSTANTIATE__TEMPLATE;
+  int FILES_CONTEXT___INSTANTIATE = GSNPackage.CONTEXT___INSTANTIATE;
 
   /**
    * The number of operations of the '<em>Files Context</em>' class.
@@ -1484,6 +1583,15 @@ public interface GSNTemplatesPackage extends EPackage {
   int ANALYTIC_TEMPLATE_FEATURE_COUNT = GSNPackage.TEMPLATE_FEATURE_COUNT + 2;
 
   /**
+   * The operation id for the '<em>Get Elements By Id</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANALYTIC_TEMPLATE___GET_ELEMENTS_BY_ID = GSNPackage.TEMPLATE___GET_ELEMENTS_BY_ID;
+
+  /**
    * The operation id for the '<em>Validate</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1518,6 +1626,15 @@ public interface GSNTemplatesPackage extends EPackage {
    * @ordered
    */
   int ANALYTIC_TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT = GSNPackage.TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT;
+
+  /**
+   * The operation id for the '<em>Repair</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANALYTIC_TEMPLATE___REPAIR__OBJECT = GSNPackage.TEMPLATE___REPAIR__OBJECT;
 
   /**
    * The operation id for the '<em>Get Analysis</em>' operation.

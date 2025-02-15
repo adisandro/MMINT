@@ -131,8 +131,8 @@ public class GSNImpactStep extends ImpactStep<ArgumentElement> {
       return;
     }
     // separate syntactic vs semantic (template) behavior
-    var templates = this.impacted.getTemplates();
-    var nextSteps = (templates.isEmpty()) ? nextSteps(change) : templates.get(0).impact(this, change);
+    var template = this.impacted.getTemplate();
+    var nextSteps = (template == null) ? nextSteps(change) : template.impact(this, change);
     for (var nextStep : nextSteps) {
       nextStep.impact(change);
     }

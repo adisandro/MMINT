@@ -413,7 +413,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EReference getArgumentElement_Templates() {
+  public EReference getArgumentElement_Template() {
     return (EReference)this.argumentElementEClass.getEStructuralFeatures().get(3);
   }
 
@@ -443,7 +443,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EOperation getArgumentElement__Validate__Template() {
+  public EOperation getArgumentElement__Validate() {
     return this.argumentElementEClass.getEOperations().get(0);
   }
 
@@ -453,7 +453,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EOperation getArgumentElement__Instantiate__Template() {
+  public EOperation getArgumentElement__Instantiate() {
     return this.argumentElementEClass.getEOperations().get(1);
   }
 
@@ -980,11 +980,11 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEAttribute(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__ID);
     createEAttribute(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__DESCRIPTION);
     createEReference(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__STATUS);
-    createEReference(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__TEMPLATES);
+    createEReference(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__TEMPLATE);
     createEAttribute(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__TEMPLATE_ID);
     createEAttribute(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT__VALID);
-    createEOperation(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT___VALIDATE__TEMPLATE);
-    createEOperation(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE__TEMPLATE);
+    createEOperation(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT___VALIDATE);
+    createEOperation(this.argumentElementEClass, GSNPackage.ARGUMENT_ELEMENT___INSTANTIATE);
 
     this.decoratableEClass = createEClass(GSNPackage.DECORATABLE);
     createEReference(this.decoratableEClass, GSNPackage.DECORATABLE__DECORATORS);
@@ -1122,16 +1122,14 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     initEAttribute(getArgumentElement_Id(), this.ecorePackage.getEString(), "id", null, 1, 1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getArgumentElement_Description(), this.ecorePackage.getEString(), "description", null, 0, 1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEReference(getArgumentElement_Status(), this.getImpactAnnotation(), null, "status", null, 0, 1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getArgumentElement_Templates(), this.getTemplate(), this.getTemplate_Elements(), "templates", null, 0, -1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEReference(getArgumentElement_Template(), this.getTemplate(), this.getTemplate_Elements(), "template", null, 0, 1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getArgumentElement_TemplateId(), this.ecorePackage.getEString(), "templateId", null, 0, 1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getArgumentElement_Valid(), this.ecorePackage.getEBoolean(), "valid", "true", 1, 1, ArgumentElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
-    var op = initEOperation(getArgumentElement__Validate__Template(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.getTemplate(), "template", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    var op = initEOperation(getArgumentElement__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
-    op = initEOperation(getArgumentElement__Instantiate__Template(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.getTemplate(), "template", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getArgumentElement__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
     initEClass(this.decoratableEClass, Decoratable.class, "Decoratable", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -1185,7 +1183,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     initEAttribute(getImpactAnnotation_Source(), this.ecorePackage.getEString(), "source", null, 0, 1, ImpactAnnotation.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.templateEClass, Template.class, "Template", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getTemplate_Elements(), this.getArgumentElement(), this.getArgumentElement_Templates(), "elements", null, 1, -1, Template.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEReference(getTemplate_Elements(), this.getArgumentElement(), this.getArgumentElement_Template(), "elements", null, 1, -1, Template.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getTemplate_Id(), this.ecorePackage.getEString(), "id", null, 1, 1, Template.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     op = initEOperation(getTemplate__GetElementsById(), null, "getElementsById", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);

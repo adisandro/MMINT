@@ -65,7 +65,7 @@ public class ArgumentElementItemProvider extends ItemProviderAdapter implements 
       addIdPropertyDescriptor(object);
       addDescriptionPropertyDescriptor(object);
       addStatusPropertyDescriptor(object);
-      addTemplatesPropertyDescriptor(object);
+      addTemplatePropertyDescriptor(object);
       addTemplateIdPropertyDescriptor(object);
       addValidPropertyDescriptor(object);
     }
@@ -136,19 +136,19 @@ public class ArgumentElementItemProvider extends ItemProviderAdapter implements 
   }
 
   /**
-   * This adds a property descriptor for the Templates feature.
+   * This adds a property descriptor for the Template feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addTemplatesPropertyDescriptor(Object object) {
+  protected void addTemplatePropertyDescriptor(Object object) {
     this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
         (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
-         getString("_UI_ArgumentElement_templates_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_templates_feature", "_UI_ArgumentElement_type"),
-         GSNPackage.Literals.ARGUMENT_ELEMENT__TEMPLATES,
+         getString("_UI_ArgumentElement_template_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_template_feature", "_UI_ArgumentElement_type"),
+         GSNPackage.Literals.ARGUMENT_ELEMENT__TEMPLATE,
          true,
          false,
          true,

@@ -149,7 +149,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EOperation getPLGSNArgumentElement__Validate__PLGSNTemplate() {
+  public EOperation getPLGSNArgumentElement__Instantiate() {
     return this.plgsnArgumentElementEClass.getEOperations().get(0);
   }
 
@@ -159,7 +159,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EOperation getPLGSNArgumentElement__Instantiate__PLGSNTemplate() {
+  public EOperation getPLGSNArgumentElement__Validate() {
     return this.plgsnArgumentElementEClass.getEOperations().get(1);
   }
 
@@ -190,7 +190,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    */
   @Override
   public EOperation getPLGSNTemplate__Validate() {
-    return this.plgsnTemplateEClass.getEOperations().get(1);
+    return this.plgsnTemplateEClass.getEOperations().get(3);
   }
 
   /**
@@ -200,7 +200,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    */
   @Override
   public EOperation getPLGSNTemplate__Import___ProductLine() {
-    return this.plgsnTemplateEClass.getEOperations().get(2);
+    return this.plgsnTemplateEClass.getEOperations().get(1);
   }
 
   /**
@@ -210,7 +210,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    */
   @Override
   public EOperation getPLGSNTemplate__Instantiate() {
-    return this.plgsnTemplateEClass.getEOperations().get(3);
+    return this.plgsnTemplateEClass.getEOperations().get(2);
   }
 
   /**
@@ -305,14 +305,14 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
 
     // Create classes and their features
     this.plgsnArgumentElementEClass = createEClass(PLGSNPackage.PLGSN_ARGUMENT_ELEMENT);
-    createEOperation(this.plgsnArgumentElementEClass, PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___VALIDATE__PLGSNTEMPLATE);
-    createEOperation(this.plgsnArgumentElementEClass, PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___INSTANTIATE__PLGSNTEMPLATE);
+    createEOperation(this.plgsnArgumentElementEClass, PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___INSTANTIATE);
+    createEOperation(this.plgsnArgumentElementEClass, PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___VALIDATE);
 
     this.plgsnTemplateEClass = createEClass(PLGSNPackage.PLGSN_TEMPLATE);
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___GET_ELEMENTS_BY_ID);
-    createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___VALIDATE);
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___IMPORT____PRODUCTLINE);
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___INSTANTIATE);
+    createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___VALIDATE);
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNIMPACTSTEP_OBJECT);
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___REPAIR__OBJECT);
 
@@ -365,12 +365,10 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     // Initialize classes, features, and operations; add parameters
     initEClass(this.plgsnArgumentElementEClass, PLGSNArgumentElement.class, "PLGSNArgumentElement", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
-    var op = initEOperation(getPLGSNArgumentElement__Validate__PLGSNTemplate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.getPLGSNTemplate(), "template", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    var op = initEOperation(getPLGSNArgumentElement__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
-    op = initEOperation(getPLGSNArgumentElement__Instantiate__PLGSNTemplate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.getPLGSNTemplate(), "template", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getPLGSNArgumentElement__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
     initEClass(this.plgsnTemplateEClass, PLGSNTemplate.class, "PLGSNTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -383,14 +381,14 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     g1.getETypeArguments().add(g2);
     initEOperation(op, g1);
 
-    op = initEOperation(getPLGSNTemplate__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEException(op, theGSNPackage.getException());
-
     op = initEOperation(getPLGSNTemplate__Import___ProductLine(), null, "import_", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, thePLPackage.getProductLine(), "productLine", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
     op = initEOperation(getPLGSNTemplate__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEException(op, theGSNPackage.getException());
+
+    op = initEOperation(getPLGSNTemplate__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
     op = initEOperation(getPLGSNTemplate__Impact__PLGSNImpactStep_Object(), this.getPLGSNImpactStep(), "impact", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);

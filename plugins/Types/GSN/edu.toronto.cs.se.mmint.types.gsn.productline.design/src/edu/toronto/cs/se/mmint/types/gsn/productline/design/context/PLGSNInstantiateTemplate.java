@@ -13,9 +13,7 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.design.context;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
@@ -42,10 +40,9 @@ public class PLGSNInstantiateTemplate extends AbstractExternalJavaAction {
     if (!(modelObj instanceof PLGSNArgumentElement plTemplateElem)) {
       return false;
     }
-    var plTemplates = plTemplateElem.getReference(GSNPackage.eINSTANCE.getArgumentElement_Templates());
+    var plTemplates = plTemplateElem.getReference(GSNPackage.eINSTANCE.getArgumentElement_Template());
     if (plTemplates.isEmpty() ||
-        plTemplates.stream()
-          .flatMap(t -> t.getStreamOfReference(GSNPackage.eINSTANCE.getTemplate_Elements()))
+        plTemplates.get(0).getStreamOfReference(GSNPackage.eINSTANCE.getTemplate_Elements())
           .flatMap(c -> c.getStreamOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_Valid()))
           .allMatch(v -> Boolean.valueOf(v))) {
       return false;
@@ -56,35 +53,31 @@ public class PLGSNInstantiateTemplate extends AbstractExternalJavaAction {
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
     var plTemplateElem = (PLGSNArgumentElement) ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    var plTemplates = plTemplateElem.getStreamOfReference(GSNPackage.eINSTANCE.getArgumentElement_Templates())
-      .map(c -> (PLGSNTemplate) c)
-      .collect(Collectors.toList());
+    var plTemplate = (PLGSNTemplate) plTemplateElem.getReference(GSNPackage.eINSTANCE.getArgumentElement_Template())
+                                                   .get(0);
     var sSession = SessionManager.INSTANCE.getSession(plTemplateElem);
     var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(new GSNPLInstantiateTemplateCommand(sDomain, plTemplates));
+    sDomain.getCommandStack().execute(new GSNPLInstantiateTemplateCommand(sDomain, plTemplate));
   }
 
   private class GSNPLInstantiateTemplateCommand extends RecordingCommand {
-    List<PLGSNTemplate> plTemplates;
+    PLGSNTemplate plTemplate;
 
-    public GSNPLInstantiateTemplateCommand(TransactionalEditingDomain domain, List<PLGSNTemplate> plTemplates) {
+    public GSNPLInstantiateTemplateCommand(TransactionalEditingDomain domain, PLGSNTemplate plTemplate) {
       super(domain);
-      this.plTemplates = plTemplates;
+      this.plTemplate = plTemplate;
     }
 
     @Override
     protected void doExecute() {
-      for (var plTemplate : this.plTemplates) {
-        try {
-          plTemplate.instantiate();
-          plTemplate.validate();
-        }
-        catch (MIDDialogCancellation e) {}
-        catch (Exception e) {
-          //TODO abstract into function
-          var id = String.join(",", plTemplate.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()));
-          MMINTException.print(IStatus.ERROR, "Error instantiating GSN template " + id, e);
-        }
+      try {
+        this.plTemplate.instantiate();
+        this.plTemplate.validate();
+      }
+      catch (MIDDialogCancellation e) {}
+      catch (Exception e) {
+        var id = this.plTemplate.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()).get(0);
+        MMINTException.print(IStatus.ERROR, "Error instantiating GSN template " + id, e);
       }
     }
   }

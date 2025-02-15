@@ -186,7 +186,7 @@ public class PLGSNImpactStep extends ImpactStep<PLGSNArgumentElement> {
       return;
     }
     // separate syntactic vs semantic (template) behavior
-    var templates = this.impacted.getReference(this.gsn.getArgumentElement_Templates());
+    var templates = this.impacted.getReference(this.gsn.getArgumentElement_Template());
     var nextSteps = (templates.isEmpty()) ? nextSteps(change) : ((PLGSNTemplate) templates.get(0)).impact(this, change);
     for (var nextStep : nextSteps) {
       nextStep.impact(change);

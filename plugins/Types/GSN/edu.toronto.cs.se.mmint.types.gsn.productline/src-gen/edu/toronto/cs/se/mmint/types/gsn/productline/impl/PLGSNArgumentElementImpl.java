@@ -22,7 +22,6 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.productline.impl.ClassImpl;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
-import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
@@ -57,7 +56,7 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
    * @generated NOT
    */
   @Override
-  public void instantiate(PLGSNTemplate template) throws Exception {
+  public void instantiate() throws Exception {
     var title = "Instantiate placeholder text";
     //TODO abstract into function
     var node = getType().getName() + " " + String.join(",", getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()));
@@ -83,7 +82,7 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
    * @generated NOT
    */
   @Override
-  public void validate(PLGSNTemplate template) throws Exception {
+  public void validate() throws Exception {
     var validAttrs = getAttributes().stream()
       .filter(a -> a.getType() == GSNPackage.eINSTANCE.getArgumentElement_Valid());
     if (getAttributes().stream()
@@ -106,17 +105,17 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
-      case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___VALIDATE__PLGSNTEMPLATE:
+      case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___INSTANTIATE:
         try {
-          validate((PLGSNTemplate)arguments.get(0));
+          instantiate();
           return null;
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___INSTANTIATE__PLGSNTEMPLATE:
+      case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___VALIDATE:
         try {
-          instantiate((PLGSNTemplate)arguments.get(0));
+          validate();
           return null;
         }
         catch (Throwable throwable) {

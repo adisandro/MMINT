@@ -574,14 +574,14 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
    * @generated NOT
    */
   @Override
-  public void instantiate(Template template) throws Exception {
+  public void instantiate() throws Exception {
     var decorated = (Decoratable) eContainer();
     var isSupported = !getSupportedBy().isEmpty();
     var hint = getDescription();
     switch (this.getType()) {
       case OPTIONAL -> instantiateOptional(decorated, isSupported, hint);
       case CHOICE -> instantiateChoice(decorated, isSupported, hint);
-      case MULTIPLE -> instantiateMultiple(decorated, isSupported, hint, template);
+      case MULTIPLE -> instantiateMultiple(decorated, isSupported, hint, this.template);
     };
     decorated.getDecorators().remove(this);
   }
@@ -590,7 +590,7 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
    * @generated NOT
    */
   @Override
-  public void validate(Template template) throws Exception {
+  public void validate() throws Exception {
     setValid(false);
     throw new MMINTException("Relationship decorators must be instantiated");
   }

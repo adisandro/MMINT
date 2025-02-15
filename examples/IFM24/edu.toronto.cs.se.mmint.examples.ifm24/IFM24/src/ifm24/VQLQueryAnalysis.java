@@ -66,7 +66,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var resultStrategy = (Strategy) templateElems.get("resultStrategy");
     var resultCtx = (Context) templateElems.get("resultCtx");
     var resultGoal = (Goal) templateElems.get("resultGoal");
-    safetyGoal.instantiate(template);
+    safetyGoal.instantiate();
     var safetyDesc = safetyGoal.getDescription();
     var resultId = resultGoal.getId();
     var resultDesc = resultGoal.getDescription().replace("{safety goal}", safetyDesc);
@@ -131,7 +131,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var resultStrategy = templateElems.get("resultStrategy");
     var resultCtx = templateElems.get("resultCtx");
     var resultGoal = templateElems.get("resultGoal");
-    safetyGoal.instantiate(plTemplate);
+    safetyGoal.instantiate();
     var safetyDesc = safetyGoal.getAttribute(gsn.getArgumentElement_Description()).get(0);
     var resultId = resultGoal.getAttribute(gsn.getArgumentElement_Id()).get(0);
     var resultDesc = resultGoal.getAttribute(gsn.getArgumentElement_Description()).get(0)

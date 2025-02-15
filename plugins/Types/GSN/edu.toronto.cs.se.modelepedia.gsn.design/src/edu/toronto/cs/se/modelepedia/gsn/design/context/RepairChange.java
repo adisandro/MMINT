@@ -68,11 +68,11 @@ public class RepairChange extends AbstractExternalJavaAction {
     protected void doExecute() {
       try {
         for (var modelObj : this.modelObjs) {
-          var templates = modelObj.getTemplates();
-          if (templates.isEmpty()) {
+          var template = modelObj.getTemplate();
+          if (template == null) {
             continue;
           }
-          templates.get(0).repair("RECHECK");
+          template.repair("RECHECK");
         }
       }
       catch (Exception e) {

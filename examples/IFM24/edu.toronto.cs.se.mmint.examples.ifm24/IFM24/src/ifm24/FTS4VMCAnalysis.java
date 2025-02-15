@@ -92,7 +92,7 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
       .getReference(gsn.getSupporter_Supports()).get(0)
       .getReference(gsn.getSupportedBy_Source()).get(0);
     String modelPath;
-    var otherTemplates = safetyGoal.getReference(gsn.getArgumentElement_Templates());
+    var otherTemplates = safetyGoal.getReference(gsn.getArgumentElement_Template());
     var isConnected =
       !otherTemplates.isEmpty() &&
       otherTemplates.get(0).getAttribute(gsn.getTemplate_Id()).get(0).equals("QueryAnalysis");

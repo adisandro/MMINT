@@ -35,7 +35,6 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder.Pro
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.DecompositionUtils;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
-import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.impl.GoalImpl;
 
 /**
@@ -231,7 +230,7 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
    * @generated NOT
    */
   @Override
-  public void instantiate(Template template) throws Exception {
+  public void instantiate() throws Exception {
     var propStrategy = (PropertyDecompositionStrategy) DecompositionUtils.moveOneStrategyUp(this);
     var reasonerName = propStrategy.getReasonerName();
     var reasoner = Objects.requireNonNull(MMINT.getReasoner(reasonerName),
@@ -252,10 +251,10 @@ public class PropertyGoalImpl extends GoalImpl implements PropertyGoal {
    * @generated NOT
    */
   @Override
-  public void validate(Template template) throws Exception {
+  public void validate() throws Exception {
     // the validity of this goal is managed by its supporting strategy
     var strategy = (PropertyDecompositionStrategy) DecompositionUtils.moveOneStrategyUp(this);
-    strategy.validate(template);
+    strategy.validate();
   }
 
   /**

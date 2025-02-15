@@ -22,7 +22,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
-import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.impl.ContextImpl;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
@@ -86,8 +85,8 @@ public class FilesContextImpl extends ContextImpl implements FilesContext {
    * @generated NOT
    */
   @Override
-  public void instantiate(Template template) throws Exception {
-    super.instantiate(template);
+  public void instantiate() throws Exception {
+    super.instantiate();
     var paths = getPaths();
     var title = "Instantiate context file";
     var msg = "Select a file or directory for Context " + getId();
@@ -109,8 +108,8 @@ public class FilesContextImpl extends ContextImpl implements FilesContext {
    * @generated NOT
    */
   @Override
-  public void validate(Template template) throws Exception {
-    super.validate(template);
+  public void validate() throws Exception {
+    super.validate();
     var paths = getPaths();
     if (paths.size() == 0) {
       setValid(false);

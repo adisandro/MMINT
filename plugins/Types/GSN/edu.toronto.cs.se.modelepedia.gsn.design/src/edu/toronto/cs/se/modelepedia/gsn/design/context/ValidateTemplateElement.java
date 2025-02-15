@@ -36,7 +36,7 @@ public class ValidateTemplateElement extends AbstractExternalJavaAction {
       return false;
     }
     var modelObj = ((DSemanticDecorator) arg0.iterator().next()).getTarget();
-    if (!(modelObj instanceof ArgumentElement templateElem) || templateElem.getTemplates().isEmpty()) {
+    if (!(modelObj instanceof ArgumentElement templateElem) || templateElem.getTemplate() == null) {
       return false;
     }
     return true;
@@ -67,14 +67,12 @@ public class ValidateTemplateElement extends AbstractExternalJavaAction {
         id = "";
       }
       var message = "The GSN template element " + id + " is ";
-      for (var template : this.templateElem.getTemplates()) {
-        try {
-          this.templateElem.validate(template);
-          MessageDialog.openInformation(shell, title, message + "instantiated correctly");
-        }
-        catch (Exception e) {
-          MMINTException.print(IStatus.ERROR, message + "not instantiated correctly", e);
-        }
+      try {
+        this.templateElem.validate();
+        MessageDialog.openInformation(shell, title, message + "instantiated correctly");
+      }
+      catch (Exception e) {
+        MMINTException.print(IStatus.ERROR, message + "not instantiated correctly", e);
       }
     }
   }
