@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN">
-  <goals xsi:type="gsn:Goal" id="G3.1" description="The data used to develop and verify reliability is sufficient" templates="//@templates.0">
+  <goals xsi:type="gsn:Goal" id="G3.1" description="The data used to develop and verify reliability is sufficient" template="//@templates.0">
     <supportedBy target="//@strategies.0"/>
     <inContextOf context="//@contexts.1"/>
     <inContextOf context="//@contexts.2"/>
     <inContextOf context="//@contexts.0"/>
   </goals>
-  <goals xsi:type="gsn:Goal" id="G3.3" description="The data generated satisfies the ML data requirement" templates="//@templates.0" supports="//@strategies.0/@supportedBy.0">
+  <goals xsi:type="gsn:Goal" id="G3.3" description="The data generated satisfies the ML data requirement" template="//@templates.0" supports="//@strategies.0/@supportedBy.0">
     <supportedBy target="//@strategies.1"/>
     <inContextOf context="//@justifications.0"/>
   </goals>
-  <goals xsi:type="gsn:Goal" id="G3.4" description="The generated data meets relevance requirements" templates="//@templates.0" supports="//@strategies.1/@supportedBy.0">
+  <goals xsi:type="gsn:Goal" id="G3.4" description="The generated data meets relevance requirements" template="//@templates.0" supports="//@strategies.1/@supportedBy.0">
     <supportedBy target="//@solutions.0"/>
   </goals>
-  <goals xsi:type="gsn:Goal" id="G3.5" description="The generated data meets completeness requirements" templates="//@templates.0" supports="//@strategies.1/@supportedBy.1">
+  <goals xsi:type="gsn:Goal" id="G3.5" description="The generated data meets completeness requirements" template="//@templates.0" supports="//@strategies.1/@supportedBy.1">
     <supportedBy target="//@solutions.1"/>
   </goals>
-  <goals xsi:type="gsn:Goal" id="G3.6" description="The generated data meets accuracy requirements" templates="//@templates.0" supports="//@strategies.1/@supportedBy.2">
+  <goals xsi:type="gsn:Goal" id="G3.6" description="The generated data meets accuracy requirements" template="//@templates.0" supports="//@strategies.1/@supportedBy.2">
     <supportedBy target="//@solutions.2"/>
   </goals>
-  <goals xsi:type="gsn:Goal" id="G3.7" description="The generated data meets balance requirements" templates="//@templates.0" supports="//@strategies.1/@supportedBy.3">
+  <goals xsi:type="gsn:Goal" id="G3.7" description="The generated data meets balance requirements" template="//@templates.0" supports="//@strategies.1/@supportedBy.3">
     <supportedBy target="//@solutions.3"/>
   </goals>
-  <strategies xsi:type="gsn:Strategy" id="S3.1" description="Argument over requirements for data sufficiency" templates="//@templates.0" supports="//@goals.0/@supportedBy.0">
+  <strategies xsi:type="gsn:Strategy" id="S3.1" description="Argument over requirements for data sufficiency" template="//@templates.0" supports="//@goals.0/@supportedBy.0">
     <supportedBy target="//@goals.1"/>
     <inContextOf context="//@contexts.3"/>
   </strategies>
-  <strategies xsi:type="gsn:Strategy" id="S3.2" description="Argument over different types of data requirements" templates="//@templates.0" supports="//@goals.1/@supportedBy.0">
+  <strategies xsi:type="gsn:Strategy" id="S3.2" description="Argument over different types of data requirements" template="//@templates.0" supports="//@goals.1/@supportedBy.0">
     <supportedBy target="//@goals.2"/>
     <supportedBy target="//@goals.3"/>
     <supportedBy target="//@goals.4"/>
@@ -34,15 +34,15 @@
     <inContextOf context="//@justifications.1"/>
     <undeveloped/>
   </strategies>
-  <solutions id="Sn3.2" description="{Validation results}" templates="//@templates.0" valid="false" supports="//@goals.2/@supportedBy.0"/>
-  <solutions id="Sn3.3" description="{Validation results}" templates="//@templates.0" valid="false" supports="//@goals.3/@supportedBy.0"/>
-  <solutions id="Sn3.4" description="{Validation results}" templates="//@templates.0" valid="false" supports="//@goals.4/@supportedBy.0"/>
-  <solutions id="Sn3.5" description="{Validation results}" templates="//@templates.0" valid="false" supports="//@goals.5/@supportedBy.0"/>
-  <contexts id="C3.1" description="{Reliability development data}" templates="//@templates.0" valid="false" contextOf="//@goals.0/@inContextOf.2"/>
-  <contexts id="C3.2" description="{Reliability verification data}" templates="//@templates.0" valid="false" contextOf="//@goals.0/@inContextOf.0"/>
-  <contexts id="C3.3" description="{Reliability internal test data}" templates="//@templates.0" valid="false" contextOf="//@goals.0/@inContextOf.1"/>
-  <contexts id="C3.4" description="{ML reliability data requirements}" templates="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.0"/>
-  <justifications id="J3.90" description="{Justification of the choice of simulation if the change is simulated}" templates="//@templates.0" valid="false" contextOf="//@goals.1/@inContextOf.0"/>
-  <justifications id="J3.1" description="{Rationale for the sufficiency of the identified types of data requirements}" templates="//@templates.0" valid="false" contextOf="//@strategies.1/@inContextOf.0"/>
+  <solutions id="Sn3.2" description="{Validation results}" template="//@templates.0" valid="false" supports="//@goals.2/@supportedBy.0"/>
+  <solutions id="Sn3.3" description="{Validation results}" template="//@templates.0" valid="false" supports="//@goals.3/@supportedBy.0"/>
+  <solutions id="Sn3.4" description="{Validation results}" template="//@templates.0" valid="false" supports="//@goals.4/@supportedBy.0"/>
+  <solutions id="Sn3.5" description="{Validation results}" template="//@templates.0" valid="false" supports="//@goals.5/@supportedBy.0"/>
+  <contexts id="C3.1" description="{Reliability development data}" template="//@templates.0" valid="false" contextOf="//@goals.0/@inContextOf.2"/>
+  <contexts id="C3.2" description="{Reliability verification data}" template="//@templates.0" valid="false" contextOf="//@goals.0/@inContextOf.0"/>
+  <contexts id="C3.3" description="{Reliability internal test data}" template="//@templates.0" valid="false" contextOf="//@goals.0/@inContextOf.1"/>
+  <contexts id="C3.4" description="{ML reliability data requirements}" template="//@templates.0" valid="false" contextOf="//@strategies.0/@inContextOf.0"/>
+  <justifications id="J3.90" description="{Justification of the choice of simulation if the change is simulated}" template="//@templates.0" valid="false" contextOf="//@goals.1/@inContextOf.0"/>
+  <justifications id="J3.1" description="{Rationale for the sufficiency of the identified types of data requirements}" template="//@templates.0" valid="false" contextOf="//@strategies.1/@inContextOf.0"/>
   <templates elements="//@goals.0 //@goals.1 //@goals.2 //@goals.3 //@goals.4 //@goals.5 //@strategies.0 //@strategies.1 //@contexts.0 //@contexts.1 //@contexts.2 //@contexts.3 //@justifications.1 //@justifications.0 //@solutions.0 //@solutions.1 //@solutions.2 //@solutions.3" id="ML Data Management"/>
 </gsn:SafetyCase>
