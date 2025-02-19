@@ -88,38 +88,37 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     var templateElems = plTemplate.getElementsById();
     // convert model to .dot file
     var mcStrategy = templateElems.get("mcStrategy");
-    var safetyGoal = (PLGSNArgumentElement) mcStrategy
-      .getReference(gsn.getSupporter_Supports()).get(0)
-      .getReference(gsn.getSupportedBy_Source()).get(0);
-    String modelPath;
-    var otherTemplates = safetyGoal.getReference(gsn.getArgumentElement_Template());
-    var isConnected =
-      !otherTemplates.isEmpty() &&
-      otherTemplates.get(0).getAttribute(gsn.getTemplate_Id()).get(0).equals("QueryAnalysis");
-    if (isConnected) {
-      // connected with query analysis template, extract model from it
-      var otherFilesCtx = ((PLGSNTemplate) otherTemplates.get(0)).getElementsById().get("filesCtx");
-      var paths = otherFilesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
-      modelPath = paths.get(1);
+    var safetyGoal = templateElems.get("safetyGoal");
+    String modelPath = null;
+    String dialogInitial = null;
+    if (safetyGoal == null) {
+      safetyGoal = (PLGSNArgumentElement) mcStrategy
+        .getReference(gsn.getSupporter_Supports()).get(0)
+        .getReference(gsn.getSupportedBy_Source()).get(0);
+      var otherTemplate = safetyGoal.getReference(gsn.getArgumentElement_Template()).get(0);
+      if (otherTemplate.getAttribute(gsn.getTemplate_Id()).get(0).equals("QueryAnalysis")) {
+        // connected with query analysis template, extract model from it
+        var otherFilesCtx = ((PLGSNTemplate) otherTemplate).getElementsById().get("filesCtx");
+        var paths = otherFilesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
+        modelPath = paths.get(1);
+        dialogInitial = safetyGoal.getAttribute(gsn.getArgumentElement_Description()).get(0).split("'")[1];
+      }
     }
-    else {
+    if (modelPath == null) {
       modelPath = FileUtils.prependWorkspacePath(
         MIDDialogs.selectFile("Run Product Line analysis", "Select a Product Line model",
                               "There are no Product Line models in the workspace", Set.of("productline")));
     }
-    var modelName = FileUtils.getFileNameFromPath(modelPath);
     var modelPL = (ProductLine) FileUtils.readModelFile(modelPath, null, false);
     if (modelPL.getMetamodel() != StateMachinePackage.eINSTANCE) {
       throw new MMINTException("Model type '" + modelPL.getMetamodel().getNsURI() + "' not supported");
     }
+    var modelName = FileUtils.getFileNameFromPath(modelPath);
     var dot = productLine2Dot(modelPL, modelName);
     var dotPath = FileUtils.replaceFileExtensionInPath(modelPath, "dot");
     var vmcPath = FileUtils.replaceFileExtensionInPath(modelPath, "vmc");
     FileUtils.createTextFile(dotPath, dot, false);
     // run model checker and process results
-    var dialogInitial = (isConnected) ?
-      safetyGoal.getAttribute(gsn.getArgumentElement_Description()).get(0).split("'")[1] :
-      null;
     var property = MIDDialogs.getBigStringInput("Run Product Line analysis", "Insert model property to check",
                                                 dialogInitial);
     final var PROPERTY_FILE = "property.txt";
