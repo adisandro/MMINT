@@ -255,6 +255,13 @@
             </firstModelOperations>
           </initialOperation>
         </controls>
+        <controls xsi:type="properties:TextDescription" name="PLArgumentElementTemplateId" labelExpression="Template Id:" isEnabledExpression="aql: self.attributes->exists(a | a.type.name = 'templateId')" valueExpression="aql: self.attributes->select(a | a.type.name = 'templateId')->first().value">
+          <initialOperation>
+            <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql: self.attributes->select(a | a.type.name = 'templateId')->first()">
+              <subModelOperations xsi:type="tool_1:SetValue" featureName="value" valueExpression="var:newValue"/>
+            </firstModelOperations>
+          </initialOperation>
+        </controls>
       </groups>
     </categories>
   </extensions>
