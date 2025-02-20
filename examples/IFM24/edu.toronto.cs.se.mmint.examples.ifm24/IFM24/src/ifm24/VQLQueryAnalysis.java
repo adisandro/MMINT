@@ -13,6 +13,7 @@
 package ifm24;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -54,6 +55,14 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     return SiriusEvaluateQuery.NAME_PRINTER.prettyPrint(result);
   };
 
+  protected List<String> getResults(List<Object> queryResults) {
+    return queryResults.stream()
+      .map(r -> SiriusEvaluateQuery.queryResultToString(r, SiriusEvaluateQuery.NAME_PRINTER, null, null))
+      .filter(r -> r.startsWith("Alrm_"))
+      .sorted() // for reproducibility
+      .collect(Collectors.toList());
+  }
+
   @Override
   public void instantiate(AnalyticTemplate template) throws Exception {
     var safetyCase = (SafetyCase) template.eContainer();
@@ -85,17 +94,13 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
               .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath)));
     filesCtx.getPaths().add(FileUtils.prependWorkspacePath(querySpec.filePath()));
     filesCtx.getPaths().add(FileUtils.prependWorkspacePath(modelPath));
-    var resultCtxDesc = (queryResults.isEmpty()) ? "No results" : "Query results:";
+    var results = getResults(queryResults);
+    var resultCtxDesc = (results.isEmpty()) ? "No results" : "Query results:";
     var i = 0;
-    for (var queryResult : queryResults) {
-      var resultText = SiriusEvaluateQuery.queryResultToString(queryResult, SiriusEvaluateQuery.NAME_PRINTER, null,
-                                                               null);
-      if (!resultText.startsWith("Alrm_")) {
-        continue;
-      }
-      resultCtxDesc += "\n'" + resultText + "'";
+    for (var result : results) {
+      resultCtxDesc += "\n'" + result + "'";
       resultGoal = builder.createGoal(resultId.replace("X", String.valueOf(i)),
-                                      resultDesc.replace("{X}", "'" + resultText + "'"));
+                                      resultDesc.replace("{X}", "'" + result + "'"));
       resultGoal.setTemplateId("resultGoal" + i);
       template.getElements().add(resultGoal);
       builder.addSupporter(resultStrategy, resultGoal);
@@ -116,6 +121,16 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     liftedGoal.addAttribute(gsn.getArgumentElement_TemplateId(), "liftedGoal");
     plTemplate.addReference(gsn.getTemplate_Elements(), liftedGoal);
     builder.addSupporter(queryStrategy, liftedGoal);
+  }
+
+  protected List<Map.Entry<String, String>> getPLResults(List<Object> queryResults) {
+    return queryResults.stream()
+      .map(r -> Map.entry(
+        SiriusEvaluateQuery.queryResultToString(r, VQLQueryAnalysis.PL_NAME_PRINTER, null, null),
+        (r instanceof PLElement plResult) ? plResult.getPresenceCondition() : null))
+      .filter(r -> r.getKey().startsWith("Alrm_"))
+      .sorted(Map.Entry.comparingByKey()) // for reproducibility
+      .collect(Collectors.toList());
   }
 
   @Override
@@ -156,20 +171,15 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     filesCtx.setManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
                               ECollections.asEList(List.of(FileUtils.prependWorkspacePath(querySpec.filePath()),
                                                            FileUtils.prependWorkspacePath(modelPath))));
-    var resultCtxDesc = (queryResults.isEmpty()) ? "No results" : "Query results:";
+    var results = getPLResults(queryResults);
+    var resultCtxDesc = (results.isEmpty()) ? "No results" : "Query results:";
     var i = 0;
-    for (var queryResult : queryResults) {
-      var resultText = SiriusEvaluateQuery.queryResultToString(queryResult, VQLQueryAnalysis.PL_NAME_PRINTER, null,
-                                                               null);
-      if (!resultText.startsWith("Alrm_")) {
-        continue;
-      }
-      var pc = ((PLElement) queryResult).getPresenceCondition();
-      resultCtxDesc += "\n'" + resultText + "'";
+    for (var result : results) {
+      resultCtxDesc += "\n'" + result.getKey() + "'";
       resultGoal = builder.createGoal(resultId.replace("X", String.valueOf(i)),
-                                      resultDesc.replace("{X}", "'" + resultText + "'"), pc);
+                                      resultDesc.replace("{X}", "'" + result.getKey() + "'"), result.getValue());
       resultGoal.addAttribute(gsn.getArgumentElement_TemplateId(), "resultGoal" + i);
-      plTemplate.addReference(gsn.getTemplate_Elements(), resultGoal, pc);
+      plTemplate.addReference(gsn.getTemplate_Elements(), resultGoal);
       builder.addSupporter(resultStrategy, resultGoal);
       i++;
     }

@@ -96,8 +96,7 @@ public class SiriusEvaluateQuery extends AbstractExternalJavaAction {
         message += queryResultToString(innerResult, printer, highlightUris, models) + "\n";
       }
     }
-    else {    //TODO!!
-
+    else {
       if (result instanceof EObject resultObj && highlightUris != null) {
         highlightUris.add(MIDRegistry.getModelElementUri(resultObj));
         // try finding sirius models to highlight
