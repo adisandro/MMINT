@@ -56,9 +56,17 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
       .filter(l -> l.startsWith("'"))
       .map(l -> l.substring(1, l.length()-1))
       .collect(Collectors.toList());
+    var i = 0;
     var j = 0;
-    for (var i = 0; i < results.size(); i++) {
+    var deletedResults = false;
+    var addedResults = false;
+    while (i < results.size()) {
       var result = results.get(i);
+      // new result, revise decomposition
+      if (j == oldResults.size()) {
+        addedResults = true;
+        break;
+      }
       var oldResult = oldResults.get(j);
       // same result, reuse and continue downstream
       if (oldResult.equals(result.getKey())) {
@@ -68,34 +76,60 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
         templateTrace.add(plTemplate);
         templateTrace.addAll(step.getTrace());
         var templateStep = new PLGSNImpactStep(resultGoal, templateTrace);
-        var currImpacts = templateStep.getCurrentImpacts();
-        templateStep.setImpact(currImpacts, Map.of(ImpactType.REUSE, Optional.of(resultGoal),
-                                                   ImpactType.RECHECK, Optional.empty(),
-                                                   ImpactType.REVISE, Optional.empty()));
+        templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.of(resultGoal),
+                                                                        ImpactType.RECHECK, Optional.empty(),
+                                                                        ImpactType.REVISE, Optional.empty()));
         nextSteps.addAll(templateStep.nextSupporters());
         j++;
+        i++;
       }
+      // deleted result, revise downstream
       else if (oldResults.contains(result.getKey())) {
+        deletedResults = true;
         while (!oldResult.equals(result.getKey())) {
-          //TODO: Del result: revise downstream, results (impact)
+          var resultGoal = templateElems.get("resultGoal" + j);
+          var templateTrace = new ArrayList<EObject>();
+          templateTrace.add(plTemplate);
+          templateTrace.addAll(step.getTrace());
+          var templateStep = new PLGSNImpactStep(resultGoal, templateTrace);
+          templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.empty(),
+                                                                          ImpactType.RECHECK, Optional.empty(),
+                                                                          ImpactType.REVISE, Optional.of(resultGoal)));
+          nextSteps.addAll(templateStep.nextSupporters());
           j++;
           oldResult = oldResults.get(j);
         }
       }
+      // new result, revise decomposition
       else {
-        //TODO: New result: revise decomposition, results (impact)
+        addedResults = true;
+        i++;
       }
-      // reuse everything else in the template
-      for (var plElem : plTemplate.getReference(gsn.getTemplate_Elements())) {
-        if (!plElem.getReference(gsn.getArgumentElement_Status()).isEmpty()) {
-          continue;
-        }
-        var templateStep = new PLGSNImpactStep((PLGSNArgumentElement) plElem);
-        var currImpacts = templateStep.getCurrentImpacts();
-        templateStep.setImpact(currImpacts, Map.of(ImpactType.REUSE, Optional.of(plElem),
-                                                   ImpactType.RECHECK, Optional.empty(),
-                                                   ImpactType.REVISE, Optional.empty()));
+    }
+    // revise result strategy
+    if (addedResults) {
+      var resultStrategy = templateElems.get("resultStrategy");
+      var templateStep = new PLGSNImpactStep(resultStrategy);
+      templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.empty(),
+                                                                      ImpactType.RECHECK, Optional.empty(),
+                                                                      ImpactType.REVISE, Optional.of(resultStrategy)));
+    }
+    // revise result context
+    if (deletedResults || addedResults) {
+      var templateStep = new PLGSNImpactStep(resultCtx);
+      templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.empty(),
+                                                                      ImpactType.RECHECK, Optional.empty(),
+                                                                      ImpactType.REVISE, Optional.of(resultCtx)));
+    }
+    // reuse everything else in the template
+    for (var plElem : plTemplate.getReference(gsn.getTemplate_Elements())) {
+      if (!plElem.getReference(gsn.getArgumentElement_Status()).isEmpty()) {
+        continue;
       }
+      var templateStep = new PLGSNImpactStep((PLGSNArgumentElement) plElem);
+      templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.of(plElem),
+                                                                      ImpactType.RECHECK, Optional.empty(),
+                                                                      ImpactType.REVISE, Optional.empty()));
     }
 
     return nextSteps;
