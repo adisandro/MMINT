@@ -25,6 +25,7 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait.QuerySpec;
 import edu.toronto.cs.se.mmint.mid.reasoning.ISATReasoner;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 
@@ -94,7 +95,8 @@ public class VAMOS23 extends OperatorImpl {
       reasonerName = "Viatra";
     }
     var queryReasoner = (IQueryTrait) MMINT.getReasoner(reasonerName);
-    var querySpec = new QuerySpec(queryReasoner, "/VAMOS23/src/vamos23/evaluation.vql", this.queryName);
+    var querySpec = new QuerySpec(queryReasoner, FileUtils.prependWorkspacePath("/VAMOS23/src/vamos23/evaluation.vql"),
+                                  this.queryName);
     if (satReasoner != null) {
       satReasoner.toggleStats(true);
     }

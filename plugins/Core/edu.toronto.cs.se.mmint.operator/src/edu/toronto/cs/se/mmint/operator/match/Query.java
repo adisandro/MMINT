@@ -24,6 +24,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait.QuerySpec;
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class Query extends OperatorImpl {
@@ -76,7 +77,8 @@ public class Query extends OperatorImpl {
 
   @Override
   public void readInputProperties(Properties inputProperties) throws MMINTException {
-    this.queryPath = MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_QUERYPATH);
+    this.queryPath = FileUtils.prependWorkspacePath(
+      MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_QUERYPATH));
     this.queryName = MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_QUERYNAME);
     this.reasoner = (IQueryTrait) MMINT.getReasoner(
       MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_REASONERNAME));

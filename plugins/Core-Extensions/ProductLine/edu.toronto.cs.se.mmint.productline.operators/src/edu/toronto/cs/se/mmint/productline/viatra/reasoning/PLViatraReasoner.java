@@ -99,7 +99,7 @@ public class PLViatraReasoner extends ViatraReasoner {
   public PLViatraReasoner() throws Exception {
     var plModelRelType = MIDTypeRegistry.<ModelRel>getType(PLMIDPackage.eNS_URI);
     var libFilePath = MIDTypeRegistry.getBundlePath(plModelRelType, PLViatraReasoner.VIATRA_LIB_PATH);
-    var libVqlRoot = getVQLRoot(libFilePath, false);
+    var libVqlRoot = getVQLRoot(libFilePath);
     this.libRefPattern = super.getPattern(libVqlRoot, PLViatraReasoner.LIB_REFERENCE_PATTERN);
     this.libAttrPattern = super.getPattern(libVqlRoot, PLViatraReasoner.LIB_ATTRIBUTE_PATTERN);
     this.libClassPattern = super.getPattern(libVqlRoot, PLViatraReasoner.LIB_CLASSTYPE_PATTERN);
@@ -601,8 +601,8 @@ public class PLViatraReasoner extends ViatraReasoner {
   }
 
   @Override
-  protected Pattern getPattern(String queryFilePath, Object queryObj) throws Exception {
-    var pattern = super.getPattern(queryFilePath, queryObj);
+  protected Pattern getPattern(String filePath, Object queryObj) throws Exception {
+    var pattern = super.getPattern(filePath, queryObj);
     var plPattern = PatternLanguageFactory.eINSTANCE.createPattern();
     plPattern.setName(pattern.getName());
     var plParameters = plPattern.getParameters();

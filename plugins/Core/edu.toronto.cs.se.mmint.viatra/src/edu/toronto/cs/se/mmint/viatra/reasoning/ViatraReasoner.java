@@ -48,8 +48,8 @@ public class ViatraReasoner implements IQueryTrait {
   }
 
   // gets model representation of query file
-  protected PatternModel getVQLRoot(String queryFilePath, boolean isWorkspaceRelative) throws Exception {
-    var queryRoot = FileUtils.readModelFile(queryFilePath, null, isWorkspaceRelative);
+  protected PatternModel getVQLRoot(String queryFilePath) throws Exception {
+    var queryRoot = FileUtils.readModelFile(queryFilePath, null, false);
     if (!(queryRoot instanceof PatternModel vqlRoot)) {
       throw new MMINTException("Malformed VQL query file '" + queryFilePath + "'");
     }
@@ -59,7 +59,7 @@ public class ViatraReasoner implements IQueryTrait {
 
   @Override
   public Pattern selectQuery(String filePath) throws Exception {
-    var patterns = getVQLRoot(filePath, true).getPatterns();
+    var patterns = getVQLRoot(filePath).getPatterns();
     var title = "Evaluate query";
     var message = "Select query";
     var labelProvider = LabelProvider.createTextProvider(p -> ((Pattern) p).getName());
@@ -81,7 +81,7 @@ public class ViatraReasoner implements IQueryTrait {
       pattern = vqlPattern;
     }
     else if (queryObj instanceof String queryName) {
-      var vqlRoot = getVQLRoot(filePath, true);
+      var vqlRoot = getVQLRoot(filePath);
       pattern = getPattern(vqlRoot, queryName);
     }
     else {

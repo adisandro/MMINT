@@ -14,6 +14,7 @@ package edu.toronto.cs.se.modelepedia.gsn.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -22,8 +23,8 @@ public abstract class ImpactStep<T> {
   protected List<EObject> trace;
 
   public ImpactStep(T impacted, List<EObject> trace) {
-    this.impacted = impacted;
-    this.trace = trace;
+    this.impacted = Objects.requireNonNull(impacted);
+    this.trace = Objects.requireNonNull(trace);
   }
 
   public ImpactStep(T impacted) {
