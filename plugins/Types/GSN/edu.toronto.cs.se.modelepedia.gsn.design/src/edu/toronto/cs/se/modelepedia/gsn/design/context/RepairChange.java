@@ -28,7 +28,6 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
-import edu.toronto.cs.se.modelepedia.gsn.design.context.ChangeImpact.ChangeImpactCommand;
 import edu.toronto.cs.se.modelepedia.gsn.util.ImpactStep;
 
 public class RepairChange extends AbstractExternalJavaAction {
@@ -54,7 +53,6 @@ public class RepairChange extends AbstractExternalJavaAction {
     var sSession = SessionManager.INSTANCE.getSession(modelObjs.get(0));
     var sDomain = sSession.getTransactionalEditingDomain();
     sDomain.getCommandStack().execute(new RepairChangeCommand(sDomain, modelObjs));
-    sDomain.getCommandStack().execute(new ChangeImpactCommand(sDomain, modelObjs));
   }
 
   private class RepairChangeCommand extends RecordingCommand {

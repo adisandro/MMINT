@@ -28,7 +28,6 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLGSNChangeImpact.PLGSNChangeImpactCommand;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.util.ImpactStep;
@@ -59,7 +58,6 @@ public class PLGSNRepairChange extends AbstractExternalJavaAction {
     var sSession = SessionManager.INSTANCE.getSession(plModelObjs.get(0));
     var sDomain = sSession.getTransactionalEditingDomain();
     sDomain.getCommandStack().execute(new PLGSNRepairChangeCommand(sDomain, plModelObjs));
-    sDomain.getCommandStack().execute(new PLGSNChangeImpactCommand(sDomain, plModelObjs));
   }
 
   private class PLGSNRepairChangeCommand extends RecordingCommand {
