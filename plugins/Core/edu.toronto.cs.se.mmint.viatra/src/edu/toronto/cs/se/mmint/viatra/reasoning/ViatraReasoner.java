@@ -70,7 +70,7 @@ public class ViatraReasoner implements IQueryTrait {
   // finds named query
   protected Pattern getPattern(PatternModel vqlRoot, String queryName) throws Exception {
     return vqlRoot.getPatterns().stream()
-      .filter(p -> queryName.equals(p.getName()))
+      .filter(p -> queryName.equals(p.getName()) || queryName.equals(p.toString()))
       .findFirst()
       .orElseThrow(() -> new MMINTException(MessageFormat.format("Pattern {0} not found", queryName)));
   }

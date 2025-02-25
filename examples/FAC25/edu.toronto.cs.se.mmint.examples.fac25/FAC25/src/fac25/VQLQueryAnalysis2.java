@@ -44,9 +44,9 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
     var paths = filesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
     var queryFilePath = paths.get(0);
     var modelPath = paths.get(1);
+    var query = filesCtx.getAttribute(gsn.getArgumentElement_Description()).get(0).split("'")[1];
     var rootModelObj = FileUtils.readModelFile(modelPath, null, false);
     var plVQLReasoner = (IQueryTrait) MMINT.getReasoner("Viatra for Product Lines");
-    var query = plVQLReasoner.selectQuery(queryFilePath); // TODO should I store it?
     var querySpec = new QuerySpec(plVQLReasoner, queryFilePath, query);
     var queryResults = querySpec.evaluateQuery(rootModelObj, List.of());
     // compare results
