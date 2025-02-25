@@ -126,17 +126,17 @@ public interface Template extends EObject {
    * @return A list of the next steps of the impact propagation.
    * @throws Exception
    *           If the impact can not be calculated. <!-- end-user-doc -->
-   * @model dataType="edu.toronto.cs.se.modelepedia.gsn.GSNImpactStep" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.modelepedia.gsn.GSNImpactStep" stepRequired="true" changeRequired="true"
+   * @model dataType="edu.toronto.cs.se.modelepedia.gsn.GSNImpactStep" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.modelepedia.gsn.GSNImpactStep" stepRequired="true"
    * @generated
    */
-  EList<GSNImpactStep> impact(GSNImpactStep step, Object change) throws Exception;
+  EList<GSNImpactStep> impact(GSNImpactStep step) throws Exception;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" changeRequired="true"
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */
-  void repair(Object change) throws Exception;
+  void repair() throws Exception;
 
 } // Template

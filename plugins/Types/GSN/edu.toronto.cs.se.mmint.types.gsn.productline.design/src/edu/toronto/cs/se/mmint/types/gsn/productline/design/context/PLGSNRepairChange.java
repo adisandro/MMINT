@@ -31,6 +31,7 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.design.context.PLGSNChangeImpact.PLGSNChangeImpactCommand;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
+import edu.toronto.cs.se.modelepedia.gsn.util.ImpactStep;
 
 public class PLGSNRepairChange extends AbstractExternalJavaAction {
 
@@ -77,8 +78,9 @@ public class PLGSNRepairChange extends AbstractExternalJavaAction {
           if (plTemplates.isEmpty()) {
             continue;
           }
-          ((PLGSNTemplate) plTemplates.get(0)).repair("RECHECK");
+          ((PLGSNTemplate) plTemplates.get(0)).repair();
         }
+        ImpactStep.getData().clear();
       }
       catch (Exception e) {
         MMINTException.print(IStatus.ERROR, "Error repairing PL change", e);

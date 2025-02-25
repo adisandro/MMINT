@@ -30,12 +30,12 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
+import edu.toronto.cs.se.modelepedia.gsn.util.ImpactStep;
 
 public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
 
   @Override
-  public List<PLGSNImpactStep> impact(PLGSNAnalyticTemplate plTemplate, PLGSNImpactStep step, Object change)
-                                     throws Exception {
+  public List<PLGSNImpactStep> impact(PLGSNAnalyticTemplate plTemplate, PLGSNImpactStep step) throws Exception {
     var gsn = GSNPackage.eINSTANCE;
     var templateElems = plTemplate.getElementsById();
     var nextSteps = new ArrayList<PLGSNImpactStep>();
@@ -51,6 +51,9 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
     var queryResults = querySpec.evaluateQuery(rootModelObj, List.of());
     // compare results
     var results = getPLResults(queryResults);
+    var dataKey = getClass().getName() + "_" + modelPath + "_" + querySpec.filePath() + "_" +
+                  querySpec.query().toString();
+    ImpactStep.getData().put(dataKey, results);
     var resultCtx = templateElems.get("resultCtx");
     var oldResults = resultCtx.getAttribute(gsn.getArgumentElement_Description()).get(0).lines()
       .filter(l -> l.startsWith("'"))
@@ -136,8 +139,8 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
   }
 
   @Override
-  public void repair(PLGSNAnalyticTemplate plTemplate, Object change) throws Exception {
-    super.repair(plTemplate, change);
+  public void repair(PLGSNAnalyticTemplate plTemplate) throws Exception {
+    super.repair(plTemplate);
     //TODO: Same result: invoke repair for downstream nodes, it's a problem for the other template
     //TODO: Del result: delete downstream branch and change results (repair)
     //TODO: New result: add downstream branch and change results (repair)

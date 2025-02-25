@@ -327,18 +327,18 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
    * @generated NOT
    */
   @Override
-  public EList<GSNImpactStep> impact(GSNImpactStep step, Object change) throws Exception {
+  public EList<GSNImpactStep> impact(GSNImpactStep step) throws Exception {
     var analysis = getAnalysis();
-    return ECollections.asEList(analysis.impact(this, step, change));
+    return ECollections.asEList(analysis.impact(this, step));
   }
 
   /**
    * @generated NOT
    */
   @Override
-  public void repair(Object change) throws Exception {
+  public void repair() throws Exception {
     var analysis = getAnalysis();
-    analysis.repair(this, change);
+    analysis.repair(this);
   }
 
 } //AnalysisTemplateImpl

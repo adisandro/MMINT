@@ -145,18 +145,18 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
    * @generated NOT
    */
   @Override
-  public EList<PLGSNImpactStep> impact(PLGSNImpactStep step, Object change) throws Exception {
+  public EList<PLGSNImpactStep> impact(PLGSNImpactStep step) throws Exception {
     var analysis = getAnalysis();
-    return ECollections.asEList(analysis.impact(this, step, change));
+    return ECollections.asEList(analysis.impact(this, step));
   }
 
   /**
    * @generated NOT
    */
   @Override
-  public void repair(Object change) throws Exception {
+  public void repair() throws Exception {
     var analysis = getAnalysis();
-    analysis.repair(this, change);
+    analysis.repair(this);
   }
 
 } //GSNPLAnalysisTemplateImpl

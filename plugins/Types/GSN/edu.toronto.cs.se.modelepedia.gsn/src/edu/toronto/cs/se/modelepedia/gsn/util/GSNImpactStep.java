@@ -66,13 +66,13 @@ public class GSNImpactStep extends ImpactStep<ArgumentElement> {
     return nextSteps;
   }
 
-  private ImpactType getPreviousImpact(Object change) {
+  private ImpactType getPreviousImpact() {
     return this.trace.stream()
       .filter(t -> t instanceof ArgumentElement)
       .map(t -> ((ArgumentElement) t).getStatus().getType())
       .findFirst()
       .orElseGet(() -> {
-        return switch (change) {
+        return switch (ImpactStep.data.get(ImpactStep.CHANGE_KEY)) {
           case String type -> {
             try {
               yield ImpactType.valueOf(type);
@@ -95,9 +95,9 @@ public class GSNImpactStep extends ImpactStep<ArgumentElement> {
   }
 
   @Override
-  public List<GSNImpactStep> nextSteps(Object change) {
+  public List<GSNImpactStep> nextSteps() {
     var currImpact = this.impacted.getStatus();
-    var prevImpact = getPreviousImpact(change);
+    var prevImpact = getPreviousImpact();
     // impact rules
     var nextSteps = new ArrayList<GSNImpactStep>();
     switch (this.impacted) {
@@ -123,18 +123,18 @@ public class GSNImpactStep extends ImpactStep<ArgumentElement> {
   }
 
   @Override
-  public void impact(Object change) throws Exception {
+  public void impact() throws Exception {
     var currImpact = this.impacted.getStatus();
-    var prevImpact = getPreviousImpact(change);
+    var prevImpact = getPreviousImpact();
     // stop condition: already impacted with equal or more priority (REVISE > RECHECK > REUSE)
     if (currImpact != null && currImpact.getType().compareTo(prevImpact) >= 0) {
       return;
     }
     // separate syntactic vs semantic (template) behavior
     var template = this.impacted.getTemplate();
-    var nextSteps = (template == null) ? nextSteps(change) : template.impact(this, change);
+    var nextSteps = (template == null) ? nextSteps() : template.impact(this);
     for (var nextStep : nextSteps) {
-      nextStep.impact(change);
+      nextStep.impact();
     }
   }
 }

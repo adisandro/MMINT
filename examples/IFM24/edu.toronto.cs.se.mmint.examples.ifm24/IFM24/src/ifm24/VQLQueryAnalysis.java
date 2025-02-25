@@ -81,8 +81,8 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var resultDesc = resultGoal.getDescription().replace("{safety goal}", safetyDesc);
     scenarioGoal.setDescription(scenarioGoal.getDescription().replace("{safety goal}", safetyDesc));
     // run query and process results
-    var modelPath = MIDDialogs.selectModelToImport(false);
-    var rootModelObj = FileUtils.readModelFile(modelPath, null, true);
+    var modelPath = FileUtils.prependWorkspacePath(MIDDialogs.selectModelToImport(false));
+    var rootModelObj = FileUtils.readModelFile(modelPath, null, false);
     var querySpec = SiriusEvaluateQuery.selectQuery(rootModelObj);
     var queryResults = querySpec.evaluateQuery(rootModelObj, List.of());
     template.getElements().remove(resultGoal);
@@ -92,8 +92,8 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
       filesCtx.getDescription()
               .replace("{query}", querySpec.query().toString())
               .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath)));
-    filesCtx.getPaths().add(FileUtils.prependWorkspacePath(querySpec.filePath()));
-    filesCtx.getPaths().add(FileUtils.prependWorkspacePath(modelPath));
+    filesCtx.getPaths().add(querySpec.filePath());
+    filesCtx.getPaths().add(modelPath);
     var results = getResults(queryResults);
     var resultCtxDesc = (results.isEmpty()) ? "No results" : "Query results:";
     var i = 0;
@@ -155,9 +155,10 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
                                    .replace("{safety goal}", safetyDesc);
     scenarioGoal.setAttribute(gsn.getArgumentElement_Description(), scenarioDesc);
     // run query and process results
-    var modelPath = MIDDialogs.selectFile("Run Product Line analysis", "Select a Product Line model",
-                                          "There are no Product Line models in the workspace", Set.of("productline"));
-    var rootModelObj = FileUtils.readModelFile(modelPath, null, true);
+    var modelPath = FileUtils.prependWorkspacePath(
+      MIDDialogs.selectFile("Run Product Line analysis", "Select a Product Line model",
+                            "There are no Product Line models in the workspace", Set.of("productline")));
+    var rootModelObj = FileUtils.readModelFile(modelPath, null, false);
     var querySpec = SiriusEvaluateQuery.selectQuery(rootModelObj);
     var queryResults = querySpec.evaluateQuery(rootModelObj, List.of());
     resultGoal.delete();
@@ -169,8 +170,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
                             .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath));
     filesCtx.setAttribute(gsn.getArgumentElement_Description(), filesDesc);
     filesCtx.setManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
-                              ECollections.asEList(List.of(FileUtils.prependWorkspacePath(querySpec.filePath()),
-                                                           FileUtils.prependWorkspacePath(modelPath))));
+                              ECollections.asEList(List.of(querySpec.filePath(), modelPath)));
     var results = getPLResults(queryResults);
     var resultCtxDesc = (results.isEmpty()) ? "No results" : "Query results:";
     var i = 0;

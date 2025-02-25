@@ -91,7 +91,7 @@ public class PLGSNImpactStep extends ImpactStep<PLGSNArgumentElement> {
     return getImpacts(this.impacted.getReference(this.gsn.getArgumentElement_Status()));
   }
 
-  public Map<ImpactType, Optional<Class>> getPreviousImpacts(Object change) {
+  public Map<ImpactType, Optional<Class>> getPreviousImpacts() {
     return this.trace.stream()
       .filter(t -> t instanceof PLGSNArgumentElement)
       .map(t -> ((PLGSNArgumentElement) t).getReference(this.gsn.getArgumentElement_Status()))
@@ -99,7 +99,7 @@ public class PLGSNImpactStep extends ImpactStep<PLGSNArgumentElement> {
       .map(r -> getImpacts(r))
       .findFirst()
       .orElseGet(() -> {
-        var impactType = switch (change) {
+        var impactType = switch (ImpactStep.data.get(ImpactStep.CHANGE_KEY)) {
           case String type -> {
             try {
               yield ImpactType.valueOf(type);
@@ -144,9 +144,9 @@ public class PLGSNImpactStep extends ImpactStep<PLGSNArgumentElement> {
   }
 
   @Override
-  public List<PLGSNImpactStep> nextSteps(Object change) {
+  public List<PLGSNImpactStep> nextSteps() {
     var currImpacts = getCurrentImpacts();
-    var prevImpacts = getPreviousImpacts(change);
+    var prevImpacts = getPreviousImpacts();
     // impact rules
     var nextSteps = new ArrayList<PLGSNImpactStep>();
     switch (this.impacted.getType()) {
@@ -176,9 +176,9 @@ public class PLGSNImpactStep extends ImpactStep<PLGSNArgumentElement> {
   }
 
   @Override
-  public void impact(Object change) throws Exception {
+  public void impact() throws Exception {
     var currImpacts = getCurrentImpacts();
-    var prevImpacts = getPreviousImpacts(change);
+    var prevImpacts = getPreviousImpacts();
     // stop condition: already impacted with equal or more priority (REVISE > RECHECK > REUSE)
     if (currImpacts.get(ImpactType.REVISE).isPresent() ||
         currImpacts.get(ImpactType.RECHECK).isPresent() && !prevImpacts.get(ImpactType.REVISE).isPresent() ||
@@ -187,9 +187,9 @@ public class PLGSNImpactStep extends ImpactStep<PLGSNArgumentElement> {
     }
     // separate syntactic vs semantic (template) behavior
     var templates = this.impacted.getReference(this.gsn.getArgumentElement_Template());
-    var nextSteps = (templates.isEmpty()) ? nextSteps(change) : ((PLGSNTemplate) templates.get(0)).impact(this, change);
+    var nextSteps = (templates.isEmpty()) ? nextSteps() : ((PLGSNTemplate) templates.get(0)).impact(this);
     for (var nextStep : nextSteps) {
-      nextStep.impact(change);
+      nextStep.impact();
     }
   }
 }

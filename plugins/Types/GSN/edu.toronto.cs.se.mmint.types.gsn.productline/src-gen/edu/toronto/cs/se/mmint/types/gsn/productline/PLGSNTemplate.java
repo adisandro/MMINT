@@ -67,16 +67,16 @@ public interface PLGSNTemplate extends edu.toronto.cs.se.mmint.productline.Class
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model dataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep" stepRequired="true" changeRequired="true"
+   * @model dataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep" stepRequired="true"
    * @generated
    */
-  EList<PLGSNImpactStep> impact(PLGSNImpactStep step, Object change) throws Exception;
+  EList<PLGSNImpactStep> impact(PLGSNImpactStep step) throws Exception;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" changeRequired="true"
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
    * @generated
    */
-  void repair(Object change) throws Exception;
+  void repair() throws Exception;
 } // GSNPLTemplate

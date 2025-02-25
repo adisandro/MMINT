@@ -22,10 +22,10 @@ public interface IAnalysis {
   default void import_(AnalyticTemplate template, SafetyCase safetyCase) throws Exception {}
   default void instantiate(AnalyticTemplate template) throws Exception {}
   default void validate(AnalyticTemplate template) throws Exception {}
-  default List<GSNImpactStep> impact(AnalyticTemplate template, GSNImpactStep step, Object change) throws Exception {
-    return step.nextSteps(change);
+  default List<GSNImpactStep> impact(AnalyticTemplate template, GSNImpactStep step) throws Exception {
+    return step.nextSteps();
   }
-  default void repair(AnalyticTemplate template, Object change) throws Exception {}
+  default void repair(AnalyticTemplate template) throws Exception {}
   default boolean runsFirst() {
     return true;
   }

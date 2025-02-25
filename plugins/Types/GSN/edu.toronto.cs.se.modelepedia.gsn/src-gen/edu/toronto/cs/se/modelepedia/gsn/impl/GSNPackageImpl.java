@@ -828,7 +828,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EOperation getTemplate__Impact__GSNImpactStep_Object() {
+  public EOperation getTemplate__Impact__GSNImpactStep() {
     return this.templateEClass.getEOperations().get(4);
   }
 
@@ -838,7 +838,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EOperation getTemplate__Repair__Object() {
+  public EOperation getTemplate__Repair() {
     return this.templateEClass.getEOperations().get(5);
   }
 
@@ -1043,8 +1043,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___VALIDATE);
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___IMPORT____SAFETYCASE);
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___INSTANTIATE);
-    createEOperation(this.templateEClass, GSNPackage.TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT);
-    createEOperation(this.templateEClass, GSNPackage.TEMPLATE___REPAIR__OBJECT);
+    createEOperation(this.templateEClass, GSNPackage.TEMPLATE___IMPACT__GSNIMPACTSTEP);
+    createEOperation(this.templateEClass, GSNPackage.TEMPLATE___REPAIR);
 
     this.relationshipDecoratorEClass = createEClass(GSNPackage.RELATIONSHIP_DECORATOR);
     createEAttribute(this.relationshipDecoratorEClass, GSNPackage.RELATIONSHIP_DECORATOR__TYPE);
@@ -1204,13 +1204,11 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     op = initEOperation(getTemplate__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
-    op = initEOperation(getTemplate__Impact__GSNImpactStep_Object(), this.getGSNImpactStep(), "impact", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getTemplate__Impact__GSNImpactStep(), this.getGSNImpactStep(), "impact", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.getGSNImpactStep(), "step", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEJavaObject(), "change", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
-    op = initEOperation(getTemplate__Repair__Object(), null, "repair", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEJavaObject(), "change", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getTemplate__Repair(), null, "repair", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
     initEClass(this.relationshipDecoratorEClass, RelationshipDecorator.class, "RelationshipDecorator", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);

@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.design.context.ChangeImpact.ChangeImpactCommand;
+import edu.toronto.cs.se.modelepedia.gsn.util.ImpactStep;
 
 public class RepairChange extends AbstractExternalJavaAction {
 
@@ -72,8 +73,9 @@ public class RepairChange extends AbstractExternalJavaAction {
           if (template == null) {
             continue;
           }
-          template.repair("RECHECK");
+          template.repair();
         }
+        ImpactStep.getData().clear();
       }
       catch (Exception e) {
         MMINTException.print(IStatus.ERROR, "Error repairing change", e);

@@ -13,7 +13,9 @@
 package edu.toronto.cs.se.modelepedia.gsn.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import org.eclipse.emf.ecore.EObject;
@@ -21,6 +23,8 @@ import org.eclipse.emf.ecore.EObject;
 public abstract class ImpactStep<T> {
   protected T impacted;
   protected List<EObject> trace;
+  protected static Map<String, Object> data = new HashMap<>();
+  public static String CHANGE_KEY = "change";
 
   public ImpactStep(T impacted, List<EObject> trace) {
     this.impacted = Objects.requireNonNull(impacted);
@@ -39,6 +43,10 @@ public abstract class ImpactStep<T> {
     return this.trace;
   }
 
-  public abstract List<? extends ImpactStep<T>> nextSteps(Object change);
-  public abstract void impact(Object change) throws Exception;
+  public static Map<String, Object> getData() {
+    return ImpactStep.data;
+  }
+
+  public abstract List<? extends ImpactStep<T>> nextSteps();
+  public abstract void impact() throws Exception;
 }

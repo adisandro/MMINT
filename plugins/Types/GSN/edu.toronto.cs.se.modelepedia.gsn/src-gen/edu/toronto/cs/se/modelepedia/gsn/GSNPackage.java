@@ -1837,7 +1837,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT = 4;
+  int TEMPLATE___IMPACT__GSNIMPACTSTEP = 4;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -1846,7 +1846,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE___REPAIR__OBJECT = 5;
+  int TEMPLATE___REPAIR = 5;
 
   /**
    * The number of operations of the '<em>Template</em>' class.
@@ -2645,24 +2645,24 @@ public interface GSNPackage extends EPackage {
   EOperation getTemplate__Instantiate();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#impact(edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep, java.lang.Object) <em>Impact</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#impact(edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep) <em>Impact</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Impact</em>' operation.
-   * @see edu.toronto.cs.se.modelepedia.gsn.Template#impact(edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep, java.lang.Object)
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#impact(edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep)
    * @generated
    */
-  EOperation getTemplate__Impact__GSNImpactStep_Object();
+  EOperation getTemplate__Impact__GSNImpactStep();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#repair(java.lang.Object) <em>Repair</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#repair() <em>Repair</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Repair</em>' operation.
-   * @see edu.toronto.cs.se.modelepedia.gsn.Template#repair(java.lang.Object)
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#repair()
    * @generated
    */
-  EOperation getTemplate__Repair__Object();
+  EOperation getTemplate__Repair();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator <em>Relationship Decorator</em>}'.
@@ -3267,7 +3267,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation TEMPLATE___IMPACT__GSNIMPACTSTEP_OBJECT = GSNPackage.eINSTANCE.getTemplate__Impact__GSNImpactStep_Object();
+    EOperation TEMPLATE___IMPACT__GSNIMPACTSTEP = GSNPackage.eINSTANCE.getTemplate__Impact__GSNImpactStep();
 
     /**
      * The meta object literal for the '<em><b>Repair</b></em>' operation.
@@ -3275,7 +3275,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation TEMPLATE___REPAIR__OBJECT = GSNPackage.eINSTANCE.getTemplate__Repair__Object();
+    EOperation TEMPLATE___REPAIR = GSNPackage.eINSTANCE.getTemplate__Repair();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.RelationshipDecoratorImpl <em>Relationship Decorator</em>}' class.

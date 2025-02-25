@@ -23,9 +23,8 @@ public interface IPLGSNAnalysis extends IAnalysis {
   default void import_(PLGSNAnalyticTemplate plTemplate, ProductLine productLine) throws Exception {}
   default void instantiate(PLGSNAnalyticTemplate plTemplate) throws Exception {}
   default void validate(PLGSNAnalyticTemplate plTemplate) throws Exception {}
-  default List<PLGSNImpactStep> impact(PLGSNAnalyticTemplate plTemplate, PLGSNImpactStep step, Object change)
-                                      throws Exception {
-    return step.nextSteps(change);
+  default List<PLGSNImpactStep> impact(PLGSNAnalyticTemplate plTemplate, PLGSNImpactStep step) throws Exception {
+    return step.nextSteps();
   }
-  default void repair(PLGSNAnalyticTemplate plTemplate, Object change) throws Exception {}
+  default void repair(PLGSNAnalyticTemplate plTemplate) throws Exception {}
 }
