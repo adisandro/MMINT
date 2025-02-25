@@ -51,8 +51,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
     var queryResults = querySpec.evaluateQuery(rootModelObj, List.of());
     // compare results
     var results = getPLResults(queryResults);
-    var dataKey = getClass().getName() + "_" + modelPath + "_" + querySpec.filePath() + "_" +
-                  querySpec.query().toString();
+    var dataKey = getClass().getName() + "_" + modelPath + "_" + queryFilePath + "_" + query;
     ImpactStep.getData().put(dataKey, results);
     var resultCtx = templateElems.get("resultCtx");
     var oldResults = resultCtx.getAttribute(gsn.getArgumentElement_Description()).get(0).lines()
@@ -140,7 +139,15 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
 
   @Override
   public void repair(PLGSNAnalyticTemplate plTemplate) throws Exception {
-    super.repair(plTemplate);
+    var gsn = GSNPackage.eINSTANCE;
+    var templateElems = plTemplate.getElementsById();
+    var filesCtx = templateElems.get("filesCtx");
+    var paths = filesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
+    var queryFilePath = paths.get(0);
+    var modelPath = paths.get(1);
+    var query = filesCtx.getAttribute(gsn.getArgumentElement_Description()).get(0).split("'")[1];
+    var dataKey = getClass().getName() + "_" + modelPath + "_" + queryFilePath + "_" + query;
+    var results = (List<Map.Entry<String, String>>) ImpactStep.getData().get(dataKey);
     //TODO: Same result: invoke repair for downstream nodes, it's a problem for the other template
     //TODO: Del result: delete downstream branch and change results (repair)
     //TODO: New result: add downstream branch and change results (repair)
