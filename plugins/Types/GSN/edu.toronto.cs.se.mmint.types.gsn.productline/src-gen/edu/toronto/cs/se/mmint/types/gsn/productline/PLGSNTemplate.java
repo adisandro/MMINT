@@ -17,7 +17,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep;
+import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 
 
 /**
@@ -67,16 +67,16 @@ public interface PLGSNTemplate extends edu.toronto.cs.se.mmint.productline.Class
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model dataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNImpactStep" stepRequired="true"
+   * @model dataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNChangeStep" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNChangeStep" stepRequired="true"
    * @generated
    */
-  EList<PLGSNImpactStep> impact(PLGSNImpactStep step) throws Exception;
+  EList<PLGSNChangeStep> impact(PLGSNChangeStep step) throws Exception;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
+   * @model dataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNChangeStep" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNChangeStep" stepRequired="true"
    * @generated
    */
-  void repair() throws Exception;
+  EList<PLGSNChangeStep> repair(PLGSNChangeStep step) throws Exception;
 } // GSNPLTemplate

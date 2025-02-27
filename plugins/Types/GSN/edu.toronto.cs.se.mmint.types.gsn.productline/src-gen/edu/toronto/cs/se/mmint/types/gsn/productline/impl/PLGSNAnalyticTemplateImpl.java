@@ -28,7 +28,7 @@ import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
-import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep;
+import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 
 /**
@@ -145,7 +145,7 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
    * @generated NOT
    */
   @Override
-  public EList<PLGSNImpactStep> impact(PLGSNImpactStep step) throws Exception {
+  public EList<PLGSNChangeStep> impact(PLGSNChangeStep step) throws Exception {
     var analysis = getAnalysis();
     return ECollections.asEList(analysis.impact(this, step));
   }
@@ -154,9 +154,9 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
    * @generated NOT
    */
   @Override
-  public void repair() throws Exception {
+  public EList<PLGSNChangeStep> repair(PLGSNChangeStep step) throws Exception {
     var analysis = getAnalysis();
-    analysis.repair(this);
+    return ECollections.asEList(analysis.repair(this, step));
   }
 
 } //GSNPLAnalysisTemplateImpl

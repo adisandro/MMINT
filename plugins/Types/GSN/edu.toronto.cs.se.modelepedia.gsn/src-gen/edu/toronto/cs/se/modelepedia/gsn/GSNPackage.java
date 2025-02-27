@@ -1837,7 +1837,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE___IMPACT__GSNIMPACTSTEP = 4;
+  int TEMPLATE___IMPACT__GSNCHANGESTEP = 4;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -1846,7 +1846,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE___REPAIR = 5;
+  int TEMPLATE___REPAIR__GSNCHANGESTEP = 5;
 
   /**
    * The number of operations of the '<em>Template</em>' class.
@@ -2061,14 +2061,14 @@ public interface GSNPackage extends EPackage {
   int GSN_BUILDER = 25;
 
   /**
-   * The meta object id for the '<em>Impact Step</em>' data type.
+   * The meta object id for the '<em>Change Step</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep
-   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getGSNImpactStep()
+   * @see edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep
+   * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getGSNChangeStep()
    * @generated
    */
-  int GSN_IMPACT_STEP = 26;
+  int GSN_CHANGE_STEP = 26;
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.SafetyCase <em>Safety Case</em>}'. <!--
@@ -2645,24 +2645,24 @@ public interface GSNPackage extends EPackage {
   EOperation getTemplate__Instantiate();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#impact(edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep) <em>Impact</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#impact(edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep) <em>Impact</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Impact</em>' operation.
-   * @see edu.toronto.cs.se.modelepedia.gsn.Template#impact(edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep)
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#impact(edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep)
    * @generated
    */
-  EOperation getTemplate__Impact__GSNImpactStep();
+  EOperation getTemplate__Impact__GSNChangeStep();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#repair() <em>Repair</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#repair(edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep) <em>Repair</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Repair</em>' operation.
-   * @see edu.toronto.cs.se.modelepedia.gsn.Template#repair()
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#repair(edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep)
    * @generated
    */
-  EOperation getTemplate__Repair();
+  EOperation getTemplate__Repair__GSNChangeStep();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator <em>Relationship Decorator</em>}'.
@@ -2759,15 +2759,15 @@ public interface GSNPackage extends EPackage {
   EDataType getGSNBuilder();
 
   /**
-   * Returns the meta object for data type '{@link edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep <em>Impact Step</em>}'.
+   * Returns the meta object for data type '{@link edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep <em>Change Step</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>Impact Step</em>'.
-   * @see edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep
-   * @model instanceClass="edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep"
+   * @return the meta object for data type '<em>Change Step</em>'.
+   * @see edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep
+   * @model instanceClass="edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep"
    * @generated
    */
-  EDataType getGSNImpactStep();
+  EDataType getGSNChangeStep();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -3267,7 +3267,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation TEMPLATE___IMPACT__GSNIMPACTSTEP = GSNPackage.eINSTANCE.getTemplate__Impact__GSNImpactStep();
+    EOperation TEMPLATE___IMPACT__GSNCHANGESTEP = GSNPackage.eINSTANCE.getTemplate__Impact__GSNChangeStep();
 
     /**
      * The meta object literal for the '<em><b>Repair</b></em>' operation.
@@ -3275,7 +3275,7 @@ public interface GSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation TEMPLATE___REPAIR = GSNPackage.eINSTANCE.getTemplate__Repair();
+    EOperation TEMPLATE___REPAIR__GSNCHANGESTEP = GSNPackage.eINSTANCE.getTemplate__Repair__GSNChangeStep();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.RelationshipDecoratorImpl <em>Relationship Decorator</em>}' class.
@@ -3361,14 +3361,14 @@ public interface GSNPackage extends EPackage {
     EDataType GSN_BUILDER = GSNPackage.eINSTANCE.getGSNBuilder();
 
     /**
-     * The meta object literal for the '<em>Impact Step</em>' data type.
+     * The meta object literal for the '<em>Change Step</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep
-     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getGSNImpactStep()
+     * @see edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep
+     * @see edu.toronto.cs.se.modelepedia.gsn.impl.GSNPackageImpl#getGSNChangeStep()
      * @generated
      */
-    EDataType GSN_IMPACT_STEP = GSNPackage.eINSTANCE.getGSNImpactStep();
+    EDataType GSN_CHANGE_STEP = GSNPackage.eINSTANCE.getGSNChangeStep();
 
   }
 

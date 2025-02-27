@@ -49,7 +49,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.Undeveloped;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
-import edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNValidator;
 
 /**
@@ -226,7 +226,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  private EDataType gsnImpactStepEDataType = null;
+  private EDataType gsnChangeStepEDataType = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -828,7 +828,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EOperation getTemplate__Impact__GSNImpactStep() {
+  public EOperation getTemplate__Impact__GSNChangeStep() {
     return this.templateEClass.getEOperations().get(4);
   }
 
@@ -838,7 +838,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EOperation getTemplate__Repair() {
+  public EOperation getTemplate__Repair__GSNChangeStep() {
     return this.templateEClass.getEOperations().get(5);
   }
 
@@ -935,8 +935,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
    * @generated
    */
   @Override
-  public EDataType getGSNImpactStep() {
-    return this.gsnImpactStepEDataType;
+  public EDataType getGSNChangeStep() {
+    return this.gsnChangeStepEDataType;
   }
 
   /**
@@ -1043,8 +1043,8 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___VALIDATE);
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___IMPORT____SAFETYCASE);
     createEOperation(this.templateEClass, GSNPackage.TEMPLATE___INSTANTIATE);
-    createEOperation(this.templateEClass, GSNPackage.TEMPLATE___IMPACT__GSNIMPACTSTEP);
-    createEOperation(this.templateEClass, GSNPackage.TEMPLATE___REPAIR);
+    createEOperation(this.templateEClass, GSNPackage.TEMPLATE___IMPACT__GSNCHANGESTEP);
+    createEOperation(this.templateEClass, GSNPackage.TEMPLATE___REPAIR__GSNCHANGESTEP);
 
     this.relationshipDecoratorEClass = createEClass(GSNPackage.RELATIONSHIP_DECORATOR);
     createEAttribute(this.relationshipDecoratorEClass, GSNPackage.RELATIONSHIP_DECORATOR__TYPE);
@@ -1058,7 +1058,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     // Create data types
     this.exceptionEDataType = createEDataType(GSNPackage.EXCEPTION);
     this.gsnBuilderEDataType = createEDataType(GSNPackage.GSN_BUILDER);
-    this.gsnImpactStepEDataType = createEDataType(GSNPackage.GSN_IMPACT_STEP);
+    this.gsnChangeStepEDataType = createEDataType(GSNPackage.GSN_CHANGE_STEP);
   }
 
   /**
@@ -1204,11 +1204,12 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     op = initEOperation(getTemplate__Instantiate(), null, "instantiate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
-    op = initEOperation(getTemplate__Impact__GSNImpactStep(), this.getGSNImpactStep(), "impact", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.getGSNImpactStep(), "step", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getTemplate__Impact__GSNChangeStep(), this.getGSNChangeStep(), "impact", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.getGSNChangeStep(), "step", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
-    op = initEOperation(getTemplate__Repair(), null, "repair", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getTemplate__Repair__GSNChangeStep(), this.getGSNChangeStep(), "repair", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.getGSNChangeStep(), "step", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
 
     initEClass(this.relationshipDecoratorEClass, RelationshipDecorator.class, "RelationshipDecorator", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -1236,7 +1237,7 @@ public class GSNPackageImpl extends EPackageImpl implements GSNPackage {
     // Initialize data types
     initEDataType(this.exceptionEDataType, Exception.class, "Exception", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEDataType(this.gsnBuilderEDataType, GSNBuilder.class, "GSNBuilder", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEDataType(this.gsnImpactStepEDataType, GSNImpactStep.class, "GSNImpactStep", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.gsnChangeStepEDataType, GSNChangeStep.class, "GSNChangeStep", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(GSNPackage.eNS_URI);

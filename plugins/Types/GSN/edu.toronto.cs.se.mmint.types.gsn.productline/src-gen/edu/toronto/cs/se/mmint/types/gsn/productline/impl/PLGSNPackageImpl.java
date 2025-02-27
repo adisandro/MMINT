@@ -25,7 +25,7 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
-import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep;
+import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
@@ -65,7 +65,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  private EDataType plgsnImpactStepEDataType = null;
+  private EDataType plgsnChangeStepEDataType = null;
   /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
@@ -199,7 +199,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EOperation getPLGSNTemplate__Impact__PLGSNImpactStep() {
+  public EOperation getPLGSNTemplate__Impact__PLGSNChangeStep() {
     return this.plgsnTemplateEClass.getEOperations().get(4);
   }
 
@@ -209,7 +209,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EOperation getPLGSNTemplate__Repair() {
+  public EOperation getPLGSNTemplate__Repair__PLGSNChangeStep() {
     return this.plgsnTemplateEClass.getEOperations().get(5);
   }
 
@@ -259,8 +259,8 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EDataType getPLGSNImpactStep() {
-    return this.plgsnImpactStepEDataType;
+  public EDataType getIPLGSNAnalysis() {
+    return this.iplgsnAnalysisEDataType;
   }
 
   /**
@@ -269,8 +269,8 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EDataType getIPLGSNAnalysis() {
-    return this.iplgsnAnalysisEDataType;
+  public EDataType getPLGSNChangeStep() {
+    return this.plgsnChangeStepEDataType;
   }
 
   /**
@@ -313,15 +313,15 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___IMPORT____PRODUCTLINE);
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___INSTANTIATE);
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___VALIDATE);
-    createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNIMPACTSTEP);
-    createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___REPAIR);
+    createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNCHANGESTEP);
+    createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___REPAIR__PLGSNCHANGESTEP);
 
     this.plgsnAnalyticTemplateEClass = createEClass(PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE);
     createEOperation(this.plgsnAnalyticTemplateEClass, PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE___GET_ANALYSIS);
 
     // Create data types
     this.iplgsnAnalysisEDataType = createEDataType(PLGSNPackage.IPLGSN_ANALYSIS);
-    this.plgsnImpactStepEDataType = createEDataType(PLGSNPackage.PLGSN_IMPACT_STEP);
+    this.plgsnChangeStepEDataType = createEDataType(PLGSNPackage.PLGSN_CHANGE_STEP);
   }
 
   /**
@@ -391,11 +391,12 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     op = initEOperation(getPLGSNTemplate__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
-    op = initEOperation(getPLGSNTemplate__Impact__PLGSNImpactStep(), this.getPLGSNImpactStep(), "impact", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.getPLGSNImpactStep(), "step", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getPLGSNTemplate__Impact__PLGSNChangeStep(), this.getPLGSNChangeStep(), "impact", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.getPLGSNChangeStep(), "step", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
-    op = initEOperation(getPLGSNTemplate__Repair(), null, "repair", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getPLGSNTemplate__Repair__PLGSNChangeStep(), this.getPLGSNChangeStep(), "repair", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.getPLGSNChangeStep(), "step", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
     initEClass(this.plgsnAnalyticTemplateEClass, PLGSNAnalyticTemplate.class, "PLGSNAnalyticTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -405,7 +406,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
 
     // Initialize data types
     initEDataType(this.iplgsnAnalysisEDataType, IPLGSNAnalysis.class, "IPLGSNAnalysis", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEDataType(this.plgsnImpactStepEDataType, PLGSNImpactStep.class, "PLGSNImpactStep", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.plgsnChangeStepEDataType, PLGSNChangeStep.class, "PLGSNChangeStep", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(PLGSNPackage.eNS_URI);

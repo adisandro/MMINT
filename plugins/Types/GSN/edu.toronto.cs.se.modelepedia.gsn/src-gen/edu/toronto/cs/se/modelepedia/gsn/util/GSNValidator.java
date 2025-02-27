@@ -139,7 +139,7 @@ public class GSNValidator extends EObjectValidator {
     case GSNPackage.DECORATOR_TYPE -> validateDecoratorType((DecoratorType)value, diagnostics, context);
     case GSNPackage.EXCEPTION -> validateException((Exception)value, diagnostics, context);
     case GSNPackage.GSN_BUILDER -> validateGSNBuilder((GSNBuilder)value, diagnostics, context);
-    case GSNPackage.GSN_IMPACT_STEP -> validateGSNImpactStep((GSNImpactStep)value, diagnostics, context);
+    case GSNPackage.GSN_CHANGE_STEP -> validateGSNChangeStep((GSNChangeStep)value, diagnostics, context);
     default -> true;
     };
   }
@@ -676,7 +676,7 @@ public class GSNValidator extends EObjectValidator {
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean validateGSNImpactStep(GSNImpactStep gsnImpactStep, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateGSNChangeStep(GSNChangeStep gsnChangeStep, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return true;
   }
 

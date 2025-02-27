@@ -31,7 +31,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.impl.TemplateImpl;
-import edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep;
 
 /**
  * <!-- begin-user-doc -->
@@ -327,7 +327,7 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
    * @generated NOT
    */
   @Override
-  public EList<GSNImpactStep> impact(GSNImpactStep step) throws Exception {
+  public EList<GSNChangeStep> impact(GSNChangeStep step) throws Exception {
     var analysis = getAnalysis();
     return ECollections.asEList(analysis.impact(this, step));
   }
@@ -336,9 +336,9 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
    * @generated NOT
    */
   @Override
-  public void repair() throws Exception {
+  public EList<GSNChangeStep> repair(GSNChangeStep step) throws Exception {
     var analysis = getAnalysis();
-    analysis.repair(this);
+    return ECollections.asEList(analysis.repair(this, step));
   }
 
 } //AnalysisTemplateImpl

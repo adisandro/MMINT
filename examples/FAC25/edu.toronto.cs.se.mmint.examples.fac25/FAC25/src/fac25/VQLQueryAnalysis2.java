@@ -13,6 +13,7 @@
 package fac25;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -29,17 +30,17 @@ import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNBuilder;
-import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep;
+import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
-import edu.toronto.cs.se.modelepedia.gsn.util.ImpactStep;
+import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep;
 
 public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
 
   @Override
-  public List<PLGSNImpactStep> impact(PLGSNAnalyticTemplate plTemplate, PLGSNImpactStep step) throws Exception {
+  public List<PLGSNChangeStep> impact(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step) throws Exception {
     var templateElems = plTemplate.getElementsById();
-    var nextSteps = new ArrayList<PLGSNImpactStep>();
+    var nextSteps = new ArrayList<PLGSNChangeStep>();
     // re-run query on modified model
     var filesCtx = templateElems.get("filesCtx");
     var paths = filesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
@@ -53,7 +54,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
     // compare results
     var results = getPLResults(queryResults);
     var dataKey = getClass().getName() + "_" + modelPath + "_" + queryFilePath + "_" + query;
-    ImpactStep.getData().put(dataKey, results);
+    ChangeStep.getData().put(dataKey, results);
     var resultCtx = templateElems.get("resultCtx");
     var oldResults = resultCtx.getAttribute(this.gsn.getArgumentElement_Description()).get(0).lines()
       .filter(l -> l.startsWith("'"))
@@ -75,10 +76,11 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
       if (oldResult.equals(result.getKey())) {
         //TODO consider possible pc change (result.getValue())
         var resultGoal = templateElems.get("resultGoal" + o);
-        var templateTrace = new ArrayList<EObject>();
+        var templateTrace = new LinkedHashSet<EObject>();
         templateTrace.add(plTemplate);
+        templateTrace.add(step.getImpacted());
         templateTrace.addAll(step.getTrace());
-        var templateStep = new PLGSNImpactStep(resultGoal, templateTrace);
+        var templateStep = new PLGSNChangeStep(resultGoal, templateTrace);
         templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.of(resultGoal),
                                                                         ImpactType.RECHECK, Optional.empty(),
                                                                         ImpactType.REVISE, Optional.empty()));
@@ -91,10 +93,11 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
         deletedResults = true;
         while (!oldResult.equals(result.getKey())) {
           var resultGoal = templateElems.get("resultGoal" + o);
-          var templateTrace = new ArrayList<EObject>();
+          var templateTrace = new LinkedHashSet<EObject>();
           templateTrace.add(plTemplate);
+          templateTrace.add(step.getImpacted());
           templateTrace.addAll(step.getTrace());
-          var templateStep = new PLGSNImpactStep(resultGoal, templateTrace);
+          var templateStep = new PLGSNChangeStep(resultGoal, templateTrace);
           templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.empty(),
                                                                           ImpactType.RECHECK, Optional.empty(),
                                                                           ImpactType.REVISE, Optional.of(resultGoal)));
@@ -112,14 +115,14 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
     // revise result strategy
     if (addedResults) {
       var resultStrategy = templateElems.get("resultStrategy");
-      var templateStep = new PLGSNImpactStep(resultStrategy);
+      var templateStep = new PLGSNChangeStep(resultStrategy);
       templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.empty(),
                                                                       ImpactType.RECHECK, Optional.empty(),
                                                                       ImpactType.REVISE, Optional.of(resultStrategy)));
     }
     // revise result context
     if (deletedResults || addedResults) {
-      var templateStep = new PLGSNImpactStep(resultCtx);
+      var templateStep = new PLGSNChangeStep(resultCtx);
       templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.empty(),
                                                                       ImpactType.RECHECK, Optional.empty(),
                                                                       ImpactType.REVISE, Optional.of(resultCtx)));
@@ -129,7 +132,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
       if (!plElem.getReference(this.gsn.getArgumentElement_Status()).isEmpty()) {
         continue;
       }
-      var templateStep = new PLGSNImpactStep((PLGSNArgumentElement) plElem);
+      var templateStep = new PLGSNChangeStep((PLGSNArgumentElement) plElem);
       templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.of(plElem),
                                                                       ImpactType.RECHECK, Optional.empty(),
                                                                       ImpactType.REVISE, Optional.empty()));
@@ -156,10 +159,11 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
   }
 
   @Override
-  public void repair(PLGSNAnalyticTemplate plTemplate) throws Exception {
+  public List<PLGSNChangeStep> repair(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step) throws Exception {
     var productLine = (ProductLine) plTemplate.eContainer();
     var plBuilder = new PLGSNBuilder(productLine);
     var templateElems = plTemplate.getElementsById();
+    var nextSteps = new ArrayList<PLGSNChangeStep>();
     // fetch query results on modified model
     var filesCtx = templateElems.get("filesCtx");
     var paths = filesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
@@ -167,7 +171,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
     var modelPath = paths.get(1);
     var query = filesCtx.getAttribute(this.gsn.getArgumentElement_Description()).get(0).split("'")[1];
     var dataKey = getClass().getName() + "_" + modelPath + "_" + queryFilePath + "_" + query;
-    var results = (List<Map.Entry<String, String>>) ImpactStep.getData().get(dataKey);
+    var results = (List<Map.Entry<String, String>>) ChangeStep.getData().get(dataKey);
     var resultCtxDesc = (results.isEmpty()) ? "No results" : "Query results:";
     // compare results
     var safetyGoal = templateElems.get("safetyGoal");
@@ -193,8 +197,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
                                             "Query result '" + result.getKey() + "', " + safetyDesc, result.getValue(),
                                             "resultGoal" + n);
         resultCtxDesc += "\n'" + result.getKey() + "'";
-        //TODO should repair be integrated into ImpactStep?
-        var templateStep = new PLGSNImpactStep(resultGoal);
+        var templateStep = new PLGSNChangeStep(resultGoal);
         templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.of(resultGoal),
                                                                         ImpactType.RECHECK, Optional.empty(),
                                                                         ImpactType.REVISE, Optional.empty()));
@@ -208,7 +211,12 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
         resultGoal.setAttribute(this.gsn.getArgumentElement_Id(), resultId + n);
         resultGoal.setAttribute(this.gsn.getArgumentElement_TemplateId(), "resultGoal" + n);
         resultCtxDesc += "\n'" + result.getKey() + "'";
-        //TODO: how do we propagate repair with the current api?
+        var templateTrace = new LinkedHashSet<EObject>();
+        templateTrace.add(plTemplate);
+        templateTrace.add(step.getImpacted());
+        templateTrace.addAll(step.getTrace());
+        var templateStep = new PLGSNChangeStep(resultGoal, templateTrace);
+        nextSteps.addAll(templateStep.nextSupporters());
         o++;
         n++;
       }
@@ -229,7 +237,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
                                             "Query result '" + result.getKey() + "', " + safetyDesc, result.getValue(),
                                             "resultGoal" + n);
         resultCtxDesc += "\n'" + result.getKey() + "'";
-        var templateStep = new PLGSNImpactStep(resultGoal);
+        var templateStep = new PLGSNChangeStep(resultGoal);
         templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.of(resultGoal),
                                                                         ImpactType.RECHECK, Optional.empty(),
                                                                         ImpactType.REVISE, Optional.empty()));
@@ -238,7 +246,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
     }
     // clean impact on result strategy
     if (addedResults) {
-      var templateStep = new PLGSNImpactStep(resultStrategy);
+      var templateStep = new PLGSNChangeStep(resultStrategy);
       templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.of(resultStrategy),
                                                                       ImpactType.RECHECK, Optional.empty(),
                                                                       ImpactType.REVISE, Optional.empty()));
@@ -246,10 +254,12 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
     // change result context and clean impact
     if (deletedResults || addedResults) {
       resultCtx.setAttribute(this.gsn.getArgumentElement_Description(), resultCtxDesc);
-      var templateStep = new PLGSNImpactStep(resultCtx);
+      var templateStep = new PLGSNChangeStep(resultCtx);
       templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.of(resultCtx),
                                                                       ImpactType.RECHECK, Optional.empty(),
                                                                       ImpactType.REVISE, Optional.empty()));
     }
+
+    return nextSteps;
   }
 }

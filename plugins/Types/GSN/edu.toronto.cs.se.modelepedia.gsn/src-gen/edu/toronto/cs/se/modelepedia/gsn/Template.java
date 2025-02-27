@@ -17,7 +17,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep;
 
 /**
  * <!-- begin-user-doc -->
@@ -126,17 +126,17 @@ public interface Template extends EObject {
    * @return A list of the next steps of the impact propagation.
    * @throws Exception
    *           If the impact can not be calculated. <!-- end-user-doc -->
-   * @model dataType="edu.toronto.cs.se.modelepedia.gsn.GSNImpactStep" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.modelepedia.gsn.GSNImpactStep" stepRequired="true"
+   * @model dataType="edu.toronto.cs.se.modelepedia.gsn.GSNChangeStep" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.modelepedia.gsn.GSNChangeStep" stepRequired="true"
    * @generated
    */
-  EList<GSNImpactStep> impact(GSNImpactStep step) throws Exception;
+  EList<GSNChangeStep> impact(GSNChangeStep step) throws Exception;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
+   * @model dataType="edu.toronto.cs.se.modelepedia.gsn.GSNChangeStep" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.modelepedia.gsn.GSNChangeStep" stepRequired="true"
    * @generated
    */
-  void repair() throws Exception;
+  EList<GSNChangeStep> repair(GSNChangeStep step) throws Exception;
 
 } // Template

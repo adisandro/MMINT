@@ -12,41 +12,43 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.util;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 import org.eclipse.emf.ecore.EObject;
 
-public abstract class ImpactStep<T> {
+public abstract class ChangeStep<T> {
   protected T impacted;
-  protected List<EObject> trace;
+  protected LinkedHashSet<EObject> trace;
   protected static Map<String, Object> data = new HashMap<>();
   public static String CHANGE_KEY = "change";
 
-  public ImpactStep(T impacted, List<EObject> trace) {
+  public ChangeStep(T impacted, LinkedHashSet<EObject> trace) {
     this.impacted = Objects.requireNonNull(impacted);
     this.trace = Objects.requireNonNull(trace);
   }
 
-  public ImpactStep(T impacted) {
-    this(impacted, new ArrayList<>());
+  public ChangeStep(T impacted) {
+    this(impacted, new LinkedHashSet<>(0));
   }
 
   public T getImpacted() {
     return this.impacted;
   }
 
-  public List<EObject> getTrace() {
+  public LinkedHashSet<EObject> getTrace() {
     return this.trace;
   }
 
   public static Map<String, Object> getData() {
-    return ImpactStep.data;
+    return ChangeStep.data;
   }
 
-  public abstract List<? extends ImpactStep<T>> nextSteps();
+  public abstract void baselineImpact();
+  public abstract List<? extends ChangeStep<T>> nextSteps();
   public abstract void impact() throws Exception;
+  public abstract void repair() throws Exception;
 }

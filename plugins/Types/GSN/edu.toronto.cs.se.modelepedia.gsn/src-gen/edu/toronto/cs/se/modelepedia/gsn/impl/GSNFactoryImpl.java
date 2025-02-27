@@ -40,7 +40,7 @@ import edu.toronto.cs.se.modelepedia.gsn.SupportedBy;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.Undeveloped;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
-import edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
@@ -111,7 +111,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
     case GSNPackage.DECORATOR_TYPE -> createDecoratorTypeFromString(eDataType, initialValue);
     case GSNPackage.EXCEPTION -> createExceptionFromString(eDataType, initialValue);
     case GSNPackage.GSN_BUILDER -> createGSNBuilderFromString(eDataType, initialValue);
-    case GSNPackage.GSN_IMPACT_STEP -> createGSNImpactStepFromString(eDataType, initialValue);
+    case GSNPackage.GSN_CHANGE_STEP -> createGSNChangeStepFromString(eDataType, initialValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -128,7 +128,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
     case GSNPackage.DECORATOR_TYPE -> convertDecoratorTypeToString(eDataType, instanceValue);
     case GSNPackage.EXCEPTION -> convertExceptionToString(eDataType, instanceValue);
     case GSNPackage.GSN_BUILDER -> convertGSNBuilderToString(eDataType, instanceValue);
-    case GSNPackage.GSN_IMPACT_STEP -> convertGSNImpactStepToString(eDataType, instanceValue);
+    case GSNPackage.GSN_CHANGE_STEP -> convertGSNChangeStepToString(eDataType, instanceValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -379,8 +379,8 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public GSNImpactStep createGSNImpactStepFromString(EDataType eDataType, String initialValue) {
-    return (GSNImpactStep)super.createFromString(eDataType, initialValue);
+  public GSNChangeStep createGSNChangeStepFromString(EDataType eDataType, String initialValue) {
+    return (GSNChangeStep)super.createFromString(eDataType, initialValue);
   }
 
   /**
@@ -388,7 +388,7 @@ public class GSNFactoryImpl extends EFactoryImpl implements GSNFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public String convertGSNImpactStepToString(EDataType eDataType, Object instanceValue) {
+  public String convertGSNChangeStepToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(eDataType, instanceValue);
   }
 

@@ -25,7 +25,7 @@ import edu.toronto.cs.se.mmint.productline.impl.ClassImpl;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep;
+import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 /**
@@ -122,7 +122,8 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
    * @generated NOT
    */
   @Override
-  public EList<PLGSNImpactStep> impact(PLGSNImpactStep step) throws Exception {
+  public EList<PLGSNChangeStep> impact(PLGSNChangeStep step) throws Exception {
+    step.baselineImpact();
     return ECollections.asEList(step.nextSteps());
   }
 
@@ -130,8 +131,8 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
    * @generated NOT
    */
   @Override
-  public void repair() throws Exception {
-    // do nothing
+  public EList<PLGSNChangeStep> repair(PLGSNChangeStep step) throws Exception {
+    return ECollections.asEList(step.nextSteps());
   }
 
   /**
@@ -168,17 +169,16 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNIMPACTSTEP:
+      case PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNCHANGESTEP:
         try {
-          return impact((PLGSNImpactStep)arguments.get(0));
+          return impact((PLGSNChangeStep)arguments.get(0));
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case PLGSNPackage.PLGSN_TEMPLATE___REPAIR:
+      case PLGSNPackage.PLGSN_TEMPLATE___REPAIR__PLGSNCHANGESTEP:
         try {
-          repair();
-          return null;
+          return repair((PLGSNChangeStep)arguments.get(0));
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);

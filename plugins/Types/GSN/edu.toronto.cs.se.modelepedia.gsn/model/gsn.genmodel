@@ -28,7 +28,7 @@
     </genEnums>
     <genDataTypes ecoreDataType="gsn.ecore#//Exception"/>
     <genDataTypes ecoreDataType="gsn.ecore#//GSNBuilder"/>
-    <genDataTypes ecoreDataType="gsn.ecore#//GSNImpactStep"/>
+    <genDataTypes ecoreDataType="gsn.ecore#//GSNChangeStep"/>
     <genClasses ecoreClass="gsn.ecore#//SafetyCase">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/goals"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gsn.ecore#//SafetyCase/strategies"/>
@@ -103,7 +103,9 @@
       <genOperations ecoreOperation="gsn.ecore#//Template/impact">
         <genParameters ecoreParameter="gsn.ecore#//Template/impact/step"/>
       </genOperations>
-      <genOperations ecoreOperation="gsn.ecore#//Template/repair"/>
+      <genOperations ecoreOperation="gsn.ecore#//Template/repair">
+        <genParameters ecoreParameter="gsn.ecore#//Template/repair/step"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="gsn.ecore#//RelationshipDecorator">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.ecore#//RelationshipDecorator/type"/>

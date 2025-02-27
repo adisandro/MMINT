@@ -142,10 +142,12 @@
       <eParameters name="safetyCase" lowerBound="1" eType="#//SafetyCase"/>
     </eOperations>
     <eOperations name="instantiate" eExceptions="#//Exception"/>
-    <eOperations name="impact" upperBound="-1" eType="#//GSNImpactStep" eExceptions="#//Exception">
-      <eParameters name="step" lowerBound="1" eType="#//GSNImpactStep"/>
+    <eOperations name="impact" upperBound="-1" eType="#//GSNChangeStep" eExceptions="#//Exception">
+      <eParameters name="step" lowerBound="1" eType="#//GSNChangeStep"/>
     </eOperations>
-    <eOperations name="repair" eExceptions="#//Exception"/>
+    <eOperations name="repair" upperBound="-1" eType="#//GSNChangeStep" eExceptions="#//Exception">
+      <eParameters name="step" lowerBound="1" eType="#//GSNChangeStep"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" lowerBound="1"
         upperBound="-1" eType="#//ArgumentElement" eOpposite="#//ArgumentElement/template"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -168,5 +170,5 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"/>
   <eClassifiers xsi:type="ecore:EDataType" name="GSNBuilder" instanceClassName="edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="GSNImpactStep" instanceClassName="edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="GSNChangeStep" instanceClassName="edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep"/>
 </ecore:EPackage>

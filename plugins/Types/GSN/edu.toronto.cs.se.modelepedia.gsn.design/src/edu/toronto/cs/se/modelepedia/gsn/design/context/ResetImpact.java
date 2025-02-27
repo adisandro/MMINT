@@ -24,7 +24,7 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
-import edu.toronto.cs.se.modelepedia.gsn.util.ImpactStep;
+import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep;
 
 public class ResetImpact extends AbstractExternalJavaAction {
 
@@ -67,7 +67,7 @@ public class ResetImpact extends AbstractExternalJavaAction {
         }
         elem.setStatus(null);
       }
-      ImpactStep.getData().clear();
+      ChangeStep.getData().clear();
     }
   }
 }

@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.modelepedia.gsn.util;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -28,42 +29,14 @@ import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 
-public class GSNImpactStep extends ImpactStep<ArgumentElement> {
+public class GSNChangeStep extends ChangeStep<ArgumentElement> {
 
-  public GSNImpactStep(ArgumentElement impacted, List<EObject> trace) {
+  public GSNChangeStep(ArgumentElement impacted, LinkedHashSet<EObject> trace) {
     super(impacted, trace);
   }
 
-  public GSNImpactStep(ArgumentElement impacted) {
+  public GSNChangeStep(ArgumentElement impacted) {
     super(impacted);
-  }
-
-  private List<GSNImpactStep> nextSupporters() {
-    var nextSteps = new ArrayList<GSNImpactStep>();
-    for (var supportedBy : ((Supportable) this.impacted).getSupportedBy()) {
-      var nextTrace = new ArrayList<EObject>();
-      nextTrace.add(supportedBy);
-      nextTrace.add(this.impacted);
-      nextTrace.addAll(this.trace);
-      var nextStep = new GSNImpactStep(supportedBy.getTarget(), nextTrace);
-      nextSteps.add(nextStep);
-    }
-
-    return nextSteps;
-  }
-
-  private List<GSNImpactStep> nextContexts() {
-    var nextSteps = new ArrayList<GSNImpactStep>();
-    for (var inContextOf : ((Contextualizable) this.impacted).getInContextOf()) {
-      var nextTrace = new ArrayList<EObject>();
-      nextTrace.add(inContextOf);
-      nextTrace.add(this.impacted);
-      nextTrace.addAll(this.trace);
-      var nextStep = new GSNImpactStep(inContextOf.getContext(), nextTrace);
-      nextSteps.add(nextStep);
-    }
-
-    return nextSteps;
   }
 
   private ImpactType getPreviousImpact() {
@@ -72,7 +45,7 @@ public class GSNImpactStep extends ImpactStep<ArgumentElement> {
       .map(t -> ((ArgumentElement) t).getStatus().getType())
       .findFirst()
       .orElseGet(() -> {
-        return switch (ImpactStep.data.get(ImpactStep.CHANGE_KEY)) {
+        return switch (ChangeStep.data.get(ChangeStep.CHANGE_KEY)) {
           case String type -> {
             try {
               yield ImpactType.valueOf(type);
@@ -95,28 +68,59 @@ public class GSNImpactStep extends ImpactStep<ArgumentElement> {
   }
 
   @Override
-  public List<GSNImpactStep> nextSteps() {
+  public void baselineImpact() {
     var currImpact = this.impacted.getStatus();
     var prevImpact = getPreviousImpact();
-    // impact rules
-    var nextSteps = new ArrayList<GSNImpactStep>();
     switch (this.impacted) {
-      case Goal goal -> {
-        addImpact(currImpact, prevImpact);
+      case Goal _       -> addImpact(currImpact, prevImpact);
+      case Strategy _   -> addImpact(currImpact, prevImpact);
+      case Contextual _ -> addImpact(currImpact, ImpactType.REUSE);
+      default           -> addImpact(currImpact, prevImpact);
+    }
+  }
+
+  private List<GSNChangeStep> nextSupporters() {
+    var nextSteps = new ArrayList<GSNChangeStep>();
+    for (var supportedBy : ((Supportable) this.impacted).getSupportedBy()) {
+      var nextTrace = new LinkedHashSet<EObject>();
+      nextTrace.add(supportedBy);
+      nextTrace.add(this.impacted);
+      nextTrace.addAll(this.trace);
+      var nextStep = new GSNChangeStep(supportedBy.getTarget(), nextTrace);
+      nextSteps.add(nextStep);
+    }
+
+    return nextSteps;
+  }
+
+  private List<GSNChangeStep> nextContexts() {
+    var nextSteps = new ArrayList<GSNChangeStep>();
+    for (var inContextOf : ((Contextualizable) this.impacted).getInContextOf()) {
+      var nextTrace = new LinkedHashSet<EObject>();
+      nextTrace.add(inContextOf);
+      nextTrace.add(this.impacted);
+      nextTrace.addAll(this.trace);
+      var nextStep = new GSNChangeStep(inContextOf.getContext(), nextTrace);
+      nextSteps.add(nextStep);
+    }
+
+    return nextSteps;
+  }
+
+  @Override
+  public List<GSNChangeStep> nextSteps() {
+    var nextSteps = new ArrayList<GSNChangeStep>();
+    switch (this.impacted) {
+      case Goal _ -> {
         nextSteps.addAll(nextSupporters());
         nextSteps.addAll(nextContexts());
       }
-      case Strategy strategy -> {
-        addImpact(currImpact, prevImpact);
+      case Strategy _ -> {
         nextSteps.addAll(nextSupporters());
         nextSteps.addAll(nextContexts());
       }
-      case Contextual context -> {
-        addImpact(currImpact, ImpactType.REUSE);
-      }
-      default -> {
-        addImpact(currImpact, prevImpact);
-      }
+      case Contextual _ -> {}
+      default -> {}
     };
 
     return nextSteps;
@@ -132,9 +136,31 @@ public class GSNImpactStep extends ImpactStep<ArgumentElement> {
     }
     // separate syntactic vs semantic (template) behavior
     var template = this.impacted.getTemplate();
-    var nextSteps = (template == null) ? nextSteps() : template.impact(this);
+    List<GSNChangeStep> nextSteps;
+    if (template == null) {
+      baselineImpact();
+      nextSteps = nextSteps();
+    }
+    else {
+      nextSteps = template.impact(this);
+    }
     for (var nextStep : nextSteps) {
       nextStep.impact();
+    }
+  }
+
+  @Override
+  public void repair() throws Exception {
+    // stop condition: already in trace
+    if (this.trace.contains(this.impacted)) {
+      //TODO review with templates whether to check the template too
+      return;
+    }
+    // separate syntactic vs semantic (template) behavior
+    var template = this.impacted.getTemplate();
+    var nextSteps = (template == null) ? nextSteps() : template.repair(this);
+    for (var nextStep : nextSteps) {
+      nextStep.repair();
     }
   }
 }

@@ -590,7 +590,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE___IMPACT__PLGSNIMPACTSTEP = PLPackage.CLASS_OPERATION_COUNT + 4;
+  int PLGSN_TEMPLATE___IMPACT__PLGSNCHANGESTEP = PLPackage.CLASS_OPERATION_COUNT + 4;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -599,7 +599,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE___REPAIR = PLPackage.CLASS_OPERATION_COUNT + 5;
+  int PLGSN_TEMPLATE___REPAIR__PLGSNCHANGESTEP = PLPackage.CLASS_OPERATION_COUNT + 5;
 
   /**
    * The number of operations of the '<em>Template</em>' class.
@@ -879,7 +879,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PLGSN_ANALYTIC_TEMPLATE___IMPACT__PLGSNIMPACTSTEP = PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNIMPACTSTEP;
+  int PLGSN_ANALYTIC_TEMPLATE___IMPACT__PLGSNCHANGESTEP = PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNCHANGESTEP;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -888,7 +888,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PLGSN_ANALYTIC_TEMPLATE___REPAIR = PLGSNPackage.PLGSN_TEMPLATE___REPAIR;
+  int PLGSN_ANALYTIC_TEMPLATE___REPAIR__PLGSNCHANGESTEP = PLGSNPackage.PLGSN_TEMPLATE___REPAIR__PLGSNCHANGESTEP;
 
   /**
    * The operation id for the '<em>Get Analysis</em>' operation.
@@ -909,16 +909,6 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_ANALYTIC_TEMPLATE_OPERATION_COUNT = PLGSNPackage.PLGSN_TEMPLATE_OPERATION_COUNT + 1;
 
   /**
-   * The meta object id for the '<em>Impact Step</em>' data type.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getPLGSNImpactStep()
-   * @generated
-   */
-  int PLGSN_IMPACT_STEP = 4;
-
-  /**
    * The meta object id for the '<em>IPLGSN Analysis</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -927,6 +917,16 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    */
   int IPLGSN_ANALYSIS = 3;
+
+  /**
+   * The meta object id for the '<em>Change Step</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getPLGSNChangeStep()
+   * @generated
+   */
+  int PLGSN_CHANGE_STEP = 4;
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement <em>Argument Element</em>}'.
@@ -989,24 +989,24 @@ public interface PLGSNPackage extends EPackage {
   EOperation getPLGSNTemplate__Validate();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#impact(edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep) <em>Impact</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#impact(edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep) <em>Impact</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Impact</em>' operation.
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#impact(edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep)
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#impact(edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep)
    * @generated
    */
-  EOperation getPLGSNTemplate__Impact__PLGSNImpactStep();
+  EOperation getPLGSNTemplate__Impact__PLGSNChangeStep();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#repair() <em>Repair</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#repair(edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep) <em>Repair</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Repair</em>' operation.
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#repair()
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#repair(edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep)
    * @generated
    */
-  EOperation getPLGSNTemplate__Repair();
+  EOperation getPLGSNTemplate__Repair__PLGSNChangeStep();
 
   /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#import_(edu.toronto.cs.se.mmint.productline.ProductLine) <em>Import </em>}' operation.
@@ -1049,17 +1049,6 @@ public interface PLGSNPackage extends EPackage {
   EOperation getPLGSNAnalyticTemplate__GetAnalysis();
 
   /**
-   * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep <em>Impact Step</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>Impact Step</em>'.
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep
-   * @model instanceClass="edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep"
-   * @generated
-   */
-  EDataType getPLGSNImpactStep();
-
-  /**
    * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis <em>IPLGSN Analysis</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1069,6 +1058,17 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    */
   EDataType getIPLGSNAnalysis();
+
+  /**
+   * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep <em>Change Step</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>Change Step</em>'.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep
+   * @model instanceClass="edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep"
+   * @generated
+   */
+  EDataType getPLGSNChangeStep();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1145,14 +1145,14 @@ public interface PLGSNPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation PLGSN_TEMPLATE___IMPACT__PLGSNIMPACTSTEP = PLGSNPackage.eINSTANCE.getPLGSNTemplate__Impact__PLGSNImpactStep();
+    EOperation PLGSN_TEMPLATE___IMPACT__PLGSNCHANGESTEP = PLGSNPackage.eINSTANCE.getPLGSNTemplate__Impact__PLGSNChangeStep();
     /**
      * The meta object literal for the '<em><b>Repair</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation PLGSN_TEMPLATE___REPAIR = PLGSNPackage.eINSTANCE.getPLGSNTemplate__Repair();
+    EOperation PLGSN_TEMPLATE___REPAIR__PLGSNCHANGESTEP = PLGSNPackage.eINSTANCE.getPLGSNTemplate__Repair__PLGSNChangeStep();
     /**
      * The meta object literal for the '<em><b>Import </b></em>' operation.
      * <!-- begin-user-doc -->
@@ -1184,15 +1184,6 @@ public interface PLGSNPackage extends EPackage {
      */
     EOperation PLGSN_ANALYTIC_TEMPLATE___GET_ANALYSIS = PLGSNPackage.eINSTANCE.getPLGSNAnalyticTemplate__GetAnalysis();
     /**
-     * The meta object literal for the '<em>Impact Step</em>' data type.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep
-     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getPLGSNImpactStep()
-     * @generated
-     */
-    EDataType PLGSN_IMPACT_STEP = PLGSNPackage.eINSTANCE.getPLGSNImpactStep();
-    /**
      * The meta object literal for the '<em>IPLGSN Analysis</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1201,6 +1192,15 @@ public interface PLGSNPackage extends EPackage {
      * @generated
      */
     EDataType IPLGSN_ANALYSIS = PLGSNPackage.eINSTANCE.getIPLGSNAnalysis();
+    /**
+     * The meta object literal for the '<em>Change Step</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep
+     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getPLGSNChangeStep()
+     * @generated
+     */
+    EDataType PLGSN_CHANGE_STEP = PLGSNPackage.eINSTANCE.getPLGSNChangeStep();
 
   }
 

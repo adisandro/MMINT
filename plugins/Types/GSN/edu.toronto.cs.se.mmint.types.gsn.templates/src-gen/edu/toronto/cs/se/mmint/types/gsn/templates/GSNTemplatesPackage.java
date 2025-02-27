@@ -150,7 +150,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_TEMPLATE___IMPACT__GSNIMPACTSTEP = GSNPackage.TEMPLATE___IMPACT__GSNIMPACTSTEP;
+  int DECOMPOSITION_TEMPLATE___IMPACT__GSNCHANGESTEP = GSNPackage.TEMPLATE___IMPACT__GSNCHANGESTEP;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -159,7 +159,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_TEMPLATE___REPAIR = GSNPackage.TEMPLATE___REPAIR;
+  int DECOMPOSITION_TEMPLATE___REPAIR__GSNCHANGESTEP = GSNPackage.TEMPLATE___REPAIR__GSNCHANGESTEP;
 
   /**
    * The operation id for the '<em>Decompose</em>' operation.
@@ -852,7 +852,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_TEMPLATE___IMPACT__GSNIMPACTSTEP = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___IMPACT__GSNIMPACTSTEP;
+  int DOMAIN_DECOMPOSITION_TEMPLATE___IMPACT__GSNCHANGESTEP = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___IMPACT__GSNCHANGESTEP;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -861,7 +861,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_TEMPLATE___REPAIR = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___REPAIR;
+  int DOMAIN_DECOMPOSITION_TEMPLATE___REPAIR__GSNCHANGESTEP = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___REPAIR__GSNCHANGESTEP;
 
   /**
    * The operation id for the '<em>Decompose</em>' operation.
@@ -1380,7 +1380,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_TEMPLATE___IMPACT__GSNIMPACTSTEP = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___IMPACT__GSNIMPACTSTEP;
+  int PROPERTY_DECOMPOSITION_TEMPLATE___IMPACT__GSNCHANGESTEP = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___IMPACT__GSNCHANGESTEP;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -1389,7 +1389,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_TEMPLATE___REPAIR = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___REPAIR;
+  int PROPERTY_DECOMPOSITION_TEMPLATE___REPAIR__GSNCHANGESTEP = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___REPAIR__GSNCHANGESTEP;
 
   /**
    * The operation id for the '<em>Decompose</em>' operation.
@@ -1625,7 +1625,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ANALYTIC_TEMPLATE___IMPACT__GSNIMPACTSTEP = GSNPackage.TEMPLATE___IMPACT__GSNIMPACTSTEP;
+  int ANALYTIC_TEMPLATE___IMPACT__GSNCHANGESTEP = GSNPackage.TEMPLATE___IMPACT__GSNCHANGESTEP;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -1634,7 +1634,7 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ANALYTIC_TEMPLATE___REPAIR = GSNPackage.TEMPLATE___REPAIR;
+  int ANALYTIC_TEMPLATE___REPAIR__GSNCHANGESTEP = GSNPackage.TEMPLATE___REPAIR__GSNCHANGESTEP;
 
   /**
    * The operation id for the '<em>Get Analysis</em>' operation.

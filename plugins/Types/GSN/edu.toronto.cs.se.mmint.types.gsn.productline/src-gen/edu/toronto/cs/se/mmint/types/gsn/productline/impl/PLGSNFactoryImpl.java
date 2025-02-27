@@ -25,7 +25,7 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
-import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNImpactStep;
+import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 
 /**
  * <!-- begin-user-doc -->
@@ -87,7 +87,7 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
   public Object createFromString(EDataType eDataType, String initialValue) {
     return switch (eDataType.getClassifierID()) {
     case PLGSNPackage.IPLGSN_ANALYSIS -> createIPLGSNAnalysisFromString(eDataType, initialValue);
-    case PLGSNPackage.PLGSN_IMPACT_STEP -> createPLGSNImpactStepFromString(eDataType, initialValue);
+    case PLGSNPackage.PLGSN_CHANGE_STEP -> createPLGSNChangeStepFromString(eDataType, initialValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -101,7 +101,7 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
   public String convertToString(EDataType eDataType, Object instanceValue) {
     return switch (eDataType.getClassifierID()) {
     case PLGSNPackage.IPLGSN_ANALYSIS -> convertIPLGSNAnalysisToString(eDataType, instanceValue);
-    case PLGSNPackage.PLGSN_IMPACT_STEP -> convertPLGSNImpactStepToString(eDataType, instanceValue);
+    case PLGSNPackage.PLGSN_CHANGE_STEP -> convertPLGSNChangeStepToString(eDataType, instanceValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -162,8 +162,8 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public PLGSNImpactStep createPLGSNImpactStepFromString(EDataType eDataType, String initialValue) {
-    return (PLGSNImpactStep)super.createFromString(eDataType, initialValue);
+  public PLGSNChangeStep createPLGSNChangeStepFromString(EDataType eDataType, String initialValue) {
+    return (PLGSNChangeStep)super.createFromString(eDataType, initialValue);
   }
 
   /**
@@ -171,7 +171,7 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public String convertPLGSNImpactStepToString(EDataType eDataType, Object instanceValue) {
+  public String convertPLGSNChangeStepToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(eDataType, instanceValue);
   }
 

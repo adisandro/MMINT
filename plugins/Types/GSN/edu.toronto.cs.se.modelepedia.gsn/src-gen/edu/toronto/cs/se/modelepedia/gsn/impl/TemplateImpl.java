@@ -36,7 +36,7 @@ import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
-import edu.toronto.cs.se.modelepedia.gsn.util.GSNImpactStep;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep;
 
 /**
  * <!-- begin-user-doc -->
@@ -213,7 +213,8 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    * @generated NOT
    */
   @Override
-  public EList<GSNImpactStep> impact(GSNImpactStep step) throws Exception {
+  public EList<GSNChangeStep> impact(GSNChangeStep step) throws Exception {
+    step.baselineImpact();
     return ECollections.asEList(step.nextSteps());
   }
 
@@ -221,8 +222,8 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    * @generated NOT
    */
   @Override
-  public void repair() throws Exception {
-    // do nothing
+  public EList<GSNChangeStep> repair(GSNChangeStep step) throws Exception {
+    return ECollections.asEList(step.nextSteps());
   }
 
   /**
@@ -359,17 +360,16 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case GSNPackage.TEMPLATE___IMPACT__GSNIMPACTSTEP:
+      case GSNPackage.TEMPLATE___IMPACT__GSNCHANGESTEP:
         try {
-          return impact((GSNImpactStep)arguments.get(0));
+          return impact((GSNChangeStep)arguments.get(0));
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case GSNPackage.TEMPLATE___REPAIR:
+      case GSNPackage.TEMPLATE___REPAIR__GSNCHANGESTEP:
         try {
-          repair();
-          return null;
+          return repair((GSNChangeStep)arguments.get(0));
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
