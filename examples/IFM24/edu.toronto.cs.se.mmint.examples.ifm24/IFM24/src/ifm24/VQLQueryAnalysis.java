@@ -27,6 +27,7 @@ import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNBuilder;
 import edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate;
@@ -40,6 +41,11 @@ import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 
 public class VQLQueryAnalysis implements IPLGSNAnalysis {
+  protected GSNPackage gsn;
+
+  public VQLQueryAnalysis() {
+    this.gsn = GSNPackage.eINSTANCE;
+  }
 
   public static ResultPrinter PL_NAME_PRINTER = (result) -> {
     if (result instanceof Class plClass) {
@@ -111,16 +117,15 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
 
   @Override
   public void import_(PLGSNAnalyticTemplate plTemplate, ProductLine productLine) throws Exception {
-    var gsn = GSNPackage.eINSTANCE;
-    var builder = new PLGSNBuilder(productLine);
+    var plBuilder = new PLGSNBuilder(productLine);
     var queryStrategy = plTemplate.getElementsById().get("queryStrategy");
-    var desc = queryStrategy.getAttribute(gsn.getArgumentElement_Description()).get(0)
+    var desc = queryStrategy.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
       .replace("model query", "lifted model query");
-    queryStrategy.setAttribute(gsn.getArgumentElement_Description(), desc);
-    var liftedGoal = builder.createGoal("G5", "The lifted query engine is correct", null);
-    liftedGoal.addAttribute(gsn.getArgumentElement_TemplateId(), "liftedGoal");
-    plTemplate.addReference(gsn.getTemplate_Elements(), liftedGoal);
-    builder.addSupporter(queryStrategy, liftedGoal);
+    queryStrategy.setAttribute(this.gsn.getArgumentElement_Description(), desc);
+    var liftedGoal = plBuilder.createGoal("G5", "The lifted query engine is correct", null);
+    liftedGoal.addAttribute(this.gsn.getArgumentElement_TemplateId(), "liftedGoal");
+    plTemplate.addReference(this.gsn.getTemplate_Elements(), liftedGoal);
+    plBuilder.addSupporter(queryStrategy, liftedGoal);
   }
 
   protected List<Map.Entry<String, String>> getPLResults(List<Object> queryResults) {
@@ -133,11 +138,21 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
       .collect(Collectors.toList());
   }
 
+  protected PLGSNArgumentElement createPLResultGoal(PLGSNAnalyticTemplate plTemplate, PLGSNBuilder plBuilder,
+                                                    PLGSNArgumentElement resultStrategy, String resultId,
+                                                    String resultDesc, String resultPC, String templateId) {
+    var resultGoal = plBuilder.createGoal(resultId, resultDesc, resultPC);
+    resultGoal.addAttribute(this.gsn.getArgumentElement_TemplateId(), templateId);
+    plTemplate.addReference(this.gsn.getTemplate_Elements(), resultGoal);
+    plBuilder.addSupporter(resultStrategy, resultGoal);
+
+    return resultGoal;
+  }
+
   @Override
   public void instantiate(PLGSNAnalyticTemplate plTemplate) throws Exception {
-    var gsn = GSNPackage.eINSTANCE;
     var productLine = (ProductLine) plTemplate.eContainer();
-    var builder = new PLGSNBuilder(productLine);
+    var plBuilder = new PLGSNBuilder(productLine);
     // get template elems
     var templateElems = plTemplate.getElementsById();
     var safetyGoal = templateElems.get("safetyGoal");
@@ -147,13 +162,13 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var resultCtx = templateElems.get("resultCtx");
     var resultGoal = templateElems.get("resultGoal");
     safetyGoal.instantiate();
-    var safetyDesc = safetyGoal.getAttribute(gsn.getArgumentElement_Description()).get(0);
-    var resultId = resultGoal.getAttribute(gsn.getArgumentElement_Id()).get(0);
-    var resultDesc = resultGoal.getAttribute(gsn.getArgumentElement_Description()).get(0)
+    var safetyDesc = safetyGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0);
+    var resultId = resultGoal.getAttribute(this.gsn.getArgumentElement_Id()).get(0);
+    var resultDesc = resultGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
       .replace("{safety goal}", safetyDesc);
-    var scenarioDesc = scenarioGoal.getAttribute(gsn.getArgumentElement_Description()).get(0)
+    var scenarioDesc = scenarioGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
                                    .replace("{safety goal}", safetyDesc);
-    scenarioGoal.setAttribute(gsn.getArgumentElement_Description(), scenarioDesc);
+    scenarioGoal.setAttribute(this.gsn.getArgumentElement_Description(), scenarioDesc);
     // run query and process results
     var modelPath = FileUtils.prependWorkspacePath(
       MIDDialogs.selectFile("Run Product Line analysis", "Select a Product Line model",
@@ -162,13 +177,13 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var querySpec = SiriusEvaluateQuery.selectQuery(rootModelObj);
     var queryResults = querySpec.evaluateQuery(rootModelObj, List.of());
     resultGoal.delete();
-    for (var supportedBy : resultGoal.getReference(gsn.getSupporter_Supports())) {
+    for (var supportedBy : resultGoal.getReference(this.gsn.getSupporter_Supports())) {
       supportedBy.delete();
     }
-    var filesDesc = filesCtx.getAttribute(gsn.getArgumentElement_Description()).get(0)
+    var filesDesc = filesCtx.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
                             .replace("{query}", querySpec.query().toString())
                             .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath));
-    filesCtx.setAttribute(gsn.getArgumentElement_Description(), filesDesc);
+    filesCtx.setAttribute(this.gsn.getArgumentElement_Description(), filesDesc);
     filesCtx.setManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
                               ECollections.asEList(List.of(querySpec.filePath(), modelPath)));
     var results = getPLResults(queryResults);
@@ -176,13 +191,10 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var i = 0;
     for (var result : results) {
       resultCtxDesc += "\n'" + result.getKey() + "'";
-      resultGoal = builder.createGoal(resultId.replace("X", String.valueOf(i)),
-                                      resultDesc.replace("{X}", "'" + result.getKey() + "'"), result.getValue());
-      resultGoal.addAttribute(gsn.getArgumentElement_TemplateId(), "resultGoal" + i);
-      plTemplate.addReference(gsn.getTemplate_Elements(), resultGoal);
-      builder.addSupporter(resultStrategy, resultGoal);
+      createPLResultGoal(plTemplate, plBuilder, resultStrategy, resultId.replace("X", String.valueOf(i)),
+                         resultDesc.replace("{X}", "'" + result.getKey() + "'"), result.getValue(), "resultGoal" + i);
       i++;
     }
-    resultCtx.setAttribute(gsn.getArgumentElement_Description(), resultCtxDesc);
+    resultCtx.setAttribute(this.gsn.getArgumentElement_Description(), resultCtxDesc);
   }
 }
