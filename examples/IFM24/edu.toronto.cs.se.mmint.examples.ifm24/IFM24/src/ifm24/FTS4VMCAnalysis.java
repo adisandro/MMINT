@@ -138,6 +138,7 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
       source venv/bin/activate
       git clone https://github.com/fts4vmc/FTS4VMC.git &> /dev/null
       pip3 install -r FTS4VMC/requirements.txt &> /dev/null
+      pip3 install --upgrade z3-solver &> /dev/null
       python3 FTS4VMC/translate.py\s""" + dotPath + " " +  vmcPath + " &> /dev/null\n" +
       "FTS4VMC/vmc65-linux " + vmcPath + " " + propertyPath;
     final var RUN_SH_FILE = "run.sh";
