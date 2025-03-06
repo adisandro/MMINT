@@ -32,7 +32,16 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
 
+/**
+ * This template is producing evidence based on checking a property over the underlying model with the FTS4VMC model
+ * checker. It is a leaf template, with no downstream supporters.
+ */
 public class FTS4VMCAnalysis implements IPLGSNAnalysis {
+  protected GSNPackage gsn;
+
+  public FTS4VMCAnalysis() {
+    this.gsn = GSNPackage.eINSTANCE;
+  }
 
   private String presenceCondition2Dot(String pc) {
     return pc.replace("&", "and").replace("|", "or").replace("~", "not ").replace("$true", "True");
@@ -70,21 +79,19 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
 
   @Override
   public void import_(PLGSNAnalyticTemplate plTemplate, ProductLine productLine) throws Exception {
-    var gsn = GSNPackage.eINSTANCE;
     var builder = new PLGSNBuilder(productLine);
     var mcStrategy = plTemplate.getElementsById().get("mcStrategy");
-    var desc = mcStrategy.getAttribute(gsn.getArgumentElement_Description()).get(0)
+    var desc = mcStrategy.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
       .replace("model checking", "lifted model checking");
-    mcStrategy.setAttribute(gsn.getArgumentElement_Description(), desc);
+    mcStrategy.setAttribute(this.gsn.getArgumentElement_Description(), desc);
     var liftedGoal = builder.createGoal("G5", "The lifted model checker is correct", null);
-    liftedGoal.addAttribute(gsn.getArgumentElement_TemplateId(), "liftedGoal");
-    plTemplate.addReference(gsn.getTemplate_Elements(), liftedGoal);
+    liftedGoal.addAttribute(this.gsn.getArgumentElement_TemplateId(), "liftedGoal");
+    plTemplate.addReference(this.gsn.getTemplate_Elements(), liftedGoal);
     builder.addSupporter(mcStrategy, liftedGoal);
   }
 
   @Override
   public void instantiate(PLGSNAnalyticTemplate plTemplate) throws Exception {
-    var gsn = GSNPackage.eINSTANCE;
     var templateElems = plTemplate.getElementsById();
     // convert model to .dot file
     var mcStrategy = templateElems.get("mcStrategy");
@@ -93,15 +100,15 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     String dialogInitial = null;
     if (safetyGoal == null) {
       safetyGoal = (PLGSNArgumentElement) mcStrategy
-        .getReference(gsn.getSupporter_Supports()).get(0)
-        .getReference(gsn.getSupportedBy_Source()).get(0);
-      var otherTemplate = safetyGoal.getReference(gsn.getArgumentElement_Template()).get(0);
-      if (otherTemplate.getAttribute(gsn.getTemplate_Id()).get(0).equals("QueryAnalysis")) {
+        .getReference(this.gsn.getSupporter_Supports()).get(0)
+        .getReference(this.gsn.getSupportedBy_Source()).get(0);
+      var otherTemplate = safetyGoal.getReference(this.gsn.getArgumentElement_Template()).get(0);
+      if (otherTemplate.getAttribute(this.gsn.getTemplate_Id()).get(0).equals("QueryAnalysis")) {
         // connected with query analysis template, extract model from it
         var otherFilesCtx = ((PLGSNTemplate) otherTemplate).getElementsById().get("filesCtx");
         var paths = otherFilesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
         modelPath = paths.get(1);
-        dialogInitial = safetyGoal.getAttribute(gsn.getArgumentElement_Description()).get(0).split("'")[1];
+        dialogInitial = safetyGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).split("'")[1];
       }
     }
     if (modelPath == null) {
@@ -127,10 +134,10 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     Files.writeString(Paths.get(propertyPath), property);
     //TODO change all ids to match connected?
     var filesCtx = templateElems.get("filesCtx");
-    var filesDesc = filesCtx.getAttribute(gsn.getArgumentElement_Description()).get(0)
+    var filesDesc = filesCtx.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
       .replace("{property}", FileUtils.getLastSegmentFromPath(propertyPath))
       .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath));
-    filesCtx.setAttribute(gsn.getArgumentElement_Description(), filesDesc);
+    filesCtx.setAttribute(this.gsn.getArgumentElement_Description(), filesDesc);
     filesCtx.setManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
                               ECollections.asEList(List.of(propertyPath, modelPath)));
     final var RUN_SH = """
@@ -147,19 +154,19 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     var result = FileUtils.runShell(runPath.getParent().toString(), "bash", RUN_SH_FILE);
     Files.writeString(Paths.get(FileUtils.replaceLastSegmentInPath(modelPath, SAT_FILE)), result);
     var satGoal = templateElems.get("satGoal");
-    var satGoalDesc = satGoal.getAttribute(gsn.getArgumentElement_Description()).get(0);
+    var satGoalDesc = satGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0);
     var holds = (result.contains("TRUE")) ? "holds" : "does not hold";
-    satGoal.setAttribute(gsn.getArgumentElement_Description(), satGoalDesc.replace("{holds?}", holds));
+    satGoal.setAttribute(this.gsn.getArgumentElement_Description(), satGoalDesc.replace("{holds?}", holds));
     var satSolution = templateElems.get("satSolution");
-    var satSolDesc = satSolution.getAttribute(gsn.getArgumentElement_Description()).get(0)
+    var satSolDesc = satSolution.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
       .replace("{output}", SAT_FILE);
-    satSolution.setAttribute(gsn.getArgumentElement_Description(), satSolDesc);
+    satSolution.setAttribute(this.gsn.getArgumentElement_Description(), satSolDesc);
     if (!safetyGoal.isAlwaysPresent()) {
       var pc = safetyGoal.getPresenceCondition();
-      plTemplate.getStreamOfReference(gsn.getTemplate_Elements()).forEach(e -> {
+      plTemplate.getStreamOfReference(this.gsn.getTemplate_Elements()).forEach(e -> {
         e.setPresenceCondition(pc);
-        e.getStreamOfReference(gsn.getSupportable_SupportedBy()).forEach(sb -> sb.setPresenceCondition(pc));
-        e.getStreamOfReference(gsn.getContextualizable_InContextOf()).forEach(ico -> ico.setPresenceCondition(pc));
+        e.getStreamOfReference(this.gsn.getSupportable_SupportedBy()).forEach(sb -> sb.setPresenceCondition(pc));
+        e.getStreamOfReference(this.gsn.getContextualizable_InContextOf()).forEach(ico -> ico.setPresenceCondition(pc));
       });
     }
   }

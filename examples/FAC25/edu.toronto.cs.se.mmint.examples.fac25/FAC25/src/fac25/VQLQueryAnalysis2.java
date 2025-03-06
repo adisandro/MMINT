@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -25,10 +24,8 @@ import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait.QuerySpec;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
-import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
-import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNBuilder;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
@@ -81,9 +78,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
         templateTrace.add(step.getImpacted());
         templateTrace.addAll(step.getTrace());
         var templateStep = new PLGSNChangeStep(resultGoal, templateTrace);
-        templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.of(resultGoal),
-                                                                        ImpactType.RECHECK, Optional.empty(),
-                                                                        ImpactType.REVISE, Optional.empty()));
+        templateStep.setImpact(ImpactType.REUSE, resultGoal.getPresenceCondition());
         nextSteps.addAll(templateStep.nextSupporters());
         o++;
         n++;
@@ -98,9 +93,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
           templateTrace.add(step.getImpacted());
           templateTrace.addAll(step.getTrace());
           var templateStep = new PLGSNChangeStep(resultGoal, templateTrace);
-          templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.empty(),
-                                                                          ImpactType.RECHECK, Optional.empty(),
-                                                                          ImpactType.REVISE, Optional.of(resultGoal)));
+          templateStep.setImpact(ImpactType.REVISE, resultGoal.getPresenceCondition());
           nextSteps.addAll(templateStep.nextSupporters());
           o++;
           oldResult = oldResults.get(o);
@@ -116,46 +109,17 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
     if (addedResults) {
       var resultStrategy = templateElems.get("resultStrategy");
       var templateStep = new PLGSNChangeStep(resultStrategy);
-      templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.empty(),
-                                                                      ImpactType.RECHECK, Optional.empty(),
-                                                                      ImpactType.REVISE, Optional.of(resultStrategy)));
+      templateStep.setImpact(ImpactType.REVISE, resultStrategy.getPresenceCondition());
     }
     // revise result context
     if (deletedResults || addedResults) {
       var templateStep = new PLGSNChangeStep(resultCtx);
-      templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.empty(),
-                                                                      ImpactType.RECHECK, Optional.empty(),
-                                                                      ImpactType.REVISE, Optional.of(resultCtx)));
+      templateStep.setImpact(ImpactType.REVISE, resultCtx.getPresenceCondition());
     }
     // reuse everything else in the template
-    for (var plElem : plTemplate.getReference(this.gsn.getTemplate_Elements())) {
-      if (!plElem.getReference(this.gsn.getArgumentElement_Status()).isEmpty()) {
-        continue;
-      }
-      var templateStep = new PLGSNChangeStep((PLGSNArgumentElement) plElem);
-      templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.of(plElem),
-                                                                      ImpactType.RECHECK, Optional.empty(),
-                                                                      ImpactType.REVISE, Optional.empty()));
-    }
+    PLGSNChangeStep.setAllImpacts(plTemplate, ImpactType.REUSE);
 
     return nextSteps;
-  }
-
-  private void deletePLBranch(Class plElem) {
-    var productLine = plElem.getProductLine();
-    for (var plInContextOf : plElem.getReference(this.gsn.getContextualizable_InContextOf())) {
-      for (var plContext : plInContextOf.getReference(this.gsn.getInContextOf_Context())) {
-        plContext.delete();
-      }
-      productLine.getClasses().remove(plInContextOf);
-    }
-    for (var plSupportedBy : plElem.getReference(this.gsn.getSupportable_SupportedBy())) {
-      for (var plSupporter : plSupportedBy.getReference(this.gsn.getSupportedBy_Target())) {
-        deletePLBranch(plSupporter);
-      }
-      productLine.getClasses().remove(plSupportedBy);
-    }
-    plElem.delete();
   }
 
   @Override
@@ -198,9 +162,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
                                             "resultGoal" + n);
         resultCtxDesc += "\n'" + result.getKey() + "'";
         var templateStep = new PLGSNChangeStep(resultGoal);
-        templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.of(resultGoal),
-                                                                        ImpactType.RECHECK, Optional.empty(),
-                                                                        ImpactType.REVISE, Optional.empty()));
+        templateStep.setImpact(ImpactType.REUSE, resultGoal.getPresenceCondition());
         n++;
         continue;
       }
@@ -225,7 +187,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
         deletedResults = true;
         while (!oldResult.equals(result.getKey())) {
           var resultGoal = templateElems.get("resultGoal" + o);
-          deletePLBranch(resultGoal);
+          PLGSNChangeStep.deleteBranch(resultGoal);
           o++;
           oldResult = oldResults.get(o);
         }
@@ -238,26 +200,20 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
                                             "resultGoal" + n);
         resultCtxDesc += "\n'" + result.getKey() + "'";
         var templateStep = new PLGSNChangeStep(resultGoal);
-        templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.of(resultGoal),
-                                                                        ImpactType.RECHECK, Optional.empty(),
-                                                                        ImpactType.REVISE, Optional.empty()));
+        templateStep.setImpact(ImpactType.REUSE, resultGoal.getPresenceCondition());
         n++;
       }
     }
     // clean impact on result strategy
     if (addedResults) {
       var templateStep = new PLGSNChangeStep(resultStrategy);
-      templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.of(resultStrategy),
-                                                                      ImpactType.RECHECK, Optional.empty(),
-                                                                      ImpactType.REVISE, Optional.empty()));
+      templateStep.setImpact(ImpactType.REUSE, resultStrategy.getPresenceCondition());
     }
     // change result context and clean impact
     if (deletedResults || addedResults) {
       resultCtx.setAttribute(this.gsn.getArgumentElement_Description(), resultCtxDesc);
       var templateStep = new PLGSNChangeStep(resultCtx);
-      templateStep.setImpact(templateStep.getCurrentImpacts(), Map.of(ImpactType.REUSE, Optional.of(resultCtx),
-                                                                      ImpactType.RECHECK, Optional.empty(),
-                                                                      ImpactType.REVISE, Optional.empty()));
+      templateStep.setImpact(ImpactType.REUSE, resultCtx.getPresenceCondition());
     }
 
     return nextSteps;

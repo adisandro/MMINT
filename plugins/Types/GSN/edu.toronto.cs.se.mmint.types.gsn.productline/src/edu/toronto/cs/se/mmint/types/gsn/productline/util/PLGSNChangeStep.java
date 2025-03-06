@@ -13,11 +13,12 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.util;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -31,41 +32,37 @@ import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep;
 
 public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
-  private GSNPackage gsn;
+  private static GSNPackage GSN = GSNPackage.eINSTANCE;
 
   public PLGSNChangeStep(PLGSNArgumentElement impacted, LinkedHashSet<EObject> trace) {
     super(impacted, trace);
-    this.gsn = GSNPackage.eINSTANCE;
   }
 
   public PLGSNChangeStep(PLGSNArgumentElement impacted) {
     super(impacted);
-    this.gsn = GSNPackage.eINSTANCE;
   }
 
-  private Map<ImpactType, Optional<Class>> getImpacts(List<Class> impacts) {
-    var impactMap = new HashMap<ImpactType, Optional<Class>>();
-    for (var impact : impacts) {
-      var type = impact.getAttribute(this.gsn.getImpactAnnotation_Type()).get(0);
-      impactMap.put(ImpactType.valueOf(type), Optional.of(impact));
-    }
-    for (var type : ImpactType.VALUES) {
-      impactMap.computeIfAbsent(type, _ -> Optional.empty());
-    }
+  private Map<ImpactType, Optional<String>> getImpact(ImpactType impactType, String presenceCondition) {
+    return ImpactType.VALUES.stream()
+      .collect(Collectors.toMap(
+        Function.identity(),
+        t -> (t == impactType) ? Optional.of(presenceCondition) : Optional.empty()));
+  }
+
+  private Map<ImpactType, Optional<String>> getImpact(PLGSNArgumentElement plElem) {
+    var impactMap = plElem.getStreamOfReference(PLGSNChangeStep.GSN.getArgumentElement_Status())
+      .collect(Collectors.toMap(
+        impact -> ImpactType.valueOf(impact.getAttribute(PLGSNChangeStep.GSN.getImpactAnnotation_Type()).get(0)),
+        impact -> Optional.of(impact.getPresenceCondition())));
+    ImpactType.VALUES.forEach(t -> impactMap.computeIfAbsent(t, _ -> Optional.empty()));
 
     return impactMap;
   }
 
-  public Map<ImpactType, Optional<Class>> getCurrentImpacts() {
-    return getImpacts(this.impacted.getReference(this.gsn.getArgumentElement_Status()));
-  }
-
-  public Map<ImpactType, Optional<Class>> getPreviousImpacts() {
+  public Map<ImpactType, Optional<String>> getPreviousImpact() {
     return this.trace.stream()
       .filter(t -> t instanceof PLGSNArgumentElement)
-      .map(t -> ((PLGSNArgumentElement) t).getReference(this.gsn.getArgumentElement_Status()))
-      .filter(r -> !r.isEmpty())
-      .map(r -> getImpacts(r))
+      .map(t -> getImpact((PLGSNArgumentElement) t))
       .findFirst()
       .orElseGet(() -> {
         var impactType = switch (ChangeStep.data.get(ChangeStep.CHANGE_KEY)) {
@@ -79,62 +76,55 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
           }
           default -> ImpactType.RECHECK;
         };
-        var c = PLFactory.eINSTANCE.createClass();
-        c.setPresenceCondition(this.impacted.getPresenceCondition());
-        c.setType(this.gsn.getImpactAnnotation());
-        c.addAttribute(this.gsn.getImpactAnnotation_Type(), impactType.toString());
-        return getImpacts(List.of(c));
+        return getImpact(impactType, this.impacted.getPresenceCondition());
       });
   }
 
-  public void addImpact(Map<ImpactType, Optional<Class>> currImpacts, ImpactType type) {
-    currImpacts.get(type).ifPresentOrElse(
-      c -> c.setPresenceCondition(this.impacted.getPresenceCondition()),
-      () -> {
-        var c = PLFactory.eINSTANCE.createClass();
-        c.setPresenceCondition(this.impacted.getPresenceCondition());
-        c.setType(this.gsn.getImpactAnnotation());
-        this.impacted.getProductLine().getClasses().add(c);
-        c.addAttribute(this.gsn.getImpactAnnotation_Type(), type.toString());
-        this.impacted.addReference(this.gsn.getArgumentElement_Status(), c);
-      });
-  }
-
-  public void removeImpact(Map<ImpactType, Optional<Class>> currImpacts, ImpactType type) {
-    currImpacts.get(type).ifPresent(Class::delete);
-  }
-
-  public void setImpact(Map<ImpactType, Optional<Class>> currImpacts, Map<ImpactType, Optional<Class>> newImpacts) {
-    for (var newImpact : newImpacts.entrySet()) {
-      newImpact.getValue().ifPresentOrElse(
-        _ -> addImpact(currImpacts, newImpact.getKey()),
-        () -> removeImpact(currImpacts, newImpact.getKey()));
+  public void setImpact(Map<ImpactType, Optional<String>> impactTypes) {
+    if (impactTypes.size() != 3) {
+      throw new IllegalArgumentException("All 3 impact types must be set");
     }
+    this.impacted.getStreamOfReference(PLGSNChangeStep.GSN.getArgumentElement_Status())
+      .collect(Collectors.toList())
+      .forEach(impact -> {
+        var impactType = ImpactType.valueOf(impact.getAttribute(PLGSNChangeStep.GSN.getImpactAnnotation_Type()).get(0));
+        impactTypes.get(impactType).ifPresentOrElse(pc -> impact.setPresenceCondition(pc), () -> impact.delete());
+        impactTypes.remove(impactType);
+      });
+    impactTypes.forEach((impactType, action) -> action.ifPresent(pc -> {
+      var c = PLFactory.eINSTANCE.createClass();
+      c.setPresenceCondition(pc);
+      c.setType(PLGSNChangeStep.GSN.getImpactAnnotation());
+      this.impacted.getProductLine().getClasses().add(c);
+      c.addAttribute(PLGSNChangeStep.GSN.getImpactAnnotation_Type(), impactType.toString());
+      this.impacted.addReference(PLGSNChangeStep.GSN.getArgumentElement_Status(), c);
+    }));
+  }
+
+  public void setImpact(ImpactType impactType, String presenceCondition) {
+    setImpact(getImpact(impactType, presenceCondition));
   }
 
   @Override
   public void baselineImpact() {
-    var currImpacts = getCurrentImpacts();
-    var prevImpacts = getPreviousImpacts();
+    var prevImpact = getPreviousImpact();
     switch (this.impacted.getType()) {
       case EClass e when e.getName().equals("Goal") ||
                          e.getEAllSuperTypes().stream().anyMatch(s -> s.getName().equals("Goal")) ->
-        setImpact(currImpacts, prevImpacts);
+        setImpact(prevImpact);
       case EClass e when e.getName().equals("Strategy") ||
                          e.getEAllSuperTypes().stream().anyMatch(s -> s.getName().equals("Strategy")) ->
-        setImpact(currImpacts, prevImpacts);
+        setImpact(prevImpact);
       case EClass e when e.getEAllSuperTypes().stream().anyMatch(s -> s.getName().equals("Contextual")) ->
-        setImpact(currImpacts, Map.of(ImpactType.REUSE, Optional.of(this.impacted),
-                                      ImpactType.RECHECK, Optional.empty(),
-                                      ImpactType.REVISE, Optional.empty()));
-      default -> setImpact(currImpacts, prevImpacts);
+        setImpact(ImpactType.REUSE, this.impacted.getPresenceCondition());
+      default -> setImpact(prevImpact);
     }
   }
 
   public List<PLGSNChangeStep> nextSupporters() {
     var nextSteps = new ArrayList<PLGSNChangeStep>();
-    for (var plSupportedBy : this.impacted.getReference(this.gsn.getSupportable_SupportedBy())) {
-      for (var plSupporter : plSupportedBy.getReference(this.gsn.getSupportedBy_Target())) {
+    for (var plSupportedBy : this.impacted.getReference(PLGSNChangeStep.GSN.getSupportable_SupportedBy())) {
+      for (var plSupporter : plSupportedBy.getReference(PLGSNChangeStep.GSN.getSupportedBy_Target())) {
         var nextTrace = new LinkedHashSet<EObject>();
         nextTrace.add(plSupportedBy);
         nextTrace.add(this.impacted);
@@ -149,8 +139,8 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
 
   public List<PLGSNChangeStep> nextContexts() {
     var nextSteps = new ArrayList<PLGSNChangeStep>();
-    for (var plInContextOf : this.impacted.getReference(this.gsn.getContextualizable_InContextOf())) {
-      for (var plContext : plInContextOf.getReference(this.gsn.getInContextOf_Context())) {
+    for (var plInContextOf : this.impacted.getReference(PLGSNChangeStep.GSN.getContextualizable_InContextOf())) {
+      for (var plContext : plInContextOf.getReference(PLGSNChangeStep.GSN.getInContextOf_Context())) {
         var nextTrace = new LinkedHashSet<EObject>();
         nextTrace.add(plInContextOf);
         nextTrace.add(this.impacted);
@@ -186,16 +176,16 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
 
   @Override
   public void impact() throws Exception {
-    var currImpacts = getCurrentImpacts();
-    var prevImpacts = getPreviousImpacts();
+    var currImpact = getImpact(this.impacted);
+    var prevImpact = getPreviousImpact();
     // stop condition: already impacted with equal or more priority (REVISE > RECHECK > REUSE)
-    if (currImpacts.get(ImpactType.REVISE).isPresent() ||
-        currImpacts.get(ImpactType.RECHECK).isPresent() && !prevImpacts.get(ImpactType.REVISE).isPresent() ||
-        currImpacts.get(ImpactType.REUSE).isPresent() && !prevImpacts.get(ImpactType.RECHECK).isPresent()) {
+    if (currImpact.get(ImpactType.REVISE).isPresent() ||
+        currImpact.get(ImpactType.RECHECK).isPresent() && !prevImpact.get(ImpactType.REVISE).isPresent() ||
+        currImpact.get(ImpactType.REUSE).isPresent() && !prevImpact.get(ImpactType.RECHECK).isPresent()) {
       return;
     }
     // separate syntactic vs semantic (template) behavior
-    var templates = this.impacted.getReference(this.gsn.getArgumentElement_Template());
+    var templates = this.impacted.getReference(PLGSNChangeStep.GSN.getArgumentElement_Template());
     List<PLGSNChangeStep> nextSteps;
     if (templates.isEmpty()) {
       baselineImpact();
@@ -216,10 +206,37 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
       return;
     }
     // separate syntactic vs semantic (template) behavior
-    var templates = this.impacted.getReference(this.gsn.getArgumentElement_Template());
+    var templates = this.impacted.getReference(PLGSNChangeStep.GSN.getArgumentElement_Template());
     var nextSteps = (templates.isEmpty()) ? nextSteps() : ((PLGSNTemplate) templates.get(0)).repair(this);
     for (var nextStep : nextSteps) {
       nextStep.repair();
     }
+  }
+
+  public static void setAllImpacts(PLGSNTemplate plTemplate, ImpactType type) {
+    for (var plElem : plTemplate.getReference(PLGSNChangeStep.GSN.getTemplate_Elements())) {
+      if (!plElem.getReference(PLGSNChangeStep.GSN.getArgumentElement_Status()).isEmpty()) {
+        continue;
+      }
+      var templateStep = new PLGSNChangeStep((PLGSNArgumentElement) plElem);
+      templateStep.setImpact(type, plElem.getPresenceCondition());
+    }
+  }
+
+  public static void deleteBranch(Class plElem) {
+    var productLine = plElem.getProductLine();
+    for (var plInContextOf : plElem.getReference(PLGSNChangeStep.GSN.getContextualizable_InContextOf())) {
+      for (var plContext : plInContextOf.getReference(PLGSNChangeStep.GSN.getInContextOf_Context())) {
+        plContext.delete();
+      }
+      productLine.getClasses().remove(plInContextOf);
+    }
+    for (var plSupportedBy : plElem.getReference(PLGSNChangeStep.GSN.getSupportable_SupportedBy())) {
+      for (var plSupporter : plSupportedBy.getReference(PLGSNChangeStep.GSN.getSupportedBy_Target())) {
+        deleteBranch(plSupporter);
+      }
+      productLine.getClasses().remove(plSupportedBy);
+    }
+    plElem.delete();
   }
 }

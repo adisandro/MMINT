@@ -17,14 +17,12 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Contextual;
 import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
-import edu.toronto.cs.se.modelepedia.gsn.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
@@ -59,23 +57,23 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
       });
   }
 
-  private void addImpact(@Nullable ImpactAnnotation currImpact, ImpactType type) {
+  private void setImpact(ImpactType impactType) {
+    var currImpact = this.impacted.getStatus();
     if (currImpact == null) {
       currImpact = GSNFactory.eINSTANCE.createImpactAnnotation();
       this.impacted.setStatus(currImpact);
     }
-    currImpact.setType(type);
+    currImpact.setType(impactType);
   }
 
   @Override
   public void baselineImpact() {
-    var currImpact = this.impacted.getStatus();
     var prevImpact = getPreviousImpact();
     switch (this.impacted) {
-      case Goal _       -> addImpact(currImpact, prevImpact);
-      case Strategy _   -> addImpact(currImpact, prevImpact);
-      case Contextual _ -> addImpact(currImpact, ImpactType.REUSE);
-      default           -> addImpact(currImpact, prevImpact);
+      case Goal _       -> setImpact(prevImpact);
+      case Strategy _   -> setImpact(prevImpact);
+      case Contextual _ -> setImpact(ImpactType.REUSE);
+      default           -> setImpact(prevImpact);
     }
   }
 

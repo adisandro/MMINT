@@ -40,6 +40,11 @@ import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 
+/**
+ * This template is a decomposition strategy based on identifying certain patterns in the underlying model with a VQL
+ * query. It does not generate any evidence, but is supported by downstream goals corresponding to each of the
+ * identified patterns.
+ */
 public class VQLQueryAnalysis implements IPLGSNAnalysis {
   protected GSNPackage gsn;
 
