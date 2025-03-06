@@ -56,7 +56,7 @@ public class RemoveFeature extends OperatorImpl {
 
     public Out(Map<String, MID> outputMIDsByName, String workingPath, In in) {
       this.plModelType = in.plModel.getMetatype();
-      this.plRemoved = (ProductLine) in.plModel.getEMFInstanceRoot();
+      this.plRemoved = EcoreUtil.copy((ProductLine) in.plModel.getEMFInstanceRoot());
       this.path = workingPath + IPath.SEPARATOR + in.plModel.getName() + Out.SUFFIX + "." +
                   in.plModel.getFileExtension();
       this.mid = outputMIDsByName.get(Out.MODEL);
