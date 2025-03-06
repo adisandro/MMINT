@@ -18,6 +18,7 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
+import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep;
 
 public class FTS4VMCAnalysis2 extends FTS4VMCAnalysis {
 
@@ -25,25 +26,39 @@ public class FTS4VMCAnalysis2 extends FTS4VMCAnalysis {
   public List<PLGSNChangeStep> impact(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step) throws Exception {
     var templateElems = plTemplate.getElementsById();
     var prevImpact = step.getPreviousImpact();
+    var satGoal = templateElems.get("satGoal");
+    var satGoalStep = new PLGSNChangeStep(satGoal);
+    var satGoalImpactType = ImpactType.REUSE;
+    var satSolution = templateElems.get("satSolution");
+    var satSolutionStep = new PLGSNChangeStep(satSolution);
+    var satSolutionImpactType = ImpactType.REUSE;
     // re-run model checking
     if (prevImpact.get(ImpactType.REUSE).isPresent() || prevImpact.get(ImpactType.RECHECK).isPresent()) {
-
+      var filesCtx = templateElems.get("filesCtx");
+      var paths = filesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
+      var propertyPath = paths.get(0);
+      var modelPath = paths.get(1);
+      var result = runFTS4VMC(modelPath, propertyPath);
+      var dataKey = getClass().getName() + "_" + modelPath; //TODO should change based on property too
+      ChangeStep.getData().put(dataKey, result);
+      var holds = result.contains("TRUE");
+      var oldHolds = satGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).contains("holds");
+      if (holds != oldHolds) {
+        satGoalImpactType = ImpactType.REVISE;
+        satSolutionImpactType = ImpactType.REVISE;
+      }
     }
-    // parents should be revised, do not re-run model checking but mark as revise
+    // parents should be revised, do not re-run model checking but mark to revise
     else if (prevImpact.get(ImpactType.REVISE).isPresent()) {
-
+      satGoalImpactType = ImpactType.REVISE;
+      satSolutionImpactType = ImpactType.REVISE;
     }
-    var filesCtx = templateElems.get("filesCtx");
-    var paths = filesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
-    var propertyPath = paths.get(0);
-    var modelPath = paths.get(1);
-    var satGoal = templateElems.get("satGoal");
-    var satSolution = templateElems.get("satSolution");
-    //TODO regen model dot/vmc file, shell script
-    //TODO impact starting from this very template: re-run model checking
-    //TODO prev impact = reuse/recheck: re-run model checking
-    //TODO prev impact = revise: don't re-run, mark as revise
-    return super.impact(plTemplate, step);
+    satGoalStep.setImpact(satGoalImpactType, satGoal.getPresenceCondition());
+    satSolutionStep.setImpact(satSolutionImpactType, satSolution.getPresenceCondition());
+    // reuse everything else in the template
+    PLGSNChangeStep.setAllImpacts(plTemplate, ImpactType.REUSE);
+
+    return List.of();
   }
 
   @Override

@@ -37,6 +37,9 @@ import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
  * checker. It is a leaf template, with no downstream supporters.
  */
 public class FTS4VMCAnalysis implements IPLGSNAnalysis {
+  protected final static String PROPERTY_FILE = "property.txt";
+  protected final static String RUN_FILE = "run.sh";
+  protected final static String SAT_FILE = "result.out";
   protected GSNPackage gsn;
 
   public FTS4VMCAnalysis() {
@@ -47,7 +50,7 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     return pc.replace("&", "and").replace("|", "or").replace("~", "not ").replace("$true", "True");
   }
 
-  private String productLine2Dot(ProductLine productLine, String name) {
+  protected String productLine2Dot(ProductLine productLine, String name) {
     var types = StateMachinePackage.eINSTANCE;
     var out = "digraph " + name + "{";
     out += "\n  name=\"" + name + "\"";
@@ -77,6 +80,32 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     return out;
   }
 
+  protected String runFTS4VMC(String modelPath, String propertyPath) throws Exception {
+    var modelPL = (ProductLine) FileUtils.readModelFile(modelPath, null, false);
+    if (modelPL.getMetamodel() != StateMachinePackage.eINSTANCE) {
+      throw new MMINTException("Model type '" + modelPL.getMetamodel().getNsURI() + "' not supported");
+    }
+    var modelName = FileUtils.getFileNameFromPath(modelPath);
+    var dot = productLine2Dot(modelPL, modelName);
+    var dotPath = FileUtils.replaceFileExtensionInPath(modelPath, "dot");
+    var vmcPath = FileUtils.replaceFileExtensionInPath(modelPath, "vmc");
+    FileUtils.createTextFile(dotPath, dot, false);
+    final var RUN_SH = """
+      python3 -m venv venv
+      source venv/bin/activate
+      git clone https://github.com/fts4vmc/FTS4VMC.git &> /dev/null
+      pip3 install -r FTS4VMC/requirements.txt &> /dev/null
+      pip3 install --upgrade z3-solver &> /dev/null
+      python3 FTS4VMC/translate.py\s""" + dotPath + " " +  vmcPath + " &> /dev/null\n" +
+      "FTS4VMC/vmc65-linux " + vmcPath + " " + propertyPath;
+    var runPath = Paths.get(FileUtils.replaceLastSegmentInPath(modelPath, FTS4VMCAnalysis.RUN_FILE));
+    Files.writeString(runPath, RUN_SH);
+    var result = FileUtils.runShell(runPath.getParent().toString(), "bash", FTS4VMCAnalysis.RUN_FILE);
+    Files.writeString(Paths.get(FileUtils.replaceLastSegmentInPath(modelPath, FTS4VMCAnalysis.SAT_FILE)), result);
+
+    return result;
+  }
+
   @Override
   public void import_(PLGSNAnalyticTemplate plTemplate, ProductLine productLine) throws Exception {
     var builder = new PLGSNBuilder(productLine);
@@ -93,13 +122,12 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
   @Override
   public void instantiate(PLGSNAnalyticTemplate plTemplate) throws Exception {
     var templateElems = plTemplate.getElementsById();
-    // convert model to .dot file
-    var mcStrategy = templateElems.get("mcStrategy");
-    var safetyGoal = templateElems.get("safetyGoal");
+    // select PL model and property
     String modelPath = null;
     String dialogInitial = null;
+    var safetyGoal = templateElems.get("safetyGoal");
     if (safetyGoal == null) {
-      safetyGoal = (PLGSNArgumentElement) mcStrategy
+      safetyGoal = (PLGSNArgumentElement) templateElems.get("mcStrategy")
         .getReference(this.gsn.getSupporter_Supports()).get(0)
         .getReference(this.gsn.getSupportedBy_Source()).get(0);
       var otherTemplate = safetyGoal.getReference(this.gsn.getArgumentElement_Template()).get(0);
@@ -116,22 +144,12 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
         MIDDialogs.selectFile("Run Product Line analysis", "Select a Product Line model",
                               "There are no Product Line models in the workspace", Set.of("productline")));
     }
-    var modelPL = (ProductLine) FileUtils.readModelFile(modelPath, null, false);
-    if (modelPL.getMetamodel() != StateMachinePackage.eINSTANCE) {
-      throw new MMINTException("Model type '" + modelPL.getMetamodel().getNsURI() + "' not supported");
-    }
-    var modelName = FileUtils.getFileNameFromPath(modelPath);
-    var dot = productLine2Dot(modelPL, modelName);
-    var dotPath = FileUtils.replaceFileExtensionInPath(modelPath, "dot");
-    var vmcPath = FileUtils.replaceFileExtensionInPath(modelPath, "vmc");
-    FileUtils.createTextFile(dotPath, dot, false);
-    // run model checker and process results
     var property = MIDDialogs.getBigStringInput("Run Product Line analysis", "Insert model property to check",
                                                 dialogInitial);
-    final var PROPERTY_FILE = "property.txt";
-    final var SAT_FILE = "result.out";
-    var propertyPath = FileUtils.replaceLastSegmentInPath(modelPath, PROPERTY_FILE);
+    var propertyPath = FileUtils.replaceLastSegmentInPath(modelPath, FTS4VMCAnalysis.PROPERTY_FILE);
     Files.writeString(Paths.get(propertyPath), property);
+    // run model checker and process results
+    var result = runFTS4VMC(modelPath, propertyPath);
     //TODO change all ids to match connected?
     var filesCtx = templateElems.get("filesCtx");
     var filesDesc = filesCtx.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
@@ -140,26 +158,13 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     filesCtx.setAttribute(this.gsn.getArgumentElement_Description(), filesDesc);
     filesCtx.setManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
                               ECollections.asEList(List.of(propertyPath, modelPath)));
-    final var RUN_SH = """
-      python3 -m venv venv
-      source venv/bin/activate
-      git clone https://github.com/fts4vmc/FTS4VMC.git &> /dev/null
-      pip3 install -r FTS4VMC/requirements.txt &> /dev/null
-      pip3 install --upgrade z3-solver &> /dev/null
-      python3 FTS4VMC/translate.py\s""" + dotPath + " " +  vmcPath + " &> /dev/null\n" +
-      "FTS4VMC/vmc65-linux " + vmcPath + " " + propertyPath;
-    final var RUN_SH_FILE = "run.sh";
-    var runPath = Paths.get(FileUtils.replaceLastSegmentInPath(modelPath, RUN_SH_FILE));
-    Files.writeString(runPath, RUN_SH);
-    var result = FileUtils.runShell(runPath.getParent().toString(), "bash", RUN_SH_FILE);
-    Files.writeString(Paths.get(FileUtils.replaceLastSegmentInPath(modelPath, SAT_FILE)), result);
     var satGoal = templateElems.get("satGoal");
     var satGoalDesc = satGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0);
     var holds = (result.contains("TRUE")) ? "holds" : "does not hold";
     satGoal.setAttribute(this.gsn.getArgumentElement_Description(), satGoalDesc.replace("{holds?}", holds));
     var satSolution = templateElems.get("satSolution");
     var satSolDesc = satSolution.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
-      .replace("{output}", SAT_FILE);
+      .replace("{output}", FTS4VMCAnalysis.SAT_FILE);
     satSolution.setAttribute(this.gsn.getArgumentElement_Description(), satSolDesc);
     if (!safetyGoal.isAlwaysPresent()) {
       var pc = safetyGoal.getPresenceCondition();
