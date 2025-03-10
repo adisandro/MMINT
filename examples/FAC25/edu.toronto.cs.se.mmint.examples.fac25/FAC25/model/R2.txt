@@ -1,0 +1,759 @@
+Feature model: HW_MONITORING & (MULTIPLE_DRUGS => (CHECK_DRUG_TYPE & VISUAL_DISPLAY)) & (PROGRAMMABLE_INFUSION => (CHECK_INFUSION_RATE & VISUAL_DISPLAY))
+
+States:
+"state_iS", 
+"Alrm_DoseRateHardLimitsViolationS", <Features: CHECK_INFUSION_RATE>
+"CheckDrugS", 
+"DisplaySettingsS", 
+"ConfirmPauseS", 
+"CheckDrugConcentrationS",
+"Alrm_UnsafeNewRateS", <Features: PROGRAMMABLE_INFUSION>
+"Infusion_NormalOperationS", 
+"ChangeVTBIS", <Features: PROGRAMMABLE_INFUSION>
+"CheckDrugTypeS", <Features: CHECK_DRUG_TYPE>
+"InfusionStoppedS", 
+"ConfirmStopS", 
+"CheckAdministrationSetS", 
+"Alrm_ConcentratrionHardLimitsViolationS", 
+"CheckPrimeS", 
+"DisplayDoseRateS", <Features: VISUAL_DISPLAY>
+"Alrm_VTBIHardLimitsViolationS", <Features: CHECK_INFUSION_RATE>
+"CheckDoseRateS", <Features: CHECK_INFUSION_RATE>
+"Alrm_WrongDrugS", <Features: MULTIPLE_DRUGS>
+"DisplayDrugInfoS", <Features: VISUAL_DISPLAY>
+"DisplayVTBIS", <Features: VISUAL_DISPLAY>
+"Alrm_LevelOneHardwareFailureS", <Features: HW_MONITORING>
+"ReadyToStartS", 
+"ReadyToStart_1S", 
+"Alrm_LevelTwoHardwareFailureS", <Features: HW_MONITORING>
+"PowerDownS", 
+"Alrm_TooLongInfusionPauseS", 
+"Alrm_POSTFailureS", 
+"Alrm_UnknownDrugS", <Features: CHECK_DRUG_TYPE>
+"ConfirmPowerDownS", 
+"InfusionPausedS", 
+"CheckDrugDoseUnitS", 
+"CheckVTBIS", <Features: CHECK_INFUSION_RATE>
+"POSTS", 
+"POST_1S", 
+"Wrn_DoseRateSoftLimitsViolationS", <Features: CHECK_INFUSION_RATE>
+"Wrn_VTBISoftLimitsViolationS", <Features: CHECK_INFUSION_RATE>
+"ChangeRateS", <Features: PROGRAMMABLE_INFUSION>
+"DisplayPatientProfileS", 
+"BolusRequestS", 
+"PausedStopConfirmS", 
+"Wrn_ConcentrationSoftLimitsViolationS", 
+"Alrm_DoseUnitMismatchS",
+"Alrm_IncorrectAdminSetupS", 
+"Alrm_EmptyReservoirS", 
+"Alrm_PrimeFailureS", 
+"CheckNewRateS", <Features: PROGRAMMABLE_INFUSION & CHECK_INFUSION_RATE>
+"ChangeDoseRateS", <Features: PROGRAMMABLE_INFUSION>
+"POSTDoneS", 
+"ConfirmPowerOffS",
+"E_ClearAlarmS",
+
+
+InitialState: "PowerDownS";
+
+LocalVars:
+
+bint [1 .. 1] state_i = 1,
+bint [2 .. 2] Alrm_DoseRateHardLimitsViolation = 2,
+bint [3 .. 3] CheckDrug = 3,
+bint [4 .. 4] DisplaySettings = 4,
+bint [5 .. 5] ConfirmPause = 5,
+bint [6 .. 6] CheckDrugConcentration = 6,
+bint [7 .. 7] Alrm_UnsafeNewRate = 7,
+bint [8 .. 8] Infusion_NormalOperation = 8,
+bint [9 .. 9] ChangeVTBI = 9,
+bint [10 .. 10] CheckDrugType = 10,
+bint [11 .. 11] InfusionStopped = 11,
+bint [12 .. 12] ConfirmStop = 12,
+bint [13 .. 13] CheckAdministrationSet = 13,
+bint [14 .. 14] Alrm_ConcentratrionHardLimitsViolation = 14,
+bint [15 .. 15] CheckPrime = 15,
+bint [16 .. 16] DisplayDoseRate = 16,
+bint [17 .. 17] Alrm_VTBIHardLimitsViolation = 17,
+bint [18 .. 18] CheckDoseRate = 18,
+bint [19 .. 19] Alrm_WrongDrug = 19,
+bint [20 .. 20] DisplayDrugInfo = 20,
+bint [21 .. 21] DisplayVTBI = 21,
+bint [22 .. 22] Alrm_LevelOneHardwareFailure = 22,
+bint [23 .. 23] ReadyToStart = 23,
+bint [24 .. 24] Alrm_LevelTwoHardwareFailure = 24,
+bint [25 .. 25] PowerDown = 25,
+bint [26 .. 26] Alrm_TooLongInfusionPause = 26,
+bint [27 .. 27] Alrm_POSTFailure = 27,
+bint [28 .. 28] Alrm_UnknownDrug = 28,
+bint [29 .. 29] ConfirmPowerDown = 29,
+bint [30 .. 30] InfusionPaused = 30,
+bint [31 .. 31] CheckDrugDoseUnit = 31,
+bint [32 .. 32] CheckVTBI = 32,
+bint [33 .. 33] POST = 33,
+bint [34 .. 34] Wrn_DoseRateSoftLimitsViolation = 34,
+bint [35 .. 35] Wrn_VTBISoftLimitsViolation = 35,
+bint [36 .. 36] ChangeRate = 36,
+bint [37 .. 37] DisplayPatientProfile = 37,
+bint [38 .. 38] BolusRequest = 38,
+bint [39 .. 39] PausedStopConfirm = 39,
+bint [40 .. 40] Wrn_ConcentrationSoftLimitsViolation = 40,
+bint [41 .. 41] Alrm_DoseUnitMismatch = 41,
+bint [42 .. 42] Alrm_IncorrectAdminSetup = 42,
+bint [43 .. 43] Alrm_EmptyReservoir = 43,
+bint [44 .. 44] Alrm_PrimeFailure = 44,
+bint [45 .. 45] CheckNewRate = 45,
+bint [46 .. 46] ChangeDoseRate = 46,
+bint [47 .. 47] POSTDone = 47,
+bint [48 .. 48] ConfirmPowerOff = 48,
+bint [49 .. 49] ReadyToStart_1 = 49,
+bint [50 .. 50] POST_1 = 50,
+bint[0 .. 1] flowRate=0,
+bint[0 .. 1] drugInfodrugConcentration=0,
+bint[0 .. 1] drugLibInfodoseRateUnit=0,
+bint[0 .. 1] drugInfodrugDoseAmount=0,
+bint[0 .. 1] drugLibInfodoseRateUpperHardLimit=0,
+bint[0 .. 1] drugLibInfovtbiUpperHardLimit=0,
+bint[0 .. 1] infuParametersprogrammedDoseRatedrugInfodrugConcentration=0,
+bint[0 .. 1] bolusing=0,
+bint[0 .. 1] infuParametersprogrammedVTBI=0,
+bint[0 .. 1] pumpConfigDataisPOSTSuccessful=0,
+bint[0 .. 1] drugLibInfovtbiLowerHardLimit=0,
+bint[0 .. 1] drugLibInfodrugID=0,
+bint[0 .. 1] infuStatusisBolusInProgress=0,
+bint[0 .. 1] programmedDoseRatedrugConcentration=0,
+bint[0 .. 1] ErrCond=0,
+bint[0 .. 1] drugLibInfovtbiUpperSoftLimit=0,
+bint[0 .. 1] drugLibInfovtbiUnit=0,
+bint[0 .. 1] drugLibInfodoseRateUpperSoftLimit=0,
+bint[0 .. 1] O_ProgrammedFlowRate=0,
+bint[0 .. 1] drugLibInfodrugConcentrationUpperSoftLimit=0,
+bint[0 .. 1] drugInfodrugDoseUnit=0,
+bint[0 .. 1] drugLibInfodoseRateLowerHardLimit=0,
+bint[0 .. 1] O_InfusionInProgress=0,
+bint[0 .. 1] O_BolusRequested=0,
+bint[0 .. 1] drugLibInfovtbiTypical=0,
+bint[0 .. 1] previous_state=0,
+bint[0 .. 1] drugLibInfodoseRateLowerSoftLimit=0,
+bint[0 .. 1] drugLibInfodoseRateTypicaldrugInfodrugConcentration=0,
+bint[0 .. 1] O_AlarmCond=0,
+bint[0 .. 1] O_InfusionPaused=0,
+bint[0 .. 1] CheckDrugCheckDoseUnit=0,
+bint[0 .. 1] AlarmingDrugVTBIHardLimitsViolated=0,
+bint[0 .. 1] drugLibInfodrugConcentrationLowerHardLimit=0,
+bint[0 .. 1] drugInfodrugID=0,
+bint[0 .. 1] infuParametersprogrammedDoseRate=0,
+bint[0 .. 1] warning=0,
+bint[0 .. 1] drugLibInfodrugConcentrationLowerSoftLimit=0,
+bint[0 .. 1] drugLibInfodrugConcentrationUpperHardLimit=0,
+bint[0 .. 1] infuStatustotalVolumeInfused=0,
+bint[0 .. 1] drugLibInfoamount=0,
+bint[0 .. 1] drugInfodrugVolumeUnit=0,
+bint[0 .. 1] pumpConfigDataisPumpPrimed=0,
+bint[0 .. 1] pumpConfigDataisAdminSetCheckPassed=0,
+bint[0 .. 1] O_ProgrammedVTBI=0,
+bint[0 .. 1] drugLibInfovtbiLowerSoftLimit=0;
+
+
+Transition: from "Infusion_NormalOperationS" to "CheckDoseRateS" 
+	when E_ConfirmDoseRate ?  do previous_state = ChangeDoseRate;;
+
+Transition: from "Infusion_NormalOperationS" to "CheckVTBIS" 
+	when E_ConfirmVTBI ?  do previous_state = ChangeVTBI;
+
+Transition: from "PowerDownS" to "ConfirmPowerOffS" 
+	when E_ConfirmPowerOff ?  do O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0;
+
+Transition: from "CheckDrugS" to "Alrm_WrongDrugS"
+	when drugInfodrugID != drugLibInfodrugID OR drugInfodrugDoseAmount != drugLibInfoamount OR drugInfodrugDoseUnit != drugLibInfodoseRateUnit OR drugInfodrugVolumeUnit != drugLibInfovtbiUnit OR drugInfodrugConcentration > drugLibInfodrugConcentrationUpperSoftLimit OR drugInfodrugConcentration < drugLibInfodrugConcentrationLowerHardLimit do previous_state= CheckDrug;
+
+Transition: from "DisplaySettingsS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = DisplaySettings;
+
+Transition: from "CheckDrugTypeS" to "CheckDrugDoseUnitS"
+	when drugInfodrugID == drugLibInfodrugID AND drugInfodrugDoseAmount == drugLibInfoamount do previous_state = CheckDrugType;
+
+Transition: from "Alrm_LevelTwoHardwareFailureS" to "InfusionStoppedS" 
+	when E_StopInfusion ?  do previous_state= Alrm_LevelTwoHardwareFailure, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0;
+
+Transition: from "ConfirmStopS" to "Alrm_EmptyReservoirS" 
+	when ErrCond == 8 do previous_state = ConfirmStop, O_InfusionInProgress = 1, O_InfusionPaused = 1, O_BolusRequested = 0, bolusing = 0, O_AlarmCond = ErrCond;
+
+Transition: from "BolusRequestS" to "Infusion_NormalOperationS" 
+	when infuStatusisBolusInProgress == 0 do previous_state= Infusion_NormalOperation;
+
+Transition: from "DisplayDrugInfoS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = DisplayDrugInfo;
+
+Transition: from "Alrm_WrongDrugS" to "ConfirmPowerDownS"
+	when E_PowerButton ?  do previous_state=Alrm_WrongDrug;
+
+Transition: from "ChangeRateS" to "Alrm_EmptyReservoirS" 
+	when ErrCond == 8 do previous_state = ChangeRate, O_InfusionInProgress = 1, O_InfusionPaused = 1, O_BolusRequested = 0, bolusing = 0, O_AlarmCond = ErrCond;
+
+Transition: from "DisplayPatientProfileS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = DisplayPatientProfile;
+
+Transition: from "ConfirmStopS" to "Alrm_LevelTwoHardwareFailureS" 
+	when ErrCond >= 7 AND ErrCond <16 AND ErrCond != 8 do previous_state = ConfirmStop, O_InfusionInProgress = 1, O_InfusionPaused = 1, O_BolusRequested = 0, bolusing = 0, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_EmptyReservoirS" to "CheckDrugS"
+	when E_CheckDrug ?  do previous_state= Alrm_EmptyReservoir;
+
+Transition: from "Alrm_UnknownDrugS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = Alrm_UnknownDrug;
+
+Transition: from "CheckDrugConcentrationS" to "Alrm_ConcentratrionHardLimitsViolationS"
+	when drugInfodrugConcentration > drugLibInfodrugConcentrationUpperHardLimit OR drugInfodrugConcentration < drugLibInfodrugConcentrationLowerHardLimit do previous_state = CheckDrugConcentration;
+
+Transition: from "CheckDrugTypeS" to "Alrm_UnknownDrugS"
+	when drugInfodrugID != drugLibInfodrugID OR drugInfodrugDoseAmount != drugLibInfoamount do previous_state = CheckDrugType;
+
+Transition: from "POSTS" to "Alrm_POSTFailureS" 
+	when pumpConfigDataisPOSTSuccessful == 0 do previous_state = POST;
+
+Transition: from "DisplayPatientProfileS" to "DisplayDrugInfoS" 
+	when E_Cancel ?  do previous_state = DisplayPatientProfile;
+
+Transition: from "Alrm_IncorrectAdminSetupS" to "Alrm_LevelOneHardwareFailureS"
+	when ErrCond > 0 AND ErrCond < 7 do previous_state= Alrm_IncorrectAdminSetup, O_AlarmCond = ErrCond;
+
+Transition: from "DisplayVTBIS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = DisplayVTBI;
+
+Transition: from "Wrn_ConcentrationSoftLimitsViolationS" to "CheckDrugTypeS"
+	when E_CheckDrug ?  do previous_state = Wrn_ConcentrationSoftLimitsViolation;
+
+Transition: from "Alrm_ConcentratrionHardLimitsViolationS" to "Alrm_ConcentratrionHardLimitsViolationS"
+	when E_Warning ?  do previous_state = Alrm_ConcentratrionHardLimitsViolation, O_AlarmCond = ErrCond;
+
+Transition: from "ConfirmPowerOffS" to "state_iS" 
+	when previous_state==state_i AND E_Cancel ? ;
+
+Transition: from "ConfirmPauseS" to "Infusion_NormalOperationS" 
+	when E_Cancel ?  do previous_state = ConfirmPause;
+
+Transition: from "ConfirmStopS" to "Infusion_NormalOperationS" 
+	when E_Cancel ?  do previous_state = ConfirmStop;
+
+Transition: from "PausedStopConfirmS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state= PausedStopConfirm ;
+
+Transition: from "PausedStopConfirmS" to "Alrm_LevelOneHardwareFailureS"
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = PausedStopConfirm, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0, O_AlarmCond = ErrCond;
+
+Transition: from "Wrn_DoseRateSoftLimitsViolationS" to "ChangeDoseRateS" 
+	when E_ChangeDoseRate ?  do previous_state = Wrn_DoseRateSoftLimitsViolation;
+
+Transition: from "Alrm_DoseRateHardLimitsViolationS" to "Alrm_LevelOneHardwareFailureS"
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = Alrm_DoseRateHardLimitsViolation, O_AlarmCond = ErrCond;
+
+Transition: from "ChangeRateS" to "ChangeRateS" 
+	when bolusing>0 AND  infuStatusisBolusInProgress == 0 do previous_state = ChangeRate, bolusing=0;
+
+Transition: from "ChangeRateS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = ChangeRate;
+
+Transition: from "Alrm_VTBIHardLimitsViolationS" to "Alrm_LevelOneHardwareFailureS"
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = Alrm_VTBIHardLimitsViolation, O_AlarmCond = ErrCond;
+
+Transition: from "Wrn_DoseRateSoftLimitsViolationS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = Wrn_DoseRateSoftLimitsViolation;
+
+Transition: from "Infusion_NormalOperationS" to "Alrm_EmptyReservoirS" 
+	when ErrCond == 8 do previous_state= Infusion_NormalOperation, O_InfusionInProgress = 1, O_InfusionPaused = 1, O_BolusRequested = 0, bolusing = 0, O_AlarmCond = ErrCond;
+
+Transition: from "Infusion_NormalOperationS" to "BolusRequestS" 
+	when infuStatusisBolusInProgress == 0 AND E_RequestBolus ?  do previous_state= Infusion_NormalOperation, O_BolusRequested = 1;
+
+Transition: from "ChangeDoseRateS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = ChangeDoseRate;
+
+Transition: from "ChangeVTBIS" to "CheckVTBIS" 
+	when E_ConfirmVTBI ?  do previous_state = ChangeVTBI;
+
+Transition: from "Alrm_UnsafeNewRateS" to "Alrm_EmptyReservoirS" 
+	when ErrCond == 8 do previous_state = Alrm_UnsafeNewRate, O_InfusionInProgress = 1, O_InfusionPaused = 1, O_BolusRequested = 0, bolusing = 0, O_AlarmCond = ErrCond;
+
+Transition: from "CheckDoseRateS" to "Alrm_DoseRateHardLimitsViolationS" 
+	when infuParametersprogrammedDoseRate>drugLibInfodoseRateUpperHardLimit OR infuParametersprogrammedDoseRate<drugLibInfodoseRateLowerHardLimit do previous_state = CheckDoseRate;
+
+Transition: from "DisplayVTBIS" to "DisplayDoseRateS" 
+	when E_ConfirmVTBI ?  do O_ProgrammedVTBI = drugLibInfovtbiTypical, previous_state = DisplayVTBI;
+
+Transition: from "ConfirmPauseS" to "InfusionPausedS" 
+	when E_ConfirmPauseInfusion ?  do previous_state= ConfirmPause, O_InfusionInProgress = 1, O_InfusionPaused = 1, O_BolusRequested = 0, bolusing = 0, O_AlarmCond = ErrCond;
+
+Transition: from "Infusion_NormalOperationS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state= Infusion_NormalOperation;
+
+Transition: from "Infusion_NormalOperationS" to "ChangeRateS" 
+	when E_ChangeDoseRate ?  do previous_state= Infusion_NormalOperation;
+
+Transition: from "ChangeVTBIS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = ChangeVTBI, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_TooLongInfusionPauseS" to "Infusion_NormalOperationS" 
+	when E_ClearAlarm ?  do previous_state = Alrm_TooLongInfusionPause, O_InfusionInProgress = 1, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0;
+
+Transition: from "Alrm_TooLongInfusionPauseS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = Alrm_TooLongInfusionPause;
+
+Transition: from "Alrm_DoseRateHardLimitsViolationS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = Alrm_DoseRateHardLimitsViolation;
+
+Transition: from "Alrm_UnsafeNewRateS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = Alrm_UnsafeNewRate;
+
+Transition: from "ConfirmStopS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = ConfirmStop;
+
+Transition: from "Alrm_UnsafeNewRateS" to "InfusionStoppedS" 
+	when infuStatustotalVolumeInfused == infuParametersprogrammedVTBI do previous_state = ChangeRate, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0;
+
+Transition: from "ConfirmPauseS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = ConfirmPause, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0, O_AlarmCond = ErrCond;
+
+Transition: from "DisplayDoseRateS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = DisplayDoseRate, O_AlarmCond = ErrCond;
+
+Transition: from "DisplayDoseRateS" to "DisplaySettingsS" 
+	when E_ConfirmDoseRate ?  do O_ProgrammedFlowRate = drugLibInfodoseRateTypicaldrugInfodrugConcentration , previous_state = DisplayDoseRate;
+
+Transition: from "DisplayVTBIS" to "ChangeVTBIS" 
+	when E_ChangeVTBI ?  do previous_state = DisplayVTBI;
+
+Transition: from "Alrm_PrimeFailureS" to "Alrm_PrimeFailureS" 
+	when E_Warning ?  do previous_state= Alrm_PrimeFailure,  O_AlarmCond = ErrCond;
+
+Transition: from "PowerDownS" to "POST_1S" 
+	when E_PowerButton ?  do previous_state=PowerDown, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate = 0, O_AlarmCond = 0, bolusing =0;
+
+Transition: from "POST_1S" to "POSTS"
+	when true == true do previous_state=POST_1, E_Restart ! x;
+
+Transition: from "PausedStopConfirmS" to "InfusionPausedS" 
+	when E_Cancel ?  do previous_state = PausedStopConfirm ;
+
+Transition: from "Alrm_DoseUnitMismatchS" to "Alrm_DoseUnitMismatchS" 
+	when warning>0 AND E_Warning ?  do previous_state = Alrm_DoseUnitMismatch, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_LevelTwoHardwareFailureS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state= Alrm_LevelTwoHardwareFailure, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0, O_AlarmCond = ErrCond;
+
+Transition: from "ConfirmPowerOffS" to "PowerDownS" 
+	when E_ConfirmPowerDown ?  do O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0;
+
+Transition: from "InfusionStoppedS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = InfusionStopped, O_AlarmCond = ErrCond;
+
+Transition: from "CheckNewRateS" to "Alrm_UnsafeNewRateS" 
+	when infuParametersprogrammedDoseRate>drugLibInfodoseRateUpperSoftLimit OR infuParametersprogrammedDoseRate<drugLibInfodoseRateLowerSoftLimit do previous_state = CheckNewRate;
+
+Transition: from "Wrn_DoseRateSoftLimitsViolationS" to "DisplaySettingsS" 
+	when E_ConfirmDoseRate ?  do O_ProgrammedFlowRate = infuParametersprogrammedDoseRatedrugInfodrugConcentration ,  previous_state = Wrn_DoseRateSoftLimitsViolation;
+
+Transition: from "DisplaySettingsS" to "DisplaySettingsS" 
+	when E_Warning ?  do previous_state = DisplaySettings, O_AlarmCond = ErrCond;
+
+Transition: from "Infusion_NormalOperationS" to "Alrm_LevelTwoHardwareFailureS" 
+	when  ErrCond >=7  AND ErrCond <16 AND ErrCond != 8 do previous_state= Infusion_NormalOperation, O_InfusionInProgress = 1, O_InfusionPaused = 1, O_BolusRequested = 0, bolusing = 0, O_AlarmCond = ErrCond;
+
+Transition: from "ReadyToStartS" to "DisplaySettingsS" 
+	when E_NotReady ?  do previous_state = ReadyToStart;
+
+Transition: from "Infusion_NormalOperationS" to "Infusion_NormalOperationS" 
+	when infuStatusisBolusInProgress == 1 AND E_RequestBolus ?  do previous_state= Infusion_NormalOperation;
+
+Transition: from "CheckAdministrationSetS" to "Alrm_IncorrectAdminSetupS" 
+	when pumpConfigDataisAdminSetCheckPassed == 0 do previous_state = CheckAdministrationSet;
+
+Transition: from "Infusion_NormalOperationS" to "Infusion_NormalOperationS" 
+	when E_Warning ?  do previous_state= Infusion_NormalOperation, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_IncorrectAdminSetupS" to "CheckAdministrationSetS" 
+	when E_CheckAdminSet ?  do previous_state = Alrm_IncorrectAdminSetup;
+
+Transition: from "Alrm_TooLongInfusionPauseS" to "InfusionStoppedS" 
+	when E_StopInfusion ?  do previous_state = Alrm_TooLongInfusionPause, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0;
+
+Transition: from "CheckDrugConcentrationS" to "DisplayPatientProfileS" 
+	when drugInfodrugConcentration <= drugLibInfodrugConcentrationUpperSoftLimit AND drugInfodrugConcentration >= drugLibInfodrugConcentrationLowerSoftLimit do previous_state = CheckDrugConcentration;
+
+Transition: from "DisplayDoseRateS" to "DisplayDoseRateS" 
+	when E_Warning ?  do previous_state = DisplayDoseRate, O_AlarmCond = ErrCond;
+
+Transition: from "Wrn_DoseRateSoftLimitsViolationS" to "Wrn_DoseRateSoftLimitsViolationS" 
+	when E_Warning ?  do previous_state = Wrn_DoseRateSoftLimitsViolation, O_AlarmCond = ErrCond;
+
+Transition: from "InfusionPausedS" to "Alrm_TooLongInfusionPauseS" 
+	when ErrCond == 14 do previous_state = InfusionPaused, O_AlarmCond = ErrCond;
+
+Transition: from "CheckDrugConcentrationS" to "Wrn_ConcentrationSoftLimitsViolationS" 
+	when (drugInfodrugConcentration > drugLibInfodrugConcentrationUpperSoftLimit OR drugInfodrugConcentration < drugLibInfodrugConcentrationLowerSoftLimit) AND (drugInfodrugConcentration <= drugLibInfodrugConcentrationUpperHardLimit AND drugInfodrugConcentration >= drugLibInfodrugConcentrationLowerHardLimit) do previous_state = CheckDrugConcentration;
+
+Transition: from "InfusionPausedS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = InfusionPaused, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0, O_AlarmCond = ErrCond;
+
+Transition: from "DisplayDoseRateS" to "ChangeDoseRateS" 
+	when E_ChangeDoseRate ?  do previous_state = DisplayDoseRate;
+
+Transition: from "POSTDoneS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = POSTDone;
+
+Transition: from "PausedStopConfirmS" to "PausedStopConfirmS" 
+	when E_Warning ?  do previous_state = PausedStopConfirm, O_AlarmCond = ErrCond;
+
+Transition: from "DisplaySettingsS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = DisplaySettings, O_AlarmCond = ErrCond;
+
+Transition: from "ConfirmStopS" to "InfusionStoppedS" 
+	when E_ConfirmStopInfusion ?  do previous_state = ConfirmStop, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0;
+
+Transition: from "Alrm_VTBIHardLimitsViolationS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = Alrm_VTBIHardLimitsViolation;
+
+Transition: from "Alrm_EmptyReservoirS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state= Alrm_EmptyReservoir, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0, O_AlarmCond = ErrCond;
+
+Transition: from "ConfirmPowerOffS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = ConfirmPowerOff, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0, O_AlarmCond = ErrCond;
+
+Transition: from "CheckAdministrationSetS" to "CheckPrimeS" 
+	when pumpConfigDataisAdminSetCheckPassed > 0 do previous_state = CheckAdministrationSet;
+
+Transition: from "DisplayVTBIS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = DisplayVTBI, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_VTBIHardLimitsViolationS" to "DisplayVTBIS" 
+	when E_ChangeVTBI ?  do previous_state = AlarmingDrugVTBIHardLimitsViolated;
+
+Transition: from "Wrn_VTBISoftLimitsViolationS" to "Wrn_VTBISoftLimitsViolationS" 
+	when E_Warning ?  do previous_state = Wrn_VTBISoftLimitsViolation, O_AlarmCond = ErrCond;
+
+Transition: from "InfusionPausedS" to "InfusionPausedS" 
+	when E_Warning ?  do previous_state = InfusionPaused, O_AlarmCond = ErrCond;
+
+Transition: from "ChangeDoseRateS" to "ChangeDoseRateS" 
+	when E_Cancel ?  do previous_state = ChangeDoseRate;
+
+Transition: from "CheckVTBIS" to "Wrn_VTBISoftLimitsViolationS" 
+	when (infuParametersprogrammedVTBI < drugLibInfovtbiLowerSoftLimit OR infuParametersprogrammedVTBI > drugLibInfovtbiUpperSoftLimit) AND (infuParametersprogrammedVTBI >= drugLibInfovtbiLowerHardLimit AND infuParametersprogrammedVTBI <= drugLibInfovtbiUpperHardLimit) do previous_state = CheckVTBI;
+
+Transition: from "ConfirmPauseS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state= ConfirmPause;
+
+Transition: from "InfusionPausedS" to "Infusion_NormalOperationS" 
+	when E_Cancel ?  do previous_state = InfusionPaused, O_InfusionInProgress = 1, O_InfusionPaused = 0;
+
+Transition: from "Alrm_UnsafeNewRateS" to "Alrm_UnsafeNewRateS" 
+	when E_Warning ?  do previous_state = Alrm_UnsafeNewRate, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_POSTFailureS" to "Alrm_POSTFailureS" 
+	when E_Warning ?  do previous_state = Alrm_POSTFailure, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_ConcentratrionHardLimitsViolationS" to "CheckDrugTypeS" 
+	when E_CheckDrug ?  do previous_state = Alrm_ConcentratrionHardLimitsViolation;
+
+Transition: from "Alrm_DoseRateHardLimitsViolationS" to "Alrm_DoseRateHardLimitsViolationS" 
+	when E_Warning ?  do previous_state = Alrm_DoseRateHardLimitsViolation, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_WrongDrugS" to "CheckDrugS" 
+	when E_CheckDrug ?  do previous_state = Alrm_WrongDrug;
+
+Transition: from "Alrm_VTBIHardLimitsViolationS" to "Alrm_VTBIHardLimitsViolationS" 
+	when E_Warning ?  do previous_state = Alrm_VTBIHardLimitsViolation, O_AlarmCond = ErrCond;
+
+Transition: from "ConfirmPauseS" to "ConfirmPauseS" 
+	when E_Warning ?  do previous_state = ConfirmPause, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_UnsafeNewRateS" to "Alrm_LevelTwoHardwareFailureS" 
+	when ErrCond >= 7 AND ErrCond <16 AND ErrCond != 8 do previous_state = Alrm_UnsafeNewRate, O_InfusionInProgress = 1, O_InfusionPaused = 1, O_BolusRequested = 0, bolusing = 0, O_AlarmCond = ErrCond;
+
+Transition: from "Wrn_DoseRateSoftLimitsViolationS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = Wrn_DoseRateSoftLimitsViolation, O_AlarmCond = ErrCond;
+
+Transition: from "Infusion_NormalOperationS" to "ConfirmStopS" 
+	when E_StopInfusion ?  do previous_state= Infusion_NormalOperation;
+
+Transition: from "DisplayDrugInfoS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = DisplayDrugInfo, O_AlarmCond = ErrCond;
+
+Transition: from "ChangeVTBIS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = ChangeVTBI;
+
+Transition: from "Alrm_WrongDrugS" to "InfusionStoppedS" 
+	when E_StopInfusion ?  do previous_state= Alrm_WrongDrug, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0;
+
+Transition: from "Alrm_IncorrectAdminSetupS" to "Alrm_IncorrectAdminSetupS" 
+	when E_Warning ?  do previous_state= Alrm_IncorrectAdminSetup, O_AlarmCond = ErrCond;
+
+Transition: from "DisplayDoseRateS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = DisplayDoseRate;
+
+Transition: from "ReadyToStartS" to "Infusion_NormalOperationS" 
+	when E_Ready ?  do previous_state = ReadyToStart,  O_InfusionInProgress = 1;
+
+Transition: from "CheckVTBIS" to "Alrm_VTBIHardLimitsViolationS" 
+	when infuParametersprogrammedVTBI < drugLibInfovtbiLowerHardLimit OR infuParametersprogrammedVTBI > drugLibInfovtbiUpperHardLimit do previous_state = CheckVTBI;
+
+Transition: from "ChangeVTBIS" to "ChangeVTBIS" 
+	when E_Warning ?  do previous_state = ChangeVTBI, O_AlarmCond = ErrCond;
+
+Transition: from "DisplayVTBIS" to "DisplayVTBIS" 
+	when E_Warning ?  do previous_state = DisplayVTBI, O_AlarmCond = ErrCond;
+
+Transition: from "Wrn_ConcentrationSoftLimitsViolationS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = Wrn_ConcentrationSoftLimitsViolation, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_LevelTwoHardwareFailureS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = Alrm_LevelTwoHardwareFailure;
+
+Transition: from "BolusRequestS" to "Infusion_NormalOperationS" 
+	when infuStatusisBolusInProgress == 1 do previous_state= Infusion_NormalOperation, bolusing =1, O_BolusRequested = 0;
+
+Transition: from "Wrn_ConcentrationSoftLimitsViolationS" to "DisplayPatientProfileS" 
+	when E_ConfirmConcentration ?  do previous_state = Wrn_ConcentrationSoftLimitsViolation;
+
+Transition: from "ChangeRateS" to "InfusionStoppedS" 
+	when infuStatustotalVolumeInfused == infuParametersprogrammedVTBI do previous_state = ChangeRate, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0;
+
+Transition: from "DisplayPatientProfileS" to "DisplayPatientProfileS" 
+	when E_Warning ?  do previous_state = DisplayPatientProfile, O_AlarmCond = ErrCond;
+
+Transition: from "Wrn_ConcentrationSoftLimitsViolationS" to "Wrn_ConcentrationSoftLimitsViolationS" 
+	when E_Warning ?  do previous_state = Wrn_ConcentrationSoftLimitsViolation, O_AlarmCond = ErrCond;
+
+Transition: from "CheckDoseRateS" to "Wrn_DoseRateSoftLimitsViolationS" 
+	when (infuParametersprogrammedDoseRate>drugLibInfodoseRateUpperSoftLimit OR infuParametersprogrammedDoseRate<drugLibInfodoseRateLowerSoftLimit) AND (infuParametersprogrammedDoseRate<=drugLibInfodoseRateUpperHardLimit AND infuParametersprogrammedDoseRate>=drugLibInfodoseRateLowerHardLimit) do previous_state = CheckDoseRate;
+
+Transition: from "CheckDrugDoseUnitS" to "Alrm_DoseUnitMismatchS" 
+	when drugInfodrugDoseUnit != drugLibInfodoseRateUnit OR drugInfodrugVolumeUnit != drugLibInfovtbiUnit do previous_state = CheckDrugCheckDoseUnit;
+
+Transition: from "PausedStopConfirmS" to "Alrm_LevelTwoHardwareFailureS" 
+	when ErrCond >= 7 AND ErrCond <16  do previous_state =PausedStopConfirm, O_InfusionInProgress = 1, O_InfusionPaused = 1, O_BolusRequested = 0, bolusing = 0, O_AlarmCond = ErrCond;
+
+Transition: from "ConfirmPowerOffS" to "Alrm_LevelTwoHardwareFailureS" 
+	when ErrCond >= 7 AND ErrCond < 16 do previous_state = ConfirmPowerOff, O_InfusionInProgress = 1, O_InfusionPaused = 1, O_BolusRequested = 0, bolusing = 0, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_DoseUnitMismatchS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = Alrm_DoseUnitMismatch;
+
+Transition: from "Alrm_UnknownDrugS" to "CheckDrugTypeS" 
+	when E_CheckDrug ?  do previous_state = Alrm_UnknownDrug;
+
+Transition: from "ConfirmStopS" to "ConfirmStopS" 
+	when E_Warning ?  do previous_state = ConfirmStop, O_AlarmCond = ErrCond;
+
+Transition: from "DisplaySettingsS" to "DisplayVTBIS" 
+	when E_ConfigureInfusionProgram ?  do previous_state = DisplaySettings;
+
+Transition: from "Alrm_PrimeFailureS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state= Alrm_PrimeFailure,  O_AlarmCond = ErrCond;
+
+Transition: from "InfusionPausedS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = InfusionPaused;
+
+Transition: from "Alrm_DoseRateHardLimitsViolationS" to "E_ClearAlarmS" 
+	when E_ClearAlarm ?  do previous_state = Alrm_DoseRateHardLimitsViolation;
+
+Transition: from "E_ClearAlarmS" to "DisplayDoseRateS" 
+	when E_ChangeDoseRate ?  do previous_state = Alrm_DoseRateHardLimitsViolation;
+
+Transition: from "CheckDoseRateS" to "DisplaySettingsS" 
+	when infuParametersprogrammedDoseRate<=drugLibInfodoseRateUpperSoftLimit AND infuParametersprogrammedDoseRate>=drugLibInfodoseRateLowerSoftLimit do O_ProgrammedFlowRate = infuParametersprogrammedDoseRatedrugInfodrugConcentration ,  previous_state = CheckDoseRate;
+
+Transition: from "Wrn_VTBISoftLimitsViolationS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = Wrn_VTBISoftLimitsViolation;
+
+Transition: from "ConfirmPauseS" to "Alrm_EmptyReservoirS" 
+	when ErrCond == 8 do previous_state = ConfirmPause, O_InfusionInProgress = 1, O_InfusionPaused = 1, O_BolusRequested = 0, bolusing = 0, O_AlarmCond = ErrCond;
+
+Transition: from "DisplaySettingsS" to "ReadyToStart_1S" 
+	when E_StartInfusion ?  do previous_state = DisplaySettings;
+
+Transition: from "ReadyToStart_1S" to "ReadyToStartS"
+	when true == true do previous_state = ReadyToStart_1, E_RequestToStart ! x;
+
+Transition: from "InfusionStoppedS" to "InfusionStoppedS" 
+	when E_Warning ?  do previous_state = InfusionStopped, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_UnknownDrugS" to "Alrm_UnknownDrugS" 
+	when E_Warning ?  do previous_state = Alrm_UnknownDrug, O_AlarmCond = ErrCond;
+
+Transition: from "ChangeDoseRateS" to "ChangeDoseRateS" 
+	when E_Warning ?  do previous_state = ChangeDoseRate, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_EmptyReservoirS" to "InfusionStoppedS" 
+	when E_StopInfusion ?  do previous_state= Alrm_EmptyReservoir, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0;
+
+Transition: from "Alrm_UnknownDrugS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = Alrm_UnknownDrug, O_AlarmCond = ErrCond;
+
+Transition: from "CheckPrimeS" to "Alrm_PrimeFailureS" 
+	when pumpConfigDataisPumpPrimed == 0 do previous_state = CheckPrime;
+
+Transition: from "POSTDoneS" to "CheckAdministrationSetS" 
+	when E_CheckAdminSet ?  do previous_state = POSTDone, O_InfusionInProgress = 0,  O_InfusionPaused = 0, O_BolusRequested = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate = 0,  O_ProgrammedVTBI = 0, O_ProgrammedFlowRate = 0, bolusing = 0;
+
+Transition: from "InfusionStoppedS" to "CheckAdministrationSetS" 
+	when E_NewInfusion ?  do previous_state = InfusionStopped;
+
+Transition: from "ChangeRateS" to "Infusion_NormalOperationS" 
+	when E_Cancel ?  do previous_state = ChangeRate;
+
+Transition: from "Alrm_TooLongInfusionPauseS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = Alrm_TooLongInfusionPause, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_DoseUnitMismatchS" to "CheckDrugTypeS" 
+	when E_CheckDrug ?  do previous_state = Alrm_DoseUnitMismatch;
+
+Transition: from "DisplayPatientProfileS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = DisplayPatientProfile, O_AlarmCond = ErrCond;
+
+Transition: from "ConfirmPauseS" to "ConfirmPauseS" 
+	when bolusing>0 AND  infuStatusisBolusInProgress == 0 do previous_state = ConfirmPause, bolusing=0;
+
+Transition: from "CheckPrimeS" to "DisplayDrugInfoS" 
+	when pumpConfigDataisPumpPrimed > 0 do previous_state = CheckPrime;
+
+Transition: from "Wrn_VTBISoftLimitsViolationS" to "ChangeVTBIS" 
+	when E_ChangeVTBI ?  do previous_state = Wrn_VTBISoftLimitsViolation;
+
+Transition: from "DisplayPatientProfileS" to "DisplayVTBIS" 
+	when E_ConfigureInfusionProgram ?  do previous_state = DisplayPatientProfile;
+
+Transition: from "Alrm_ConcentratrionHardLimitsViolationS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = Alrm_ConcentratrionHardLimitsViolation, O_AlarmCond = ErrCond;
+
+Transition: from "Wrn_ConcentrationSoftLimitsViolationS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = Wrn_ConcentrationSoftLimitsViolation;
+
+Transition: from "Wrn_VTBISoftLimitsViolationS" to "DisplayDoseRateS" 
+	when E_ConfirmVTBI ?  do previous_state = Wrn_VTBISoftLimitsViolation,  O_ProgrammedVTBI = infuParametersprogrammedVTBI ;
+
+Transition: from "Alrm_PrimeFailureS" to "CheckPrimeS" 
+	when E_Prime ?  do previous_state= Alrm_PrimeFailure;
+
+Transition: from "CheckDrugDoseUnitS" to "CheckDrugConcentrationS" 
+	when drugInfodrugDoseUnit == drugLibInfodoseRateUnit AND drugInfodrugVolumeUnit == drugLibInfovtbiUnit do previous_state = CheckDrugCheckDoseUnit;
+
+Transition: from "Alrm_LevelOneHardwareFailureS" to "PowerDownS" 
+	when E_PowerButton ? ;
+
+Transition: from "Infusion_NormalOperationS" to "ConfirmPauseS" 
+	when E_PauseInfusion ?  do previous_state= Infusion_NormalOperation;
+
+Transition: from "Alrm_POSTFailureS" to "PowerDownS" 
+	when E_PowerButton ?  do previous_state = Alrm_POSTFailure;
+
+Transition: from "Wrn_VTBISoftLimitsViolationS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = Wrn_VTBISoftLimitsViolation, O_AlarmCond = ErrCond;
+
+Transition: from "Infusion_NormalOperationS" to "Infusion_NormalOperationS" 
+	when bolusing>0 AND  infuStatusisBolusInProgress== 0 do previous_state= Infusion_NormalOperation, bolusing=0;
+
+Transition: from "DisplayDrugInfoS" to "DisplayDrugInfoS" 
+	when E_Warning ?  do previous_state = DisplayDrugInfo, O_AlarmCond = ErrCond;
+
+Transition: from "CheckNewRateS" to "Infusion_NormalOperationS" 
+	when infuParametersprogrammedDoseRate<=drugLibInfodoseRateUpperSoftLimit AND infuParametersprogrammedDoseRate>=drugLibInfodoseRateLowerSoftLimit do previous_state = CheckNewRate, flowRate = programmedDoseRatedrugConcentration,O_ProgrammedFlowRate = infuParametersprogrammedDoseRatedrugInfodrugConcentration ;
+
+Transition: from "PausedStopConfirmS" to "InfusionStoppedS" 
+	when E_ConfirmStopInfusion ?  do previous_state = PausedStopConfirm , O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0;
+
+Transition: from "Alrm_LevelTwoHardwareFailureS" to "Infusion_NormalOperationS" 
+	when E_ClearAlarm ?  do O_InfusionInProgress = 1, O_InfusionPaused = 0, previous_state = Alrm_LevelTwoHardwareFailure;
+
+Transition: from "Alrm_DoseUnitMismatchS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = Alrm_DoseUnitMismatch, O_AlarmCond = ErrCond;
+
+Transition: from "ConfirmStopS" to "ConfirmStopS" 
+	when bolusing>0 AND  infuStatusisBolusInProgress == 0 do previous_state = ConfirmStop, bolusing=0;
+
+Transition: from "InfusionPausedS" to "Alrm_LevelTwoHardwareFailureS" 
+	when ErrCond >= 7 AND ErrCond <16 AND ErrCond != 14 do previous_state = InfusionPaused, O_InfusionInProgress = 1, O_InfusionPaused = 1, O_BolusRequested = 0, bolusing = 0, O_AlarmCond = ErrCond;
+
+Transition: from "ConfirmPauseS" to "Alrm_LevelTwoHardwareFailureS" 
+	when ErrCond >= 7 AND ErrCond <16 AND ErrCond != 8 do previous_state = ConfirmPause, O_InfusionInProgress = 1, O_InfusionPaused = 1, O_BolusRequested = 0, bolusing = 0, O_AlarmCond = ErrCond;
+
+Transition: from "ChangeRateS" to "CheckNewRateS" 
+	when E_ConfirmDoseRate ?  do previous_state = ChangeRate;
+
+Transition: from "Alrm_ConcentratrionHardLimitsViolationS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state = Alrm_ConcentratrionHardLimitsViolation;
+
+Transition: from "Alrm_UnsafeNewRateS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = Alrm_UnsafeNewRate, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0, O_AlarmCond = ErrCond;
+
+Transition: from "Infusion_NormalOperationS" to "InfusionStoppedS" 
+	when infuStatustotalVolumeInfused == infuParametersprogrammedVTBI do previous_state= Infusion_NormalOperation, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0;
+
+Transition: from "Infusion_NormalOperationS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state= Infusion_NormalOperation, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_UnsafeNewRateS" to "Alrm_UnsafeNewRateS" 
+	when bolusing>0 AND  infuStatusisBolusInProgress == 0 do previous_state = Alrm_UnsafeNewRate, bolusing=0;
+
+Transition: from "ChangeVTBIS" to "DisplayVTBIS" 
+	when E_Cancel ?  do previous_state = ChangeVTBI;
+
+Transition: from "InfusionPausedS" to "PausedStopConfirmS" 
+	when E_StopInfusion ?  do previous_state = InfusionPaused;
+
+Transition: from "ChangeRateS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = ChangeRate, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0, O_AlarmCond = ErrCond;
+
+Transition: from "POSTDoneS" to "POSTDoneS" 
+	when E_Warning ?  do previous_state = POSTDone, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_WrongDrugS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state= Alrm_WrongDrug, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0, O_AlarmCond = ErrCond;
+
+Transition: from "ConfirmPauseS" to "InfusionStoppedS" 
+	when infuStatustotalVolumeInfused == infuParametersprogrammedVTBI do previous_state = ConfirmPause, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0;
+
+Transition: from "Alrm_UnsafeNewRateS" to "ChangeRateS" 
+	when E_ChangeDoseRate ?  do previous_state = Alrm_UnsafeNewRate;
+
+Transition: from "CheckVTBIS" to "DisplayDoseRateS" 
+	when infuParametersprogrammedVTBI >= drugLibInfovtbiLowerSoftLimit AND infuParametersprogrammedVTBI <= drugLibInfovtbiUpperSoftLimit do previous_state = CheckVTBI, O_ProgrammedVTBI = infuParametersprogrammedVTBI ;
+
+Transition: from "ChangeRateS" to "Alrm_LevelTwoHardwareFailureS" 
+	when ErrCond >= 7 AND ErrCond <16 AND ErrCond != 8 do previous_state = ChangeRate, O_InfusionInProgress = 1, O_InfusionPaused = 1, O_BolusRequested = 0, bolusing = 0, O_AlarmCond = ErrCond;
+
+Transition: from "ConfirmStopS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = ConfirmStop, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_IncorrectAdminSetupS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state= Alrm_IncorrectAdminSetup;
+
+Transition: from "ChangeDoseRateS" to "Alrm_LevelOneHardwareFailureS" 
+	when ErrCond > 0 AND ErrCond < 7 do previous_state = ChangeDoseRate, O_AlarmCond = ErrCond;
+
+Transition: from "ChangeDoseRateS" to "CheckDoseRateS" 
+	when E_ConfirmDoseRate ?  do previous_state = ChangeDoseRate;
+
+Transition: from "ChangeRateS" to "ChangeRateS" 
+	when E_Warning ?  do previous_state = ChangeRate, O_AlarmCond = ErrCond;
+
+Transition: from "Alrm_PrimeFailureS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state= Alrm_PrimeFailure;
+
+Transition: from "Alrm_UnsafeNewRateS" to "Infusion_NormalOperationS" 
+	when E_Cancel ?  do previous_state = Alrm_UnsafeNewRate;
+
+Transition: from "DisplayDrugInfoS" to "CheckDrugTypeS" 
+	when E_CheckDrug ?  do previous_state = DisplayDrugInfo;
+
+Transition: from "ConfirmStopS" to "InfusionStoppedS" 
+	when infuStatustotalVolumeInfused == infuParametersprogrammedVTBI do previous_state = ConfirmStop, O_InfusionInProgress = 0, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0, O_ProgrammedVTBI = 0, O_ProgrammedFlowRate =0;
+
+Transition: from "POSTS" to "POSTDoneS" 
+	when pumpConfigDataisPOSTSuccessful > 0 do previous_state = POST;
+
+Transition: from "Alrm_EmptyReservoirS" to "ConfirmPowerDownS" 
+	when E_PowerButton ?  do previous_state= Alrm_EmptyReservoir;
+
+Transition: from "CheckDrugS" to "Infusion_NormalOperationS" 
+	when drugInfodrugID == drugLibInfodrugID AND drugInfodrugDoseAmount == drugLibInfoamount AND drugInfodrugDoseUnit == drugLibInfodoseRateUnit AND drugInfodrugVolumeUnit == drugLibInfovtbiUnit AND drugInfodrugConcentration <= drugLibInfodrugConcentrationUpperSoftLimit AND drugInfodrugConcentration >= drugLibInfodrugConcentrationLowerHardLimit do previous_state = CheckDrug, O_InfusionInProgress = 1, O_InfusionPaused = 0, O_BolusRequested = 0, bolusing = 0;

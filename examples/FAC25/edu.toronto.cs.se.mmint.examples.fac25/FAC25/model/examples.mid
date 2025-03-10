@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mid:MID xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editor="http://se.cs.toronto.edu/mmint/MID/Editor" xmlns:mid="http://se.cs.toronto.edu/mmint/MID">
+  <models uri="/FAC25/model/ac.productline" name="ac" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" fileExtension="productline" editors="//@editors.0"/>
+  <models uri="/FAC25/model/R2.productline" name="R2" metatypeUri="model://edu.toronto.cs.se.mmint.productline" dynamic="true" origin="CREATED" fileExtension="productline" editors="//@editors.1"/>
+  <editors xsi:type="editor:Diagram" uri="/FAC25/representations.aird#_9lehsPeVEe67baVPhpR8qQ" name="ProductLine Sirius Diagram for model /FAC25/model/ac.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.design" dynamic="true" modelUri="/FAC25/model/ac.productline" id="edu.toronto.cs.se.mmint.productline.design" wizardId="edu.toronto.cs.se.mmint.productline.presentation.ProductLineModelWizardID">
+    <fileExtensions>aird</fileExtensions>
+  </editors>
+  <editors xsi:type="editor:Diagram" uri="/FAC25/representations.aird#_QHZsoP4BEe-B7-GLrWuSQQ" name="ProductLine Sirius Diagram for model /FAC25/model/R2.productline" metatypeUri="edu.toronto.cs.se.mmint.productline.design" dynamic="true" modelUri="/FAC25/model/R2.productline" id="edu.toronto.cs.se.mmint.productline.design" wizardId="edu.toronto.cs.se.mmint.productline.presentation.PLModelWizardID">
+    <fileExtensions>aird</fileExtensions>
+  </editors>
+  <extendibleTable key="/FAC25/model/ac.productline" value="//@models.0"/>
+  <extendibleTable key="/FAC25/model/R2.productline" value="//@models.1"/>
+</mid:MID>
