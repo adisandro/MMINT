@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
@@ -65,17 +66,14 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
       .map(t -> getImpact((PLGSNArgumentElement) t))
       .findFirst()
       .orElseGet(() -> {
-        var impactType = switch (ChangeStep.data.get(ChangeStep.CHANGE_KEY)) {
-          case String type -> {
-            try {
-              yield ImpactType.valueOf(type);
-            }
-            catch (IllegalArgumentException e) {
-              yield ImpactType.RECHECK;
-            }
-          }
-          default -> ImpactType.RECHECK;
-        };
+        ImpactType impactType;
+        try {
+          impactType = ImpactType.valueOf(MIDOperatorIOUtils.getStringProperty(ChangeStep.properties,
+                                                                               ChangeStep.DEFAULT_KEY));
+        }
+        catch (Exception e) {
+          impactType = ImpactType.RECHECK;
+        }
         return getImpact(impactType, this.impacted.getPresenceCondition());
       });
   }

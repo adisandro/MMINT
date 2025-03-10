@@ -69,7 +69,7 @@ public class PLGSNResetImpact extends AbstractExternalJavaAction {
       List.copyOf(this.productLine.getClasses()).stream()
         .filter(c -> c instanceof PLGSNArgumentElement)
         .forEach(e -> e.getReference(GSNPackage.eINSTANCE.getArgumentElement_Status()).forEach(Class::delete));
-      ChangeStep.getData().clear();
+      ChangeStep.getProperties().clear();
     }
   }
 }

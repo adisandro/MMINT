@@ -27,8 +27,8 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
-import edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep;
 import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep;
 
 public class ChangeImpact extends AbstractExternalJavaAction {
 
@@ -65,9 +65,7 @@ public class ChangeImpact extends AbstractExternalJavaAction {
     @Override
     protected void doExecute() {
       try {
-        var impactData = ChangeStep.getData();
-        impactData.clear();
-        impactData.put(ChangeStep.CHANGE_KEY, "RECHECK");
+        ChangeStep.initProperties(this.modelObjs.get(0));
         for (var modelObj : this.modelObjs) {
           var startStep = new GSNChangeStep(modelObj);
           startStep.impact();

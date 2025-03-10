@@ -12,19 +12,24 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.util;
 
-import java.util.HashMap;
+import java.io.FileInputStream;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
+import java.util.Properties;
 
 import org.eclipse.emf.ecore.EObject;
+
+import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 
 public abstract class ChangeStep<T> {
   protected T impacted;
   protected LinkedHashSet<EObject> trace;
-  protected static Map<String, Object> data = new HashMap<>();
-  public static String CHANGE_KEY = "change";
+  protected final static Properties properties = new Properties();
+  public final static String PROPS_NAME = "Change";
+  public final static String DEFAULT_KEY = "default";
 
   public ChangeStep(T impacted, LinkedHashSet<EObject> trace) {
     this.impacted = Objects.requireNonNull(impacted);
@@ -43,8 +48,21 @@ public abstract class ChangeStep<T> {
     return this.trace;
   }
 
-  public static Map<String, Object> getData() {
-    return ChangeStep.data;
+  public static Properties getProperties() {
+    return ChangeStep.properties;
+  }
+
+  public static Properties initProperties(EObject modelObj) {
+    ChangeStep.properties.clear();
+    var propsPath = FileUtils.prependWorkspacePath(
+      FileUtils.replaceLastSegmentInPath(MIDRegistry.getModelUri(modelObj),
+                                         ChangeStep.PROPS_NAME + MIDOperatorIOUtils.PROPERTIES_SUFFIX));
+    try {
+      ChangeStep.properties.load(new FileInputStream(propsPath));
+    }
+    catch (Exception e) {}
+
+    return ChangeStep.properties;
   }
 
   public abstract void baselineImpact();
