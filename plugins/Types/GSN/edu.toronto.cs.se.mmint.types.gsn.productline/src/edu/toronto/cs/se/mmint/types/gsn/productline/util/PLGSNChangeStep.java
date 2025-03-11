@@ -163,7 +163,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
   }
 
   @Override
-  public void baselineImpact() {
+  public void baselineImpact(Direction direction) {
     var prevImpact = getPreviousImpact();
     switch (this.impacted.getType()) {
       case EClass e when e.getName().equals("Goal") ||
@@ -218,7 +218,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
   }
 
   @Override
-  public List<PLGSNChangeStep> nextSteps() {
+  public List<PLGSNChangeStep> nextSteps(Direction direction) {
     var nextSteps = new ArrayList<PLGSNChangeStep>();
     switch (this.impacted.getType()) {
       case EClass e when e.getName().equals("Goal") ||
@@ -252,8 +252,8 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     var templates = this.impacted.getReference(PLGSNChangeStep.GSN.getArgumentElement_Template());
     List<PLGSNChangeStep> nextSteps;
     if (templates.isEmpty()) {
-      baselineImpact();
-      nextSteps = nextSteps();
+      baselineImpact(Direction.DOWN);
+      nextSteps = nextSteps(Direction.DOWN);
     }
     else {
       nextSteps = ((PLGSNTemplate) templates.get(0)).impact(this);
@@ -271,7 +271,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     }
     // separate syntactic vs semantic (template) behavior
     var templates = this.impacted.getReference(PLGSNChangeStep.GSN.getArgumentElement_Template());
-    var nextSteps = (templates.isEmpty()) ? nextSteps() : ((PLGSNTemplate) templates.get(0)).repair(this);
+    var nextSteps = (templates.isEmpty()) ? nextSteps(Direction.DOWN) : ((PLGSNTemplate) templates.get(0)).repair(this);
     for (var nextStep : nextSteps) {
       nextStep.repair();
     }

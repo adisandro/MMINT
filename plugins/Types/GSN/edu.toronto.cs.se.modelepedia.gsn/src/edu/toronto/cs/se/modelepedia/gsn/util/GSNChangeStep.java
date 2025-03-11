@@ -55,7 +55,7 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
   }
 
   @Override
-  public void baselineImpact() {
+  public void baselineImpact(Direction direction) {
     var prevImpact = getPreviousImpact();
     switch (this.impacted) {
       case Goal _       -> setImpact(prevImpact);
@@ -94,7 +94,7 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
   }
 
   @Override
-  public List<GSNChangeStep> nextSteps() {
+  public List<GSNChangeStep> nextSteps(Direction direction) {
     var nextSteps = new ArrayList<GSNChangeStep>();
     switch (this.impacted) {
       case Goal _ -> {
@@ -124,8 +124,8 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
     var template = this.impacted.getTemplate();
     List<GSNChangeStep> nextSteps;
     if (template == null) {
-      baselineImpact();
-      nextSteps = nextSteps();
+      baselineImpact(Direction.DOWN);
+      nextSteps = nextSteps(Direction.DOWN);
     }
     else {
       nextSteps = template.impact(this);
@@ -144,7 +144,7 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
     }
     // separate syntactic vs semantic (template) behavior
     var template = this.impacted.getTemplate();
-    var nextSteps = (template == null) ? nextSteps() : template.repair(this);
+    var nextSteps = (template == null) ? nextSteps(Direction.DOWN) : template.repair(this);
     for (var nextStep : nextSteps) {
       nextStep.repair();
     }

@@ -18,16 +18,17 @@ import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis;
+import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep.Direction;
 
 public interface IPLGSNAnalysis extends IAnalysis {
   default void import_(PLGSNAnalyticTemplate plTemplate, ProductLine productLine) throws Exception {}
   default void instantiate(PLGSNAnalyticTemplate plTemplate) throws Exception {}
   default void validate(PLGSNAnalyticTemplate plTemplate) throws Exception {}
   default List<PLGSNChangeStep> impact(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step) throws Exception {
-    step.baselineImpact();
-    return step.nextSteps();
+    step.baselineImpact(Direction.DOWN);
+    return step.nextSteps(Direction.DOWN);
   }
   default List<PLGSNChangeStep> repair(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step) throws Exception {
-    return step.nextSteps();
+    return step.nextSteps(Direction.DOWN);
   }
 }

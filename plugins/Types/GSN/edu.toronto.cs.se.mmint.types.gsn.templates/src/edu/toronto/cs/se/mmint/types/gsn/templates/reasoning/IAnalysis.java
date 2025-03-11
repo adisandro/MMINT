@@ -16,6 +16,7 @@ import java.util.List;
 
 import edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
+import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep.Direction;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep;
 
 public interface IAnalysis {
@@ -23,11 +24,11 @@ public interface IAnalysis {
   default void instantiate(AnalyticTemplate template) throws Exception {}
   default void validate(AnalyticTemplate template) throws Exception {}
   default List<GSNChangeStep> impact(AnalyticTemplate template, GSNChangeStep step) throws Exception {
-    step.baselineImpact();
-    return step.nextSteps();
+    step.baselineImpact(Direction.DOWN);
+    return step.nextSteps(Direction.DOWN);
   }
   default List<GSNChangeStep> repair(AnalyticTemplate template, GSNChangeStep step) throws Exception {
-    return step.nextSteps();
+    return step.nextSteps(Direction.DOWN);
   }
   default boolean runsFirst() {
     return true;
