@@ -26,38 +26,26 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 
 public abstract class ChangeStep<T> {
+
   public final static String PROPS_NAME = "Change";
   public final static String DEFAULT_IMPACT_KEY = "defaultImpact";
-
+  protected final static Properties properties;
+  protected static ImpactType defaultImpact;
+  static {
+    properties = new Properties();
+    resetProperties();
+  }
   protected T impacted;
   protected LinkedHashSet<EObject> trace;
-  protected final static Properties properties = new Properties();
-  protected static ImpactType defaultImpact = ImpactType.RECHECK;
 
-  public ChangeStep(T impacted, LinkedHashSet<EObject> trace) {
-    this.impacted = Objects.requireNonNull(impacted);
-    this.trace = Objects.requireNonNull(trace);
-  }
-
-  public ChangeStep(T impacted) {
-    this(impacted, new LinkedHashSet<>(0));
-  }
-
-  public T getImpacted() {
-    return this.impacted;
-  }
-
-  public LinkedHashSet<EObject> getTrace() {
-    return this.trace;
-  }
-
-  public static Properties getProperties() {
-    return ChangeStep.properties;
+  public static void resetProperties() {
+    ChangeStep.properties.clear();
+    ChangeStep.defaultImpact = ImpactType.RECHECK;
   }
 
   public static Properties initProperties(EObject modelObj) {
     // load new properties
-    ChangeStep.properties.clear();
+    resetProperties();
     var propsPath = FileUtils.prependWorkspacePath(
       FileUtils.replaceLastSegmentInPath(MIDRegistry.getModelUri(modelObj),
                                          ChangeStep.PROPS_NAME + MIDOperatorIOUtils.PROPERTIES_SUFFIX));
@@ -75,6 +63,27 @@ public abstract class ChangeStep<T> {
     }
 
     return ChangeStep.properties;
+  }
+
+  public static Properties getProperties() {
+    return ChangeStep.properties;
+  }
+
+  public ChangeStep(T impacted, LinkedHashSet<EObject> trace) {
+    this.impacted = Objects.requireNonNull(impacted);
+    this.trace = Objects.requireNonNull(trace);
+  }
+
+  public ChangeStep(T impacted) {
+    this(impacted, new LinkedHashSet<>(0));
+  }
+
+  public T getImpacted() {
+    return this.impacted;
+  }
+
+  public LinkedHashSet<EObject> getTrace() {
+    return this.trace;
   }
 
   public abstract void baselineImpact();

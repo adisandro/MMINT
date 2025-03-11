@@ -26,8 +26,8 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
+import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep;
 
 public class PLGSNResetImpact extends AbstractExternalJavaAction {
 
@@ -69,7 +69,7 @@ public class PLGSNResetImpact extends AbstractExternalJavaAction {
       List.copyOf(this.productLine.getClasses()).stream()
         .filter(c -> c instanceof PLGSNArgumentElement)
         .forEach(e -> e.getReference(GSNPackage.eINSTANCE.getArgumentElement_Status()).forEach(Class::delete));
-      ChangeStep.getProperties().clear();
+      PLGSNChangeStep.resetProperties();
     }
   }
 }
