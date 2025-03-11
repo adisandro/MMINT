@@ -95,44 +95,57 @@ public interface ISATReasoner extends IReasoner {
   String getEQUIVSyntax();
 
   /**
-   * Creates a new formula by joining two formulas with some specified syntax.
+   * Creates a new formula by joining formulas with some specified syntax.
    *
    * @param syntax
-   *          The syntax to join the two formulas, using $1 and $2 as placeholders for the two operands.
-   * @param formula1
-   *          The first formula to be joined.
-   * @param formula2
-   *          The second formula to be joined.
+   *          The syntax to join the formulas, using $1 and $2 as placeholders for two operands at a time.
+   * @param formulas
+   *          The formulas to be joined.
    * @return The formula joined using the specified syntax.
    */
-  private String join(String syntax, String formula1, String formula2) {
-    return syntax.replace("$1", formula1).replace("$2", formula2);
+  private String join(String syntax, String... formulas) {
+    var joined = formulas[0];
+    if (formulas.length == 1) {
+      return joined;
+    }
+    for (var i = 1; i < formulas.length; i++) {
+      joined = syntax.replace("$1", joined).replace("$2", formulas[i]);
+    }
+
+    return joined;
   }
 
   /**
-   * Creates a new formula by joining two formulas with the AND operator.
+   * Creates a new formula by joining formulas with the AND operator.
    *
-   * @param formula1
-   *          The first formula to be joined.
-   * @param formula2
-   *          The second formula to be joined.
+   * @param formula
+   *          The formulas to be joined.
    * @return The formula joined using the AND operator.
    */
-  default String and(String formula1, String formula2) {
-    return join(getANDSyntax(), formula1, formula2);
+  default String and(String... formulas) {
+    return join(getANDSyntax(), formulas);
   }
 
   /**
-   * Creates a new formula by joining two formulas with the OR operator.
+   * Creates a new formula by joining formulas with the OR operator.
    *
-   * @param formula1
-   *          The first formula to be joined.
-   * @param formula2
-   *          The second formula to be joined.
+   * @param formulas
+   *          The formulas to be joined.
    * @return The formula joined using the OR operator.
    */
-  default String or(String formula1, String formula2) {
-    return join(getORSyntax(), formula1, formula2);
+  default String or(String... formulas) {
+    return join(getORSyntax(), formulas);
+  }
+
+  /**
+   * Creates a new formula by negating a formula with the NOT operator.
+   *
+   * @param formula
+   *          The formula to be negated.
+   * @return The formula negated using the NOT operator.
+   */
+  default String not(String formula) {
+    return getNOTSyntax().replace("$1", formula);
   }
 
   /**

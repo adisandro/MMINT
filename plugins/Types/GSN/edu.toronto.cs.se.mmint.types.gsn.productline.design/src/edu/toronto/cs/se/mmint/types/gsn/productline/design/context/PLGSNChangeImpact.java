@@ -29,7 +29,6 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep;
 
 public class PLGSNChangeImpact extends AbstractExternalJavaAction {
 
@@ -67,7 +66,7 @@ public class PLGSNChangeImpact extends AbstractExternalJavaAction {
     @Override
     protected void doExecute() {
       try {
-        ChangeStep.initProperties(this.plModelObjs.get(0));
+        PLGSNChangeStep.initProperties(this.plModelObjs.get(0));
         for (var plModelObj : this.plModelObjs) {
           var startStep = new PLGSNChangeStep(plModelObj);
           startStep.impact();

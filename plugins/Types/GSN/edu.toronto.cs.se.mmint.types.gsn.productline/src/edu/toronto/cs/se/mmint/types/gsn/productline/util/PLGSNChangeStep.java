@@ -17,12 +17,14 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
@@ -33,7 +35,14 @@ import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep;
 
 public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
-  private static GSNPackage GSN = GSNPackage.eINSTANCE;
+  public final static String OLD_FEATURES_CONSTRAINT_KEY = "oldFeaturesConstraint";
+  public final static String NEW_FEATURE_KEY = "newFeature";
+  private final static GSNPackage GSN = GSNPackage.eINSTANCE;
+
+  private static Optional<String> oldFeaturesConstraint = Optional.empty();
+  private static Optional<String> newFeature = Optional.empty();
+  private static String phiOld = "";
+  private static String phiNew = "";
 
   public PLGSNChangeStep(PLGSNArgumentElement impacted, LinkedHashSet<EObject> trace) {
     super(impacted, trace);
@@ -41,6 +50,39 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
 
   public PLGSNChangeStep(PLGSNArgumentElement impacted) {
     super(impacted);
+  }
+
+  public static Properties initProperties(PLGSNArgumentElement plModelObj) throws MMINTException {
+    // load new properties
+    ChangeStep.initProperties(plModelObj);
+    // read into vars
+    PLGSNChangeStep.oldFeaturesConstraint = Optional.ofNullable(
+      MIDOperatorIOUtils.getOptionalStringProperty(ChangeStep.properties, PLGSNChangeStep.OLD_FEATURES_CONSTRAINT_KEY,
+                                                   null));
+    PLGSNChangeStep.newFeature = Optional.ofNullable(
+      MIDOperatorIOUtils.getOptionalStringProperty(ChangeStep.properties, PLGSNChangeStep.NEW_FEATURE_KEY, null));
+    var productLine = plModelObj.getProductLine();
+    var reasoner = productLine.getReasoner();
+    var phiPrime = productLine.getFeaturesConstraint();
+    PLGSNChangeStep.newFeature.ifPresentOrElse(
+      f -> {
+        var phi = PLGSNChangeStep.oldFeaturesConstraint.get();
+        PLGSNChangeStep.phiOld = reasoner.simplify(reasoner.and(phi, phiPrime, reasoner.not(f)));
+        PLGSNChangeStep.phiNew = reasoner.simplify(reasoner.and(reasoner.not(phi), phiPrime, f));;
+      },
+      () -> {
+        PLGSNChangeStep.oldFeaturesConstraint.ifPresentOrElse(
+          phi -> {
+            PLGSNChangeStep.phiOld = reasoner.simplify(reasoner.and(phi, phiPrime));
+            PLGSNChangeStep.phiNew = reasoner.simplify(reasoner.and(reasoner.not(phi), phiPrime));
+          },
+          ()  -> {
+            PLGSNChangeStep.phiOld = phiPrime;
+            PLGSNChangeStep.phiNew = reasoner.getFalseLiteral();
+          });
+      });
+
+    return ChangeStep.properties;
   }
 
   private Map<ImpactType, Optional<String>> getImpact(ImpactType impactType, String presenceCondition) {
@@ -65,17 +107,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
       .filter(t -> t instanceof PLGSNArgumentElement)
       .map(t -> getImpact((PLGSNArgumentElement) t))
       .findFirst()
-      .orElseGet(() -> {
-        ImpactType impactType;
-        try {
-          impactType = ImpactType.valueOf(MIDOperatorIOUtils.getStringProperty(ChangeStep.properties,
-                                                                               ChangeStep.DEFAULT_KEY));
-        }
-        catch (Exception e) {
-          impactType = ImpactType.RECHECK;
-        }
-        return getImpact(impactType, this.impacted.getPresenceCondition());
-      });
+      .orElseGet(() -> getImpact(ChangeStep.defaultImpact, this.impacted.getPresenceCondition()));
   }
 
   public void setImpact(Map<ImpactType, Optional<String>> impactTypes) {

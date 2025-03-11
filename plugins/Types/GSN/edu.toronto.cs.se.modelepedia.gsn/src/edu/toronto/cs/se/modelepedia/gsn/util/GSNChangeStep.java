@@ -18,7 +18,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Contextual;
 import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
@@ -43,15 +42,7 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
       .filter(t -> t instanceof ArgumentElement)
       .map(t -> ((ArgumentElement) t).getStatus().getType())
       .findFirst()
-      .orElseGet(() -> {
-        try {
-          return ImpactType.valueOf(MIDOperatorIOUtils.getStringProperty(ChangeStep.properties,
-                                                                         ChangeStep.DEFAULT_KEY));
-        }
-        catch (Exception e) {
-          return ImpactType.RECHECK;
-        }
-      });
+      .orElse(ChangeStep.defaultImpact);
   }
 
   private void setImpact(ImpactType impactType) {

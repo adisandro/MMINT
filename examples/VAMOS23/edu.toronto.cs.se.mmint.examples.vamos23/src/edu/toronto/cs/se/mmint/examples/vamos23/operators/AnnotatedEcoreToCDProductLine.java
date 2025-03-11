@@ -180,7 +180,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
           else { // !tgtIsTrue
             plEReferencePC = (assocIsTrue) ?
               this.in.reasoner.simplify(this.in.reasoner.and(plEClassPC, plEClassTgtPC)) :
-              this.in.reasoner.simplify(this.in.reasoner.and(plEReferencePC, this.in.reasoner.and(plEClassPC, plEClassTgtPC)));
+              this.in.reasoner.simplify(this.in.reasoner.and(plEReferencePC, plEClassPC, plEClassTgtPC));
           }
         }
         plEReference.setPresenceCondition(plEReferencePC);

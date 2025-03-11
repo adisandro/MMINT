@@ -23,13 +23,16 @@ import org.eclipse.emf.ecore.EObject;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 
 public abstract class ChangeStep<T> {
+  public final static String PROPS_NAME = "Change";
+  public final static String DEFAULT_IMPACT_KEY = "defaultImpact";
+
   protected T impacted;
   protected LinkedHashSet<EObject> trace;
   protected final static Properties properties = new Properties();
-  public final static String PROPS_NAME = "Change";
-  public final static String DEFAULT_KEY = "default";
+  protected static ImpactType defaultImpact = ImpactType.RECHECK;
 
   public ChangeStep(T impacted, LinkedHashSet<EObject> trace) {
     this.impacted = Objects.requireNonNull(impacted);
@@ -53,6 +56,7 @@ public abstract class ChangeStep<T> {
   }
 
   public static Properties initProperties(EObject modelObj) {
+    // load new properties
     ChangeStep.properties.clear();
     var propsPath = FileUtils.prependWorkspacePath(
       FileUtils.replaceLastSegmentInPath(MIDRegistry.getModelUri(modelObj),
@@ -61,6 +65,14 @@ public abstract class ChangeStep<T> {
       ChangeStep.properties.load(new FileInputStream(propsPath));
     }
     catch (Exception e) {}
+    // read into vars
+    try {
+      ChangeStep.defaultImpact = ImpactType.valueOf(
+        MIDOperatorIOUtils.getStringProperty(ChangeStep.properties, ChangeStep.DEFAULT_IMPACT_KEY));
+    }
+    catch (Exception e) {
+      ChangeStep.defaultImpact = ImpactType.RECHECK;
+    }
 
     return ChangeStep.properties;
   }
