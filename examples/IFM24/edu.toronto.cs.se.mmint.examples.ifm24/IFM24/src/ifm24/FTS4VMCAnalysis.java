@@ -101,7 +101,6 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     var runPath = Paths.get(FileUtils.replaceLastSegmentInPath(modelPath, FTS4VMCAnalysis.RUN_FILE));
     Files.writeString(runPath, RUN_SH);
     var result = FileUtils.runShell(runPath.getParent().toString(), "bash", FTS4VMCAnalysis.RUN_FILE);
-    Files.writeString(Paths.get(FileUtils.replaceLastSegmentInPath(modelPath, FTS4VMCAnalysis.SAT_FILE)), result);
 
     return result;
   }
@@ -146,25 +145,28 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     }
     var property = MIDDialogs.getBigStringInput("Run Product Line analysis", "Insert model property to check",
                                                 dialogInitial);
-    var propertyPath = FileUtils.replaceLastSegmentInPath(modelPath, FTS4VMCAnalysis.PROPERTY_FILE);
+    var propertyPath = FileUtils.getUniquePath(
+      FileUtils.replaceLastSegmentInPath(modelPath, FTS4VMCAnalysis.PROPERTY_FILE), false, false);
     Files.writeString(Paths.get(propertyPath), property);
     // run model checker and process results
     var result = runFTS4VMC(modelPath, propertyPath);
-    //TODO change all ids to match connected?
+    var resultPath = FileUtils.getUniquePath(
+      FileUtils.replaceLastSegmentInPath(modelPath, FTS4VMCAnalysis.SAT_FILE), false, false);
+    Files.writeString(Paths.get(resultPath), result);
     var filesCtx = templateElems.get("filesCtx");
     var filesDesc = filesCtx.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
       .replace("{property}", FileUtils.getLastSegmentFromPath(propertyPath))
       .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath));
     filesCtx.setAttribute(this.gsn.getArgumentElement_Description(), filesDesc);
     filesCtx.setManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
-                              ECollections.asEList(List.of(propertyPath, modelPath)));
+                              ECollections.asEList(List.of(propertyPath, modelPath, resultPath)));
     var satGoal = templateElems.get("satGoal");
     var satGoalDesc = satGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0);
     var holds = (result.contains("TRUE")) ? "holds" : "does not hold";
     satGoal.setAttribute(this.gsn.getArgumentElement_Description(), satGoalDesc.replace("{holds?}", holds));
     var satSolution = templateElems.get("satSolution");
     var satSolDesc = satSolution.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
-      .replace("{output}", FTS4VMCAnalysis.SAT_FILE);
+      .replace("{output}", FileUtils.getLastSegmentFromPath(resultPath));
     satSolution.setAttribute(this.gsn.getArgumentElement_Description(), satSolDesc);
     if (!safetyGoal.isAlwaysPresent()) {
       var pc = safetyGoal.getPresenceCondition();
