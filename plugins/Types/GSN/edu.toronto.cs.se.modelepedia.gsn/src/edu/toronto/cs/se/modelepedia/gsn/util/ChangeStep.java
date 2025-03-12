@@ -26,7 +26,6 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 
 public abstract class ChangeStep<T> {
-  public enum Direction {UP, DOWN}
 
   public final static String PROPS_NAME = "Change";
   public final static String DEFAULT_IMPACT_KEY = "defaultImpact";
@@ -87,8 +86,8 @@ public abstract class ChangeStep<T> {
     return this.trace;
   }
 
-  public abstract void baselineImpact(Direction direction);
-  public abstract List<? extends ChangeStep<T>> nextSteps(Direction direction);
+  public abstract void baselineImpact();
+  public abstract List<? extends ChangeStep<T>> nextSteps();
   public abstract void impact() throws Exception;
   public abstract void repair() throws Exception;
 }

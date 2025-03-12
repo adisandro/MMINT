@@ -27,7 +27,6 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
-import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep.Direction;
 
 /**
  * <!-- begin-user-doc -->
@@ -124,8 +123,8 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
    */
   @Override
   public EList<PLGSNChangeStep> impact(PLGSNChangeStep step) throws Exception {
-    step.baselineImpact(Direction.DOWN);
-    return ECollections.asEList(step.nextSteps(Direction.DOWN));
+    step.baselineImpact();
+    return ECollections.asEList(step.nextSteps());
   }
 
   /**
@@ -133,7 +132,7 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
    */
   @Override
   public EList<PLGSNChangeStep> repair(PLGSNChangeStep step) throws Exception {
-    return ECollections.asEList(step.nextSteps(Direction.DOWN));
+    return ECollections.asEList(step.nextSteps());
   }
 
   /**

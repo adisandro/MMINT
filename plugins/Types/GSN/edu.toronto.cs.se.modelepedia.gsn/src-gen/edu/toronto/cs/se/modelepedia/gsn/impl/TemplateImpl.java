@@ -35,7 +35,6 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.RelationshipDecorator;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
-import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep.Direction;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep;
 
@@ -215,8 +214,8 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    */
   @Override
   public EList<GSNChangeStep> impact(GSNChangeStep step) throws Exception {
-    step.baselineImpact(Direction.DOWN);
-    return ECollections.asEList(step.nextSteps(Direction.DOWN));
+    step.baselineImpact();
+    return ECollections.asEList(step.nextSteps());
   }
 
   /**
@@ -224,7 +223,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    */
   @Override
   public EList<GSNChangeStep> repair(GSNChangeStep step) throws Exception {
-    return ECollections.asEList(step.nextSteps(Direction.DOWN));
+    return ECollections.asEList(step.nextSteps());
   }
 
   /**
