@@ -12,6 +12,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.productline.impl;
 
+import java.util.Optional;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
@@ -66,6 +68,12 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   private EDataType plgsnChangeStepEDataType = null;
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType optionalEDataType = null;
   /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
@@ -161,6 +169,36 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
   @Override
   public EOperation getPLGSNArgumentElement__Validate() {
     return this.plgsnArgumentElementEClass.getEOperations().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getPLGSNArgumentElement__GetImpact() {
+    return this.plgsnArgumentElementEClass.getEOperations().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getPLGSNArgumentElement__SetImpact__Map() {
+    return this.plgsnArgumentElementEClass.getEOperations().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getPLGSNArgumentElement__SetImpact__ImpactType_String() {
+    return this.plgsnArgumentElementEClass.getEOperations().get(4);
   }
 
   /**
@@ -289,6 +327,16 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
+  public EDataType getOptional() {
+    return this.optionalEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public PLGSNFactory getPLGSNFactory() {
     return (PLGSNFactory)getEFactoryInstance();
   }
@@ -317,6 +365,9 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     this.plgsnArgumentElementEClass = createEClass(PLGSNPackage.PLGSN_ARGUMENT_ELEMENT);
     createEOperation(this.plgsnArgumentElementEClass, PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___INSTANTIATE);
     createEOperation(this.plgsnArgumentElementEClass, PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___VALIDATE);
+    createEOperation(this.plgsnArgumentElementEClass, PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___GET_IMPACT);
+    createEOperation(this.plgsnArgumentElementEClass, PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__MAP);
+    createEOperation(this.plgsnArgumentElementEClass, PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__IMPACTTYPE_STRING);
 
     this.plgsnTemplateEClass = createEClass(PLGSNPackage.PLGSN_TEMPLATE);
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___GET_ELEMENTS_BY_ID);
@@ -333,6 +384,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     // Create data types
     this.iplgsnAnalysisEDataType = createEDataType(PLGSNPackage.IPLGSN_ANALYSIS);
     this.plgsnChangeStepEDataType = createEDataType(PLGSNPackage.PLGSN_CHANGE_STEP);
+    this.optionalEDataType = createEDataType(PLGSNPackage.OPTIONAL);
   }
 
   /**
@@ -365,6 +417,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     var theGSNPackage = (GSNPackage)EPackage.Registry.INSTANCE.getEPackage(GSNPackage.eNS_URI);
 
     // Create type parameters
+    addETypeParameter(this.optionalEDataType, "T");
 
     // Set bounds for type parameters
 
@@ -382,11 +435,35 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     op = initEOperation(getPLGSNArgumentElement__Validate(), null, "validate", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
+    op = initEOperation(getPLGSNArgumentElement__GetImpact(), null, "getImpact", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    var g1 = createEGenericType(this.ecorePackage.getEMap());
+    var g2 = createEGenericType(theGSNPackage.getImpactType());
+    g1.getETypeArguments().add(g2);
+    g2 = createEGenericType(this.getOptional());
+    g1.getETypeArguments().add(g2);
+    var g3 = createEGenericType(this.ecorePackage.getEString());
+    g2.getETypeArguments().add(g3);
+    initEOperation(op, g1);
+
+    op = initEOperation(getPLGSNArgumentElement__SetImpact__Map(), null, "setImpact", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    g1 = createEGenericType(this.ecorePackage.getEMap());
+    g2 = createEGenericType(theGSNPackage.getImpactType());
+    g1.getETypeArguments().add(g2);
+    g2 = createEGenericType(this.getOptional());
+    g1.getETypeArguments().add(g2);
+    g3 = createEGenericType(this.ecorePackage.getEString());
+    g2.getETypeArguments().add(g3);
+    addEParameter(op, g1, "impactTypes", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
+    op = initEOperation(getPLGSNArgumentElement__SetImpact__ImpactType_String(), null, "setImpact", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, theGSNPackage.getImpactType(), "impactType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEString(), "presenceCondition", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
     initEClass(this.plgsnTemplateEClass, PLGSNTemplate.class, "PLGSNTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     op = initEOperation(getPLGSNTemplate__GetElementsById(), null, "getElementsById", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    var g1 = createEGenericType(this.ecorePackage.getEMap());
-    var g2 = createEGenericType(this.ecorePackage.getEString());
+    g1 = createEGenericType(this.ecorePackage.getEMap());
+    g2 = createEGenericType(this.ecorePackage.getEString());
     g1.getETypeArguments().add(g2);
     g2 = createEGenericType(this.getPLGSNArgumentElement());
     g1.getETypeArguments().add(g2);
@@ -423,6 +500,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     // Initialize data types
     initEDataType(this.iplgsnAnalysisEDataType, IPLGSNAnalysis.class, "IPLGSNAnalysis", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEDataType(this.plgsnChangeStepEDataType, PLGSNChangeStep.class, "PLGSNChangeStep", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.optionalEDataType, Optional.class, "Optional", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(PLGSNPackage.eNS_URI);

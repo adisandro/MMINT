@@ -5,6 +5,28 @@
   <eClassifiers xsi:type="ecore:EClass" name="PLGSNArgumentElement" eSuperTypes="../../edu.toronto.cs.se.mmint.productline/model/productline.ecore#//Class">
     <eOperations name="instantiate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
     <eOperations name="validate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
+    <eOperations name="getImpact" lowerBound="1">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+        <eTypeArguments eClassifier="ecore:EEnum ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//ImpactType"/>
+        <eTypeArguments eClassifier="#//Optional">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eTypeArguments>
+      </eGenericType>
+    </eOperations>
+    <eOperations name="setImpact">
+      <eParameters name="impactTypes" lowerBound="1">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EEnum ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//ImpactType"/>
+          <eTypeArguments eClassifier="#//Optional">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          </eTypeArguments>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="setImpact">
+      <eParameters name="impactType" lowerBound="1" eType="ecore:EEnum ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//ImpactType"/>
+      <eParameters name="presenceCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PLGSNTemplate" eSuperTypes="../../edu.toronto.cs.se.mmint.productline/model/productline.ecore#//Class">
     <eOperations name="getElementsById" lowerBound="1">
@@ -35,4 +57,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="IPLGSNAnalysis" instanceClassName="edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis"/>
   <eClassifiers xsi:type="ecore:EDataType" name="PLGSNChangeStep" instanceClassName="edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Optional" instanceClassName="java.util.Optional">
+    <eTypeParameters name="T"/>
+  </eClassifiers>
 </ecore:EPackage>

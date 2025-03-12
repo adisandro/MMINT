@@ -313,13 +313,40 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_ARGUMENT_ELEMENT___VALIDATE = PLPackage.CLASS_OPERATION_COUNT + 1;
 
   /**
+   * The operation id for the '<em>Get Impact</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ARGUMENT_ELEMENT___GET_IMPACT = PLPackage.CLASS_OPERATION_COUNT + 2;
+
+  /**
+   * The operation id for the '<em>Set Impact</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__MAP = PLPackage.CLASS_OPERATION_COUNT + 3;
+
+  /**
+   * The operation id for the '<em>Set Impact</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__IMPACTTYPE_STRING = PLPackage.CLASS_OPERATION_COUNT + 4;
+
+  /**
    * The number of operations of the '<em>Argument Element</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_ARGUMENT_ELEMENT_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 2;
+  int PLGSN_ARGUMENT_ELEMENT_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 5;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNTemplateImpl <em>Template</em>}' class.
@@ -947,6 +974,16 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_CHANGE_STEP = 4;
 
   /**
+   * The meta object id for the '<em>Optional</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see java.util.Optional
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getOptional()
+   * @generated
+   */
+  int OPTIONAL = 5;
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement <em>Argument Element</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -975,6 +1012,36 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    */
   EOperation getPLGSNArgumentElement__Validate();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#getImpact() <em>Get Impact</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Get Impact</em>' operation.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#getImpact()
+   * @generated
+   */
+  EOperation getPLGSNArgumentElement__GetImpact();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#setImpact(java.util.Map) <em>Set Impact</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Set Impact</em>' operation.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#setImpact(java.util.Map)
+   * @generated
+   */
+  EOperation getPLGSNArgumentElement__SetImpact__Map();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#setImpact(edu.toronto.cs.se.modelepedia.gsn.ImpactType, java.lang.String) <em>Set Impact</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Set Impact</em>' operation.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#setImpact(edu.toronto.cs.se.modelepedia.gsn.ImpactType, java.lang.String)
+   * @generated
+   */
+  EOperation getPLGSNArgumentElement__SetImpact__ImpactType_String();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate <em>Template</em>}'.
@@ -1099,6 +1166,17 @@ public interface PLGSNPackage extends EPackage {
   EDataType getPLGSNChangeStep();
 
   /**
+   * Returns the meta object for data type '{@link java.util.Optional <em>Optional</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>Optional</em>'.
+   * @see java.util.Optional
+   * @model instanceClass="java.util.Optional" typeParameters="T"
+   * @generated
+   */
+  EDataType getOptional();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1144,6 +1222,27 @@ public interface PLGSNPackage extends EPackage {
      * @generated
      */
     EOperation PLGSN_ARGUMENT_ELEMENT___VALIDATE = PLGSNPackage.eINSTANCE.getPLGSNArgumentElement__Validate();
+    /**
+     * The meta object literal for the '<em><b>Get Impact</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation PLGSN_ARGUMENT_ELEMENT___GET_IMPACT = PLGSNPackage.eINSTANCE.getPLGSNArgumentElement__GetImpact();
+    /**
+     * The meta object literal for the '<em><b>Set Impact</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__MAP = PLGSNPackage.eINSTANCE.getPLGSNArgumentElement__SetImpact__Map();
+    /**
+     * The meta object literal for the '<em><b>Set Impact</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__IMPACTTYPE_STRING = PLGSNPackage.eINSTANCE.getPLGSNArgumentElement__SetImpact__ImpactType_String();
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNTemplateImpl <em>Template</em>}' class.
      * <!-- begin-user-doc -->
@@ -1236,6 +1335,15 @@ public interface PLGSNPackage extends EPackage {
      * @generated
      */
     EDataType PLGSN_CHANGE_STEP = PLGSNPackage.eINSTANCE.getPLGSNChangeStep();
+    /**
+     * The meta object literal for the '<em>Optional</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see java.util.Optional
+     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getOptional()
+     * @generated
+     */
+    EDataType OPTIONAL = PLGSNPackage.eINSTANCE.getOptional();
 
   }
 

@@ -12,6 +12,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.productline.impl;
 
+import java.util.Optional;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -88,6 +90,7 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
     return switch (eDataType.getClassifierID()) {
     case PLGSNPackage.IPLGSN_ANALYSIS -> createIPLGSNAnalysisFromString(eDataType, initialValue);
     case PLGSNPackage.PLGSN_CHANGE_STEP -> createPLGSNChangeStepFromString(eDataType, initialValue);
+    case PLGSNPackage.OPTIONAL -> createOptionalFromString(eDataType, initialValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -102,6 +105,7 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
     return switch (eDataType.getClassifierID()) {
     case PLGSNPackage.IPLGSN_ANALYSIS -> convertIPLGSNAnalysisToString(eDataType, instanceValue);
     case PLGSNPackage.PLGSN_CHANGE_STEP -> convertPLGSNChangeStepToString(eDataType, instanceValue);
+    case PLGSNPackage.OPTIONAL -> convertOptionalToString(eDataType, instanceValue);
     default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     };
   }
@@ -173,6 +177,24 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
    */
   public String convertPLGSNChangeStepToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(eDataType, instanceValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Optional<?> createOptionalFromString(EDataType eDataType, String initialValue) {
+    return (Optional<?>)super.createFromString(initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertOptionalToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(instanceValue);
   }
 
   /**

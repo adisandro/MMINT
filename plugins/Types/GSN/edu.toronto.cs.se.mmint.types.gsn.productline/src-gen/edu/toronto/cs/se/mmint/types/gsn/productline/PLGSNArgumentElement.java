@@ -12,6 +12,11 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.productline;
 
+import java.util.Map;
+import java.util.Optional;
+
+import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -39,5 +44,29 @@ public interface PLGSNArgumentElement extends edu.toronto.cs.se.mmint.productlin
    * @generated
    */
   void validate() throws Exception;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation" required="true"
+   * @generated
+   */
+  Map<ImpactType, Optional<String>> getImpact();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model impactTypesRequired="true"
+   * @generated
+   */
+  void setImpact(Map<ImpactType, Optional<String>> impactTypes);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model impactTypeRequired="true" presenceConditionRequired="true"
+   * @generated
+   */
+  void setImpact(ImpactType impactType, String presenceCondition);
 
 } // GSNPLArgumentElement

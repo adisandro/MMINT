@@ -13,16 +13,22 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
+import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.impl.ClassImpl;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 /**
@@ -98,11 +104,62 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
   }
 
   /**
+   * @generated NOT
+   */
+  @Override
+  public Map<ImpactType, Optional<String>> getImpact() {
+    var impactMap = getStreamOfReference(GSNPackage.eINSTANCE.getArgumentElement_Status())
+      .collect(Collectors.toMap(
+        impact -> ImpactType.valueOf(impact.getAttribute(GSNPackage.eINSTANCE.getImpactAnnotation_Type()).get(0)),
+        impact -> Optional.of(impact.getPresenceCondition())));
+    ImpactType.VALUES.forEach(t -> impactMap.computeIfAbsent(t, _ -> Optional.empty()));
+
+    return impactMap;
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void setImpact(Map<ImpactType, Optional<String>> impactTypes) {
+    if (impactTypes.size() != 3) {
+      throw new IllegalArgumentException("All 3 impact types must be set");
+    }
+    getStreamOfReference(GSNPackage.eINSTANCE.getArgumentElement_Status())
+      .collect(Collectors.toList())
+      .forEach(impact -> {
+        var impactType = ImpactType.valueOf(impact.getAttribute(GSNPackage.eINSTANCE.getImpactAnnotation_Type()).get(0));
+        impactTypes.get(impactType).ifPresentOrElse(pc -> impact.setPresenceCondition(pc), () -> impact.delete());
+        impactTypes.remove(impactType);
+      });
+    impactTypes.forEach((impactType, action) -> action.ifPresent(pc -> {
+      var c = PLFactory.eINSTANCE.createClass();
+      c.setPresenceCondition(pc);
+      c.setType(GSNPackage.eINSTANCE.getImpactAnnotation());
+      getProductLine().getClasses().add(c);
+      c.addAttribute(GSNPackage.eINSTANCE.getImpactAnnotation_Type(), impactType.toString());
+      addReference(GSNPackage.eINSTANCE.getArgumentElement_Status(), c);
+    }));
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void setImpact(ImpactType impactType, String presenceCondition) {
+    var impactTypes = ImpactType.VALUES.stream()
+      .collect(Collectors.toMap(Function.identity(),
+                                t -> (t == impactType) ? Optional.of(presenceCondition) : Optional.<String>empty()));
+    setImpact(impactTypes);
+  }
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
+  @SuppressWarnings("unchecked")
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
       case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___INSTANTIATE:
@@ -121,6 +178,14 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
+      case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___GET_IMPACT:
+        return getImpact();
+      case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__MAP:
+        setImpact((Map<ImpactType, Optional<String>>)arguments.get(0));
+        return null;
+      case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__IMPACTTYPE_STRING:
+        setImpact((ImpactType)arguments.get(0), (String)arguments.get(1));
+        return null;
     }
     return super.eInvoke(operationID, arguments);
   }

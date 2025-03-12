@@ -19,8 +19,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EClass;
@@ -29,7 +27,6 @@ import org.eclipse.emf.ecore.EObject;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.productline.Class;
-import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
@@ -166,73 +163,31 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     return nextSteps;
   }
 
-  private Map<ImpactType, Optional<String>> getImpact(ImpactType impactType, String presenceCondition) {
-    return ImpactType.VALUES.stream()
-      .collect(Collectors.toMap(
-        Function.identity(),
-        t -> (t == impactType) ? Optional.of(presenceCondition) : Optional.empty()));
-  }
-
-  private Map<ImpactType, Optional<String>> getImpact(PLGSNArgumentElement plElem) {
-    var impactMap = plElem.getStreamOfReference(PLGSNChangeStep.GSN.getArgumentElement_Status())
-      .collect(Collectors.toMap(
-        impact -> ImpactType.valueOf(impact.getAttribute(PLGSNChangeStep.GSN.getImpactAnnotation_Type()).get(0)),
-        impact -> Optional.of(impact.getPresenceCondition())));
-    ImpactType.VALUES.forEach(t -> impactMap.computeIfAbsent(t, _ -> Optional.empty()));
-
-    return impactMap;
-  }
-
-  public void setImpact(Map<ImpactType, Optional<String>> impactTypes) {
-    if (impactTypes.size() != 3) {
-      throw new IllegalArgumentException("All 3 impact types must be set");
-    }
-    this.impacted.getStreamOfReference(PLGSNChangeStep.GSN.getArgumentElement_Status())
-      .collect(Collectors.toList())
-      .forEach(impact -> {
-        var impactType = ImpactType.valueOf(impact.getAttribute(PLGSNChangeStep.GSN.getImpactAnnotation_Type()).get(0));
-        impactTypes.get(impactType).ifPresentOrElse(pc -> impact.setPresenceCondition(pc), () -> impact.delete());
-        impactTypes.remove(impactType);
-      });
-    impactTypes.forEach((impactType, action) -> action.ifPresent(pc -> {
-      var c = PLFactory.eINSTANCE.createClass();
-      c.setPresenceCondition(pc);
-      c.setType(PLGSNChangeStep.GSN.getImpactAnnotation());
-      this.impacted.getProductLine().getClasses().add(c);
-      c.addAttribute(PLGSNChangeStep.GSN.getImpactAnnotation_Type(), impactType.toString());
-      this.impacted.addReference(PLGSNChangeStep.GSN.getArgumentElement_Status(), c);
-    }));
-  }
-
-  public void setImpact(ImpactType impactType, String presenceCondition) {
-    setImpact(getImpact(impactType, presenceCondition));
-  }
-
   @Override
   public void baselineImpact(List<? extends ChangeStep<PLGSNArgumentElement>> dependencySteps) {
     if (dependencySteps.isEmpty()) {
       switch(this.impacted.getType()) {
         case EClass e when e.getEAllSuperTypes().stream().anyMatch(s -> s.getName().equals("Contextual")) ->
-          setImpact(ImpactType.REUSE, PLGSNChangeStep.plReasoner.getTrueLiteral());
+          this.impacted.setImpact(ImpactType.REUSE, PLGSNChangeStep.plReasoner.getTrueLiteral());
         default -> {
           //TODO checkSAT api!
           var check = PLGSNChangeStep.plReasoner.checkConsistency(PLGSNChangeStep.phiDelta,
                                                                   Set.of(this.impacted.getPresenceCondition()));
           if (check) {
-            setImpact(Map.of(ImpactType.REUSE, Optional.of(PLGSNChangeStep.plReasoner.simplify(
-                                                 PLGSNChangeStep.plReasoner.not(PLGSNChangeStep.phiDelta))),
-                             ImpactType.RECHECK, Optional.of(PLGSNChangeStep.phiDelta),
-                             ImpactType.REVISE, Optional.empty()));
+            this.impacted.setImpact(
+              Map.of(ImpactType.REUSE, Optional.of(PLGSNChangeStep.plReasoner.simplify(
+                                         PLGSNChangeStep.plReasoner.not(PLGSNChangeStep.phiDelta))),
+                     ImpactType.RECHECK, Optional.of(PLGSNChangeStep.phiDelta),
+                     ImpactType.REVISE, Optional.empty()));
           }
           else {
-            setImpact(ImpactType.REUSE, PLGSNChangeStep.plReasoner.getTrueLiteral());
+            this.impacted.setImpact(ImpactType.REUSE, PLGSNChangeStep.plReasoner.getTrueLiteral());
           }
         }
       }
     }
     else {
-      dependencySteps.stream().map(s -> getImpact(s.getImpacted()));
-      //TODO implement max
+      dependencySteps.stream().map(s -> s.getImpacted().getImpact());
     }
   }
 
@@ -275,8 +230,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
       if (!plElem.getReference(PLGSNChangeStep.GSN.getArgumentElement_Status()).isEmpty()) {
         continue;
       }
-      var templateStep = new PLGSNChangeStep((PLGSNArgumentElement) plElem);
-      templateStep.setImpact(type, plElem.getPresenceCondition());
+      ((PLGSNArgumentElement) plElem).setImpact(type, PLGSNChangeStep.plReasoner.getTrueLiteral());
     }
   }
 
