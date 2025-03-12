@@ -18,8 +18,13 @@
     </eOperations>
     <eOperations name="instantiate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
     <eOperations name="validate" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
-    <eOperations name="impact" upperBound="-1" eType="#//PLGSNChangeStep" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
+    <eOperations name="nextImpactSteps" upperBound="-1" eType="#//PLGSNChangeStep"
+        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
       <eParameters name="step" lowerBound="1" eType="#//PLGSNChangeStep"/>
+    </eOperations>
+    <eOperations name="impact" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
+      <eParameters name="step" lowerBound="1" eType="#//PLGSNChangeStep"/>
+      <eParameters name="dependencySteps" upperBound="-1" eType="#//PLGSNChangeStep"/>
     </eOperations>
     <eOperations name="repair" upperBound="-1" eType="#//PLGSNChangeStep" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
       <eParameters name="step" lowerBound="1" eType="#//PLGSNChangeStep"/>

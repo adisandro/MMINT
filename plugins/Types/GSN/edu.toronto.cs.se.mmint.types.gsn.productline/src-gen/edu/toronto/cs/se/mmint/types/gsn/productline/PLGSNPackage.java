@@ -584,13 +584,22 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_TEMPLATE___VALIDATE = PLPackage.CLASS_OPERATION_COUNT + 3;
 
   /**
+   * The operation id for the '<em>Next Impact Steps</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_TEMPLATE___NEXT_IMPACT_STEPS__PLGSNCHANGESTEP = PLPackage.CLASS_OPERATION_COUNT + 4;
+
+  /**
    * The operation id for the '<em>Impact</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE___IMPACT__PLGSNCHANGESTEP = PLPackage.CLASS_OPERATION_COUNT + 4;
+  int PLGSN_TEMPLATE___IMPACT__PLGSNCHANGESTEP_ELIST = PLPackage.CLASS_OPERATION_COUNT + 5;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -599,7 +608,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE___REPAIR__PLGSNCHANGESTEP = PLPackage.CLASS_OPERATION_COUNT + 5;
+  int PLGSN_TEMPLATE___REPAIR__PLGSNCHANGESTEP = PLPackage.CLASS_OPERATION_COUNT + 6;
 
   /**
    * The number of operations of the '<em>Template</em>' class.
@@ -608,7 +617,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 6;
+  int PLGSN_TEMPLATE_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 7;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNAnalyticTemplateImpl <em>Analytic Template</em>}' class.
@@ -873,13 +882,22 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_ANALYTIC_TEMPLATE___VALIDATE = PLGSNPackage.PLGSN_TEMPLATE___VALIDATE;
 
   /**
+   * The operation id for the '<em>Next Impact Steps</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ANALYTIC_TEMPLATE___NEXT_IMPACT_STEPS__PLGSNCHANGESTEP = PLGSNPackage.PLGSN_TEMPLATE___NEXT_IMPACT_STEPS__PLGSNCHANGESTEP;
+
+  /**
    * The operation id for the '<em>Impact</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_ANALYTIC_TEMPLATE___IMPACT__PLGSNCHANGESTEP = PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNCHANGESTEP;
+  int PLGSN_ANALYTIC_TEMPLATE___IMPACT__PLGSNCHANGESTEP_ELIST = PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNCHANGESTEP_ELIST;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -989,14 +1007,24 @@ public interface PLGSNPackage extends EPackage {
   EOperation getPLGSNTemplate__Validate();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#impact(edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep) <em>Impact</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#nextImpactSteps(edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep) <em>Next Impact Steps</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Next Impact Steps</em>' operation.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#nextImpactSteps(edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep)
+   * @generated
+   */
+  EOperation getPLGSNTemplate__NextImpactSteps__PLGSNChangeStep();
+
+  /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#impact(edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep, org.eclipse.emf.common.util.EList) <em>Impact</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Impact</em>' operation.
-   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#impact(edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep)
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#impact(edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep, org.eclipse.emf.common.util.EList)
    * @generated
    */
-  EOperation getPLGSNTemplate__Impact__PLGSNChangeStep();
+  EOperation getPLGSNTemplate__Impact__PLGSNChangeStep_EList();
 
   /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate#repair(edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep) <em>Repair</em>}' operation.
@@ -1140,12 +1168,19 @@ public interface PLGSNPackage extends EPackage {
      */
     EOperation PLGSN_TEMPLATE___VALIDATE = PLGSNPackage.eINSTANCE.getPLGSNTemplate__Validate();
     /**
+     * The meta object literal for the '<em><b>Next Impact Steps</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation PLGSN_TEMPLATE___NEXT_IMPACT_STEPS__PLGSNCHANGESTEP = PLGSNPackage.eINSTANCE.getPLGSNTemplate__NextImpactSteps__PLGSNChangeStep();
+    /**
      * The meta object literal for the '<em><b>Impact</b></em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation PLGSN_TEMPLATE___IMPACT__PLGSNCHANGESTEP = PLGSNPackage.eINSTANCE.getPLGSNTemplate__Impact__PLGSNChangeStep();
+    EOperation PLGSN_TEMPLATE___IMPACT__PLGSNCHANGESTEP_ELIST = PLGSNPackage.eINSTANCE.getPLGSNTemplate__Impact__PLGSNChangeStep_EList();
     /**
      * The meta object literal for the '<em><b>Repair</b></em>' operation.
      * <!-- begin-user-doc -->

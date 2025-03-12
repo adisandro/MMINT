@@ -13,9 +13,11 @@
 package edu.toronto.cs.se.modelepedia.gsn.util;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
@@ -37,14 +39,6 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
     super(impacted);
   }
 
-  private ImpactType getPreviousImpact() {
-    return this.trace.stream()
-      .filter(t -> t instanceof ArgumentElement)
-      .map(t -> ((ArgumentElement) t).getStatus().getType())
-      .findFirst()
-      .orElse(ChangeStep.defaultImpact);
-  }
-
   private void setImpact(ImpactType impactType) {
     var currImpact = this.impacted.getStatus();
     if (currImpact == null) {
@@ -52,17 +46,6 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
       this.impacted.setStatus(currImpact);
     }
     currImpact.setType(impactType);
-  }
-
-  @Override
-  public void baselineImpact() {
-    var prevImpact = getPreviousImpact();
-    switch (this.impacted) {
-      case Goal _       -> setImpact(prevImpact);
-      case Strategy _   -> setImpact(prevImpact);
-      case Contextual _ -> setImpact(ImpactType.REUSE);
-      default           -> setImpact(prevImpact);
-    }
   }
 
   private List<GSNChangeStep> nextSupporters() {
@@ -113,25 +96,40 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
   }
 
   @Override
+  public void baselineImpact(List<? extends ChangeStep<ArgumentElement>> dependencySteps) {
+    ImpactType impactType;
+    if (dependencySteps.isEmpty()) {
+      impactType = switch(this.impacted) {
+        case Contextual _ -> ImpactType.REUSE;
+        default           -> ImpactType.RECHECK;
+      };
+    }
+    else {
+      impactType = dependencySteps.stream()
+        .map(s -> s.getImpacted().getStatus().getType())
+        .max(Comparator.comparing(ImpactType::getValue))
+        .get();
+    }
+    setImpact(impactType);
+  }
+
+  @Override
   public void impact() throws Exception {
-    var currImpact = this.impacted.getStatus();
-    var prevImpact = getPreviousImpact();
-    // stop condition: already impacted with equal or more priority (REVISE > RECHECK > REUSE)
-    if (currImpact != null && currImpact.getType().compareTo(prevImpact) >= 0) {
+    // stop condition: already in trace
+    if (this.trace.contains(this.impacted)) {
       return;
     }
     // separate syntactic vs semantic (template) behavior
     var template = this.impacted.getTemplate();
-    List<GSNChangeStep> nextSteps;
-    if (template == null) {
-      baselineImpact();
-      nextSteps = nextSteps();
-    }
-    else {
-      nextSteps = template.impact(this);
-    }
+    var nextSteps = (template == null) ? nextSteps() : template.nextImpactSteps(this);
     for (var nextStep : nextSteps) {
       nextStep.impact();
+    }
+    if (template == null) {
+      baselineImpact(nextSteps);
+    }
+    else {
+      template.impact(this, ECollections.asEList(nextSteps));
     }
   }
 

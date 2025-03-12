@@ -70,6 +70,8 @@ public class ChangeImpact extends AbstractExternalJavaAction {
           var startStep = new GSNChangeStep(modelObj);
           startStep.impact();
         }
+        //TODO do propagation UP
+        //TODO template nextSteps() must already mark something beforehand?
       }
       catch (Exception e) {
         MMINTException.print(IStatus.ERROR, "Error running change impact", e);

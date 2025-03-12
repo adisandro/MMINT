@@ -122,9 +122,16 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
    * @generated NOT
    */
   @Override
-  public EList<PLGSNChangeStep> impact(PLGSNChangeStep step) throws Exception {
-    step.baselineImpact();
+  public EList<PLGSNChangeStep> nextImpactSteps(PLGSNChangeStep step) throws Exception {
     return ECollections.asEList(step.nextSteps());
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void impact(PLGSNChangeStep step, EList<PLGSNChangeStep> dependencySteps) throws Exception {
+    step.baselineImpact(dependencySteps);
   }
 
   /**
@@ -141,6 +148,7 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
    * @generated
    */
   @Override
+  @SuppressWarnings("unchecked")
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
     switch (operationID) {
       case PLGSNPackage.PLGSN_TEMPLATE___GET_ELEMENTS_BY_ID:
@@ -169,9 +177,17 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNCHANGESTEP:
+      case PLGSNPackage.PLGSN_TEMPLATE___NEXT_IMPACT_STEPS__PLGSNCHANGESTEP:
         try {
-          return impact((PLGSNChangeStep)arguments.get(0));
+          return nextImpactSteps((PLGSNChangeStep)arguments.get(0));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNCHANGESTEP_ELIST:
+        try {
+          impact((PLGSNChangeStep)arguments.get(0), (EList<PLGSNChangeStep>)arguments.get(1));
+          return null;
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);

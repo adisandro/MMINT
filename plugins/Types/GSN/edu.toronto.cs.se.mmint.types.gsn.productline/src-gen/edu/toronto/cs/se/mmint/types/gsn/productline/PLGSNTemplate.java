@@ -51,6 +51,22 @@ public interface PLGSNTemplate extends edu.toronto.cs.se.mmint.productline.Class
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @model dataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNChangeStep" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNChangeStep" stepRequired="true"
+   * @generated
+   */
+  EList<PLGSNChangeStep> nextImpactSteps(PLGSNChangeStep step) throws Exception;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNChangeStep" stepRequired="true" dependencyStepsDataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNChangeStep" dependencyStepsMany="true"
+   * @generated
+   */
+  void impact(PLGSNChangeStep step, EList<PLGSNChangeStep> dependencySteps) throws Exception;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" productLineRequired="true"
    * @generated
    */
@@ -63,14 +79,6 @@ public interface PLGSNTemplate extends edu.toronto.cs.se.mmint.productline.Class
    * @generated
    */
   void instantiate() throws Exception;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model dataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNChangeStep" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNChangeStep" stepRequired="true"
-   * @generated
-   */
-  EList<PLGSNChangeStep> impact(PLGSNChangeStep step) throws Exception;
 
   /**
    * <!-- begin-user-doc -->

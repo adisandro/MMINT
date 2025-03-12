@@ -144,13 +144,22 @@ public interface GSNTemplatesPackage extends EPackage {
   int DECOMPOSITION_TEMPLATE___INSTANTIATE = GSNPackage.TEMPLATE___INSTANTIATE;
 
   /**
+   * The operation id for the '<em>Next Impact Steps</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECOMPOSITION_TEMPLATE___NEXT_IMPACT_STEPS__GSNCHANGESTEP = GSNPackage.TEMPLATE___NEXT_IMPACT_STEPS__GSNCHANGESTEP;
+
+  /**
    * The operation id for the '<em>Impact</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECOMPOSITION_TEMPLATE___IMPACT__GSNCHANGESTEP = GSNPackage.TEMPLATE___IMPACT__GSNCHANGESTEP;
+  int DECOMPOSITION_TEMPLATE___IMPACT__GSNCHANGESTEP_ELIST = GSNPackage.TEMPLATE___IMPACT__GSNCHANGESTEP_ELIST;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -846,13 +855,22 @@ public interface GSNTemplatesPackage extends EPackage {
   int DOMAIN_DECOMPOSITION_TEMPLATE___INSTANTIATE = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___INSTANTIATE;
 
   /**
+   * The operation id for the '<em>Next Impact Steps</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN_DECOMPOSITION_TEMPLATE___NEXT_IMPACT_STEPS__GSNCHANGESTEP = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___NEXT_IMPACT_STEPS__GSNCHANGESTEP;
+
+  /**
    * The operation id for the '<em>Impact</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_DECOMPOSITION_TEMPLATE___IMPACT__GSNCHANGESTEP = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___IMPACT__GSNCHANGESTEP;
+  int DOMAIN_DECOMPOSITION_TEMPLATE___IMPACT__GSNCHANGESTEP_ELIST = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___IMPACT__GSNCHANGESTEP_ELIST;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -1374,13 +1392,22 @@ public interface GSNTemplatesPackage extends EPackage {
   int PROPERTY_DECOMPOSITION_TEMPLATE___INSTANTIATE = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___INSTANTIATE;
 
   /**
+   * The operation id for the '<em>Next Impact Steps</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DECOMPOSITION_TEMPLATE___NEXT_IMPACT_STEPS__GSNCHANGESTEP = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___NEXT_IMPACT_STEPS__GSNCHANGESTEP;
+
+  /**
    * The operation id for the '<em>Impact</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_DECOMPOSITION_TEMPLATE___IMPACT__GSNCHANGESTEP = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___IMPACT__GSNCHANGESTEP;
+  int PROPERTY_DECOMPOSITION_TEMPLATE___IMPACT__GSNCHANGESTEP_ELIST = GSNTemplatesPackage.DECOMPOSITION_TEMPLATE___IMPACT__GSNCHANGESTEP_ELIST;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.
@@ -1619,13 +1646,22 @@ public interface GSNTemplatesPackage extends EPackage {
   int ANALYTIC_TEMPLATE___INSTANTIATE = GSNPackage.TEMPLATE___INSTANTIATE;
 
   /**
+   * The operation id for the '<em>Next Impact Steps</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANALYTIC_TEMPLATE___NEXT_IMPACT_STEPS__GSNCHANGESTEP = GSNPackage.TEMPLATE___NEXT_IMPACT_STEPS__GSNCHANGESTEP;
+
+  /**
    * The operation id for the '<em>Impact</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANALYTIC_TEMPLATE___IMPACT__GSNCHANGESTEP = GSNPackage.TEMPLATE___IMPACT__GSNCHANGESTEP;
+  int ANALYTIC_TEMPLATE___IMPACT__GSNCHANGESTEP_ELIST = GSNPackage.TEMPLATE___IMPACT__GSNCHANGESTEP_ELIST;
 
   /**
    * The operation id for the '<em>Repair</em>' operation.

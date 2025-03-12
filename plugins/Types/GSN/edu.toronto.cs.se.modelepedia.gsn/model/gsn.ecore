@@ -142,8 +142,12 @@
       <eParameters name="safetyCase" lowerBound="1" eType="#//SafetyCase"/>
     </eOperations>
     <eOperations name="instantiate" eExceptions="#//Exception"/>
-    <eOperations name="impact" upperBound="-1" eType="#//GSNChangeStep" eExceptions="#//Exception">
+    <eOperations name="nextImpactSteps" upperBound="-1" eType="#//GSNChangeStep" eExceptions="#//Exception">
       <eParameters name="step" lowerBound="1" eType="#//GSNChangeStep"/>
+    </eOperations>
+    <eOperations name="impact" eExceptions="#//Exception">
+      <eParameters name="step" lowerBound="1" eType="#//GSNChangeStep"/>
+      <eParameters name="dependencySteps" upperBound="-1" eType="#//GSNChangeStep"/>
     </eOperations>
     <eOperations name="repair" upperBound="-1" eType="#//GSNChangeStep" eExceptions="#//Exception">
       <eParameters name="step" lowerBound="1" eType="#//GSNChangeStep"/>

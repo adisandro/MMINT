@@ -100,8 +100,12 @@
         <genParameters ecoreParameter="gsn.ecore#//Template/import_/safetyCase"/>
       </genOperations>
       <genOperations ecoreOperation="gsn.ecore#//Template/instantiate"/>
+      <genOperations ecoreOperation="gsn.ecore#//Template/nextImpactSteps">
+        <genParameters ecoreParameter="gsn.ecore#//Template/nextImpactSteps/step"/>
+      </genOperations>
       <genOperations ecoreOperation="gsn.ecore#//Template/impact">
         <genParameters ecoreParameter="gsn.ecore#//Template/impact/step"/>
+        <genParameters ecoreParameter="gsn.ecore#//Template/impact/dependencySteps"/>
       </genOperations>
       <genOperations ecoreOperation="gsn.ecore#//Template/repair">
         <genParameters ecoreParameter="gsn.ecore#//Template/repair/step"/>

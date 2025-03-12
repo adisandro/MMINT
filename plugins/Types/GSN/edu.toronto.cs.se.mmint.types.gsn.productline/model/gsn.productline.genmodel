@@ -22,8 +22,12 @@
       </genOperations>
       <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/instantiate"/>
       <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/validate"/>
+      <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/nextImpactSteps">
+        <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNTemplate/nextImpactSteps/step"/>
+      </genOperations>
       <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/impact">
         <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNTemplate/impact/step"/>
+        <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNTemplate/impact/dependencySteps"/>
       </genOperations>
       <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/repair">
         <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNTemplate/repair/step"/>

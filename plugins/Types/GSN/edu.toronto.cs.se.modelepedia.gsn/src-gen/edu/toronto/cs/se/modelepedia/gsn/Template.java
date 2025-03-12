@@ -117,19 +117,20 @@ public interface Template extends EObject {
   void instantiate() throws Exception;
 
   /**
-   * <!-- begin-user-doc --> Calculates the impact of a change on this template.
-   *
-   * @param step
-   *          The current step of the impact propagation (current model object and impact trace so far).
-   * @param change
-   *          The original change.
-   * @return A list of the next steps of the impact propagation.
-   * @throws Exception
-   *           If the impact can not be calculated. <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @model dataType="edu.toronto.cs.se.modelepedia.gsn.GSNChangeStep" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.modelepedia.gsn.GSNChangeStep" stepRequired="true"
    * @generated
    */
-  EList<GSNChangeStep> impact(GSNChangeStep step) throws Exception;
+  EList<GSNChangeStep> nextImpactSteps(GSNChangeStep step) throws Exception;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.modelepedia.gsn.GSNChangeStep" stepRequired="true" dependencyStepsDataType="edu.toronto.cs.se.modelepedia.gsn.GSNChangeStep" dependencyStepsMany="true"
+   * @generated
+   */
+  void impact(GSNChangeStep step, EList<GSNChangeStep> dependencySteps) throws Exception;
 
   /**
    * <!-- begin-user-doc -->

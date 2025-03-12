@@ -22,9 +22,12 @@ public interface IAnalysis {
   default void import_(AnalyticTemplate template, SafetyCase safetyCase) throws Exception {}
   default void instantiate(AnalyticTemplate template) throws Exception {}
   default void validate(AnalyticTemplate template) throws Exception {}
-  default List<GSNChangeStep> impact(AnalyticTemplate template, GSNChangeStep step) throws Exception {
-    step.baselineImpact();
+  default List<GSNChangeStep> nextImpactSteps(AnalyticTemplate template, GSNChangeStep step) throws Exception {
     return step.nextSteps();
+  }
+  default void impact(AnalyticTemplate template, GSNChangeStep step, List<GSNChangeStep> dependencySteps)
+                     throws Exception {
+    step.baselineImpact(dependencySteps);
   }
   default List<GSNChangeStep> repair(AnalyticTemplate template, GSNChangeStep step) throws Exception {
     return step.nextSteps();
