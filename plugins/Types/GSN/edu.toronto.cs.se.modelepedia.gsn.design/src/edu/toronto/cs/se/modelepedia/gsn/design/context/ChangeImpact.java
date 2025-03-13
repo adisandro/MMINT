@@ -71,7 +71,6 @@ public class ChangeImpact extends AbstractExternalJavaAction {
           startStep.impact();
         }
         //TODO do propagation UP both product and PL
-        //TODO implement max for PL baseline
       }
       catch (Exception e) {
         MMINTException.print(IStatus.ERROR, "Error running change impact", e);

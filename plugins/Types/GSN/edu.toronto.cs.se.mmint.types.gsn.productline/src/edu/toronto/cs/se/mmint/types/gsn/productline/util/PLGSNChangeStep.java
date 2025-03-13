@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EClass;
@@ -176,6 +177,30 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     return nextSteps;
   }
 
+  private Map<ImpactType, Optional<String>> max(List<Map<ImpactType, Optional<String>>> impacts) {
+    String pcReuse = null, pcRevise = null;
+    for (var i = 0; i < impacts.size(); i++) {
+      var dependencyImpact = impacts.get(i);
+      var pc1 = dependencyImpact.get(ImpactType.REUSE).orElse(PLGSNChangeStep.plReasoner.getFalseLiteral());
+      var pc3 = dependencyImpact.get(ImpactType.REVISE).orElse(PLGSNChangeStep.plReasoner.getFalseLiteral());
+      pcReuse = (i == 0) ? pc1 : PLGSNChangeStep.plReasoner.and(pcReuse, pc1);
+      pcRevise = (i == 0) ? pc3 : PLGSNChangeStep.plReasoner.or(pcRevise, pc3);
+    }
+    pcReuse = PLGSNChangeStep.plReasoner.simplify(pcReuse);
+    pcRevise = PLGSNChangeStep.plReasoner.simplify(pcRevise);
+    var pcRecheck = PLGSNChangeStep.plReasoner.simplify(
+      PLGSNChangeStep.plReasoner.not(PLGSNChangeStep.plReasoner.or(pcReuse, pcRevise)));
+    var max = Map.of(
+      ImpactType.REUSE,   PLGSNChangeStep.plReasoner.checkConsistency(pcReuse, Set.of()) ?
+                            Optional.of(pcReuse) : Optional.<String>empty(),
+      ImpactType.RECHECK, PLGSNChangeStep.plReasoner.checkConsistency(pcRecheck, Set.of()) ?
+                            Optional.of(pcRecheck) : Optional.<String>empty(),
+      ImpactType.REVISE,  PLGSNChangeStep.plReasoner.checkConsistency(pcRevise, Set.of()) ?
+                            Optional.of(pcRevise) : Optional.<String>empty());
+
+    return max;
+  }
+
   @Override
   public void baselineImpact(List<? extends ChangeStep<PLGSNArgumentElement>> dependencySteps) {
     Map<ImpactType, Optional<String>> prevImpact = null;
@@ -204,8 +229,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
                                                                   Set.of(this.impacted.getPresenceCondition()));
           if (check) {
             impact = Map.of(
-              ImpactType.REUSE,   Optional.of(PLGSNChangeStep.plReasoner.simplify(
-                                    PLGSNChangeStep.plReasoner.not(PLGSNChangeStep.phiDelta))),
+              ImpactType.REUSE,   Optional.of(PLGSNChangeStep.plReasoner.not(PLGSNChangeStep.phiDelta)),
               ImpactType.RECHECK, Optional.of(PLGSNChangeStep.phiDelta),
               ImpactType.REVISE,  Optional.empty());
           }
@@ -219,11 +243,10 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
       }
     }
     else { // bottom up impact
-      dependencySteps.stream().map(s -> s.getImpacted().getImpact());
-      impact = null;
+      impact = max(dependencySteps.stream().map(s -> s.getImpacted().getImpact()).collect((Collectors.toList())));
     }
     if (prevImpact != null) { // top down impact
-
+      impact = max(List.of(prevImpact, impact));
     }
     this.impacted.setImpact(impact);
   }
