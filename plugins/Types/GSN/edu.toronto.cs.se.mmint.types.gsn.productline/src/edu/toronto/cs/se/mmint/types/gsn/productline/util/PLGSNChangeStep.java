@@ -144,6 +144,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
 
   @Override
   public List<PLGSNChangeStep> nextSteps() {
+    // next steps proper
     var nextSteps = new ArrayList<PLGSNChangeStep>();
     switch (this.impacted.getType()) {
       case EClass e when e.getName().equals("Goal") ||
@@ -159,46 +160,85 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
       case EClass e when e.getEAllSuperTypes().stream().anyMatch(s -> s.getName().equals("Contextual")) -> {}
       default -> {}
     }
+    // check for top down impact and propagate if present when not leaf
+    if (!nextSteps.isEmpty()) {
+      var prevElem = getTrace().stream()
+        .filter(t -> t instanceof PLGSNArgumentElement)
+        .map(PLGSNArgumentElement.class::cast)
+        .findFirst();
+      prevElem.ifPresent(e -> {
+        if (e.getImpact().values().stream().anyMatch(pc -> pc.isPresent())) {
+          this.impacted.setImpact(e.getImpact());
+        }
+      });
+    }
 
     return nextSteps;
   }
 
   @Override
   public void baselineImpact(List<? extends ChangeStep<PLGSNArgumentElement>> dependencySteps) {
-    if (dependencySteps.isEmpty()) {
+    Map<ImpactType, Optional<String>> prevImpact = null;
+    var prevElem = getTrace().stream()
+      .filter(t -> t instanceof PLGSNArgumentElement)
+      .map(PLGSNArgumentElement.class::cast)
+      .findFirst();
+    if (prevElem.isPresent()) {
+      var prevImpact2 = prevElem.get().getImpact();
+      if (prevImpact2.values().stream().anyMatch(pc -> pc.isPresent())) {
+        prevImpact = prevImpact2;
+      }
+    }
+    Map<ImpactType, Optional<String>> impact;
+    if (dependencySteps.isEmpty()) { // leaf
       switch(this.impacted.getType()) {
-        case EClass e when e.getEAllSuperTypes().stream().anyMatch(s -> s.getName().equals("Contextual")) ->
-          this.impacted.setImpact(ImpactType.REUSE, PLGSNChangeStep.plReasoner.getTrueLiteral());
+        case EClass e when e.getEAllSuperTypes().stream().anyMatch(s -> s.getName().equals("Contextual")) -> {
+          impact = Map.of(
+            ImpactType.REUSE,   Optional.of(PLGSNChangeStep.plReasoner.getTrueLiteral()),
+            ImpactType.RECHECK, Optional.empty(),
+            ImpactType.REVISE,  Optional.empty());
+        }
         default -> {
-          //TODO checkSAT api!
+          //TODO add checkSAT api!
           var check = PLGSNChangeStep.plReasoner.checkConsistency(PLGSNChangeStep.phiDelta,
                                                                   Set.of(this.impacted.getPresenceCondition()));
           if (check) {
-            this.impacted.setImpact(
-              Map.of(ImpactType.REUSE, Optional.of(PLGSNChangeStep.plReasoner.simplify(
-                                         PLGSNChangeStep.plReasoner.not(PLGSNChangeStep.phiDelta))),
-                     ImpactType.RECHECK, Optional.of(PLGSNChangeStep.phiDelta),
-                     ImpactType.REVISE, Optional.empty()));
+            impact = Map.of(
+              ImpactType.REUSE,   Optional.of(PLGSNChangeStep.plReasoner.simplify(
+                                    PLGSNChangeStep.plReasoner.not(PLGSNChangeStep.phiDelta))),
+              ImpactType.RECHECK, Optional.of(PLGSNChangeStep.phiDelta),
+              ImpactType.REVISE,  Optional.empty());
           }
           else {
-            this.impacted.setImpact(ImpactType.REUSE, PLGSNChangeStep.plReasoner.getTrueLiteral());
+            impact = Map.of(
+              ImpactType.REUSE,   Optional.of(PLGSNChangeStep.plReasoner.getTrueLiteral()),
+              ImpactType.RECHECK, Optional.empty(),
+              ImpactType.REVISE,  Optional.empty());
           }
         }
       }
     }
-    else {
+    else { // bottom up impact
       dependencySteps.stream().map(s -> s.getImpacted().getImpact());
+      impact = null;
     }
+    if (prevImpact != null) { // top down impact
+
+    }
+    this.impacted.setImpact(impact);
   }
 
   @Override
   public void impact() throws Exception {
-    // stop condition: already in trace
+    // stop conditions: impacted or its template already in trace
     if (this.trace.contains(this.impacted)) {
       return;
     }
-    // separate syntactic vs semantic (template) behavior
     var templates = this.impacted.getReference(PLGSNChangeStep.GSN.getArgumentElement_Template());
+    if (!templates.isEmpty() && this.trace.contains(templates.get(0))) {
+      return;
+    }
+    // separate syntactic vs semantic (template) behavior
     var nextSteps = (templates.isEmpty()) ? nextSteps() : ((PLGSNTemplate) templates.get(0)).nextImpactSteps(this);
     for (var nextStep : nextSteps) {
       nextStep.impact();

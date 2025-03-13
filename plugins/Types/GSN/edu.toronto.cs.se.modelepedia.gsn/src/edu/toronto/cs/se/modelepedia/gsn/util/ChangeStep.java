@@ -72,6 +72,13 @@ public abstract class ChangeStep<T> {
 
   public abstract List<? extends ChangeStep<T>> nextSteps();
   public abstract void baselineImpact(List<? extends ChangeStep<T>> dependencySteps);
+
+  /**
+   * Steps propagate down from the initial change, but impact is assigned bottom up from the solution leafs. Impact can
+   * be assigned during the step propagation phase (usually by a template), overriding bottom up impact with top down.
+   * impact() is the overall procedure, nextSteps() is the top down step propagation, baselineImpact() is the bottom up
+   * impact assignment.
+   */
   public abstract void impact() throws Exception;
   public abstract void repair() throws Exception;
 }

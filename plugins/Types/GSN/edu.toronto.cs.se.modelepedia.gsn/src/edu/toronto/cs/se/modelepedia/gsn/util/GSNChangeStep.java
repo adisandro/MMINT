@@ -40,12 +40,12 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
   }
 
   private void setImpact(ImpactType impactType) {
-    var currImpact = this.impacted.getStatus();
-    if (currImpact == null) {
-      currImpact = GSNFactory.eINSTANCE.createImpactAnnotation();
-      this.impacted.setStatus(currImpact);
+    var impact = this.impacted.getStatus();
+    if (impact == null) {
+      impact = GSNFactory.eINSTANCE.createImpactAnnotation();
+      this.impacted.setStatus(impact);
     }
-    currImpact.setType(impactType);
+    impact.setType(impactType);
   }
 
   private List<GSNChangeStep> nextSupporters() {
@@ -78,6 +78,7 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
 
   @Override
   public List<GSNChangeStep> nextSteps() {
+    // next steps proper
     var nextSteps = new ArrayList<GSNChangeStep>();
     switch (this.impacted) {
       case Goal _ -> {
@@ -91,36 +92,65 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
       case Contextual _ -> {}
       default -> {}
     };
+    // check for top down impact and propagate if present when not leaf
+    if (!nextSteps.isEmpty()) {
+      var prevElem = getTrace().stream()
+        .filter(t -> t instanceof ArgumentElement)
+        .map(ArgumentElement.class::cast)
+        .findFirst();
+      prevElem.ifPresent(e -> {
+        if (e.getStatus() != null) {
+          setImpact(e.getStatus().getType());
+        }
+      });
+    }
 
     return nextSteps;
   }
 
   @Override
   public void baselineImpact(List<? extends ChangeStep<ArgumentElement>> dependencySteps) {
+    ImpactType prevImpactType = null;
+    var prevElem = getTrace().stream()
+      .filter(t -> t instanceof ArgumentElement)
+      .map(ArgumentElement.class::cast)
+      .findFirst();
+    if (prevElem.isPresent()) {
+      var prevImpact = prevElem.get().getStatus();
+      if (prevImpact != null) {
+        prevImpactType = prevImpact.getType();
+      }
+    }
     ImpactType impactType;
-    if (dependencySteps.isEmpty()) {
+    if (dependencySteps.isEmpty()) { // leaf
       impactType = switch(this.impacted) {
         case Contextual _ -> ImpactType.REUSE;
         default           -> ImpactType.RECHECK;
       };
     }
-    else {
+    else { // bottom up impact
       impactType = dependencySteps.stream()
         .map(s -> s.getImpacted().getStatus().getType())
         .max(Comparator.comparing(ImpactType::getValue))
         .get();
+    }
+    if (prevImpactType != null && prevImpactType.getValue() > impactType.getValue()) { // top down impact
+      impactType = prevImpactType;
     }
     setImpact(impactType);
   }
 
   @Override
   public void impact() throws Exception {
-    // stop condition: already in trace
+    // stop conditions: impacted or its template already in trace
     if (this.trace.contains(this.impacted)) {
       return;
     }
-    // separate syntactic vs semantic (template) behavior
     var template = this.impacted.getTemplate();
+    if (template != null && this.trace.contains(template)) {
+      return;
+    }
+    // separate syntactic vs semantic (template) behavior
     var nextSteps = (template == null) ? nextSteps() : template.nextImpactSteps(this);
     for (var nextStep : nextSteps) {
       nextStep.impact();
@@ -137,7 +167,6 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
   public void repair() throws Exception {
     // stop condition: already in trace
     if (this.trace.contains(this.impacted)) {
-      //TODO review with templates whether to check the template too
       return;
     }
     // separate syntactic vs semantic (template) behavior
