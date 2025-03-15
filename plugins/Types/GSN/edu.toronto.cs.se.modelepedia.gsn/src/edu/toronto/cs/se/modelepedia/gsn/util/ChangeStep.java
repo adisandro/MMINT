@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.modelepedia.gsn.util;
 
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
@@ -29,7 +30,8 @@ public abstract class ChangeStep<T> {
   public final static String PROPS_NAME = "Change";
   protected final static Properties properties = new Properties();
   protected T impacted;
-  protected LinkedHashSet<EObject> trace;
+  protected LinkedHashSet<EObject> forwardTrace;
+  protected List<List<? extends ChangeStep<T>>> backwardTrace;
 
   public static void resetProperties() {
     ChangeStep.properties.clear();
@@ -53,9 +55,10 @@ public abstract class ChangeStep<T> {
     return ChangeStep.properties;
   }
 
-  public ChangeStep(T impacted, LinkedHashSet<EObject> trace) {
+  public ChangeStep(T impacted, LinkedHashSet<EObject> forwardTrace) {
     this.impacted = Objects.requireNonNull(impacted);
-    this.trace = Objects.requireNonNull(trace);
+    this.forwardTrace = Objects.requireNonNull(forwardTrace);
+    this.backwardTrace = new ArrayList<>();
   }
 
   public ChangeStep(T impacted) {
@@ -66,18 +69,22 @@ public abstract class ChangeStep<T> {
     return this.impacted;
   }
 
-  public LinkedHashSet<EObject> getTrace() {
-    return this.trace;
+  public LinkedHashSet<EObject> getForwardTrace() {
+    return this.forwardTrace;
+  }
+
+  public List<List<? extends ChangeStep<T>>> getBackwardTrace() {
+    return this.backwardTrace;
   }
 
   public abstract List<? extends ChangeStep<T>> nextSteps();
-  public abstract void baselineImpact(List<? extends ChangeStep<T>> dependencySteps);
+  public abstract void baselineImpact();
 
   /**
-   * Steps propagate down from the initial change, but impact is assigned bottom up from the solution leafs. Impact can
-   * be assigned during the step propagation phase (usually by a template), overriding bottom up impact with top down.
-   * impact() is the overall procedure, nextSteps() is the top down step propagation, baselineImpact() is the bottom up
-   * impact assignment.
+   * Steps propagate top down (forward) from the initial change, but impact is assigned bottom up (backward) from the
+   * solution leafs. Impact can be assigned during the step propagation phase (usually by a template), overriding bottom
+   * up impact with top down. impact() is the overall procedure, nextSteps() is the top down forward step propagation,
+   * baselineImpact() is the bottom up backward impact assignment.
    */
   public abstract void impact() throws Exception;
   public abstract void repair() throws Exception;

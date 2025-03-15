@@ -70,7 +70,6 @@ public class ChangeImpact extends AbstractExternalJavaAction {
           var startStep = new GSNChangeStep(modelObj);
           startStep.impact();
         }
-        //TODO do propagation UP both product and PL
       }
       catch (Exception e) {
         MMINTException.print(IStatus.ERROR, "Error running change impact", e);

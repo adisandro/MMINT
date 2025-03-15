@@ -68,7 +68,7 @@ public class PLGSNValidateTemplate extends AbstractExternalJavaAction {
       var shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
       var title = "Validate Template";
       var message = "The GSN template " +
-                    this.plTemplate.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()).get(0) + " is ";
+                    this.plTemplate.getAttribute(GSNPackage.eINSTANCE.getTemplate_Id()).get(0) + " is ";
       try {
         this.plTemplate.validate();
         MessageDialog.openInformation(shell, title, message + "instantiated correctly");

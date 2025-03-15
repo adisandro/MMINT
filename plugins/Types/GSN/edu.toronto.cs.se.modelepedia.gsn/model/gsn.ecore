@@ -147,7 +147,6 @@
     </eOperations>
     <eOperations name="impact" eExceptions="#//Exception">
       <eParameters name="step" lowerBound="1" eType="#//GSNChangeStep"/>
-      <eParameters name="dependencySteps" upperBound="-1" eType="#//GSNChangeStep"/>
     </eOperations>
     <eOperations name="repair" upperBound="-1" eType="#//GSNChangeStep" eExceptions="#//Exception">
       <eParameters name="step" lowerBound="1" eType="#//GSNChangeStep"/>

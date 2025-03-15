@@ -17,7 +17,6 @@ import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
@@ -31,8 +30,8 @@ import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 
 public class GSNChangeStep extends ChangeStep<ArgumentElement> {
 
-  public GSNChangeStep(ArgumentElement impacted, LinkedHashSet<EObject> trace) {
-    super(impacted, trace);
+  public GSNChangeStep(ArgumentElement impacted, LinkedHashSet<EObject> forwardTrace) {
+    super(impacted, forwardTrace);
   }
 
   public GSNChangeStep(ArgumentElement impacted) {
@@ -54,7 +53,7 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
       var nextTrace = new LinkedHashSet<EObject>();
       nextTrace.add(supportedBy);
       nextTrace.add(this.impacted);
-      nextTrace.addAll(this.trace);
+      nextTrace.addAll(this.forwardTrace);
       var nextStep = new GSNChangeStep(supportedBy.getTarget(), nextTrace);
       nextSteps.add(nextStep);
     }
@@ -68,7 +67,7 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
       var nextTrace = new LinkedHashSet<EObject>();
       nextTrace.add(inContextOf);
       nextTrace.add(this.impacted);
-      nextTrace.addAll(this.trace);
+      nextTrace.addAll(this.forwardTrace);
       var nextStep = new GSNChangeStep(inContextOf.getContext(), nextTrace);
       nextSteps.add(nextStep);
     }
@@ -94,7 +93,7 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
     };
     // check for top down impact and propagate if present when not leaf
     if (!nextSteps.isEmpty()) {
-      var prevElem = getTrace().stream()
+      var prevElem = getForwardTrace().stream()
         .filter(t -> t instanceof ArgumentElement)
         .map(ArgumentElement.class::cast)
         .findFirst();
@@ -109,9 +108,10 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
   }
 
   @Override
-  public void baselineImpact(List<? extends ChangeStep<ArgumentElement>> dependencySteps) {
+  public void baselineImpact() {
+    var backwardTrace = getBackwardTrace();
     ImpactType prevImpactType = null;
-    var prevElem = getTrace().stream()
+    var prevElem = getForwardTrace().stream()
       .filter(t -> t instanceof ArgumentElement)
       .map(ArgumentElement.class::cast)
       .findFirst();
@@ -122,14 +122,14 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
       }
     }
     ImpactType impactType;
-    if (dependencySteps.isEmpty()) { // leaf
+    if (backwardTrace.get(0).isEmpty()) { // leaf
       impactType = switch(this.impacted) {
         case Contextual _ -> ImpactType.REUSE;
         default           -> ImpactType.RECHECK;
       };
     }
     else { // bottom up impact
-      impactType = dependencySteps.stream()
+      impactType = backwardTrace.get(0).stream()
         .map(s -> s.getImpacted().getStatus().getType())
         .max(Comparator.comparing(ImpactType::getValue))
         .get();
@@ -143,30 +143,31 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
   @Override
   public void impact() throws Exception {
     // stop conditions: impacted or its template already in trace
-    if (this.trace.contains(this.impacted)) {
+    if (this.forwardTrace.contains(this.impacted)) {
       return;
     }
     var template = this.impacted.getTemplate();
-    if (template != null && this.trace.contains(template)) {
+    if (template != null && this.forwardTrace.contains(template)) {
       return;
     }
     // separate syntactic vs semantic (template) behavior
     var nextSteps = (template == null) ? nextSteps() : template.nextImpactSteps(this);
+    getBackwardTrace().add(nextSteps);
     for (var nextStep : nextSteps) {
       nextStep.impact();
     }
     if (template == null) {
-      baselineImpact(nextSteps);
+      baselineImpact();
     }
     else {
-      template.impact(this, ECollections.asEList(nextSteps));
+      template.impact(this);
     }
   }
 
   @Override
   public void repair() throws Exception {
     // stop condition: already in trace
-    if (this.trace.contains(this.impacted)) {
+    if (this.forwardTrace.contains(this.impacted)) {
       return;
     }
     // separate syntactic vs semantic (template) behavior

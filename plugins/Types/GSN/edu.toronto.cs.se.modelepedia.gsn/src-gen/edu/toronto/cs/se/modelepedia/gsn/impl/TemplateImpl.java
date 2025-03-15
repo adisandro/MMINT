@@ -221,8 +221,8 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    * @generated NOT
    */
   @Override
-  public void impact(GSNChangeStep step, EList<GSNChangeStep> dependencySteps) throws Exception {
-    step.baselineImpact(dependencySteps);
+  public void impact(GSNChangeStep step) throws Exception {
+    step.baselineImpact();
   }
 
   /**
@@ -374,9 +374,9 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case GSNPackage.TEMPLATE___IMPACT__GSNCHANGESTEP_ELIST:
+      case GSNPackage.TEMPLATE___IMPACT__GSNCHANGESTEP:
         try {
-          impact((GSNChangeStep)arguments.get(0), (EList<GSNChangeStep>)arguments.get(1));
+          impact((GSNChangeStep)arguments.get(0));
           return null;
         }
         catch (Throwable throwable) {

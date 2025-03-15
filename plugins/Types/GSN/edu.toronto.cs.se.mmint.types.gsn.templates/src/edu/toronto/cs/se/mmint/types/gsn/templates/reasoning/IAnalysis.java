@@ -25,9 +25,8 @@ public interface IAnalysis {
   default List<GSNChangeStep> nextImpactSteps(AnalyticTemplate template, GSNChangeStep step) throws Exception {
     return step.nextSteps();
   }
-  default void impact(AnalyticTemplate template, GSNChangeStep step, List<GSNChangeStep> dependencySteps)
-                     throws Exception {
-    step.baselineImpact(dependencySteps);
+  default void impact(AnalyticTemplate template, GSNChangeStep step) throws Exception {
+    step.baselineImpact();
   }
   default List<GSNChangeStep> repair(AnalyticTemplate template, GSNChangeStep step) throws Exception {
     return step.nextSteps();

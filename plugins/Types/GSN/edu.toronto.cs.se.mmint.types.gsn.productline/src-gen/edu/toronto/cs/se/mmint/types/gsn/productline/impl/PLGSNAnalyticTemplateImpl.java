@@ -154,9 +154,9 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
    * @generated NOT
    */
   @Override
-  public void impact(PLGSNChangeStep step, EList<PLGSNChangeStep> dependencySteps) throws Exception {
+  public void impact(PLGSNChangeStep step) throws Exception {
     var analysis = getAnalysis();
-    analysis.impact(this, step, dependencySteps);
+    analysis.impact(this, step);
   }
 
   /**

@@ -247,7 +247,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EOperation getPLGSNTemplate__Impact__PLGSNChangeStep_EList() {
+  public EOperation getPLGSNTemplate__Impact__PLGSNChangeStep() {
     return this.plgsnTemplateEClass.getEOperations().get(5);
   }
 
@@ -375,7 +375,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___INSTANTIATE);
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___VALIDATE);
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___NEXT_IMPACT_STEPS__PLGSNCHANGESTEP);
-    createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNCHANGESTEP_ELIST);
+    createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNCHANGESTEP);
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___REPAIR__PLGSNCHANGESTEP);
 
     this.plgsnAnalyticTemplateEClass = createEClass(PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE);
@@ -483,9 +483,8 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     addEParameter(op, this.getPLGSNChangeStep(), "step", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
-    op = initEOperation(getPLGSNTemplate__Impact__PLGSNChangeStep_EList(), null, "impact", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getPLGSNTemplate__Impact__PLGSNChangeStep(), null, "impact", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.getPLGSNChangeStep(), "step", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.getPLGSNChangeStep(), "dependencySteps", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
 
     op = initEOperation(getPLGSNTemplate__Repair__PLGSNChangeStep(), this.getPLGSNChangeStep(), "repair", 0, -1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);

@@ -21,7 +21,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
@@ -36,15 +35,16 @@ import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep;
 
 public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
-  public final static String PHI_DELTA_KEY = "phiDelta";
   public final static String OLD_FEATURES_CONSTRAINT_KEY = "oldFeaturesConstraint";
   public final static String NEW_FEATURE_KEY = "newFeature";
+  public final static String PHI_DELTA_KEY = "phiDelta";
+  public final static String NEW_FEATURES_CONSTRAINT_KEY = "newFeaturesConstraint";
   private final static GSNPackage GSN;
-  private static String phiDelta;
   private static Optional<String> oldFeaturesConstraint;
   private static Optional<String> newFeature;
-  private static IPLFeaturesTrait plReasoner;
+  private static String phiDelta;
   private static String phiPrime;
+  private static IPLFeaturesTrait plReasoner;
   private static String phiOld;
   private static String phiNew;
   static {
@@ -54,11 +54,11 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
 
   public static void resetProperties() {
     ChangeStep.resetProperties();
-    PLGSNChangeStep.phiDelta = "";
     PLGSNChangeStep.oldFeaturesConstraint = Optional.empty();
     PLGSNChangeStep.newFeature = Optional.empty();
-    PLGSNChangeStep.plReasoner = null;
+    PLGSNChangeStep.phiDelta = "";
     PLGSNChangeStep.phiPrime = "";
+    PLGSNChangeStep.plReasoner = null;
     PLGSNChangeStep.phiOld = "";
     PLGSNChangeStep.phiNew = "";
   }
@@ -68,16 +68,16 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     PLGSNChangeStep.resetProperties();
     ChangeStep.initProperties(plModelObj);
     // read into vars
-    PLGSNChangeStep.phiDelta = MIDOperatorIOUtils.getStringProperty(ChangeStep.properties,
-                                                                    PLGSNChangeStep.PHI_DELTA_KEY);
     PLGSNChangeStep.oldFeaturesConstraint = Optional.ofNullable(
       MIDOperatorIOUtils.getOptionalStringProperty(ChangeStep.properties, PLGSNChangeStep.OLD_FEATURES_CONSTRAINT_KEY,
                                                    null));
     PLGSNChangeStep.newFeature = Optional.ofNullable(
       MIDOperatorIOUtils.getOptionalStringProperty(ChangeStep.properties, PLGSNChangeStep.NEW_FEATURE_KEY, null));
-    var productLine = plModelObj.getProductLine();
-    PLGSNChangeStep.plReasoner = productLine.getReasoner();
-    PLGSNChangeStep.phiPrime = productLine.getFeaturesConstraint();
+    PLGSNChangeStep.phiDelta = MIDOperatorIOUtils.getStringProperty(ChangeStep.properties,
+                                                                    PLGSNChangeStep.PHI_DELTA_KEY);
+    PLGSNChangeStep.phiPrime = MIDOperatorIOUtils.getStringProperty(ChangeStep.properties,
+                                                                    PLGSNChangeStep.NEW_FEATURES_CONSTRAINT_KEY);
+    PLGSNChangeStep.plReasoner = plModelObj.getProductLine().getReasoner();
     PLGSNChangeStep.newFeature.ifPresentOrElse(
       f -> { // the presence of newFeature implies the presence of oldFeaturesConstraint
         var phi = PLGSNChangeStep.oldFeaturesConstraint.get();
@@ -103,8 +103,8 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     return ChangeStep.properties;
   }
 
-  public PLGSNChangeStep(PLGSNArgumentElement impacted, LinkedHashSet<EObject> trace) {
-    super(impacted, trace);
+  public PLGSNChangeStep(PLGSNArgumentElement impacted, LinkedHashSet<EObject> forwardTrace) {
+    super(impacted, forwardTrace);
   }
 
   public PLGSNChangeStep(PLGSNArgumentElement impacted) {
@@ -118,7 +118,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
         var nextTrace = new LinkedHashSet<EObject>();
         nextTrace.add(plSupportedBy);
         nextTrace.add(this.impacted);
-        nextTrace.addAll(this.trace);
+        nextTrace.addAll(this.forwardTrace);
         var nextStep = new PLGSNChangeStep((PLGSNArgumentElement) plSupporter, nextTrace);
         nextSteps.add(nextStep);
       }
@@ -134,7 +134,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
         var nextTrace = new LinkedHashSet<EObject>();
         nextTrace.add(plInContextOf);
         nextTrace.add(this.impacted);
-        nextTrace.addAll(this.trace);
+        nextTrace.addAll(this.forwardTrace);
         var nextStep = new PLGSNChangeStep((PLGSNArgumentElement) plContext, nextTrace);
         nextSteps.add(nextStep);
       }
@@ -163,7 +163,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     }
     // check for top down impact and propagate if present when not leaf
     if (!nextSteps.isEmpty()) {
-      var prevElem = getTrace().stream()
+      var prevElem = getForwardTrace().stream()
         .filter(t -> t instanceof PLGSNArgumentElement)
         .map(PLGSNArgumentElement.class::cast)
         .findFirst();
@@ -177,7 +177,97 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     return nextSteps;
   }
 
-  private Map<ImpactType, Optional<String>> max(List<Map<ImpactType, Optional<String>>> impacts) {
+  @Override
+  public void baselineImpact() {
+    var backwardTrace = getBackwardTrace();
+    Map<ImpactType, Optional<String>> prevImpact = null;
+    var prevElem = getForwardTrace().stream()
+      .filter(t -> t instanceof PLGSNArgumentElement)
+      .map(PLGSNArgumentElement.class::cast)
+      .findFirst();
+    if (prevElem.isPresent()) {
+      var prevImpact2 = prevElem.get().getImpact();
+      if (prevImpact2.values().stream().anyMatch(pc -> pc.isPresent())) {
+        prevImpact = prevImpact2;
+      }
+    }
+    Map<ImpactType, Optional<String>> impactTypes;
+    if (backwardTrace.get(0).isEmpty()) { // leaf
+      switch(this.impacted.getType()) {
+        case EClass e when e.getEAllSuperTypes().stream().anyMatch(s -> s.getName().equals("Contextual")) -> {
+          impactTypes = Map.of(
+            ImpactType.REUSE,   Optional.of(PLGSNChangeStep.plReasoner.getTrueLiteral()),
+            ImpactType.RECHECK, Optional.empty(),
+            ImpactType.REVISE,  Optional.empty());
+        }
+        default -> {
+          //TODO add checkSAT api!
+          var check = PLGSNChangeStep.plReasoner.checkConsistency(PLGSNChangeStep.phiDelta,
+                                                                  Set.of(this.impacted.getPresenceCondition()));
+          if (check) {
+            impactTypes = Map.of(
+              ImpactType.REUSE,   Optional.of(PLGSNChangeStep.plReasoner.not(PLGSNChangeStep.phiDelta)),
+              ImpactType.RECHECK, Optional.of(PLGSNChangeStep.phiDelta),
+              ImpactType.REVISE,  Optional.empty());
+          }
+          else {
+            impactTypes = Map.of(
+              ImpactType.REUSE,   Optional.of(PLGSNChangeStep.plReasoner.getTrueLiteral()),
+              ImpactType.RECHECK, Optional.empty(),
+              ImpactType.REVISE,  Optional.empty());
+          }
+        }
+      }
+    }
+    else { // bottom up impact
+      impactTypes = max(
+        backwardTrace.get(0).stream().map(s -> s.getImpacted().getImpact()).collect((Collectors.toList())));
+    }
+    if (prevImpact != null) { // top down impact
+      impactTypes = max(List.of(prevImpact, impactTypes));
+    }
+    this.impacted.setImpact(impactTypes);
+  }
+
+  @Override
+  public void impact() throws Exception {
+    // stop conditions: impacted or its template already in trace
+    if (this.forwardTrace.contains(this.impacted)) {
+      return;
+    }
+    var templates = this.impacted.getReference(PLGSNChangeStep.GSN.getArgumentElement_Template());
+    if (!templates.isEmpty() && this.forwardTrace.contains(templates.get(0))) {
+      return;
+    }
+    // separate syntactic vs semantic (template) behavior
+    var nextSteps = (templates.isEmpty()) ? nextSteps() : ((PLGSNTemplate) templates.get(0)).nextImpactSteps(this);
+    getBackwardTrace().add(nextSteps);
+    for (var nextStep : nextSteps) {
+      nextStep.impact();
+    }
+    if (templates.isEmpty()) {
+      baselineImpact();
+    }
+    else {
+      ((PLGSNTemplate) templates.get(0)).impact(this);
+    }
+  }
+
+  @Override
+  public void repair() throws Exception {
+    // stop condition: already in trace
+    if (this.forwardTrace.contains(this.impacted)) {
+      return;
+    }
+    // separate syntactic vs semantic (template) behavior
+    var templates = this.impacted.getReference(PLGSNChangeStep.GSN.getArgumentElement_Template());
+    var nextSteps = (templates.isEmpty()) ? nextSteps() : ((PLGSNTemplate) templates.get(0)).repair(this);
+    for (var nextStep : nextSteps) {
+      nextStep.repair();
+    }
+  }
+
+  public static Map<ImpactType, Optional<String>> max(List<Map<ImpactType, Optional<String>>> impacts) {
     String pcReuse = null, pcRevise = null;
     for (var i = 0; i < impacts.size(); i++) {
       var dependencyImpact = impacts.get(i);
@@ -199,93 +289,6 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
                             Optional.of(pcRevise) : Optional.<String>empty());
 
     return max;
-  }
-
-  @Override
-  public void baselineImpact(List<? extends ChangeStep<PLGSNArgumentElement>> dependencySteps) {
-    Map<ImpactType, Optional<String>> prevImpact = null;
-    var prevElem = getTrace().stream()
-      .filter(t -> t instanceof PLGSNArgumentElement)
-      .map(PLGSNArgumentElement.class::cast)
-      .findFirst();
-    if (prevElem.isPresent()) {
-      var prevImpact2 = prevElem.get().getImpact();
-      if (prevImpact2.values().stream().anyMatch(pc -> pc.isPresent())) {
-        prevImpact = prevImpact2;
-      }
-    }
-    Map<ImpactType, Optional<String>> impact;
-    if (dependencySteps.isEmpty()) { // leaf
-      switch(this.impacted.getType()) {
-        case EClass e when e.getEAllSuperTypes().stream().anyMatch(s -> s.getName().equals("Contextual")) -> {
-          impact = Map.of(
-            ImpactType.REUSE,   Optional.of(PLGSNChangeStep.plReasoner.getTrueLiteral()),
-            ImpactType.RECHECK, Optional.empty(),
-            ImpactType.REVISE,  Optional.empty());
-        }
-        default -> {
-          //TODO add checkSAT api!
-          var check = PLGSNChangeStep.plReasoner.checkConsistency(PLGSNChangeStep.phiDelta,
-                                                                  Set.of(this.impacted.getPresenceCondition()));
-          if (check) {
-            impact = Map.of(
-              ImpactType.REUSE,   Optional.of(PLGSNChangeStep.plReasoner.not(PLGSNChangeStep.phiDelta)),
-              ImpactType.RECHECK, Optional.of(PLGSNChangeStep.phiDelta),
-              ImpactType.REVISE,  Optional.empty());
-          }
-          else {
-            impact = Map.of(
-              ImpactType.REUSE,   Optional.of(PLGSNChangeStep.plReasoner.getTrueLiteral()),
-              ImpactType.RECHECK, Optional.empty(),
-              ImpactType.REVISE,  Optional.empty());
-          }
-        }
-      }
-    }
-    else { // bottom up impact
-      impact = max(dependencySteps.stream().map(s -> s.getImpacted().getImpact()).collect((Collectors.toList())));
-    }
-    if (prevImpact != null) { // top down impact
-      impact = max(List.of(prevImpact, impact));
-    }
-    this.impacted.setImpact(impact);
-  }
-
-  @Override
-  public void impact() throws Exception {
-    // stop conditions: impacted or its template already in trace
-    if (this.trace.contains(this.impacted)) {
-      return;
-    }
-    var templates = this.impacted.getReference(PLGSNChangeStep.GSN.getArgumentElement_Template());
-    if (!templates.isEmpty() && this.trace.contains(templates.get(0))) {
-      return;
-    }
-    // separate syntactic vs semantic (template) behavior
-    var nextSteps = (templates.isEmpty()) ? nextSteps() : ((PLGSNTemplate) templates.get(0)).nextImpactSteps(this);
-    for (var nextStep : nextSteps) {
-      nextStep.impact();
-    }
-    if (templates.isEmpty()) {
-      baselineImpact(nextSteps);
-    }
-    else {
-      ((PLGSNTemplate) templates.get(0)).impact(this, ECollections.asEList(nextSteps));
-    }
-  }
-
-  @Override
-  public void repair() throws Exception {
-    // stop condition: already in trace
-    if (this.trace.contains(this.impacted)) {
-      return;
-    }
-    // separate syntactic vs semantic (template) behavior
-    var templates = this.impacted.getReference(PLGSNChangeStep.GSN.getArgumentElement_Template());
-    var nextSteps = (templates.isEmpty()) ? nextSteps() : ((PLGSNTemplate) templates.get(0)).repair(this);
-    for (var nextStep : nextSteps) {
-      nextStep.repair();
-    }
   }
 
   public static void setAllImpacts(PLGSNTemplate plTemplate, ImpactType type) {

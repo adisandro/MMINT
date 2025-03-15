@@ -130,8 +130,8 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
    * @generated NOT
    */
   @Override
-  public void impact(PLGSNChangeStep step, EList<PLGSNChangeStep> dependencySteps) throws Exception {
-    step.baselineImpact(dependencySteps);
+  public void impact(PLGSNChangeStep step) throws Exception {
+    step.baselineImpact();
   }
 
   /**
@@ -184,9 +184,9 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
-      case PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNCHANGESTEP_ELIST:
+      case PLGSNPackage.PLGSN_TEMPLATE___IMPACT__PLGSNCHANGESTEP:
         try {
-          impact((PLGSNChangeStep)arguments.get(0), (EList<PLGSNChangeStep>)arguments.get(1));
+          impact((PLGSNChangeStep)arguments.get(0));
           return null;
         }
         catch (Throwable throwable) {

@@ -127,10 +127,10 @@ public interface Template extends EObject {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.modelepedia.gsn.GSNChangeStep" stepRequired="true" dependencyStepsDataType="edu.toronto.cs.se.modelepedia.gsn.GSNChangeStep" dependencyStepsMany="true"
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.modelepedia.gsn.GSNChangeStep" stepRequired="true"
    * @generated
    */
-  void impact(GSNChangeStep step, EList<GSNChangeStep> dependencySteps) throws Exception;
+  void impact(GSNChangeStep step) throws Exception;
 
   /**
    * <!-- begin-user-doc -->

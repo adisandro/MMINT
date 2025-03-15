@@ -336,9 +336,9 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
    * @generated NOT
    */
   @Override
-  public void impact(GSNChangeStep step, EList<GSNChangeStep> dependencySteps) throws Exception {
+  public void impact(GSNChangeStep step) throws Exception {
     var analysis = getAnalysis();
-    analysis.impact(this, step, dependencySteps);
+    analysis.impact(this, step);
   }
 
   /**

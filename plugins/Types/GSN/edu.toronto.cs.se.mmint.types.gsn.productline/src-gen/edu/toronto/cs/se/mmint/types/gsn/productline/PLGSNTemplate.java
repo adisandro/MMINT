@@ -59,10 +59,10 @@ public interface PLGSNTemplate extends edu.toronto.cs.se.mmint.productline.Class
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNChangeStep" stepRequired="true" dependencyStepsDataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNChangeStep" dependencyStepsMany="true"
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNChangeStep" stepRequired="true"
    * @generated
    */
-  void impact(PLGSNChangeStep step, EList<PLGSNChangeStep> dependencySteps) throws Exception;
+  void impact(PLGSNChangeStep step) throws Exception;
 
   /**
    * <!-- begin-user-doc -->

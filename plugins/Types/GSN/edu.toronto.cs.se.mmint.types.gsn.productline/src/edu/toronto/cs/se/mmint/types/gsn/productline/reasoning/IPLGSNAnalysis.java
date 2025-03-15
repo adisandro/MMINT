@@ -27,9 +27,8 @@ public interface IPLGSNAnalysis extends IAnalysis {
                                                throws Exception {
     return step.nextSteps();
   }
-  default void impact(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step, List<PLGSNChangeStep> dependencySteps)
-                     throws Exception {
-    step.baselineImpact(dependencySteps);
+  default void impact(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step) throws Exception {
+    step.baselineImpact();
   }
   default List<PLGSNChangeStep> repair(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step) throws Exception {
     return step.nextSteps();
