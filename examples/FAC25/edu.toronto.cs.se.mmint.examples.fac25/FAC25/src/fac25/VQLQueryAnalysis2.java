@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -52,8 +53,8 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
     var queryResults = querySpec.evaluateQuery(rootModelObj, List.of());
     // compare results
     var results = getPLResults(queryResults);
-    var dataKey = getClass().getName() + "_RESULTS_" + modelPath + "_" + queryFilePath + "_" + query;
-    ChangeStep.getProperties().put(dataKey, results);
+    var propsKey = getClass().getName() + "_RESULTS_" + modelPath + "_" + queryFilePath + "_" + query;
+    ChangeStep.getProperties().put(propsKey, results);
     var resultCtx = templateElems.get("resultCtx");
     var oldResults = resultCtx.getAttribute(this.gsn.getArgumentElement_Description()).get(0).lines()
       .filter(l -> l.startsWith("'"))
@@ -79,7 +80,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
         var templateTrace = new LinkedHashSet<EObject>();
         templateTrace.add(plTemplate);
         templateTrace.add(step.getImpacted());
-        templateTrace.addAll(step.getTrace());
+        templateTrace.addAll(step.getForwardTrace());
         var templateStep = new PLGSNChangeStep(resultGoal, templateTrace);
         nextSteps.addAll(templateStep.nextSupporters());
         o++;
@@ -94,7 +95,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
           var templateTrace = new LinkedHashSet<EObject>();
           templateTrace.add(plTemplate);
           templateTrace.add(step.getImpacted());
-          templateTrace.addAll(step.getTrace());
+          templateTrace.addAll(step.getForwardTrace());
           var templateStep = new PLGSNChangeStep(resultGoal, templateTrace);
           nextSteps.addAll(templateStep.nextSupporters());
           o++;
@@ -107,31 +108,36 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
         n++;
       }
     }
-    dataKey = getClass().getName() + "_REVISE_" + modelPath + "_" + queryFilePath + "_" + query;
-    ChangeStep.getProperties().put(dataKey, deletedResults || addedResults);
+    propsKey = getClass().getName() + "_REVISE_" + modelPath + "_" + queryFilePath + "_" + query;
+    ChangeStep.getProperties().put(propsKey, deletedResults || addedResults);
 
     return nextSteps;
   }
 
   @Override
-  public void impact(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step, List<PLGSNChangeStep> dependencySteps)
-                    throws Exception {
+  public void impact(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step) throws Exception {
     var plReasoner = ((ProductLine) plTemplate.eContainer()).getReasoner();
     var templateElems = plTemplate.getElementsById();
+    // combine new query results with downstream bottom up propagation
     var filesCtx = templateElems.get("filesCtx");
     var paths = filesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
     var queryFilePath = paths.get(0);
     var modelPath = paths.get(1);
     var query = filesCtx.getAttribute(this.gsn.getArgumentElement_Description()).get(0).split("'")[1];
-    var dataKey = getClass().getName() + "_REVISE_" + modelPath + "_" + queryFilePath + "_" + query;
-    var revise = (Boolean) ChangeStep.getProperties().get(dataKey);
-    dependencySteps.stream().map(s -> s.getImpacted().getImpact());//TODO continue
-    var impactType = (revise) ? ImpactType.REVISE : ImpactType.REUSE; //TODO calculate from downstream
-    templateElems.get("resultStrategy").setImpact(impactType, plReasoner.getTrueLiteral());
-    templateElems.get("scenarioGoal").setImpact(impactType, plReasoner.getTrueLiteral());
-    templateElems.get("queryStrategy").setImpact(impactType, plReasoner.getTrueLiteral());
-    templateElems.get("safetyGoal").setImpact(impactType, plReasoner.getTrueLiteral());
+    var propsKey = getClass().getName() + "_REVISE_" + modelPath + "_" + queryFilePath + "_" + query;
+    var revise = (Boolean) ChangeStep.getProperties().get(propsKey);
+    var impactTypes = (revise) ?
+      // downstream is irrelevant
+      Map.of(ImpactType.REUSE,   Optional.<String>empty(),
+             ImpactType.RECHECK, Optional.<String>empty(),
+             ImpactType.REVISE,  Optional.of(plReasoner.getTrueLiteral())) :
+      // bottom up impact
+      PLGSNChangeStep.max(
+        step.getBackwardTrace().get(0).stream().map(s -> s.getImpacted().getImpact()).collect((Collectors.toList())));
+    templateElems.get("scenarioGoal").setImpact(impactTypes);
+    templateElems.get("safetyGoal").setImpact(impactTypes);
     if (revise) {
+      templateElems.get("resultStrategy").setImpact(ImpactType.REVISE, plReasoner.getTrueLiteral());
       templateElems.get("resultCtx").setImpact(ImpactType.REVISE, plReasoner.getTrueLiteral());
     }
     // reuse everything else in the template
@@ -151,8 +157,8 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
     var queryFilePath = paths.get(0);
     var modelPath = paths.get(1);
     var query = filesCtx.getAttribute(this.gsn.getArgumentElement_Description()).get(0).split("'")[1];
-    var dataKey = getClass().getName() + "_RESULTS_" + modelPath + "_" + queryFilePath + "_" + query;
-    var results = (List<Map.Entry<String, String>>) ChangeStep.getProperties().get(dataKey);
+    var propsKey = getClass().getName() + "_RESULTS_" + modelPath + "_" + queryFilePath + "_" + query;
+    var results = (List<Map.Entry<String, String>>) ChangeStep.getProperties().get(propsKey);
     var resultCtxDesc = (results.isEmpty()) ? "No results" : "Query results:";
     // compare results
     var safetyGoal = templateElems.get("safetyGoal");
@@ -192,7 +198,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
         var templateTrace = new LinkedHashSet<EObject>();
         templateTrace.add(plTemplate);
         templateTrace.add(step.getImpacted());
-        templateTrace.addAll(step.getTrace());
+        templateTrace.addAll(step.getForwardTrace());
         var templateStep = new PLGSNChangeStep(resultGoal, templateTrace);
         nextSteps.addAll(templateStep.nextSupporters());
         o++;

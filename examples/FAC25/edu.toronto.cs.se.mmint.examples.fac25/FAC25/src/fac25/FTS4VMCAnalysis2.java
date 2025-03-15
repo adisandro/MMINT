@@ -32,16 +32,14 @@ public class FTS4VMCAnalysis2 extends FTS4VMCAnalysis {
   }
 
   @Override
-  public void impact(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step, List<PLGSNChangeStep> dependencySteps)
-                    throws Exception {
+  public void impact(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step) throws Exception {
     var plReasoner = ((ProductLine) plTemplate.eContainer()).getReasoner();
     var templateElems = plTemplate.getElementsById();
     var safetyGoal = templateElems.get("safetyGoal");
     if (safetyGoal == null) {
-      safetyGoal = (PLGSNArgumentElement) step.getTrace().stream()
-        .filter(t -> t instanceof PLGSNArgumentElement)
-        .findFirst()
-        .get();
+      safetyGoal = (PLGSNArgumentElement) templateElems.get("mcStrategy")
+        .getReference(this.gsn.getSupporter_Supports()).get(0)
+        .getReference(this.gsn.getSupportedBy_Source()).get(0);
     }
     var prevImpact = safetyGoal.getImpact();
     var satGoal = templateElems.get("satGoal");
@@ -54,8 +52,8 @@ public class FTS4VMCAnalysis2 extends FTS4VMCAnalysis {
       var modelPath = paths.get(1);
       var resultPath = paths.get(2);
       var result = runFTS4VMC(modelPath, propertyPath);
-      var dataKey = getClass().getName() + "_" + modelPath + "_" + propertyPath + "_" + resultPath;
-      ChangeStep.getProperties().put(dataKey, result);
+      var propsKey = getClass().getName() + "_" + modelPath + "_" + propertyPath + "_" + resultPath;
+      ChangeStep.getProperties().put(propsKey, result);
       var holds = result.contains("TRUE");
       var oldHolds = satGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).contains("holds");
       if (holds != oldHolds) {
@@ -68,7 +66,6 @@ public class FTS4VMCAnalysis2 extends FTS4VMCAnalysis {
     }
     satGoal.setImpact(impactType, plReasoner.getTrueLiteral());
     templateElems.get("satSolution").setImpact(impactType, plReasoner.getTrueLiteral());
-    templateElems.get("mcStrategy").setImpact(impactType, plReasoner.getTrueLiteral());
     safetyGoal.setImpact(impactType, plReasoner.getTrueLiteral());
     // reuse everything else in the template
     PLGSNChangeStep.setAllImpacts(plTemplate, ImpactType.REUSE);
@@ -77,6 +74,6 @@ public class FTS4VMCAnalysis2 extends FTS4VMCAnalysis {
   @Override
   public List<PLGSNChangeStep> repair(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step) throws Exception {
     return super.repair(plTemplate, step);
-    //TODO nothing to be done, apart from updating holds/does not hold
+    //TODO nothing to be done, apart from updating holds/does not hold and storing result
   }
 }
