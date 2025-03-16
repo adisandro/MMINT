@@ -93,7 +93,7 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
     };
     // check for top down impact and propagate if present when not leaf
     if (!nextSteps.isEmpty()) {
-      var prevElem = getForwardTrace().stream()
+      var prevElem = this.forwardTrace.stream()
         .filter(t -> t instanceof ArgumentElement)
         .map(ArgumentElement.class::cast)
         .findFirst();
@@ -109,9 +109,8 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
 
   @Override
   public void baselineImpact() {
-    var backwardTrace = getBackwardTrace();
     ImpactType prevImpactType = null;
-    var prevElem = getForwardTrace().stream()
+    var prevElem = this.forwardTrace.stream()
       .filter(t -> t instanceof ArgumentElement)
       .map(ArgumentElement.class::cast)
       .findFirst();
@@ -122,14 +121,14 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
       }
     }
     ImpactType impactType;
-    if (backwardTrace.get(0).isEmpty()) { // leaf
+    if (this.backwardTrace.get(0).isEmpty()) { // leaf
       impactType = switch(this.impacted) {
         case Contextual _ -> ImpactType.REUSE;
         default           -> ImpactType.RECHECK;
       };
     }
     else { // bottom up impact
-      impactType = backwardTrace.get(0).stream()
+      impactType = this.backwardTrace.get(0).stream()
         .map(s -> s.getImpacted().getStatus().getType())
         .max(Comparator.comparing(ImpactType::getValue))
         .get();
@@ -152,7 +151,7 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
     }
     // separate syntactic vs semantic (template) behavior
     var nextSteps = (template == null) ? nextSteps() : template.nextImpactSteps(this);
-    getBackwardTrace().add(nextSteps);
+    this.backwardTrace.add(nextSteps);
     for (var nextStep : nextSteps) {
       nextStep.impact();
     }

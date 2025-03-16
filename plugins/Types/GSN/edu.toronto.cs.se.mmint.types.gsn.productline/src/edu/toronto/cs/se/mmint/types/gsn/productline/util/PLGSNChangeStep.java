@@ -45,7 +45,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
   private static String phiDelta;
   private static String phiPrime;
   private static IPLFeaturesTrait plReasoner;
-  private static String phiOld;
+  private static String phiKeep;
   private static String phiNew;
   static {
     GSN = GSNPackage.eINSTANCE;
@@ -59,7 +59,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     PLGSNChangeStep.phiDelta = "";
     PLGSNChangeStep.phiPrime = "";
     PLGSNChangeStep.plReasoner = null;
-    PLGSNChangeStep.phiOld = "";
+    PLGSNChangeStep.phiKeep = "";
     PLGSNChangeStep.phiNew = "";
   }
 
@@ -81,21 +81,22 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     PLGSNChangeStep.newFeature.ifPresentOrElse(
       f -> { // the presence of newFeature implies the presence of oldFeaturesConstraint
         var phi = PLGSNChangeStep.oldFeaturesConstraint.get();
-        PLGSNChangeStep.phiOld = PLGSNChangeStep.plReasoner.simplify(
+        PLGSNChangeStep.phiKeep = PLGSNChangeStep.plReasoner.simplify(
           PLGSNChangeStep.plReasoner.and(phi, PLGSNChangeStep.phiPrime, PLGSNChangeStep.plReasoner.not(f)));
         PLGSNChangeStep.phiNew = PLGSNChangeStep.plReasoner.simplify(
-          PLGSNChangeStep.plReasoner.and(PLGSNChangeStep.plReasoner.not(phi), PLGSNChangeStep.phiPrime, f));;
+          PLGSNChangeStep.plReasoner.and(PLGSNChangeStep.plReasoner.or(PLGSNChangeStep.plReasoner.not(phi), f),
+                                         PLGSNChangeStep.phiPrime));
       },
       () -> {
         PLGSNChangeStep.oldFeaturesConstraint.ifPresentOrElse(
           phi -> {
-            PLGSNChangeStep.phiOld = PLGSNChangeStep.plReasoner.simplify(
+            PLGSNChangeStep.phiKeep = PLGSNChangeStep.plReasoner.simplify(
               PLGSNChangeStep.plReasoner.and(phi, PLGSNChangeStep.phiPrime));
             PLGSNChangeStep.phiNew = PLGSNChangeStep.plReasoner.simplify(
               PLGSNChangeStep.plReasoner.and(PLGSNChangeStep.plReasoner.not(phi), PLGSNChangeStep.phiPrime));
           },
           ()  -> {
-            PLGSNChangeStep.phiOld = PLGSNChangeStep.phiPrime;
+            PLGSNChangeStep.phiKeep = PLGSNChangeStep.phiPrime;
             PLGSNChangeStep.phiNew = PLGSNChangeStep.plReasoner.getFalseLiteral();
           });
       });
@@ -163,7 +164,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     }
     // check for top down impact and propagate if present when not leaf
     if (!nextSteps.isEmpty()) {
-      var prevElem = getForwardTrace().stream()
+      var prevElem = this.forwardTrace.stream()
         .filter(t -> t instanceof PLGSNArgumentElement)
         .map(PLGSNArgumentElement.class::cast)
         .findFirst();
@@ -179,9 +180,8 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
 
   @Override
   public void baselineImpact() {
-    var backwardTrace = getBackwardTrace();
     Map<ImpactType, Optional<String>> prevImpact = null;
-    var prevElem = getForwardTrace().stream()
+    var prevElem = this.forwardTrace.stream()
       .filter(t -> t instanceof PLGSNArgumentElement)
       .map(PLGSNArgumentElement.class::cast)
       .findFirst();
@@ -192,7 +192,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
       }
     }
     Map<ImpactType, Optional<String>> impactTypes;
-    if (backwardTrace.get(0).isEmpty()) { // leaf
+    if (this.backwardTrace.get(0).isEmpty()) { // leaf
       switch(this.impacted.getType()) {
         case EClass e when e.getEAllSuperTypes().stream().anyMatch(s -> s.getName().equals("Contextual")) -> {
           impactTypes = Map.of(
@@ -221,7 +221,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     }
     else { // bottom up impact
       impactTypes = max(
-        backwardTrace.get(0).stream().map(s -> s.getImpacted().getImpact()).collect((Collectors.toList())));
+        this.backwardTrace.get(0).stream().map(s -> s.getImpacted().getImpact()).collect(Collectors.toList()));
     }
     if (prevImpact != null) { // top down impact
       impactTypes = max(List.of(prevImpact, impactTypes));
@@ -241,7 +241,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     }
     // separate syntactic vs semantic (template) behavior
     var nextSteps = (templates.isEmpty()) ? nextSteps() : ((PLGSNTemplate) templates.get(0)).nextImpactSteps(this);
-    getBackwardTrace().add(nextSteps);
+    this.backwardTrace.add(nextSteps);
     for (var nextStep : nextSteps) {
       nextStep.impact();
     }
