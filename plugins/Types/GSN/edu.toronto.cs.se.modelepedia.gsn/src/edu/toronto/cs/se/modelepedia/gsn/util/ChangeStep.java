@@ -14,8 +14,10 @@ package edu.toronto.cs.se.modelepedia.gsn.util;
 
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 
@@ -28,37 +30,38 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 public abstract class ChangeStep<T> {
 
   public final static String PROPS_NAME = "Change";
-  public final static String RUN_EVD_ANALYSES_KEY = "runEvdAnalyses";
-  protected final static Properties properties = new Properties();
-  protected static boolean runEvdAnalyses;
+  public final static String RUN_EVIDENCE_ANALYSES_KEY = "runEvidenceAnalyses";
+  public final static boolean RUN_EVIDENCE_ANALYSES_DEFAULT = false;
+  protected final static Map<String, Object> data = new HashMap<>();
   protected T impacted;
   protected LinkedHashSet<EObject> forwardTrace;
   protected List<List<? extends ChangeStep<T>>> backwardTrace;
 
-  public static void resetProperties() {
-    ChangeStep.properties.clear();
-    ChangeStep.runEvdAnalyses = false;
+  public static void resetData() {
+    ChangeStep.data.clear();
   }
 
-  public static Properties initProperties(EObject modelObj) {
+  public static Properties initData(EObject modelObj) {
     // load new properties
-    resetProperties();
+    resetData();
     var propsPath = FileUtils.prependWorkspacePath(
       FileUtils.replaceLastSegmentInPath(MIDRegistry.getModelUri(modelObj),
                                          ChangeStep.PROPS_NAME + MIDOperatorIOUtils.PROPERTIES_SUFFIX));
+    var props = new Properties();
     try {
-      ChangeStep.properties.load(new FileInputStream(propsPath));
+      props.load(new FileInputStream(propsPath));
     }
     catch (Exception e) {}
     // read into vars
-    ChangeStep.runEvdAnalyses = MIDOperatorIOUtils.getOptionalBoolProperty(ChangeStep.properties,
-                                                                           ChangeStep.RUN_EVD_ANALYSES_KEY, false);
+    var runEvdAnalyses = MIDOperatorIOUtils.getOptionalBoolProperty(props, ChangeStep.RUN_EVIDENCE_ANALYSES_KEY,
+                                                                    ChangeStep.RUN_EVIDENCE_ANALYSES_DEFAULT);
+    ChangeStep.data.put(ChangeStep.RUN_EVIDENCE_ANALYSES_KEY, runEvdAnalyses);
 
-    return ChangeStep.properties;
+    return props;
   }
 
-  public static Properties getProperties() {
-    return ChangeStep.properties;
+  public static Map<String, Object> getData() {
+    return ChangeStep.data;
   }
 
   public ChangeStep(T impacted, LinkedHashSet<EObject> forwardTrace) {

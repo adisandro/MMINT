@@ -67,7 +67,7 @@ public class ResetImpact extends AbstractExternalJavaAction {
         }
         elem.setStatus(null);
       }
-      ChangeStep.resetProperties();
+      ChangeStep.resetData();
     }
   }
 }

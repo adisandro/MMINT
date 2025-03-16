@@ -65,7 +65,7 @@ public class ChangeImpact extends AbstractExternalJavaAction {
     @Override
     protected void doExecute() {
       try {
-        ChangeStep.initProperties(this.modelObjs.get(0));
+        ChangeStep.initData(this.modelObjs.get(0));
         for (var modelObj : this.modelObjs) {
           var startStep = new GSNChangeStep(modelObj);
           startStep.impact();

@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
@@ -123,21 +124,22 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
   @Override
   public void setImpact(Map<ImpactType, Optional<String>> impactTypes) {
     if (impactTypes.size() != 3) {
-      throw new IllegalArgumentException("All 3 impact types must be set");
+      throw new IllegalArgumentException("All 3 impact types must be passed");
     }
+    var addImpactTypes = new HashSet<>(ImpactType.VALUES);
     getStreamOfReference(GSNPackage.eINSTANCE.getArgumentElement_Status())
       .collect(Collectors.toList())
       .forEach(impact -> {
         var impactType = ImpactType.valueOf(impact.getAttribute(GSNPackage.eINSTANCE.getImpactAnnotation_Type()).get(0));
         impactTypes.get(impactType).ifPresentOrElse(pc -> impact.setPresenceCondition(pc), () -> impact.delete());
-        impactTypes.remove(impactType);
+        addImpactTypes.remove(impactType);
       });
-    impactTypes.forEach((impactType, action) -> action.ifPresent(pc -> {
+    addImpactTypes.forEach(t -> impactTypes.get(t).ifPresent(pc -> {
       var c = PLFactory.eINSTANCE.createClass();
       c.setPresenceCondition(pc);
       c.setType(GSNPackage.eINSTANCE.getImpactAnnotation());
       getProductLine().getClasses().add(c);
-      c.addAttribute(GSNPackage.eINSTANCE.getImpactAnnotation_Type(), impactType.toString());
+      c.addAttribute(GSNPackage.eINSTANCE.getImpactAnnotation_Type(), t.toString());
       addReference(GSNPackage.eINSTANCE.getArgumentElement_Status(), c);
     }));
   }

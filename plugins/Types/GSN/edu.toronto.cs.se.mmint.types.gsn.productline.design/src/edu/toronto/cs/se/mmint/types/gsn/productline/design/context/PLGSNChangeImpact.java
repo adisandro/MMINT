@@ -66,7 +66,7 @@ public class PLGSNChangeImpact extends AbstractExternalJavaAction {
     @Override
     protected void doExecute() {
       try {
-        PLGSNChangeStep.initProperties(this.plModelObjs.get(0));
+        PLGSNChangeStep.initData(this.plModelObjs.get(0));
         for (var plModelObj : this.plModelObjs) {
           var startStep = new PLGSNChangeStep(plModelObj);
           startStep.impact();

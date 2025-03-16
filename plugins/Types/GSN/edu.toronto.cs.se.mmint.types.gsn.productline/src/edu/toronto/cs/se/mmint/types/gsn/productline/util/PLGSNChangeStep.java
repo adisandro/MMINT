@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
@@ -37,80 +38,75 @@ import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep;
 public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
 
   public final static String OLD_FEATURES_CONSTRAINT_KEY = "oldFeaturesConstraint";
-  public final static String NEW_FEATURE_KEY = "newFeature";
-  public final static String PHI_DELTA_KEY = "phiDelta";
+  public final static @Nullable String OLD_FEATURES_CONSTRAINT_DEFAULT = null;
   public final static String NEW_FEATURES_CONSTRAINT_KEY = "newFeaturesConstraint";
-  private final static GSNPackage GSN;
-  private static Optional<String> oldFeaturesConstraint;
-  private static Optional<String> newFeature;
-  private static String phiDelta;
-  private static String phiPrime;
-  private static IPLFeaturesTrait plReasoner;
-  private static String phiKeep;
-  private static String phiNew;
-  static {
-    GSN = GSNPackage.eINSTANCE;
-    resetProperties();
-  }
+  public final static String NEW_FEATURE_KEY = "newFeature";
+  public final static @Nullable String NEW_FEATURE_DEFAULT = null;
+  public final static String PHI_DELTA_KEY = "phiDelta";
+  public final static String PHI_KEEP_KEY = "phiKeep";
+  public final static String PHI_NEW_KEY = "phiNew";
+  private final static GSNPackage GSN = GSNPackage.eINSTANCE;
+  private IPLFeaturesTrait plReasoner;
 
-  public static void resetProperties() {
-    ChangeStep.resetProperties();
-    PLGSNChangeStep.oldFeaturesConstraint = Optional.empty();
-    PLGSNChangeStep.newFeature = Optional.empty();
-    PLGSNChangeStep.phiDelta = "";
-    PLGSNChangeStep.phiPrime = "";
-    PLGSNChangeStep.plReasoner = null;
-    PLGSNChangeStep.phiKeep = "";
-    PLGSNChangeStep.phiNew = "";
-  }
-
-  public static Properties initProperties(PLGSNArgumentElement plModelObj) throws MMINTException {
+  public static Properties initData(PLGSNArgumentElement plModelObj) throws MMINTException {
     // load new properties
-    PLGSNChangeStep.resetProperties();
-    ChangeStep.initProperties(plModelObj);
+    ChangeStep.resetData();
+    var props = ChangeStep.initData(plModelObj);
     // read into vars
-    PLGSNChangeStep.oldFeaturesConstraint = Optional.ofNullable(
-      MIDOperatorIOUtils.getOptionalStringProperty(ChangeStep.properties, PLGSNChangeStep.OLD_FEATURES_CONSTRAINT_KEY,
-                                                   null));
-    PLGSNChangeStep.newFeature = Optional.ofNullable(
-      MIDOperatorIOUtils.getOptionalStringProperty(ChangeStep.properties, PLGSNChangeStep.NEW_FEATURE_KEY, null));
-    PLGSNChangeStep.phiDelta = MIDOperatorIOUtils.getStringProperty(ChangeStep.properties,
-                                                                    PLGSNChangeStep.PHI_DELTA_KEY);
-    PLGSNChangeStep.phiPrime = MIDOperatorIOUtils.getStringProperty(ChangeStep.properties,
-                                                                    PLGSNChangeStep.NEW_FEATURES_CONSTRAINT_KEY);
-    PLGSNChangeStep.plReasoner = plModelObj.getProductLine().getReasoner();
-    PLGSNChangeStep.newFeature.ifPresentOrElse(
-      f -> { // the presence of newFeature implies the presence of oldFeaturesConstraint
-        var phi = PLGSNChangeStep.oldFeaturesConstraint.get();
-        PLGSNChangeStep.phiKeep = PLGSNChangeStep.plReasoner.simplify(
-          PLGSNChangeStep.plReasoner.and(phi, PLGSNChangeStep.phiPrime, PLGSNChangeStep.plReasoner.not(f)));
-        PLGSNChangeStep.phiNew = PLGSNChangeStep.plReasoner.simplify(
-          PLGSNChangeStep.plReasoner.and(PLGSNChangeStep.plReasoner.or(PLGSNChangeStep.plReasoner.not(phi), f),
-                                         PLGSNChangeStep.phiPrime));
-      },
-      () -> {
-        PLGSNChangeStep.oldFeaturesConstraint.ifPresentOrElse(
-          phi -> {
-            PLGSNChangeStep.phiKeep = PLGSNChangeStep.plReasoner.simplify(
-              PLGSNChangeStep.plReasoner.and(phi, PLGSNChangeStep.phiPrime));
-            PLGSNChangeStep.phiNew = PLGSNChangeStep.plReasoner.simplify(
-              PLGSNChangeStep.plReasoner.and(PLGSNChangeStep.plReasoner.not(phi), PLGSNChangeStep.phiPrime));
-          },
-          ()  -> {
-            PLGSNChangeStep.phiKeep = PLGSNChangeStep.phiPrime;
-            PLGSNChangeStep.phiNew = PLGSNChangeStep.plReasoner.getFalseLiteral();
-          });
-      });
+    var phiOpt = Optional.ofNullable(MIDOperatorIOUtils.getOptionalStringProperty(
+      props, PLGSNChangeStep.OLD_FEATURES_CONSTRAINT_KEY, PLGSNChangeStep.OLD_FEATURES_CONSTRAINT_DEFAULT));
+    ChangeStep.data.put(PLGSNChangeStep.OLD_FEATURES_CONSTRAINT_KEY, phiOpt);
+    var phiPrime = MIDOperatorIOUtils.getStringProperty(props, PLGSNChangeStep.NEW_FEATURES_CONSTRAINT_KEY);
+    ChangeStep.data.put(PLGSNChangeStep.NEW_FEATURES_CONSTRAINT_KEY, phiPrime);
+    var fOpt = Optional.ofNullable(MIDOperatorIOUtils.getOptionalStringProperty(
+      props, PLGSNChangeStep.NEW_FEATURE_KEY, PLGSNChangeStep.NEW_FEATURE_DEFAULT));
+    ChangeStep.data.put(PLGSNChangeStep.NEW_FEATURE_KEY, fOpt);
+    var phiDelta = MIDOperatorIOUtils.getStringProperty(props, PLGSNChangeStep.PHI_DELTA_KEY);
+    ChangeStep.data.put(PLGSNChangeStep.PHI_DELTA_KEY, phiDelta);
+    var plReasoner = plModelObj.getProductLine().getReasoner();
+    String phiKeep, phiNew;
+    if (fOpt.isPresent()) {
+      // the presence of newFeature implies the presence of oldFeaturesConstraint
+      var f = fOpt.get();
+      var phi = phiOpt.get();
+      phiKeep = plReasoner.simplify(plReasoner.and(phi, phiPrime, plReasoner.not(f)));
+      phiNew = plReasoner.simplify(plReasoner.and(plReasoner.or(plReasoner.not(phi), f), phiPrime));
+    }
+    else {
+      if (phiOpt.isPresent()) {
+        var phi = phiOpt.get();
+        phiKeep = plReasoner.simplify(plReasoner.and(phi, phiPrime));
+        phiNew = plReasoner.simplify(plReasoner.and(plReasoner.not(phi), phiPrime));
+      }
+      else {
+        phiKeep = phiPrime;
+        phiNew = plReasoner.getFalseLiteral();
+      }
+    }
+    ChangeStep.data.put(PLGSNChangeStep.PHI_KEEP_KEY, phiKeep);
+    ChangeStep.data.put(PLGSNChangeStep.PHI_NEW_KEY, phiNew);
 
-    return ChangeStep.properties;
+    return props;
   }
 
   public PLGSNChangeStep(PLGSNArgumentElement impacted, LinkedHashSet<EObject> forwardTrace) {
     super(impacted, forwardTrace);
+    try {
+      this.plReasoner = impacted.getProductLine().getReasoner();
+    }
+    catch (MMINTException e) {
+      throw new IllegalArgumentException(e);
+    }
   }
 
   public PLGSNChangeStep(PLGSNArgumentElement impacted) {
     super(impacted);
+    try {
+      this.plReasoner = impacted.getProductLine().getReasoner();
+    }
+    catch (MMINTException e) {
+      throw new IllegalArgumentException(e);
+    }
   }
 
   public List<PLGSNChangeStep> nextSupporters() {
@@ -197,23 +193,23 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
       switch(this.impacted.getType()) {
         case EClass e when e.getEAllSuperTypes().stream().anyMatch(s -> s.getName().equals("Contextual")) -> {
           impactTypes = Map.of(
-            ImpactType.REUSE,   Optional.of(PLGSNChangeStep.plReasoner.getTrueLiteral()),
+            ImpactType.REUSE,   Optional.of(this.plReasoner.getTrueLiteral()),
             ImpactType.RECHECK, Optional.empty(),
             ImpactType.REVISE,  Optional.empty());
         }
         default -> {
           //TODO add checkSAT api!
-          var check = PLGSNChangeStep.plReasoner.checkConsistency(PLGSNChangeStep.phiDelta,
-                                                                  Set.of(this.impacted.getPresenceCondition()));
+          var phiDelta = (String) ChangeStep.data.get(PLGSNChangeStep.PHI_DELTA_KEY);
+          var check = this.plReasoner.checkConsistency(phiDelta, Set.of(this.impacted.getPresenceCondition()));
           if (check) {
             impactTypes = Map.of(
-              ImpactType.REUSE,   Optional.of(PLGSNChangeStep.plReasoner.not(PLGSNChangeStep.phiDelta)),
-              ImpactType.RECHECK, Optional.of(PLGSNChangeStep.phiDelta),
+              ImpactType.REUSE,   Optional.of(this.plReasoner.not(phiDelta)),
+              ImpactType.RECHECK, Optional.of(phiDelta),
               ImpactType.REVISE,  Optional.empty());
           }
           else {
             impactTypes = Map.of(
-              ImpactType.REUSE,   Optional.of(PLGSNChangeStep.plReasoner.getTrueLiteral()),
+              ImpactType.REUSE,   Optional.of(this.plReasoner.getTrueLiteral()),
               ImpactType.RECHECK, Optional.empty(),
               ImpactType.REVISE,  Optional.empty());
           }
@@ -222,10 +218,11 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     }
     else { // bottom up impact
       impactTypes = max(
-        this.backwardTrace.get(0).stream().map(s -> s.getImpacted().getImpact()).collect(Collectors.toList()));
+        this.backwardTrace.get(0).stream().map(s -> s.getImpacted().getImpact()).collect(Collectors.toList()),
+        this.plReasoner);
     }
     if (prevImpact != null) { // top down impact
-      impactTypes = max(List.of(prevImpact, impactTypes));
+      impactTypes = max(List.of(prevImpact, impactTypes),this.plReasoner);
     }
     this.impacted.setImpact(impactTypes);
   }
@@ -268,36 +265,36 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     }
   }
 
-  public static Map<ImpactType, Optional<String>> max(List<Map<ImpactType, Optional<String>>> impacts) {
+  public static Map<ImpactType, Optional<String>> max(List<Map<ImpactType, Optional<String>>> impacts,
+                                                      IPLFeaturesTrait plReasoner) {
     String pcReuse = null, pcRevise = null;
     for (var i = 0; i < impacts.size(); i++) {
       var dependencyImpact = impacts.get(i);
-      var pc1 = dependencyImpact.get(ImpactType.REUSE).orElse(PLGSNChangeStep.plReasoner.getFalseLiteral());
-      var pc3 = dependencyImpact.get(ImpactType.REVISE).orElse(PLGSNChangeStep.plReasoner.getFalseLiteral());
-      pcReuse = (i == 0) ? pc1 : PLGSNChangeStep.plReasoner.and(pcReuse, pc1);
-      pcRevise = (i == 0) ? pc3 : PLGSNChangeStep.plReasoner.or(pcRevise, pc3);
+      var pc1 = dependencyImpact.get(ImpactType.REUSE).orElse(plReasoner.getFalseLiteral());
+      var pc3 = dependencyImpact.get(ImpactType.REVISE).orElse(plReasoner.getFalseLiteral());
+      pcReuse = (i == 0) ? pc1 : plReasoner.and(pcReuse, pc1);
+      pcRevise = (i == 0) ? pc3 : plReasoner.or(pcRevise, pc3);
     }
-    pcReuse = PLGSNChangeStep.plReasoner.simplify(pcReuse);
-    pcRevise = PLGSNChangeStep.plReasoner.simplify(pcRevise);
-    var pcRecheck = PLGSNChangeStep.plReasoner.simplify(
-      PLGSNChangeStep.plReasoner.not(PLGSNChangeStep.plReasoner.or(pcReuse, pcRevise)));
-    var max = Map.of(
-      ImpactType.REUSE,   PLGSNChangeStep.plReasoner.checkConsistency(pcReuse, Set.of()) ?
-                            Optional.of(pcReuse) : Optional.<String>empty(),
-      ImpactType.RECHECK, PLGSNChangeStep.plReasoner.checkConsistency(pcRecheck, Set.of()) ?
-                            Optional.of(pcRecheck) : Optional.<String>empty(),
-      ImpactType.REVISE,  PLGSNChangeStep.plReasoner.checkConsistency(pcRevise, Set.of()) ?
-                            Optional.of(pcRevise) : Optional.<String>empty());
+    pcReuse = plReasoner.simplify(pcReuse);
+    pcRevise = plReasoner.simplify(pcRevise);
+    var pcRecheck = plReasoner.simplify(plReasoner.not(plReasoner.or(pcReuse, pcRevise)));
+    var max = Map.of(ImpactType.REUSE,   plReasoner.checkConsistency(pcReuse, Set.of()) ?
+                                           Optional.of(pcReuse) : Optional.<String>empty(),
+                     ImpactType.RECHECK, plReasoner.checkConsistency(pcRecheck, Set.of()) ?
+                                           Optional.of(pcRecheck) : Optional.<String>empty(),
+                     ImpactType.REVISE,  plReasoner.checkConsistency(pcRevise, Set.of()) ?
+                                           Optional.of(pcRevise) : Optional.<String>empty());
 
     return max;
   }
 
-  public static void setAllImpacts(PLGSNTemplate plTemplate, ImpactType type) {
+  public static void setAllImpacts(PLGSNTemplate plTemplate, ImpactType type) throws MMINTException {
+    var plReasoner = plTemplate.getProductLine().getReasoner();
     for (var plElem : plTemplate.getReference(PLGSNChangeStep.GSN.getTemplate_Elements())) {
       if (!plElem.getReference(PLGSNChangeStep.GSN.getArgumentElement_Status()).isEmpty()) {
         continue;
       }
-      ((PLGSNArgumentElement) plElem).setImpact(type, PLGSNChangeStep.plReasoner.getTrueLiteral());
+      ((PLGSNArgumentElement) plElem).setImpact(type, plReasoner.getTrueLiteral());
     }
   }
 
