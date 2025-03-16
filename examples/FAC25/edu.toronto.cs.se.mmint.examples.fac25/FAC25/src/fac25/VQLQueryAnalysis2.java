@@ -27,6 +27,7 @@ import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait.QuerySpec;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNBuilder;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
@@ -126,19 +127,33 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
     var query = filesCtx.getAttribute(this.gsn.getArgumentElement_Description()).get(0).split("'")[1];
     var propsKey = getClass().getName() + "_REVISE_" + modelPath + "_" + queryFilePath + "_" + query;
     var revise = (Boolean) ChangeStep.getProperties().get(propsKey);
-    var impactTypes = (revise) ?
-      // downstream is irrelevant
-      Map.of(ImpactType.REUSE,   Optional.<String>empty(),
-             ImpactType.RECHECK, Optional.<String>empty(),
-             ImpactType.REVISE,  Optional.of(plReasoner.getTrueLiteral())) :
-      // bottom up impact
-      PLGSNChangeStep.max(
-        step.getBackwardTrace().get(0).stream().map(s -> s.getImpacted().getImpact()).collect((Collectors.toList())));
-    templateElems.get("scenarioGoal").setImpact(impactTypes);
-    templateElems.get("safetyGoal").setImpact(impactTypes);
     if (revise) {
+      // downstream is irrelevant
       templateElems.get("resultStrategy").setImpact(ImpactType.REVISE, plReasoner.getTrueLiteral());
       templateElems.get("resultCtx").setImpact(ImpactType.REVISE, plReasoner.getTrueLiteral());
+      templateElems.get("scenarioGoal").setImpact(ImpactType.REVISE, plReasoner.getTrueLiteral());
+      templateElems.get("safetyGoal").setImpact(ImpactType.REVISE, plReasoner.getTrueLiteral());
+    }
+    else {
+      // bottom up impact
+      var trace = step.getBackwardTrace().get(0);
+      List<Map<ImpactType, Optional<String>>> impacts;
+      if (trace.size() == 1 && (
+           trace.get(0).getImpacted().getType().getName().equals("Strategy") ||
+           trace.get(0).getImpacted().getType().getEAllSuperTypes().stream()
+             .anyMatch(s -> s.getName().equals("Strategy")))) {
+        // get supporters of strategy
+        impacts = trace.get(0).getImpacted()
+          .getStreamOfReference(this.gsn.getSupporter_Supports())
+          .map(s -> ((PLGSNArgumentElement) s.getReference(this.gsn.getSupportedBy_Source()).get(0)).getImpact())
+          .collect(Collectors.toList());
+      }
+      else {
+        impacts = trace.stream().map(s -> s.getImpacted().getImpact()).collect(Collectors.toList());
+      }
+      var impactTypes = PLGSNChangeStep.max(impacts);
+      templateElems.get("scenarioGoal").setImpact(impactTypes);
+      templateElems.get("safetyGoal").setImpact(impactTypes);
     }
     // reuse everything else in the template
     PLGSNChangeStep.setAllImpacts(plTemplate, ImpactType.REUSE);
