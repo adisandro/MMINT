@@ -28,13 +28,16 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 public abstract class ChangeStep<T> {
 
   public final static String PROPS_NAME = "Change";
+  public final static String RUN_EVD_ANALYSES_KEY = "runEvdAnalyses";
   protected final static Properties properties = new Properties();
+  protected static boolean runEvdAnalyses;
   protected T impacted;
   protected LinkedHashSet<EObject> forwardTrace;
   protected List<List<? extends ChangeStep<T>>> backwardTrace;
 
   public static void resetProperties() {
     ChangeStep.properties.clear();
+    ChangeStep.runEvdAnalyses = false;
   }
 
   public static Properties initProperties(EObject modelObj) {
@@ -47,6 +50,9 @@ public abstract class ChangeStep<T> {
       ChangeStep.properties.load(new FileInputStream(propsPath));
     }
     catch (Exception e) {}
+    // read into vars
+    ChangeStep.runEvdAnalyses = MIDOperatorIOUtils.getOptionalBoolProperty(ChangeStep.properties,
+                                                                           ChangeStep.RUN_EVD_ANALYSES_KEY, false);
 
     return ChangeStep.properties;
   }

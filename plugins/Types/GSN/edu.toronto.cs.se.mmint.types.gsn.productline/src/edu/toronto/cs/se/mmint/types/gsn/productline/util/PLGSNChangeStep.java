@@ -35,6 +35,7 @@ import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
 import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep;
 
 public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
+
   public final static String OLD_FEATURES_CONSTRAINT_KEY = "oldFeaturesConstraint";
   public final static String NEW_FEATURE_KEY = "newFeature";
   public final static String PHI_DELTA_KEY = "phiDelta";
