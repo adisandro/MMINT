@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
@@ -35,7 +34,6 @@ public class FTS4VMCAnalysis2 extends FTS4VMCAnalysis {
 
   @Override
   public void impact(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step) throws Exception {
-    var plReasoner = ((ProductLine) plTemplate.eContainer()).getReasoner();
     var templateElems = plTemplate.getElementsById();
     var safetyGoal = templateElems.get("safetyGoal");
     if (safetyGoal == null) {
@@ -50,9 +48,7 @@ public class FTS4VMCAnalysis2 extends FTS4VMCAnalysis {
     Map<ImpactType, Optional<String>> impactType;
     if (prevImpact.get(ImpactType.REVISE).isPresent()) {
       // parents should be revised top down, do not re-run model checking but mark to revise
-      impactType = Map.of(ImpactType.REUSE,   Optional.empty(),
-                          ImpactType.RECHECK, Optional.empty(),
-                          ImpactType.REVISE,  Optional.of(plReasoner.getTrueLiteral()));
+      impactType = PLGSNChangeStep.REVISE;
     }
     else if ((boolean) ChangeStep.getData().get(ChangeStep.RUN_EVIDENCE_ANALYSES_KEY)) {
       // re-run model checking
@@ -66,17 +62,11 @@ public class FTS4VMCAnalysis2 extends FTS4VMCAnalysis {
       ChangeStep.getData().put(propsKey, result);
       var holds = result.contains("TRUE");
       var oldHolds = satGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).contains("holds");
-      impactType = (holds == oldHolds)?
-        Map.of(ImpactType.REUSE,   Optional.of(plReasoner.getTrueLiteral()),
-               ImpactType.RECHECK, Optional.empty(),
-               ImpactType.REVISE,  Optional.empty()) :
-        Map.of(ImpactType.REUSE,   Optional.empty(),
-               ImpactType.RECHECK, Optional.empty(),
-               ImpactType.REVISE,  Optional.of(plReasoner.getTrueLiteral()));
+      impactType = (holds == oldHolds) ? PLGSNChangeStep.REUSE : PLGSNChangeStep.REVISE;
     }
     else {
       var templateStep = new PLGSNChangeStep(satSolution);
-      templateStep.getBackwardTrace().add(List.of()); //TODO default constructor with this or handle empty list?
+      templateStep.getBackwardTrace().add(List.of());
       templateStep.baselineImpact();
       impactType = satSolution.getImpact();
     }
@@ -84,8 +74,7 @@ public class FTS4VMCAnalysis2 extends FTS4VMCAnalysis {
     satSolution.setImpact(impactType);
     safetyGoal.setImpact(impactType);
     // reuse everything else in the template
-    PLGSNChangeStep.setAllImpacts(plTemplate, ImpactType.REUSE);
-    //TODO do phiKeep/phiNew
+    PLGSNChangeStep.setAllImpacts(plTemplate, PLGSNChangeStep.REUSE);
   }
 
   @Override

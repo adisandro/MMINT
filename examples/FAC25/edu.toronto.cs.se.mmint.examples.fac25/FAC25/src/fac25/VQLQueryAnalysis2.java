@@ -39,7 +39,6 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
   @Override
   public List<PLGSNChangeStep> nextImpactSteps(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step)
                                               throws Exception {
-    var plReasoner = ((ProductLine) plTemplate.eContainer()).getReasoner();
     var templateElems = plTemplate.getElementsById();
     var nextSteps = new ArrayList<PLGSNChangeStep>();
     // re-run query on modified model
@@ -77,7 +76,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
       if (oldResult.equals(result.getKey())) {
         //TODO consider possible pc change (result.getValue())
         var resultGoal = templateElems.get("resultGoal" + o);
-        resultGoal.setImpact(ImpactType.REUSE, plReasoner.getTrueLiteral());
+        resultGoal.setImpact(PLGSNChangeStep.REUSE);
         var templateTrace = new LinkedHashSet<EObject>();
         templateTrace.add(plTemplate);
         templateTrace.add(step.getImpacted());
@@ -92,7 +91,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
         deletedResults = true;
         while (!oldResult.equals(result.getKey())) {
           var resultGoal = templateElems.get("resultGoal" + o);
-          resultGoal.setImpact(ImpactType.REVISE, plReasoner.getTrueLiteral());
+          resultGoal.setImpact(PLGSNChangeStep.REVISE);
           var templateTrace = new LinkedHashSet<EObject>();
           templateTrace.add(plTemplate);
           templateTrace.add(step.getImpacted());
@@ -127,12 +126,18 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
     var query = filesCtx.getAttribute(this.gsn.getArgumentElement_Description()).get(0).split("'")[1];
     var propsKey = getClass().getName() + "_REVISE_" + modelPath + "_" + queryFilePath + "_" + query;
     var revise = (Boolean) ChangeStep.getData().get(propsKey);
+    var phiNew = (Optional<String>) ChangeStep.getData().get(PLGSNChangeStep.PHI_NEW_KEY);
     if (revise) {
       // downstream is irrelevant
-      templateElems.get("resultStrategy").setImpact(ImpactType.REVISE, plReasoner.getTrueLiteral());
-      templateElems.get("resultCtx").setImpact(ImpactType.REVISE, plReasoner.getTrueLiteral());
-      templateElems.get("scenarioGoal").setImpact(ImpactType.REVISE, plReasoner.getTrueLiteral());
-      templateElems.get("safetyGoal").setImpact(ImpactType.REVISE, plReasoner.getTrueLiteral());
+      var impactTypes = (phiNew.isPresent()) ?
+        Map.of(ImpactType.REUSE,   Optional.of(plReasoner.not(phiNew.get())),
+               ImpactType.RECHECK, Optional.<String>empty(),
+               ImpactType.REVISE,  Optional.of(phiNew.get())) :
+        PLGSNChangeStep.REVISE;
+      templateElems.get("resultStrategy").setImpact(impactTypes);
+      templateElems.get("resultCtx").setImpact(impactTypes);
+      templateElems.get("scenarioGoal").setImpact(impactTypes);
+      templateElems.get("safetyGoal").setImpact(impactTypes);
     }
     else {
       // bottom up impact
@@ -151,19 +156,18 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
       else {
         impacts = trace.stream().map(s -> s.getImpacted().getImpact()).collect(Collectors.toList());
       }
-      var impactTypes = PLGSNChangeStep.max(impacts,plReasoner);
+      var impactTypes = PLGSNChangeStep.max(impacts);
       templateElems.get("scenarioGoal").setImpact(impactTypes);
       templateElems.get("safetyGoal").setImpact(impactTypes);
     }
     // reuse everything else in the template
-    PLGSNChangeStep.setAllImpacts(plTemplate, ImpactType.REUSE);
+    PLGSNChangeStep.setAllImpacts(plTemplate, PLGSNChangeStep.REUSE);
   }
 
   @Override
   public List<PLGSNChangeStep> repair(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step) throws Exception {
     var productLine = (ProductLine) plTemplate.eContainer();
     var plBuilder = new PLGSNBuilder(productLine);
-    var plReasoner = productLine.getReasoner();
     var templateElems = plTemplate.getElementsById();
     var nextSteps = new ArrayList<PLGSNChangeStep>();
     // fetch query results on modified model
@@ -199,7 +203,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
                                             "Query result '" + result.getKey() + "', " + safetyDesc, result.getValue(),
                                             "resultGoal" + n);
         resultCtxDesc += "\n'" + result.getKey() + "'";
-        resultGoal.setImpact(ImpactType.REUSE, plReasoner.getTrueLiteral());
+        resultGoal.setImpact(PLGSNChangeStep.REUSE);
         n++;
         continue;
       }
@@ -236,18 +240,18 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
                                             "Query result '" + result.getKey() + "', " + safetyDesc, result.getValue(),
                                             "resultGoal" + n);
         resultCtxDesc += "\n'" + result.getKey() + "'";
-        resultGoal.setImpact(ImpactType.REUSE, plReasoner.getTrueLiteral());
+        resultGoal.setImpact(PLGSNChangeStep.REUSE);
         n++;
       }
     }
     // clean impact on result strategy
     if (addedResults) {
-      resultStrategy.setImpact(ImpactType.REUSE, plReasoner.getTrueLiteral());
+      resultStrategy.setImpact(PLGSNChangeStep.REUSE);
     }
     // change result context and clean impact
     if (deletedResults || addedResults) {
       resultCtx.setAttribute(this.gsn.getArgumentElement_Description(), resultCtxDesc);
-      resultCtx.setImpact(ImpactType.REUSE, plReasoner.getTrueLiteral());
+      resultCtx.setImpact(PLGSNChangeStep.REUSE);
     }
 
     return nextSteps;
