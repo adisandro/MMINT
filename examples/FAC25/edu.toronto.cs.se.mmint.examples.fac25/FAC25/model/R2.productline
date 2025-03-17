@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<productline:ProductLine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:productline="model://edu.toronto.cs.se.mmint.productline" featuresConstraint="HW_MONITORING &amp; (MULTIPLE_DRUGS => CHECK_DRUG_TYPE &amp; VISUAL_DISPLAY)" reasonerName="LogicNG">
+<productline:ProductLine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:productline="model://edu.toronto.cs.se.mmint.productline" featuresConstraint="HW_MONITORING &amp; (MULTIPLE_DRUGS => (CHECK_DRUG_TYPE &amp; VISUAL_DISPLAY))" reasonerName="LogicNG">
   <classes>
     <references presenceCondition="$true" target="//@classes.1">
       <type href="http://se.cs.toronto.edu/modelepedia/StateMachine#//StateMachine/states"/>
