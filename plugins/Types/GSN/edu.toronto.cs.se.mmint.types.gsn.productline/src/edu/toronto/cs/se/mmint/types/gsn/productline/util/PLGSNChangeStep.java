@@ -80,6 +80,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
                                      ImpactType.REVISE,  Optional.of(plReasoner.getTrueLiteral()));
     String phiKeep, phiNew;
     if (fOpt.isPresent()) {
+      // new feature added and feature model change
       // the presence of newFeature implies the presence of oldFeaturesConstraint
       var f = fOpt.get();
       var phi = phiOpt.get();
@@ -88,6 +89,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     }
     else {
       if (phiOpt.isPresent()) {
+        // feature model change
         var phi = phiOpt.get();
         phiKeep = plReasoner.simplify(plReasoner.and(phi, phiPrime));
         phiNew = plReasoner.simplify(plReasoner.and(plReasoner.not(phi), phiPrime));
@@ -193,7 +195,8 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
       }
     }
     Map<ImpactType, Optional<String>> impactTypes;
-    if (this.backwardTrace.get(0).isEmpty()) { // leaf
+    if (this.backwardTrace.get(0).isEmpty()) {
+      // leaf impact
       switch(this.impacted.getType()) {
         case EClass e when e.getEAllSuperTypes().stream().anyMatch(s -> s.getName().equals("Contextual")) -> {
           impactTypes = PLGSNChangeStep.REUSE;
@@ -203,10 +206,9 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
           var phiDelta = (String) ChangeStep.data.get(PLGSNChangeStep.PHI_DELTA_KEY);
           var check = this.plReasoner.checkConsistency(phiDelta, Set.of(this.impacted.getPresenceCondition()));
           if (check) {
-            impactTypes = Map.of(
-              ImpactType.REUSE,   Optional.of(this.plReasoner.not(phiDelta)),
-              ImpactType.RECHECK, Optional.of(phiDelta),
-              ImpactType.REVISE,  Optional.empty());
+            impactTypes = Map.of(ImpactType.REUSE,   Optional.of(this.plReasoner.not(phiDelta)),
+                                 ImpactType.RECHECK, Optional.of(phiDelta),
+                                 ImpactType.REVISE,  Optional.empty());
           }
           else {
             impactTypes = PLGSNChangeStep.REUSE;
@@ -214,14 +216,17 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
         }
       }
     }
-    else { // bottom up impact
+    else {
+      // bottom up impact
       impactTypes = max(
         this.backwardTrace.get(0).stream().map(s -> s.getImpacted().getImpact()).collect(Collectors.toList()));
     }
-    if (prevImpact != null) { // top down impact
+    if (prevImpact != null) {
+      // top down impact
       impactTypes = max(List.of(prevImpact, impactTypes));
     }
-    this.impacted.setImpact(impactTypes);
+
+    this.impacted.setImpact(addPhiNew(impactTypes));
   }
 
   @Override
@@ -260,6 +265,29 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     for (var nextStep : nextSteps) {
       nextStep.repair();
     }
+  }
+
+  public static Map<ImpactType, Optional<String>> addPhiNew(Map<ImpactType, Optional<String>> impactTypes) {
+    var phiNewOpt = (Optional<String>) ChangeStep.data.get(PLGSNChangeStep.PHI_NEW_KEY);
+    if (phiNewOpt.isEmpty()) {
+      return impactTypes;
+    }
+    // add phiNew to existing impacts
+    var phiNew = phiNewOpt.get();
+    var reuse = impactTypes.get(ImpactType.REUSE)
+                           .map(r -> PLGSNChangeStep.PL_REASONER.simplify(
+                             PLGSNChangeStep.PL_REASONER.and(r, PLGSNChangeStep.PL_REASONER.not(phiNew))))
+                           .orElse(PLGSNChangeStep.PL_REASONER.not(phiNew));
+    var recheck = impactTypes.get(ImpactType.RECHECK)
+                             .map(r -> PLGSNChangeStep.PL_REASONER.simplify(
+                               PLGSNChangeStep.PL_REASONER.and(r, PLGSNChangeStep.PL_REASONER.not(phiNew))));
+    var revise = impactTypes.get(ImpactType.REVISE)
+                            .map(r -> PLGSNChangeStep.PL_REASONER.simplify(PLGSNChangeStep.PL_REASONER.and(r, phiNew)))
+                            .orElse(phiNew);
+
+    return Map.of(ImpactType.REUSE,   Optional.of(reuse),
+                         ImpactType.RECHECK, recheck,
+                         ImpactType.REVISE,  Optional.of(revise));
   }
 
   public static Map<ImpactType, Optional<String>> max(List<Map<ImpactType, Optional<String>>> impacts) {
