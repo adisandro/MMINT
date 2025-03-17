@@ -23,10 +23,6 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="setImpact">
-      <eParameters name="impactType" lowerBound="1" eType="ecore:EEnum ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//ImpactType"/>
-      <eParameters name="presenceCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PLGSNTemplate" eSuperTypes="../../edu.toronto.cs.se.mmint.productline/model/productline.ecore#//Class">
     <eOperations name="getElementsById" lowerBound="1">

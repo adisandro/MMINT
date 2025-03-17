@@ -197,16 +197,6 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EOperation getPLGSNArgumentElement__SetImpact__ImpactType_String() {
-    return this.plgsnArgumentElementEClass.getEOperations().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getPLGSNTemplate() {
     return this.plgsnTemplateEClass;
   }
@@ -367,7 +357,6 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     createEOperation(this.plgsnArgumentElementEClass, PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___VALIDATE);
     createEOperation(this.plgsnArgumentElementEClass, PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___GET_IMPACT);
     createEOperation(this.plgsnArgumentElementEClass, PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__MAP);
-    createEOperation(this.plgsnArgumentElementEClass, PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__IMPACTTYPE_STRING);
 
     this.plgsnTemplateEClass = createEClass(PLGSNPackage.PLGSN_TEMPLATE);
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___GET_ELEMENTS_BY_ID);
@@ -454,10 +443,6 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     g3 = createEGenericType(this.ecorePackage.getEString());
     g2.getETypeArguments().add(g3);
     addEParameter(op, g1, "impactTypes", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-
-    op = initEOperation(getPLGSNArgumentElement__SetImpact__ImpactType_String(), null, "setImpact", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, theGSNPackage.getImpactType(), "impactType", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEString(), "presenceCondition", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     initEClass(this.plgsnTemplateEClass, PLGSNTemplate.class, "PLGSNTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 

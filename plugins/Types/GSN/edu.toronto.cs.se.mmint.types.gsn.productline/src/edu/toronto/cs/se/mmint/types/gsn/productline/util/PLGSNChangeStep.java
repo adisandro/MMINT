@@ -46,6 +46,10 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
   public final static String PHI_KEEP_KEY = "phiKeep";
   public final static String PHI_NEW_KEY = "phiNew";
   private final static GSNPackage GSN = GSNPackage.eINSTANCE;
+  public static Map<ImpactType, Optional<String>> REUSE = Map.of();
+  public static Map<ImpactType, Optional<String>> RECHECK = Map.of();
+  public static Map<ImpactType, Optional<String>> REVISE = Map.of();
+  private static IPLFeaturesTrait PL_REASONER = null;
   private IPLFeaturesTrait plReasoner;
 
   public static Properties initData(PLGSNArgumentElement plModelObj) throws MMINTException {
@@ -64,6 +68,16 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     var phiDelta = MIDOperatorIOUtils.getStringProperty(props, PLGSNChangeStep.PHI_DELTA_KEY);
     ChangeStep.data.put(PLGSNChangeStep.PHI_DELTA_KEY, phiDelta);
     var plReasoner = plModelObj.getProductLine().getReasoner();
+    PLGSNChangeStep.PL_REASONER = plReasoner;
+    PLGSNChangeStep.REUSE   = Map.of(ImpactType.REUSE,   Optional.of(plReasoner.getTrueLiteral()),
+                                     ImpactType.RECHECK, Optional.empty(),
+                                     ImpactType.REVISE,  Optional.empty());
+    PLGSNChangeStep.RECHECK = Map.of(ImpactType.REUSE,   Optional.empty(),
+                                     ImpactType.RECHECK, Optional.of(plReasoner.getTrueLiteral()),
+                                     ImpactType.REVISE,  Optional.empty());
+    PLGSNChangeStep.REVISE  = Map.of(ImpactType.REUSE,   Optional.empty(),
+                                     ImpactType.RECHECK, Optional.empty(),
+                                     ImpactType.REVISE,  Optional.of(plReasoner.getTrueLiteral()));
     String phiKeep, phiNew;
     if (fOpt.isPresent()) {
       // the presence of newFeature implies the presence of oldFeaturesConstraint
@@ -80,33 +94,23 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
       }
       else {
         phiKeep = phiPrime;
-        phiNew = plReasoner.getFalseLiteral();
+        phiNew = null;
       }
     }
     ChangeStep.data.put(PLGSNChangeStep.PHI_KEEP_KEY, phiKeep);
-    ChangeStep.data.put(PLGSNChangeStep.PHI_NEW_KEY, phiNew);
+    ChangeStep.data.put(PLGSNChangeStep.PHI_NEW_KEY, Optional.ofNullable(phiNew));
 
     return props;
   }
 
   public PLGSNChangeStep(PLGSNArgumentElement impacted, LinkedHashSet<EObject> forwardTrace) {
     super(impacted, forwardTrace);
-    try {
-      this.plReasoner = impacted.getProductLine().getReasoner();
-    }
-    catch (MMINTException e) {
-      throw new IllegalArgumentException(e);
-    }
+    this.plReasoner = PLGSNChangeStep.PL_REASONER;
   }
 
   public PLGSNChangeStep(PLGSNArgumentElement impacted) {
     super(impacted);
-    try {
-      this.plReasoner = impacted.getProductLine().getReasoner();
-    }
-    catch (MMINTException e) {
-      throw new IllegalArgumentException(e);
-    }
+    this.plReasoner = PLGSNChangeStep.PL_REASONER;
   }
 
   public List<PLGSNChangeStep> nextSupporters() {
@@ -192,10 +196,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     if (this.backwardTrace.get(0).isEmpty()) { // leaf
       switch(this.impacted.getType()) {
         case EClass e when e.getEAllSuperTypes().stream().anyMatch(s -> s.getName().equals("Contextual")) -> {
-          impactTypes = Map.of(
-            ImpactType.REUSE,   Optional.of(this.plReasoner.getTrueLiteral()),
-            ImpactType.RECHECK, Optional.empty(),
-            ImpactType.REVISE,  Optional.empty());
+          impactTypes = PLGSNChangeStep.REUSE;
         }
         default -> {
           //TODO add checkSAT api!
@@ -208,21 +209,17 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
               ImpactType.REVISE,  Optional.empty());
           }
           else {
-            impactTypes = Map.of(
-              ImpactType.REUSE,   Optional.of(this.plReasoner.getTrueLiteral()),
-              ImpactType.RECHECK, Optional.empty(),
-              ImpactType.REVISE,  Optional.empty());
+            impactTypes = PLGSNChangeStep.REUSE;
           }
         }
       }
     }
     else { // bottom up impact
       impactTypes = max(
-        this.backwardTrace.get(0).stream().map(s -> s.getImpacted().getImpact()).collect(Collectors.toList()),
-        this.plReasoner);
+        this.backwardTrace.get(0).stream().map(s -> s.getImpacted().getImpact()).collect(Collectors.toList()));
     }
     if (prevImpact != null) { // top down impact
-      impactTypes = max(List.of(prevImpact, impactTypes),this.plReasoner);
+      impactTypes = max(List.of(prevImpact, impactTypes));
     }
     this.impacted.setImpact(impactTypes);
   }
@@ -265,36 +262,35 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     }
   }
 
-  public static Map<ImpactType, Optional<String>> max(List<Map<ImpactType, Optional<String>>> impacts,
-                                                      IPLFeaturesTrait plReasoner) {
+  public static Map<ImpactType, Optional<String>> max(List<Map<ImpactType, Optional<String>>> impacts) {
     String pcReuse = null, pcRevise = null;
     for (var i = 0; i < impacts.size(); i++) {
       var dependencyImpact = impacts.get(i);
-      var pc1 = dependencyImpact.get(ImpactType.REUSE).orElse(plReasoner.getFalseLiteral());
-      var pc3 = dependencyImpact.get(ImpactType.REVISE).orElse(plReasoner.getFalseLiteral());
-      pcReuse = (i == 0) ? pc1 : plReasoner.and(pcReuse, pc1);
-      pcRevise = (i == 0) ? pc3 : plReasoner.or(pcRevise, pc3);
+      var pc1 = dependencyImpact.get(ImpactType.REUSE).orElse(PLGSNChangeStep.PL_REASONER.getFalseLiteral());
+      var pc3 = dependencyImpact.get(ImpactType.REVISE).orElse(PLGSNChangeStep.PL_REASONER.getFalseLiteral());
+      pcReuse = (i == 0) ? pc1 : PLGSNChangeStep.PL_REASONER.and(pcReuse, pc1);
+      pcRevise = (i == 0) ? pc3 : PLGSNChangeStep.PL_REASONER.or(pcRevise, pc3);
     }
-    pcReuse = plReasoner.simplify(pcReuse);
-    pcRevise = plReasoner.simplify(pcRevise);
-    var pcRecheck = plReasoner.simplify(plReasoner.not(plReasoner.or(pcReuse, pcRevise)));
-    var max = Map.of(ImpactType.REUSE,   plReasoner.checkConsistency(pcReuse, Set.of()) ?
+    pcReuse = PLGSNChangeStep.PL_REASONER.simplify(pcReuse);
+    pcRevise = PLGSNChangeStep.PL_REASONER.simplify(pcRevise);
+    var pcRecheck = PLGSNChangeStep.PL_REASONER.simplify(
+      PLGSNChangeStep.PL_REASONER.not(PLGSNChangeStep.PL_REASONER.or(pcReuse, pcRevise)));
+    var max = Map.of(ImpactType.REUSE,   PLGSNChangeStep.PL_REASONER.checkConsistency(pcReuse, Set.of()) ?
                                            Optional.of(pcReuse) : Optional.<String>empty(),
-                     ImpactType.RECHECK, plReasoner.checkConsistency(pcRecheck, Set.of()) ?
+                     ImpactType.RECHECK, PLGSNChangeStep.PL_REASONER.checkConsistency(pcRecheck, Set.of()) ?
                                            Optional.of(pcRecheck) : Optional.<String>empty(),
-                     ImpactType.REVISE,  plReasoner.checkConsistency(pcRevise, Set.of()) ?
+                     ImpactType.REVISE,  PLGSNChangeStep.PL_REASONER.checkConsistency(pcRevise, Set.of()) ?
                                            Optional.of(pcRevise) : Optional.<String>empty());
 
     return max;
   }
 
-  public static void setAllImpacts(PLGSNTemplate plTemplate, ImpactType type) throws MMINTException {
-    var plReasoner = plTemplate.getProductLine().getReasoner();
+  public static void setAllImpacts(PLGSNTemplate plTemplate, Map<ImpactType, Optional<String>> impactTypes) {
     for (var plElem : plTemplate.getReference(PLGSNChangeStep.GSN.getTemplate_Elements())) {
       if (!plElem.getReference(PLGSNChangeStep.GSN.getArgumentElement_Status()).isEmpty()) {
         continue;
       }
-      ((PLGSNArgumentElement) plElem).setImpact(type, plReasoner.getTrueLiteral());
+      ((PLGSNArgumentElement) plElem).setImpact(impactTypes);
     }
   }
 

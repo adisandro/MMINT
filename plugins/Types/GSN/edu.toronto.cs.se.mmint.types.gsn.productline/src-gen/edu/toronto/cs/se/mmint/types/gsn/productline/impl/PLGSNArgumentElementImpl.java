@@ -16,7 +16,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
@@ -145,17 +144,6 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
   }
 
   /**
-   * @generated NOT
-   */
-  @Override
-  public void setImpact(ImpactType impactType, String presenceCondition) {
-    var impactTypes = ImpactType.VALUES.stream()
-      .collect(Collectors.toMap(Function.identity(),
-                                t -> (t == impactType) ? Optional.of(presenceCondition) : Optional.<String>empty()));
-    setImpact(impactTypes);
-  }
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -184,9 +172,6 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
         return getImpact();
       case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__MAP:
         setImpact((Map<ImpactType, Optional<String>>)arguments.get(0));
-        return null;
-      case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__IMPACTTYPE_STRING:
-        setImpact((ImpactType)arguments.get(0), (String)arguments.get(1));
         return null;
     }
     return super.eInvoke(operationID, arguments);

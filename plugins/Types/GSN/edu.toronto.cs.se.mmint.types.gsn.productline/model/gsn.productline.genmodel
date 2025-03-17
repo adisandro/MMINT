@@ -21,10 +21,6 @@
       <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNArgumentElement/setImpact">
         <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNArgumentElement/setImpact/impactTypes"/>
       </genOperations>
-      <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNArgumentElement/setImpact.1">
-        <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNArgumentElement/setImpact.1/impactType"/>
-        <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNArgumentElement/setImpact.1/presenceCondition"/>
-      </genOperations>
     </genClasses>
     <genClasses ecoreClass="gsn.productline.ecore#//PLGSNTemplate">
       <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/getElementsById"/>

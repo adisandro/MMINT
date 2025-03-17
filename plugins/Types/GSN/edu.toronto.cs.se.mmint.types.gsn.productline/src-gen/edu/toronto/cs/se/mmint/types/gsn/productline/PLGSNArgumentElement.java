@@ -61,12 +61,4 @@ public interface PLGSNArgumentElement extends edu.toronto.cs.se.mmint.productlin
    */
   void setImpact(Map<ImpactType, Optional<String>> impactTypes);
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model impactTypeRequired="true" presenceConditionRequired="true"
-   * @generated
-   */
-  void setImpact(ImpactType impactType, String presenceCondition);
-
 } // GSNPLArgumentElement
