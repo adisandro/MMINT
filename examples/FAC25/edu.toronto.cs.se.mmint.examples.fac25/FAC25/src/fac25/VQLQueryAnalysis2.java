@@ -55,7 +55,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
     // compare results
     var results = getPLResults(queryResults);
     var propsKey = getClass().getName() + "_RESULTS_" + modelPath + "_" + queryFilePath + "_" + query;
-    ChangeStep.getProperties().put(propsKey, results);
+    ChangeStep.getData().put(propsKey, results);
     var resultCtx = templateElems.get("resultCtx");
     var oldResults = resultCtx.getAttribute(this.gsn.getArgumentElement_Description()).get(0).lines()
       .filter(l -> l.startsWith("'"))
@@ -110,7 +110,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
       }
     }
     propsKey = getClass().getName() + "_REVISE_" + modelPath + "_" + queryFilePath + "_" + query;
-    ChangeStep.getProperties().put(propsKey, deletedResults || addedResults);
+    ChangeStep.getData().put(propsKey, deletedResults || addedResults);
 
     return nextSteps;
   }
@@ -126,7 +126,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
     var modelPath = paths.get(1);
     var query = filesCtx.getAttribute(this.gsn.getArgumentElement_Description()).get(0).split("'")[1];
     var propsKey = getClass().getName() + "_REVISE_" + modelPath + "_" + queryFilePath + "_" + query;
-    var revise = (Boolean) ChangeStep.getProperties().get(propsKey);
+    var revise = (Boolean) ChangeStep.getData().get(propsKey);
     if (revise) {
       // downstream is irrelevant
       templateElems.get("resultStrategy").setImpact(ImpactType.REVISE, plReasoner.getTrueLiteral());
@@ -151,7 +151,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
       else {
         impacts = trace.stream().map(s -> s.getImpacted().getImpact()).collect(Collectors.toList());
       }
-      var impactTypes = PLGSNChangeStep.max(impacts);
+      var impactTypes = PLGSNChangeStep.max(impacts,plReasoner);
       templateElems.get("scenarioGoal").setImpact(impactTypes);
       templateElems.get("safetyGoal").setImpact(impactTypes);
     }
@@ -173,7 +173,7 @@ public class VQLQueryAnalysis2 extends VQLQueryAnalysis {
     var modelPath = paths.get(1);
     var query = filesCtx.getAttribute(this.gsn.getArgumentElement_Description()).get(0).split("'")[1];
     var propsKey = getClass().getName() + "_RESULTS_" + modelPath + "_" + queryFilePath + "_" + query;
-    var results = (List<Map.Entry<String, String>>) ChangeStep.getProperties().get(propsKey);
+    var results = (List<Map.Entry<String, String>>) ChangeStep.getData().get(propsKey);
     var resultCtxDesc = (results.isEmpty()) ? "No results" : "Query results:";
     // compare results
     var safetyGoal = templateElems.get("safetyGoal");

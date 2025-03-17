@@ -13,6 +13,8 @@
 package fac25;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
@@ -37,15 +39,23 @@ public class FTS4VMCAnalysis2 extends FTS4VMCAnalysis {
     var templateElems = plTemplate.getElementsById();
     var safetyGoal = templateElems.get("safetyGoal");
     if (safetyGoal == null) {
+      // using the forward trace to get safetyGoal does not work with linked templates, so navigate the gsn tree
       safetyGoal = (PLGSNArgumentElement) templateElems.get("mcStrategy")
         .getReference(this.gsn.getSupporter_Supports()).get(0)
         .getReference(this.gsn.getSupportedBy_Source()).get(0);
     }
     var prevImpact = safetyGoal.getImpact();
     var satGoal = templateElems.get("satGoal");
-    var impactType = ImpactType.REUSE;
-    // re-run model checking
-    if (prevImpact.get(ImpactType.REVISE).isEmpty()) {
+    var satSolution = templateElems.get("satSolution");
+    Map<ImpactType, Optional<String>> impactType;
+    if (prevImpact.get(ImpactType.REVISE).isPresent()) {
+      // parents should be revised top down, do not re-run model checking but mark to revise
+      impactType = Map.of(ImpactType.REUSE,   Optional.empty(),
+                          ImpactType.RECHECK, Optional.empty(),
+                          ImpactType.REVISE,  Optional.of(plReasoner.getTrueLiteral()));
+    }
+    else if ((boolean) ChangeStep.getData().get(ChangeStep.RUN_EVIDENCE_ANALYSES_KEY)) {
+      // re-run model checking
       var filesCtx = templateElems.get("filesCtx");
       var paths = filesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
       var propertyPath = paths.get(0);
@@ -53,22 +63,29 @@ public class FTS4VMCAnalysis2 extends FTS4VMCAnalysis {
       var resultPath = paths.get(2);
       var result = runFTS4VMC(modelPath, propertyPath);
       var propsKey = getClass().getName() + "_" + modelPath + "_" + propertyPath + "_" + resultPath;
-      ChangeStep.getProperties().put(propsKey, result);
+      ChangeStep.getData().put(propsKey, result);
       var holds = result.contains("TRUE");
       var oldHolds = satGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).contains("holds");
-      if (holds != oldHolds) {
-        impactType = ImpactType.REVISE;
-      }
+      impactType = (holds == oldHolds)?
+        Map.of(ImpactType.REUSE,   Optional.of(plReasoner.getTrueLiteral()),
+               ImpactType.RECHECK, Optional.empty(),
+               ImpactType.REVISE,  Optional.empty()) :
+        Map.of(ImpactType.REUSE,   Optional.empty(),
+               ImpactType.RECHECK, Optional.empty(),
+               ImpactType.REVISE,  Optional.of(plReasoner.getTrueLiteral()));
     }
-    // parents should be revised top down, do not re-run model checking but mark to revise
-    else  {
-      impactType = ImpactType.REVISE;
+    else {
+      var templateStep = new PLGSNChangeStep(satSolution);
+      templateStep.getBackwardTrace().add(List.of()); //TODO default constructor with this or handle empty list?
+      templateStep.baselineImpact();
+      impactType = satSolution.getImpact();
     }
-    satGoal.setImpact(impactType, plReasoner.getTrueLiteral());
-    templateElems.get("satSolution").setImpact(impactType, plReasoner.getTrueLiteral());
-    safetyGoal.setImpact(impactType, plReasoner.getTrueLiteral());
+    satGoal.setImpact(impactType);
+    satSolution.setImpact(impactType);
+    safetyGoal.setImpact(impactType);
     // reuse everything else in the template
     PLGSNChangeStep.setAllImpacts(plTemplate, ImpactType.REUSE);
+    //TODO do phiKeep/phiNew
   }
 
   @Override
