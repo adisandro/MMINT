@@ -111,8 +111,8 @@ MODELS 15
 
 ### Using MMINT
 
-* <a name="paper-fac25"></a>Assurance Case Management for Evolving Software Product Lines: A Formal Approach  
-FAC 25 | Install: `Examples > MMINT - FAC25` | [Readme](examples/FAC25/edu.toronto.cs.se.mmint.examples.fac25/FAC25/README.md)
+* <a name="paper-fac25"></a>Assurance Case Development for Evolving Software Product Lines: A Formal Approach  
+FAC 25 (Submitted) | Install: `Examples > MMINT - FAC25` | [Readme](examples/FAC25/edu.toronto.cs.se.mmint.examples.fac25/FAC25/README.md)
 * <a name="paper-ifm24"></a> [PLACIDUS: Engineering Product Lines of Rigorous Assurance Cases](https://doi.org/10.1007/978-3-031-76554-4_6)  
 iFM 24 | Install: `Examples > MMINT - IFM24` | [Readme](examples/IFM24/edu.toronto.cs.se.mmint.examples.ifm24/IFM24/README.md)
 * <a name="paper-sosym22"></a> [The ForeMoSt Approach to Building Valid Model-Based Safety Arguments](https://doi.org/10.1007/s10270-022-01063-4)  
