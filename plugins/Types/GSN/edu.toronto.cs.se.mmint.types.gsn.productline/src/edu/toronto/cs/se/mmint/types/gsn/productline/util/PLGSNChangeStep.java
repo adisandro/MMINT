@@ -218,12 +218,12 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     }
     else {
       // bottom up impact
-      impactTypes = max(
+      impactTypes = min(
         this.backwardTrace.get(0).stream().map(s -> s.getImpacted().getImpact()).collect(Collectors.toList()));
     }
     if (prevImpact != null) {
       // top down impact
-      impactTypes = max(List.of(prevImpact, impactTypes));
+      impactTypes = min(List.of(prevImpact, impactTypes));
     }
 
     this.impacted.setImpact(addPhiNew(impactTypes));
@@ -290,7 +290,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
                          ImpactType.REVISE,  Optional.of(revise));
   }
 
-  public static Map<ImpactType, Optional<String>> max(List<Map<ImpactType, Optional<String>>> impacts) {
+  public static Map<ImpactType, Optional<String>> min(List<Map<ImpactType, Optional<String>>> impacts) {
     String pcReuse = null, pcRevise = null;
     for (var i = 0; i < impacts.size(); i++) {
       var dependencyImpact = impacts.get(i);

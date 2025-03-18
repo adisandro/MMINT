@@ -325,7 +325,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
       templateElems.get("resultCtx").setImpact(impactTypes);
       impacts.add(impactTypes);
     }
-    var impactTypes = PLGSNChangeStep.max(impacts);
+    var impactTypes = PLGSNChangeStep.min(impacts);
     templateElems.get("scenarioGoal").setImpact(impactTypes);
     templateElems.get("safetyGoal").setImpact(impactTypes);
     // reuse everything else in the template
