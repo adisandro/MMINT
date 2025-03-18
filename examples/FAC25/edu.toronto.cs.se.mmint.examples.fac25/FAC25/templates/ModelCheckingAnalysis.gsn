@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<gsn:SafetyCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsn="http://se.cs.toronto.edu/modelepedia/GSN" xmlns:gsn.templates="model://edu.toronto.cs.se.mmint.types.gsn.templates">
+  <goals id="G0" description="{Safety goal}" template="//@templates.0" templateId="safetyGoal" valid="false">
+    <supportedBy target="//@strategies.0"/>
+  </goals>
+  <goals id="G1" description="Model checking will reveal any violations to the property in the model specified in Ctx0" template="//@templates.0" templateId="analysisGoal" supports="//@strategies.0/@supportedBy.0"/>
+  <goals id="G2" description="The safety property in Ctx0 is correct" template="//@templates.0" templateId="propertyGoal" supports="//@strategies.0/@supportedBy.1"/>
+  <goals id="G3" description="The safety property in Ctx0 {holds?}" template="//@templates.0" templateId="satGoal" valid="false" supports="//@strategies.0/@supportedBy.2">
+    <supportedBy target="//@solutions.0"/>
+  </goals>
+  <strategies id="S0" description="Argument over model checking" template="//@templates.0" templateId="mcStrategy" supports="//@goals.0/@supportedBy.0">
+    <supportedBy target="//@goals.1"/>
+    <supportedBy target="//@goals.2"/>
+    <supportedBy target="//@goals.3"/>
+    <inContextOf context="//@contexts.0"/>
+  </strategies>
+  <solutions id="Sn3" description="See output file '{output}'" template="//@templates.0" templateId="satSolution" valid="false" supports="//@goals.3/@supportedBy.0"/>
+  <contexts xsi:type="gsn.templates:FilesContext" id="Ctx0" description="Safety property '{property}' evaluated on model '{model}'" template="//@templates.0" templateId="filesCtx" valid="false" contextOf="//@strategies.0/@inContextOf.0"/>
+  <templates xsi:type="gsn.templates:AnalyticTemplate" elements="//@goals.0 //@strategies.0 //@contexts.0 //@goals.1 //@goals.2 //@solutions.0 //@goals.3" id="ModelCheckingAnalysis" loaderBundleName="edu.toronto.cs.se.mmint.examples.fac25"/>
+</gsn:SafetyCase>

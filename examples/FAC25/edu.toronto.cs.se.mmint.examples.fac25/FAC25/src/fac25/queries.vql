@@ -1,0 +1,23 @@
+/*******************************************************************************
+ * Copyright (c) 2025, 2025 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
+package fac25
+
+import "http://se.cs.toronto.edu/modelepedia/StateMachine"
+
+pattern alarmStates(state: State) {
+  State.name(state, _name);
+  // VQL does not have native string manipulation and invokes Java for it.
+  // The following statement is what would be needed for this query, but we cannot lift the Java language.
+  // Instead, we filter the alarms in the analysis code.
+  //check(name.startsWith("Alrm_"));
+}
