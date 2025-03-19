@@ -30,9 +30,7 @@
    </license>
 
    <requires>
-      <import plugin="edu.toronto.cs.se.mmint.types.statemachine.productline.design"/>
-      <import feature="edu.toronto.cs.se.modelepedia.statemachine.feature"/>
-      <import feature="edu.toronto.cs.se.mmintpl.feature"/>
+      <import feature="edu.toronto.cs.se.mmintapl.feature"/>
    </requires>
 
    <plugin

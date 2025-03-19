@@ -12,13 +12,13 @@
         Alessio Di Sandro - Implementation
  -->
 <feature
-      id="edu.toronto.cs.se.mmintpl.types.feature"
-      label="MMINT-PL + Types"
+      id="edu.toronto.cs.se.mmintapl.feature"
+      label="MMINTA-PL"
       version="2.24.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="https://github.com/adisandro/MMINT">
-      MMINT-PL is a version of MMINT that supports Product Lines. This feature includes supported metamodels with custom Product Line editors.
+      MMINTA-PL is a version of MMINT that supports Product Lines of safety Assurance Cases.
    </description>
 
    <copyright>
@@ -30,11 +30,11 @@
    </license>
 
    <includes
-         id="edu.toronto.cs.se.mmintpl.feature"
+         id="edu.toronto.cs.se.mminta.feature"
          version="0.0.0"/>
 
    <includes
-         id="edu.toronto.cs.se.modelepedia.gsn.feature"
+         id="edu.toronto.cs.se.mmintpl.feature"
          version="0.0.0"/>
 
    <includes
