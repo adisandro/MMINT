@@ -14,7 +14,7 @@
 <feature
       id="edu.toronto.cs.se.mmint.examples.issre24.feature"
       label="MMINT - ISSRE24 paper"
-      version="2.24.99.qualifier"
+      version="2.25.0.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="">

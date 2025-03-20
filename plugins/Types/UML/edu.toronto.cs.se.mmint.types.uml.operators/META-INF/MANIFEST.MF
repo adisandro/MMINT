@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.types.uml.operators;singleton:=true
-Bundle-Version: 2.24.99.qualifier
+Bundle-Version: 2.25.0.qualifier
 Bundle-Vendor: %providerName
 Automatic-Module-Name: edu.toronto.cs.se.mmint.types.uml.operators
 Bundle-RequiredExecutionEnvironment: JavaSE-24

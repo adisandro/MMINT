@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.java;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.mmint.java
-Bundle-Version: 2.24.99.qualifier
+Bundle-Version: 2.25.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-24
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
