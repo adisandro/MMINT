@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <profiles version="2">
     <profile kind="CleanUpProfile" name="MMINT" version="2">
+        <setting id="cleanup.switch_for_instanceof_pattern" value="true"/>
         <setting id="cleanup.array_with_curly" value="false"/>
         <setting id="cleanup.number_suffix" value="false"/>
         <setting id="cleanup.use_this_for_non_static_field_access_only_if_necessary" value="false"/>
@@ -141,9 +142,9 @@
         <setting id="cleanup.always_use_this_for_non_static_method_access" value="true"/>
         <setting id="cleanup.strictly_equal_or_different" value="false"/>
         <setting id="cleanup.use_parentheses_in_expressions" value="false"/>
+        <setting id="cleanup.add_missing_override_annotations_interface_methods" value="true"/>
         <setting id="cleanup.system_property_file_encoding" value="false"/>
         <setting id="cleanup.use_anonymous_class_creation" value="false"/>
-        <setting id="cleanup.add_missing_override_annotations_interface_methods" value="true"/>
         <setting id="cleanup.comparison_statement" value="false"/>
         <setting id="cleanup.instanceof" value="true"/>
     </profile>
