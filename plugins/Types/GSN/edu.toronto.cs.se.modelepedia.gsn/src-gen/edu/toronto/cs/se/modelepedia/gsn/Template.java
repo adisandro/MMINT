@@ -138,6 +138,14 @@ public interface Template extends EObject {
    * @model dataType="edu.toronto.cs.se.modelepedia.gsn.GSNChangeStep" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.modelepedia.gsn.GSNChangeStep" stepRequired="true"
    * @generated
    */
-  EList<GSNChangeStep> repair(GSNChangeStep step) throws Exception;
+  EList<GSNChangeStep> nextRepairSteps(GSNChangeStep step) throws Exception;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception" stepDataType="edu.toronto.cs.se.modelepedia.gsn.GSNChangeStep" stepRequired="true"
+   * @generated
+   */
+  void repair(GSNChangeStep step) throws Exception;
 
 } // Template

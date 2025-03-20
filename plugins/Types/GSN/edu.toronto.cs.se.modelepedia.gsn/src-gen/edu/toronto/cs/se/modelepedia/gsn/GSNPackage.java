@@ -1849,13 +1849,22 @@ public interface GSNPackage extends EPackage {
   int TEMPLATE___IMPACT__GSNCHANGESTEP = 5;
 
   /**
+   * The operation id for the '<em>Next Repair Steps</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEMPLATE___NEXT_REPAIR_STEPS__GSNCHANGESTEP = 6;
+
+  /**
    * The operation id for the '<em>Repair</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TEMPLATE___REPAIR__GSNCHANGESTEP = 6;
+  int TEMPLATE___REPAIR__GSNCHANGESTEP = 7;
 
   /**
    * The number of operations of the '<em>Template</em>' class.
@@ -1864,7 +1873,7 @@ public interface GSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TEMPLATE_OPERATION_COUNT = 7;
+  int TEMPLATE_OPERATION_COUNT = 8;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.gsn.impl.RelationshipDecoratorImpl <em>Relationship Decorator</em>}' class.
@@ -2674,6 +2683,16 @@ public interface GSNPackage extends EPackage {
   EOperation getTemplate__Impact__GSNChangeStep();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#nextRepairSteps(edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep) <em>Next Repair Steps</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Next Repair Steps</em>' operation.
+   * @see edu.toronto.cs.se.modelepedia.gsn.Template#nextRepairSteps(edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep)
+   * @generated
+   */
+  EOperation getTemplate__NextRepairSteps__GSNChangeStep();
+
+  /**
    * Returns the meta object for the '{@link edu.toronto.cs.se.modelepedia.gsn.Template#repair(edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep) <em>Repair</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3295,6 +3314,14 @@ public interface GSNPackage extends EPackage {
      * @generated
      */
     EOperation TEMPLATE___IMPACT__GSNCHANGESTEP = GSNPackage.eINSTANCE.getTemplate__Impact__GSNChangeStep();
+
+    /**
+     * The meta object literal for the '<em><b>Next Repair Steps</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation TEMPLATE___NEXT_REPAIR_STEPS__GSNCHANGESTEP = GSNPackage.eINSTANCE.getTemplate__NextRepairSteps__GSNChangeStep();
 
     /**
      * The meta object literal for the '<em><b>Repair</b></em>' operation.

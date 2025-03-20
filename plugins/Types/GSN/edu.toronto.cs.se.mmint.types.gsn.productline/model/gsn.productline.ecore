@@ -43,7 +43,11 @@
     <eOperations name="impact" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
       <eParameters name="step" lowerBound="1" eType="#//PLGSNChangeStep"/>
     </eOperations>
-    <eOperations name="repair" upperBound="-1" eType="#//PLGSNChangeStep" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
+    <eOperations name="nextRepairSteps" upperBound="-1" eType="#//PLGSNChangeStep"
+        eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
+      <eParameters name="step" lowerBound="1" eType="#//PLGSNChangeStep"/>
+    </eOperations>
+    <eOperations name="repair" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception">
       <eParameters name="step" lowerBound="1" eType="#//PLGSNChangeStep"/>
     </eOperations>
   </eClassifiers>

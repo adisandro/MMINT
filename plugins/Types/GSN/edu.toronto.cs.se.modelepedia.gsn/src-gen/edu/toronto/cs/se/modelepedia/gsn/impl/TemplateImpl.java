@@ -229,8 +229,16 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
    * @generated NOT
    */
   @Override
-  public EList<GSNChangeStep> repair(GSNChangeStep step) throws Exception {
+  public EList<GSNChangeStep> nextRepairSteps(GSNChangeStep step) throws Exception {
     return ECollections.asEList(step.nextSteps());
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void repair(GSNChangeStep step) throws Exception {
+    step.baselineRepair();
   }
 
   /**
@@ -382,9 +390,17 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
+      case GSNPackage.TEMPLATE___NEXT_REPAIR_STEPS__GSNCHANGESTEP:
+        try {
+          return nextRepairSteps((GSNChangeStep)arguments.get(0));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
       case GSNPackage.TEMPLATE___REPAIR__GSNCHANGESTEP:
         try {
-          return repair((GSNChangeStep)arguments.get(0));
+          repair((GSNChangeStep)arguments.get(0));
+          return null;
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);

@@ -28,8 +28,11 @@ public interface IAnalysis {
   default void impact(AnalyticTemplate template, GSNChangeStep step) throws Exception {
     step.baselineImpact();
   }
-  default List<GSNChangeStep> repair(AnalyticTemplate template, GSNChangeStep step) throws Exception {
+  default List<GSNChangeStep> nextRepairSteps(AnalyticTemplate template, GSNChangeStep step) throws Exception {
     return step.nextSteps();
+  }
+  default void repair(AnalyticTemplate template, GSNChangeStep step) throws Exception {
+    step.baselineRepair();
   }
   default boolean runsFirst() {
     return true;

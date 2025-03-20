@@ -35,6 +35,9 @@
       <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/impact">
         <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNTemplate/impact/step"/>
       </genOperations>
+      <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/nextRepairSteps">
+        <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNTemplate/nextRepairSteps/step"/>
+      </genOperations>
       <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNTemplate/repair">
         <genParameters ecoreParameter="gsn.productline.ecore#//PLGSNTemplate/repair/step"/>
       </genOperations>

@@ -148,7 +148,10 @@
     <eOperations name="impact" eExceptions="#//Exception">
       <eParameters name="step" lowerBound="1" eType="#//GSNChangeStep"/>
     </eOperations>
-    <eOperations name="repair" upperBound="-1" eType="#//GSNChangeStep" eExceptions="#//Exception">
+    <eOperations name="nextRepairSteps" upperBound="-1" eType="#//GSNChangeStep" eExceptions="#//Exception">
+      <eParameters name="step" lowerBound="1" eType="#//GSNChangeStep"/>
+    </eOperations>
+    <eOperations name="repair" eExceptions="#//Exception">
       <eParameters name="step" lowerBound="1" eType="#//GSNChangeStep"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" lowerBound="1"

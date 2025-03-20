@@ -164,16 +164,31 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
   }
 
   @Override
+  public void baselineRepair() {
+    // do nothing: the only meaningful repair is with templates
+  }
+
+  @Override
   public void repair() throws Exception {
-    // stop condition: already in trace
+    // stop conditions: impacted or its template already in trace
     if (this.forwardTrace.contains(this.impacted)) {
       return;
     }
-    // separate syntactic vs semantic (template) behavior
     var template = this.impacted.getTemplate();
-    var nextSteps = (template == null) ? nextSteps() : template.repair(this);
+    if (template != null && this.forwardTrace.contains(template)) {
+      return;
+    }
+    // separate syntactic vs semantic (template) behavior
+    var nextSteps = (template == null) ? nextSteps() : template.nextRepairSteps(this);
+    this.backwardTrace.add(nextSteps);
     for (var nextStep : nextSteps) {
       nextStep.repair();
+    }
+    if (template == null) {
+      baselineRepair();
+    }
+    else {
+      template.repair(this);
     }
   }
 }

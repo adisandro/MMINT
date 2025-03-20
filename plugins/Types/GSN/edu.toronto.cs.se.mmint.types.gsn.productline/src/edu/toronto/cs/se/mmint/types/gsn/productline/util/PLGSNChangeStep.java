@@ -254,17 +254,34 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
   }
 
   @Override
+  public void baselineRepair() {
+    // do nothing: the only meaningful repair is with templates
+  }
+
+  @Override
   public void repair() throws Exception {
-    // stop condition: already in trace
+    // stop conditions: impacted or its template already in trace
     if (this.forwardTrace.contains(this.impacted)) {
       return;
     }
-    // separate syntactic vs semantic (template) behavior
     var templates = this.impacted.getReference(PLGSNChangeStep.GSN.getArgumentElement_Template());
-    var nextSteps = (templates.isEmpty()) ? nextSteps() : ((PLGSNTemplate) templates.get(0)).repair(this);
+    if (!templates.isEmpty() && this.forwardTrace.contains(templates.get(0))) {
+      return;
+    }
+    // separate syntactic vs semantic (template) behavior
+    var nextSteps = (templates.isEmpty()) ? nextSteps() : ((PLGSNTemplate) templates.get(0)).nextRepairSteps(this);
+    this.backwardTrace.add(nextSteps);
     for (var nextStep : nextSteps) {
       nextStep.repair();
     }
+    if (templates.isEmpty()) {
+      baselineRepair();
+    }
+    else {
+      ((PLGSNTemplate) templates.get(0)).repair(this);
+    }
+    //TODO no repair with no analysis
+    //TODO can't reuse backward pass prop, as phiNew could/should have been taken into account
   }
 
   public static Map<ImpactType, Optional<String>> addPhiNew(Map<ImpactType, Optional<String>> impactTypes) {

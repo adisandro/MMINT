@@ -106,6 +106,9 @@
       <genOperations ecoreOperation="gsn.ecore#//Template/impact">
         <genParameters ecoreParameter="gsn.ecore#//Template/impact/step"/>
       </genOperations>
+      <genOperations ecoreOperation="gsn.ecore#//Template/nextRepairSteps">
+        <genParameters ecoreParameter="gsn.ecore#//Template/nextRepairSteps/step"/>
+      </genOperations>
       <genOperations ecoreOperation="gsn.ecore#//Template/repair">
         <genParameters ecoreParameter="gsn.ecore#//Template/repair/step"/>
       </genOperations>

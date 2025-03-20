@@ -138,8 +138,16 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
    * @generated NOT
    */
   @Override
-  public EList<PLGSNChangeStep> repair(PLGSNChangeStep step) throws Exception {
+  public EList<PLGSNChangeStep> nextRepairSteps(PLGSNChangeStep step) throws Exception {
     return ECollections.asEList(step.nextSteps());
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public void repair(PLGSNChangeStep step) throws Exception {
+    step.baselineRepair();
   }
 
   /**
@@ -192,9 +200,17 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
         }
+      case PLGSNPackage.PLGSN_TEMPLATE___NEXT_REPAIR_STEPS__PLGSNCHANGESTEP:
+        try {
+          return nextRepairSteps((PLGSNChangeStep)arguments.get(0));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
       case PLGSNPackage.PLGSN_TEMPLATE___REPAIR__PLGSNCHANGESTEP:
         try {
-          return repair((PLGSNChangeStep)arguments.get(0));
+          repair((PLGSNChangeStep)arguments.get(0));
+          return null;
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);

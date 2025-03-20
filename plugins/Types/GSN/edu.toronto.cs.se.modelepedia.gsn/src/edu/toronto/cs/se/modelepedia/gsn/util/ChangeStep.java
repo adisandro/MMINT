@@ -30,8 +30,8 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 public abstract class ChangeStep<T> {
 
   public final static String PROPS_NAME = "Change";
-  public final static String RUN_EVIDENCE_ANALYSES_KEY = "runEvidenceAnalyses";
-  public final static boolean RUN_EVIDENCE_ANALYSES_DEFAULT = false;
+  public final static String EAGER_EVIDENCE_IMPACT_KEY = "eagerEvidenceImpact";
+  public final static boolean EAGER_EVIDENCE_IMPACT_DEFAULT = false;
   protected final static Map<String, Object> data = new HashMap<>();
   protected T impacted;
   protected LinkedHashSet<EObject> forwardTrace;
@@ -53,9 +53,9 @@ public abstract class ChangeStep<T> {
     }
     catch (Exception e) {}
     // read into vars
-    var runEvdAnalyses = MIDOperatorIOUtils.getOptionalBoolProperty(props, ChangeStep.RUN_EVIDENCE_ANALYSES_KEY,
-                                                                    ChangeStep.RUN_EVIDENCE_ANALYSES_DEFAULT);
-    ChangeStep.data.put(ChangeStep.RUN_EVIDENCE_ANALYSES_KEY, runEvdAnalyses);
+    var eagerEvdImpact = MIDOperatorIOUtils.getOptionalBoolProperty(props, ChangeStep.EAGER_EVIDENCE_IMPACT_KEY,
+                                                                    ChangeStep.EAGER_EVIDENCE_IMPACT_DEFAULT);
+    ChangeStep.data.put(ChangeStep.EAGER_EVIDENCE_IMPACT_KEY, eagerEvdImpact);
 
     return props;
   }
@@ -86,15 +86,15 @@ public abstract class ChangeStep<T> {
     return this.backwardTrace;
   }
 
+  /**
+   * Steps propagate top down (forward) from the initial change, but impact/repair are done bottom up (backward) from
+   * the solution leafs. Impact/repair can be done during the step propagation phase (usually by a template), overriding
+   * bottom up impact with top down. impact()/repair() are the overall procedures, nextSteps() is the top down forward
+   * step propagation, baselineImpact()/baselineRepair() are the bottom up backward impact/repair.
+   */
   public abstract List<? extends ChangeStep<T>> nextSteps();
   public abstract void baselineImpact();
-
-  /**
-   * Steps propagate top down (forward) from the initial change, but impact is assigned bottom up (backward) from the
-   * solution leafs. Impact can be assigned during the step propagation phase (usually by a template), overriding bottom
-   * up impact with top down. impact() is the overall procedure, nextSteps() is the top down forward step propagation,
-   * baselineImpact() is the bottom up backward impact assignment.
-   */
   public abstract void impact() throws Exception;
+  public abstract void baselineRepair();
   public abstract void repair() throws Exception;
 }
