@@ -333,7 +333,8 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
   }
 
   @Override
-  public List<PLGSNChangeStep> repair(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step) throws Exception {
+  public List<PLGSNChangeStep> nextRepairSteps(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step)
+                                              throws Exception {
     var productLine = (ProductLine) plTemplate.eContainer();
     var plBuilder = new PLGSNBuilder(productLine);
     var templateElems = plTemplate.getElementsById();
@@ -423,5 +424,11 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     }
 
     return nextSteps;
+  }
+
+  @Override
+  public void repair(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step) throws Exception {
+    //TODO forward pass: prune del branches, create new subgoals
+    //TODO backward pass: use new evidence for existing revised/rechecked branches
   }
 }
