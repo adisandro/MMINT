@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.primitive.edit;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.mmint.primitive.edit
-Bundle-Version: 2.25.0.qualifier
+Bundle-Version: 2.25.99.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmint.primitive.provider.PrimitiveEditPlugin$Implementation
 Bundle-Vendor: %providerName

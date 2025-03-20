@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: FAC25;singleton:=true
-Bundle-Version: 2.25.0.qualifier
+Bundle-Version: 2.25.99.qualifier
 Bundle-Vendor: %providerName
 Export-Package: fac25
 Require-Bundle: org.eclipse.emf.ecore,

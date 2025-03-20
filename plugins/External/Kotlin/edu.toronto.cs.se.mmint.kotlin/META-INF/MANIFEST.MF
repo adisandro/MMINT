@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.kotlin;singleton:=true
 Bundle-Vendor: %providerName
-Bundle-Version: 2.25.0.qualifier
+Bundle-Version: 2.25.99.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-24
 Automatic-Module-Name: edu.toronto.cs.se.mmint.kotlin
 Bundle-ActivationPolicy: lazy
