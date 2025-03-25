@@ -4,7 +4,7 @@
     modelDirectory="/edu.toronto.cs.se.modelepedia.relationaldatabase/src-gen" editDirectory="/edu.toronto.cs.se.modelepedia.relationaldatabase.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.modelepedia.relationaldatabase.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.modelepedia.relationaldatabase" modelName="RelationalDatabase"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="24.0" copyrightFields="false"
     operationReflection="true">
   <foreignModel>relationaldatabase.ecore</foreignModel>
   <genPackages prefix="RelationalDatabase" basePackage="edu.toronto.cs.se.modelepedia"

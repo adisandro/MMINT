@@ -4,7 +4,7 @@
     modelDirectory="/edu.toronto.cs.se.mmint.productline/src-gen" creationIcons="false"
     editDirectory="/edu.toronto.cs.se.mmint.productline.edit/src-gen" editorDirectory="/edu.toronto.cs.se.mmint.productline.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.mmint.productline" modelName="PL" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="23.0"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="24.0"
     copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mid"
     operationReflection="true" importOrganizing="true">
   <foreignModel>productline.ecore</foreignModel>

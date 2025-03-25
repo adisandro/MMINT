@@ -4,7 +4,7 @@
     modelDirectory="/edu.toronto.cs.se.mmint/src-gen" editDirectory="/edu.toronto.cs.se.mmint.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.mmint.editor/src-gen" modelPluginID="edu.toronto.cs.se.mmint"
     modelName="MID" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="18.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="24.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>mid.ecore</foreignModel>
   <genPackages prefix="MID" basePackage="edu.toronto.cs.se.mmint" disposableProviderFactory="true"

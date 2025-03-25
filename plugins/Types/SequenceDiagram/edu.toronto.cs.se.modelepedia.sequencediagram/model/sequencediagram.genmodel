@@ -5,7 +5,7 @@
     editorDirectory="/edu.toronto.cs.se.modelepedia.sequencediagram.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.modelepedia.sequencediagram" modelName="SequenceDiagram"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+    complianceLevel="24.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>sequencediagram.ecore</foreignModel>
   <genPackages prefix="SequenceDiagram" basePackage="edu.toronto.cs.se.modelepedia"
       disposableProviderFactory="true" ecorePackage="sequencediagram.ecore#/">

@@ -5,7 +5,7 @@
     editorDirectory="/edu.toronto.cs.se.mmint.example.jase20.iso26262.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.mmint.example.jase20.iso26262" modelName="ISO26262"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="14.0" copyrightFields="false" editPluginID="edu.toronto.cs.se.mmint.example.jase20.iso26262.edit"
+    complianceLevel="24.0" copyrightFields="false" editPluginID="edu.toronto.cs.se.mmint.example.jase20.iso26262.edit"
     editorPluginID="edu.toronto.cs.se.mmint.example.jase20.iso26262.editor" operationReflection="true"
     importOrganizing="true">
   <foreignModel>gsn.ecore</foreignModel>

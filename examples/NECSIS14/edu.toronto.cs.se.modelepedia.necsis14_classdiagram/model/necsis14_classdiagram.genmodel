@@ -6,7 +6,7 @@
     editorDirectory="/edu.toronto.cs.se.modelepedia.necsis14_classdiagram.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.modelepedia.necsis14_classdiagram" modelName="NECSIS14_ClassDiagram"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+    complianceLevel="24.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>necsis14_classdiagram.ecore</foreignModel>
   <genPackages prefix="NECSIS14_ClassDiagram" basePackage="edu.toronto.cs.se.modelepedia"
       disposableProviderFactory="true" ecorePackage="necsis14_classdiagram.ecore#/">

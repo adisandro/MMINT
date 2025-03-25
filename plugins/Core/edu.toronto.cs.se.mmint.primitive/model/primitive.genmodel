@@ -6,7 +6,7 @@
     modelName="Primitive" editPluginClass="edu.toronto.cs.se.mmint.primitive.provider.PrimitiveEditPlugin"
     editorPluginClass="edu.toronto.cs.se.mmint.primitive.presentation.PrimitiveEditorPlugin"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mid"
+    complianceLevel="24.0" copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.mmint/model/mid.genmodel#//mid"
     operationReflection="true" importOrganizing="true">
   <foreignModel>int.ecore</foreignModel>
   <foreignModel>string.ecore</foreignModel>

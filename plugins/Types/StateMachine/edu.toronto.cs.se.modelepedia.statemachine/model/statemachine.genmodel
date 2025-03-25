@@ -4,7 +4,7 @@
     modelDirectory="/edu.toronto.cs.se.modelepedia.statemachine/src-gen" editDirectory="/edu.toronto.cs.se.modelepedia.statemachine.edit/src-gen"
     editorDirectory="/edu.toronto.cs.se.modelepedia.statemachine.editor/src-gen" modelPluginID="edu.toronto.cs.se.modelepedia.statemachine"
     modelName="StateMachine" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="24.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>statemachine.ecore</foreignModel>
   <genPackages prefix="StateMachine" basePackage="edu.toronto.cs.se.modelepedia" disposableProviderFactory="true"

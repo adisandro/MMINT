@@ -6,7 +6,7 @@
     editorDirectory="/edu.toronto.cs.se.modelepedia.necsis14_databaseschema.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.modelepedia.necsis14_databaseschema" modelName="NECSIS14_DatabaseSchema"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+    complianceLevel="24.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>necsis14_databaseschema.ecore</foreignModel>
   <genPackages prefix="NECSIS14_DatabaseSchema" basePackage="edu.toronto.cs.se.modelepedia"
       disposableProviderFactory="true" ecorePackage="necsis14_databaseschema.ecore#/">

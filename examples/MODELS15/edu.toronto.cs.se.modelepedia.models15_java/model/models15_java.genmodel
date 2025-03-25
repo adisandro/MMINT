@@ -5,7 +5,7 @@
     editorDirectory="/edu.toronto.cs.se.modelepedia.models15_java.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.modelepedia.models15_java" modelName="MODELS15_Java"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+    complianceLevel="24.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>models15_java.ecore</foreignModel>
   <genPackages prefix="MODELS15_Java" basePackage="edu.toronto.cs.se.modelepedia"
       disposableProviderFactory="true" ecorePackage="models15_java.ecore#/">
