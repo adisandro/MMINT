@@ -129,13 +129,15 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
       safetyGoal = (PLGSNArgumentElement) templateElems.get("mcStrategy")
         .getReference(this.gsn.getSupporter_Supports()).get(0)
         .getReference(this.gsn.getSupportedBy_Source()).get(0);
-      var otherTemplate = safetyGoal.getReference(this.gsn.getArgumentElement_Template()).get(0);
-      if (otherTemplate.getAttribute(this.gsn.getTemplate_Id()).get(0).equals("QueryAnalysis")) {
-        // connected with query analysis template, extract model from it
-        var otherFilesCtx = ((PLGSNTemplate) otherTemplate).getElementsById().get("filesCtx");
-        var paths = otherFilesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
-        modelPath = paths.get(1);
-        dialogInitial = safetyGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).split("'")[1];
+      var otherTemplate = safetyGoal.getReference(this.gsn.getArgumentElement_Template());
+      if (!otherTemplate.isEmpty()) {
+        var otherFilesCtx = ((PLGSNTemplate) otherTemplate.get(0)).getElementsById().get("filesCtx");
+        if (otherFilesCtx != null) {
+          // connected with model-based template, extract model from it
+          var paths = otherFilesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
+          modelPath = paths.get(1);
+          dialogInitial = safetyGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).split("'")[1];
+        }
       }
     }
     if (modelPath == null) {

@@ -239,13 +239,12 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
       .collect(Collectors.toList());
     var o = 0; // old results counter
     var n = 0; // new results counter
-    var deletedResults = false;
-    var addedResults = false;
+    var revise = false;
     while (n < results.size()) {
       var result = results.get(n);
       // new result
       if (o >= oldResults.size()) {
-        addedResults = true;
+        revise = true;
         break;
       }
       var oldResult = oldResults.get(o);
@@ -265,7 +264,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
       }
       // deleted result
       else if (oldResults.contains(result.getKey())) {
-        deletedResults = true;
+        revise = true;
         while (!oldResult.equals(result.getKey())) {
           var resultGoal = templateElems.get("resultGoal" + o);
           resultGoal.setImpact(PLGSNChangeStep.REVISE);
@@ -281,14 +280,35 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
       }
       // new result
       else {
-        addedResults = true;
+        revise = true;
         n++;
       }
     }
     propsKey = getClass().getName() + "_REVISE_" + modelPath + "_" + queryFilePath + "_" + query;
-    ChangeStep.getData().put(propsKey, deletedResults || addedResults);
+    ChangeStep.getData().put(propsKey, revise);
 
     return nextSteps;
+  }
+
+  private List<Map<ImpactType, Optional<String>>> getDownstreamImpacts(PLGSNChangeStep step) {
+    var impacts = new ArrayList<Map<ImpactType, Optional<String>>>();
+    for (var bStep : step.getBackwardTrace().get(0)) {
+      var impacted = bStep.getImpacted();
+      if (impacted.getType().getName().equals("Strategy") ||
+          impacted.getType().getEAllSuperTypes().stream().anyMatch(s -> s.getName().equals("Strategy"))) {
+        // downstream strategy: get its supporters' impacts
+        impacts.addAll(
+          impacted.getStreamOfReference(this.gsn.getSupporter_Supports())
+            .map(s -> ((PLGSNArgumentElement) s.getReference(this.gsn.getSupportedBy_Source()).get(0)).getImpact())
+            .collect(Collectors.toList()));
+      }
+      else {
+        // downstream other: get direct impacts
+        impacts.add(impacted.getImpact());
+      }
+    }
+
+    return impacts;
   }
 
   @Override
@@ -303,21 +323,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var propsKey = getClass().getName() + "_REVISE_" + modelPath + "_" + queryFilePath + "_" + query;
     var revise = (Boolean) ChangeStep.getData().get(propsKey);
     // bottom up impact
-    var trace = step.getBackwardTrace().get(0);
-    List<Map<ImpactType, Optional<String>>> impacts;
-    if (trace.size() == 1 && (
-         trace.get(0).getImpacted().getType().getName().equals("Strategy") ||
-         trace.get(0).getImpacted().getType().getEAllSuperTypes().stream()
-           .anyMatch(s -> s.getName().equals("Strategy")))) {
-      // get supporters of strategy
-      impacts = trace.get(0).getImpacted()
-        .getStreamOfReference(this.gsn.getSupporter_Supports())
-        .map(s -> ((PLGSNArgumentElement) s.getReference(this.gsn.getSupportedBy_Source()).get(0)).getImpact())
-        .collect(Collectors.toList());
-    }
-    else {
-      impacts = trace.stream().map(s -> s.getImpacted().getImpact()).collect(Collectors.toList());
-    }
+    var impacts = getDownstreamImpacts(step);
     if (revise) {
       // invalid result strategy and context
       var impactTypes = PLGSNChangeStep.addPhiNew(PLGSNChangeStep.REVISE);
@@ -361,18 +367,17 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
       .collect(Collectors.toList());
     var o = 0; // old results counter
     var n = 0; // new results counter
-    var deletedResults = false;
-    var addedResults = false;
+    var revised = false;
     while (n < results.size()) {
       var result = results.get(n);
       // new result, add downstream branch
       if (o >= oldResults.size()) {
-        addedResults = true;
+        revised = true;
         var resultGoal = createPLResultGoal(plTemplate, plBuilder, resultStrategy, resultId + n,
                                             "Query result '" + result.getKey() + "', " + safetyDesc, result.getValue(),
                                             "resultGoal" + n);
         resultCtxDesc += "\n'" + result.getKey() + "'";
-        resultGoal.setImpact(PLGSNChangeStep.REUSE);
+        resultGoal.setImpact(PLGSNChangeStep.REVISE);
         n++;
         continue;
       }
@@ -394,7 +399,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
       }
       // deleted result, delete downstream branch
       else if (oldResults.contains(result.getKey())) {
-        deletedResults = true;
+        revised = true;
         while (!oldResult.equals(result.getKey())) {
           var resultGoal = templateElems.get("resultGoal" + o);
           PLGSNChangeStep.deleteBranch(resultGoal);
@@ -404,23 +409,18 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
       }
       // new result, add downstream branch
       else {
-        addedResults = true;
+        revised = true;
         var resultGoal = createPLResultGoal(plTemplate, plBuilder, resultStrategy, resultId + n,
                                             "Query result '" + result.getKey() + "', " + safetyDesc, result.getValue(),
                                             "resultGoal" + n);
         resultCtxDesc += "\n'" + result.getKey() + "'";
-        resultGoal.setImpact(PLGSNChangeStep.REUSE);
+        resultGoal.setImpact(PLGSNChangeStep.REVISE);
         n++;
       }
     }
-    // clean impact on result strategy
-    if (addedResults) {
-      resultStrategy.setImpact(PLGSNChangeStep.REUSE);
-    }
-    // change result context and clean impact
-    if (deletedResults || addedResults) {
-      resultCtx.setAttribute(this.gsn.getArgumentElement_Description(), resultCtxDesc);
-      resultCtx.setImpact(PLGSNChangeStep.REUSE);
+    if (revised) {
+      propsKey = getClass().getName() + "_CTX_" + modelPath + "_" + queryFilePath + "_" + query;
+      ChangeStep.getData().put(propsKey, resultCtxDesc);
     }
 
     return nextSteps;
@@ -428,7 +428,26 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
 
   @Override
   public void repair(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step) throws Exception {
-    //TODO forward pass: prune del branches, create new subgoals
+    var templateElems = plTemplate.getElementsById();
     //TODO backward pass: use new evidence for existing revised/rechecked branches
+    var filesCtx = templateElems.get("filesCtx");
+    var paths = filesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
+    var queryFilePath = paths.get(0);
+    var modelPath = paths.get(1);
+    var query = filesCtx.getAttribute(this.gsn.getArgumentElement_Description()).get(0).split("'")[1];
+    var propsKey = getClass().getName() + "_CTX_" + modelPath + "_" + queryFilePath + "_" + query;
+    var resultCtxDesc = (String) ChangeStep.getData().get(propsKey);
+    // bottom up repair
+    var impacts = getDownstreamImpacts(step);
+    if (resultCtxDesc != null) {
+      // clean impact on result strategy and context
+      templateElems.get("resultStrategy").setImpact(PLGSNChangeStep.REUSE);
+      var resultCtx = templateElems.get("resultCtx");
+      resultCtx.setImpact(PLGSNChangeStep.REUSE);
+      resultCtx.setAttribute(this.gsn.getArgumentElement_Description(), resultCtxDesc);
+    }
+    var impactTypes = PLGSNChangeStep.min(impacts);
+    templateElems.get("scenarioGoal").setImpact(impactTypes);
+    templateElems.get("safetyGoal").setImpact(impactTypes);
   }
 }

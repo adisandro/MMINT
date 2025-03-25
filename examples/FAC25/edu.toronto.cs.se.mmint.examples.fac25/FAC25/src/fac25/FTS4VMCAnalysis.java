@@ -123,24 +123,35 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     builder.addSupporter(mcStrategy, liftedGoal);
   }
 
+  private PLGSNArgumentElement getSafetyGoal(Map<String, PLGSNArgumentElement> templateElems) {
+    var safetyGoal = templateElems.get("safetyGoal");
+    if (safetyGoal == null) {
+      // using the forward trace to get safetyGoal does not work with linked templates, so navigate the gsn tree
+      safetyGoal = (PLGSNArgumentElement) templateElems.get("mcStrategy")
+        .getReference(this.gsn.getSupporter_Supports()).get(0)
+        .getReference(this.gsn.getSupportedBy_Source()).get(0);
+    }
+
+    return safetyGoal;
+  }
+
   @Override
   public void instantiate(PLGSNAnalyticTemplate plTemplate) throws Exception {
     var templateElems = plTemplate.getElementsById();
     // select PL model and property
     String modelPath = null;
     String dialogInitial = null;
-    var safetyGoal = templateElems.get("safetyGoal");
-    if (safetyGoal == null) {
-      safetyGoal = (PLGSNArgumentElement) templateElems.get("mcStrategy")
-        .getReference(this.gsn.getSupporter_Supports()).get(0)
-        .getReference(this.gsn.getSupportedBy_Source()).get(0);
-      var otherTemplate = safetyGoal.getReference(this.gsn.getArgumentElement_Template()).get(0);
-      if (otherTemplate.getAttribute(this.gsn.getTemplate_Id()).get(0).equals("QueryAnalysis")) {
-        // connected with query analysis template, extract model from it
-        var otherFilesCtx = ((PLGSNTemplate) otherTemplate).getElementsById().get("filesCtx");
-        var paths = otherFilesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
-        modelPath = paths.get(1);
-        dialogInitial = safetyGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).split("'")[1];
+    var safetyGoal = getSafetyGoal(templateElems);
+    if (!templateElems.containsKey("safetyGoal")) {
+      var otherTemplate = safetyGoal.getReference(this.gsn.getArgumentElement_Template());
+      if (!otherTemplate.isEmpty()) {
+        var otherFilesCtx = ((PLGSNTemplate) otherTemplate.get(0)).getElementsById().get("filesCtx");
+        if (otherFilesCtx != null) {
+          // connected with model-based template, extract model from it
+          var paths = otherFilesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
+          modelPath = paths.get(1);
+          dialogInitial = safetyGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).split("'")[1];
+        }
       }
     }
     if (modelPath == null) {
@@ -193,13 +204,7 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
   @Override
   public void impact(PLGSNAnalyticTemplate plTemplate, PLGSNChangeStep step) throws Exception {
     var templateElems = plTemplate.getElementsById();
-    var safetyGoal = templateElems.get("safetyGoal");
-    if (safetyGoal == null) {
-      // using the forward trace to get safetyGoal does not work with linked templates, so navigate the gsn tree
-      safetyGoal = (PLGSNArgumentElement) templateElems.get("mcStrategy")
-        .getReference(this.gsn.getSupporter_Supports()).get(0)
-        .getReference(this.gsn.getSupportedBy_Source()).get(0);
-    }
+    var safetyGoal = getSafetyGoal(templateElems);
     var prevImpact = safetyGoal.getImpact();
     var satGoal = templateElems.get("satGoal");
     var satSolution = templateElems.get("satSolution");
@@ -263,7 +268,7 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
       var holds = result.contains("TRUE");
       var oldHolds = satGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).contains("holds");
       var impactType = (holds == oldHolds) ? PLGSNChangeStep.REUSE : PLGSNChangeStep.REVISE;
-      var safetyGoal = templateElems.get("safetyGoal");
+      var safetyGoal = getSafetyGoal(templateElems);
       satGoal.setImpact(impactType);
       satSolution.setImpact(impactType);
       safetyGoal.setImpact(impactType);
