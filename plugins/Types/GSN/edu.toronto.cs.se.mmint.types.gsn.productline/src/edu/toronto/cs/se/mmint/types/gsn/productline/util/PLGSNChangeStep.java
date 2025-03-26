@@ -186,15 +186,15 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
 
   @Override
   public void baselineImpact() {
-    Map<ImpactType, Optional<String>> prevImpact = null;
-    var prevElem = this.forwardTrace.stream()
+    Map<ImpactType, Optional<String>> topImpact = null;
+    var topElem = this.forwardTrace.stream()
       .filter(t -> t instanceof PLGSNArgumentElement)
       .map(PLGSNArgumentElement.class::cast)
       .findFirst();
-    if (prevElem.isPresent()) {
-      var prevImpact2 = prevElem.get().getImpact();
-      if (prevImpact2.values().stream().anyMatch(pc -> pc.isPresent())) {
-        prevImpact = prevImpact2;
+    if (topElem.isPresent()) {
+      var topImpact2 = topElem.get().getImpact();
+      if (topImpact2.values().stream().anyMatch(pc -> pc.isPresent())) {
+        topImpact = topImpact2;
       }
     }
     Map<ImpactType, Optional<String>> impactTypes;
@@ -221,15 +221,19 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
           }
         }
       }
+      if (topImpact != null) {
+        // add top down impact
+        impactTypes = min(List.of(topImpact, impactTypes));
+      }
     }
     else {
       // bottom up impact
-      impactTypes = min(
-        this.backwardTrace.get(0).stream().map(s -> s.getImpacted().getImpact()).collect(Collectors.toList()));
-    }
-    if (prevImpact != null) {
-      // top down impact
-      impactTypes = min(List.of(prevImpact, impactTypes));
+      var bottomImpacts = getDownstreamImpacts(this);
+      if (topImpact != null) {
+        // add top down impact
+        bottomImpacts.add(topImpact);
+      }
+      impactTypes = min(bottomImpacts);
     }
 
     this.impacted.setImpact(addPhiNew(impactTypes));
@@ -250,6 +254,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     this.backwardTrace.add(nextSteps);
     for (var nextStep : nextSteps) {
       nextStep.impact();
+      this.backwardTrace.addAll(nextStep.getBackwardTrace());
     }
     if (templates.isEmpty()) {
       baselineImpact();
@@ -288,6 +293,24 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     }
   }
 
+  public static List<Map<ImpactType, Optional<String>>> getDownstreamImpacts(PLGSNChangeStep step) {
+    var impacts = new ArrayList<Map<ImpactType, Optional<String>>>();
+    for (var bStep : step.getBackwardTrace().get(0)) {
+      var impacted = bStep.getImpacted();
+      impacts.add(impacted.getImpact()); // always use downstream impacts
+      if (impacted.instanceOf(PLGSNChangeStep.GSN.getStrategy())) {
+        // downstream strategy: get supporters' impacts too
+        impacts.addAll(
+          impacted.getStreamOfReference(PLGSNChangeStep.GSN.getSupporter_Supports())
+            .map(s -> ((PLGSNArgumentElement) s.getReference(PLGSNChangeStep.GSN.getSupportedBy_Source()).get(0))
+                        .getImpact())
+            .collect(Collectors.toList()));
+      }
+    }
+
+    return impacts;
+  }
+
   public static Map<ImpactType, Optional<String>> addPhiNew(Map<ImpactType, Optional<String>> impactTypes) {
     var phiNewOpt = (Optional<String>) ChangeStep.data.get(PLGSNChangeStep.PHI_NEW_KEY);
     if (phiNewOpt.isEmpty()) {
@@ -315,7 +338,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     String reuse = null, revise = null;
     for (var i = 0; i < impacts.size(); i++) {
       var dependencyImpact = impacts.get(i);
-      var pc1 = dependencyImpact.get(ImpactType.REUSE).orElse(PLGSNChangeStep.PL_REASONER.getFalseLiteral());
+      var pc1 = dependencyImpact.get(ImpactType.REUSE).orElse(PLGSNChangeStep.PL_REASONER.getTrueLiteral());
       var pc3 = dependencyImpact.get(ImpactType.REVISE).orElse(PLGSNChangeStep.PL_REASONER.getFalseLiteral());
       reuse = (i == 0) ? pc1 : PLGSNChangeStep.PL_REASONER.and(reuse, pc1);
       revise = (i == 0) ? pc3 : PLGSNChangeStep.PL_REASONER.or(revise, pc3);
@@ -324,11 +347,12 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     revise = PLGSNChangeStep.PL_REASONER.simplify(revise);
     var recheck = PLGSNChangeStep.PL_REASONER.simplify(
       PLGSNChangeStep.PL_REASONER.not(PLGSNChangeStep.PL_REASONER.or(reuse, revise)));
-    var max = Map.of(ImpactType.REUSE,   PLGSNChangeStep.PL_REASONER.checkConsistency(reuse, Set.of()) ?
+    var phiPrime = (String) ChangeStep.data.get(PLGSNChangeStep.NEW_FEATURES_CONSTRAINT_KEY);
+    var max = Map.of(ImpactType.REUSE,   PLGSNChangeStep.PL_REASONER.checkConsistency(phiPrime, Set.of(reuse)) ?
                                            Optional.of(reuse) : Optional.<String>empty(),
-                     ImpactType.RECHECK, PLGSNChangeStep.PL_REASONER.checkConsistency(recheck, Set.of()) ?
+                     ImpactType.RECHECK, PLGSNChangeStep.PL_REASONER.checkConsistency(phiPrime, Set.of(recheck)) ?
                                            Optional.of(recheck) : Optional.<String>empty(),
-                     ImpactType.REVISE,  PLGSNChangeStep.PL_REASONER.checkConsistency(revise, Set.of()) ?
+                     ImpactType.REVISE,  PLGSNChangeStep.PL_REASONER.checkConsistency(phiPrime, Set.of(revise)) ?
                                            Optional.of(revise) : Optional.<String>empty());
 
     return max;
@@ -343,7 +367,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     }
   }
 
-  public static void deleteBranch(Class plElem) {
+  public static void deleteDownstream(Class plElem) {
     var productLine = plElem.getProductLine();
     for (var plInContextOf : plElem.getReference(PLGSNChangeStep.GSN.getContextualizable_InContextOf())) {
       for (var plContext : plInContextOf.getReference(PLGSNChangeStep.GSN.getInContextOf_Context())) {
@@ -353,7 +377,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     }
     for (var plSupportedBy : plElem.getReference(PLGSNChangeStep.GSN.getSupportable_SupportedBy())) {
       for (var plSupporter : plSupportedBy.getReference(PLGSNChangeStep.GSN.getSupportedBy_Target())) {
-        deleteBranch(plSupporter);
+        deleteDownstream(plSupporter);
       }
       productLine.getClasses().remove(plSupportedBy);
     }
