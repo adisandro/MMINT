@@ -16,7 +16,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.ECollections;
@@ -208,10 +207,11 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     var prevImpact = safetyGoal.getImpact();
     var satGoal = templateElems.get("satGoal");
     var satSolution = templateElems.get("satSolution");
-    Map<ImpactType, Optional<String>> impactType;
     if (prevImpact.get(ImpactType.REVISE).isPresent()) {
       // parents should be revised top down, do not re-run model checking but mark to revise
-      impactType = PLGSNChangeStep.REVISE;
+      satGoal.setImpact(ImpactType.REVISE);
+      satSolution.setImpact(ImpactType.REVISE);
+      safetyGoal.setImpact(ImpactType.REVISE);
     }
     else if ((boolean) ChangeStep.getData().get(ChangeStep.EAGER_EVIDENCE_IMPACT_KEY)) {
       // re-run model checking
@@ -225,19 +225,22 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
       ChangeStep.getData().put(propsKey, result);
       var holds = result.contains("TRUE");
       var oldHolds = satGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).contains("holds");
-      impactType = (holds == oldHolds) ? PLGSNChangeStep.REUSE : PLGSNChangeStep.REVISE;
+      var impactType = (holds == oldHolds) ? ImpactType.REUSE : ImpactType.REVISE;
+      satGoal.setImpact(impactType);
+      satSolution.setImpact(impactType);
+      safetyGoal.setImpact(impactType);
     }
     else {
+      // baseline
       var templateStep = new PLGSNChangeStep(satSolution);
       templateStep.getBackwardTrace().add(List.of());
       templateStep.baselineImpact();
-      impactType = satSolution.getImpact();
+      var impactType = satSolution.getImpact();
+      satGoal.setImpact(impactType);
+      safetyGoal.setImpact(impactType);
     }
-    satGoal.setImpact(impactType);
-    satSolution.setImpact(impactType);
-    safetyGoal.setImpact(impactType);
     // reuse everything else in the template
-    PLGSNChangeStep.setAllImpacts(plTemplate, PLGSNChangeStep.REUSE);
+    PLGSNChangeStep.setAllImpacts(plTemplate, ImpactType.REUSE);
   }
 
   @Override
@@ -267,7 +270,7 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
       ChangeStep.getData().put(propsKey, result);
       var holds = result.contains("TRUE");
       var oldHolds = satGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).contains("holds");
-      var impactType = (holds == oldHolds) ? PLGSNChangeStep.REUSE : PLGSNChangeStep.REVISE;
+      var impactType = (holds == oldHolds) ? ImpactType.REUSE : ImpactType.REVISE;
       var safetyGoal = getSafetyGoal(templateElems);
       satGoal.setImpact(impactType);
       satSolution.setImpact(impactType);
