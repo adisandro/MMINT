@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.design.PLServices;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 public class PLGSNServices extends PLServices {
@@ -25,11 +26,14 @@ public class PLGSNServices extends PLServices {
   public String getPLGSNElementLabel(EObject self) {
     var pc = ((PLElement) self).getPresenceConditionLabel(true);
     var label = switch (self) {
-      case Class c when c.instanceOf(GSNPackage.eINSTANCE.getArgumentElement()) -> {
-        var id = mergePLAttributeLabels(c, GSNPackage.eINSTANCE.getArgumentElement_Id());
-        var desc = mergePLAttributeLabels(c, GSNPackage.eINSTANCE.getArgumentElement_Description());
+      case PLGSNArgumentElement e -> {
+        var id = mergePLAttributeLabels(e, GSNPackage.eINSTANCE.getArgumentElement_Id());
+        var desc = mergePLAttributeLabels(e, GSNPackage.eINSTANCE.getArgumentElement_Description());
         var text = (id + "\n" + desc).strip();
         yield (pc.isBlank()) ? text : pc + " " + text;
+      }
+      case Class c when c.instanceOf(GSNPackage.eINSTANCE.getImpactAnnotation()) -> {
+        yield (c.getPresenceCondition().equals(c.getEContainer().getPresenceCondition())) ? "" : pc;
       }
       case Class c -> pc;
       default -> getPLElementLabel(self);

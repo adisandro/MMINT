@@ -23,6 +23,9 @@
         </eGenericType>
       </eParameters>
     </eOperations>
+    <eOperations name="setImpact">
+      <eParameters name="impactType" lowerBound="1" eType="ecore:EEnum ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//ImpactType"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PLGSNTemplate" eSuperTypes="../../edu.toronto.cs.se.mmint.productline/model/productline.ecore#//Class">
     <eOperations name="getElementsById" lowerBound="1">

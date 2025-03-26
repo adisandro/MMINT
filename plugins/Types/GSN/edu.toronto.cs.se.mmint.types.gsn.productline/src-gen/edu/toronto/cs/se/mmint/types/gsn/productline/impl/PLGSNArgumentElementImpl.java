@@ -144,6 +144,25 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
   }
 
   /**
+   * @generated NOT
+   */
+  @Override
+  public void setImpact(ImpactType impactType) {
+    var impactTypes = switch (impactType) {
+      case REUSE   -> Map.of(ImpactType.REUSE,   Optional.of(getPresenceCondition()),
+                             ImpactType.RECHECK, Optional.<String>empty(),
+                             ImpactType.REVISE,  Optional.<String>empty());
+      case RECHECK -> Map.of(ImpactType.REUSE,   Optional.<String>empty(),
+                             ImpactType.RECHECK, Optional.of(getPresenceCondition()),
+                             ImpactType.REVISE,  Optional.<String>empty());
+      case REVISE  -> Map.of(ImpactType.REUSE,   Optional.<String>empty(),
+                             ImpactType.RECHECK, Optional.<String>empty(),
+                             ImpactType.REVISE,  Optional.of(getPresenceCondition()));
+    };
+    setImpact(impactTypes);
+  }
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -172,6 +191,9 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
         return getImpact();
       case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__MAP:
         setImpact((Map<ImpactType, Optional<String>>)arguments.get(0));
+        return null;
+      case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__IMPACTTYPE:
+        setImpact((ImpactType)arguments.get(0));
         return null;
     }
     return super.eInvoke(operationID, arguments);

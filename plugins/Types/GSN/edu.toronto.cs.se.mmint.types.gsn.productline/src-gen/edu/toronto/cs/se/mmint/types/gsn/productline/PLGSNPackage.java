@@ -331,13 +331,22 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__MAP = PLPackage.CLASS_OPERATION_COUNT + 3;
 
   /**
+   * The operation id for the '<em>Set Impact</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__IMPACTTYPE = PLPackage.CLASS_OPERATION_COUNT + 4;
+
+  /**
    * The number of operations of the '<em>Argument Element</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_ARGUMENT_ELEMENT_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 4;
+  int PLGSN_ARGUMENT_ELEMENT_OPERATION_COUNT = PLPackage.CLASS_OPERATION_COUNT + 5;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNTemplateImpl <em>Template</em>}' class.
@@ -1043,6 +1052,16 @@ public interface PLGSNPackage extends EPackage {
   EOperation getPLGSNArgumentElement__SetImpact__Map();
 
   /**
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#setImpact(edu.toronto.cs.se.modelepedia.gsn.ImpactType) <em>Set Impact</em>}' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the '<em>Set Impact</em>' operation.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement#setImpact(edu.toronto.cs.se.modelepedia.gsn.ImpactType)
+   * @generated
+   */
+  EOperation getPLGSNArgumentElement__SetImpact__ImpactType();
+
+  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate <em>Template</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1245,6 +1264,13 @@ public interface PLGSNPackage extends EPackage {
      * @generated
      */
     EOperation PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__MAP = PLGSNPackage.eINSTANCE.getPLGSNArgumentElement__SetImpact__Map();
+    /**
+     * The meta object literal for the '<em><b>Set Impact</b></em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EOperation PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__IMPACTTYPE = PLGSNPackage.eINSTANCE.getPLGSNArgumentElement__SetImpact__ImpactType();
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNTemplateImpl <em>Template</em>}' class.
      * <!-- begin-user-doc -->
