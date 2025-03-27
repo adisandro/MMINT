@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -103,21 +104,27 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
   }
 
   public Map<ImpactType, Optional<String>> reuse() {
-    return Map.of(ImpactType.REUSE,   Optional.of(this.impacted.getPresenceCondition()),
+//    var pc = this.impacted.getPresenceCondition();
+    var pc = "$true";
+    return Map.of(ImpactType.REUSE,   Optional.of(pc),
                   ImpactType.RECHECK, Optional.empty(),
                   ImpactType.REVISE,  Optional.empty());
   }
 
   public Map<ImpactType, Optional<String>> recheck() {
+//  var pc = this.impacted.getPresenceCondition();
+  var pc = "$true";
     return Map.of(ImpactType.REUSE,   Optional.empty(),
-                  ImpactType.RECHECK, Optional.of(this.impacted.getPresenceCondition()),
+                  ImpactType.RECHECK, Optional.of(pc),
                   ImpactType.REVISE,  Optional.empty());
   }
 
   public Map<ImpactType, Optional<String>> revise() {
+//  var pc = this.impacted.getPresenceCondition();
+  var pc = "$true";
     return Map.of(ImpactType.REUSE,   Optional.empty(),
                   ImpactType.RECHECK, Optional.empty(),
-                  ImpactType.REVISE,  Optional.of(this.impacted.getPresenceCondition()));
+                  ImpactType.REVISE,  Optional.of(pc));
   }
 
   public List<PLGSNChangeStep> nextSupporters() {
@@ -335,16 +342,20 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
   }
 
   public static Map<ImpactType, Optional<String>> min(List<Map<ImpactType, Optional<String>>> impacts) {
-    String reuse = null, revise = null;
-    for (var i = 0; i < impacts.size(); i++) {
-      var dependencyImpact = impacts.get(i);
-      var pc1 = dependencyImpact.get(ImpactType.REUSE).orElse(PLGSNChangeStep.PL_REASONER.getTrueLiteral());
-      var pc3 = dependencyImpact.get(ImpactType.REVISE).orElse(PLGSNChangeStep.PL_REASONER.getFalseLiteral());
-      reuse = (i == 0) ? pc1 : PLGSNChangeStep.PL_REASONER.and(reuse, pc1);
-      revise = (i == 0) ? pc3 : PLGSNChangeStep.PL_REASONER.or(revise, pc3);
+    var reusePCs = new HashSet<String>();
+    var revisePCs = new HashSet<String>();
+    for (var impact : impacts) {
+      var reusePC = impact.get(ImpactType.REUSE);
+      if (reusePC.isPresent()) {
+        reusePCs.add(reusePC.get());
+      }
+      var revisePC = impact.get(ImpactType.REVISE);
+      if (revisePC.isPresent()) {
+        revisePCs.add(revisePC.get());
+      }
     }
-    reuse = PLGSNChangeStep.PL_REASONER.simplify(reuse);
-    revise = PLGSNChangeStep.PL_REASONER.simplify(revise);
+    var reuse = PLGSNChangeStep.PL_REASONER.simplify(PLGSNChangeStep.PL_REASONER.and(reusePCs.toArray(String[]::new)));
+    var revise = PLGSNChangeStep.PL_REASONER.simplify(PLGSNChangeStep.PL_REASONER.or(revisePCs.toArray(String[]::new)));
     var recheck = PLGSNChangeStep.PL_REASONER.simplify(
       PLGSNChangeStep.PL_REASONER.not(PLGSNChangeStep.PL_REASONER.or(reuse, revise)));
     var phiPrime = (String) ChangeStep.data.get(PLGSNChangeStep.NEW_FEATURES_CONSTRAINT_KEY);
@@ -382,5 +393,41 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
       productLine.getClasses().remove(plSupportedBy);
     }
     plElem.delete();
+  }
+
+  private static void replacePC(PLGSNArgumentElement plElem, String oldPresenceCondition, String newPresenceCondition) {
+    plElem.setPresenceCondition(plElem.getPresenceCondition().replace(oldPresenceCondition, newPresenceCondition));
+    for (var plAttr : plElem.getAttributes()) {
+      plAttr.setPresenceCondition(plAttr.getPresenceCondition().replace(oldPresenceCondition, newPresenceCondition));
+    }
+    for (var plRef : plElem.getReferences()) {
+      plRef.setPresenceCondition(plRef.getPresenceCondition().replace(oldPresenceCondition, newPresenceCondition));
+    }
+    for (var plRef : plElem.getReferencesAsTarget()) {
+      plRef.setPresenceCondition(plRef.getPresenceCondition().replace(oldPresenceCondition, newPresenceCondition));
+    }
+    for (var plImpact : plElem.getReference(PLGSNChangeStep.GSN.getArgumentElement_Status())) {
+      plImpact.setPresenceCondition(plImpact.getPresenceCondition().replace(oldPresenceCondition,
+                                                                            newPresenceCondition));
+    }
+  }
+
+  public static void replacePCDownstream(PLGSNArgumentElement plElem, String oldPresenceCondition,
+                                         String newPresenceCondition) {
+    replacePC(plElem, oldPresenceCondition, newPresenceCondition);
+    for (var plInContextOf : plElem.getReference(PLGSNChangeStep.GSN.getContextualizable_InContextOf())) {
+      plInContextOf.setPresenceCondition(plInContextOf.getPresenceCondition().replace(oldPresenceCondition,
+                                                                                      newPresenceCondition));
+      for (var plContext : plInContextOf.getReference(PLGSNChangeStep.GSN.getInContextOf_Context())) {
+        replacePC((PLGSNArgumentElement) plContext, oldPresenceCondition, newPresenceCondition);
+      }
+    }
+    for (var plSupportedBy : plElem.getReference(PLGSNChangeStep.GSN.getSupportable_SupportedBy())) {
+      plSupportedBy.setPresenceCondition(plSupportedBy.getPresenceCondition().replace(oldPresenceCondition,
+                                                                                      newPresenceCondition));
+      for (var plSupporter : plSupportedBy.getReference(PLGSNChangeStep.GSN.getSupportedBy_Target())) {
+        replacePCDownstream((PLGSNArgumentElement) plSupporter, oldPresenceCondition, newPresenceCondition);
+      }
+    }
   }
 }

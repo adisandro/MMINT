@@ -148,16 +148,18 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
    */
   @Override
   public void setImpact(ImpactType impactType) {
+//    var pc = getPresenceCondition();
+    var pc = "$true";
     var impactTypes = switch (impactType) {
-      case REUSE   -> Map.of(ImpactType.REUSE,   Optional.of(getPresenceCondition()),
+      case REUSE   -> Map.of(ImpactType.REUSE,   Optional.of(pc),
                              ImpactType.RECHECK, Optional.<String>empty(),
                              ImpactType.REVISE,  Optional.<String>empty());
       case RECHECK -> Map.of(ImpactType.REUSE,   Optional.<String>empty(),
-                             ImpactType.RECHECK, Optional.of(getPresenceCondition()),
+                             ImpactType.RECHECK, Optional.of(pc),
                              ImpactType.REVISE,  Optional.<String>empty());
       case REVISE  -> Map.of(ImpactType.REUSE,   Optional.<String>empty(),
                              ImpactType.RECHECK, Optional.<String>empty(),
-                             ImpactType.REVISE,  Optional.of(getPresenceCondition()));
+                             ImpactType.REVISE,  Optional.of(pc));
     };
     setImpact(impactTypes);
   }
