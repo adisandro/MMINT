@@ -358,7 +358,7 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     return max;
   }
 
-  public static void setAllImpacts(PLGSNTemplate plTemplate, ImpactType impactType) {
+  public static void setAllRemainingImpacts(PLGSNTemplate plTemplate, ImpactType impactType) {
     for (var plElem : plTemplate.getReference(PLGSNChangeStep.GSN.getTemplate_Elements())) {
       if (!plElem.getReference(PLGSNChangeStep.GSN.getArgumentElement_Status()).isEmpty()) {
         continue;
