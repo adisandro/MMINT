@@ -78,6 +78,7 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
                  presenceCondition2Dot(t.getPresenceCondition()) + "\"];";
         }
       }
+
     }
     out += "\n}";
 
@@ -145,8 +146,7 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
       var otherTemplate = safetyGoal.getReference(this.gsn.getArgumentElement_Template());
       if (!otherTemplate.isEmpty()) {
         var otherFilesCtx = ((PLGSNTemplate) otherTemplate.get(0)).getElementsById().get("filesCtx");
-        if (otherFilesCtx != null) {
-          // connected with model-based template, extract model from it
+        if (otherFilesCtx != null) { // connected with model-based template, extract model from it
           var paths = otherFilesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
           modelPath = paths.get(1);
           dialogInitial = safetyGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).split("'")[1];
@@ -205,16 +205,16 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     var templateElems = plTemplate.getElementsById();
     var safetyGoal = getSafetyGoal(templateElems);
     var prevImpact = safetyGoal.getImpact();
-    var satGoal = templateElems.get("satGoal");
     var satSolution = templateElems.get("satSolution");
-    if (prevImpact.get(ImpactType.REVISE).isPresent()) {
-      // parents should be revised top down, do not re-run model checking but mark to revise
-      satGoal.setImpact(ImpactType.REVISE);
+    var satGoal = templateElems.get("satGoal");
+    // obsolete branch, do not re-run model checking but mark to revise
+    if (prevImpact.get(ImpactType.REVISE).isPresent() && prevImpact.get(ImpactType.REUSE).isEmpty() &&
+        prevImpact.get(ImpactType.RECHECK).isEmpty()) {
       satSolution.setImpact(ImpactType.REVISE);
-      safetyGoal.setImpact(ImpactType.REVISE);
+      satGoal.setImpact(ImpactType.REVISE);
     }
+    // regression analysis: re-run model checking
     else if ((boolean) ChangeStep.getData().get(ChangeStep.EAGER_EVIDENCE_IMPACT_KEY)) {
-      // re-run model checking
       var filesCtx = templateElems.get("filesCtx");
       var paths = filesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
       var propertyPath = paths.get(0);
@@ -226,21 +226,31 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
       var holds = result.contains("TRUE");
       var oldHolds = satGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).contains("holds");
       var impactType = (holds == oldHolds) ? ImpactType.REUSE : ImpactType.REVISE;
-      satGoal.setImpact(impactType);
       satSolution.setImpact(impactType);
+      satGoal.setImpact(impactType);
       safetyGoal.setImpact(impactType);
     }
+    // baseline
     else {
-      // baseline
+      var prevImpactReuse = prevImpact.get(ImpactType.REUSE);
+      String restorePC = null;
+      if (prevImpactReuse.isPresent() && prevImpactReuse.get().equals(satSolution.getPresenceCondition())) {
+        // temporarily modify presence condition to run baseline with the proper formula
+        restorePC = satSolution.getPresenceCondition();
+        satSolution.setPresenceCondition(prevImpactReuse.get());
+      }
       var templateStep = new PLGSNChangeStep(satSolution);
       templateStep.getBackwardTrace().add(List.of());
       templateStep.baselineImpact();
-      var impactType = satSolution.getImpact();
-      satGoal.setImpact(impactType);
-      safetyGoal.setImpact(impactType);
+      var impactTypes = satSolution.getImpact();
+      satGoal.setImpact(impactTypes);
+      safetyGoal.setImpact(impactTypes);
+      if (restorePC != null) {
+        satSolution.setPresenceCondition(restorePC);
+      }
     }
     // reuse everything else in the template
-    PLGSNChangeStep.setAllImpacts(plTemplate, ImpactType.REUSE);
+    PLGSNChangeStep.setAllRemainingImpacts(plTemplate, ImpactType.REUSE);
   }
 
   @Override
@@ -255,7 +265,6 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     var templateElems = plTemplate.getElementsById();
     var satGoal = templateElems.get("satGoal");
     var satSolution = templateElems.get("satSolution");
-    var satImpact = satGoal.getImpact();
     var filesCtx = templateElems.get("filesCtx");
     var paths = filesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
     var propertyPath = paths.get(0);
@@ -263,17 +272,18 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     var oldResultPath = paths.get(2);
     String result;
     var propsKey = getClass().getName() + "_" + modelPath + "_" + propertyPath + "_" + oldResultPath;
+    var satImpact = satSolution.getImpact();
+    // re-run model checking
     if (!(boolean) ChangeStep.getData().get(ChangeStep.EAGER_EVIDENCE_IMPACT_KEY) &&
         (satImpact.get(ImpactType.REVISE).isPresent() || satImpact.get(ImpactType.RECHECK).isPresent())) {
-      // re-run model checking
       result = runFTS4VMC(modelPath, propertyPath);
       ChangeStep.getData().put(propsKey, result);
       var holds = result.contains("TRUE");
       var oldHolds = satGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).contains("holds");
       var impactType = (holds == oldHolds) ? ImpactType.REUSE : ImpactType.REVISE;
       var safetyGoal = getSafetyGoal(templateElems);
-      satGoal.setImpact(impactType);
       satSolution.setImpact(impactType);
+      satGoal.setImpact(impactType);
       safetyGoal.setImpact(impactType);
     }
     // store new result (either from impact re-run, or repair re-run)
