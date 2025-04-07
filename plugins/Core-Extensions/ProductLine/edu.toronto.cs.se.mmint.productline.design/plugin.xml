@@ -39,6 +39,10 @@
             actionClass="edu.toronto.cs.se.mmint.productline.design.tools.EditPresenceCondition"
             id="edu.toronto.cs.se.mmint.productline.design.tools.EditPresenceCondition">
       </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.productline.design.tools.DeleteClass"
+            id="edu.toronto.cs.se.mmint.productline.design.tools.DeleteClass">
+      </javaActions>
    </extension>
 
    <extension

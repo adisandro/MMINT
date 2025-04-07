@@ -3,7 +3,7 @@
   <ownedViewpoints name="PLStateMachineViewpoint" modelFileExtension="productline">
     <ownedRepresentationExtensions xsi:type="description_1:DiagramExtensionDescription" name="PL State Machine Diagram" viewpointURI="viewpoint:/edu.toronto.cs.se.mmint.productline.design/ProductLineViewpoint" representationName="ProductLineDiagram">
       <layers name="PLDefault" label="PL State Machine">
-        <nodeMappings name="PLInitialState" preconditionExpression="aql: self.type.name = 'InitialState'" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
+        <nodeMappings name="PLInitialState" preconditionExpression="aql: self.type.name = 'InitialState'" deletionDescription="//@ownedViewpoints[name='PLStateMachineViewpoint']/@ownedRepresentationExtensions[name='PL%20State%20Machine%20Diagram']/@layers[name='PLDefault']/@toolSections.0/@ownedTools[name='PLDeleteClass']" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
           <style xsi:type="style:DotDescription" labelSize="10" showIcon="false" labelExpression="service: getPLStateMachineElementLabel" labelPosition="node" resizeKind="NSEW">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -11,7 +11,7 @@
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </nodeMappings>
-        <nodeMappings name="PLFinalState" preconditionExpression="aql: self.type.name = 'FinalState'" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
+        <nodeMappings name="PLFinalState" preconditionExpression="aql: self.type.name = 'FinalState'" deletionDescription="//@ownedViewpoints[name='PLStateMachineViewpoint']/@ownedRepresentationExtensions[name='PL%20State%20Machine%20Diagram']/@layers[name='PLDefault']/@toolSections.0/@ownedTools[name='PLDeleteClass']" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
           <style xsi:type="style:DotDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getPLStateMachineElementLabel" labelPosition="node" resizeKind="NSEW">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -19,7 +19,7 @@
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </nodeMappings>
-        <edgeMappings name="PLTransition" preconditionExpression="aql: self.type.name = 'Transition'" semanticCandidatesExpression="feature:classes" sourceMapping="//@ownedViewpoints[name='PLStateMachineViewpoint']/@ownedRepresentationExtensions[name='PL%20State%20Machine%20Diagram']/@layers[name='PLDefault']/@containerMappings[name='PLState'] //@ownedViewpoints[name='PLStateMachineViewpoint']/@ownedRepresentationExtensions[name='PL%20State%20Machine%20Diagram']/@layers[name='PLDefault']/@nodeMappings[name='PLInitialState'] //@ownedViewpoints[name='PLStateMachineViewpoint']/@ownedRepresentationExtensions[name='PL%20State%20Machine%20Diagram']/@layers[name='PLDefault']/@nodeMappings[name='PLFinalState']" targetMapping="//@ownedViewpoints[name='PLStateMachineViewpoint']/@ownedRepresentationExtensions[name='PL%20State%20Machine%20Diagram']/@layers[name='PLDefault']/@containerMappings[name='PLState'] //@ownedViewpoints[name='PLStateMachineViewpoint']/@ownedRepresentationExtensions[name='PL%20State%20Machine%20Diagram']/@layers[name='PLDefault']/@nodeMappings[name='PLInitialState'] //@ownedViewpoints[name='PLStateMachineViewpoint']/@ownedRepresentationExtensions[name='PL%20State%20Machine%20Diagram']/@layers[name='PLDefault']/@nodeMappings[name='PLFinalState']" targetFinderExpression="aql: self.references->select(r | r.type.name = 'target')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'transitionsAsTarget')->collect(r | r.eContainer()))" sourceFinderExpression="aql: self.references->select(r | r.type.name = 'source')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'transitionsAsSource')->collect(r | r.eContainer()))" domainClass="productline.Class" useDomainElement="true">
+        <edgeMappings name="PLTransition" preconditionExpression="aql: self.type.name = 'Transition'" deletionDescription="//@ownedViewpoints[name='PLStateMachineViewpoint']/@ownedRepresentationExtensions[name='PL%20State%20Machine%20Diagram']/@layers[name='PLDefault']/@toolSections.0/@ownedTools[name='PLDeleteClass']" semanticCandidatesExpression="feature:classes" sourceMapping="//@ownedViewpoints[name='PLStateMachineViewpoint']/@ownedRepresentationExtensions[name='PL%20State%20Machine%20Diagram']/@layers[name='PLDefault']/@containerMappings[name='PLState'] //@ownedViewpoints[name='PLStateMachineViewpoint']/@ownedRepresentationExtensions[name='PL%20State%20Machine%20Diagram']/@layers[name='PLDefault']/@nodeMappings[name='PLInitialState'] //@ownedViewpoints[name='PLStateMachineViewpoint']/@ownedRepresentationExtensions[name='PL%20State%20Machine%20Diagram']/@layers[name='PLDefault']/@nodeMappings[name='PLFinalState']" targetMapping="//@ownedViewpoints[name='PLStateMachineViewpoint']/@ownedRepresentationExtensions[name='PL%20State%20Machine%20Diagram']/@layers[name='PLDefault']/@containerMappings[name='PLState'] //@ownedViewpoints[name='PLStateMachineViewpoint']/@ownedRepresentationExtensions[name='PL%20State%20Machine%20Diagram']/@layers[name='PLDefault']/@nodeMappings[name='PLInitialState'] //@ownedViewpoints[name='PLStateMachineViewpoint']/@ownedRepresentationExtensions[name='PL%20State%20Machine%20Diagram']/@layers[name='PLDefault']/@nodeMappings[name='PLFinalState']" targetFinderExpression="aql: self.references->select(r | r.type.name = 'target')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'transitionsAsTarget')->collect(r | r.eContainer()))" sourceFinderExpression="aql: self.references->select(r | r.type.name = 'source')->collect(r | r.target)->union(self.referencesAsTarget->select(r | r.type.name = 'transitionsAsSource')->collect(r | r.eContainer()))" domainClass="productline.Class" useDomainElement="true">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
           <style sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -28,9 +28,9 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <containerMappings name="PLState" preconditionExpression="aql: self.type.name = 'State'" semanticCandidatesExpression="feature:classes" domainClass="productline.Class" childrenPresentation="List">
+        <containerMappings name="PLState" preconditionExpression="aql: self.type.name = 'State'" deletionDescription="//@ownedViewpoints[name='PLStateMachineViewpoint']/@ownedRepresentationExtensions[name='PL%20State%20Machine%20Diagram']/@layers[name='PLDefault']/@toolSections.0/@ownedTools[name='PLDeleteClass']" semanticCandidatesExpression="feature:classes" domainClass="productline.Class" childrenPresentation="List">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
-          <subNodeMappings name="PLStateAction" preconditionExpression="aql: self.type.name = 'StateAction' and self.referencesAsTarget.eContainer(productline::Class)->includes(container)" semanticCandidatesExpression="aql: self.eContainer(productline::ProductLine).classes" domainClass="productline.Class">
+          <subNodeMappings name="PLStateAction" preconditionExpression="aql: self.type.name = 'StateAction' and self.referencesAsTarget.eContainer(productline::Class)->includes(container)" deletionDescription="//@ownedViewpoints[name='PLStateMachineViewpoint']/@ownedRepresentationExtensions[name='PL%20State%20Machine%20Diagram']/@layers[name='PLDefault']/@toolSections.0/@ownedTools[name='PLDeleteClass']" semanticCandidatesExpression="aql: self.eContainer(productline::ProductLine).classes" domainClass="productline.Class">
             <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
             <style xsi:type="style:SquareDescription" labelSize="10" showIcon="false" labelExpression="service: getPLStateMachineElementLabel" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -102,6 +102,16 @@
                   <parameters name="source" value="var:source"/>
                   <parameters name="target" value="var:target"/>
                 </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="PLDeleteClass" label="Class">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLDeleteClass" id="edu.toronto.cs.se.mmint.productline.design.tools.DeleteClass"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>

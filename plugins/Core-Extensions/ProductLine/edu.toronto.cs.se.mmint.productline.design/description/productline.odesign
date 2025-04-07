@@ -14,7 +14,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <containerMappings name="ClassContainer" labelDirectEdit="//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']" semanticCandidatesExpression="feature:classes" domainClass="productline.Class" childrenPresentation="List">
+        <containerMappings name="ClassContainer" deletionDescription="//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DeleteClass']" labelDirectEdit="//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']" semanticCandidatesExpression="feature:classes" domainClass="productline.Class" childrenPresentation="List">
           <subNodeMappings name="AttributeNode" labelDirectEdit="//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']" semanticCandidatesExpression="feature:attributes" domainClass="productline.Attribute">
             <style xsi:type="style:SquareDescription" labelSize="12" showIcon="false" labelExpression="service: getPLElementLabel" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -69,6 +69,16 @@
                 <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="EditPresenceCondition" id="edu.toronto.cs.se.mmint.productline.design.tools.EditPresenceCondition">
                   <parameters name="newPresenceCondition" value="var:0"/>
                 </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="DeleteClass" label="Class">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="DeleteClass" id="edu.toronto.cs.se.mmint.productline.design.tools.DeleteClass"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
