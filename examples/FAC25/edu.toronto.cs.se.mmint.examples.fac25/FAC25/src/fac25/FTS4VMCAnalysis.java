@@ -78,7 +78,6 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
                  presenceCondition2Dot(t.getPresenceCondition()) + "\"];";
         }
       }
-
     }
     out += "\n}";
 
@@ -184,12 +183,7 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
       .replace("{output}", FileUtils.getLastSegmentFromPath(resultPath));
     satSolution.setAttribute(this.gsn.getArgumentElement_Description(), satSolDesc);
     if (!safetyGoal.isAlwaysPresent()) {
-      var pc = safetyGoal.getPresenceCondition();
-      plTemplate.getStreamOfReference(this.gsn.getTemplate_Elements()).forEach(e -> {
-        e.setPresenceCondition(pc);
-        e.getStreamOfReference(this.gsn.getSupportable_SupportedBy()).forEach(sb -> sb.setPresenceCondition(pc));
-        e.getStreamOfReference(this.gsn.getContextualizable_InContextOf()).forEach(ico -> ico.setPresenceCondition(pc));
-      });
+      PLGSNChangeStep.changePCDownstream(safetyGoal, (_) -> safetyGoal.getPresenceCondition());
     }
   }
 

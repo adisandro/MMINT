@@ -429,11 +429,12 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
         n++;
         if (!oldPC.equals(pc)) { // presence condition changed
           var plReasoner = productLine.getReasoner();
-          var phiPrime = (String) ChangeStep.getData().get(PLGSNChangeStep.NEW_FEATURES_CONSTRAINT_KEY);
           var reusePC = plReasoner.simplify(plReasoner.and(oldPC, pc));
-          // modify existing result's presence condition
-          PLGSNChangeStep.replacePCDownstream(resultGoal, oldPC, reusePC);
+          if (!oldPC.equals(reusePC)) { // modify existing result's presence condition
+            PLGSNChangeStep.changePCDownstream(resultGoal, (p) -> p.replace(oldPC, reusePC));
+          }
           var newPC = plReasoner.and(plReasoner.not(oldPC), pc);
+          var phiPrime = (String) ChangeStep.getData().get(PLGSNChangeStep.NEW_FEATURES_CONSTRAINT_KEY);
           var newSAT = plReasoner.checkConsistency(phiPrime, Set.of(newPC));
           // create new result
           if (newSAT) {
