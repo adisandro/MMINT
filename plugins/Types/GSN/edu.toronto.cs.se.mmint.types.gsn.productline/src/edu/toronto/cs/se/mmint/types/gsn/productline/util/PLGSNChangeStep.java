@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -395,39 +396,31 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     plElem.delete();
   }
 
-  private static void replacePC(PLGSNArgumentElement plElem, String oldPresenceCondition, String newPresenceCondition) {
-    plElem.setPresenceCondition(plElem.getPresenceCondition().replace(oldPresenceCondition, newPresenceCondition));
-    for (var plAttr : plElem.getAttributes()) {
-      plAttr.setPresenceCondition(plAttr.getPresenceCondition().replace(oldPresenceCondition, newPresenceCondition));
-    }
-    for (var plRef : plElem.getReferences()) {
-      plRef.setPresenceCondition(plRef.getPresenceCondition().replace(oldPresenceCondition, newPresenceCondition));
-    }
-    for (var plRef : plElem.getReferencesAsTarget()) {
-      plRef.setPresenceCondition(plRef.getPresenceCondition().replace(oldPresenceCondition, newPresenceCondition));
-    }
-    for (var plImpact : plElem.getReference(PLGSNChangeStep.GSN.getArgumentElement_Status())) {
-      plImpact.setPresenceCondition(plImpact.getPresenceCondition().replace(oldPresenceCondition,
-                                                                            newPresenceCondition));
-    }
+  private static void changePC(PLGSNArgumentElement plElem, Function<String, String> change) {
+    plElem.setPresenceCondition(change.apply(plElem.getPresenceCondition()));
+    plElem.getAttributes().stream()
+      .forEach(a -> a.setPresenceCondition(change.apply(a.getPresenceCondition())));
+    plElem.getStreamOfReference(PLGSNChangeStep.GSN.getArgumentElement_Status())
+      .forEach(i -> i.setPresenceCondition(change.apply(i.getPresenceCondition())));
+    plElem.getReferences().stream()
+      .forEach(r -> r.setPresenceCondition(change.apply(r.getPresenceCondition())));
+    plElem.getReferencesAsTarget().stream()
+      .forEach(r -> r.setPresenceCondition(change.apply(r.getPresenceCondition())));
   }
 
-  public static void replacePCDownstream(PLGSNArgumentElement plElem, String oldPresenceCondition,
-                                         String newPresenceCondition) {
-    replacePC(plElem, oldPresenceCondition, newPresenceCondition);
-    for (var plInContextOf : plElem.getReference(PLGSNChangeStep.GSN.getContextualizable_InContextOf())) {
-      plInContextOf.setPresenceCondition(plInContextOf.getPresenceCondition().replace(oldPresenceCondition,
-                                                                                      newPresenceCondition));
-      for (var plContext : plInContextOf.getReference(PLGSNChangeStep.GSN.getInContextOf_Context())) {
-        replacePC((PLGSNArgumentElement) plContext, oldPresenceCondition, newPresenceCondition);
-      }
-    }
-    for (var plSupportedBy : plElem.getReference(PLGSNChangeStep.GSN.getSupportable_SupportedBy())) {
-      plSupportedBy.setPresenceCondition(plSupportedBy.getPresenceCondition().replace(oldPresenceCondition,
-                                                                                      newPresenceCondition));
-      for (var plSupporter : plSupportedBy.getReference(PLGSNChangeStep.GSN.getSupportedBy_Target())) {
-        replacePCDownstream((PLGSNArgumentElement) plSupporter, oldPresenceCondition, newPresenceCondition);
-      }
-    }
+  public static void changePCDownstream(PLGSNArgumentElement plElem, Function<String, String> change) {
+    changePC(plElem, change);
+    plElem.getStreamOfReference(PLGSNChangeStep.GSN.getContextualizable_InContextOf())
+      .forEach(ico -> {
+        ico.setPresenceCondition(change.apply(ico.getPresenceCondition()));
+        ico.getStreamOfReference(PLGSNChangeStep.GSN.getInContextOf_Context())
+          .forEach(c -> changePC((PLGSNArgumentElement) c, change));
+      });
+    plElem.getStreamOfReference(PLGSNChangeStep.GSN.getSupportable_SupportedBy())
+      .forEach(sb -> {
+        sb.setPresenceCondition(change.apply(sb.getPresenceCondition()));
+        sb.getStreamOfReference(PLGSNChangeStep.GSN.getSupportedBy_Target())
+          .forEach(t -> changePCDownstream((PLGSNArgumentElement) t, change));
+      });
   }
 }
