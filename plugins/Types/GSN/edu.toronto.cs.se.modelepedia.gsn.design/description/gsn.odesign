@@ -270,7 +270,7 @@
           </ownedTools>
         </toolSections>
         <decorationDescriptionsSet>
-          <decorationDescriptions xsi:type="description:SemanticBasedDecoration" name="TemplateDecoration" position="NORTH_WEST" distributionDirection="HORIZONTAL" preconditionExpression="aql: self.templates->size() > 0 and self.templates->first().oclIsTypeOf(gsn::Template)" imageExpression="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Template.png" tooltipExpression="Template element" domainClass="gsn.ArgumentElement"/>
+          <decorationDescriptions xsi:type="description:SemanticBasedDecoration" name="TemplateDecoration" position="NORTH_WEST" distributionDirection="HORIZONTAL" preconditionExpression="aql: self.template.oclIsTypeOf(gsn::Template)" imageExpression="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Template.png" tooltipExpression="Template element" domainClass="gsn.ArgumentElement"/>
         </decorationDescriptionsSet>
         <customization>
           <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql: self.oclIsKindOf(gsn::ArgumentElement) and not self.oclAsType(gsn::ArgumentElement).valid">

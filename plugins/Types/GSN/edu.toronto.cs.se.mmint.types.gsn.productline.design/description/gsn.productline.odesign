@@ -225,7 +225,7 @@
           </ownedTools>
         </toolSections>
         <decorationDescriptionsSet>
-          <decorationDescriptions xsi:type="description:SemanticBasedDecoration" name="PLTemplateDecoration" position="NORTH_WEST" preconditionExpression="aql: self.references->exists(r | r.type.name = 'templates' and r.target.type.name = 'Template')" imageExpression="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Template.png" tooltipExpression="Template element" domainClass="productline.Class"/>
+          <decorationDescriptions xsi:type="description:SemanticBasedDecoration" name="PLTemplateDecoration" position="NORTH_WEST" preconditionExpression="aql: self.references->exists(r | r.type.name = 'template' and r.target.type.name.endsWith('Template')) or self.referencesAsTarget->exists(r | r.type.name = 'elements' and r.eContainer().type.name.endsWith('Template'))" imageExpression="/edu.toronto.cs.se.modelepedia.gsn.edit/icons/full/obj16/Template.png" tooltipExpression="Template element" domainClass="productline.Class"/>
         </decorationDescriptionsSet>
         <customization>
           <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql: self.oclIsKindOf(productline::Class) and self.oclAsType(productline::Class).attributes->exists(a | a.type.name = 'valid' and a.value = 'false')">
