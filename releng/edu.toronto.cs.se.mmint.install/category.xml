@@ -63,6 +63,9 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.sosym18.feature_2.25.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.sosym18.feature" version="2.25.99.qualifier">
       <category name="Examples"/>
    </feature>
+   <feature url="features/edu.toronto.cs.se.mmmint.examples.eras25.feature_2.25.99.qualifier.jar" id="edu.toronto.cs.se.mmint.examples.eras25.feature" version="2.25.99.qualifier">
+      <category name="Examples"/>
+   </feature>
    <feature url="features/edu.toronto.cs.se.mmmint.examples.fac25.feature_2.25.99.qualifier.jar" id="edu.toronto.cs.se.mmint.examples.fac25.feature" version="2.25.99.qualifier">
       <category name="Examples"/>
    </feature>
@@ -70,9 +73,6 @@
       <category name="Examples"/>
    </feature>
    <feature url="features/edu.toronto.cs.se.mmmint.examples.ifm24.feature_2.25.99.qualifier.jar" id="edu.toronto.cs.se.mmint.examples.ifm24.feature" version="2.25.99.qualifier">
-      <category name="Examples"/>
-   </feature>
-   <feature url="features/edu.toronto.cs.se.mmmint.examples.issre24.feature_2.25.99.qualifier.jar" id="edu.toronto.cs.se.mmint.examples.issre24.feature" version="2.25.99.qualifier">
       <category name="Examples"/>
    </feature>
    <feature url="features/edu.toronto.cs.se.mmmint.example.jase20.feature_2.25.99.qualifier.jar" id="edu.toronto.cs.se.mmint.example.jase20.feature" version="2.25.99.qualifier">

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+
+<!--
+    Copyright (c) 2024, 2025 Alessio Di Sandro.
+   
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License 2.0 which is available at
+    https://www.eclipse.org/legal/epl-2.0/
+   
+    SPDX-License-Identifier: EPL-2.0
+   
+    Contributors:
+        Alessio Di Sandro - Implementation
+ -->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category id="edu.toronto.cs.se.mmint.example"
+            name="MMINT Examples"
+            parentCategory="org.eclipse.ui.Examples"/>
+      <wizard id="edu.toronto.cs.se.mmint.examples.eras25"
+            category="org.eclipse.ui.Examples/edu.toronto.cs.se.mmint.example"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            project="true"
+            name="ERAS25">
+         <description>Creates a project containing the artifacts from the ERAS25 paper</description>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.emf.common.ui.examples">
+      <example id="edu.toronto.cs.se.mmint.examples.eras25"
+            wizardID="edu.toronto.cs.se.mmint.examples.eras25">
+         <projectDescriptor name="ERAS25"
+               contentURI="ERAS25/"
+               description="Creates a project containing the artifacts from the ERAS25 paper"/>
+         <fileToOpen location="ERAS25/README.md"/>
+      </example>
+   </extension>
+
+</plugin>
