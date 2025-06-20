@@ -45,6 +45,7 @@
         <setting id="cleanup.use_autoboxing" value="false"/>
         <setting id="cleanup.use_var" value="true"/>
         <setting id="cleanup.map_cloning" value="false"/>
+        <setting id="cleanup.remove_unnecessary_suppress_warnings" value="false"/>
         <setting id="cleanup.add_missing_nls_tags" value="false"/>
         <setting id="cleanup.collection_cloning" value="false"/>
         <setting id="cleanup.join" value="false"/>
@@ -143,8 +144,8 @@
         <setting id="cleanup.strictly_equal_or_different" value="false"/>
         <setting id="cleanup.use_parentheses_in_expressions" value="false"/>
         <setting id="cleanup.add_missing_override_annotations_interface_methods" value="true"/>
-        <setting id="cleanup.system_property_file_encoding" value="false"/>
         <setting id="cleanup.use_anonymous_class_creation" value="false"/>
+        <setting id="cleanup.system_property_file_encoding" value="false"/>
         <setting id="cleanup.comparison_statement" value="false"/>
         <setting id="cleanup.instanceof" value="true"/>
     </profile>
