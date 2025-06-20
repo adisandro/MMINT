@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.necsis14_databaseschema.diagram; singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.necsis14.databaseschema.diagram
-Bundle-Version: 2.26.0.qualifier
+Bundle-Version: 2.26.99.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.necsis14_databaseschema.diagram.part.NECSIS14_DatabaseSchemaDiagramEditorPlugin
 Bundle-Vendor: %providerName

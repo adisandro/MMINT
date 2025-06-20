@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.examples.splc23;singleton:=true
-Bundle-Version: 2.26.0.qualifier
+Bundle-Version: 2.26.99.qualifier
 Automatic-Module-Name: edu.toronto.cs.se.mmint.examples.splc23
 Bundle-RequiredExecutionEnvironment: JavaSE-24
 Bundle-Vendor: %providerName

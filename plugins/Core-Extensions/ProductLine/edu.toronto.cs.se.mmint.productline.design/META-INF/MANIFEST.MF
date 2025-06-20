@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.productline.design;singleton:=true
-Bundle-Version: 2.26.0.qualifier
+Bundle-Version: 2.26.99.qualifier
 Export-Package: edu.toronto.cs.se.mmint.productline.design,
  edu.toronto.cs.se.mmint.productline.design.tools
 Bundle-Activator: edu.toronto.cs.se.mmint.productline.design.Activator
