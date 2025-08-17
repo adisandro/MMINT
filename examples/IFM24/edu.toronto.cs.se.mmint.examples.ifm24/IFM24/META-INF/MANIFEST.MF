@@ -18,7 +18,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.mmint.productline,
  edu.toronto.cs.se.mmint.types.gsn.productline,
  edu.toronto.cs.se.modelepedia.statemachine
-Bundle-RequiredExecutionEnvironment: JavaSE-24
+Bundle-RequiredExecutionEnvironment: JavaSE-25
 Automatic-Module-Name: IFM24
 Import-Package: org.apache.log4j
 Bundle-ActivationPolicy: lazy

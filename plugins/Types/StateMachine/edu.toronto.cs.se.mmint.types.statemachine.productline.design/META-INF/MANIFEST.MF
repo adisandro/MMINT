@@ -19,6 +19,6 @@ Require-Bundle: org.eclipse.ui,
  edu.toronto.cs.se.modelepedia.statemachine,
  edu.toronto.cs.se.modelepedia.statemachine.design
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-24
+Bundle-RequiredExecutionEnvironment: JavaSE-25
 Bundle-Vendor: %providerName
 Automatic-Module-Name: edu.toronto.cs.se.mmint.types.statemachine.productline.design
