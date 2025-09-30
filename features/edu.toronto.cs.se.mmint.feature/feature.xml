@@ -85,10 +85,11 @@ sets of related models.
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.sirius.diagram"/>
       <import plugin="org.eclipse.gmf.runtime.notation"/>
+      <import feature="org.eclipse.acceleo"/>
       <import feature="org.eclipse.emf.sdk"/>
       <import feature="org.eclipse.emf.validation.sdk"/>
       <import feature="org.eclipse.ocl.all.sdk"/>
-      <import feature="org.eclipse.acceleo"/>
+      <import feature="org.eclipse.papyrus.sdk.feature"/>
       <import feature="org.eclipse.sirius.specifier"/>
       <import feature="org.eclipse.sirius.specifier.properties.feature"/>
       <import feature="org.eclipse.viatra.query.sdk.feature.source"/>
@@ -96,93 +97,62 @@ sets of related models.
 
    <plugin
          id="edu.toronto.cs.se.mmint"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="edu.toronto.cs.se.mmint.diagram"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="edu.toronto.cs.se.mmint.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="edu.toronto.cs.se.mmint.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="edu.toronto.cs.se.mmint.relationship.diagram"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="edu.toronto.cs.se.mmint.ocl"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="edu.toronto.cs.se.mmint.java"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="edu.toronto.cs.se.mmint.ecore"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="edu.toronto.cs.se.mmint.operator"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="edu.toronto.cs.se.mmint.viatra"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="edu.toronto.cs.se.mmint.primitive"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="edu.toronto.cs.se.mmint.primitive.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="edu.toronto.cs.se.mmint.primitive.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.papyrus"
+         version="0.0.0"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.papyrus.edit"
+         version="0.0.0"/>
 
 </feature>

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021, 2024 Alessio Di Sandro.
+ * Copyright (c) 2021, 2025 Alessio Di Sandro.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -51,9 +51,11 @@ public class UMLModelImpl extends ModelImpl implements UMLModel {
    */
   @Override
   public void deleteInstanceAndFile() throws MMINTException {
-    var notationPath = FileUtils.replaceFileExtensionInPath(getUri(), UMLMIDHeavyTypeFactory.NOTATION_FILEEXT);
-    if (FileUtils.isFile(notationPath, true)) {
-      FileUtils.deleteFile(notationPath, true);
+    for (var extra : UMLMIDHeavyTypeFactory.EXTRA_FILEEXT) {
+      var extraPath = FileUtils.replaceFileExtensionInPath(getUri(), extra);
+      if (FileUtils.isFile(extraPath, true)) {
+        FileUtils.deleteFile(extraPath, true);
+      }
     }
     super.deleteInstanceAndFile();
   }

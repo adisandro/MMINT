@@ -30,7 +30,7 @@
     <repository>
       <id>Papyrus</id>
       <layout>p2</layout>
-      <url>https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2024-06</url>
+      <url>https://download.eclipse.org/modeling/mdt/papyrus/papyrus-desktop/updates/releases/2025-06</url>
     </repository>
   </repositories>
   <pluginRepositories>
@@ -122,6 +122,8 @@
     <module>../../plugins/Core/edu.toronto.cs.se.mmint.ecore</module>
     <module>../../plugins/Core/edu.toronto.cs.se.mmint.ocl</module>
     <module>../../plugins/Core/edu.toronto.cs.se.mmint.operator</module>
+    <module>../../plugins/Core/edu.toronto.cs.se.mmint.papyrus</module>
+    <module>../../plugins/Core/edu.toronto.cs.se.mmint.papyrus.edit</module>
     <module>../../plugins/Core/edu.toronto.cs.se.mmint.primitive</module>
     <module>../../plugins/Core/edu.toronto.cs.se.mmint.primitive.edit</module>
     <module>../../plugins/Core/edu.toronto.cs.se.mmint.primitive.editor</module>

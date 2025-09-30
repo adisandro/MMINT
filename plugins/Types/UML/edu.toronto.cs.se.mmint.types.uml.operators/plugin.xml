@@ -15,30 +15,6 @@
 <plugin>
 
    <extension
-         point="edu.toronto.cs.se.mmint.models">
-      <modelType>
-         <type
-               name="UML"
-               uri="http://www.eclipse.org/uml2/5.0.0/UML">
-         </type>
-      </modelType>
-   </extension>
-
-   <extension
-         point="edu.toronto.cs.se.mmint.editors">
-      <editorType
-            modelTypeUri="http://www.eclipse.org/uml2/5.0.0/UML"
-            id="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
-            isDiagram="false"
-            wizardId="org.eclipse.uml2.uml.editor.presentation.UMLModelWizardID">
-         <type
-               name="UML tree"
-               uri="http://www.eclipse.org/uml2/5.0.0/UML_tree">
-         </type>
-      </editorType>
-   </extension>
-
-   <extension
          point="edu.toronto.cs.se.mmint.operators">
       <operatorType>
          <type

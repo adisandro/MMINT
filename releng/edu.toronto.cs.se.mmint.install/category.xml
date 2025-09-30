@@ -107,5 +107,5 @@
    <category-def name="Examples" label="Examples"/>
    <repository-reference location="http://download.eclipse.org/modeling/emft/henshin/updates/release" name="" enabled="true" />
    <repository-reference location="https://download.eclipse.org/justj/jres/latest" name="" enabled="true" />
-   <repository-reference location="https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2024-06" name="" enabled="true" />
+   <repository-reference location="https://download.eclipse.org/modeling/mdt/papyrus/papyrus-desktop/updates/releases/2025-06" name="" enabled="true" />
 </site>

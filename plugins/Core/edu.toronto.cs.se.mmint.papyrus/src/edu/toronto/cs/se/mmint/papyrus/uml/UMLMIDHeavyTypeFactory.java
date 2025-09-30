@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2021, 2024 Alessio Di Sandro.
+ * Copyright (c) 2021, 2025 Alessio Di Sandro.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,6 +12,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.papyrus.uml;
 
+import java.util.Set;
+
 import edu.toronto.cs.se.mmint.MIDHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.extensions.ExtensionPointType;
@@ -19,7 +21,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.papyrus.PapyrusFactory;
 
 public class UMLMIDHeavyTypeFactory extends MIDHeavyTypeFactory {
-  public static final String NOTATION_FILEEXT = "notation";
+  public static final Set<String> EXTRA_FILEEXT = Set.of("di", "notation");
 
   @Override
   public Model createHeavyModelType(ExtensionPointType extensionType) throws MMINTException {
