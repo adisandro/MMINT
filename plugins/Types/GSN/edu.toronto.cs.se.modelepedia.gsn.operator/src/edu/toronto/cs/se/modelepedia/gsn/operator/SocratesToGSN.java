@@ -54,7 +54,7 @@ public class SocratesToGSN extends OperatorImpl {
   }
 
   private static class Out {
-    private final static String GSN_MODELTYPE = "";
+    private final static String GSN_MODELTYPE = "http://se.cs.toronto.edu/modelepedia/GSN";
     private final static String MODEL = "gsn";
     private MID instanceMID;
     private SafetyCase safetyCase;
@@ -138,7 +138,12 @@ public class SocratesToGSN extends OperatorImpl {
         }
         case String type -> throw new MMINTException("Unsupported node " + type);
       };
-      gsnElem.setDescription(nodeObj.get("text").getAsString());
+      var desc = nodeObj.get("text").getAsString();
+      var extraDesc = nodeObj.get("description");
+      if (!extraDesc.isJsonNull()) {
+        desc += "\n(" + extraDesc.getAsString() + ")";
+      }
+      gsnElem.setDescription(desc);
       idToElem.put(id, gsnElem);
       idToChildren.put(id, nodeObj.get("children").getAsJsonArray());
     }
