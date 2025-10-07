@@ -1098,8 +1098,8 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         return this.getOutputs().stream()
             .collect(Collectors.toMap(
-                outputModelEndpoint -> outputModelEndpoint.getName(),
-                outputModelEndpoint -> outputModelEndpoint.getTarget()));
+                ModelEndpoint::getName,
+                ModelEndpoint::getTarget));
     }
 
     /**
@@ -1112,7 +1112,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         return ECollections.toEList(
             this.getOutputs().stream()
-                .map(outputModelEndpoint -> outputModelEndpoint.getTarget())
+                .map(ModelEndpoint::getTarget)
                 .collect(Collectors.toList()));
     }
 

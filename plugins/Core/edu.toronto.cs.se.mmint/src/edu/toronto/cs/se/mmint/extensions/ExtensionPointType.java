@@ -17,6 +17,7 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDHeavyTypeFactory;
 import edu.toronto.cs.se.mmint.MMINTConstants;
+import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 
 /**
@@ -93,6 +94,15 @@ public class ExtensionPointType {
 				this.newType = null;
 			}
 		}
+	}
+
+	public ExtensionPointType(OperatorParameter param, MIDHeavyTypeFactory defaultFactory) {
+	  this.uri = null;
+	  this.name = param.name;
+    this.isAbstract = false;
+    this.supertypeUri = null;
+	  this.factory = defaultFactory;
+	  this.newType = null;
 	}
 
 	/**

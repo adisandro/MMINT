@@ -43,7 +43,6 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
-import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
@@ -429,12 +428,12 @@ public class MMINT implements MMINTConstants {
 			var extensionType = new ExtensionPointType(paramTypeConfig, MMINT.typeFactory);
 			var modelTypeEndpointSubconfig = paramTypeConfig.getChildren(MMINTConstants.CHILD_TYPEENDPOINT)[0];
 			var targetModelTypeUri = modelTypeEndpointSubconfig.getAttribute(MMINTConstants.TYPEENDPOINT_ATTR_TARGETTYPEURI);
-			Model targetModelType = MIDTypeRegistry.getType(targetModelTypeUri);
+			var targetModelType = MIDTypeRegistry.<Model>getType(targetModelTypeUri);
 			if (targetModelType == null) {
 				throw new MMINTException("Target model type " + targetModelTypeUri + " can't be found");
 			}
 			//TODO MMINT[OPERATOR] Should check that if there is a supertype, the endpoint name can't be changed
-			ModelEndpoint newModelTypeEndpoint = extensionType.getFactory().createHeavyModelTypeEndpoint(
+			var newModelTypeEndpoint = extensionType.getFactory().createHeavyModelTypeEndpoint(
 				extensionType,
 				targetModelType,
 				containerOperatorType,
@@ -454,6 +453,44 @@ public class MMINT implements MMINTConstants {
 				upperBound
 			);
 		}
+	}
+
+	private static void createOperatorTypeParameters2(Operator containerOperatorType, String fieldName) {
+	  var containerFeatureName = fieldName.equals("IN") ?
+	    OperatorPackage.eINSTANCE.getOperator_Inputs().getName() :
+	    OperatorPackage.eINSTANCE.getOperator_Outputs().getName();
+    var i = 0;
+    try {
+      while (true) {
+        var param = (OperatorParameter) containerOperatorType.getClass()
+          .getField(fieldName + i)
+          .get(containerOperatorType);
+        var extType = new ExtensionPointType(param, MMINT.typeFactory);
+        var targetModelType = MIDTypeRegistry.<Model>getType(param.type);
+        if (targetModelType == null) {
+          throw new MMINTException("Target model type " + param.type + " can't be found");
+        }
+        //TODO MMINT[OPERATOR] Should check that if there is a supertype, the endpoint name can't be changed
+        var newModelTypeEndpoint = extType.getFactory().createHeavyModelTypeEndpoint(extType, targetModelType,
+                                                                                     containerOperatorType,
+                                                                                     containerFeatureName);
+        if (param.upper > 1) {
+          try {
+            containerOperatorType.getClass().getField(fieldName + (i+1));
+            MMINTException.print(IStatus.INFO, "Only the last input parameter can have an upper bound > 1, setting it to 1", null);
+            param.upper = 1;
+          }
+          catch (NoSuchFieldException e) {
+            // ok
+          }
+        }
+        MIDTypeFactory.addTypeEndpointCardinality(newModelTypeEndpoint, param.lower, param.upper);
+        i++;
+      }
+    }
+    catch (Exception e) {
+      // done
+    }
 	}
 
 	/**
@@ -522,16 +559,22 @@ public class MMINT implements MMINTConstants {
 		if (extensionType.getUri() == null) {
 			throw new MMINTException("Operator type " + extensionType.getName() + " must have a uri");
 		}
-		Operator newOperatorType = extensionType.getFactory().createHeavyOperatorType(extensionType);
+		var newOperatorType = extensionType.getFactory().createHeavyOperatorType(extensionType);
 		MMINT.createTypeConstraint(extensionConfig, newOperatorType, extensionType.getFactory());
 		var inputsParamTypeConfigs = extensionConfig.getChildren(MMINTConstants.OPERATORS_CHILD_INPUTS);
 		if (inputsParamTypeConfigs.length > 0) {
 			MMINT.createOperatorTypeParameters(inputsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
 		}
+		else {
+		  MMINT.createOperatorTypeParameters2(newOperatorType, "IN");
+		}
 		var outputsParamTypeConfigs = extensionConfig.getChildren(MMINTConstants.OPERATORS_CHILD_OUTPUTS);
 		if (outputsParamTypeConfigs.length > 0) {
 			MMINT.createOperatorTypeParameters(outputsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
 		}
+    else {
+      MMINT.createOperatorTypeParameters2(newOperatorType, "OUT");
+    }
 		if (newOperatorType instanceof ConversionOperator) {
 			MIDTypeFactory.addOperatorTypeConversion((ConversionOperator) newOperatorType);
 		}
@@ -760,7 +803,7 @@ public class MMINT implements MMINTConstants {
         .filter(modelType -> !(modelType instanceof ModelRel) &&
                              modelType.isDynamic() &&
                              MIDTypeRegistry.getType(modelType.getUri()) == null)
-        .forEach(dynamicModelType -> this.createDynamicType(dynamicModelType));
+        .forEach(this::createDynamicType);
 		}
 		// relationship types
 		configs = registry.getConfigurationElementsFor(MMINTConstants.MODELRELS_EXT_POINT);
@@ -780,7 +823,7 @@ public class MMINT implements MMINTConstants {
       typeMID.getModelRels().stream()
         .filter(modelRelType -> modelRelType.isDynamic() &&
                                 MIDTypeRegistry.getType(modelRelType.getUri()) == null)
-        .forEach(dynamicModelRelType -> this.createDynamicType(dynamicModelRelType));
+        .forEach(this::createDynamicType);
     }
 		// operator types
 		configs = registry.getConfigurationElementsFor(MMINTConstants.OPERATORS_EXT_POINT);
@@ -808,7 +851,7 @@ public class MMINT implements MMINTConstants {
       typeMID.getOperators().stream()
         .filter(operatorType -> operatorType.isDynamic() &&
                                 MIDTypeRegistry.getType(operatorType.getUri()) == null)
-        .forEach(dynamicOperatorType -> this.createDynamicType(dynamicOperatorType));
+        .forEach(this::createDynamicType);
     }
 		// reasoning
 		for (var config : registry.getConfigurationElementsFor(MMINTConstants.REASONERS_EXT_POINT)) {
