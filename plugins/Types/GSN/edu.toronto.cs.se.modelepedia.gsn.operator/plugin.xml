@@ -163,10 +163,6 @@
                uri="edu.toronto.cs.se.modelepedia.gsn.operator.SocratesToGSN"
                class="edu.toronto.cs.se.modelepedia.gsn.operator.SocratesToGSN">
          </type>
-         <constraint
-               implementation="edu.toronto.cs.se.modelepedia.gsn.operator.SocratesToGSN$Constraint"
-               language="Java">
-         </constraint>
       </operatorType>
    </extension>
 

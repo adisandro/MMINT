@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -40,10 +41,9 @@ public class JavaReasoner implements IModelConstraintTrait, IOperatorConstraintT
     return "Java";
   }
 
-	private Object getJavaConstraint(String javaClassName, String typeUri) throws Exception {
+	private Object loadJavaConstraint(String javaClassName, String typeUri) throws Exception {
 		Object javaConstraint = MIDTypeRegistry.getTypeBundle(typeUri)
 		  .loadClass(javaClassName).getConstructor().newInstance();
-
 		return javaConstraint;
 	}
 
@@ -54,17 +54,16 @@ public class JavaReasoner implements IModelConstraintTrait, IOperatorConstraintT
 		var modelTypeUri = (constraintLevel == MIDLevel.INSTANCES) ?
 			((Model) constraint.eContainer()).getMetatypeUri() :
 			((Model) constraint.eContainer()).getUri();
-		var javaConstraint = (IJavaModelConstraint) this.getJavaConstraint(javaClassName, modelTypeUri);
-
+		var javaConstraint = (IJavaModelConstraint) loadJavaConstraint(javaClassName, modelTypeUri);
 		return javaConstraint.check(model);
 	}
 
 	private IJavaOperatorConstraint getOperatorConstraint(ExtendibleElementConstraint constraint) throws Exception {
+    var operator = (Operator) constraint.eContainer();
 		var javaClassName = constraint.getImplementation();
-		var operatorTypeUri = ((Operator) constraint.eContainer()).getUri();
-		var javaConstraint = (IJavaOperatorConstraint) this.getJavaConstraint(javaClassName, operatorTypeUri);
-
-		return javaConstraint;
+    return (javaClassName.equals(MMINTConstants.OPERATORS_CONSTRAINT)) ?
+		  (IJavaOperatorConstraint) operator.getClass().getField(MMINTConstants.OPERATORS_CONSTRAINT).get(operator) :
+		  (IJavaOperatorConstraint) loadJavaConstraint(javaClassName, operator.getUri());
 	}
 
 	@Override
@@ -72,16 +71,14 @@ public class JavaReasoner implements IModelConstraintTrait, IOperatorConstraintT
 	                                              GenericEndpoint genericTypeEndpoint,
 	                                              GenericElement genericType, List<OperatorInput> inputs)
 	                                             throws Exception {
-		var javaConstraint = this.getOperatorConstraint(constraint);
-
+		var javaConstraint = getOperatorConstraint(constraint);
 		return javaConstraint.checkGeneric(genericTypeEndpoint, genericType, inputs);
 	}
 
 	@Override
 	public boolean checkOperatorInputConstraint(ExtendibleElementConstraint constraint, Map<String, Model> inputsByName)
 	                                           throws Exception {
-			var javaConstraint = this.getOperatorConstraint(constraint);
-
+			var javaConstraint = getOperatorConstraint(constraint);
 			return javaConstraint.checkInputs(inputsByName);
 	}
 
@@ -90,8 +87,7 @@ public class JavaReasoner implements IModelConstraintTrait, IOperatorConstraintT
 	                                                               Map<String, GenericElement> genericsByName,
 	                                                               Map<String, Model> inputsByName,
 	                                                               Map<String, Model> outputsByName) throws Exception {
-			var javaConstraint = this.getOperatorConstraint(constraint);
-
+			var javaConstraint = getOperatorConstraint(constraint);
 			return javaConstraint.getOutputModelRelEndpoints(genericsByName, inputsByName, outputsByName);
 	}
 }

@@ -420,7 +420,8 @@ public class MMINT implements MMINTConstants {
 	 * @throws MMINTException
 	 *             If the parameter types can't be created.
 	 */
-	private static void createOperatorTypeParameters(IConfigurationElement extensionConfig, Operator containerOperatorType, String containerFeatureName) throws MMINTException {
+	@Deprecated
+	private static void createOperatorTypeParametersLegacy(IConfigurationElement extensionConfig, Operator containerOperatorType, String containerFeatureName) throws MMINTException {
 
 		var paramTypeConfigs = extensionConfig.getChildren(MMINTConstants.OPERATORS_GENINOUT_CHILD_PARAMETER);
 		for (var i = 0; i < paramTypeConfigs.length; i++) {
@@ -455,7 +456,7 @@ public class MMINT implements MMINTConstants {
 		}
 	}
 
-	private static void createOperatorTypeParameters2(Operator containerOperatorType, String fieldName) {
+	private static void createOperatorTypeParameters(Operator containerOperatorType, String fieldName) {
 	  var containerFeatureName = fieldName.equals("IN") ?
 	    OperatorPackage.eINSTANCE.getOperator_Inputs().getName() :
 	    OperatorPackage.eINSTANCE.getOperator_Outputs().getName();
@@ -471,9 +472,8 @@ public class MMINT implements MMINTConstants {
           throw new MMINTException("Target model type " + param.type + " can't be found");
         }
         //TODO MMINT[OPERATOR] Should check that if there is a supertype, the endpoint name can't be changed
-        var newModelTypeEndpoint = extType.getFactory().createHeavyModelTypeEndpoint(extType, targetModelType,
-                                                                                     containerOperatorType,
-                                                                                     containerFeatureName);
+        var newModelTypeEndpoint = extType.getFactory().createHeavyModelTypeEndpoint(
+          extType, targetModelType, containerOperatorType, containerFeatureName);
         if (param.upper > 1) {
           try {
             containerOperatorType.getClass().getField(fieldName + (i+1));
@@ -560,20 +560,27 @@ public class MMINT implements MMINTConstants {
 			throw new MMINTException("Operator type " + extensionType.getName() + " must have a uri");
 		}
 		var newOperatorType = extensionType.getFactory().createHeavyOperatorType(extensionType);
-		MMINT.createTypeConstraint(extensionConfig, newOperatorType, extensionType.getFactory());
+    try {
+      newOperatorType.getClass().getField(MMINTConstants.OPERATORS_CONSTRAINT).get(newOperatorType);
+      extensionType.getFactory().createHeavyTypeConstraint("Java", MMINTConstants.OPERATORS_CONSTRAINT,
+                                                           newOperatorType);
+    }
+    catch (Exception e) {
+      MMINT.createTypeConstraint(extensionConfig, newOperatorType, extensionType.getFactory());
+    }
 		var inputsParamTypeConfigs = extensionConfig.getChildren(MMINTConstants.OPERATORS_CHILD_INPUTS);
 		if (inputsParamTypeConfigs.length > 0) {
-			MMINT.createOperatorTypeParameters(inputsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
+			MMINT.createOperatorTypeParametersLegacy(inputsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Inputs().getName());
 		}
 		else {
-		  MMINT.createOperatorTypeParameters2(newOperatorType, "IN");
+		  MMINT.createOperatorTypeParameters(newOperatorType, MMINTConstants.OPERATORS_INPUTS);
 		}
 		var outputsParamTypeConfigs = extensionConfig.getChildren(MMINTConstants.OPERATORS_CHILD_OUTPUTS);
 		if (outputsParamTypeConfigs.length > 0) {
-			MMINT.createOperatorTypeParameters(outputsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
+			MMINT.createOperatorTypeParametersLegacy(outputsParamTypeConfigs[0], newOperatorType, OperatorPackage.eINSTANCE.getOperator_Outputs().getName());
 		}
     else {
-      MMINT.createOperatorTypeParameters2(newOperatorType, "OUT");
+      MMINT.createOperatorTypeParameters(newOperatorType, MMINTConstants.OPERATORS_OUTPUTS);
     }
 		if (newOperatorType instanceof ConversionOperator) {
 			MIDTypeFactory.addOperatorTypeConversion((ConversionOperator) newOperatorType);

@@ -47,8 +47,7 @@ public class SocratesToGSN extends OperatorImpl {
     SocratesToGSN.OUT0.type = GSNPackage.eNS_URI;
     SocratesToGSN.OUT0.ext = GSNPackage.eNAME;
   }
-
-  public static class Constraint implements IJavaOperatorConstraint {
+  public final static IJavaOperatorConstraint CONSTRAINT = new IJavaOperatorConstraint() {
     @Override
     public boolean checkInputs(Map<String, Model> inputsByName) {
       if (!inputsByName.get(SocratesToGSN.IN0.name).getFileExtension().equals("json")) {
@@ -56,7 +55,7 @@ public class SocratesToGSN extends OperatorImpl {
       }
       return true;
     }
-  }
+  };
 
   private void convert(Map<String, Model> inputsByName) throws Exception {
     var safetyCase = GSNFactory.eINSTANCE.createSafetyCase();

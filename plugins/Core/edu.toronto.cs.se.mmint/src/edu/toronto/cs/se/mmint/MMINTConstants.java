@@ -147,6 +147,10 @@ public interface MMINTConstants {
 	public final static String OPERATORS_CHILD_OUTPUTS = "outputs";
 	/** The Operators extension point's generics/inputs/outputs's parameter child. */
 	public final static String OPERATORS_GENINOUT_CHILD_PARAMETER = "parameter";
+	/** Operator implicit Java configuration */
+	public final static String OPERATORS_INPUTS = "IN";
+  public final static String OPERATORS_OUTPUTS = "OUT";
+  public final static String OPERATORS_CONSTRAINT = "CONSTRAINT";
 
 	/** The Eclipse's Editors extension point's id. */
 	public final static String ECLIPSE_EDITORS_EXT_POINT = "org.eclipse.ui.editors";

@@ -42,7 +42,6 @@ public class OperatorParameter {
 
   public Model fromIn(OperatorParameter in, Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName)
                      throws Exception {
-    //TODO Integrate in Operator
     // out model type
     var modelType = MIDTypeRegistry.<Model>getType(this.type);
     if (modelType == null) {
