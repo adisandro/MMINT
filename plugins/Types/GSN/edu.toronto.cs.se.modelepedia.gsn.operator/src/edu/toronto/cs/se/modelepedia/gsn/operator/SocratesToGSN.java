@@ -62,6 +62,7 @@ public class SocratesToGSN extends OperatorImpl {
     SocratesToGSN.OUT0.root = safetyCase;
     var json = Files.readString(Paths.get(
       FileUtils.prependWorkspacePath(inputsByName.get(SocratesToGSN.IN0.name).getUri())));
+
     var jsonObj = JsonParser.parseString(json).getAsJsonObject();
     var idToElem = new HashMap<Integer, ArgumentElement>();
     var idToChildren = new HashMap<Integer, JsonArray>();
@@ -138,7 +139,7 @@ public class SocratesToGSN extends OperatorImpl {
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
     convert(inputsByName);
-    var out0 = SocratesToGSN.OUT0.fromIn(SocratesToGSN.IN0, inputsByName, outputMIDsByName);
+    var out0 = SocratesToGSN.OUT0.fromIn(SocratesToGSN.IN0, this, inputsByName, outputMIDsByName);
 
     return Map.of(SocratesToGSN.OUT0.name, out0);
   }

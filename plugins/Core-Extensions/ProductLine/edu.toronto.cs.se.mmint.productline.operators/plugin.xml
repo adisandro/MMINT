@@ -22,32 +22,6 @@
                uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine"
                class="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine">
          </type>
-         <constraint
-               implementation="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine$Constraint"
-               language="Java">
-         </constraint>
-         <inputs>
-            <parameter>
-               <type
-                     name="product"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine/product">
-               </type>
-               <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
-               </typeEndpoint>
-            </parameter>
-         </inputs>
-         <outputs>
-            <parameter>
-               <type
-                     name="productLine"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine/productLine">
-               </type>
-               <typeEndpoint
-                     targetTypeUri="model://edu.toronto.cs.se.mmint.productline">
-               </typeEndpoint>
-            </parameter>
-         </outputs>
       </operatorType>
    </extension>
 

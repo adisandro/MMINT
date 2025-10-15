@@ -12,7 +12,6 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.operators.bridge;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -20,132 +19,81 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
-import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
+import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 
 public class ToProductLine extends OperatorImpl {
-  protected In in;
-  protected Out out;
-  protected @Nullable String reasonerName;
-  protected @Nullable String presenceCondition;
-
-  public static class In {
-    public final static String PROP_REASONERNAME = "reasonerName";
-    public final static String PROP_PRESENCECONDITION = "presenceCondition";
-    public final static String MODEL = "product";
-    public IPLFeaturesTrait reasoner;
-    public String pc;
-    public Model productModel;
-
-    public In(Map<String, Model> inputsByName) {
-      this.productModel = inputsByName.get(In.MODEL);
-      if (MIDTypeHierarchy.instanceOf(this.productModel, Out.MODEL_TYPE_ID, false)) {
-        throw new IllegalArgumentException();
-      }
-    }
-
-    public In(Map<String, Model> inputsByName, @Nullable String reasonerName, @Nullable String presenceCondition) {
-      this(inputsByName);
-      try {
-        this.reasoner = (reasonerName == null) ?
-          MIDDialogs.selectReasoner(IPLFeaturesTrait.class, "Product Line features", null) :
-          (IPLFeaturesTrait) MMINT.getReasoner(reasonerName);
-        if (presenceCondition == null) {
-          this.pc = MIDDialogs.getStringInput("Convert to Product Line",
-                                              "Insert the presence condition to annotate all model elements with",
-                                              this.reasoner.getTrueLiteral());
-        }
-      }
-      catch (Exception e) {
-        throw new IllegalArgumentException();
-      }
-    }
+  public final static OperatorParameter IN0 = new OperatorParameter();
+  public final static OperatorParameter OUT0 = new OperatorParameter();
+  static {
+    ToProductLine.IN0.name = "product";
+    ToProductLine.IN0.type = MMINTConstants.ROOT_MODEL_URI;
+    ToProductLine.OUT0.name = "productLine";
+    ToProductLine.OUT0.type = PLPackage.eNS_URI;
   }
-
-  public static class Constraint implements IJavaOperatorConstraint {
+  public final static IJavaOperatorConstraint CONSTRAINT = new IJavaOperatorConstraint() {
     @Override
     public boolean checkInputs(Map<String, Model> inputsByName) {
-      try {
-        new In(inputsByName);
-        return true;
-      }
-      catch (IllegalArgumentException e) {
+      if (MIDTypeHierarchy.instanceOf(inputsByName.get(ToProductLine.IN0.name), ToProductLine.OUT0.type, false)) {
         return false;
       }
+      return true;
     }
-  }
+  };
 
-  protected static class Out {
-    public static final String MODEL_TYPE_ID = "model://edu.toronto.cs.se.mmint.productline";
-    public final static String MODEL = "productLine";
-    public Model plModelType;
-    public ProductLine productLine;
-    public String plPath;
-    public MID mid;
-
-    public Out(Map<String, MID> outputMIDsByName, @Nullable String workingPath, In in) throws MMINTException {
-      this.plModelType = MIDTypeRegistry.<Model>getType(Out.MODEL_TYPE_ID);
-      this.productLine = PLFactory.eINSTANCE.createProductLine();
-      this.productLine.setMetamodel(in.productModel.getMetatype().getEMFTypeRoot());
-      this.productLine.setReasonerName(in.reasoner.getName());
-      var plModelName = in.productModel.getName() + "." + this.plModelType.getFileExtension();
-      this.plPath = (workingPath == null) ?
-        plModelName :
-        FileUtils.getUniquePath(workingPath + IPath.SEPARATOR + plModelName, true, false);
-      this.mid = outputMIDsByName.get(Out.MODEL);
-    }
-
-    public Map<String, Model> packed() throws MMINTException, IOException {
-      var plModel = this.plModelType.createInstanceAndEditor(this.productLine, this.plPath, this.mid);
-
-      return Map.of(Out.MODEL, plModel);
-    }
-  }
+  public final static String PROP_REASONERNAME = "reasonerName";
+  protected IPLFeaturesTrait reasoner;
+  public final static String PROP_PRESENCECONDITION = "presenceCondition";
+  protected String presenceCondition;
 
   @Override
   public void readInputProperties(Properties inputProperties) throws MMINTException {
-    this.reasonerName = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, In.PROP_REASONERNAME, null);
-    this.presenceCondition = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, In.PROP_PRESENCECONDITION,
-                                                                          null);
-  }
-
-  protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
-    this.in = new In(inputsByName, this.reasonerName, this.presenceCondition);
-    this.out = new Out(outputMIDsByName, getWorkingPath(), this.in);
+    var reasonerName =
+      MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, ToProductLine.PROP_REASONERNAME, null);
+    this.reasoner = (reasonerName == null) ?
+      MIDDialogs.selectReasoner(IPLFeaturesTrait.class, "Product Line features", null) :
+      (IPLFeaturesTrait) MMINT.getReasoner(reasonerName);
+    this.presenceCondition =
+      MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, ToProductLine.PROP_PRESENCECONDITION, null);
+    if (this.presenceCondition == null) {
+      this.presenceCondition =
+        MIDDialogs.getStringInput("Convert to Product Line",
+                                  "Insert the presence condition to annotate all model elements with",
+                                  this.reasoner.getTrueLiteral());
+    }
   }
 
   protected void addPLClass(Class plClass, String plClassesKey, String presenceCondition, EClass plType,
                             Map<String, Class> plClasses) {
     plClass.setPresenceCondition(presenceCondition);
     plClass.setType(plType);
-    this.out.productLine.getClasses().add(plClass);
+    ((ProductLine) ToProductLine.OUT0.root).getClasses().add(plClass);
     plClasses.put(plClassesKey, plClass);
   }
 
   protected void addPLClass(Class plClass, EObject modelObj, EClass plType, Map<String, Class> plClasses) {
-    addPLClass(plClass, MIDRegistry.getModelElementUri(modelObj), this.in.pc, plType, plClasses);
+    addPLClass(plClass, MIDRegistry.getModelElementUri(modelObj), this.presenceCondition, plType, plClasses);
   }
 
   protected Class createPLClass(EObject modelObj, EClass plType, Map<String, Class> plClasses) {
@@ -195,23 +143,29 @@ public class ToProductLine extends OperatorImpl {
       }
       var plSource = plClasses.get(MIDRegistry.getModelElementUri(pModelObj));
       for (var plTarget : plTargets) {
-        plSource.addReference(pReference, plTarget, this.in.pc);
+        plSource.addReference(pReference, plTarget, this.presenceCondition);
       }
     }
   }
 
-  protected void toProductLine() throws Exception {
-    var product = this.in.productModel.getEMFInstanceRoot();
+  protected void toProductLine(Map<String, Model> inputsByName) throws Exception {
+    var productModel = inputsByName.get(ToProductLine.IN0.name);
+    ToProductLine.IN0.root = productModel.getEMFInstanceRoot();
+    var productLine = PLFactory.eINSTANCE.createProductLine();
+    productLine.setMetamodel(productModel.getMetatype().getEMFTypeRoot());
+    productLine.setReasonerName(this.reasoner.getName());
+    ToProductLine.OUT0.root = productLine;
+
     var plClasses = new HashMap<String, Class>();
-    createPLClassAndAttributes(product, plClasses);
+    createPLClassAndAttributes(ToProductLine.IN0.root, plClasses);
     // pass 1: classes and attributes
-    for (var iter = product.eAllContents(); iter.hasNext();) {
+    for (var iter = ToProductLine.IN0.root.eAllContents(); iter.hasNext();) {
       createPLClassAndAttributes(iter.next(), plClasses);
     }
     // pass 2: references
     var pOpposites = new HashSet<EReference>();
-    createPLReferences(product, plClasses, pOpposites);
-    for (var iter = product.eAllContents(); iter.hasNext();) {
+    createPLReferences(ToProductLine.IN0.root, plClasses, pOpposites);
+    for (var iter = ToProductLine.IN0.root.eAllContents(); iter.hasNext();) {
       createPLReferences(iter.next(), plClasses, pOpposites);
     }
   }
@@ -219,9 +173,9 @@ public class ToProductLine extends OperatorImpl {
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
-    init(inputsByName, outputMIDsByName);
-    toProductLine();
+    toProductLine(inputsByName);
+    var out0 = ToProductLine.OUT0.fromIn(ToProductLine.IN0, this, inputsByName, outputMIDsByName);
 
-    return this.out.packed();
+    return Map.of(ToProductLine.OUT0.name, out0);
   }
 }

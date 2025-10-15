@@ -14,11 +14,13 @@ package edu.toronto.cs.se.mmint;
 
 import java.util.Map;
 
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class OperatorParameter {
@@ -40,26 +42,50 @@ public class OperatorParameter {
     this.root = null;
   }
 
-  public Model fromIn(OperatorParameter in, Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName)
-                     throws Exception {
+  public OperatorParameter(OperatorParameter superParam) {
+    this.name = superParam.name;
+    this.type = superParam.type;
+    this.ext = superParam.ext;
+    this.suffix = superParam.suffix;
+    this.lower = superParam.lower;
+    this.upper = superParam.upper;
+    this.root = superParam.root;
+  }
+
+  public Model fromIn(OperatorParameter in, Operator operator, Map<String, Model> inputsByName,
+                      Map<String, MID> outputMIDsByName) throws Exception {
+    /**TODO
+     * 0) Properly handle inheritance:
+     * 0a) check if mmint creates the right structures
+     * 0b) use of this param instead of super (e.g. roots)
+     * 0c) use of super param as default (e.g. run())
+     * 1) Integrate somewhere in Operator
+     * 2) Modify readInputProperties to be a more full-fledged initializer of in/out structures: required for inheritance
+     * 3) Add automatic cleanup of in/out roots, which are static and thus shared (maybe they should not be in operator param?)
+     */
     // out model type
-    var modelType = MIDTypeRegistry.<Model>getType(this.type);
-    if (modelType == null) {
+    var outModelType = MIDTypeRegistry.<Model>getType(this.type);
+    if (outModelType == null) {
       throw new MMINTException("Model type " + this.type + " not found");
     }
     // out path
-    var ext = this.ext;
-    if (ext == null) {
-      ext = modelType.getFileExtension();
-    }
-    var path = FileUtils.replaceFileExtensionInPath(inputsByName.get(in.name).getUri(), ext);
+    var inModel = inputsByName.get(in.name);
+    var outModelName = inModel.getName();
     if (this.suffix != null) {
-      path = FileUtils.addFileNameSuffixInPath(path, this.suffix);
+      outModelName += this.suffix;
     }
-    path = FileUtils.getUniquePath(path, true, false);
+    outModelName += ".";
+    outModelName += (this.ext == null) ? outModelType.getFileExtension() : this.ext;
+    var outPath = (operator.getWorkingPath() == null) ?
+      FileUtils.replaceLastSegmentInPath(inModel.getUri(), outModelName) :
+      operator.getWorkingPath() + IPath.SEPARATOR + outModelName;
+    outPath = FileUtils.getUniquePath(outPath, true, false);
     // out model
-    var model = modelType.createInstanceAndEditor(this.root, path, outputMIDsByName.get(this.name));
+    var outModel = outModelType.createInstanceAndEditor(this.root, outPath, outputMIDsByName.get(this.name));
+    // free the memory
+    in.root = null;
+    this.root = null;
 
-    return model;
+    return outModel;
   }
 }

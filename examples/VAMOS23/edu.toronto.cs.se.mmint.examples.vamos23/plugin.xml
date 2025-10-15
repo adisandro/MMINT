@@ -50,34 +50,6 @@
                   uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine">
             </superType>
          </type>
-         <inputs>
-            <parameter>
-               <type
-                     name="product"
-                     uri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine/product">
-                  <superType
-                        uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine/product">
-                  </superType>
-               </type>
-               <typeEndpoint
-                     targetTypeUri="http://www.eclipse.org/emf/2002/Ecore">
-               </typeEndpoint>
-            </parameter>
-         </inputs>
-         <outputs>
-            <parameter>
-               <type
-                     name="productLine"
-                     uri="edu.toronto.cs.se.mmint.examples.vamos23.operators.AnnotatedEcoreToCDProductLine/productLine">
-                  <superType
-                        uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine/productLine">
-                  </superType>
-               </type>
-               <typeEndpoint
-                     targetTypeUri="model://edu.toronto.cs.se.mmint.productline">
-               </typeEndpoint>
-            </parameter>
-         </outputs>
       </operatorType>
    </extension>
 

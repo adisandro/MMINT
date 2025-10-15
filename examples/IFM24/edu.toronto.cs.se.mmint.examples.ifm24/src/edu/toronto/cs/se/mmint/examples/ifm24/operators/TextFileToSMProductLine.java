@@ -12,58 +12,53 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.examples.ifm24.operators;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.eclipse.core.runtime.IPath;
-
 import edu.toronto.cs.se.mmint.MMINTException;
-import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.primitive.file.FilePackage;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
+import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
 
 public class TextFileToSMProductLine extends ToProductLine {
-
-  protected static class TextFileToSMPLOut extends Out {
-    public TextFileToSMPLOut(Map<String, MID> outputMIDsByName, String workingPath, In in)
-                                  throws MMINTException {
-      super(outputMIDsByName, workingPath, in);
-      this.productLine.setMetamodel(StateMachinePackage.eINSTANCE);
-      this.plPath = workingPath + IPath.SEPARATOR +
-                    FileUtils.replaceFileExtensionInPath(in.productModel.getName(),
-                                                         this.plModelType.getFileExtension());
-    }
+  public final static OperatorParameter IN0 = new OperatorParameter(ToProductLine.IN0);
+  public final static OperatorParameter OUT0 = new OperatorParameter(ToProductLine.OUT0);
+  static {
+    TextFileToSMProductLine.IN0.type = FilePackage.eNS_URI;
   }
 
   @Override
   public void readInputProperties(Properties inputProperties) throws MMINTException {
-    this.reasonerName = "LogicNG";
-    this.presenceCondition = "$true";
+    inputProperties.setProperty(ToProductLine.PROP_REASONERNAME, "LogicNG");
+    inputProperties.setProperty(ToProductLine.PROP_PRESENCECONDITION, "$true");
+    super.readInputProperties(inputProperties);
   }
 
   @Override
-  protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws MMINTException {
-    this.in = new In(inputsByName, this.reasonerName, this.presenceCondition);
-    this.out = new TextFileToSMPLOut(outputMIDsByName, getWorkingPath(), this.in);
-  }
+  protected void toProductLine(Map<String, Model> inputsByName) throws Exception {
+    var productModel = inputsByName.get(ToProductLine.IN0.name);
+    ToProductLine.IN0.root = productModel.getEMFInstanceRoot();
+    var productLine = PLFactory.eINSTANCE.createProductLine();
+    productLine.setMetamodel(StateMachinePackage.eINSTANCE);
+    productLine.setReasonerName(this.reasoner.getName());
+    ToProductLine.OUT0.root = productLine;
 
-  @Override
-  protected void toProductLine() throws IOException {
-    var filePath = Paths.get(FileUtils.prependWorkspacePath(this.in.productModel.getUri()));
+    var filePath = Paths.get(FileUtils.prependWorkspacePath(productModel.getUri()));
     var plStates = new HashMap<String, Class>();
     var parseStates = false;
     Class currTransition = null;
     var plSM = PLFactory.eINSTANCE.createClass();
     plSM.setType(StateMachinePackage.eINSTANCE.getStateMachine());
-    this.out.productLine.getClasses().add(plSM);
+    ((ProductLine) ToProductLine.OUT0.root).getClasses().add(plSM);
     for (var line : Files.readAllLines(filePath)) {
       line = line.strip();
       if (line.isEmpty() || line.startsWith("LocalVars") || line.startsWith("bint")) {
@@ -73,7 +68,7 @@ public class TextFileToSMProductLine extends ToProductLine {
       if (line.startsWith("Feature model: ")) {
         // feature model
         var featuresConstraint = line.substring("Feature model: ".length());
-        this.out.productLine.setFeaturesConstraint(featuresConstraint);
+        ((ProductLine) ToProductLine.OUT0.root).setFeaturesConstraint(featuresConstraint);
         continue;
       }
       if (line.startsWith("States:")) {
@@ -101,13 +96,13 @@ public class TextFileToSMProductLine extends ToProductLine {
           pc = fromState.getPresenceCondition();
         }
         else {
-          pc = this.in.reasoner.simplify(
-            this.in.reasoner.and(fromState.getPresenceCondition(), toState.getPresenceCondition()));
+          pc = this.reasoner.simplify(
+            this.reasoner.and(fromState.getPresenceCondition(), toState.getPresenceCondition()));
         }
         var plTransition = PLFactory.eINSTANCE.createClass();
         plTransition.setPresenceCondition(pc);
         plTransition.setType(StateMachinePackage.eINSTANCE.getTransition());
-        this.out.productLine.getClasses().add(plTransition);
+        ((ProductLine) ToProductLine.OUT0.root).getClasses().add(plTransition);
         plSM.addReference(StateMachinePackage.eINSTANCE.getStateMachine_Transitions(), plTransition);
         plTransition.addReference(StateMachinePackage.eINSTANCE.getTransition_Source(), fromState);
         plTransition.addReference(StateMachinePackage.eINSTANCE.getTransition_Target(), toState);
@@ -127,7 +122,7 @@ public class TextFileToSMProductLine extends ToProductLine {
         // state
         var tokens = line.split(",");
         var stateName = tokens[0].substring(1, tokens[0].length()-1);
-        var pc = this.in.pc;
+        var pc = this.presenceCondition;
         var plState = PLFactory.eINSTANCE.createClass();
         if (tokens.length > 1) {
           tokens[1] = tokens[1].strip();
