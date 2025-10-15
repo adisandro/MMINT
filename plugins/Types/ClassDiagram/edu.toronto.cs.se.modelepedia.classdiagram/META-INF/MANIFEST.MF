@@ -7,7 +7,7 @@ Bundle-Version: 2.26.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-25
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=25))"
 Export-Package: edu.toronto.cs.se.modelepedia.classdiagram,
  edu.toronto.cs.se.modelepedia.classdiagram.impl,
  edu.toronto.cs.se.modelepedia.classdiagram.util

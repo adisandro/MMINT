@@ -17,6 +17,6 @@ Require-Bundle: org.eclipse.ui,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.productline
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-25
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=25))"
 Bundle-Vendor: %providerName
 Automatic-Module-Name: edu.toronto.cs.se.mmint.productline.design

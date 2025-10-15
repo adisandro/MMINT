@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.mmint.productline,
  edu.toronto.cs.se.modelepedia.classdiagram,
  edu.toronto.cs.se.modelepedia.statemachine
-Bundle-RequiredExecutionEnvironment: JavaSE-25
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=25))"
 Automatic-Module-Name: VAMOS23
 Import-Package: org.apache.log4j
 Bundle-ActivationPolicy: lazy

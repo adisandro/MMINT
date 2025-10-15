@@ -8,7 +8,7 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.modelepedia.statemachine.provider.StateMachineEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-25
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=25))"
 Export-Package: edu.toronto.cs.se.modelepedia.statemachine.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit,

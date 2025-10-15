@@ -6,5 +6,5 @@ Bundle-Version: 2.26.99.qualifier
 Automatic-Module-Name: edu.toronto.cs.se.mmint.example.lms
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.common.ui
-Bundle-RequiredExecutionEnvironment: JavaSE-25
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=25))"
 Bundle-Vendor: %providerName
