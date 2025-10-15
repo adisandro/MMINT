@@ -70,7 +70,7 @@ public class OperatorParameter {
     }
     // out path
     var inModel = inputsByName.get(in.name);
-    var outModelName = inModel.getName();
+    var outModelName = inModel.getName().split("\\.")[0]; // removes file extensions in names, e.g. from File model type
     if (this.suffix != null) {
       outModelName += this.suffix;
     }

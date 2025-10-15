@@ -25,7 +25,6 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.primitive.file.FilePackage;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
-import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
 
@@ -58,7 +57,7 @@ public class TextFileToSMProductLine extends ToProductLine {
     Class currTransition = null;
     var plSM = PLFactory.eINSTANCE.createClass();
     plSM.setType(StateMachinePackage.eINSTANCE.getStateMachine());
-    ((ProductLine) ToProductLine.OUT0.root).getClasses().add(plSM);
+    productLine.getClasses().add(plSM);
     for (var line : Files.readAllLines(filePath)) {
       line = line.strip();
       if (line.isEmpty() || line.startsWith("LocalVars") || line.startsWith("bint")) {
@@ -68,7 +67,7 @@ public class TextFileToSMProductLine extends ToProductLine {
       if (line.startsWith("Feature model: ")) {
         // feature model
         var featuresConstraint = line.substring("Feature model: ".length());
-        ((ProductLine) ToProductLine.OUT0.root).setFeaturesConstraint(featuresConstraint);
+        productLine.setFeaturesConstraint(featuresConstraint);
         continue;
       }
       if (line.startsWith("States:")) {
@@ -102,7 +101,7 @@ public class TextFileToSMProductLine extends ToProductLine {
         var plTransition = PLFactory.eINSTANCE.createClass();
         plTransition.setPresenceCondition(pc);
         plTransition.setType(StateMachinePackage.eINSTANCE.getTransition());
-        ((ProductLine) ToProductLine.OUT0.root).getClasses().add(plTransition);
+        productLine.getClasses().add(plTransition);
         plSM.addReference(StateMachinePackage.eINSTANCE.getStateMachine_Transitions(), plTransition);
         plTransition.addReference(StateMachinePackage.eINSTANCE.getTransition_Source(), fromState);
         plTransition.addReference(StateMachinePackage.eINSTANCE.getTransition_Target(), toState);

@@ -29,6 +29,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.primitive.file.FilePackage;
+import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesFactory;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Contextual;
 import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
@@ -60,12 +61,13 @@ public class SocratesToGSN extends OperatorImpl {
   private void convert(Map<String, Model> inputsByName) throws Exception {
     var safetyCase = GSNFactory.eINSTANCE.createSafetyCase();
     SocratesToGSN.OUT0.root = safetyCase;
+
     var json = Files.readString(Paths.get(
       FileUtils.prependWorkspacePath(inputsByName.get(SocratesToGSN.IN0.name).getUri())));
-
     var jsonObj = JsonParser.parseString(json).getAsJsonObject();
     var idToElem = new HashMap<Integer, ArgumentElement>();
     var idToChildren = new HashMap<Integer, JsonArray>();
+    var isTemplate = false;
     for (var node : jsonObj.get("nodes").getAsJsonArray()) {
       var nodeObj = node.getAsJsonObject();
       var id = nodeObj.get("lid").getAsInt();
@@ -114,6 +116,10 @@ public class SocratesToGSN extends OperatorImpl {
         desc += "\n(" + extraDesc.getAsString() + ")";
       }
       gsnElem.setDescription(desc);
+      if (desc.contains("{")) {
+        gsnElem.setValid(false);
+        isTemplate = true;
+      }
       idToElem.put(id, gsnElem);
       idToChildren.put(id, nodeObj.get("children").getAsJsonArray());
     }
@@ -132,6 +138,11 @@ public class SocratesToGSN extends OperatorImpl {
           supportedBy.setTarget((Supporter) child);
         }
       }
+    }
+    if (isTemplate) {
+      var template = GSNTemplatesFactory.eINSTANCE.createAnalyticTemplate();
+      template.getElements().addAll(idToElem.values());
+      safetyCase.getTemplates().add(template);
     }
   }
 
