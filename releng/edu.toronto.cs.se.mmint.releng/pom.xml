@@ -32,6 +32,11 @@
       <layout>p2</layout>
       <url>https://download.eclipse.org/modeling/mdt/papyrus/papyrus-desktop/updates/releases/2025-06</url>
     </repository>
+    <repository>
+      <id>Viatra</id>
+      <layout>p2</layout>
+      <url>http://download.eclipse.org/viatra/updates/release/latest</url>
+    </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
