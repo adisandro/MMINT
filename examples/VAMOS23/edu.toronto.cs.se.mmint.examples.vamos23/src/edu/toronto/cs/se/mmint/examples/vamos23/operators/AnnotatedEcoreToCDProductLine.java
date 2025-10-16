@@ -34,7 +34,6 @@ import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
 
 public class AnnotatedEcoreToCDProductLine extends ToProductLine {
   public final static OperatorParameter IN0 = new OperatorParameter(ToProductLine.IN0);
-  public final static OperatorParameter OUT0 = new OperatorParameter(ToProductLine.OUT0);
   static {
     AnnotatedEcoreToCDProductLine.IN0.type = EcorePackage.eNS_URI;
   }
@@ -68,16 +67,17 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
 
   @Override
   protected void toProductLine(Map<String, Model> inputsByName) throws Exception {
-    var productModel = inputsByName.get(ToProductLine.IN0.name);
-    ToProductLine.IN0.root = productModel.getEMFInstanceRoot();
+    var productModel = inputsByName.get(AnnotatedEcoreToCDProductLine.IN0.name);
+    AnnotatedEcoreToCDProductLine.IN0.root = productModel.getEMFInstanceRoot();
     var productLine = PLFactory.eINSTANCE.createProductLine();
     productLine.setMetamodel(edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE);
     productLine.setReasonerName(this.reasoner.getName());
     ToProductLine.OUT0.root = productLine;
 
     var plClasses = new HashMap<String, Class>();
-    var plEPackage = createPLClass(ToProductLine.IN0.root, ClassDiagramPackage.eINSTANCE.getClassDiagram(), plClasses);
-    for (var eClassifier : ((EPackage) ToProductLine.IN0.root).getEClassifiers()) {
+    var plEPackage = createPLClass(AnnotatedEcoreToCDProductLine.IN0.root,
+                                   ClassDiagramPackage.eINSTANCE.getClassDiagram(), plClasses);
+    for (var eClassifier : ((EPackage) AnnotatedEcoreToCDProductLine.IN0.root).getEClassifiers()) {
       var plEClass = createPLClass(eClassifier, ClassDiagramPackage.eINSTANCE.getClass_(), plClasses);
       var plEClassPC = plEClass.getPresenceCondition();
       var classIsTrue = plEClass.isAlwaysPresent();
@@ -116,7 +116,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
       }
     }
 
-    for (var eClassifier : ((EPackage) ToProductLine.IN0.root).getEClassifiers()) {
+    for (var eClassifier : ((EPackage) AnnotatedEcoreToCDProductLine.IN0.root).getEClassifiers()) {
       if (!(eClassifier instanceof EClass eClass)) {
         continue;
       }

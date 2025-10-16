@@ -101,6 +101,9 @@ public class ExtensionPointType {
 	  this.name = param.name;
     this.isAbstract = false;
     this.supertypeUri = null;
+    if (param.superParam != null) {
+
+    }
 	  this.factory = defaultFactory;
 	  this.newType = null;
 	}

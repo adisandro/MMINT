@@ -30,7 +30,6 @@ import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
 
 public class TextFileToSMProductLine extends ToProductLine {
   public final static OperatorParameter IN0 = new OperatorParameter(ToProductLine.IN0);
-  public final static OperatorParameter OUT0 = new OperatorParameter(ToProductLine.OUT0);
   static {
     TextFileToSMProductLine.IN0.type = FilePackage.eNS_URI;
   }
@@ -44,8 +43,8 @@ public class TextFileToSMProductLine extends ToProductLine {
 
   @Override
   protected void toProductLine(Map<String, Model> inputsByName) throws Exception {
-    var productModel = inputsByName.get(ToProductLine.IN0.name);
-    ToProductLine.IN0.root = productModel.getEMFInstanceRoot();
+    var productModel = inputsByName.get(TextFileToSMProductLine.IN0.name);
+    TextFileToSMProductLine.IN0.root = productModel.getEMFInstanceRoot();
     var productLine = PLFactory.eINSTANCE.createProductLine();
     productLine.setMetamodel(StateMachinePackage.eINSTANCE);
     productLine.setReasonerName(this.reasoner.getName());

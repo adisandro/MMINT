@@ -26,30 +26,33 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 public class OperatorParameter {
   public String name;
   public String type;
-  public @Nullable String ext;
-  public @Nullable String suffix;
   public int lower;
   public int upper;
+  public @Nullable String ext;
+  public @Nullable String suffix;
   public @Nullable EObject root;
+  public @Nullable OperatorParameter superParam;
 
   public OperatorParameter() {
     this.name = null;
     this.type = null;
-    this.ext = null;
-    this.suffix = null;
     this.lower = 1;
     this.upper = 1;
+    this.ext = null;
+    this.suffix = null;
     this.root = null;
+    this.superParam = null;
   }
 
   public OperatorParameter(OperatorParameter superParam) {
     this.name = superParam.name;
     this.type = superParam.type;
-    this.ext = superParam.ext;
-    this.suffix = superParam.suffix;
     this.lower = superParam.lower;
     this.upper = superParam.upper;
+    this.ext = superParam.ext;
+    this.suffix = superParam.suffix;
     this.root = superParam.root;
+    this.superParam = superParam;
   }
 
   public Model fromIn(OperatorParameter in, Operator operator, Map<String, Model> inputsByName,
@@ -61,7 +64,7 @@ public class OperatorParameter {
      * 0c) use of super param as default (e.g. run())
      * 1) Integrate somewhere in Operator
      * 2) Modify readInputProperties to be a more full-fledged initializer of in/out structures: required for inheritance
-     * 3) Add automatic cleanup of in/out roots, which are static and thus shared (maybe they should not be in operator param?)
+     * 3) Add automatic cleanup of in/out roots, which are static and thus shared (maybe they should not be in operator param, root is an instance thing)
      */
     // out model type
     var outModelType = MIDTypeRegistry.<Model>getType(this.type);

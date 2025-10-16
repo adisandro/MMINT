@@ -457,7 +457,7 @@ public class MMINT implements MMINTConstants {
 	}
 
 	private static void createOperatorTypeParameters(Operator containerOperatorType, String fieldName) {
-	  var containerFeatureName = fieldName.equals("IN") ?
+	  var containerFeatureName = fieldName.equals(MMINTConstants.OPERATORS_INPUTS) ?
 	    OperatorPackage.eINSTANCE.getOperator_Inputs().getName() :
 	    OperatorPackage.eINSTANCE.getOperator_Outputs().getName();
     var i = 0;
