@@ -45,8 +45,8 @@ public class Stage2Analysis implements IAnalysis {
             print(s_sat(testset, model, model_accuracy))
             print(R_sat(relData, model, model_accuracy))""";
     final var RUN_SH = """
-      python3 -m venv venv
-      source venv/bin/activate
+      python3 -m venv .venv
+      source .venv/bin/activate
       pip3 install numpy albumentations matplotlib > /dev/null
       pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cpu > /dev/null
       mkdir -p state_dicts

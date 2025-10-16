@@ -1,6 +1,6 @@
 __pycache__/
 data/
-venv/
+.venv/
 state_dicts/
 run_eval.py
 run.sh
