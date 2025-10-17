@@ -55,14 +55,20 @@ public class OperatorParameter {
     this.superParam = superParam;
   }
 
-  public Model fromIn(OperatorParameter in, Operator operator, Map<String, Model> inputsByName,
-                      Map<String, MID> outputMIDsByName) throws Exception {
+  public static Model outFromIn(Operator operator, String outName, String inName, Map<String, Model> inputsByName,
+                                Map<String, MID> outputMIDsByName) throws Exception {
+    var outParam = (OperatorParameter) operator.getClass().getField(outName).get(operator);
+    var inParam = (OperatorParameter) operator.getClass().getField(inName).get(operator);
+
+    return outParam.fromIn(inParam, operator, inputsByName, outputMIDsByName);
+  }
+
+  private Model fromIn(OperatorParameter in, Operator operator, Map<String, Model> inputsByName,
+                       Map<String, MID> outputMIDsByName) throws Exception {
     /**TODO
      * 0) Properly handle inheritance:
-     * 0a) check if mmint creates the right structures
-     * 0b) use of this param instead of super (e.g. roots)
-     * 0c) use of super param as default (e.g. run())
-     * 1) Integrate somewhere in Operator
+     * 0a) check if mmint creates the right structures (Can I skip the explicit override of params that don't change?)
+     * 1) Integrate somewhere in Operator: extract Operator{Parameter|Input|Generic} from model as records
      * 2) Modify readInputProperties to be a more full-fledged initializer of in/out structures: required for inheritance
      * 3) Add automatic cleanup of in/out roots, which are static and thus shared (maybe they should not be in operator param, root is an instance thing)
      */

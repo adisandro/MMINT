@@ -17,6 +17,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine;
@@ -25,6 +26,10 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 public class GSNToProductLine extends ToProductLine {
+  public final static OperatorParameter IN0 = new OperatorParameter(ToProductLine.IN0);
+  static {
+    GSNToProductLine.IN0.type = GSNPackage.eNS_URI;
+  }
 
   @Override
   protected Class createPLClass(EObject modelObj, EClass plType, Map<String, Class> plClasses) {

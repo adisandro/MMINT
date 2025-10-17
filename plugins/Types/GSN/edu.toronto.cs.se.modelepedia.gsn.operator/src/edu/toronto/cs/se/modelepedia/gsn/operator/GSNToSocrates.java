@@ -40,7 +40,7 @@ public class GSNToSocrates extends OperatorImpl {
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
     convert();
-    var out0 = GSNToSocrates.OUT0.fromIn(GSNToSocrates.IN0, this, inputsByName, outputMIDsByName);
+    var out0 = OperatorParameter.outFromIn(this, "OUT0", "IN0", inputsByName, outputMIDsByName);
 
     return Map.of(GSNToSocrates.OUT0.name, out0);
   }

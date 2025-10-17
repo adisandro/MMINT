@@ -32,34 +32,6 @@
                   uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine">
             </superType>
          </type>
-         <inputs>
-            <parameter>
-               <type
-                     name="product"
-                     uri="edu.toronto.cs.se.mmint.types.gsn.productline.operators.GSNToProductLine/product">
-                  <superType
-                        uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine/product">
-                  </superType>
-               </type>
-               <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/modelepedia/GSN">
-               </typeEndpoint>
-            </parameter>
-         </inputs>
-         <outputs>
-            <parameter>
-               <type
-                     name="productLine"
-                     uri="edu.toronto.cs.se.mmint.types.gsn.productline.operators.GSNToProductLine/productLine">
-                  <superType
-                        uri="edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine/productLine">
-                  </superType>
-               </type>
-               <typeEndpoint
-                     targetTypeUri="model://edu.toronto.cs.se.mmint.productline">
-               </typeEndpoint>
-            </parameter>
-         </outputs>
       </operatorType>
    </extension>
 </plugin>

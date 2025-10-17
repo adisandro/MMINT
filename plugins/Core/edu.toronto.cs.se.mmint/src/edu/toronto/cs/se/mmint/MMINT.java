@@ -29,6 +29,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ui.PlatformUI;
@@ -43,6 +44,7 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
@@ -466,7 +468,15 @@ public class MMINT implements MMINTConstants {
         var param = (OperatorParameter) containerOperatorType.getClass()
           .getField(fieldName + i)
           .get(containerOperatorType);
-        var extType = new ExtensionPointType(param, MMINT.typeFactory);
+        String superParamUri = null;
+        if (containerOperatorType.getSupertype() != null) {
+          superParamUri = ((EList<ModelEndpoint>)
+            FileUtils.getModelObjectFeature(containerOperatorType.getSupertype(), containerFeatureName)).stream()
+              .filter(me -> me.getName().equals(param.name))
+              .findFirst().get()
+              .getUri();
+        }
+        var extType = new ExtensionPointType(param, superParamUri, MMINT.typeFactory);
         var targetModelType = MIDTypeRegistry.<Model>getType(param.type);
         if (targetModelType == null) {
           throw new MMINTException("Target model type " + param.type + " can't be found");

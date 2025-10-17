@@ -96,14 +96,11 @@ public class ExtensionPointType {
 		}
 	}
 
-	public ExtensionPointType(OperatorParameter param, MIDHeavyTypeFactory defaultFactory) {
+	public ExtensionPointType(OperatorParameter param, @Nullable String supertypeUri, MIDHeavyTypeFactory defaultFactory) {
 	  this.uri = null;
 	  this.name = param.name;
     this.isAbstract = false;
-    this.supertypeUri = null;
-    if (param.superParam != null) {
-
-    }
+    this.supertypeUri = supertypeUri;
 	  this.factory = defaultFactory;
 	  this.newType = null;
 	}
