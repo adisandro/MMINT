@@ -124,7 +124,7 @@ public class SiriusToProductLine extends OperatorImpl {
   }
 
   @Override
-  public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
     this.servicesJava = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, In.PROP_SERVICESJAVA,
                                                                      In.PROP_SERVICESJAVA_DEFAULT);
     this.nodesJava = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, In.PROP_NODESJAVA,

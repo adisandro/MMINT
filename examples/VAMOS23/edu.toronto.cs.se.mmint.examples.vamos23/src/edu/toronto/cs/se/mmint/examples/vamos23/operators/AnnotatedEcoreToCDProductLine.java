@@ -35,9 +35,9 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
   public final static OperatorParameter IN0 = ToProductLine.IN0.specialize(EcorePackage.eNS_URI);
 
   @Override
-  public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
     inputProperties.setProperty(ToProductLine.PROP_REASONERNAME, "LogicNG");
-    super.readInputProperties(inputProperties, inputsByName);
+    super.init(inputProperties, inputsByName);
     this.out0.setMetamodel(edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE);
   }
 

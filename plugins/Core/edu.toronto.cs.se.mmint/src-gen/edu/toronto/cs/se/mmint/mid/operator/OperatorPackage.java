@@ -3438,11 +3438,11 @@ public interface OperatorPackage extends EPackage {
     EOperation getOperator__GetInputProperties();
 
     /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#readInputProperties(java.util.Properties, Map) <em>Read Input Properties</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#init(java.util.Properties, Map) <em>Read Input Properties</em>}' operation.
    * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
    * @return the meta object for the '<em>Read Input Properties</em>' operation.
-   * @see edu.toronto.cs.se.mmint.mid.operator.Operator#readInputProperties(java.util.Properties, Map)
+   * @see edu.toronto.cs.se.mmint.mid.operator.Operator#init(java.util.Properties, Map)
    * @generated
    */
     EOperation getOperator__ReadInputProperties__Properties();

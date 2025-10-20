@@ -63,7 +63,7 @@ public class ToProductLine extends OperatorImpl {
   protected String presenceCondition;
 
   @Override
-  public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
     var reasonerName =
       MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, ToProductLine.PROP_REASONERNAME, null);
     this.reasoner = (reasonerName == null) ?

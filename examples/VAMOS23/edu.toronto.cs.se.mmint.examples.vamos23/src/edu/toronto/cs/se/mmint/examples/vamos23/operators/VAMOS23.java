@@ -79,7 +79,7 @@ public class VAMOS23 extends OperatorImpl {
   }
 
   @Override
-  public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
     this.queryName = MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_IN_QUERYNAME);
   }
 

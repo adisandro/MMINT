@@ -55,7 +55,7 @@ public class SocratesToGSN extends OperatorImpl {
   };
 
   @Override
-  public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
     this.out0 = GSNFactory.eINSTANCE.createSafetyCase();
   }
 

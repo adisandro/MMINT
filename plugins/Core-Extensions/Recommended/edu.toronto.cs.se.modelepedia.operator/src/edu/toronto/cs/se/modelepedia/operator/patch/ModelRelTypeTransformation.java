@@ -28,13 +28,13 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.OperatorInput;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
@@ -70,12 +70,12 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 			if (!(new ModelRelTypeTransformationConstraint().check(modelRelType))) {
 				return false;
 			}
-			var srcModel = inputs.get(0).getModel();
+			var srcModel = inputs.get(0).model();
 			// check 2: allowed source model
 			if (
-				!MIDConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>()) && (
+				!MIDConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<>()) && (
 					modelRelType instanceof BinaryModelRel || // mandatory direction
-					!MIDConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(1), srcModel, new HashMap<String, Integer>())
+					!MIDConstraintChecker.isAllowedModelEndpoint(modelRelType.getModelEndpointRefs().get(1), srcModel, new HashMap<>())
 				)
 			) {
 				return false;
@@ -254,7 +254,7 @@ public class ModelRelTypeTransformation extends ConversionOperatorImpl {
 
 		var srcIndex = (
 			traceModelRelType instanceof BinaryModelRel ||
-			MIDConstraintChecker.isAllowedModelEndpoint(traceModelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<String, Integer>())
+			MIDConstraintChecker.isAllowedModelEndpoint(traceModelRelType.getModelEndpointRefs().get(0), srcModel, new HashMap<>())
 		) ?
 			0 : 1;
 		var tgtIndex = 1 - srcIndex;

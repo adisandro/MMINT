@@ -30,12 +30,12 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.swt.events.SelectionEvent;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.OperatorGeneric;
+import edu.toronto.cs.se.mmint.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDContextMenuListener;
 import edu.toronto.cs.se.mmint.mid.diagram.library.MIDDiagramUtils;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
@@ -57,8 +57,8 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 	public void widgetSelected(SelectionEvent e) {
 
 		AbstractTransactionalCommand command = new MIDContextRunOperatorCommand(
-			TransactionUtil.getEditingDomain(mid),
-			menuLabel,
+			TransactionUtil.getEditingDomain(this.mid),
+			this.menuLabel,
 			MIDDiagramUtils.getActiveInstanceMIDFiles()
 		);
 		runListenerCommand(command);
@@ -79,20 +79,20 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 
 			try {
 			    //TODO MMINT[GENERICS] with multiple dispatch enabled, show only the super allowed generics
-				EList<OperatorGeneric> operatorGenerics = operatorType.selectAllowedGenerics(operatorInputs);
-				Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(operatorType, mid);
-				switch (mid.getLevel()) {
+				EList<OperatorGeneric> operatorGenerics = MIDContextRunOperatorListener.this.operatorType.selectAllowedGenerics(MIDContextRunOperatorListener.this.operatorInputs);
+				Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(MIDContextRunOperatorListener.this.operatorType, MIDContextRunOperatorListener.this.mid);
+				switch (MIDContextRunOperatorListener.this.mid.getLevel()) {
 					case TYPES:
 						throw new MMINTException("The TYPES level is not allowed");
 					case INSTANCES:
 					  if (this.affectedFiles.size() > 0) {
-					    operatorType.setWorkingPath(this.affectedFiles.get(0).getParent().getFullPath().toString());
+					    MIDContextRunOperatorListener.this.operatorType.setWorkingPath(this.affectedFiles.get(0).getParent().getFullPath().toString());
 					  }
-						operatorType.startInstance(operatorInputs, null, operatorGenerics, outputMIDsByName, mid);
-						WorkspaceSynchronizer.getFile(mid.eResource()).getParent().refreshLocal(IResource.DEPTH_ONE, monitor);
+						MIDContextRunOperatorListener.this.operatorType.startInstance(MIDContextRunOperatorListener.this.operatorInputs, null, operatorGenerics, outputMIDsByName, MIDContextRunOperatorListener.this.mid);
+						WorkspaceSynchronizer.getFile(MIDContextRunOperatorListener.this.mid.eResource()).getParent().refreshLocal(IResource.DEPTH_ONE, monitor);
 						break;
 					case WORKFLOWS:
-						operatorType.startWorkflowInstance(operatorInputs, operatorGenerics, mid);
+						MIDContextRunOperatorListener.this.operatorType.startWorkflowInstance(MIDContextRunOperatorListener.this.operatorInputs, operatorGenerics, MIDContextRunOperatorListener.this.mid);
 						break;
 					default:
 						throw new MMINTException("The MID level is missing");
@@ -103,8 +103,8 @@ public class MIDContextRunOperatorListener extends MIDContextMenuListener {
 				return CommandResult.newCancelledCommandResult();
 			}
 			catch (Exception e) {
-				MMINTException.print(IStatus.ERROR, "Operator " + operatorType.getName() + " execution error", e);
-				return CommandResult.newErrorCommandResult("Operator " + operatorType.getName() + " execution error");
+				MMINTException.print(IStatus.ERROR, "Operator " + MIDContextRunOperatorListener.this.operatorType.getName() + " execution error", e);
+				return CommandResult.newErrorCommandResult("Operator " + MIDContextRunOperatorListener.this.operatorType.getName() + " execution error");
 			}
 		}
 

@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.OperatorInput;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -41,7 +42,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -100,7 +100,7 @@ public class Reduce extends NestingOperatorImpl {
   }
 
   @Override
-  public void readInputProperties(Properties inputProps, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProps, Map<String, Model> inputsByName) throws MMINTException {
     this.timeOverheadEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(
                                  inputProps, Reduce.PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
   }
@@ -152,7 +152,7 @@ public class Reduce extends NestingOperatorImpl {
       }
       if (polyAccumulators.size() > 1) { // polymorphic multiple dispatch
         var accumulatorInputModels = ECollections.toEList(accumulatorInputs.stream()
-          .map(OperatorInput::getModel)
+          .map(OperatorInput::model)
           .collect(Collectors.toList()));
         var polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyAccumulators);
         while (polyIter.hasNext()) { // start from the most specialized operator backwards
@@ -169,7 +169,7 @@ public class Reduce extends NestingOperatorImpl {
       try {
         // get all model inputs, including the ones attached to model rel inputs
         for (OperatorInput accumulatorInput : accumulatorInputs) {
-          var accumulatorInputModel = accumulatorInput.getModel();
+          var accumulatorInputModel = accumulatorInput.model();
           if (accumulatorInputModel instanceof ModelRel) {
             accumulatorInputModels.addAll(((ModelRel) accumulatorInputModel).getModelEndpoints().stream()
               .map(ModelEndpoint::getTarget)
@@ -184,7 +184,7 @@ public class Reduce extends NestingOperatorImpl {
         var modelRelBlacklist = Stream.concat(
           accumulatorInputModelRels.stream(),
           intermediateModelsAndRels.stream()
-            .filter(modelRel -> modelRel instanceof ModelRel)
+            .filter(ModelRel.class::isInstance)
             .map(modelRel -> (ModelRel) modelRel))
             .collect(Collectors.toSet());
         var connectedModelRels = this.getConnectedModelRels(reducedMID, accumulatorInputModels, modelRelBlacklist);
@@ -342,7 +342,7 @@ public class Reduce extends NestingOperatorImpl {
         .filter(outputModel -> !intermediateModelsAndRels.contains(outputModel))
         .collect(Collectors.toCollection(LinkedHashSet::new)); // reproducible order
       var intermediateModelRels = intermediateModelsAndRels.stream()
-        .filter(modelRel -> modelRel instanceof ModelRel)
+        .filter(ModelRel.class::isInstance)
         .map(modelRel -> (ModelRel) modelRel)
         .collect(Collectors.toCollection(LinkedHashSet::new)); // reproducible order
       reducedModels.addAll(this.getConnectedModelRels(reducedMID, reducedModels, intermediateModelRels));

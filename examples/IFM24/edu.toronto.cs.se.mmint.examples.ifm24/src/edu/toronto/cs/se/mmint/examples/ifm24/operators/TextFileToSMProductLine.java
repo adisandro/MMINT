@@ -32,10 +32,10 @@ public class TextFileToSMProductLine extends ToProductLine {
   public final static OperatorParameter IN0 = ToProductLine.IN0.specialize(FilePackage.eNS_URI);
 
   @Override
-  public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
     inputProperties.setProperty(ToProductLine.PROP_REASONERNAME, "LogicNG");
     inputProperties.setProperty(ToProductLine.PROP_PRESENCECONDITION, "$true");
-    super.readInputProperties(inputProperties, inputsByName);
+    super.init(inputProperties, inputsByName);
     this.out0.setMetamodel(StateMachinePackage.eINSTANCE);
   }
 

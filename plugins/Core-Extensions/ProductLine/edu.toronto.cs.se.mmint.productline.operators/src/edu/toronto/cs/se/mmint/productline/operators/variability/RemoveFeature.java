@@ -76,7 +76,7 @@ public class RemoveFeature extends OperatorImpl {
   }
 
   @Override
-  public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
     this.featureSubstitute = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, In.PROP_FEATURESUB,
                                                                         In.PROP_FEATURESUB_DEFAULT);
   }

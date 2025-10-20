@@ -125,7 +125,7 @@ public class Experiment extends OperatorImpl {
   Map<String, ExperimentOutput> outputs;
 
   @Override
-  public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
     // variables of the experiment
     this.numExperiments = 1;
     this.variables = new HashMap<>();

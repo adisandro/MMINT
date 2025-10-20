@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -20,13 +20,12 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.OperatorGeneric;
+import edu.toronto.cs.se.mmint.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.impl.ConversionOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
@@ -43,18 +42,16 @@ public class CD2Java extends ConversionOperatorImpl {
 
 	private @NonNull Model convert(@NonNull Model cdModel, @Nullable MID instanceMID) throws Exception {
 
-		Operator transformationOperatorType = MIDTypeRegistry.getType(MODELRELTYPETRANSFORMATION_OPERATOR_URI);
+		Operator transformationOperatorType = MIDTypeRegistry.getType(CD2Java.MODELRELTYPETRANSFORMATION_OPERATOR_URI);
 		EList<Model> inputModels = new BasicEList<>();
 		inputModels.add(cdModel);
 		EList<OperatorInput> inputs = transformationOperatorType.checkAllowedInputs(inputModels);
 		Map<String, MID> outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(transformationOperatorType, instanceMID);
 		EList<OperatorGeneric> generics = new BasicEList<>();
-		OperatorGeneric generic = OperatorFactory.eINSTANCE.createOperatorGeneric();
-		generic.setGenericSuperTypeEndpoint(transformationOperatorType.getGenerics().get(0));
-		ModelRel cd2javaRelType = MIDTypeRegistry.getType(CD2JAVA_MODELRELTYPE_URI);
-		generic.setGeneric(cd2javaRelType);
+    ModelRel cd2javaRelType = MIDTypeRegistry.getType(CD2Java.CD2JAVA_MODELRELTYPE_URI);
+		OperatorGeneric generic = new OperatorGeneric(cd2javaRelType, transformationOperatorType.getGenerics().get(0));
 		generics.add(generic);
-		Operator transformationOperator = transformationOperatorType.startInstance(inputs, null, generics, outputMIDsByName, null);
+		var transformationOperator = transformationOperatorType.startInstance(inputs, null, generics, outputMIDsByName, null);
 
 		return transformationOperator.getOutputsByName().get(ModelRelTypeTransformation.OUT_MODEL);
 	}
@@ -65,15 +62,15 @@ public class CD2Java extends ConversionOperatorImpl {
 			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		Model cdModel = inputsByName.get(IN_MODEL);
-		MID instanceMID = outputMIDsByName.get(OUT_MODEL);
+		Model cdModel = inputsByName.get(CD2Java.IN_MODEL);
+		MID instanceMID = outputMIDsByName.get(CD2Java.OUT_MODEL);
 
 		// run model rel type transformation
 		Model javaModel = convert(cdModel, instanceMID);
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUT_MODEL, javaModel);
+		outputsByName.put(CD2Java.OUT_MODEL, javaModel);
 
 		return outputsByName;
 	}

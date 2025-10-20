@@ -32,6 +32,7 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.OperatorInput;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -41,7 +42,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -81,7 +81,7 @@ public class Map extends NestingOperatorImpl {
   }
 
   @Override
-  public void readInputProperties(Properties inputProps, java.util.Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProps, java.util.Map<String, Model> inputsByName) throws MMINTException {
     this.timeOverheadEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(
                                  inputProps, Map.PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX,
                                  false);
@@ -176,7 +176,7 @@ public class Map extends NestingOperatorImpl {
           var mapperOutputsByName = mapperOperator.getOutputsByName();
           if (mapperMIDPath != null) {
             mapperShortcutModels.addAll(mapperInputs.stream()
-              .map(OperatorInput::getModel)
+              .map(OperatorInput::model)
               .collect(Collectors.toList()));
             mapperShortcutModels.addAll(mapperOutputsByName.values());
           }
@@ -256,9 +256,9 @@ public class Map extends NestingOperatorImpl {
     for (var inputMIDRel : inputMIDRels) {
       var endpointMIDs = inputMIDRel.getModelRels().stream()
         .flatMap(modelRel -> modelRel.getModelEndpoints().stream()
-        .map(modelEndpoint -> modelEndpoint.getTarget()))
-        .map(model -> model.getMIDContainer())
-        .collect(Collectors.toMap(mid -> MIDRegistry.getModelUri(mid), mid -> mid, (mid1, mid2) -> mid1)); // duplicates should simply be used once
+        .map(ModelEndpoint::getTarget))
+        .map(Model::getMIDContainer)
+        .collect(Collectors.toMap(MIDRegistry::getModelUri, mid -> mid, (mid1, mid2) -> mid1)); // duplicates should simply be used once
       inputMIDsToSerialize.putAll(endpointMIDs);
     }
     for (var inputMIDToSerialize : inputMIDsToSerialize.entrySet()) {
@@ -274,7 +274,7 @@ public class Map extends NestingOperatorImpl {
     var newInputs = new LinkedHashMap<String, EList<OperatorInput>>(); // reproducible order
     for (var mapperInput : mapperInputs) {
       var key = mapperInput.stream()
-        .map(input -> MIDRegistry.getModelElementUri(input.getModel()))
+        .map(input -> MIDRegistry.getModelElementUri(input.model()))
         .collect(Collectors.joining(";"));
       if (!assignedInputs.containsKey(key)) {
         newInputs.put(key, mapperInput);

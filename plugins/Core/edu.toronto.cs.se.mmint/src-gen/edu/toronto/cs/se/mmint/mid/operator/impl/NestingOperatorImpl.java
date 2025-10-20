@@ -35,6 +35,8 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.OperatorGeneric;
+import edu.toronto.cs.se.mmint.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
@@ -42,8 +44,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.NestingOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
@@ -143,8 +143,9 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
     public void setNestedMIDPath(String newNestedMIDPath) {
     var oldNestedMIDPath = this.nestedMIDPath;
     this.nestedMIDPath = newNestedMIDPath;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.NESTING_OPERATOR__NESTED_MID_PATH, oldNestedMIDPath, this.nestedMIDPath));
+    }
   }
 
     /**
@@ -239,7 +240,9 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
    */
     @Override
     public String toStringGen() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (nestedMIDPath: ");
@@ -369,7 +372,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
         var midDiagramPluginId = MIDTypeRegistry.getTypeBundle(MIDTypeRegistry.getMIDDiagramType().getUri()).getSymbolicName();
         var midViewProvider = MIDTypeRegistry.getCachedMIDViewProvider();
         var allShortcuts = models.stream() // collect model endpoints of rels
-            .filter(m -> m instanceof ModelRel)
+            .filter(ModelRel.class::isInstance)
             .flatMap(r -> ((ModelRel) r).getModelEndpoints().stream())
             .map(ModelEndpoint::getTarget)
             .collect(Collectors.toSet());
@@ -499,7 +502,7 @@ public class NestingOperatorImpl extends OperatorImpl implements NestingOperator
         var nestedMIDPath = this.getNestedMIDPath();
         if (nestedMIDPath != null) {
             var inputModels = inputs.stream()
-                .map(OperatorInput::getModel)
+                .map(OperatorInput::model)
                 .collect(Collectors.toSet());
             this.createNestedInstanceMIDModelShortcuts(inputModels);
         }

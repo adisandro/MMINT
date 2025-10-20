@@ -33,6 +33,8 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.OperatorGeneric;
+import edu.toronto.cs.se.mmint.OperatorInput;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -40,8 +42,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.impl.NestingOperatorImpl;
 import edu.toronto.cs.se.mmint.mid.reasoning.IOperatorConstraintTrait;
@@ -89,13 +89,13 @@ public class Fix extends NestingOperatorImpl {
             }
             // inputs must be valid for the fixer
             String prevPreference = null;
-            if (inputs.get(0).getModel().isWorkflowsLevel()) {
+            if (inputs.get(0).model().isWorkflowsLevel()) {
                 prevPreference = MMINT.setPreference(MMINTConstants.PREFERENCE_MENU_POLYMORPHISM_RUNTIMETYPING_ENABLED,
                                                      "false");
             }
             var inputModels = ECollections.asEList(
                 inputs.stream()
-                      .map(OperatorInput::getModel)
+                      .map(OperatorInput::model)
                       .collect(Collectors.toList()));
             try {
                 if (fixerOperatorType.checkAllowedInputs(inputModels) == null) {

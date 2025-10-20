@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -14,16 +14,19 @@ package edu.toronto.cs.se.mmint.mid.operator.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+
+import edu.toronto.cs.se.mmint.OperatorGeneric;
+import edu.toronto.cs.se.mmint.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
-import edu.toronto.cs.se.mmint.mid.operator.*;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.NestingOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,8 +57,8 @@ public class OperatorSwitch<T> extends Switch<T> {
    * @generated
    */
     public OperatorSwitch() {
-    if (modelPackage == null) {
-      modelPackage = OperatorPackage.eINSTANCE;
+    if (OperatorSwitch.modelPackage == null) {
+      OperatorSwitch.modelPackage = OperatorPackage.eINSTANCE;
     }
   }
 
@@ -69,7 +72,7 @@ public class OperatorSwitch<T> extends Switch<T> {
    */
     @Override
     protected boolean isSwitchFor(EPackage ePackage) {
-    return ePackage == modelPackage;
+    return ePackage == OperatorSwitch.modelPackage;
   }
 
     /**
@@ -83,68 +86,102 @@ public class OperatorSwitch<T> extends Switch<T> {
     protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
       case OperatorPackage.OPERATOR: {
-        Operator operator = (Operator)theEObject;
-        T result = caseOperator(operator);
-        if (result == null) result = caseGenericElement(operator);
-        if (result == null) result = caseExtendibleElement(operator);
-        if (result == null) result = defaultCase(theEObject);
+        var operator = (Operator)theEObject;
+        var result = caseOperator(operator);
+        if (result == null) {
+          result = caseGenericElement(operator);
+        }
+        if (result == null) {
+          result = caseExtendibleElement(operator);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case OperatorPackage.CONVERSION_OPERATOR: {
-        ConversionOperator conversionOperator = (ConversionOperator)theEObject;
-        T result = caseConversionOperator(conversionOperator);
-        if (result == null) result = caseOperator(conversionOperator);
-        if (result == null) result = caseGenericElement(conversionOperator);
-        if (result == null) result = caseExtendibleElement(conversionOperator);
-        if (result == null) result = defaultCase(theEObject);
+        var conversionOperator = (ConversionOperator)theEObject;
+        var result = caseConversionOperator(conversionOperator);
+        if (result == null) {
+          result = caseOperator(conversionOperator);
+        }
+        if (result == null) {
+          result = caseGenericElement(conversionOperator);
+        }
+        if (result == null) {
+          result = caseExtendibleElement(conversionOperator);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case OperatorPackage.RANDOM_OPERATOR: {
-        RandomOperator randomOperator = (RandomOperator)theEObject;
-        T result = caseRandomOperator(randomOperator);
-        if (result == null) result = caseOperator(randomOperator);
-        if (result == null) result = caseGenericElement(randomOperator);
-        if (result == null) result = caseExtendibleElement(randomOperator);
-        if (result == null) result = defaultCase(theEObject);
+        var randomOperator = (RandomOperator)theEObject;
+        var result = caseRandomOperator(randomOperator);
+        if (result == null) {
+          result = caseOperator(randomOperator);
+        }
+        if (result == null) {
+          result = caseGenericElement(randomOperator);
+        }
+        if (result == null) {
+          result = caseExtendibleElement(randomOperator);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case OperatorPackage.NESTING_OPERATOR: {
-        NestingOperator nestingOperator = (NestingOperator)theEObject;
-        T result = caseNestingOperator(nestingOperator);
-        if (result == null) result = caseOperator(nestingOperator);
-        if (result == null) result = caseGenericElement(nestingOperator);
-        if (result == null) result = caseExtendibleElement(nestingOperator);
-        if (result == null) result = defaultCase(theEObject);
+        var nestingOperator = (NestingOperator)theEObject;
+        var result = caseNestingOperator(nestingOperator);
+        if (result == null) {
+          result = caseOperator(nestingOperator);
+        }
+        if (result == null) {
+          result = caseGenericElement(nestingOperator);
+        }
+        if (result == null) {
+          result = caseExtendibleElement(nestingOperator);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case OperatorPackage.WORKFLOW_OPERATOR: {
-        WorkflowOperator workflowOperator = (WorkflowOperator)theEObject;
-        T result = caseWorkflowOperator(workflowOperator);
-        if (result == null) result = caseNestingOperator(workflowOperator);
-        if (result == null) result = caseOperator(workflowOperator);
-        if (result == null) result = caseGenericElement(workflowOperator);
-        if (result == null) result = caseExtendibleElement(workflowOperator);
-        if (result == null) result = defaultCase(theEObject);
+        var workflowOperator = (WorkflowOperator)theEObject;
+        var result = caseWorkflowOperator(workflowOperator);
+        if (result == null) {
+          result = caseNestingOperator(workflowOperator);
+        }
+        if (result == null) {
+          result = caseOperator(workflowOperator);
+        }
+        if (result == null) {
+          result = caseGenericElement(workflowOperator);
+        }
+        if (result == null) {
+          result = caseExtendibleElement(workflowOperator);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case OperatorPackage.GENERIC_ENDPOINT: {
-        GenericEndpoint genericEndpoint = (GenericEndpoint)theEObject;
-        T result = caseGenericEndpoint(genericEndpoint);
-        if (result == null) result = caseExtendibleElementEndpoint(genericEndpoint);
-        if (result == null) result = caseExtendibleElement(genericEndpoint);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case OperatorPackage.OPERATOR_INPUT: {
-        OperatorInput operatorInput = (OperatorInput)theEObject;
-        T result = caseOperatorInput(operatorInput);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case OperatorPackage.OPERATOR_GENERIC: {
-        OperatorGeneric operatorGeneric = (OperatorGeneric)theEObject;
-        T result = caseOperatorGeneric(operatorGeneric);
-        if (result == null) result = defaultCase(theEObject);
+        var genericEndpoint = (GenericEndpoint)theEObject;
+        var result = caseGenericEndpoint(genericEndpoint);
+        if (result == null) {
+          result = caseExtendibleElementEndpoint(genericEndpoint);
+        }
+        if (result == null) {
+          result = caseExtendibleElement(genericEndpoint);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       default: return defaultCase(theEObject);

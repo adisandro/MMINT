@@ -5,18 +5,21 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.operator;
 
-import edu.toronto.cs.se.mmint.MMINTException;
-
-import edu.toronto.cs.se.mmint.mid.MID;
 import java.util.Map;
 import java.util.Properties;
+
 import org.eclipse.emf.common.util.EList;
+
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.OperatorGeneric;
+import edu.toronto.cs.se.mmint.OperatorInput;
+import edu.toronto.cs.se.mmint.mid.MID;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,7 +69,7 @@ public interface NestingOperator extends Operator {
 
     /**
    * <!-- begin-user-doc --> Gets the Instance MID containing the nested artifacts created by this operator instance.
-     * 
+     *
      * @throws MMINTException
      *             If this is not an operator instance.<!-- end-user-doc -->
    * @model kind="operation" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
@@ -77,7 +80,7 @@ public interface NestingOperator extends Operator {
     /**
    * <!-- begin-user-doc --> Starts a nested instance of an operator type, i.e. invokes its
      * {@link Operator#startInstance} within the nested Instance MID.
-     * 
+     *
      * @param nestedOperatorType
      *            The operator type to run nested.
      * @param inputs

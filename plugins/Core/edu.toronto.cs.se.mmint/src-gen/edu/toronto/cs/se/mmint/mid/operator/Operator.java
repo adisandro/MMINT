@@ -18,6 +18,8 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.OperatorGeneric;
+import edu.toronto.cs.se.mmint.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -384,7 +386,7 @@ public interface Operator extends GenericElement {
    * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputPropertiesDataType="edu.toronto.cs.se.mmint.mid.operator.Properties" inputPropertiesRequired="true"
    * @generated
    */
-    void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException;
+    void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException;
 
     /**
    * <!-- begin-user-doc --> Runs this operator instance. This function contains the logic of the operator and must be

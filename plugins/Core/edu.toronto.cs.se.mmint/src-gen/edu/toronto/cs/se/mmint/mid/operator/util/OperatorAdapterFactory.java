@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -15,16 +15,19 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+
+import edu.toronto.cs.se.mmint.OperatorGeneric;
+import edu.toronto.cs.se.mmint.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
-import edu.toronto.cs.se.mmint.mid.operator.*;
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.NestingOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,8 +53,8 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
     public OperatorAdapterFactory() {
-    if (modelPackage == null) {
-      modelPackage = OperatorPackage.eINSTANCE;
+    if (OperatorAdapterFactory.modelPackage == null) {
+      OperatorAdapterFactory.modelPackage = OperatorPackage.eINSTANCE;
     }
   }
 
@@ -65,11 +68,11 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
    */
     @Override
     public boolean isFactoryForType(Object object) {
-    if (object == modelPackage) {
+    if (object == OperatorAdapterFactory.modelPackage) {
       return true;
     }
     if (object instanceof EObject) {
-      return ((EObject)object).eClass().getEPackage() == modelPackage;
+      return ((EObject)object).eClass().getEPackage() == OperatorAdapterFactory.modelPackage;
     }
     return false;
   }
@@ -142,7 +145,7 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
    */
     @Override
     public Adapter createAdapter(Notifier target) {
-    return modelSwitch.doSwitch((EObject)target);
+    return this.modelSwitch.doSwitch((EObject)target);
   }
 
 

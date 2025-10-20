@@ -1245,7 +1245,7 @@
         <eParameters name="inputs" upperBound="-1" eType="#//operator/OperatorInput"/>
       </eOperations>
       <eOperations name="getInputProperties" lowerBound="1" eType="#//operator/Properties"/>
-      <eOperations name="readInputProperties" eExceptions="#//MMINTException">
+      <eOperations name="init" eExceptions="#//MMINTException">
         <eParameters name="inputProperties" lowerBound="1" eType="#//operator/Properties"/>
         <eParameters name="inputsByName" lowerBound="1">
           <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
@@ -1320,6 +1320,26 @@
         <eParameters name="workflowMID" eType="#//MID"/>
       </eOperations>
       <eOperations name="openWorkflowInstance" eExceptions="#//operator/Exception"/>
+      <eOperations name="outputFromInput" lowerBound="1" eExceptions="#//operator/Exception">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eTypeArguments eClassifier="#//Model"/>
+        </eGenericType>
+        <eParameters name="inIndex" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        <eParameters name="outIndex" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        <eParameters name="inputsByName" lowerBound="1">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            <eTypeArguments eClassifier="#//Model"/>
+          </eGenericType>
+        </eParameters>
+        <eParameters name="outputMIDsByName" lowerBound="1">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            <eTypeArguments eClassifier="#//MID"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
           eType="#//ModelEndpoint" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1451,46 +1471,6 @@
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OperatorInput">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="An input for an operator instance."/>
-      </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1"
-          eType="#//Model">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The input actual parameter."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="conversions" upperBound="-1"
-          eType="#//operator/ConversionOperator">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The list of conversions to be executed on the input actual parameter."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="modelTypeEndpoint" lowerBound="1"
-          eType="#//ModelEndpoint">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The input formal parameter."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OperatorGeneric">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A generic for an operator instance."/>
-      </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="generic" lowerBound="1"
-          eType="#//GenericElement">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The generic actual parameter."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="genericSuperTypeEndpoint"
-          lowerBound="1" eType="#//operator/GenericEndpoint">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The generic formal parameter."/>
-        </eAnnotations>
-      </eStructuralFeatures>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="Random" instanceClassName="java.util.Random">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The wrapper for java.util.Random."/>
@@ -1515,5 +1495,11 @@
       </eAnnotations>
       <eTypeParameters name="E"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EDataType" name="OperatorInput" instanceClassName="edu.toronto.cs.se.mmint.OperatorInput"
+        serializable="false"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="OperatorGeneric" instanceClassName="edu.toronto.cs.se.mmint.OperatorGeneric"
+        serializable="false"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="OperatorParameter" instanceClassName="edu.toronto.cs.se.mmint.OperatorParameter"
+        serializable="false"/>
   </eSubpackages>
 </ecore:EPackage>

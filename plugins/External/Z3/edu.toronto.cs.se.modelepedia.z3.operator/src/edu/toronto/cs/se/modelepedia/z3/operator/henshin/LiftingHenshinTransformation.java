@@ -174,9 +174,9 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	protected Map<PLElement, Integer> modelObjsLiterals;
 
 	@Override
-	public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+	public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
 
-		super.readInputProperties(inputProperties, inputsByName);
+		super.init(inputProperties, inputsByName);
 		this.constraint = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINT, LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINT_DEFAULT);
 		this.constraintVariables = MIDOperatorIOUtils.getOptionalStringPropertyList(inputProperties, LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINTVARIABLES, LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINTVARIABLES_DEFAULT);
 		this.transformationModule = MIDOperatorIOUtils.getStringProperty(inputProperties, LiftingHenshinTransformation.PROPERTY_IN_TRANSFORMATIONMODULE);

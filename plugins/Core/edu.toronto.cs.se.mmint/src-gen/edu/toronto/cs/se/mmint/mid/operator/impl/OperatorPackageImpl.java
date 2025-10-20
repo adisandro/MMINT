@@ -18,12 +18,13 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import edu.toronto.cs.se.mmint.OperatorGeneric;
+import edu.toronto.cs.se.mmint.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.editor.impl.EditorPackageImpl;
@@ -33,8 +34,6 @@ import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.NestingOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
@@ -171,11 +170,13 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
    * @generated
    */
     public static OperatorPackage init() {
-    if (OperatorPackageImpl.isInited) return (OperatorPackage)EPackage.Registry.INSTANCE.getEPackage(OperatorPackage.eNS_URI);
+    if (OperatorPackageImpl.isInited) {
+      return (OperatorPackage)EPackage.Registry.INSTANCE.getEPackage(OperatorPackage.eNS_URI);
+    }
 
     // Obtain or create and register package
     var registeredOperatorPackage = EPackage.Registry.INSTANCE.get(OperatorPackage.eNS_URI);
-    var theOperatorPackage = registeredOperatorPackage instanceof OperatorPackageImpl ? (OperatorPackageImpl)registeredOperatorPackage : new OperatorPackageImpl();
+    var theOperatorPackage = registeredOperatorPackage instanceof OperatorPackageImpl o ? o : new OperatorPackageImpl();
 
     OperatorPackageImpl.isInited = true;
 
@@ -852,7 +853,9 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
    * @generated
    */
     public void createPackageContents() {
-    if (this.isCreated) return;
+    if (this.isCreated) {
+      return;
+    }
     this.isCreated = true;
 
     // Create classes and their features
@@ -944,7 +947,9 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
    * @generated
    */
     public void initializePackageContents() {
-    if (this.isInitialized) return;
+    if (this.isInitialized) {
+      return;
+    }
     this.isInitialized = true;
 
     // Initialize package

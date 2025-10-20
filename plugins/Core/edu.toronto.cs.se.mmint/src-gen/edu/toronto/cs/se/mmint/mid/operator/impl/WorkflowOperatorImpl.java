@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.mid.operator.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -29,15 +30,14 @@ import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.OperatorGeneric;
+import edu.toronto.cs.se.mmint.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
@@ -204,16 +204,13 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
             EList<OperatorInput> workflowInputs = new BasicEList<>();
             for (var inputModelEndpoint : workflowOperator.getInputs()) {
                 var inputModel = allModelsByName.get(inputModelEndpoint.getTargetUri());
-                var workflowInput = OperatorFactory.eINSTANCE.createOperatorInput();
-                workflowInput.setModel(inputModel);
-                workflowInput.setModelTypeEndpoint(inputModelEndpoint.getMetatype());
+                var workflowInput = new OperatorInput(inputModel, List.of(), inputModelEndpoint.getMetatype());
                 workflowInputs.add(workflowInput);
             }
             var workflowGenerics = new BasicEList<OperatorGeneric>();
             for (var workflowGenericEndpoint : workflowOperator.getGenerics()) {
-                var workflowGeneric = OperatorFactory.eINSTANCE.createOperatorGeneric();
-                workflowGeneric.setGenericSuperTypeEndpoint(workflowGenericEndpoint.getMetatype());
-                workflowGeneric.setGeneric(workflowGenericEndpoint.getTarget());
+                var workflowGeneric = new OperatorGeneric(workflowGenericEndpoint.getTarget(),
+                                                          workflowGenericEndpoint.getMetatype());
                 workflowGenerics.add(workflowGeneric);
             }
             var workflowOutputMIDsByName = new HashMap<String, MID>();
@@ -229,7 +226,7 @@ public class WorkflowOperatorImpl extends NestingOperatorImpl implements Workflo
                 var polyIter = MIDTypeHierarchy.getInverseTypeHierarchyIterator(polyOperators);
                 var inputModels = ECollections.asEList(
                   workflowInputs.stream()
-                    .map(OperatorInput::getModel)
+                    .map(OperatorInput::model)
                     .collect(Collectors.toList()));
                 while (polyIter.hasNext()) { // start from the most specialized operator backwards
                     var polyOperator = polyIter.next();

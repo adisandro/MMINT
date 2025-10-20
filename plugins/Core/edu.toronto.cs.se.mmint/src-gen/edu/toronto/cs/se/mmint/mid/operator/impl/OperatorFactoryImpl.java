@@ -5,27 +5,29 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.operator.impl;
 
-import edu.toronto.cs.se.mmint.mid.operator.*;
 import java.util.Random;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import edu.toronto.cs.se.mmint.mid.operator.ConversionOperator;
 import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.NestingOperator;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +44,7 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
    */
     public static OperatorFactory init() {
     try {
-      OperatorFactory theOperatorFactory = (OperatorFactory)EPackage.Registry.INSTANCE.getEFactory(OperatorPackage.eNS_URI);
+      var theOperatorFactory = (OperatorFactory)EPackage.Registry.INSTANCE.getEFactory(OperatorPackage.eNS_URI);
       if (theOperatorFactory != null) {
         return theOperatorFactory;
       }
@@ -70,18 +72,15 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
    */
     @Override
     public EObject create(EClass eClass) {
-    switch (eClass.getClassifierID()) {
-      case OperatorPackage.OPERATOR: return createOperator();
-      case OperatorPackage.CONVERSION_OPERATOR: return createConversionOperator();
-      case OperatorPackage.RANDOM_OPERATOR: return createRandomOperator();
-      case OperatorPackage.NESTING_OPERATOR: return createNestingOperator();
-      case OperatorPackage.WORKFLOW_OPERATOR: return createWorkflowOperator();
-      case OperatorPackage.GENERIC_ENDPOINT: return createGenericEndpoint();
-      case OperatorPackage.OPERATOR_INPUT: return createOperatorInput();
-      case OperatorPackage.OPERATOR_GENERIC: return createOperatorGeneric();
-      default:
-        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-    }
+    return switch (eClass.getClassifierID()) {
+    case OperatorPackage.OPERATOR -> createOperator();
+    case OperatorPackage.CONVERSION_OPERATOR -> createConversionOperator();
+    case OperatorPackage.RANDOM_OPERATOR -> createRandomOperator();
+    case OperatorPackage.NESTING_OPERATOR -> createNestingOperator();
+    case OperatorPackage.WORKFLOW_OPERATOR -> createWorkflowOperator();
+    case OperatorPackage.GENERIC_ENDPOINT -> createGenericEndpoint();
+    default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    };
   }
 
     /**
@@ -91,12 +90,10 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
    */
     @Override
     public Object createFromString(EDataType eDataType, String initialValue) {
-    switch (eDataType.getClassifierID()) {
-      case OperatorPackage.RANDOM:
-        return createRandomFromString(eDataType, initialValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-    }
+    return switch (eDataType.getClassifierID()) {
+    case OperatorPackage.RANDOM -> createRandomFromString(eDataType, initialValue);
+    default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    };
   }
 
     /**
@@ -106,12 +103,10 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
    */
     @Override
     public String convertToString(EDataType eDataType, Object instanceValue) {
-    switch (eDataType.getClassifierID()) {
-      case OperatorPackage.RANDOM:
-        return convertRandomToString(eDataType, instanceValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-    }
+    return switch (eDataType.getClassifierID()) {
+    case OperatorPackage.RANDOM -> convertRandomToString(eDataType, instanceValue);
+    default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    };
   }
 
     /**
@@ -178,28 +173,6 @@ public class OperatorFactoryImpl extends EFactoryImpl implements OperatorFactory
     public GenericEndpoint createGenericEndpoint() {
     GenericEndpointImpl genericEndpoint = new GenericEndpointImpl();
     return genericEndpoint;
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    @Override
-    public OperatorInput createOperatorInput() {
-    OperatorInputImpl operatorInput = new OperatorInputImpl();
-    return operatorInput;
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    @Override
-    public OperatorGeneric createOperatorGeneric() {
-    OperatorGenericImpl operatorGeneric = new OperatorGenericImpl();
-    return operatorGeneric;
   }
 
     /**

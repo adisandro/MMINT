@@ -110,7 +110,7 @@ public class UntypedMatch extends RandomOperatorImpl {
   }
 
   @Override
-  public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
     this.matchOn = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, UntypedIn.PROP_MATCHON,
                                                                 UntypedIn.PROP_MATCHON_DEFAULT);
   }

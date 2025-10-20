@@ -117,7 +117,7 @@ public class Derive extends RandomOperatorImpl {
   }
 
   @Override
-  public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
     this.userAssigned = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, In.PROP_USERASSIGNED, null);
   }
 

@@ -25,6 +25,9 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
+/**
+ * A parameter for an operator type.
+ */
 public record OperatorParameter(
   String name, String type, int lower, int upper, Optional<String> ext, Optional<String> suffix) {
 
@@ -52,9 +55,6 @@ public record OperatorParameter(
   public static Map<String, Model> outFromIn(Operator operator, int outIndex, int inIndex,
                                              Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName)
                                             throws Exception {
-    /**TODO
-     * 1) Integrate somewhere in Operator: extract Operator{Parameter|Input|Generic} from model as records
-     */
     var outName = MMINTConstants.OPERATORS_OUTPUTS + inIndex;
     var out = (OperatorParameter) operator.getClass().getField(outName).get(operator);
     var inName = MMINTConstants.OPERATORS_INPUTS + inIndex;
