@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.modelepedia.necsis14_classdiagram;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.modelepedia.necsis14.classdiagram
-Bundle-Version: 2.26.99.qualifier
+Bundle-Version: 2.27.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin

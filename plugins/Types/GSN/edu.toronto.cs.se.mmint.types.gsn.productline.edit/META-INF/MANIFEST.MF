@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.types.gsn.productline.edit;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.mmint.types.gsn.productline.edit
-Bundle-Version: 2.26.99.qualifier
+Bundle-Version: 2.27.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmint.types.gsn.productline.provider.PLGSNEditPlugin$Implementation
 Bundle-Vendor: %providerName
