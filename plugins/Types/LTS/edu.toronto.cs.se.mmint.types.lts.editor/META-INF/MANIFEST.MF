@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.types.lts.editor;singleton:=true
 Automatic-Module-Name: edu.toronto.cs.se.mmint.types.lts.editor
-Bundle-Version: 2.27.0.qualifier
+Bundle-Version: 2.27.99.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmint.types.lts.presentation.LTSEditorPlugin$Implementation
 Bundle-Vendor: %providerName

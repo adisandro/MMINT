@@ -14,7 +14,7 @@
 <feature
       id="edu.toronto.cs.se.mmint.examples.fac25.feature"
       label="MMINT - FAC25 paper"
-      version="2.27.0.qualifier"
+      version="2.27.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="">
