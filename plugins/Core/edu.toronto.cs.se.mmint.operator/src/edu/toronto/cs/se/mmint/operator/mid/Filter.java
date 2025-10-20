@@ -126,7 +126,7 @@ public class Filter extends OperatorImpl {
   }
 
   @Override
-  public void readInputProperties(Properties inputProps) throws MMINTException {
+  public void readInputProperties(Properties inputProps, Map<String, Model> inputsByName) throws MMINTException {
     this.timeOverheadEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(
                                  inputProps, Filter.PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
   }

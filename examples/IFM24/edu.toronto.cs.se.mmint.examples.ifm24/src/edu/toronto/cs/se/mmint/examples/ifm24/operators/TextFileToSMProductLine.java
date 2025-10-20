@@ -29,34 +29,26 @@ import edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
 
 public class TextFileToSMProductLine extends ToProductLine {
-  public final static OperatorParameter IN0 = new OperatorParameter(ToProductLine.IN0);
-  static {
-    TextFileToSMProductLine.IN0.type = FilePackage.eNS_URI;
-  }
+  public final static OperatorParameter IN0 = ToProductLine.IN0.specialize(FilePackage.eNS_URI);
 
   @Override
-  public void readInputProperties(Properties inputProperties) throws MMINTException {
+  public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
     inputProperties.setProperty(ToProductLine.PROP_REASONERNAME, "LogicNG");
     inputProperties.setProperty(ToProductLine.PROP_PRESENCECONDITION, "$true");
-    super.readInputProperties(inputProperties);
+    super.readInputProperties(inputProperties, inputsByName);
+    this.out0.setMetamodel(StateMachinePackage.eINSTANCE);
   }
 
   @Override
   protected void toProductLine(Map<String, Model> inputsByName) throws Exception {
-    var productModel = inputsByName.get(TextFileToSMProductLine.IN0.name);
-    TextFileToSMProductLine.IN0.root = productModel.getEMFInstanceRoot();
-    var productLine = PLFactory.eINSTANCE.createProductLine();
-    productLine.setMetamodel(StateMachinePackage.eINSTANCE);
-    productLine.setReasonerName(this.reasoner.getName());
-    ToProductLine.OUT0.root = productLine;
-
-    var filePath = Paths.get(FileUtils.prependWorkspacePath(productModel.getUri()));
+    var filePath = Paths.get(
+      FileUtils.prependWorkspacePath(inputsByName.get(TextFileToSMProductLine.IN0.name()).getUri()));
     var plStates = new HashMap<String, Class>();
     var parseStates = false;
     Class currTransition = null;
     var plSM = PLFactory.eINSTANCE.createClass();
     plSM.setType(StateMachinePackage.eINSTANCE.getStateMachine());
-    productLine.getClasses().add(plSM);
+    this.out0.getClasses().add(plSM);
     for (var line : Files.readAllLines(filePath)) {
       line = line.strip();
       if (line.isEmpty() || line.startsWith("LocalVars") || line.startsWith("bint")) {
@@ -66,7 +58,7 @@ public class TextFileToSMProductLine extends ToProductLine {
       if (line.startsWith("Feature model: ")) {
         // feature model
         var featuresConstraint = line.substring("Feature model: ".length());
-        productLine.setFeaturesConstraint(featuresConstraint);
+        this.out0.setFeaturesConstraint(featuresConstraint);
         continue;
       }
       if (line.startsWith("States:")) {
@@ -100,7 +92,7 @@ public class TextFileToSMProductLine extends ToProductLine {
         var plTransition = PLFactory.eINSTANCE.createClass();
         plTransition.setPresenceCondition(pc);
         plTransition.setType(StateMachinePackage.eINSTANCE.getTransition());
-        productLine.getClasses().add(plTransition);
+        this.out0.getClasses().add(plTransition);
         plSM.addReference(StateMachinePackage.eINSTANCE.getStateMachine_Transitions(), plTransition);
         plTransition.addReference(StateMachinePackage.eINSTANCE.getTransition_Source(), fromState);
         plTransition.addReference(StateMachinePackage.eINSTANCE.getTransition_Target(), toState);

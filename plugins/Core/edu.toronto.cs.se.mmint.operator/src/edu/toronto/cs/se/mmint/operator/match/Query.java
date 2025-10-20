@@ -76,7 +76,7 @@ public class Query extends OperatorImpl {
   }
 
   @Override
-  public void readInputProperties(Properties inputProperties) throws MMINTException {
+  public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
     this.queryPath = FileUtils.prependWorkspacePath(
       MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_QUERYPATH));
     this.queryName = MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_QUERYNAME);

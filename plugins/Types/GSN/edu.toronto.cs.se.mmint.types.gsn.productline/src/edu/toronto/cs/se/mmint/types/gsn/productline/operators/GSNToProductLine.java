@@ -26,10 +26,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 public class GSNToProductLine extends ToProductLine {
-  public final static OperatorParameter IN0 = new OperatorParameter(ToProductLine.IN0);
-  static {
-    GSNToProductLine.IN0.type = GSNPackage.eNS_URI;
-  }
+  public final static OperatorParameter IN0 = ToProductLine.IN0.specialize(GSNPackage.eNS_URI);
 
   @Override
   protected Class createPLClass(EObject modelObj, EClass plType, Map<String, Class> plClasses) {

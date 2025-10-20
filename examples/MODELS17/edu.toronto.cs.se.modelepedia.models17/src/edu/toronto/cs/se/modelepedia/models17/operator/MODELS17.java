@@ -55,7 +55,7 @@ public class MODELS17 extends OperatorImpl {
     private int multiplier;
 
     @Override
-    public void readInputProperties(Properties inputProperties) throws MMINTException {
+    public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
 
         multiplier = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MULTIPLIER);
     }

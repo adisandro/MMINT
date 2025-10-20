@@ -23,15 +23,8 @@ import edu.toronto.cs.se.mmint.primitive.file.FilePackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 public class GSNToSocrates extends OperatorImpl {
-  public final static OperatorParameter IN0 = new OperatorParameter();
-  public final static OperatorParameter OUT0 = new OperatorParameter();
-  static {
-    GSNToSocrates.IN0.name = "gsn";
-    GSNToSocrates.IN0.type = GSNPackage.eNS_URI;
-    GSNToSocrates.OUT0.name = "json";
-    GSNToSocrates.OUT0.type = FilePackage.eNS_URI;
-    GSNToSocrates.OUT0.ext = GSNToSocrates.OUT0.name;
-  }
+  public final static OperatorParameter IN0 = new OperatorParameter("gsn", GSNPackage.eNS_URI);
+  public final static OperatorParameter OUT0 = new OperatorParameter("json", FilePackage.eNS_URI, "json", null);
 
   private void convert() throws Exception {
   }
@@ -40,8 +33,7 @@ public class GSNToSocrates extends OperatorImpl {
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
     convert();
-    var out0 = OperatorParameter.outFromIn(this, "OUT0", "IN0", inputsByName, outputMIDsByName);
 
-    return Map.of(GSNToSocrates.OUT0.name, out0);
+    return OperatorParameter.outFromIn(this, 0, 0, inputsByName, outputMIDsByName);
   }
 }

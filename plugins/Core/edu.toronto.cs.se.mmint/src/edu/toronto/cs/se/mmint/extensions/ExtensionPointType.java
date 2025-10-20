@@ -98,7 +98,7 @@ public class ExtensionPointType {
 
 	public ExtensionPointType(OperatorParameter param, @Nullable String supertypeUri, MIDHeavyTypeFactory defaultFactory) {
 	  this.uri = null;
-	  this.name = param.name;
+	  this.name = param.name();
     this.isAbstract = false;
     this.supertypeUri = supertypeUri;
 	  this.factory = defaultFactory;

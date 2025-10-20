@@ -13,6 +13,8 @@
 package edu.toronto.cs.se.mmint;
 
 import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
@@ -23,78 +25,58 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
-public class OperatorParameter {
-  public String name;
-  public String type;
-  public int lower;
-  public int upper;
-  public @Nullable String ext;
-  public @Nullable String suffix;
-  public @Nullable EObject root;
-  public @Nullable OperatorParameter superParam;
+public record OperatorParameter(
+  String name, String type, int lower, int upper, Optional<String> ext, Optional<String> suffix) {
 
-  public OperatorParameter() {
-    this.name = null;
-    this.type = null;
-    this.lower = 1;
-    this.upper = 1;
-    this.ext = null;
-    this.suffix = null;
-    this.root = null;
-    this.superParam = null;
+  public OperatorParameter {
+    Objects.requireNonNull(name);
+    Objects.requireNonNull(type);
   }
 
-  public OperatorParameter(OperatorParameter superParam) {
-    this.name = superParam.name;
-    this.type = superParam.type;
-    this.lower = superParam.lower;
-    this.upper = superParam.upper;
-    this.ext = superParam.ext;
-    this.suffix = superParam.suffix;
-    this.root = superParam.root;
-    this.superParam = superParam;
+  public OperatorParameter(String name, String type) {
+    this(name, type, 1, 1, Optional.empty(), Optional.empty());
   }
 
-  public static Model outFromIn(Operator operator, String outName, String inName, Map<String, Model> inputsByName,
-                                Map<String, MID> outputMIDsByName) throws Exception {
-    var outParam = (OperatorParameter) operator.getClass().getField(outName).get(operator);
-    var inParam = (OperatorParameter) operator.getClass().getField(inName).get(operator);
-
-    return outParam.fromIn(inParam, operator, inputsByName, outputMIDsByName);
+  public OperatorParameter(String name, String type, int lower, int upper) {
+    this(name, type, lower, upper, Optional.empty(), Optional.empty());
   }
 
-  private Model fromIn(OperatorParameter in, Operator operator, Map<String, Model> inputsByName,
-                       Map<String, MID> outputMIDsByName) throws Exception {
+  public OperatorParameter(String name, String type, @Nullable String ext, @Nullable String suffix) {
+    this(name, type, 1, 1, Optional.ofNullable(ext), Optional.ofNullable(suffix));
+  }
+
+  public OperatorParameter specialize(String type) {
+    return new OperatorParameter(name(), type, lower(), upper(), ext(), suffix());
+  }
+
+  public static Map<String, Model> outFromIn(Operator operator, int outIndex, int inIndex,
+                                             Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName)
+                                            throws Exception {
     /**TODO
-     * 0) Properly handle inheritance:
-     * 0a) check if mmint creates the right structures (Can I skip the explicit override of params that don't change?)
      * 1) Integrate somewhere in Operator: extract Operator{Parameter|Input|Generic} from model as records
-     * 2) Modify readInputProperties to be a more full-fledged initializer of in/out structures: required for inheritance
-     * 3) Add automatic cleanup of in/out roots, which are static and thus shared (maybe they should not be in operator param, root is an instance thing)
      */
+    var outName = MMINTConstants.OPERATORS_OUTPUTS + inIndex;
+    var out = (OperatorParameter) operator.getClass().getField(outName).get(operator);
+    var inName = MMINTConstants.OPERATORS_INPUTS + inIndex;
+    var in = (OperatorParameter) operator.getClass().getField(inName).get(operator);
+
     // out model type
-    var outModelType = MIDTypeRegistry.<Model>getType(this.type);
+    var outModelType = MIDTypeRegistry.<Model>getType(out.type());
     if (outModelType == null) {
-      throw new MMINTException("Model type " + this.type + " not found");
+      throw new MMINTException("Model type " + out.type() + " not found");
     }
     // out path
-    var inModel = inputsByName.get(in.name);
+    var inModel = inputsByName.get(in.name());
     var outModelName = inModel.getName().split("\\.")[0]; // removes file extensions in names, e.g. from File model type
-    if (this.suffix != null) {
-      outModelName += this.suffix;
-    }
-    outModelName += ".";
-    outModelName += (this.ext == null) ? outModelType.getFileExtension() : this.ext;
+    outModelName += out.suffix().orElse("") + "." + out.ext().orElse(outModelType.getFileExtension());
     var outPath = (operator.getWorkingPath() == null) ?
       FileUtils.replaceLastSegmentInPath(inModel.getUri(), outModelName) :
       operator.getWorkingPath() + IPath.SEPARATOR + outModelName;
     outPath = FileUtils.getUniquePath(outPath, true, false);
     // out model
-    var outModel = outModelType.createInstanceAndEditor(this.root, outPath, outputMIDsByName.get(this.name));
-    // free the memory
-    in.root = null;
-    this.root = null;
+    var outRoot = (EObject) operator.getClass().getField(outName.toLowerCase()).get(operator);
+    var outModel = outModelType.createInstanceAndEditor(outRoot, outPath, outputMIDsByName.get(out.name()));
 
-    return outModel;
+    return Map.of(out.name(), outModel);
   }
 }

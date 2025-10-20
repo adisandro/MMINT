@@ -31,7 +31,7 @@ public class Sleep extends OperatorImpl {
   private long ms;
 
   @Override
-  public void readInputProperties(Properties inputProperties) throws MMINTException {
+  public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
 
     this.ms = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROP_IN_MILLISECONDS,
                                                         PROP_IN_MILLISECONDS_DEFAULT);

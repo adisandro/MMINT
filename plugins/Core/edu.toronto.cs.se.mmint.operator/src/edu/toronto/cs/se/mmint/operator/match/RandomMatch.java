@@ -40,8 +40,8 @@ public class RandomMatch extends Match {
   }
 
   @Override
-  public void readInputProperties(Properties inputProperties) throws MMINTException {
-    super.readInputProperties(inputProperties);
+  public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+    super.readInputProperties(inputProperties, inputsByName);
     this.numMatches = MIDOperatorIOUtils.getIntProperty(inputProperties, RandomIn.PROP_NUMMATCHES);
   }
 

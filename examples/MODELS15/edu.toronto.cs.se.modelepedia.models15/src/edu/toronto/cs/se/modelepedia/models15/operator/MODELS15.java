@@ -52,7 +52,7 @@ public class MODELS15 extends RandomOperatorImpl {
 	private int numClassNames;
 
 	@Override
-	public void readInputProperties(Properties inputProperties) throws MMINTException {
+	public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
 
 		numClassDiagrams = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_NUMCLASSDIAGRAMS);
 		numClassesPerClassDiagram = MIDOperatorIOUtils.getIntProperty(

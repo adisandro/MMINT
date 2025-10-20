@@ -81,7 +81,7 @@ public class Map extends NestingOperatorImpl {
   }
 
   @Override
-  public void readInputProperties(Properties inputProps) throws MMINTException {
+  public void readInputProperties(Properties inputProps, java.util.Map<String, Model> inputsByName) throws MMINTException {
     this.timeOverheadEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(
                                  inputProps, Map.PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX,
                                  false);

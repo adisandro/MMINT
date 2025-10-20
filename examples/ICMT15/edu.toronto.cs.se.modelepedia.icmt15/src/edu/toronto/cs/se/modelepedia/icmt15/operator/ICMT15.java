@@ -70,9 +70,9 @@ public class ICMT15 extends RandomOperatorImpl {
 	private String outputConstraint;
 
 	@Override
-	public void readInputProperties(Properties inputProperties) throws MMINTException {
+	public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
 
-		super.readInputProperties(inputProperties);
+		super.readInputProperties(inputProperties, inputsByName);
 		modelMultiplier = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MODELMULTIPLIER);
 		variablesMultiplier = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_VARIABLESMULTIPLIER);
 		idAttribute = MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_IDATTRIBUTE);

@@ -472,29 +472,29 @@ public class MMINT implements MMINTConstants {
         if (containerOperatorType.getSupertype() != null) {
           superParamUri = ((EList<ModelEndpoint>)
             FileUtils.getModelObjectFeature(containerOperatorType.getSupertype(), containerFeatureName)).stream()
-              .filter(me -> me.getName().equals(param.name))
+              .filter(me -> me.getName().equals(param.name()))
               .findFirst().get()
               .getUri();
         }
         var extType = new ExtensionPointType(param, superParamUri, MMINT.typeFactory);
-        var targetModelType = MIDTypeRegistry.<Model>getType(param.type);
+        var targetModelType = MIDTypeRegistry.<Model>getType(param.type());
         if (targetModelType == null) {
-          throw new MMINTException("Target model type " + param.type + " can't be found");
+          throw new MMINTException("Target model type " + param.type() + " can't be found");
         }
-        //TODO MMINT[OPERATOR] Should check that if there is a supertype, the endpoint name can't be changed
         var newModelTypeEndpoint = extType.getFactory().createHeavyModelTypeEndpoint(
           extType, targetModelType, containerOperatorType, containerFeatureName);
-        if (param.upper > 1) {
+        var upper = param.upper();
+        if (upper > 1) {
           try {
             containerOperatorType.getClass().getField(fieldName + (i+1));
             MMINTException.print(IStatus.INFO, "Only the last input parameter can have an upper bound > 1, setting it to 1", null);
-            param.upper = 1;
+            upper = 1;
           }
           catch (NoSuchFieldException e) {
             // ok
           }
         }
-        MIDTypeFactory.addTypeEndpointCardinality(newModelTypeEndpoint, param.lower, param.upper);
+        MIDTypeFactory.addTypeEndpointCardinality(newModelTypeEndpoint, param.lower(), upper);
         i++;
       }
     }

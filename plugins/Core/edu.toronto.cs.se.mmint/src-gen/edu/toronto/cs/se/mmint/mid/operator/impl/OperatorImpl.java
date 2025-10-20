@@ -565,7 +565,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         return getInputProperties();
       case OperatorPackage.OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES:
         try {
-          readInputProperties((Properties)arguments.get(0));
+          readInputProperties((Properties)arguments.get(0), null);
           return null;
         }
         catch (Throwable throwable) {
@@ -1241,7 +1241,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated NOT
      */
     @Override
-    public void readInputProperties(Properties inputProperties) throws MMINTException {
+    public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
       // do nothing
     }
 
@@ -1336,11 +1336,11 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
             for (ConversionOperator conversion : input.getConversions()) {
                 //TODO MMINT[WORKFLOW] Implement this as a simplified workflow?
                 var inputProperties = conversion.getInputProperties();
-                conversion.readInputProperties(inputProperties);
                 Map<String, Model> conversionInputsByName = new HashMap<>();
                 conversionInputsByName.put(conversion.getInputs().get(0).getName(), convertedInputModel);
                 Map<String, MID> conversionOutputMIDsByName = new HashMap<>();
                 conversionOutputMIDsByName.put(conversion.getOutputs().get(0).getName(), null);
+                conversion.readInputProperties(inputProperties, conversionInputsByName);
                 convertedInputModel = conversion.run(conversionInputsByName, new HashMap<>(), conversionOutputMIDsByName)
                     .get(conversion.getOutputs().get(0).getName());
             }
@@ -1438,7 +1438,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         if (inputProperties == null) {
             inputProperties = newOperator.getInputProperties();
         }
-        newOperator.readInputProperties(inputProperties);
+        newOperator.readInputProperties(inputProperties, inputsByName);
         var startTime = System.nanoTime();
         var outputsByName = newOperator.run(inputsByName, genericsByName, outputMIDsByName);
         newOperator.setExecutionTime(System.nanoTime()-startTime);

@@ -377,13 +377,14 @@ public interface Operator extends GenericElement {
      *
      * @param inputProperties
      *            The input properties of this operator.
+     * @param inputsByName TODO
      * @throws MMINTException
      *             If any required property is not available, or if a property is not in its intended format.
      *             <!-- end-user-doc -->
    * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputPropertiesDataType="edu.toronto.cs.se.mmint.mid.operator.Properties" inputPropertiesRequired="true"
    * @generated
    */
-    void readInputProperties(Properties inputProperties) throws MMINTException;
+    void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException;
 
     /**
    * <!-- begin-user-doc --> Runs this operator instance. This function contains the logic of the operator and must be

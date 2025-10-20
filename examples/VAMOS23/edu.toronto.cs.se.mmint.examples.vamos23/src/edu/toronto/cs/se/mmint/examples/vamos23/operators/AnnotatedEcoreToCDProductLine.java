@@ -28,20 +28,17 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
-import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
 
 public class AnnotatedEcoreToCDProductLine extends ToProductLine {
-  public final static OperatorParameter IN0 = new OperatorParameter(ToProductLine.IN0);
-  static {
-    AnnotatedEcoreToCDProductLine.IN0.type = EcorePackage.eNS_URI;
-  }
+  public final static OperatorParameter IN0 = ToProductLine.IN0.specialize(EcorePackage.eNS_URI);
 
   @Override
-  public void readInputProperties(Properties inputProperties) throws MMINTException {
+  public void readInputProperties(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
     inputProperties.setProperty(ToProductLine.PROP_REASONERNAME, "LogicNG");
-    super.readInputProperties(inputProperties);
+    super.readInputProperties(inputProperties, inputsByName);
+    this.out0.setMetamodel(edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE);
   }
 
   private void addPresenceCondition(EModelElement eModelObj, PLElement plElem) {
@@ -67,17 +64,9 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
 
   @Override
   protected void toProductLine(Map<String, Model> inputsByName) throws Exception {
-    var productModel = inputsByName.get(AnnotatedEcoreToCDProductLine.IN0.name);
-    AnnotatedEcoreToCDProductLine.IN0.root = productModel.getEMFInstanceRoot();
-    var productLine = PLFactory.eINSTANCE.createProductLine();
-    productLine.setMetamodel(edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE);
-    productLine.setReasonerName(this.reasoner.getName());
-    ToProductLine.OUT0.root = productLine;
-
     var plClasses = new HashMap<String, Class>();
-    var plEPackage = createPLClass(AnnotatedEcoreToCDProductLine.IN0.root,
-                                   ClassDiagramPackage.eINSTANCE.getClassDiagram(), plClasses);
-    for (var eClassifier : ((EPackage) AnnotatedEcoreToCDProductLine.IN0.root).getEClassifiers()) {
+    var plEPackage = createPLClass(this.in0, ClassDiagramPackage.eINSTANCE.getClassDiagram(), plClasses);
+    for (var eClassifier : ((EPackage) this.in0).getEClassifiers()) {
       var plEClass = createPLClass(eClassifier, ClassDiagramPackage.eINSTANCE.getClass_(), plClasses);
       var plEClassPC = plEClass.getPresenceCondition();
       var classIsTrue = plEClass.isAlwaysPresent();
@@ -116,7 +105,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
       }
     }
 
-    for (var eClassifier : ((EPackage) AnnotatedEcoreToCDProductLine.IN0.root).getEClassifiers()) {
+    for (var eClassifier : ((EPackage) this.in0).getEClassifiers()) {
       if (!(eClassifier instanceof EClass eClass)) {
         continue;
       }
