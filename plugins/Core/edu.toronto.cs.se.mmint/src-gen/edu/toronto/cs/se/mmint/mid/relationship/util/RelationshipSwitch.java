@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -14,11 +14,24 @@ package edu.toronto.cs.se.mmint.mid.relationship.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.relationship.*;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,8 +62,8 @@ public class RelationshipSwitch<T> extends Switch<T> {
    * @generated
    */
     public RelationshipSwitch() {
-    if (modelPackage == null) {
-      modelPackage = RelationshipPackage.eINSTANCE;
+    if (RelationshipSwitch.modelPackage == null) {
+      RelationshipSwitch.modelPackage = RelationshipPackage.eINSTANCE;
     }
   }
 
@@ -64,7 +77,7 @@ public class RelationshipSwitch<T> extends Switch<T> {
    */
     @Override
     protected boolean isSwitchFor(EPackage ePackage) {
-    return ePackage == modelPackage;
+    return ePackage == RelationshipSwitch.modelPackage;
   }
 
     /**
@@ -78,96 +91,162 @@ public class RelationshipSwitch<T> extends Switch<T> {
     protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
       case RelationshipPackage.MODEL_REL: {
-        ModelRel modelRel = (ModelRel)theEObject;
-        T result = caseModelRel(modelRel);
-        if (result == null) result = caseModel(modelRel);
-        if (result == null) result = caseGenericElement(modelRel);
-        if (result == null) result = caseExtendibleElement(modelRel);
-        if (result == null) result = defaultCase(theEObject);
+        var modelRel = (ModelRel)theEObject;
+        var result = caseModelRel(modelRel);
+        if (result == null) {
+          result = caseModel(modelRel);
+        }
+        if (result == null) {
+          result = caseGenericElement(modelRel);
+        }
+        if (result == null) {
+          result = caseExtendibleElement(modelRel);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case RelationshipPackage.BINARY_MODEL_REL: {
-        BinaryModelRel binaryModelRel = (BinaryModelRel)theEObject;
-        T result = caseBinaryModelRel(binaryModelRel);
-        if (result == null) result = caseModelRel(binaryModelRel);
-        if (result == null) result = caseModel(binaryModelRel);
-        if (result == null) result = caseGenericElement(binaryModelRel);
-        if (result == null) result = caseExtendibleElement(binaryModelRel);
-        if (result == null) result = defaultCase(theEObject);
+        var binaryModelRel = (BinaryModelRel)theEObject;
+        var result = caseBinaryModelRel(binaryModelRel);
+        if (result == null) {
+          result = caseModelRel(binaryModelRel);
+        }
+        if (result == null) {
+          result = caseModel(binaryModelRel);
+        }
+        if (result == null) {
+          result = caseGenericElement(binaryModelRel);
+        }
+        if (result == null) {
+          result = caseExtendibleElement(binaryModelRel);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE: {
-        ExtendibleElementReference extendibleElementReference = (ExtendibleElementReference)theEObject;
-        T result = caseExtendibleElementReference(extendibleElementReference);
-        if (result == null) result = defaultCase(theEObject);
+        var extendibleElementReference = (ExtendibleElementReference)theEObject;
+        var result = caseExtendibleElementReference(extendibleElementReference);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE: {
-        ExtendibleElementEndpointReference extendibleElementEndpointReference = (ExtendibleElementEndpointReference)theEObject;
-        T result = caseExtendibleElementEndpointReference(extendibleElementEndpointReference);
-        if (result == null) result = caseExtendibleElementReference(extendibleElementEndpointReference);
-        if (result == null) result = defaultCase(theEObject);
+        var extendibleElementEndpointReference = (ExtendibleElementEndpointReference)theEObject;
+        var result = caseExtendibleElementEndpointReference(extendibleElementEndpointReference);
+        if (result == null) {
+          result = caseExtendibleElementReference(extendibleElementEndpointReference);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case RelationshipPackage.MODEL_ENDPOINT_REFERENCE: {
-        ModelEndpointReference modelEndpointReference = (ModelEndpointReference)theEObject;
-        T result = caseModelEndpointReference(modelEndpointReference);
-        if (result == null) result = caseExtendibleElementEndpointReference(modelEndpointReference);
-        if (result == null) result = caseExtendibleElementReference(modelEndpointReference);
-        if (result == null) result = defaultCase(theEObject);
+        var modelEndpointReference = (ModelEndpointReference)theEObject;
+        var result = caseModelEndpointReference(modelEndpointReference);
+        if (result == null) {
+          result = caseExtendibleElementEndpointReference(modelEndpointReference);
+        }
+        if (result == null) {
+          result = caseExtendibleElementReference(modelEndpointReference);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case RelationshipPackage.MODEL_ELEMENT_REFERENCE: {
-        ModelElementReference modelElementReference = (ModelElementReference)theEObject;
-        T result = caseModelElementReference(modelElementReference);
-        if (result == null) result = caseExtendibleElementReference(modelElementReference);
-        if (result == null) result = defaultCase(theEObject);
+        var modelElementReference = (ModelElementReference)theEObject;
+        var result = caseModelElementReference(modelElementReference);
+        if (result == null) {
+          result = caseExtendibleElementReference(modelElementReference);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case RelationshipPackage.MAPPING: {
-        Mapping mapping = (Mapping)theEObject;
-        T result = caseMapping(mapping);
-        if (result == null) result = caseExtendibleElement(mapping);
-        if (result == null) result = defaultCase(theEObject);
+        var mapping = (Mapping)theEObject;
+        var result = caseMapping(mapping);
+        if (result == null) {
+          result = caseExtendibleElement(mapping);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case RelationshipPackage.BINARY_MAPPING: {
-        BinaryMapping binaryMapping = (BinaryMapping)theEObject;
-        T result = caseBinaryMapping(binaryMapping);
-        if (result == null) result = caseMapping(binaryMapping);
-        if (result == null) result = caseExtendibleElement(binaryMapping);
-        if (result == null) result = defaultCase(theEObject);
+        var binaryMapping = (BinaryMapping)theEObject;
+        var result = caseBinaryMapping(binaryMapping);
+        if (result == null) {
+          result = caseMapping(binaryMapping);
+        }
+        if (result == null) {
+          result = caseExtendibleElement(binaryMapping);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case RelationshipPackage.MODEL_ELEMENT_ENDPOINT: {
-        ModelElementEndpoint modelElementEndpoint = (ModelElementEndpoint)theEObject;
-        T result = caseModelElementEndpoint(modelElementEndpoint);
-        if (result == null) result = caseExtendibleElementEndpoint(modelElementEndpoint);
-        if (result == null) result = caseExtendibleElement(modelElementEndpoint);
-        if (result == null) result = defaultCase(theEObject);
+        var modelElementEndpoint = (ModelElementEndpoint)theEObject;
+        var result = caseModelElementEndpoint(modelElementEndpoint);
+        if (result == null) {
+          result = caseExtendibleElementEndpoint(modelElementEndpoint);
+        }
+        if (result == null) {
+          result = caseExtendibleElement(modelElementEndpoint);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case RelationshipPackage.MAPPING_REFERENCE: {
-        MappingReference mappingReference = (MappingReference)theEObject;
-        T result = caseMappingReference(mappingReference);
-        if (result == null) result = caseExtendibleElementReference(mappingReference);
-        if (result == null) result = defaultCase(theEObject);
+        var mappingReference = (MappingReference)theEObject;
+        var result = caseMappingReference(mappingReference);
+        if (result == null) {
+          result = caseExtendibleElementReference(mappingReference);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case RelationshipPackage.BINARY_MAPPING_REFERENCE: {
-        BinaryMappingReference binaryMappingReference = (BinaryMappingReference)theEObject;
-        T result = caseBinaryMappingReference(binaryMappingReference);
-        if (result == null) result = caseMappingReference(binaryMappingReference);
-        if (result == null) result = caseExtendibleElementReference(binaryMappingReference);
-        if (result == null) result = defaultCase(theEObject);
+        var binaryMappingReference = (BinaryMappingReference)theEObject;
+        var result = caseBinaryMappingReference(binaryMappingReference);
+        if (result == null) {
+          result = caseMappingReference(binaryMappingReference);
+        }
+        if (result == null) {
+          result = caseExtendibleElementReference(binaryMappingReference);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE: {
-        ModelElementEndpointReference modelElementEndpointReference = (ModelElementEndpointReference)theEObject;
-        T result = caseModelElementEndpointReference(modelElementEndpointReference);
-        if (result == null) result = caseExtendibleElementEndpointReference(modelElementEndpointReference);
-        if (result == null) result = caseExtendibleElementReference(modelElementEndpointReference);
-        if (result == null) result = defaultCase(theEObject);
+        var modelElementEndpointReference = (ModelElementEndpointReference)theEObject;
+        var result = caseModelElementEndpointReference(modelElementEndpointReference);
+        if (result == null) {
+          result = caseExtendibleElementEndpointReference(modelElementEndpointReference);
+        }
+        if (result == null) {
+          result = caseExtendibleElementReference(modelElementEndpointReference);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       default: return defaultCase(theEObject);

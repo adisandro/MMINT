@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -95,12 +95,13 @@ public interface BinaryMappingReference extends MappingReference {
    * @model kind="operation" required="true"
    * @generated
    */
+    @Override
     BinaryMapping getObject();
 
     /**
    * <!-- begin-user-doc --> Adds the source or target reference to model
      * element type to this reference to binary mapping type.
-     * 
+     *
      * @param modelElemTypeRef
      *            The reference to model element type that is the source or
      *            target of this reference to binary mapping type.

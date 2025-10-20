@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -15,6 +15,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
@@ -44,8 +45,8 @@ public class EditorAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
     public EditorAdapterFactory() {
-    if (modelPackage == null) {
-      modelPackage = EditorPackage.eINSTANCE;
+    if (EditorAdapterFactory.modelPackage == null) {
+      EditorAdapterFactory.modelPackage = EditorPackage.eINSTANCE;
     }
   }
 
@@ -59,11 +60,11 @@ public class EditorAdapterFactory extends AdapterFactoryImpl {
    */
     @Override
     public boolean isFactoryForType(Object object) {
-    if (object == modelPackage) {
+    if (object == EditorAdapterFactory.modelPackage) {
       return true;
     }
     if (object instanceof EObject) {
-      return ((EObject)object).eClass().getEPackage() == modelPackage;
+      return ((EObject)object).eClass().getEPackage() == EditorAdapterFactory.modelPackage;
     }
     return false;
   }
@@ -75,7 +76,7 @@ public class EditorAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
     protected EditorSwitch<Adapter> modelSwitch =
-        new EditorSwitch<Adapter>() {
+        new EditorSwitch<>() {
       @Override
       public Adapter caseEditor(Editor object) {
         return createEditorAdapter();
@@ -104,7 +105,7 @@ public class EditorAdapterFactory extends AdapterFactoryImpl {
    */
     @Override
     public Adapter createAdapter(Notifier target) {
-    return modelSwitch.doSwitch((EObject)target);
+    return this.modelSwitch.doSwitch((EObject)target);
   }
 
 

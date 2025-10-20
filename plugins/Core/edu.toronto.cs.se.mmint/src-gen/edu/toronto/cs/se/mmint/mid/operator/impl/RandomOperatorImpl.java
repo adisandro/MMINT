@@ -55,7 +55,7 @@ public class RandomOperatorImpl extends OperatorImpl implements RandomOperator {
    * @generated
    * @ordered
    */
-    protected Random state = STATE_EDEFAULT;
+    protected Random state = RandomOperatorImpl.STATE_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -83,7 +83,7 @@ public class RandomOperatorImpl extends OperatorImpl implements RandomOperator {
    */
     @Override
     public Random getState() {
-    return state;
+    return this.state;
   }
 
     /**
@@ -93,10 +93,11 @@ public class RandomOperatorImpl extends OperatorImpl implements RandomOperator {
    */
     @Override
     public void setState(Random newState) {
-    Random oldState = state;
-    state = newState;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.RANDOM_OPERATOR__STATE, oldState, state));
+    var oldState = this.state;
+    this.state = newState;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.RANDOM_OPERATOR__STATE, oldState, this.state));
+    }
   }
 
     /**
@@ -137,7 +138,7 @@ public class RandomOperatorImpl extends OperatorImpl implements RandomOperator {
     public void eUnset(int featureID) {
     switch (featureID) {
       case OperatorPackage.RANDOM_OPERATOR__STATE:
-        setState(STATE_EDEFAULT);
+        setState(RandomOperatorImpl.STATE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -152,7 +153,7 @@ public class RandomOperatorImpl extends OperatorImpl implements RandomOperator {
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case OperatorPackage.RANDOM_OPERATOR__STATE:
-        return STATE_EDEFAULT == null ? state != null : !STATE_EDEFAULT.equals(state);
+        return RandomOperatorImpl.STATE_EDEFAULT == null ? this.state != null : !RandomOperatorImpl.STATE_EDEFAULT.equals(this.state);
     }
     return super.eIsSet(featureID);
   }
@@ -164,11 +165,13 @@ public class RandomOperatorImpl extends OperatorImpl implements RandomOperator {
    */
     @Override
     public String toStringGen() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (state: ");
-    result.append(state);
+    result.append(this.state);
     result.append(')');
     return result.toString();
   }
@@ -179,7 +182,7 @@ public class RandomOperatorImpl extends OperatorImpl implements RandomOperator {
     @Override
     public Operator createInstance(MID instanceMID) throws MMINTException {
 
-        RandomOperator newOperator = (RandomOperator) super.createInstance(instanceMID);
+        var newOperator = (RandomOperator) super.createInstance(instanceMID);
         //TODO MMINT[OPERATOR] This is an ugly way to run a callback
         if (this.getState() == null) {
             newOperator.setState(new Random());

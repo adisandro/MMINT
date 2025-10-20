@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -710,7 +710,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__SUPERTYPE = MODEL_REL__SUPERTYPE;
+    int BINARY_MODEL_REL__SUPERTYPE = RelationshipPackage.MODEL_REL__SUPERTYPE;
 
     /**
    * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -719,7 +719,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__URI = MODEL_REL__URI;
+    int BINARY_MODEL_REL__URI = RelationshipPackage.MODEL_REL__URI;
 
     /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -728,7 +728,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__NAME = MODEL_REL__NAME;
+    int BINARY_MODEL_REL__NAME = RelationshipPackage.MODEL_REL__NAME;
 
     /**
    * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -737,7 +737,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__LEVEL = MODEL_REL__LEVEL;
+    int BINARY_MODEL_REL__LEVEL = RelationshipPackage.MODEL_REL__LEVEL;
 
     /**
    * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -746,7 +746,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__METATYPE_URI = MODEL_REL__METATYPE_URI;
+    int BINARY_MODEL_REL__METATYPE_URI = RelationshipPackage.MODEL_REL__METATYPE_URI;
 
     /**
    * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -755,7 +755,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__DYNAMIC = MODEL_REL__DYNAMIC;
+    int BINARY_MODEL_REL__DYNAMIC = RelationshipPackage.MODEL_REL__DYNAMIC;
 
     /**
    * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -764,7 +764,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__CONSTRAINT = MODEL_REL__CONSTRAINT;
+    int BINARY_MODEL_REL__CONSTRAINT = RelationshipPackage.MODEL_REL__CONSTRAINT;
 
     /**
    * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -773,7 +773,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__ABSTRACT = MODEL_REL__ABSTRACT;
+    int BINARY_MODEL_REL__ABSTRACT = RelationshipPackage.MODEL_REL__ABSTRACT;
 
     /**
    * The feature id for the '<em><b>Origin</b></em>' attribute.
@@ -782,7 +782,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__ORIGIN = MODEL_REL__ORIGIN;
+    int BINARY_MODEL_REL__ORIGIN = RelationshipPackage.MODEL_REL__ORIGIN;
 
     /**
    * The feature id for the '<em><b>File Extension</b></em>' attribute.
@@ -791,7 +791,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__FILE_EXTENSION = MODEL_REL__FILE_EXTENSION;
+    int BINARY_MODEL_REL__FILE_EXTENSION = RelationshipPackage.MODEL_REL__FILE_EXTENSION;
 
     /**
    * The feature id for the '<em><b>Editors</b></em>' reference list.
@@ -800,7 +800,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__EDITORS = MODEL_REL__EDITORS;
+    int BINARY_MODEL_REL__EDITORS = RelationshipPackage.MODEL_REL__EDITORS;
 
     /**
    * The feature id for the '<em><b>Model Elems</b></em>' containment reference list.
@@ -809,7 +809,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__MODEL_ELEMS = MODEL_REL__MODEL_ELEMS;
+    int BINARY_MODEL_REL__MODEL_ELEMS = RelationshipPackage.MODEL_REL__MODEL_ELEMS;
 
     /**
    * The feature id for the '<em><b>Conversion Operators</b></em>' reference list.
@@ -818,7 +818,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__CONVERSION_OPERATORS = MODEL_REL__CONVERSION_OPERATORS;
+    int BINARY_MODEL_REL__CONVERSION_OPERATORS = RelationshipPackage.MODEL_REL__CONVERSION_OPERATORS;
 
     /**
    * The feature id for the '<em><b>EMF Instance Resource</b></em>' attribute.
@@ -827,7 +827,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BINARY_MODEL_REL__EMF_INSTANCE_RESOURCE = MODEL_REL__EMF_INSTANCE_RESOURCE;
+  int BINARY_MODEL_REL__EMF_INSTANCE_RESOURCE = RelationshipPackage.MODEL_REL__EMF_INSTANCE_RESOURCE;
 
     /**
    * The feature id for the '<em><b>EMF Instance Root</b></em>' reference.
@@ -836,7 +836,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int BINARY_MODEL_REL__EMF_INSTANCE_ROOT = MODEL_REL__EMF_INSTANCE_ROOT;
+  int BINARY_MODEL_REL__EMF_INSTANCE_ROOT = RelationshipPackage.MODEL_REL__EMF_INSTANCE_ROOT;
 
     /**
    * The feature id for the '<em><b>Model Endpoints</b></em>' containment reference list.
@@ -845,7 +845,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__MODEL_ENDPOINTS = MODEL_REL__MODEL_ENDPOINTS;
+    int BINARY_MODEL_REL__MODEL_ENDPOINTS = RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS;
 
     /**
    * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
@@ -854,7 +854,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__MAPPINGS = MODEL_REL__MAPPINGS;
+    int BINARY_MODEL_REL__MAPPINGS = RelationshipPackage.MODEL_REL__MAPPINGS;
 
     /**
    * The feature id for the '<em><b>Model Endpoint Refs</b></em>' containment reference list.
@@ -863,7 +863,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__MODEL_ENDPOINT_REFS = MODEL_REL__MODEL_ENDPOINT_REFS;
+    int BINARY_MODEL_REL__MODEL_ENDPOINT_REFS = RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS;
 
     /**
    * The feature id for the '<em><b>Mapping Refs</b></em>' containment reference list.
@@ -872,7 +872,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__MAPPING_REFS = MODEL_REL__MAPPING_REFS;
+    int BINARY_MODEL_REL__MAPPING_REFS = RelationshipPackage.MODEL_REL__MAPPING_REFS;
 
     /**
    * The feature id for the '<em><b>Source Model</b></em>' reference.
@@ -881,7 +881,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__SOURCE_MODEL = MODEL_REL_FEATURE_COUNT + 0;
+    int BINARY_MODEL_REL__SOURCE_MODEL = RelationshipPackage.MODEL_REL_FEATURE_COUNT + 0;
 
     /**
    * The feature id for the '<em><b>Target Model</b></em>' reference.
@@ -890,7 +890,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL__TARGET_MODEL = MODEL_REL_FEATURE_COUNT + 1;
+    int BINARY_MODEL_REL__TARGET_MODEL = RelationshipPackage.MODEL_REL_FEATURE_COUNT + 1;
 
     /**
    * The number of structural features of the '<em>Binary Model Rel</em>' class.
@@ -899,7 +899,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL_FEATURE_COUNT = MODEL_REL_FEATURE_COUNT + 2;
+    int BINARY_MODEL_REL_FEATURE_COUNT = RelationshipPackage.MODEL_REL_FEATURE_COUNT + 2;
 
     /**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -908,7 +908,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___IS_LEVEL__MIDLEVEL = MODEL_REL___IS_LEVEL__MIDLEVEL;
+    int BINARY_MODEL_REL___IS_LEVEL__MIDLEVEL = RelationshipPackage.MODEL_REL___IS_LEVEL__MIDLEVEL;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -917,7 +917,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___IS_TYPES_LEVEL = MODEL_REL___IS_TYPES_LEVEL;
+    int BINARY_MODEL_REL___IS_TYPES_LEVEL = RelationshipPackage.MODEL_REL___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -926,7 +926,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
+    int BINARY_MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING = RelationshipPackage.MODEL_REL___CREATE_SUBTYPE_URI__STRING_STRING;
 
     /**
    * The operation id for the '<em>Add Type Constraint</em>' operation.
@@ -935,7 +935,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING = MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING;
+    int BINARY_MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING = RelationshipPackage.MODEL_REL___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -944,7 +944,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___IS_INSTANCES_LEVEL = MODEL_REL___IS_INSTANCES_LEVEL;
+    int BINARY_MODEL_REL___IS_INSTANCES_LEVEL = RelationshipPackage.MODEL_REL___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -953,7 +953,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___GET_RUNTIME_TYPES = MODEL_REL___GET_RUNTIME_TYPES;
+    int BINARY_MODEL_REL___GET_RUNTIME_TYPES = RelationshipPackage.MODEL_REL___GET_RUNTIME_TYPES;
 
     /**
    * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
@@ -962,7 +962,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___GET_CLOSEST_TYPE_CONSTRAINT = MODEL_REL___GET_CLOSEST_TYPE_CONSTRAINT;
+    int BINARY_MODEL_REL___GET_CLOSEST_TYPE_CONSTRAINT = RelationshipPackage.MODEL_REL___GET_CLOSEST_TYPE_CONSTRAINT;
 
     /**
    * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -971,7 +971,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MODEL_REL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+    int BINARY_MODEL_REL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = RelationshipPackage.MODEL_REL___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
 
     /**
    * The operation id for the '<em>Validate Instance</em>' operation.
@@ -980,7 +980,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___VALIDATE_INSTANCE = MODEL_REL___VALIDATE_INSTANCE;
+    int BINARY_MODEL_REL___VALIDATE_INSTANCE = RelationshipPackage.MODEL_REL___VALIDATE_INSTANCE;
 
     /**
    * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -989,7 +989,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+    int BINARY_MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = RelationshipPackage.MODEL_REL___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -998,7 +998,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___IS_WORKFLOWS_LEVEL = MODEL_REL___IS_WORKFLOWS_LEVEL;
+    int BINARY_MODEL_REL___IS_WORKFLOWS_LEVEL = RelationshipPackage.MODEL_REL___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
@@ -1007,7 +1007,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+    int BINARY_MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING = RelationshipPackage.MODEL_REL___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
     /**
    * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1016,7 +1016,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___TO_MID_CUSTOM_PRINT_LABEL = MODEL_REL___TO_MID_CUSTOM_PRINT_LABEL;
+    int BINARY_MODEL_REL___TO_MID_CUSTOM_PRINT_LABEL = RelationshipPackage.MODEL_REL___TO_MID_CUSTOM_PRINT_LABEL;
 
     /**
    * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -1025,7 +1025,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___TO_MID_CUSTOM_EDIT_LABEL = MODEL_REL___TO_MID_CUSTOM_EDIT_LABEL;
+    int BINARY_MODEL_REL___TO_MID_CUSTOM_EDIT_LABEL = RelationshipPackage.MODEL_REL___TO_MID_CUSTOM_EDIT_LABEL;
 
     /**
    * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -1034,7 +1034,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___UPDATE_MID_CUSTOM_LABEL__STRING = MODEL_REL___UPDATE_MID_CUSTOM_LABEL__STRING;
+    int BINARY_MODEL_REL___UPDATE_MID_CUSTOM_LABEL__STRING = RelationshipPackage.MODEL_REL___UPDATE_MID_CUSTOM_LABEL__STRING;
 
     /**
    * The operation id for the '<em>Create Subtype</em>' operation.
@@ -1043,7 +1043,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN = MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN;
+    int BINARY_MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN = RelationshipPackage.MODEL_REL___CREATE_SUBTYPE__STRING_BOOLEAN;
 
     /**
    * The operation id for the '<em>Delete Type</em>' operation.
@@ -1052,7 +1052,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___DELETE_TYPE = MODEL_REL___DELETE_TYPE;
+    int BINARY_MODEL_REL___DELETE_TYPE = RelationshipPackage.MODEL_REL___DELETE_TYPE;
 
     /**
    * The operation id for the '<em>Get EMF Type Root</em>' operation.
@@ -1061,7 +1061,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___GET_EMF_TYPE_ROOT = MODEL_REL___GET_EMF_TYPE_ROOT;
+    int BINARY_MODEL_REL___GET_EMF_TYPE_ROOT = RelationshipPackage.MODEL_REL___GET_EMF_TYPE_ROOT;
 
     /**
    * The operation id for the '<em>Open Type</em>' operation.
@@ -1070,7 +1070,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___OPEN_TYPE = MODEL_REL___OPEN_TYPE;
+    int BINARY_MODEL_REL___OPEN_TYPE = RelationshipPackage.MODEL_REL___OPEN_TYPE;
 
     /**
    * The operation id for the '<em>Create Instance</em>' operation.
@@ -1079,7 +1079,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID = MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID;
+    int BINARY_MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID = RelationshipPackage.MODEL_REL___CREATE_INSTANCE__EOBJECT_STRING_MID;
 
     /**
    * The operation id for the '<em>Create Instance Editor</em>' operation.
@@ -1088,7 +1088,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___CREATE_INSTANCE_EDITOR__BOOLEAN = MODEL_REL___CREATE_INSTANCE_EDITOR__BOOLEAN;
+    int BINARY_MODEL_REL___CREATE_INSTANCE_EDITOR__BOOLEAN = RelationshipPackage.MODEL_REL___CREATE_INSTANCE_EDITOR__BOOLEAN;
 
     /**
    * The operation id for the '<em>Create Instance And Editor</em>' operation.
@@ -1097,7 +1097,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID;
+    int BINARY_MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID = RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_EDITOR__EOBJECT_STRING_MID;
 
     /**
    * The operation id for the '<em>Import Instance</em>' operation.
@@ -1106,7 +1106,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___IMPORT_INSTANCE__STRING_MID = MODEL_REL___IMPORT_INSTANCE__STRING_MID;
+    int BINARY_MODEL_REL___IMPORT_INSTANCE__STRING_MID = RelationshipPackage.MODEL_REL___IMPORT_INSTANCE__STRING_MID;
 
     /**
    * The operation id for the '<em>Import Instance And Editor</em>' operation.
@@ -1115,7 +1115,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID = MODEL_REL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID;
+    int BINARY_MODEL_REL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID = RelationshipPackage.MODEL_REL___IMPORT_INSTANCE_AND_EDITOR__STRING_MID;
 
     /**
    * The operation id for the '<em>Copy Instance</em>' operation.
@@ -1124,7 +1124,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___COPY_INSTANCE__MODEL_STRING_MID = MODEL_REL___COPY_INSTANCE__MODEL_STRING_MID;
+    int BINARY_MODEL_REL___COPY_INSTANCE__MODEL_STRING_MID = RelationshipPackage.MODEL_REL___COPY_INSTANCE__MODEL_STRING_MID;
 
     /**
    * The operation id for the '<em>Copy Instance And Editor</em>' operation.
@@ -1133,7 +1133,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID;
+    int BINARY_MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID = RelationshipPackage.MODEL_REL___COPY_INSTANCE_AND_EDITOR__MODEL_STRING_BOOLEAN_MID;
 
     /**
    * The operation id for the '<em>Delete Instance</em>' operation.
@@ -1142,7 +1142,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___DELETE_INSTANCE = MODEL_REL___DELETE_INSTANCE;
+    int BINARY_MODEL_REL___DELETE_INSTANCE = RelationshipPackage.MODEL_REL___DELETE_INSTANCE;
 
     /**
    * The operation id for the '<em>Delete Instance And File</em>' operation.
@@ -1151,7 +1151,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___DELETE_INSTANCE_AND_FILE = MODEL_REL___DELETE_INSTANCE_AND_FILE;
+    int BINARY_MODEL_REL___DELETE_INSTANCE_AND_FILE = RelationshipPackage.MODEL_REL___DELETE_INSTANCE_AND_FILE;
 
     /**
    * The operation id for the '<em>Open Instance</em>' operation.
@@ -1160,7 +1160,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___OPEN_INSTANCE = MODEL_REL___OPEN_INSTANCE;
+    int BINARY_MODEL_REL___OPEN_INSTANCE = RelationshipPackage.MODEL_REL___OPEN_INSTANCE;
 
     /**
    * The operation id for the '<em>Create Workflow Instance</em>' operation.
@@ -1169,7 +1169,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___CREATE_WORKFLOW_INSTANCE__STRING_MID = MODEL_REL___CREATE_WORKFLOW_INSTANCE__STRING_MID;
+    int BINARY_MODEL_REL___CREATE_WORKFLOW_INSTANCE__STRING_MID = RelationshipPackage.MODEL_REL___CREATE_WORKFLOW_INSTANCE__STRING_MID;
 
     /**
    * The operation id for the '<em>Delete Workflow Instance</em>' operation.
@@ -1178,7 +1178,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___DELETE_WORKFLOW_INSTANCE = MODEL_REL___DELETE_WORKFLOW_INSTANCE;
+    int BINARY_MODEL_REL___DELETE_WORKFLOW_INSTANCE = RelationshipPackage.MODEL_REL___DELETE_WORKFLOW_INSTANCE;
 
     /**
    * The operation id for the '<em>Get Metatype</em>' operation.
@@ -1187,7 +1187,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___GET_METATYPE = MODEL_REL___GET_METATYPE;
+    int BINARY_MODEL_REL___GET_METATYPE = RelationshipPackage.MODEL_REL___GET_METATYPE;
 
     /**
    * The operation id for the '<em>Get Supertype</em>' operation.
@@ -1196,7 +1196,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___GET_SUPERTYPE = MODEL_REL___GET_SUPERTYPE;
+    int BINARY_MODEL_REL___GET_SUPERTYPE = RelationshipPackage.MODEL_REL___GET_SUPERTYPE;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -1205,7 +1205,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___GET_MID_CONTAINER = MODEL_REL___GET_MID_CONTAINER;
+    int BINARY_MODEL_REL___GET_MID_CONTAINER = RelationshipPackage.MODEL_REL___GET_MID_CONTAINER;
 
     /**
    * The operation id for the '<em>Create Binary Subtype</em>' operation.
@@ -1214,7 +1214,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN = MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN;
+    int BINARY_MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN = RelationshipPackage.MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN;
 
     /**
    * The operation id for the '<em>Copy Subtype</em>' operation.
@@ -1223,7 +1223,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___COPY_SUBTYPE__MODELREL = MODEL_REL___COPY_SUBTYPE__MODELREL;
+    int BINARY_MODEL_REL___COPY_SUBTYPE__MODELREL = RelationshipPackage.MODEL_REL___COPY_SUBTYPE__MODELREL;
 
     /**
    * The operation id for the '<em>Get Outline Resource Types</em>' operation.
@@ -1232,7 +1232,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = MODEL_REL___GET_OUTLINE_RESOURCE_TYPES;
+    int BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = RelationshipPackage.MODEL_REL___GET_OUTLINE_RESOURCE_TYPES;
 
     /**
    * The operation id for the '<em>Create Instance And Endpoints</em>' operation.
@@ -1241,7 +1241,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID = MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID;
+    int BINARY_MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID = RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID;
 
     /**
    * The operation id for the '<em>Create Binary Instance</em>' operation.
@@ -1250,7 +1250,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID = MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID;
+    int BINARY_MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID = RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID;
 
     /**
    * The operation id for the '<em>Create Binary Instance And Endpoints</em>' operation.
@@ -1259,7 +1259,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID = MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID;
+    int BINARY_MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID = RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID;
 
     /**
    * The operation id for the '<em>Get Outline Resource Instances</em>' operation.
@@ -1268,7 +1268,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES;
+    int BINARY_MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = RelationshipPackage.MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES;
 
     /**
    * The operation id for the '<em>Create Workflow Instance And Endpoints</em>' operation.
@@ -1277,7 +1277,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID;
+    int BINARY_MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = RelationshipPackage.MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID;
 
     /**
    * The operation id for the '<em>Create Workflow Binary Instance</em>' operation.
@@ -1286,7 +1286,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID = MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID;
+    int BINARY_MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID = RelationshipPackage.MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID;
 
     /**
    * The operation id for the '<em>Create Workflow Binary Instance And Endpoints</em>' operation.
@@ -1295,7 +1295,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID;
+    int BINARY_MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = RelationshipPackage.MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID;
 
     /**
    * The operation id for the '<em>Add Model Type</em>' operation.
@@ -1304,7 +1304,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN = MODEL_REL_OPERATION_COUNT + 0;
+    int BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 0;
 
     /**
    * The number of operations of the '<em>Binary Model Rel</em>' class.
@@ -1313,7 +1313,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MODEL_REL_OPERATION_COUNT = MODEL_REL_OPERATION_COUNT + 1;
+    int BINARY_MODEL_REL_OPERATION_COUNT = RelationshipPackage.MODEL_REL_OPERATION_COUNT + 1;
 
     /**
    * The feature id for the '<em><b>Referenced Object</b></em>' reference.
@@ -1430,7 +1430,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__REFERENCED_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT;
+    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__REFERENCED_OBJECT = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT;
 
     /**
    * The feature id for the '<em><b>Contained Object</b></em>' containment reference.
@@ -1439,7 +1439,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__CONTAINED_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT;
+    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__CONTAINED_OBJECT = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT;
 
     /**
    * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
@@ -1448,7 +1448,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__SUPERTYPE_REF = EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF;
+    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__SUPERTYPE_REF = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF;
 
     /**
    * The feature id for the '<em><b>Modifiable</b></em>' attribute.
@@ -1457,7 +1457,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__MODIFIABLE = EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE;
+    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__MODIFIABLE = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE;
 
     /**
    * The number of structural features of the '<em>Extendible Element Endpoint Reference</em>' class.
@@ -1466,7 +1466,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 0;
+    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 0;
 
     /**
    * The operation id for the '<em>Get Uri</em>' operation.
@@ -1475,7 +1475,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_URI = EXTENDIBLE_ELEMENT_REFERENCE___GET_URI;
+    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_URI = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_URI;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -1484,7 +1484,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER;
+    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_MID_CONTAINER = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -1493,7 +1493,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL;
+    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_TYPES_LEVEL = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -1502,7 +1502,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL;
+    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_INSTANCES_LEVEL = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -1511,7 +1511,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL;
+    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Get Object</em>' operation.
@@ -1520,7 +1520,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 0;
+    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 0;
 
     /**
    * The operation id for the '<em>Get Supertype Ref</em>' operation.
@@ -1529,7 +1529,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 1;
+    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 1;
 
     /**
    * The operation id for the '<em>Get Target Uri</em>' operation.
@@ -1538,7 +1538,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_TARGET_URI = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 2;
+    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_TARGET_URI = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 2;
 
     /**
    * The number of operations of the '<em>Extendible Element Endpoint Reference</em>' class.
@@ -1547,7 +1547,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 3;
+    int EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 3;
 
     /**
    * The feature id for the '<em><b>Referenced Object</b></em>' reference.
@@ -1556,7 +1556,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE__REFERENCED_OBJECT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__REFERENCED_OBJECT;
+    int MODEL_ENDPOINT_REFERENCE__REFERENCED_OBJECT = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__REFERENCED_OBJECT;
 
     /**
    * The feature id for the '<em><b>Contained Object</b></em>' containment reference.
@@ -1565,7 +1565,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE__CONTAINED_OBJECT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__CONTAINED_OBJECT;
+    int MODEL_ENDPOINT_REFERENCE__CONTAINED_OBJECT = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__CONTAINED_OBJECT;
 
     /**
    * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
@@ -1574,7 +1574,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE__SUPERTYPE_REF = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__SUPERTYPE_REF;
+    int MODEL_ENDPOINT_REFERENCE__SUPERTYPE_REF = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__SUPERTYPE_REF;
 
     /**
    * The feature id for the '<em><b>Modifiable</b></em>' attribute.
@@ -1583,7 +1583,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE__MODIFIABLE = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__MODIFIABLE;
+    int MODEL_ENDPOINT_REFERENCE__MODIFIABLE = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__MODIFIABLE;
 
     /**
    * The feature id for the '<em><b>Model Elem Refs</b></em>' containment reference list.
@@ -1592,7 +1592,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE__MODEL_ELEM_REFS = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT + 0;
+    int MODEL_ENDPOINT_REFERENCE__MODEL_ELEM_REFS = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT + 0;
 
     /**
    * The number of structural features of the '<em>Model Endpoint Reference</em>' class.
@@ -1601,7 +1601,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT + 1;
+    int MODEL_ENDPOINT_REFERENCE_FEATURE_COUNT = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT + 1;
 
     /**
    * The operation id for the '<em>Get Uri</em>' operation.
@@ -1610,7 +1610,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE___GET_URI = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_URI;
+    int MODEL_ENDPOINT_REFERENCE___GET_URI = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_URI;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -1619,7 +1619,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_MID_CONTAINER;
+    int MODEL_ENDPOINT_REFERENCE___GET_MID_CONTAINER = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_MID_CONTAINER;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -1628,7 +1628,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_TYPES_LEVEL;
+    int MODEL_ENDPOINT_REFERENCE___IS_TYPES_LEVEL = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -1637,7 +1637,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_INSTANCES_LEVEL;
+    int MODEL_ENDPOINT_REFERENCE___IS_INSTANCES_LEVEL = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -1646,7 +1646,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL;
+    int MODEL_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Get Target Uri</em>' operation.
@@ -1655,7 +1655,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE___GET_TARGET_URI = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_TARGET_URI;
+    int MODEL_ENDPOINT_REFERENCE___GET_TARGET_URI = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_TARGET_URI;
 
     /**
    * The operation id for the '<em>Get Object</em>' operation.
@@ -1664,7 +1664,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE___GET_OBJECT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 0;
+    int MODEL_ENDPOINT_REFERENCE___GET_OBJECT = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 0;
 
     /**
    * The operation id for the '<em>Get Supertype Ref</em>' operation.
@@ -1673,7 +1673,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 1;
+    int MODEL_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 1;
 
     /**
    * The operation id for the '<em>Accept Model Element Type</em>' operation.
@@ -1682,7 +1682,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_TYPE__EOBJECT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 2;
+    int MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_TYPE__EOBJECT = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 2;
 
     /**
    * The operation id for the '<em>Delete Type Reference</em>' operation.
@@ -1691,7 +1691,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 3;
+    int MODEL_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 3;
 
     /**
    * The operation id for the '<em>Accept Model Element Instance</em>' operation.
@@ -1700,7 +1700,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_INSTANCE__EOBJECT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 4;
+    int MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_INSTANCE__EOBJECT = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 4;
 
     /**
    * The operation id for the '<em>Create Model Element Instance And Reference</em>' operation.
@@ -1709,7 +1709,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE___CREATE_MODEL_ELEMENT_INSTANCE_AND_REFERENCE__EOBJECT_STRING = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 5;
+    int MODEL_ENDPOINT_REFERENCE___CREATE_MODEL_ELEMENT_INSTANCE_AND_REFERENCE__EOBJECT_STRING = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 5;
 
     /**
    * The number of operations of the '<em>Model Endpoint Reference</em>' class.
@@ -1718,7 +1718,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ENDPOINT_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 6;
+    int MODEL_ENDPOINT_REFERENCE_OPERATION_COUNT = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 6;
 
     /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.
@@ -1737,7 +1737,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_REFERENCE__REFERENCED_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT;
+    int MODEL_ELEMENT_REFERENCE__REFERENCED_OBJECT = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT;
 
     /**
    * The feature id for the '<em><b>Contained Object</b></em>' containment reference.
@@ -1746,7 +1746,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_REFERENCE__CONTAINED_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT;
+    int MODEL_ELEMENT_REFERENCE__CONTAINED_OBJECT = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT;
 
     /**
    * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
@@ -1755,7 +1755,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_REFERENCE__SUPERTYPE_REF = EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF;
+    int MODEL_ELEMENT_REFERENCE__SUPERTYPE_REF = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF;
 
     /**
    * The feature id for the '<em><b>Modifiable</b></em>' attribute.
@@ -1764,7 +1764,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_REFERENCE__MODIFIABLE = EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE;
+    int MODEL_ELEMENT_REFERENCE__MODIFIABLE = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE;
 
     /**
    * The feature id for the '<em><b>Model Elem Endpoint Refs</b></em>' reference list.
@@ -1773,7 +1773,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 0;
+    int MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 0;
 
     /**
    * The number of structural features of the '<em>Model Element Reference</em>' class.
@@ -1782,7 +1782,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
+    int MODEL_ELEMENT_REFERENCE_FEATURE_COUNT = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
 
     /**
    * The operation id for the '<em>Get Uri</em>' operation.
@@ -1791,7 +1791,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_REFERENCE___GET_URI = EXTENDIBLE_ELEMENT_REFERENCE___GET_URI;
+    int MODEL_ELEMENT_REFERENCE___GET_URI = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_URI;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -1800,7 +1800,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_REFERENCE___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER;
+    int MODEL_ELEMENT_REFERENCE___GET_MID_CONTAINER = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -1809,7 +1809,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_REFERENCE___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL;
+    int MODEL_ELEMENT_REFERENCE___IS_TYPES_LEVEL = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -1818,7 +1818,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL;
+    int MODEL_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -1827,7 +1827,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL;
+    int MODEL_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Get Object</em>' operation.
@@ -1836,7 +1836,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_REFERENCE___GET_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 0;
+    int MODEL_ELEMENT_REFERENCE___GET_OBJECT = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 0;
 
     /**
    * The operation id for the '<em>Get Supertype Ref</em>' operation.
@@ -1845,7 +1845,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_REFERENCE___GET_SUPERTYPE_REF = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 1;
+    int MODEL_ELEMENT_REFERENCE___GET_SUPERTYPE_REF = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 1;
 
     /**
    * The operation id for the '<em>Delete Type Reference</em>' operation.
@@ -1854,7 +1854,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_REFERENCE___DELETE_TYPE_REFERENCE = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 2;
+    int MODEL_ELEMENT_REFERENCE___DELETE_TYPE_REFERENCE = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 2;
 
     /**
    * The operation id for the '<em>Delete Instance Reference</em>' operation.
@@ -1863,7 +1863,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_REFERENCE___DELETE_INSTANCE_REFERENCE = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 3;
+    int MODEL_ELEMENT_REFERENCE___DELETE_INSTANCE_REFERENCE = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 3;
 
     /**
    * The number of operations of the '<em>Model Element Reference</em>' class.
@@ -1872,7 +1872,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 4;
+    int MODEL_ELEMENT_REFERENCE_OPERATION_COUNT = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 4;
 
     /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.MappingImpl <em>Mapping</em>}' class.
@@ -2225,7 +2225,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING__SUPERTYPE = MAPPING__SUPERTYPE;
+    int BINARY_MAPPING__SUPERTYPE = RelationshipPackage.MAPPING__SUPERTYPE;
 
     /**
    * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -2234,7 +2234,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING__URI = MAPPING__URI;
+    int BINARY_MAPPING__URI = RelationshipPackage.MAPPING__URI;
 
     /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2243,7 +2243,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING__NAME = MAPPING__NAME;
+    int BINARY_MAPPING__NAME = RelationshipPackage.MAPPING__NAME;
 
     /**
    * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -2252,7 +2252,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING__LEVEL = MAPPING__LEVEL;
+    int BINARY_MAPPING__LEVEL = RelationshipPackage.MAPPING__LEVEL;
 
     /**
    * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -2261,7 +2261,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING__METATYPE_URI = MAPPING__METATYPE_URI;
+    int BINARY_MAPPING__METATYPE_URI = RelationshipPackage.MAPPING__METATYPE_URI;
 
     /**
    * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -2270,7 +2270,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING__DYNAMIC = MAPPING__DYNAMIC;
+    int BINARY_MAPPING__DYNAMIC = RelationshipPackage.MAPPING__DYNAMIC;
 
     /**
    * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -2279,7 +2279,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING__CONSTRAINT = MAPPING__CONSTRAINT;
+    int BINARY_MAPPING__CONSTRAINT = RelationshipPackage.MAPPING__CONSTRAINT;
 
     /**
    * The feature id for the '<em><b>Model Elem Endpoints</b></em>' containment reference list.
@@ -2288,7 +2288,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING__MODEL_ELEM_ENDPOINTS = MAPPING__MODEL_ELEM_ENDPOINTS;
+    int BINARY_MAPPING__MODEL_ELEM_ENDPOINTS = RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINTS;
 
     /**
    * The feature id for the '<em><b>Model Elem Endpoint Refs</b></em>' reference list.
@@ -2297,7 +2297,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING__MODEL_ELEM_ENDPOINT_REFS = MAPPING__MODEL_ELEM_ENDPOINT_REFS;
+    int BINARY_MAPPING__MODEL_ELEM_ENDPOINT_REFS = RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINT_REFS;
 
     /**
    * The number of structural features of the '<em>Binary Mapping</em>' class.
@@ -2306,7 +2306,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_FEATURE_COUNT = MAPPING_FEATURE_COUNT + 0;
+    int BINARY_MAPPING_FEATURE_COUNT = RelationshipPackage.MAPPING_FEATURE_COUNT + 0;
 
     /**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -2315,7 +2315,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___IS_LEVEL__MIDLEVEL = MAPPING___IS_LEVEL__MIDLEVEL;
+    int BINARY_MAPPING___IS_LEVEL__MIDLEVEL = RelationshipPackage.MAPPING___IS_LEVEL__MIDLEVEL;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -2324,7 +2324,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___IS_TYPES_LEVEL = MAPPING___IS_TYPES_LEVEL;
+    int BINARY_MAPPING___IS_TYPES_LEVEL = RelationshipPackage.MAPPING___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -2333,7 +2333,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___CREATE_SUBTYPE_URI__STRING_STRING = MAPPING___CREATE_SUBTYPE_URI__STRING_STRING;
+    int BINARY_MAPPING___CREATE_SUBTYPE_URI__STRING_STRING = RelationshipPackage.MAPPING___CREATE_SUBTYPE_URI__STRING_STRING;
 
     /**
    * The operation id for the '<em>Add Type Constraint</em>' operation.
@@ -2342,7 +2342,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___ADD_TYPE_CONSTRAINT__STRING_STRING = MAPPING___ADD_TYPE_CONSTRAINT__STRING_STRING;
+    int BINARY_MAPPING___ADD_TYPE_CONSTRAINT__STRING_STRING = RelationshipPackage.MAPPING___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -2351,7 +2351,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___IS_INSTANCES_LEVEL = MAPPING___IS_INSTANCES_LEVEL;
+    int BINARY_MAPPING___IS_INSTANCES_LEVEL = RelationshipPackage.MAPPING___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -2360,7 +2360,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___GET_RUNTIME_TYPES = MAPPING___GET_RUNTIME_TYPES;
+    int BINARY_MAPPING___GET_RUNTIME_TYPES = RelationshipPackage.MAPPING___GET_RUNTIME_TYPES;
 
     /**
    * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
@@ -2369,7 +2369,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___GET_CLOSEST_TYPE_CONSTRAINT = MAPPING___GET_CLOSEST_TYPE_CONSTRAINT;
+    int BINARY_MAPPING___GET_CLOSEST_TYPE_CONSTRAINT = RelationshipPackage.MAPPING___GET_CLOSEST_TYPE_CONSTRAINT;
 
     /**
    * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -2378,7 +2378,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = MAPPING___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+    int BINARY_MAPPING___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = RelationshipPackage.MAPPING___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
 
     /**
    * The operation id for the '<em>Validate Instance</em>' operation.
@@ -2387,7 +2387,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___VALIDATE_INSTANCE = MAPPING___VALIDATE_INSTANCE;
+    int BINARY_MAPPING___VALIDATE_INSTANCE = RelationshipPackage.MAPPING___VALIDATE_INSTANCE;
 
     /**
    * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -2396,7 +2396,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+    int BINARY_MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = RelationshipPackage.MAPPING___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -2405,7 +2405,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___IS_WORKFLOWS_LEVEL = MAPPING___IS_WORKFLOWS_LEVEL;
+    int BINARY_MAPPING___IS_WORKFLOWS_LEVEL = RelationshipPackage.MAPPING___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
@@ -2414,7 +2414,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___UPDATE_WORKFLOW_INSTANCE_ID__STRING = MAPPING___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+    int BINARY_MAPPING___UPDATE_WORKFLOW_INSTANCE_ID__STRING = RelationshipPackage.MAPPING___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
     /**
    * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -2423,7 +2423,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___TO_MID_CUSTOM_PRINT_LABEL = MAPPING___TO_MID_CUSTOM_PRINT_LABEL;
+    int BINARY_MAPPING___TO_MID_CUSTOM_PRINT_LABEL = RelationshipPackage.MAPPING___TO_MID_CUSTOM_PRINT_LABEL;
 
     /**
    * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -2432,7 +2432,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___TO_MID_CUSTOM_EDIT_LABEL = MAPPING___TO_MID_CUSTOM_EDIT_LABEL;
+    int BINARY_MAPPING___TO_MID_CUSTOM_EDIT_LABEL = RelationshipPackage.MAPPING___TO_MID_CUSTOM_EDIT_LABEL;
 
     /**
    * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -2441,7 +2441,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING = MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING;
+    int BINARY_MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING = RelationshipPackage.MAPPING___UPDATE_MID_CUSTOM_LABEL__STRING;
 
     /**
    * The operation id for the '<em>Get Metatype</em>' operation.
@@ -2450,7 +2450,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___GET_METATYPE = MAPPING___GET_METATYPE;
+    int BINARY_MAPPING___GET_METATYPE = RelationshipPackage.MAPPING___GET_METATYPE;
 
     /**
    * The operation id for the '<em>Get Supertype</em>' operation.
@@ -2459,7 +2459,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___GET_SUPERTYPE = MAPPING___GET_SUPERTYPE;
+    int BINARY_MAPPING___GET_SUPERTYPE = RelationshipPackage.MAPPING___GET_SUPERTYPE;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -2468,7 +2468,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___GET_MID_CONTAINER = MAPPING___GET_MID_CONTAINER;
+    int BINARY_MAPPING___GET_MID_CONTAINER = RelationshipPackage.MAPPING___GET_MID_CONTAINER;
 
     /**
    * The operation id for the '<em>Create Type Reference</em>' operation.
@@ -2477,7 +2477,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL = MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL;
+    int BINARY_MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL = RelationshipPackage.MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL;
 
     /**
    * The operation id for the '<em>Create Subtype And Reference</em>' operation.
@@ -2486,7 +2486,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___CREATE_SUBTYPE_AND_REFERENCE__MAPPINGREFERENCE_STRING_BOOLEAN_MODELREL = MAPPING___CREATE_SUBTYPE_AND_REFERENCE__MAPPINGREFERENCE_STRING_BOOLEAN_MODELREL;
+    int BINARY_MAPPING___CREATE_SUBTYPE_AND_REFERENCE__MAPPINGREFERENCE_STRING_BOOLEAN_MODELREL = RelationshipPackage.MAPPING___CREATE_SUBTYPE_AND_REFERENCE__MAPPINGREFERENCE_STRING_BOOLEAN_MODELREL;
 
     /**
    * The operation id for the '<em>Delete Type</em>' operation.
@@ -2495,7 +2495,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___DELETE_TYPE = MAPPING___DELETE_TYPE;
+    int BINARY_MAPPING___DELETE_TYPE = RelationshipPackage.MAPPING___DELETE_TYPE;
 
     /**
    * The operation id for the '<em>Create Instance Reference</em>' operation.
@@ -2504,7 +2504,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL = MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL;
+    int BINARY_MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL = RelationshipPackage.MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL;
 
     /**
    * The operation id for the '<em>Create Instance And Reference</em>' operation.
@@ -2513,7 +2513,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL = MAPPING___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL;
+    int BINARY_MAPPING___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL = RelationshipPackage.MAPPING___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL;
 
     /**
    * The operation id for the '<em>Create Instance And Reference And Endpoints And References</em>' operation.
@@ -2522,7 +2522,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST = MAPPING___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST;
+    int BINARY_MAPPING___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST = RelationshipPackage.MAPPING___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST;
 
     /**
    * The operation id for the '<em>Delete Instance</em>' operation.
@@ -2531,7 +2531,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING___DELETE_INSTANCE = MAPPING___DELETE_INSTANCE;
+    int BINARY_MAPPING___DELETE_INSTANCE = RelationshipPackage.MAPPING___DELETE_INSTANCE;
 
     /**
    * The number of operations of the '<em>Binary Mapping</em>' class.
@@ -2540,7 +2540,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_OPERATION_COUNT = MAPPING_OPERATION_COUNT + 0;
+    int BINARY_MAPPING_OPERATION_COUNT = RelationshipPackage.MAPPING_OPERATION_COUNT + 0;
 
     /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelElementEndpointImpl <em>Model Element Endpoint</em>}' class.
@@ -2920,7 +2920,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE__REFERENCED_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT;
+    int MAPPING_REFERENCE__REFERENCED_OBJECT = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT;
 
     /**
    * The feature id for the '<em><b>Contained Object</b></em>' containment reference.
@@ -2929,7 +2929,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE__CONTAINED_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT;
+    int MAPPING_REFERENCE__CONTAINED_OBJECT = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT;
 
     /**
    * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
@@ -2938,7 +2938,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE__SUPERTYPE_REF = EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF;
+    int MAPPING_REFERENCE__SUPERTYPE_REF = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF;
 
     /**
    * The feature id for the '<em><b>Modifiable</b></em>' attribute.
@@ -2947,7 +2947,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE__MODIFIABLE = EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE;
+    int MAPPING_REFERENCE__MODIFIABLE = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE;
 
     /**
    * The feature id for the '<em><b>Model Elem Endpoint Refs</b></em>' containment reference list.
@@ -2956,7 +2956,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 0;
+    int MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 0;
 
     /**
    * The number of structural features of the '<em>Mapping Reference</em>' class.
@@ -2965,7 +2965,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
+    int MAPPING_REFERENCE_FEATURE_COUNT = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_FEATURE_COUNT + 1;
 
     /**
    * The operation id for the '<em>Get Uri</em>' operation.
@@ -2974,7 +2974,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE___GET_URI = EXTENDIBLE_ELEMENT_REFERENCE___GET_URI;
+    int MAPPING_REFERENCE___GET_URI = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_URI;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -2983,7 +2983,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER;
+    int MAPPING_REFERENCE___GET_MID_CONTAINER = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -2992,7 +2992,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL;
+    int MAPPING_REFERENCE___IS_TYPES_LEVEL = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -3001,7 +3001,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL;
+    int MAPPING_REFERENCE___IS_INSTANCES_LEVEL = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -3010,7 +3010,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL;
+    int MAPPING_REFERENCE___IS_WORKFLOWS_LEVEL = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Get Object</em>' operation.
@@ -3019,7 +3019,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE___GET_OBJECT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 0;
+    int MAPPING_REFERENCE___GET_OBJECT = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 0;
 
     /**
    * The operation id for the '<em>Get Supertype Ref</em>' operation.
@@ -3028,7 +3028,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE___GET_SUPERTYPE_REF = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 1;
+    int MAPPING_REFERENCE___GET_SUPERTYPE_REF = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 1;
 
     /**
    * The operation id for the '<em>Delete Type Reference</em>' operation.
@@ -3037,7 +3037,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE___DELETE_TYPE_REFERENCE = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 2;
+    int MAPPING_REFERENCE___DELETE_TYPE_REFERENCE = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 2;
 
     /**
    * The operation id for the '<em>Delete Type And Reference</em>' operation.
@@ -3046,7 +3046,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE___DELETE_TYPE_AND_REFERENCE = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 3;
+    int MAPPING_REFERENCE___DELETE_TYPE_AND_REFERENCE = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 3;
 
     /**
    * The operation id for the '<em>Delete Instance Reference</em>' operation.
@@ -3055,7 +3055,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE___DELETE_INSTANCE_REFERENCE = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 4;
+    int MAPPING_REFERENCE___DELETE_INSTANCE_REFERENCE = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 4;
 
     /**
    * The operation id for the '<em>Delete Instance And Reference</em>' operation.
@@ -3064,7 +3064,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE___DELETE_INSTANCE_AND_REFERENCE = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 5;
+    int MAPPING_REFERENCE___DELETE_INSTANCE_AND_REFERENCE = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 5;
 
     /**
    * The number of operations of the '<em>Mapping Reference</em>' class.
@@ -3073,7 +3073,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MAPPING_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 6;
+    int MAPPING_REFERENCE_OPERATION_COUNT = RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE_OPERATION_COUNT + 6;
 
     /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.BinaryMappingReferenceImpl <em>Binary Mapping Reference</em>}' class.
@@ -3092,7 +3092,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE__REFERENCED_OBJECT = MAPPING_REFERENCE__REFERENCED_OBJECT;
+    int BINARY_MAPPING_REFERENCE__REFERENCED_OBJECT = RelationshipPackage.MAPPING_REFERENCE__REFERENCED_OBJECT;
 
     /**
    * The feature id for the '<em><b>Contained Object</b></em>' containment reference.
@@ -3101,7 +3101,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE__CONTAINED_OBJECT = MAPPING_REFERENCE__CONTAINED_OBJECT;
+    int BINARY_MAPPING_REFERENCE__CONTAINED_OBJECT = RelationshipPackage.MAPPING_REFERENCE__CONTAINED_OBJECT;
 
     /**
    * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
@@ -3110,7 +3110,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE__SUPERTYPE_REF = MAPPING_REFERENCE__SUPERTYPE_REF;
+    int BINARY_MAPPING_REFERENCE__SUPERTYPE_REF = RelationshipPackage.MAPPING_REFERENCE__SUPERTYPE_REF;
 
     /**
    * The feature id for the '<em><b>Modifiable</b></em>' attribute.
@@ -3119,7 +3119,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE__MODIFIABLE = MAPPING_REFERENCE__MODIFIABLE;
+    int BINARY_MAPPING_REFERENCE__MODIFIABLE = RelationshipPackage.MAPPING_REFERENCE__MODIFIABLE;
 
     /**
    * The feature id for the '<em><b>Model Elem Endpoint Refs</b></em>' containment reference list.
@@ -3128,7 +3128,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS = MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS;
+    int BINARY_MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS = RelationshipPackage.MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS;
 
     /**
    * The feature id for the '<em><b>Source Model Elem Ref</b></em>' reference.
@@ -3137,7 +3137,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE__SOURCE_MODEL_ELEM_REF = MAPPING_REFERENCE_FEATURE_COUNT + 0;
+    int BINARY_MAPPING_REFERENCE__SOURCE_MODEL_ELEM_REF = RelationshipPackage.MAPPING_REFERENCE_FEATURE_COUNT + 0;
 
     /**
    * The feature id for the '<em><b>Target Model Elem Ref</b></em>' reference.
@@ -3146,7 +3146,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE__TARGET_MODEL_ELEM_REF = MAPPING_REFERENCE_FEATURE_COUNT + 1;
+    int BINARY_MAPPING_REFERENCE__TARGET_MODEL_ELEM_REF = RelationshipPackage.MAPPING_REFERENCE_FEATURE_COUNT + 1;
 
     /**
    * The number of structural features of the '<em>Binary Mapping Reference</em>' class.
@@ -3155,7 +3155,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE_FEATURE_COUNT = MAPPING_REFERENCE_FEATURE_COUNT + 2;
+    int BINARY_MAPPING_REFERENCE_FEATURE_COUNT = RelationshipPackage.MAPPING_REFERENCE_FEATURE_COUNT + 2;
 
     /**
    * The operation id for the '<em>Get Uri</em>' operation.
@@ -3164,7 +3164,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE___GET_URI = MAPPING_REFERENCE___GET_URI;
+    int BINARY_MAPPING_REFERENCE___GET_URI = RelationshipPackage.MAPPING_REFERENCE___GET_URI;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -3173,7 +3173,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE___GET_MID_CONTAINER = MAPPING_REFERENCE___GET_MID_CONTAINER;
+    int BINARY_MAPPING_REFERENCE___GET_MID_CONTAINER = RelationshipPackage.MAPPING_REFERENCE___GET_MID_CONTAINER;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -3182,7 +3182,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE___IS_TYPES_LEVEL = MAPPING_REFERENCE___IS_TYPES_LEVEL;
+    int BINARY_MAPPING_REFERENCE___IS_TYPES_LEVEL = RelationshipPackage.MAPPING_REFERENCE___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -3191,7 +3191,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE___IS_INSTANCES_LEVEL = MAPPING_REFERENCE___IS_INSTANCES_LEVEL;
+    int BINARY_MAPPING_REFERENCE___IS_INSTANCES_LEVEL = RelationshipPackage.MAPPING_REFERENCE___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -3200,7 +3200,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE___IS_WORKFLOWS_LEVEL = MAPPING_REFERENCE___IS_WORKFLOWS_LEVEL;
+    int BINARY_MAPPING_REFERENCE___IS_WORKFLOWS_LEVEL = RelationshipPackage.MAPPING_REFERENCE___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Get Supertype Ref</em>' operation.
@@ -3209,7 +3209,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE___GET_SUPERTYPE_REF = MAPPING_REFERENCE___GET_SUPERTYPE_REF;
+    int BINARY_MAPPING_REFERENCE___GET_SUPERTYPE_REF = RelationshipPackage.MAPPING_REFERENCE___GET_SUPERTYPE_REF;
 
     /**
    * The operation id for the '<em>Delete Type Reference</em>' operation.
@@ -3218,7 +3218,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE___DELETE_TYPE_REFERENCE = MAPPING_REFERENCE___DELETE_TYPE_REFERENCE;
+    int BINARY_MAPPING_REFERENCE___DELETE_TYPE_REFERENCE = RelationshipPackage.MAPPING_REFERENCE___DELETE_TYPE_REFERENCE;
 
     /**
    * The operation id for the '<em>Delete Type And Reference</em>' operation.
@@ -3227,7 +3227,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE___DELETE_TYPE_AND_REFERENCE = MAPPING_REFERENCE___DELETE_TYPE_AND_REFERENCE;
+    int BINARY_MAPPING_REFERENCE___DELETE_TYPE_AND_REFERENCE = RelationshipPackage.MAPPING_REFERENCE___DELETE_TYPE_AND_REFERENCE;
 
     /**
    * The operation id for the '<em>Delete Instance Reference</em>' operation.
@@ -3236,7 +3236,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE___DELETE_INSTANCE_REFERENCE = MAPPING_REFERENCE___DELETE_INSTANCE_REFERENCE;
+    int BINARY_MAPPING_REFERENCE___DELETE_INSTANCE_REFERENCE = RelationshipPackage.MAPPING_REFERENCE___DELETE_INSTANCE_REFERENCE;
 
     /**
    * The operation id for the '<em>Delete Instance And Reference</em>' operation.
@@ -3245,7 +3245,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE___DELETE_INSTANCE_AND_REFERENCE = MAPPING_REFERENCE___DELETE_INSTANCE_AND_REFERENCE;
+    int BINARY_MAPPING_REFERENCE___DELETE_INSTANCE_AND_REFERENCE = RelationshipPackage.MAPPING_REFERENCE___DELETE_INSTANCE_AND_REFERENCE;
 
     /**
    * The operation id for the '<em>Get Object</em>' operation.
@@ -3254,7 +3254,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE___GET_OBJECT = MAPPING_REFERENCE_OPERATION_COUNT + 0;
+    int BINARY_MAPPING_REFERENCE___GET_OBJECT = RelationshipPackage.MAPPING_REFERENCE_OPERATION_COUNT + 0;
 
     /**
    * The operation id for the '<em>Add Model Element Type Reference</em>' operation.
@@ -3263,7 +3263,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE___ADD_MODEL_ELEMENT_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN = MAPPING_REFERENCE_OPERATION_COUNT + 1;
+    int BINARY_MAPPING_REFERENCE___ADD_MODEL_ELEMENT_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN = RelationshipPackage.MAPPING_REFERENCE_OPERATION_COUNT + 1;
 
     /**
    * The number of operations of the '<em>Binary Mapping Reference</em>' class.
@@ -3272,7 +3272,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int BINARY_MAPPING_REFERENCE_OPERATION_COUNT = MAPPING_REFERENCE_OPERATION_COUNT + 2;
+    int BINARY_MAPPING_REFERENCE_OPERATION_COUNT = RelationshipPackage.MAPPING_REFERENCE_OPERATION_COUNT + 2;
 
     /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelElementEndpointReferenceImpl <em>Model Element Endpoint Reference</em>}' class.
@@ -3291,7 +3291,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE__REFERENCED_OBJECT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__REFERENCED_OBJECT;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE__REFERENCED_OBJECT = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__REFERENCED_OBJECT;
 
     /**
    * The feature id for the '<em><b>Contained Object</b></em>' containment reference.
@@ -3300,7 +3300,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE__CONTAINED_OBJECT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__CONTAINED_OBJECT;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE__CONTAINED_OBJECT = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__CONTAINED_OBJECT;
 
     /**
    * The feature id for the '<em><b>Supertype Ref</b></em>' reference.
@@ -3309,7 +3309,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE__SUPERTYPE_REF = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__SUPERTYPE_REF;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE__SUPERTYPE_REF = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__SUPERTYPE_REF;
 
     /**
    * The feature id for the '<em><b>Modifiable</b></em>' attribute.
@@ -3318,7 +3318,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE__MODIFIABLE = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__MODIFIABLE;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE__MODIFIABLE = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE__MODIFIABLE;
 
     /**
    * The feature id for the '<em><b>Model Elem Ref</b></em>' reference.
@@ -3327,7 +3327,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE__MODEL_ELEM_REF = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT + 0;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE__MODEL_ELEM_REF = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT + 0;
 
     /**
    * The number of structural features of the '<em>Model Element Endpoint Reference</em>' class.
@@ -3336,7 +3336,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT + 1;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_FEATURE_COUNT + 1;
 
     /**
    * The operation id for the '<em>Get Uri</em>' operation.
@@ -3345,7 +3345,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_URI = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_URI;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_URI = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_URI;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -3354,7 +3354,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_MID_CONTAINER = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_MID_CONTAINER;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_MID_CONTAINER = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_MID_CONTAINER;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -3363,7 +3363,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE___IS_TYPES_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_TYPES_LEVEL;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE___IS_TYPES_LEVEL = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -3372,7 +3372,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE___IS_INSTANCES_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_INSTANCES_LEVEL;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE___IS_INSTANCES_LEVEL = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -3381,7 +3381,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Get Target Uri</em>' operation.
@@ -3390,7 +3390,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_TARGET_URI = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_TARGET_URI;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_TARGET_URI = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_TARGET_URI;
 
     /**
    * The operation id for the '<em>Get Object</em>' operation.
@@ -3399,7 +3399,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 0;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 0;
 
     /**
    * The operation id for the '<em>Get Supertype Ref</em>' operation.
@@ -3408,7 +3408,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 1;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 1;
 
     /**
    * The operation id for the '<em>Delete Type Reference</em>' operation.
@@ -3417,7 +3417,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 2;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 2;
 
     /**
    * The operation id for the '<em>Delete Type And Reference</em>' operation.
@@ -3426,7 +3426,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_TYPE_AND_REFERENCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 3;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_TYPE_AND_REFERENCE__BOOLEAN = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 3;
 
     /**
    * The operation id for the '<em>Delete Instance And Reference</em>' operation.
@@ -3435,7 +3435,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 4;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 4;
 
     /**
    * The number of operations of the '<em>Model Element Endpoint Reference</em>' class.
@@ -3444,7 +3444,7 @@ public interface RelationshipPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int MODEL_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT = EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 5;
+    int MODEL_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT = RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE_OPERATION_COUNT + 5;
 
     /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel <em>Model Rel</em>}'.
@@ -4465,7 +4465,7 @@ public interface RelationshipPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl#getModelRel()
      * @generated
      */
-        EClass MODEL_REL = eINSTANCE.getModelRel();
+        EClass MODEL_REL = RelationshipPackage.eINSTANCE.getModelRel();
 
         /**
      * The meta object literal for the '<em><b>Model Endpoints</b></em>' containment reference list feature.
@@ -4473,7 +4473,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MODEL_REL__MODEL_ENDPOINTS = eINSTANCE.getModelRel_ModelEndpoints();
+        EReference MODEL_REL__MODEL_ENDPOINTS = RelationshipPackage.eINSTANCE.getModelRel_ModelEndpoints();
 
         /**
      * The meta object literal for the '<em><b>Mappings</b></em>' containment reference list feature.
@@ -4481,7 +4481,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MODEL_REL__MAPPINGS = eINSTANCE.getModelRel_Mappings();
+        EReference MODEL_REL__MAPPINGS = RelationshipPackage.eINSTANCE.getModelRel_Mappings();
 
         /**
      * The meta object literal for the '<em><b>Model Endpoint Refs</b></em>' containment reference list feature.
@@ -4489,7 +4489,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MODEL_REL__MODEL_ENDPOINT_REFS = eINSTANCE.getModelRel_ModelEndpointRefs();
+        EReference MODEL_REL__MODEL_ENDPOINT_REFS = RelationshipPackage.eINSTANCE.getModelRel_ModelEndpointRefs();
 
         /**
      * The meta object literal for the '<em><b>Mapping Refs</b></em>' containment reference list feature.
@@ -4497,7 +4497,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MODEL_REL__MAPPING_REFS = eINSTANCE.getModelRel_MappingRefs();
+        EReference MODEL_REL__MAPPING_REFS = RelationshipPackage.eINSTANCE.getModelRel_MappingRefs();
 
         /**
      * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
@@ -4505,7 +4505,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_REL___GET_METATYPE = eINSTANCE.getModelRel__GetMetatype();
+        EOperation MODEL_REL___GET_METATYPE = RelationshipPackage.eINSTANCE.getModelRel__GetMetatype();
 
         /**
      * The meta object literal for the '<em><b>Get Supertype</b></em>' operation.
@@ -4513,7 +4513,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_REL___GET_SUPERTYPE = eINSTANCE.getModelRel__GetSupertype();
+        EOperation MODEL_REL___GET_SUPERTYPE = RelationshipPackage.eINSTANCE.getModelRel__GetSupertype();
 
         /**
      * The meta object literal for the '<em><b>Get MID Container</b></em>' operation.
@@ -4521,7 +4521,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_REL___GET_MID_CONTAINER = eINSTANCE.getModelRel__GetMIDContainer();
+        EOperation MODEL_REL___GET_MID_CONTAINER = RelationshipPackage.eINSTANCE.getModelRel__GetMIDContainer();
 
         /**
      * The meta object literal for the '<em><b>Create Binary Subtype</b></em>' operation.
@@ -4529,7 +4529,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN = eINSTANCE.getModelRel__CreateBinarySubtype__String_boolean();
+        EOperation MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN = RelationshipPackage.eINSTANCE.getModelRel__CreateBinarySubtype__String_boolean();
 
         /**
      * The meta object literal for the '<em><b>Copy Subtype</b></em>' operation.
@@ -4537,7 +4537,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_REL___COPY_SUBTYPE__MODELREL = eINSTANCE.getModelRel__CopySubtype__ModelRel();
+        EOperation MODEL_REL___COPY_SUBTYPE__MODELREL = RelationshipPackage.eINSTANCE.getModelRel__CopySubtype__ModelRel();
 
         /**
      * The meta object literal for the '<em><b>Get Outline Resource Types</b></em>' operation.
@@ -4545,7 +4545,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = eINSTANCE.getModelRel__GetOutlineResourceTypes();
+        EOperation MODEL_REL___GET_OUTLINE_RESOURCE_TYPES = RelationshipPackage.eINSTANCE.getModelRel__GetOutlineResourceTypes();
 
         /**
      * The meta object literal for the '<em><b>Create Instance And Endpoints</b></em>' operation.
@@ -4553,7 +4553,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID = eINSTANCE.getModelRel__CreateInstanceAndEndpoints__EObject_String_EList_MID();
+        EOperation MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID = RelationshipPackage.eINSTANCE.getModelRel__CreateInstanceAndEndpoints__EObject_String_EList_MID();
 
         /**
      * The meta object literal for the '<em><b>Create Binary Instance</b></em>' operation.
@@ -4561,7 +4561,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID = eINSTANCE.getModelRel__CreateBinaryInstance__EObject_String_MID();
+        EOperation MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID = RelationshipPackage.eINSTANCE.getModelRel__CreateBinaryInstance__EObject_String_MID();
 
         /**
      * The meta object literal for the '<em><b>Create Binary Instance And Endpoints</b></em>' operation.
@@ -4569,7 +4569,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID = eINSTANCE.getModelRel__CreateBinaryInstanceAndEndpoints__EObject_String_Model_Model_MID();
+        EOperation MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID = RelationshipPackage.eINSTANCE.getModelRel__CreateBinaryInstanceAndEndpoints__EObject_String_Model_Model_MID();
 
         /**
      * The meta object literal for the '<em><b>Get Outline Resource Instances</b></em>' operation.
@@ -4577,7 +4577,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = eINSTANCE.getModelRel__GetOutlineResourceInstances();
+        EOperation MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES = RelationshipPackage.eINSTANCE.getModelRel__GetOutlineResourceInstances();
 
         /**
      * The meta object literal for the '<em><b>Create Workflow Instance And Endpoints</b></em>' operation.
@@ -4585,7 +4585,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = eINSTANCE.getModelRel__CreateWorkflowInstanceAndEndpoints__String_EList_MID();
+        EOperation MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID = RelationshipPackage.eINSTANCE.getModelRel__CreateWorkflowInstanceAndEndpoints__String_EList_MID();
 
         /**
      * The meta object literal for the '<em><b>Create Workflow Binary Instance</b></em>' operation.
@@ -4593,7 +4593,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID = eINSTANCE.getModelRel__CreateWorkflowBinaryInstance__String_MID();
+        EOperation MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID = RelationshipPackage.eINSTANCE.getModelRel__CreateWorkflowBinaryInstance__String_MID();
 
         /**
      * The meta object literal for the '<em><b>Create Workflow Binary Instance And Endpoints</b></em>' operation.
@@ -4601,7 +4601,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = eINSTANCE.getModelRel__CreateWorkflowBinaryInstanceAndEndpoints__String_Model_Model_MID();
+        EOperation MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID = RelationshipPackage.eINSTANCE.getModelRel__CreateWorkflowBinaryInstanceAndEndpoints__String_Model_Model_MID();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.BinaryModelRelImpl <em>Binary Model Rel</em>}' class.
@@ -4611,7 +4611,7 @@ public interface RelationshipPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl#getBinaryModelRel()
      * @generated
      */
-        EClass BINARY_MODEL_REL = eINSTANCE.getBinaryModelRel();
+        EClass BINARY_MODEL_REL = RelationshipPackage.eINSTANCE.getBinaryModelRel();
 
         /**
      * The meta object literal for the '<em><b>Source Model</b></em>' reference feature.
@@ -4619,7 +4619,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference BINARY_MODEL_REL__SOURCE_MODEL = eINSTANCE.getBinaryModelRel_SourceModel();
+        EReference BINARY_MODEL_REL__SOURCE_MODEL = RelationshipPackage.eINSTANCE.getBinaryModelRel_SourceModel();
 
         /**
      * The meta object literal for the '<em><b>Target Model</b></em>' reference feature.
@@ -4627,7 +4627,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference BINARY_MODEL_REL__TARGET_MODEL = eINSTANCE.getBinaryModelRel_TargetModel();
+        EReference BINARY_MODEL_REL__TARGET_MODEL = RelationshipPackage.eINSTANCE.getBinaryModelRel_TargetModel();
 
         /**
      * The meta object literal for the '<em><b>Add Model Type</b></em>' operation.
@@ -4635,7 +4635,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN = eINSTANCE.getBinaryModelRel__AddModelType__Model_boolean();
+        EOperation BINARY_MODEL_REL___ADD_MODEL_TYPE__MODEL_BOOLEAN = RelationshipPackage.eINSTANCE.getBinaryModelRel__AddModelType__Model_boolean();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelEndpointReferenceImpl <em>Model Endpoint Reference</em>}' class.
@@ -4645,7 +4645,7 @@ public interface RelationshipPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl#getModelEndpointReference()
      * @generated
      */
-        EClass MODEL_ENDPOINT_REFERENCE = eINSTANCE.getModelEndpointReference();
+        EClass MODEL_ENDPOINT_REFERENCE = RelationshipPackage.eINSTANCE.getModelEndpointReference();
 
         /**
      * The meta object literal for the '<em><b>Model Elem Refs</b></em>' containment reference list feature.
@@ -4653,7 +4653,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MODEL_ENDPOINT_REFERENCE__MODEL_ELEM_REFS = eINSTANCE.getModelEndpointReference_ModelElemRefs();
+        EReference MODEL_ENDPOINT_REFERENCE__MODEL_ELEM_REFS = RelationshipPackage.eINSTANCE.getModelEndpointReference_ModelElemRefs();
 
         /**
      * The meta object literal for the '<em><b>Get Object</b></em>' operation.
@@ -4661,7 +4661,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT_REFERENCE___GET_OBJECT = eINSTANCE.getModelEndpointReference__GetObject();
+        EOperation MODEL_ENDPOINT_REFERENCE___GET_OBJECT = RelationshipPackage.eINSTANCE.getModelEndpointReference__GetObject();
 
         /**
      * The meta object literal for the '<em><b>Get Supertype Ref</b></em>' operation.
@@ -4669,7 +4669,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = eINSTANCE.getModelEndpointReference__GetSupertypeRef();
+        EOperation MODEL_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = RelationshipPackage.eINSTANCE.getModelEndpointReference__GetSupertypeRef();
 
         /**
      * The meta object literal for the '<em><b>Accept Model Element Type</b></em>' operation.
@@ -4677,7 +4677,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_TYPE__EOBJECT = eINSTANCE.getModelEndpointReference__AcceptModelElementType__EObject();
+        EOperation MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_TYPE__EOBJECT = RelationshipPackage.eINSTANCE.getModelEndpointReference__AcceptModelElementType__EObject();
 
         /**
      * The meta object literal for the '<em><b>Delete Type Reference</b></em>' operation.
@@ -4685,7 +4685,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN = eINSTANCE.getModelEndpointReference__DeleteTypeReference__boolean();
+        EOperation MODEL_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN = RelationshipPackage.eINSTANCE.getModelEndpointReference__DeleteTypeReference__boolean();
 
         /**
      * The meta object literal for the '<em><b>Accept Model Element Instance</b></em>' operation.
@@ -4693,7 +4693,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_INSTANCE__EOBJECT = eINSTANCE.getModelEndpointReference__AcceptModelElementInstance__EObject();
+        EOperation MODEL_ENDPOINT_REFERENCE___ACCEPT_MODEL_ELEMENT_INSTANCE__EOBJECT = RelationshipPackage.eINSTANCE.getModelEndpointReference__AcceptModelElementInstance__EObject();
 
         /**
      * The meta object literal for the '<em><b>Create Model Element Instance And Reference</b></em>' operation.
@@ -4701,7 +4701,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ENDPOINT_REFERENCE___CREATE_MODEL_ELEMENT_INSTANCE_AND_REFERENCE__EOBJECT_STRING = eINSTANCE.getModelEndpointReference__CreateModelElementInstanceAndReference__EObject_String();
+        EOperation MODEL_ENDPOINT_REFERENCE___CREATE_MODEL_ELEMENT_INSTANCE_AND_REFERENCE__EOBJECT_STRING = RelationshipPackage.eINSTANCE.getModelEndpointReference__CreateModelElementInstanceAndReference__EObject_String();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelElementReferenceImpl <em>Model Element Reference</em>}' class.
@@ -4711,7 +4711,7 @@ public interface RelationshipPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl#getModelElementReference()
      * @generated
      */
-        EClass MODEL_ELEMENT_REFERENCE = eINSTANCE.getModelElementReference();
+        EClass MODEL_ELEMENT_REFERENCE = RelationshipPackage.eINSTANCE.getModelElementReference();
 
         /**
      * The meta object literal for the '<em><b>Model Elem Endpoint Refs</b></em>' reference list feature.
@@ -4719,7 +4719,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS = eINSTANCE.getModelElementReference_ModelElemEndpointRefs();
+        EReference MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS = RelationshipPackage.eINSTANCE.getModelElementReference_ModelElemEndpointRefs();
 
         /**
      * The meta object literal for the '<em><b>Get Object</b></em>' operation.
@@ -4727,7 +4727,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_REFERENCE___GET_OBJECT = eINSTANCE.getModelElementReference__GetObject();
+        EOperation MODEL_ELEMENT_REFERENCE___GET_OBJECT = RelationshipPackage.eINSTANCE.getModelElementReference__GetObject();
 
         /**
      * The meta object literal for the '<em><b>Get Supertype Ref</b></em>' operation.
@@ -4735,7 +4735,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_REFERENCE___GET_SUPERTYPE_REF = eINSTANCE.getModelElementReference__GetSupertypeRef();
+        EOperation MODEL_ELEMENT_REFERENCE___GET_SUPERTYPE_REF = RelationshipPackage.eINSTANCE.getModelElementReference__GetSupertypeRef();
 
         /**
      * The meta object literal for the '<em><b>Delete Type Reference</b></em>' operation.
@@ -4743,7 +4743,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_REFERENCE___DELETE_TYPE_REFERENCE = eINSTANCE.getModelElementReference__DeleteTypeReference();
+        EOperation MODEL_ELEMENT_REFERENCE___DELETE_TYPE_REFERENCE = RelationshipPackage.eINSTANCE.getModelElementReference__DeleteTypeReference();
 
         /**
      * The meta object literal for the '<em><b>Delete Instance Reference</b></em>' operation.
@@ -4751,7 +4751,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_REFERENCE___DELETE_INSTANCE_REFERENCE = eINSTANCE.getModelElementReference__DeleteInstanceReference();
+        EOperation MODEL_ELEMENT_REFERENCE___DELETE_INSTANCE_REFERENCE = RelationshipPackage.eINSTANCE.getModelElementReference__DeleteInstanceReference();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.MappingImpl <em>Mapping</em>}' class.
@@ -4761,7 +4761,7 @@ public interface RelationshipPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl#getMapping()
      * @generated
      */
-        EClass MAPPING = eINSTANCE.getMapping();
+        EClass MAPPING = RelationshipPackage.eINSTANCE.getMapping();
 
         /**
      * The meta object literal for the '<em><b>Model Elem Endpoints</b></em>' containment reference list feature.
@@ -4769,7 +4769,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MAPPING__MODEL_ELEM_ENDPOINTS = eINSTANCE.getMapping_ModelElemEndpoints();
+        EReference MAPPING__MODEL_ELEM_ENDPOINTS = RelationshipPackage.eINSTANCE.getMapping_ModelElemEndpoints();
 
         /**
      * The meta object literal for the '<em><b>Model Elem Endpoint Refs</b></em>' reference list feature.
@@ -4777,7 +4777,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MAPPING__MODEL_ELEM_ENDPOINT_REFS = eINSTANCE.getMapping_ModelElemEndpointRefs();
+        EReference MAPPING__MODEL_ELEM_ENDPOINT_REFS = RelationshipPackage.eINSTANCE.getMapping_ModelElemEndpointRefs();
 
         /**
      * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
@@ -4785,7 +4785,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MAPPING___GET_METATYPE = eINSTANCE.getMapping__GetMetatype();
+        EOperation MAPPING___GET_METATYPE = RelationshipPackage.eINSTANCE.getMapping__GetMetatype();
 
         /**
      * The meta object literal for the '<em><b>Get Supertype</b></em>' operation.
@@ -4793,7 +4793,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MAPPING___GET_SUPERTYPE = eINSTANCE.getMapping__GetSupertype();
+        EOperation MAPPING___GET_SUPERTYPE = RelationshipPackage.eINSTANCE.getMapping__GetSupertype();
 
         /**
      * The meta object literal for the '<em><b>Get MID Container</b></em>' operation.
@@ -4801,7 +4801,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MAPPING___GET_MID_CONTAINER = eINSTANCE.getMapping__GetMIDContainer();
+        EOperation MAPPING___GET_MID_CONTAINER = RelationshipPackage.eINSTANCE.getMapping__GetMIDContainer();
 
         /**
      * The meta object literal for the '<em><b>Create Type Reference</b></em>' operation.
@@ -4809,7 +4809,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL = eINSTANCE.getMapping__CreateTypeReference__MappingReference_boolean_ModelRel();
+        EOperation MAPPING___CREATE_TYPE_REFERENCE__MAPPINGREFERENCE_BOOLEAN_MODELREL = RelationshipPackage.eINSTANCE.getMapping__CreateTypeReference__MappingReference_boolean_ModelRel();
 
         /**
      * The meta object literal for the '<em><b>Create Subtype And Reference</b></em>' operation.
@@ -4817,7 +4817,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MAPPING___CREATE_SUBTYPE_AND_REFERENCE__MAPPINGREFERENCE_STRING_BOOLEAN_MODELREL = eINSTANCE.getMapping__CreateSubtypeAndReference__MappingReference_String_boolean_ModelRel();
+        EOperation MAPPING___CREATE_SUBTYPE_AND_REFERENCE__MAPPINGREFERENCE_STRING_BOOLEAN_MODELREL = RelationshipPackage.eINSTANCE.getMapping__CreateSubtypeAndReference__MappingReference_String_boolean_ModelRel();
 
         /**
      * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
@@ -4825,7 +4825,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MAPPING___DELETE_TYPE = eINSTANCE.getMapping__DeleteType();
+        EOperation MAPPING___DELETE_TYPE = RelationshipPackage.eINSTANCE.getMapping__DeleteType();
 
         /**
      * The meta object literal for the '<em><b>Create Instance Reference</b></em>' operation.
@@ -4833,7 +4833,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL = eINSTANCE.getMapping__CreateInstanceReference__ModelRel();
+        EOperation MAPPING___CREATE_INSTANCE_REFERENCE__MODELREL = RelationshipPackage.eINSTANCE.getMapping__CreateInstanceReference__ModelRel();
 
         /**
      * The meta object literal for the '<em><b>Create Instance And Reference</b></em>' operation.
@@ -4841,7 +4841,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MAPPING___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL = eINSTANCE.getMapping__CreateInstanceAndReference__boolean_ModelRel();
+        EOperation MAPPING___CREATE_INSTANCE_AND_REFERENCE__BOOLEAN_MODELREL = RelationshipPackage.eINSTANCE.getMapping__CreateInstanceAndReference__boolean_ModelRel();
 
         /**
      * The meta object literal for the '<em><b>Create Instance And Reference And Endpoints And References</b></em>' operation.
@@ -4849,7 +4849,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MAPPING___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST = eINSTANCE.getMapping__CreateInstanceAndReferenceAndEndpointsAndReferences__boolean_EList();
+        EOperation MAPPING___CREATE_INSTANCE_AND_REFERENCE_AND_ENDPOINTS_AND_REFERENCES__BOOLEAN_ELIST = RelationshipPackage.eINSTANCE.getMapping__CreateInstanceAndReferenceAndEndpointsAndReferences__boolean_EList();
 
         /**
      * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
@@ -4857,7 +4857,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MAPPING___DELETE_INSTANCE = eINSTANCE.getMapping__DeleteInstance();
+        EOperation MAPPING___DELETE_INSTANCE = RelationshipPackage.eINSTANCE.getMapping__DeleteInstance();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.BinaryMappingImpl <em>Binary Mapping</em>}' class.
@@ -4867,7 +4867,7 @@ public interface RelationshipPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl#getBinaryMapping()
      * @generated
      */
-        EClass BINARY_MAPPING = eINSTANCE.getBinaryMapping();
+        EClass BINARY_MAPPING = RelationshipPackage.eINSTANCE.getBinaryMapping();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelElementEndpointImpl <em>Model Element Endpoint</em>}' class.
@@ -4877,7 +4877,7 @@ public interface RelationshipPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl#getModelElementEndpoint()
      * @generated
      */
-        EClass MODEL_ELEMENT_ENDPOINT = eINSTANCE.getModelElementEndpoint();
+        EClass MODEL_ELEMENT_ENDPOINT = RelationshipPackage.eINSTANCE.getModelElementEndpoint();
 
         /**
      * The meta object literal for the '<em><b>Get Supertype</b></em>' operation.
@@ -4885,7 +4885,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_ENDPOINT___GET_SUPERTYPE = eINSTANCE.getModelElementEndpoint__GetSupertype();
+        EOperation MODEL_ELEMENT_ENDPOINT___GET_SUPERTYPE = RelationshipPackage.eINSTANCE.getModelElementEndpoint__GetSupertype();
 
         /**
      * The meta object literal for the '<em><b>Get MID Container</b></em>' operation.
@@ -4893,7 +4893,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_ENDPOINT___GET_MID_CONTAINER = eINSTANCE.getModelElementEndpoint__GetMIDContainer();
+        EOperation MODEL_ELEMENT_ENDPOINT___GET_MID_CONTAINER = RelationshipPackage.eINSTANCE.getModelElementEndpoint__GetMIDContainer();
 
         /**
      * The meta object literal for the '<em><b>Get Target</b></em>' operation.
@@ -4901,7 +4901,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_ENDPOINT___GET_TARGET = eINSTANCE.getModelElementEndpoint__GetTarget();
+        EOperation MODEL_ELEMENT_ENDPOINT___GET_TARGET = RelationshipPackage.eINSTANCE.getModelElementEndpoint__GetTarget();
 
         /**
      * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
@@ -4909,7 +4909,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_ENDPOINT___GET_METATYPE = eINSTANCE.getModelElementEndpoint__GetMetatype();
+        EOperation MODEL_ELEMENT_ENDPOINT___GET_METATYPE = RelationshipPackage.eINSTANCE.getModelElementEndpoint__GetMetatype();
 
         /**
      * The meta object literal for the '<em><b>Create Type Reference</b></em>' operation.
@@ -4917,7 +4917,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_ENDPOINT___CREATE_TYPE_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE_BOOLEAN_BOOLEAN_MAPPINGREFERENCE = eINSTANCE.getModelElementEndpoint__CreateTypeReference__ModelElementEndpointReference_ModelElementReference_boolean_boolean_MappingReference();
+        EOperation MODEL_ELEMENT_ENDPOINT___CREATE_TYPE_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE_BOOLEAN_BOOLEAN_MAPPINGREFERENCE = RelationshipPackage.eINSTANCE.getModelElementEndpoint__CreateTypeReference__ModelElementEndpointReference_ModelElementReference_boolean_boolean_MappingReference();
 
         /**
      * The meta object literal for the '<em><b>Create Subtype And Reference</b></em>' operation.
@@ -4925,7 +4925,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODELELEMENTREFERENCE_BOOLEAN_MAPPINGREFERENCE = eINSTANCE.getModelElementEndpoint__CreateSubtypeAndReference__String_ModelElementReference_boolean_MappingReference();
+        EOperation MODEL_ELEMENT_ENDPOINT___CREATE_SUBTYPE_AND_REFERENCE__STRING_MODELELEMENTREFERENCE_BOOLEAN_MAPPINGREFERENCE = RelationshipPackage.eINSTANCE.getModelElementEndpoint__CreateSubtypeAndReference__String_ModelElementReference_boolean_MappingReference();
 
         /**
      * The meta object literal for the '<em><b>Replace Subtype And Reference</b></em>' operation.
@@ -4933,7 +4933,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE = eINSTANCE.getModelElementEndpoint__ReplaceSubtypeAndReference__ModelElementEndpointReference_String_ModelElementReference();
+        EOperation MODEL_ELEMENT_ENDPOINT___REPLACE_SUBTYPE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_STRING_MODELELEMENTREFERENCE = RelationshipPackage.eINSTANCE.getModelElementEndpoint__ReplaceSubtypeAndReference__ModelElementEndpointReference_String_ModelElementReference();
 
         /**
      * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
@@ -4941,7 +4941,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_ENDPOINT___DELETE_TYPE__BOOLEAN = eINSTANCE.getModelElementEndpoint__DeleteType__boolean();
+        EOperation MODEL_ELEMENT_ENDPOINT___DELETE_TYPE__BOOLEAN = RelationshipPackage.eINSTANCE.getModelElementEndpoint__DeleteType__boolean();
 
         /**
      * The meta object literal for the '<em><b>Create Instance Reference</b></em>' operation.
@@ -4949,7 +4949,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_MAPPINGREFERENCE = eINSTANCE.getModelElementEndpoint__CreateInstanceReference__ModelElementReference_MappingReference();
+        EOperation MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_REFERENCE__MODELELEMENTREFERENCE_MAPPINGREFERENCE = RelationshipPackage.eINSTANCE.getModelElementEndpoint__CreateInstanceReference__ModelElementReference_MappingReference();
 
         /**
      * The meta object literal for the '<em><b>Create Instance And Reference</b></em>' operation.
@@ -4957,7 +4957,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODELELEMENTREFERENCE_MAPPINGREFERENCE = eINSTANCE.getModelElementEndpoint__CreateInstanceAndReference__ModelElementReference_MappingReference();
+        EOperation MODEL_ELEMENT_ENDPOINT___CREATE_INSTANCE_AND_REFERENCE__MODELELEMENTREFERENCE_MAPPINGREFERENCE = RelationshipPackage.eINSTANCE.getModelElementEndpoint__CreateInstanceAndReference__ModelElementReference_MappingReference();
 
         /**
      * The meta object literal for the '<em><b>Replace Instance And Reference</b></em>' operation.
@@ -4965,7 +4965,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE = eINSTANCE.getModelElementEndpoint__ReplaceInstanceAndReference__ModelElementEndpointReference_ModelElementReference();
+        EOperation MODEL_ELEMENT_ENDPOINT___REPLACE_INSTANCE_AND_REFERENCE__MODELELEMENTENDPOINTREFERENCE_MODELELEMENTREFERENCE = RelationshipPackage.eINSTANCE.getModelElementEndpoint__ReplaceInstanceAndReference__ModelElementEndpointReference_ModelElementReference();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.MappingReferenceImpl <em>Mapping Reference</em>}' class.
@@ -4975,7 +4975,7 @@ public interface RelationshipPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl#getMappingReference()
      * @generated
      */
-        EClass MAPPING_REFERENCE = eINSTANCE.getMappingReference();
+        EClass MAPPING_REFERENCE = RelationshipPackage.eINSTANCE.getMappingReference();
 
         /**
      * The meta object literal for the '<em><b>Model Elem Endpoint Refs</b></em>' containment reference list feature.
@@ -4983,7 +4983,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS = eINSTANCE.getMappingReference_ModelElemEndpointRefs();
+        EReference MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS = RelationshipPackage.eINSTANCE.getMappingReference_ModelElemEndpointRefs();
 
         /**
      * The meta object literal for the '<em><b>Get Object</b></em>' operation.
@@ -4991,7 +4991,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MAPPING_REFERENCE___GET_OBJECT = eINSTANCE.getMappingReference__GetObject();
+        EOperation MAPPING_REFERENCE___GET_OBJECT = RelationshipPackage.eINSTANCE.getMappingReference__GetObject();
 
         /**
      * The meta object literal for the '<em><b>Get Supertype Ref</b></em>' operation.
@@ -4999,7 +4999,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MAPPING_REFERENCE___GET_SUPERTYPE_REF = eINSTANCE.getMappingReference__GetSupertypeRef();
+        EOperation MAPPING_REFERENCE___GET_SUPERTYPE_REF = RelationshipPackage.eINSTANCE.getMappingReference__GetSupertypeRef();
 
         /**
      * The meta object literal for the '<em><b>Delete Type Reference</b></em>' operation.
@@ -5007,7 +5007,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MAPPING_REFERENCE___DELETE_TYPE_REFERENCE = eINSTANCE.getMappingReference__DeleteTypeReference();
+        EOperation MAPPING_REFERENCE___DELETE_TYPE_REFERENCE = RelationshipPackage.eINSTANCE.getMappingReference__DeleteTypeReference();
 
         /**
      * The meta object literal for the '<em><b>Delete Type And Reference</b></em>' operation.
@@ -5015,7 +5015,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MAPPING_REFERENCE___DELETE_TYPE_AND_REFERENCE = eINSTANCE.getMappingReference__DeleteTypeAndReference();
+        EOperation MAPPING_REFERENCE___DELETE_TYPE_AND_REFERENCE = RelationshipPackage.eINSTANCE.getMappingReference__DeleteTypeAndReference();
 
         /**
      * The meta object literal for the '<em><b>Delete Instance Reference</b></em>' operation.
@@ -5023,7 +5023,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MAPPING_REFERENCE___DELETE_INSTANCE_REFERENCE = eINSTANCE.getMappingReference__DeleteInstanceReference();
+        EOperation MAPPING_REFERENCE___DELETE_INSTANCE_REFERENCE = RelationshipPackage.eINSTANCE.getMappingReference__DeleteInstanceReference();
 
         /**
      * The meta object literal for the '<em><b>Delete Instance And Reference</b></em>' operation.
@@ -5031,7 +5031,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MAPPING_REFERENCE___DELETE_INSTANCE_AND_REFERENCE = eINSTANCE.getMappingReference__DeleteInstanceAndReference();
+        EOperation MAPPING_REFERENCE___DELETE_INSTANCE_AND_REFERENCE = RelationshipPackage.eINSTANCE.getMappingReference__DeleteInstanceAndReference();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.BinaryMappingReferenceImpl <em>Binary Mapping Reference</em>}' class.
@@ -5041,7 +5041,7 @@ public interface RelationshipPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl#getBinaryMappingReference()
      * @generated
      */
-        EClass BINARY_MAPPING_REFERENCE = eINSTANCE.getBinaryMappingReference();
+        EClass BINARY_MAPPING_REFERENCE = RelationshipPackage.eINSTANCE.getBinaryMappingReference();
 
         /**
      * The meta object literal for the '<em><b>Source Model Elem Ref</b></em>' reference feature.
@@ -5049,7 +5049,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference BINARY_MAPPING_REFERENCE__SOURCE_MODEL_ELEM_REF = eINSTANCE.getBinaryMappingReference_SourceModelElemRef();
+        EReference BINARY_MAPPING_REFERENCE__SOURCE_MODEL_ELEM_REF = RelationshipPackage.eINSTANCE.getBinaryMappingReference_SourceModelElemRef();
 
         /**
      * The meta object literal for the '<em><b>Target Model Elem Ref</b></em>' reference feature.
@@ -5057,7 +5057,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference BINARY_MAPPING_REFERENCE__TARGET_MODEL_ELEM_REF = eINSTANCE.getBinaryMappingReference_TargetModelElemRef();
+        EReference BINARY_MAPPING_REFERENCE__TARGET_MODEL_ELEM_REF = RelationshipPackage.eINSTANCE.getBinaryMappingReference_TargetModelElemRef();
 
         /**
      * The meta object literal for the '<em><b>Get Object</b></em>' operation.
@@ -5065,7 +5065,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation BINARY_MAPPING_REFERENCE___GET_OBJECT = eINSTANCE.getBinaryMappingReference__GetObject();
+        EOperation BINARY_MAPPING_REFERENCE___GET_OBJECT = RelationshipPackage.eINSTANCE.getBinaryMappingReference__GetObject();
 
         /**
      * The meta object literal for the '<em><b>Add Model Element Type Reference</b></em>' operation.
@@ -5073,7 +5073,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation BINARY_MAPPING_REFERENCE___ADD_MODEL_ELEMENT_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN = eINSTANCE.getBinaryMappingReference__AddModelElementTypeReference__ModelElementReference_boolean();
+        EOperation BINARY_MAPPING_REFERENCE___ADD_MODEL_ELEMENT_TYPE_REFERENCE__MODELELEMENTREFERENCE_BOOLEAN = RelationshipPackage.eINSTANCE.getBinaryMappingReference__AddModelElementTypeReference__ModelElementReference_boolean();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ExtendibleElementReferenceImpl <em>Extendible Element Reference</em>}' class.
@@ -5083,7 +5083,7 @@ public interface RelationshipPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl#getExtendibleElementReference()
      * @generated
      */
-        EClass EXTENDIBLE_ELEMENT_REFERENCE = eINSTANCE.getExtendibleElementReference();
+        EClass EXTENDIBLE_ELEMENT_REFERENCE = RelationshipPackage.eINSTANCE.getExtendibleElementReference();
 
         /**
      * The meta object literal for the '<em><b>Referenced Object</b></em>' reference feature.
@@ -5091,7 +5091,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT = eINSTANCE.getExtendibleElementReference_ReferencedObject();
+        EReference EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT = RelationshipPackage.eINSTANCE.getExtendibleElementReference_ReferencedObject();
 
         /**
      * The meta object literal for the '<em><b>Contained Object</b></em>' containment reference feature.
@@ -5099,7 +5099,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT = eINSTANCE.getExtendibleElementReference_ContainedObject();
+        EReference EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT = RelationshipPackage.eINSTANCE.getExtendibleElementReference_ContainedObject();
 
         /**
      * The meta object literal for the '<em><b>Supertype Ref</b></em>' reference feature.
@@ -5107,7 +5107,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF = eINSTANCE.getExtendibleElementReference_SupertypeRef();
+        EReference EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF = RelationshipPackage.eINSTANCE.getExtendibleElementReference_SupertypeRef();
 
         /**
      * The meta object literal for the '<em><b>Modifiable</b></em>' attribute feature.
@@ -5115,7 +5115,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE = eINSTANCE.getExtendibleElementReference_Modifiable();
+        EAttribute EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE = RelationshipPackage.eINSTANCE.getExtendibleElementReference_Modifiable();
 
         /**
      * The meta object literal for the '<em><b>Get Uri</b></em>' operation.
@@ -5123,7 +5123,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT_REFERENCE___GET_URI = eINSTANCE.getExtendibleElementReference__GetUri();
+        EOperation EXTENDIBLE_ELEMENT_REFERENCE___GET_URI = RelationshipPackage.eINSTANCE.getExtendibleElementReference__GetUri();
 
         /**
      * The meta object literal for the '<em><b>Get Object</b></em>' operation.
@@ -5131,7 +5131,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT = eINSTANCE.getExtendibleElementReference__GetObject();
+        EOperation EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT = RelationshipPackage.eINSTANCE.getExtendibleElementReference__GetObject();
 
         /**
      * The meta object literal for the '<em><b>Get MID Container</b></em>' operation.
@@ -5139,7 +5139,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER = eINSTANCE.getExtendibleElementReference__GetMIDContainer();
+        EOperation EXTENDIBLE_ELEMENT_REFERENCE___GET_MID_CONTAINER = RelationshipPackage.eINSTANCE.getExtendibleElementReference__GetMIDContainer();
 
         /**
      * The meta object literal for the '<em><b>Is Types Level</b></em>' operation.
@@ -5147,7 +5147,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL = eINSTANCE.getExtendibleElementReference__IsTypesLevel();
+        EOperation EXTENDIBLE_ELEMENT_REFERENCE___IS_TYPES_LEVEL = RelationshipPackage.eINSTANCE.getExtendibleElementReference__IsTypesLevel();
 
         /**
      * The meta object literal for the '<em><b>Is Instances Level</b></em>' operation.
@@ -5155,7 +5155,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL = eINSTANCE.getExtendibleElementReference__IsInstancesLevel();
+        EOperation EXTENDIBLE_ELEMENT_REFERENCE___IS_INSTANCES_LEVEL = RelationshipPackage.eINSTANCE.getExtendibleElementReference__IsInstancesLevel();
 
         /**
      * The meta object literal for the '<em><b>Is Workflows Level</b></em>' operation.
@@ -5163,7 +5163,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL = eINSTANCE.getExtendibleElementReference__IsWorkflowsLevel();
+        EOperation EXTENDIBLE_ELEMENT_REFERENCE___IS_WORKFLOWS_LEVEL = RelationshipPackage.eINSTANCE.getExtendibleElementReference__IsWorkflowsLevel();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ExtendibleElementEndpointReferenceImpl <em>Extendible Element Endpoint Reference</em>}' class.
@@ -5173,7 +5173,7 @@ public interface RelationshipPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl#getExtendibleElementEndpointReference()
      * @generated
      */
-        EClass EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE = eINSTANCE.getExtendibleElementEndpointReference();
+        EClass EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE = RelationshipPackage.eINSTANCE.getExtendibleElementEndpointReference();
 
         /**
      * The meta object literal for the '<em><b>Get Object</b></em>' operation.
@@ -5181,7 +5181,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT = eINSTANCE.getExtendibleElementEndpointReference__GetObject();
+        EOperation EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT = RelationshipPackage.eINSTANCE.getExtendibleElementEndpointReference__GetObject();
 
         /**
      * The meta object literal for the '<em><b>Get Supertype Ref</b></em>' operation.
@@ -5189,7 +5189,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = eINSTANCE.getExtendibleElementEndpointReference__GetSupertypeRef();
+        EOperation EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = RelationshipPackage.eINSTANCE.getExtendibleElementEndpointReference__GetSupertypeRef();
 
         /**
      * The meta object literal for the '<em><b>Get Target Uri</b></em>' operation.
@@ -5197,7 +5197,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_TARGET_URI = eINSTANCE.getExtendibleElementEndpointReference__GetTargetUri();
+        EOperation EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_TARGET_URI = RelationshipPackage.eINSTANCE.getExtendibleElementEndpointReference__GetTargetUri();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.relationship.impl.ModelElementEndpointReferenceImpl <em>Model Element Endpoint Reference</em>}' class.
@@ -5207,7 +5207,7 @@ public interface RelationshipPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.relationship.impl.RelationshipPackageImpl#getModelElementEndpointReference()
      * @generated
      */
-        EClass MODEL_ELEMENT_ENDPOINT_REFERENCE = eINSTANCE.getModelElementEndpointReference();
+        EClass MODEL_ELEMENT_ENDPOINT_REFERENCE = RelationshipPackage.eINSTANCE.getModelElementEndpointReference();
 
         /**
      * The meta object literal for the '<em><b>Model Elem Ref</b></em>' reference feature.
@@ -5215,7 +5215,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EReference MODEL_ELEMENT_ENDPOINT_REFERENCE__MODEL_ELEM_REF = eINSTANCE.getModelElementEndpointReference_ModelElemRef();
+        EReference MODEL_ELEMENT_ENDPOINT_REFERENCE__MODEL_ELEM_REF = RelationshipPackage.eINSTANCE.getModelElementEndpointReference_ModelElemRef();
 
         /**
      * The meta object literal for the '<em><b>Get Object</b></em>' operation.
@@ -5223,7 +5223,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT = eINSTANCE.getModelElementEndpointReference__GetObject();
+        EOperation MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT = RelationshipPackage.eINSTANCE.getModelElementEndpointReference__GetObject();
 
         /**
      * The meta object literal for the '<em><b>Get Supertype Ref</b></em>' operation.
@@ -5231,7 +5231,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = eINSTANCE.getModelElementEndpointReference__GetSupertypeRef();
+        EOperation MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF = RelationshipPackage.eINSTANCE.getModelElementEndpointReference__GetSupertypeRef();
 
         /**
      * The meta object literal for the '<em><b>Delete Type Reference</b></em>' operation.
@@ -5239,7 +5239,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN = eINSTANCE.getModelElementEndpointReference__DeleteTypeReference__boolean();
+        EOperation MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_TYPE_REFERENCE__BOOLEAN = RelationshipPackage.eINSTANCE.getModelElementEndpointReference__DeleteTypeReference__boolean();
 
         /**
      * The meta object literal for the '<em><b>Delete Type And Reference</b></em>' operation.
@@ -5247,7 +5247,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_TYPE_AND_REFERENCE__BOOLEAN = eINSTANCE.getModelElementEndpointReference__DeleteTypeAndReference__boolean();
+        EOperation MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_TYPE_AND_REFERENCE__BOOLEAN = RelationshipPackage.eINSTANCE.getModelElementEndpointReference__DeleteTypeAndReference__boolean();
 
         /**
      * The meta object literal for the '<em><b>Delete Instance And Reference</b></em>' operation.
@@ -5255,7 +5255,7 @@ public interface RelationshipPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = eINSTANCE.getModelElementEndpointReference__DeleteInstanceAndReference__boolean();
+        EOperation MODEL_ELEMENT_ENDPOINT_REFERENCE___DELETE_INSTANCE_AND_REFERENCE__BOOLEAN = RelationshipPackage.eINSTANCE.getModelElementEndpointReference__DeleteInstanceAndReference__boolean();
 
     }
 

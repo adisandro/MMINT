@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -18,8 +18,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -60,7 +60,7 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
    * @generated
    * @ordered
    */
-    protected String metatargetUri = METATARGET_URI_EDEFAULT;
+    protected String metatargetUri = GenericEndpointImpl.METATARGET_URI_EDEFAULT;
 
     /**
    * <!-- begin-user-doc -->
@@ -88,7 +88,7 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
    */
     @Override
     public String getMetatargetUri() {
-    return metatargetUri;
+    return this.metatargetUri;
   }
 
     /**
@@ -98,10 +98,11 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
    */
     @Override
     public void setMetatargetUri(String newMetatargetUri) {
-    String oldMetatargetUri = metatargetUri;
-    metatargetUri = newMetatargetUri;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.GENERIC_ENDPOINT__METATARGET_URI, oldMetatargetUri, metatargetUri));
+    var oldMetatargetUri = this.metatargetUri;
+    this.metatargetUri = newMetatargetUri;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, OperatorPackage.GENERIC_ENDPOINT__METATARGET_URI, oldMetatargetUri, this.metatargetUri));
+    }
   }
 
     /**
@@ -111,7 +112,7 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
    */
     @Override
     public GenericEndpoint getSupertype() {
-    ExtendibleElementEndpoint supertype = super.getSupertype();
+    var supertype = super.getSupertype();
     return (supertype == null) ? null : (GenericEndpoint) supertype;
   }
 
@@ -143,7 +144,7 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
    */
     @Override
     public GenericEndpoint getMetatype() {
-    ExtendibleElementEndpoint metatype = super.getMetatype();
+    var metatype = super.getMetatype();
     return (metatype == null) ? null : (GenericEndpoint) metatype;
   }
 
@@ -155,17 +156,17 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
     if (baseClass == ExtendibleElement.class) {
-      switch (baseOperationID) {
-        case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return OperatorPackage.GENERIC_ENDPOINT___GET_METATYPE;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE -> OperatorPackage.GENERIC_ENDPOINT___GET_METATYPE;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     if (baseClass == ExtendibleElementEndpoint.class) {
-      switch (baseOperationID) {
-        case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE: return OperatorPackage.GENERIC_ENDPOINT___GET_METATYPE;
-        case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE: return OperatorPackage.GENERIC_ENDPOINT___GET_SUPERTYPE;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE -> OperatorPackage.GENERIC_ENDPOINT___GET_METATYPE;
+      case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_SUPERTYPE -> OperatorPackage.GENERIC_ENDPOINT___GET_SUPERTYPE;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     return super.eDerivedOperationID(baseOperationID, baseClass);
   }
@@ -212,11 +213,13 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
    */
     @Override
     public String toStringGen() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (metatargetUri: ");
-    result.append(metatargetUri);
+    result.append(this.metatargetUri);
     result.append(')');
     return result.toString();
   }
@@ -268,7 +271,7 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
     public void eUnset(int featureID) {
     switch (featureID) {
       case OperatorPackage.GENERIC_ENDPOINT__METATARGET_URI:
-        setMetatargetUri(METATARGET_URI_EDEFAULT);
+        setMetatargetUri(GenericEndpointImpl.METATARGET_URI_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -283,14 +286,14 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case OperatorPackage.GENERIC_ENDPOINT__METATARGET_URI:
-        return METATARGET_URI_EDEFAULT == null ? metatargetUri != null : !METATARGET_URI_EDEFAULT.equals(metatargetUri);
+        return GenericEndpointImpl.METATARGET_URI_EDEFAULT == null ? this.metatargetUri != null : !GenericEndpointImpl.METATARGET_URI_EDEFAULT.equals(this.metatargetUri);
     }
     return super.eIsSet(featureID);
   }
 
     /**
      * Adds a generic instance endpoint of this generic type endpoint to an Instance or Workflow MID.
-     * 
+     *
      * @param newGenericEndpoint
      *            The new generic instance endpoint to be added.
      * @param targetGenericType
@@ -309,11 +312,12 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
     /**
      * @generated NOT
      */
+    @Override
     public GenericEndpoint createInstance(GenericElement targetGeneric, Operator containerOperator) throws MMINTException {
 
         MMINTException.mustBeType(this);
 
-        GenericEndpoint newGenericEndpoint = super.createThisEClass();
+        var newGenericEndpoint = super.<GenericEndpoint>createThisEClass();
         this.addInstance(newGenericEndpoint, targetGeneric, containerOperator);
 
         return newGenericEndpoint;
@@ -322,11 +326,12 @@ public class GenericEndpointImpl extends ExtendibleElementEndpointImpl implement
     /**
      * @generated NOT
      */
+    @Override
     public GenericEndpoint createWorkflowInstance(GenericElement targetGeneric, Operator containerOperator) throws MMINTException {
 
         MMINTException.mustBeType(this);
 
-        GenericEndpoint newGenericEndpoint = super.createThisEClass();
+        var newGenericEndpoint = super.<GenericEndpoint>createThisEClass();
         this.addInstance(newGenericEndpoint, targetGeneric, containerOperator);
 
         return newGenericEndpoint;

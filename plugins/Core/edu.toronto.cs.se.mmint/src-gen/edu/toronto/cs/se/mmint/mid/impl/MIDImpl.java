@@ -207,8 +207,9 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
     public void setLevel(MIDLevel newLevel) {
     var oldLevel = this.level;
     this.level = newLevel == null ? MIDImpl.LEVEL_EDEFAULT : newLevel;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MID__LEVEL, oldLevel, this.level));
+    }
   }
 
     /**
@@ -313,8 +314,12 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
       case MIDPackage.MID__OPERATORS:
         return getOperators();
       case MIDPackage.MID__EXTENDIBLE_TABLE:
-        if (coreType) return getExtendibleTable();
-        else return getExtendibleTable().map();
+        if (coreType) {
+          return getExtendibleTable();
+        }
+        else {
+          return getExtendibleTable().map();
+        }
       case MIDPackage.MID__LEVEL:
         return getLevel();
     }
@@ -430,9 +435,11 @@ public class MIDImpl extends MinimalEObjectImpl.Container implements MID {
    */
     @Override
     public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (level: ");
     result.append(this.level);
     result.append(')');

@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -41,6 +41,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
    * @model kind="operation"
    * @generated
    */
+    @Override
     ModelElementEndpoint getSupertype();
 
     /**
@@ -49,6 +50,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
    * @model kind="operation"
    * @generated
    */
+    @Override
     MID getMIDContainer();
 
     /**
@@ -61,6 +63,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
    * @model kind="operation" required="true"
    * @generated
    */
+    @Override
     ModelElement getTarget();
 
     /**
@@ -73,11 +76,12 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
    * @model kind="operation" required="true"
    * @generated
    */
+    @Override
     ModelElementEndpoint getMetatype();
 
     /**
    * <!-- begin-user-doc --> Creates and adds a reference to this model element type endpoint to the Type MID.
-     * 
+     *
      * @param modelElemTypeEndpointRef
      *            The reference to the supertype of the model element type endpoint, null if such reference doesn't
      *            exist in the mapping type reference container.
@@ -103,7 +107,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
     /**
    * <!-- begin-user-doc --> Creates and adds a subtype of this model element type endpoint and a reference to it to
      * the Type MID.
-     * 
+     *
      * @param newModelElemTypeEndpointName
      *            The name of the new model element type endpoint.
      * @param targetModelElemTypeRef
@@ -127,7 +131,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
     /**
    * <!-- begin-user-doc --> Replaces an old subtype of this model element
      * type endpoint and a reference to it with new ones in the Type MID.
-     * 
+     *
      * @param oldModelElemTypeEndpointRef
      *            The reference to the old model element type endpoint to be
      *            replaced.
@@ -151,7 +155,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
    * <!-- begin-user-doc -->
      * Removes a model element type endpoint from the MID that contains
      * it.
-     * 
+     *
      * @param modelElemTypeEndpoint
      *            The model element type endpoint to be removed.
      * @param isFullRemove
@@ -165,7 +169,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
 
     /**
    * <!-- begin-user-doc --> Creates and adds a reference to this model element instance endpoint to an Instance MID.
-     * 
+     *
      * @param targetModelElemRef
      *            The reference to the model element that is the target of the model element endpoint.
      * @param containerMappingRef
@@ -181,7 +185,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
     /**
    * <!-- begin-user-doc --> Creates and adds a model element instance endpoint of this model element type endpoint
      * and the reference to it to an Instance MID.
-     * 
+     *
      * @param targetModelElemRef
      *            The reference to the model element that is the target of the new model element endpoint.
      * @param containerMappingRef
@@ -198,7 +202,7 @@ public interface ModelElementEndpoint extends ExtendibleElementEndpoint {
     /**
    * <!-- begin-user-doc --> Replaces an old model element instance endpoint
      * and the reference to it with new ones in an Instance MID.
-     * 
+     *
      * @param oldModelElemEndpointRef
      *            The reference to the old model element endpoint to be
      *            replaced.

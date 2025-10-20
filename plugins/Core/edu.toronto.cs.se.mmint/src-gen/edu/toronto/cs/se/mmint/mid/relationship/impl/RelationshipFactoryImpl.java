@@ -5,18 +5,30 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.relationship.impl;
 
-import edu.toronto.cs.se.mmint.mid.relationship.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +45,7 @@ public class RelationshipFactoryImpl extends EFactoryImpl implements Relationshi
    */
     public static RelationshipFactory init() {
     try {
-      RelationshipFactory theRelationshipFactory = (RelationshipFactory)EPackage.Registry.INSTANCE.getEFactory(RelationshipPackage.eNS_URI);
+      var theRelationshipFactory = (RelationshipFactory)EPackage.Registry.INSTANCE.getEFactory(RelationshipPackage.eNS_URI);
       if (theRelationshipFactory != null) {
         return theRelationshipFactory;
       }
@@ -61,20 +73,19 @@ public class RelationshipFactoryImpl extends EFactoryImpl implements Relationshi
    */
     @Override
     public EObject create(EClass eClass) {
-    switch (eClass.getClassifierID()) {
-      case RelationshipPackage.MODEL_REL: return createModelRel();
-      case RelationshipPackage.BINARY_MODEL_REL: return createBinaryModelRel();
-      case RelationshipPackage.MODEL_ENDPOINT_REFERENCE: return createModelEndpointReference();
-      case RelationshipPackage.MODEL_ELEMENT_REFERENCE: return createModelElementReference();
-      case RelationshipPackage.MAPPING: return createMapping();
-      case RelationshipPackage.BINARY_MAPPING: return createBinaryMapping();
-      case RelationshipPackage.MODEL_ELEMENT_ENDPOINT: return createModelElementEndpoint();
-      case RelationshipPackage.MAPPING_REFERENCE: return createMappingReference();
-      case RelationshipPackage.BINARY_MAPPING_REFERENCE: return createBinaryMappingReference();
-      case RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE: return createModelElementEndpointReference();
-      default:
-        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-    }
+    return switch (eClass.getClassifierID()) {
+    case RelationshipPackage.MODEL_REL -> createModelRel();
+    case RelationshipPackage.BINARY_MODEL_REL -> createBinaryModelRel();
+    case RelationshipPackage.MODEL_ENDPOINT_REFERENCE -> createModelEndpointReference();
+    case RelationshipPackage.MODEL_ELEMENT_REFERENCE -> createModelElementReference();
+    case RelationshipPackage.MAPPING -> createMapping();
+    case RelationshipPackage.BINARY_MAPPING -> createBinaryMapping();
+    case RelationshipPackage.MODEL_ELEMENT_ENDPOINT -> createModelElementEndpoint();
+    case RelationshipPackage.MAPPING_REFERENCE -> createMappingReference();
+    case RelationshipPackage.BINARY_MAPPING_REFERENCE -> createBinaryMappingReference();
+    case RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE -> createModelElementEndpointReference();
+    default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    };
   }
 
     /**

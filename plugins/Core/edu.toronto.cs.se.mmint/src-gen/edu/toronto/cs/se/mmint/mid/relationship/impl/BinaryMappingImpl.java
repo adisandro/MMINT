@@ -5,20 +5,19 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.relationship.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,7 +48,7 @@ public class BinaryMappingImpl extends MappingImpl implements BinaryMapping {
 
     /**
      * Creates and adds a reference to this binary mapping type to the Type MID.
-     * 
+     *
      * @param mappingTypeRef
      *            The reference to the supertype of the mapping type, null if such reference doesn't exist in the model
      *            relationship type container.
@@ -67,7 +66,7 @@ public class BinaryMappingImpl extends MappingImpl implements BinaryMapping {
 
         MMINTException.mustBeType(this);
 
-        BinaryMappingReference newMappingTypeRef = super.createThisReferenceEClass();
+        var newMappingTypeRef = super.<MappingReference>createThisReferenceEClass();
         super.addTypeReference(newMappingTypeRef, mappingTypeRef, isModifiable, containerModelRelType);
 
         return newMappingTypeRef;
@@ -75,7 +74,7 @@ public class BinaryMappingImpl extends MappingImpl implements BinaryMapping {
 
     /**
      * Creates and adds a reference to this binary mapping instance to an Instance MID.
-     * 
+     *
      * @param containerModelRel
      *            The model relationship that will contain the new reference to the mapping.
      * @return The created reference to the binary mapping.
@@ -88,10 +87,10 @@ public class BinaryMappingImpl extends MappingImpl implements BinaryMapping {
 
         MMINTException.mustBeInstance(this);
 
-        BinaryMappingReference newLinkRef = super.createThisReferenceEClass();
-        addInstanceReference(newLinkRef, containerModelRel);
+        var newMappingRef = super.<MappingReference>createThisReferenceEClass();
+        addInstanceReference(newMappingRef, containerModelRel);
 
-        return newLinkRef;
+        return newMappingRef;
     }
 
 } //BinaryMappingImpl

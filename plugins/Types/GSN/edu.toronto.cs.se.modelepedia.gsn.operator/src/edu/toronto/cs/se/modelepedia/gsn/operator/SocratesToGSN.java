@@ -149,6 +149,6 @@ public class SocratesToGSN extends OperatorImpl {
                                 Map<String, MID> outputMIDsByName) throws Exception {
     convert(inputsByName);
 
-    return OperatorParameter.outFromIn(this, 0, 0, inputsByName, outputMIDsByName);
+    return outputFromInput(0, 0, inputsByName, outputMIDsByName);
   }
 }

@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -76,6 +76,7 @@ public interface GenericEndpoint extends ExtendibleElementEndpoint {
    * @model kind="operation"
    * @generated
    */
+    @Override
     GenericEndpoint getSupertype();
 
     /**
@@ -88,6 +89,7 @@ public interface GenericEndpoint extends ExtendibleElementEndpoint {
    * @model kind="operation" required="true"
    * @generated
    */
+    @Override
     GenericElement getTarget();
 
     /**
@@ -100,6 +102,7 @@ public interface GenericEndpoint extends ExtendibleElementEndpoint {
    * @model newTargetRequired="true"
    * @generated
    */
+    @Override
     void setTarget(ExtendibleElement newTarget);
 
     /**
@@ -112,12 +115,13 @@ public interface GenericEndpoint extends ExtendibleElementEndpoint {
    * @model kind="operation" required="true"
    * @generated
    */
+    @Override
     GenericEndpoint getMetatype();
 
     /**
    * <!-- begin-user-doc --> Creates and adds a generic instance endpoint of this generic type endpoint to an Instance
      * MID.
-     * 
+     *
      * @param targetGeneric
      *            The generic that is the target of the new generic endpoint.
      * @param containerOperator
@@ -133,7 +137,7 @@ public interface GenericEndpoint extends ExtendibleElementEndpoint {
     /**
    * <!-- begin-user-doc --> Creates and adds a generic instance endpoint of this generic type endpoint to a Workflow
      * MID.
-     * 
+     *
      * @param targetGeneric
      *            The generic that is the target of the new generic endpoint.
      * @param containerOperator

@@ -225,8 +225,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
     public void setOrigin(ModelOrigin newOrigin) {
     var oldOrigin = this.origin;
     this.origin = newOrigin == null ? ModelImpl.ORIGIN_EDEFAULT : newOrigin;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__ORIGIN, oldOrigin, this.origin));
+    }
   }
 
     /**
@@ -248,8 +249,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
     public void setFileExtension(String newFileExtension) {
     var oldFileExtension = this.fileExtension;
     this.fileExtension = newFileExtension;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__FILE_EXTENSION, oldFileExtension, this.fileExtension));
+    }
   }
 
     /**
@@ -339,8 +341,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
   public void setEMFInstanceResource(Resource newEMFInstanceResource) {
     var oldEMFInstanceResource = this.emfInstanceResource;
     this.emfInstanceResource = newEMFInstanceResource;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__EMF_INSTANCE_RESOURCE, oldEMFInstanceResource, this.emfInstanceResource));
+    }
   }
 
     /**
@@ -353,8 +356,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
       var oldEMFInstanceRoot = (InternalEObject)this.emfInstanceRoot;
       this.emfInstanceRoot = eResolveProxy(oldEMFInstanceRoot);
       if (this.emfInstanceRoot != oldEMFInstanceRoot) {
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
           eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.MODEL__EMF_INSTANCE_ROOT, oldEMFInstanceRoot, this.emfInstanceRoot));
+        }
       }
     }
     return this.emfInstanceRoot;
@@ -410,8 +414,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
   public void setEMFInstanceRoot(EObject newEMFInstanceRoot) {
     var oldEMFInstanceRoot = this.emfInstanceRoot;
     this.emfInstanceRoot = newEMFInstanceRoot;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL__EMF_INSTANCE_ROOT, oldEMFInstanceRoot, this.emfInstanceRoot));
+    }
   }
 
     /**
@@ -481,7 +486,9 @@ public class ModelImpl extends GenericElementImpl implements Model {
       case MIDPackage.MODEL__EMF_INSTANCE_RESOURCE:
         return getEMFInstanceResource();
       case MIDPackage.MODEL__EMF_INSTANCE_ROOT:
-        if (resolve) return getEMFInstanceRoot();
+        if (resolve) {
+          return getEMFInstanceRoot();
+        }
         return basicGetEMFInstanceRoot();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -742,9 +749,11 @@ public class ModelImpl extends GenericElementImpl implements Model {
    */
     @Override
     public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (origin: ");
     result.append(this.origin);
     result.append(", fileExtension: ");

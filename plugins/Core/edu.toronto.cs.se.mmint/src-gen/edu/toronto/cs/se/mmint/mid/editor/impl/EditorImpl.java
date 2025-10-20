@@ -191,8 +191,9 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
     public void setModelUri(String newModelUri) {
     var oldModelUri = this.modelUri;
     this.modelUri = newModelUri;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__MODEL_URI, oldModelUri, this.modelUri));
+    }
   }
 
     /**
@@ -214,8 +215,9 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
     public void setId(String newId) {
     var oldId = this.id;
     this.id = newId;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__ID, oldId, this.id));
+    }
   }
 
     /**
@@ -237,8 +239,9 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
     public void setWizardId(String newWizardId) {
     var oldWizardId = this.wizardId;
     this.wizardId = newWizardId;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__WIZARD_ID, oldWizardId, this.wizardId));
+    }
   }
 
     /**
@@ -273,8 +276,9 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
     public void setWizardDialogClass(String newWizardDialogClass) {
     var oldWizardDialogClass = this.wizardDialogClass;
     this.wizardDialogClass = newWizardDialogClass;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, EditorPackage.EDITOR__WIZARD_DIALOG_CLASS, oldWizardDialogClass, this.wizardDialogClass));
+    }
   }
 
     /**
@@ -417,11 +421,11 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
     if (baseClass == ExtendibleElement.class) {
-      switch (baseOperationID) {
-        case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return EditorPackage.EDITOR___GET_METATYPE;
-        case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return EditorPackage.EDITOR___GET_MID_CONTAINER;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE -> EditorPackage.EDITOR___GET_METATYPE;
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER -> EditorPackage.EDITOR___GET_MID_CONTAINER;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     return super.eDerivedOperationID(baseOperationID, baseClass);
   }
@@ -488,7 +492,9 @@ public class EditorImpl extends ExtendibleElementImpl implements Editor {
    */
     @Override
     public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (modelUri: ");

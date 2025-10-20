@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -42,6 +42,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
    * @model kind="operation"
    * @generated
    */
+    @Override
     ModelEndpoint getSupertype();
 
     /**
@@ -50,6 +51,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
    * @model kind="operation"
    * @generated
    */
+    @Override
     MID getMIDContainer();
 
     /**
@@ -62,6 +64,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
    * @model kind="operation" required="true"
    * @generated
    */
+    @Override
     Model getTarget();
 
     /**
@@ -74,11 +77,12 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
    * @model kind="operation" required="true"
    * @generated
    */
+    @Override
     ModelEndpoint getMetatype();
 
     /**
    * <!-- begin-user-doc --> Creates and adds a reference to this model type endpoint to the Type MID.
-     * 
+     *
      * @param isModifiable
      *            True if the new reference will allow modifications of the referenced model type endpoint, false
      *            otherwise.
@@ -95,7 +99,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
     /**
    * <!-- begin-user-doc --> Creates and adds a subtype of this model type endpoint and a reference to it to the Type
      * MID.
-     * 
+     *
      * @param newModelTypeEndpointName
      *            The name of the new model type endpoint.
      * @param targetModelType
@@ -119,7 +123,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
     /**
    * <!-- begin-user-doc --> Replaces an old subtype of this model type endpoint and a reference to it with new ones
      * in the Type MID.
-     * 
+     *
      * @param oldModelTypeEndpoint
      *            The old model type endpoint to be replaced.
      * @param newModelTypeEndpointName
@@ -137,7 +141,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 
     /**
    * <!-- begin-user-doc --> Deletes this model type endpoint and all references to it from the Type MID.
-     * 
+     *
      * @param isFullDelete
      *            True if this model type endpoint is going to be fully deleted, false if it is going to be replaced
      *            later.
@@ -150,7 +154,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
 
     /**
    * <!-- begin-user-doc --> Creates and adds a reference to this model instance endpoint to an Instance MID.
-     * 
+     *
      * @param containerModelRel
      *            The model relationship that will contain the new reference to the model endpoint.
      * @return The created reference to the model endpoint.
@@ -164,7 +168,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
     /**
    * <!-- begin-user-doc --> Creates and adds a model instance endpoint of this model type endpoint to an Instance MID
      * (variant for model relationships).
-     * 
+     *
      * @param targetModel
      *            The model that is the target of the new model endpoint.
      * @param containerModelRel
@@ -181,7 +185,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
     /**
    * <!-- begin-user-doc --> Creates and adds a model instance endpoint of this model type endpoint to an Instance MID
      * (variant for operators).
-     * 
+     *
      * @param targetModel
      *            The model that is the target of the new model endpoint.
      * @param containerOperator
@@ -200,7 +204,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
     /**
    * <!-- begin-user-doc --> Replaces an old model instance endpoint with a new one of this type in an Instance MID
      * (variant for model relationships).
-     * 
+     *
      * @param oldModelEndpoint
      *            The old model endpoint to be replaced.
      * @param targetModel
@@ -216,7 +220,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
     /**
    * <!-- begin-user-doc --> Deletes this model instance endpoint from the Instance MID that contains it (variant for
      * model relationships).
-     * 
+     *
      * @param isFullDelete
      *            True if this model endpoint is going to be fully deleted, false if it is going to be replaced later.
      * @throws MMINTException
@@ -230,7 +234,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
     /**
    * <!-- begin-user-doc --> Creates and adds a model instance endpoint of this model type endpoint to a Workflow MID
      * (variant for model relationships).
-     * 
+     *
      * @param targetModel
      *            The model that is the target of the new model endpoint.
      * @param containerModelRel
@@ -247,7 +251,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
     /**
    * <!-- begin-user-doc --> Creates and adds a model instance endpoint of this model type endpoint to a Workflow MID
      * (variant for operators).
-     * 
+     *
      * @param targetModel
      *            The model that is the target of the new model endpoint.
      * @param containerOperator
@@ -266,7 +270,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
     /**
    * <!-- begin-user-doc --> Replaces an old model instance endpoint with a new one of this type in a Workflow MID
      * (variant for model relationships).
-     * 
+     *
      * @param oldModelEndpoint
      *            The old model endpoint to be replaced.
      * @param targetModel
@@ -282,7 +286,7 @@ public interface ModelEndpoint extends ExtendibleElementEndpoint {
     /**
    * <!-- begin-user-doc --> Deletes this model instance endpoint from the Workflow MID that contains it (variant for
      * model relationships).
-     * 
+     *
      * @throws MMINTException
      *             If this is not a model instance endpoint in a workflow, or if this model endpoint is contained in an
      *             operator. <!-- end-user-doc -->

@@ -5,31 +5,28 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.operator.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
-
-import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmint.mid.provider.ExtendibleElementEndpointItemProvider;
-import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
-
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.provider.ExtendibleElementEndpointItemProvider;
+import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.operator.GenericEndpoint} object.
@@ -56,12 +53,12 @@ public class GenericEndpointItemProvider extends ExtendibleElementEndpointItemPr
    */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addMetatargetUriPropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
 	/**
@@ -71,9 +68,9 @@ public class GenericEndpointItemProvider extends ExtendibleElementEndpointItemPr
    * @generated
    */
 	protected void addMetatargetUriPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_GenericEndpoint_metatargetUri_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_GenericEndpoint_metatargetUri_feature", "_UI_GenericEndpoint_type"),
@@ -105,12 +102,12 @@ public class GenericEndpointItemProvider extends ExtendibleElementEndpointItemPr
    */
 	@Override
 	public String getText(Object object) {
-    String label = ((GenericEndpoint)object).getName();
+    var label = ((GenericEndpoint)object).getName();
     return label == null || label.length() == 0 ?
       getString("_UI_GenericEndpoint_type") :
       getString("_UI_GenericEndpoint_type") + " " + label;
   }
-	
+
 
 	/**
    * This handles model notifications by calling {@link #updateChildren} to update any cached

@@ -5,13 +5,11 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.editor.provider;
-
-import edu.toronto.cs.se.mmint.mid.editor.util.EditorAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,6 +28,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
+import edu.toronto.cs.se.mmint.mid.editor.util.EditorAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -63,7 +63,7 @@ public class EditorItemProviderAdapterFactory extends EditorAdapterFactory imple
 	 * <!-- end-user-doc -->
    * @generated
    */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+	protected Collection<Object> supportedTypes = new ArrayList<>();
 
 	/**
    * This constructs an instance.
@@ -72,11 +72,11 @@ public class EditorItemProviderAdapterFactory extends EditorAdapterFactory imple
    * @generated
    */
 	public EditorItemProviderAdapterFactory() {
-    supportedTypes.add(IEditingDomainItemProvider.class);
-    supportedTypes.add(IStructuredItemContentProvider.class);
-    supportedTypes.add(ITreeItemContentProvider.class);
-    supportedTypes.add(IItemLabelProvider.class);
-    supportedTypes.add(IItemPropertySource.class);
+    this.supportedTypes.add(IEditingDomainItemProvider.class);
+    this.supportedTypes.add(IStructuredItemContentProvider.class);
+    this.supportedTypes.add(ITreeItemContentProvider.class);
+    this.supportedTypes.add(IItemLabelProvider.class);
+    this.supportedTypes.add(IItemPropertySource.class);
   }
 
 	/**
@@ -95,11 +95,11 @@ public class EditorItemProviderAdapterFactory extends EditorAdapterFactory imple
    */
 	@Override
 	public Adapter createEditorAdapter() {
-    if (editorItemProvider == null) {
-      editorItemProvider = new EditorItemProvider(this);
+    if (this.editorItemProvider == null) {
+      this.editorItemProvider = new EditorItemProvider(this);
     }
 
-    return editorItemProvider;
+    return this.editorItemProvider;
   }
 
 	/**
@@ -118,11 +118,11 @@ public class EditorItemProviderAdapterFactory extends EditorAdapterFactory imple
    */
 	@Override
 	public Adapter createDiagramAdapter() {
-    if (diagramItemProvider == null) {
-      diagramItemProvider = new DiagramItemProvider(this);
+    if (this.diagramItemProvider == null) {
+      this.diagramItemProvider = new DiagramItemProvider(this);
     }
 
-    return diagramItemProvider;
+    return this.diagramItemProvider;
   }
 
 	/**
@@ -133,7 +133,7 @@ public class EditorItemProviderAdapterFactory extends EditorAdapterFactory imple
    */
 	@Override
   public ComposeableAdapterFactory getRootAdapterFactory() {
-    return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+    return this.parentAdapterFactory == null ? this : this.parentAdapterFactory.getRootAdapterFactory();
   }
 
 	/**
@@ -154,7 +154,7 @@ public class EditorItemProviderAdapterFactory extends EditorAdapterFactory imple
    */
 	@Override
 	public boolean isFactoryForType(Object type) {
-    return supportedTypes.contains(type) || super.isFactoryForType(type);
+    return this.supportedTypes.contains(type) || super.isFactoryForType(type);
   }
 
 	/**
@@ -176,7 +176,7 @@ public class EditorItemProviderAdapterFactory extends EditorAdapterFactory imple
 	@Override
 	public Object adapt(Object object, Object type) {
     if (isFactoryForType(type)) {
-      Object adapter = super.adapt(object, type);
+      var adapter = super.adapt(object, type);
       if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
         return adapter;
       }
@@ -193,7 +193,7 @@ public class EditorItemProviderAdapterFactory extends EditorAdapterFactory imple
    */
 	@Override
   public void addListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.addListener(notifyChangedListener);
+    this.changeNotifier.addListener(notifyChangedListener);
   }
 
 	/**
@@ -204,7 +204,7 @@ public class EditorItemProviderAdapterFactory extends EditorAdapterFactory imple
    */
 	@Override
   public void removeListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.removeListener(notifyChangedListener);
+    this.changeNotifier.removeListener(notifyChangedListener);
   }
 
 	/**
@@ -215,23 +215,27 @@ public class EditorItemProviderAdapterFactory extends EditorAdapterFactory imple
    */
 	@Override
   public void fireNotifyChanged(Notification notification) {
-    changeNotifier.fireNotifyChanged(notification);
+    this.changeNotifier.fireNotifyChanged(notification);
 
-    if (parentAdapterFactory != null) {
-      parentAdapterFactory.fireNotifyChanged(notification);
+    if (this.parentAdapterFactory != null) {
+      this.parentAdapterFactory.fireNotifyChanged(notification);
     }
   }
 
 	/**
-   * This disposes all of the item providers created by this factory. 
+   * This disposes all of the item providers created by this factory.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
 	@Override
   public void dispose() {
-    if (editorItemProvider != null) editorItemProvider.dispose();
-    if (diagramItemProvider != null) diagramItemProvider.dispose();
+    if (this.editorItemProvider != null) {
+      this.editorItemProvider.dispose();
+    }
+    if (this.diagramItemProvider != null) {
+      this.diagramItemProvider.dispose();
+    }
   }
 
 }

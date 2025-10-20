@@ -5,17 +5,28 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.util;
 
 import java.util.Map;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import edu.toronto.cs.se.mmint.mid.*;
+
+import edu.toronto.cs.se.mmint.mid.EMFInfo;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,8 +57,8 @@ public class MIDSwitch<T> extends Switch<T> {
    * @generated
    */
     public MIDSwitch() {
-    if (modelPackage == null) {
-      modelPackage = MIDPackage.eINSTANCE;
+    if (MIDSwitch.modelPackage == null) {
+      MIDSwitch.modelPackage = MIDPackage.eINSTANCE;
     }
   }
 
@@ -61,7 +72,7 @@ public class MIDSwitch<T> extends Switch<T> {
    */
     @Override
     protected boolean isSwitchFor(EPackage ePackage) {
-    return ePackage == modelPackage;
+    return ePackage == MIDSwitch.modelPackage;
   }
 
     /**
@@ -75,70 +86,104 @@ public class MIDSwitch<T> extends Switch<T> {
     protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
       case MIDPackage.MID: {
-        MID mid = (MID)theEObject;
-        T result = caseMID(mid);
-        if (result == null) result = defaultCase(theEObject);
+        var mid = (MID)theEObject;
+        var result = caseMID(mid);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP: {
-        @SuppressWarnings("unchecked") Map.Entry<String, ExtendibleElement> eStringToExtendibleElementMap = (Map.Entry<String, ExtendibleElement>)theEObject;
-        T result = caseEStringToExtendibleElementMap(eStringToExtendibleElementMap);
-        if (result == null) result = defaultCase(theEObject);
+        @SuppressWarnings("unchecked") var eStringToExtendibleElementMap = (Map.Entry<String, ExtendibleElement>)theEObject;
+        var result = caseEStringToExtendibleElementMap(eStringToExtendibleElementMap);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case MIDPackage.EXTENDIBLE_ELEMENT: {
-        ExtendibleElement extendibleElement = (ExtendibleElement)theEObject;
-        T result = caseExtendibleElement(extendibleElement);
-        if (result == null) result = defaultCase(theEObject);
+        var extendibleElement = (ExtendibleElement)theEObject;
+        var result = caseExtendibleElement(extendibleElement);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT: {
-        ExtendibleElementEndpoint extendibleElementEndpoint = (ExtendibleElementEndpoint)theEObject;
-        T result = caseExtendibleElementEndpoint(extendibleElementEndpoint);
-        if (result == null) result = caseExtendibleElement(extendibleElementEndpoint);
-        if (result == null) result = defaultCase(theEObject);
+        var extendibleElementEndpoint = (ExtendibleElementEndpoint)theEObject;
+        var result = caseExtendibleElementEndpoint(extendibleElementEndpoint);
+        if (result == null) {
+          result = caseExtendibleElement(extendibleElementEndpoint);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case MIDPackage.MODEL: {
-        Model model = (Model)theEObject;
-        T result = caseModel(model);
-        if (result == null) result = caseGenericElement(model);
-        if (result == null) result = caseExtendibleElement(model);
-        if (result == null) result = defaultCase(theEObject);
+        var model = (Model)theEObject;
+        var result = caseModel(model);
+        if (result == null) {
+          result = caseGenericElement(model);
+        }
+        if (result == null) {
+          result = caseExtendibleElement(model);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT: {
-        ExtendibleElementConstraint extendibleElementConstraint = (ExtendibleElementConstraint)theEObject;
-        T result = caseExtendibleElementConstraint(extendibleElementConstraint);
-        if (result == null) result = defaultCase(theEObject);
+        var extendibleElementConstraint = (ExtendibleElementConstraint)theEObject;
+        var result = caseExtendibleElementConstraint(extendibleElementConstraint);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case MIDPackage.MODEL_ELEMENT: {
-        ModelElement modelElement = (ModelElement)theEObject;
-        T result = caseModelElement(modelElement);
-        if (result == null) result = caseExtendibleElement(modelElement);
-        if (result == null) result = defaultCase(theEObject);
+        var modelElement = (ModelElement)theEObject;
+        var result = caseModelElement(modelElement);
+        if (result == null) {
+          result = caseExtendibleElement(modelElement);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case MIDPackage.MODEL_ENDPOINT: {
-        ModelEndpoint modelEndpoint = (ModelEndpoint)theEObject;
-        T result = caseModelEndpoint(modelEndpoint);
-        if (result == null) result = caseExtendibleElementEndpoint(modelEndpoint);
-        if (result == null) result = caseExtendibleElement(modelEndpoint);
-        if (result == null) result = defaultCase(theEObject);
+        var modelEndpoint = (ModelEndpoint)theEObject;
+        var result = caseModelEndpoint(modelEndpoint);
+        if (result == null) {
+          result = caseExtendibleElementEndpoint(modelEndpoint);
+        }
+        if (result == null) {
+          result = caseExtendibleElement(modelEndpoint);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case MIDPackage.EMF_INFO: {
-        EMFInfo emfInfo = (EMFInfo)theEObject;
-        T result = caseEMFInfo(emfInfo);
-        if (result == null) result = defaultCase(theEObject);
+        var emfInfo = (EMFInfo)theEObject;
+        var result = caseEMFInfo(emfInfo);
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case MIDPackage.GENERIC_ELEMENT: {
-        GenericElement genericElement = (GenericElement)theEObject;
-        T result = caseGenericElement(genericElement);
-        if (result == null) result = caseExtendibleElement(genericElement);
-        if (result == null) result = defaultCase(theEObject);
+        var genericElement = (GenericElement)theEObject;
+        var result = caseGenericElement(genericElement);
+        if (result == null) {
+          result = caseExtendibleElement(genericElement);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       default: return defaultCase(theEObject);

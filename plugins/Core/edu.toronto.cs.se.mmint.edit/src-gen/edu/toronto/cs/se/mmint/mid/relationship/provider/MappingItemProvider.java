@@ -5,33 +5,29 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.relationship.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.provider.ExtendibleElementItemProvider;
-import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
-
-import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import edu.toronto.cs.se.mmint.mid.provider.ExtendibleElementItemProvider;
+import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.Mapping} object.
@@ -58,12 +54,12 @@ public class MappingItemProvider extends ExtendibleElementItemProvider {
    */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addModelElemEndpointRefsPropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
 	/**
@@ -73,9 +69,9 @@ public class MappingItemProvider extends ExtendibleElementItemProvider {
    * @generated
    */
 	protected void addModelElemEndpointRefsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_Mapping_modelElemEndpointRefs_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Mapping_modelElemEndpointRefs_feature", "_UI_Mapping_type"),
@@ -98,11 +94,11 @@ public class MappingItemProvider extends ExtendibleElementItemProvider {
    */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-    if (childrenFeatures == null) {
+    if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(RelationshipPackage.Literals.MAPPING__MODEL_ELEM_ENDPOINTS);
+      this.childrenFeatures.add(RelationshipPackage.Literals.MAPPING__MODEL_ELEM_ENDPOINTS);
     }
-    return childrenFeatures;
+    return this.childrenFeatures;
   }
 
 	/**
@@ -137,12 +133,12 @@ public class MappingItemProvider extends ExtendibleElementItemProvider {
    */
 	@Override
 	public String getText(Object object) {
-    String label = ((Mapping)object).getName();
+    var label = ((Mapping)object).getName();
     return label == null || label.length() == 0 ?
       getString("_UI_Mapping_type") :
       getString("_UI_Mapping_type") + " " + label;
   }
-	
+
 
 	/**
    * This handles model notifications by calling {@link #updateChildren} to update any cached

@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -57,7 +57,7 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
    * @generated
    * @ordered
    */
-    protected int lowerBound = LOWER_BOUND_EDEFAULT;
+    protected int lowerBound = ExtendibleElementEndpointImpl.LOWER_BOUND_EDEFAULT;
 
     /**
    * The default value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute.
@@ -77,7 +77,7 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
    * @generated
    * @ordered
    */
-    protected int upperBound = UPPER_BOUND_EDEFAULT;
+    protected int upperBound = ExtendibleElementEndpointImpl.UPPER_BOUND_EDEFAULT;
 
     /**
    * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
@@ -115,7 +115,7 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
    */
     @Override
     public int getLowerBound() {
-    return lowerBound;
+    return this.lowerBound;
   }
 
     /**
@@ -125,10 +125,11 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
    */
     @Override
     public void setLowerBound(int newLowerBound) {
-    int oldLowerBound = lowerBound;
-    lowerBound = newLowerBound;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND, oldLowerBound, lowerBound));
+    var oldLowerBound = this.lowerBound;
+    this.lowerBound = newLowerBound;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND, oldLowerBound, this.lowerBound));
+    }
   }
 
     /**
@@ -138,7 +139,7 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
    */
     @Override
     public int getUpperBound() {
-    return upperBound;
+    return this.upperBound;
   }
 
     /**
@@ -148,10 +149,11 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
    */
     @Override
     public void setUpperBound(int newUpperBound) {
-    int oldUpperBound = upperBound;
-    upperBound = newUpperBound;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND, oldUpperBound, upperBound));
+    var oldUpperBound = this.upperBound;
+    this.upperBound = newUpperBound;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND, oldUpperBound, this.upperBound));
+    }
   }
 
     /**
@@ -161,15 +163,16 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
    */
     @Override
     public ExtendibleElement getTarget() {
-    if (target != null && target.eIsProxy()) {
-      InternalEObject oldTarget = (InternalEObject)target;
-      target = (ExtendibleElement)eResolveProxy(oldTarget);
-      if (target != oldTarget) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET, oldTarget, target));
+    if (this.target != null && this.target.eIsProxy()) {
+      var oldTarget = (InternalEObject)this.target;
+      this.target = (ExtendibleElement)eResolveProxy(oldTarget);
+      if (this.target != oldTarget) {
+        if (eNotificationRequired()) {
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET, oldTarget, this.target));
+        }
       }
     }
-    return target;
+    return this.target;
   }
 
     /**
@@ -178,7 +181,7 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
    * @generated
    */
     public ExtendibleElement basicGetTarget() {
-    return target;
+    return this.target;
   }
 
     /**
@@ -188,10 +191,11 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
    */
     @Override
     public void setTarget(ExtendibleElement newTarget) {
-    ExtendibleElement oldTarget = target;
-    target = newTarget;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET, oldTarget, target));
+    var oldTarget = this.target;
+    this.target = newTarget;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET, oldTarget, this.target));
+    }
   }
 
     /**
@@ -201,7 +205,7 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
    */
     @Override
     public String getTargetUri() {
-    ExtendibleElement target = this.getTarget();
+    var target = this.getTarget();
     return (target == null) ? null : target.getUri();
   }
 
@@ -212,7 +216,7 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
    */
     @Override
     public ExtendibleElementEndpoint getMetatype() {
-    ExtendibleElement metatype = super.getMetatype();
+    var metatype = super.getMetatype();
     return (metatype == null) ? null : (ExtendibleElementEndpoint) metatype;
   }
 
@@ -223,7 +227,7 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
    */
     @Override
     public ExtendibleElementEndpoint getSupertype() {
-    ExtendibleElement supertype = super.getSupertype();
+    var supertype = super.getSupertype();
     return (supertype == null) ? null : (ExtendibleElementEndpoint) supertype;
   }
 
@@ -240,7 +244,9 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
       case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND:
         return getUpperBound();
       case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET:
-        if (resolve) return getTarget();
+        if (resolve) {
+          return getTarget();
+        }
         return basicGetTarget();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -276,10 +282,10 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
     public void eUnset(int featureID) {
     switch (featureID) {
       case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND:
-        setLowerBound(LOWER_BOUND_EDEFAULT);
+        setLowerBound(ExtendibleElementEndpointImpl.LOWER_BOUND_EDEFAULT);
         return;
       case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND:
-        setUpperBound(UPPER_BOUND_EDEFAULT);
+        setUpperBound(ExtendibleElementEndpointImpl.UPPER_BOUND_EDEFAULT);
         return;
       case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET:
         setTarget((ExtendibleElement)null);
@@ -297,11 +303,11 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__LOWER_BOUND:
-        return lowerBound != LOWER_BOUND_EDEFAULT;
+        return this.lowerBound != ExtendibleElementEndpointImpl.LOWER_BOUND_EDEFAULT;
       case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__UPPER_BOUND:
-        return upperBound != UPPER_BOUND_EDEFAULT;
+        return this.upperBound != ExtendibleElementEndpointImpl.UPPER_BOUND_EDEFAULT;
       case MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT__TARGET:
-        return target != null;
+        return this.target != null;
     }
     return super.eIsSet(featureID);
   }
@@ -314,10 +320,10 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
     if (baseClass == ExtendibleElement.class) {
-      switch (baseOperationID) {
-        case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE -> MIDPackage.EXTENDIBLE_ELEMENT_ENDPOINT___GET_METATYPE;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     return super.eDerivedOperationID(baseOperationID, baseClass);
   }
@@ -347,20 +353,22 @@ public abstract class ExtendibleElementEndpointImpl extends ExtendibleElementImp
    */
     @Override
     public String toStringGen() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (lowerBound: ");
-    result.append(lowerBound);
+    result.append(this.lowerBound);
     result.append(", upperBound: ");
-    result.append(upperBound);
+    result.append(this.upperBound);
     result.append(')');
     return result.toString();
   }
 
     /**
      * Adds the target to an instance endpoint of this type.
-     * 
+     *
      * @param newInstanceEndpoint
      *            The new instance endpoint.
      * @param targetInstance

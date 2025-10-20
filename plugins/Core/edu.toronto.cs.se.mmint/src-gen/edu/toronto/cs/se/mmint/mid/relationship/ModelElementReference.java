@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -64,6 +64,7 @@ public interface ModelElementReference extends ExtendibleElementReference {
    * @model kind="operation" required="true"
    * @generated
    */
+    @Override
     ModelElement getObject();
 
     /**
@@ -76,13 +77,14 @@ public interface ModelElementReference extends ExtendibleElementReference {
    * @model kind="operation"
    * @generated
    */
+    @Override
     ModelElementReference getSupertypeRef();
 
     /**
    * <!-- begin-user-doc -->
      * Deletes this reference to a model element type and all its subreferences
      * from the MID that contains them.
-     * 
+     *
      * @throws MMINTException
      *             If this reference to a model element is at the INSTANCES
      *             level.
@@ -96,7 +98,7 @@ public interface ModelElementReference extends ExtendibleElementReference {
    * <!-- begin-user-doc -->
      * Removes this reference to a model element from the Instance MID that
      * contains it.
-     * 
+     *
      * @throws MMINTException
      *             If this reference to a model element is at the TYPES level.
      * <!-- end-user-doc -->

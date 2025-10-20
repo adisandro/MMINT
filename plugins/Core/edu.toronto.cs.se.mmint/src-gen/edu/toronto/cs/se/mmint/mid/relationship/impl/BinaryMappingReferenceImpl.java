@@ -5,11 +5,19 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.relationship.impl;
+
+import java.lang.reflect.InvocationTargetException;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
@@ -19,17 +27,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-
-import java.lang.reflect.InvocationTargetException;
-
-import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -92,15 +89,16 @@ public class BinaryMappingReferenceImpl extends MappingReferenceImpl implements 
    */
     @Override
     public ModelElementReference getSourceModelElemRef() {
-    if (sourceModelElemRef != null && sourceModelElemRef.eIsProxy()) {
-      InternalEObject oldSourceModelElemRef = (InternalEObject)sourceModelElemRef;
-      sourceModelElemRef = (ModelElementReference)eResolveProxy(oldSourceModelElemRef);
-      if (sourceModelElemRef != oldSourceModelElemRef) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.BINARY_MAPPING_REFERENCE__SOURCE_MODEL_ELEM_REF, oldSourceModelElemRef, sourceModelElemRef));
+    if (this.sourceModelElemRef != null && this.sourceModelElemRef.eIsProxy()) {
+      var oldSourceModelElemRef = (InternalEObject)this.sourceModelElemRef;
+      this.sourceModelElemRef = (ModelElementReference)eResolveProxy(oldSourceModelElemRef);
+      if (this.sourceModelElemRef != oldSourceModelElemRef) {
+        if (eNotificationRequired()) {
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.BINARY_MAPPING_REFERENCE__SOURCE_MODEL_ELEM_REF, oldSourceModelElemRef, this.sourceModelElemRef));
+        }
       }
     }
-    return sourceModelElemRef;
+    return this.sourceModelElemRef;
   }
 
     /**
@@ -109,7 +107,7 @@ public class BinaryMappingReferenceImpl extends MappingReferenceImpl implements 
    * @generated
    */
     public ModelElementReference basicGetSourceModelElemRef() {
-    return sourceModelElemRef;
+    return this.sourceModelElemRef;
   }
 
     /**
@@ -119,10 +117,11 @@ public class BinaryMappingReferenceImpl extends MappingReferenceImpl implements 
    */
     @Override
     public void setSourceModelElemRef(ModelElementReference newSourceModelElemRef) {
-    ModelElementReference oldSourceModelElemRef = sourceModelElemRef;
-    sourceModelElemRef = newSourceModelElemRef;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.BINARY_MAPPING_REFERENCE__SOURCE_MODEL_ELEM_REF, oldSourceModelElemRef, sourceModelElemRef));
+    var oldSourceModelElemRef = this.sourceModelElemRef;
+    this.sourceModelElemRef = newSourceModelElemRef;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.BINARY_MAPPING_REFERENCE__SOURCE_MODEL_ELEM_REF, oldSourceModelElemRef, this.sourceModelElemRef));
+    }
   }
 
     /**
@@ -132,15 +131,16 @@ public class BinaryMappingReferenceImpl extends MappingReferenceImpl implements 
    */
     @Override
     public ModelElementReference getTargetModelElemRef() {
-    if (targetModelElemRef != null && targetModelElemRef.eIsProxy()) {
-      InternalEObject oldTargetModelElemRef = (InternalEObject)targetModelElemRef;
-      targetModelElemRef = (ModelElementReference)eResolveProxy(oldTargetModelElemRef);
-      if (targetModelElemRef != oldTargetModelElemRef) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.BINARY_MAPPING_REFERENCE__TARGET_MODEL_ELEM_REF, oldTargetModelElemRef, targetModelElemRef));
+    if (this.targetModelElemRef != null && this.targetModelElemRef.eIsProxy()) {
+      var oldTargetModelElemRef = (InternalEObject)this.targetModelElemRef;
+      this.targetModelElemRef = (ModelElementReference)eResolveProxy(oldTargetModelElemRef);
+      if (this.targetModelElemRef != oldTargetModelElemRef) {
+        if (eNotificationRequired()) {
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.BINARY_MAPPING_REFERENCE__TARGET_MODEL_ELEM_REF, oldTargetModelElemRef, this.targetModelElemRef));
+        }
       }
     }
-    return targetModelElemRef;
+    return this.targetModelElemRef;
   }
 
     /**
@@ -149,7 +149,7 @@ public class BinaryMappingReferenceImpl extends MappingReferenceImpl implements 
    * @generated
    */
     public ModelElementReference basicGetTargetModelElemRef() {
-    return targetModelElemRef;
+    return this.targetModelElemRef;
   }
 
     /**
@@ -159,10 +159,11 @@ public class BinaryMappingReferenceImpl extends MappingReferenceImpl implements 
    */
     @Override
     public void setTargetModelElemRef(ModelElementReference newTargetModelElemRef) {
-    ModelElementReference oldTargetModelElemRef = targetModelElemRef;
-    targetModelElemRef = newTargetModelElemRef;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.BINARY_MAPPING_REFERENCE__TARGET_MODEL_ELEM_REF, oldTargetModelElemRef, targetModelElemRef));
+    var oldTargetModelElemRef = this.targetModelElemRef;
+    this.targetModelElemRef = newTargetModelElemRef;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.BINARY_MAPPING_REFERENCE__TARGET_MODEL_ELEM_REF, oldTargetModelElemRef, this.targetModelElemRef));
+    }
   }
 
     /**
@@ -185,10 +186,14 @@ public class BinaryMappingReferenceImpl extends MappingReferenceImpl implements 
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
       case RelationshipPackage.BINARY_MAPPING_REFERENCE__SOURCE_MODEL_ELEM_REF:
-        if (resolve) return getSourceModelElemRef();
+        if (resolve) {
+          return getSourceModelElemRef();
+        }
         return basicGetSourceModelElemRef();
       case RelationshipPackage.BINARY_MAPPING_REFERENCE__TARGET_MODEL_ELEM_REF:
-        if (resolve) return getTargetModelElemRef();
+        if (resolve) {
+          return getTargetModelElemRef();
+        }
         return basicGetTargetModelElemRef();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -239,9 +244,9 @@ public class BinaryMappingReferenceImpl extends MappingReferenceImpl implements 
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case RelationshipPackage.BINARY_MAPPING_REFERENCE__SOURCE_MODEL_ELEM_REF:
-        return sourceModelElemRef != null;
+        return this.sourceModelElemRef != null;
       case RelationshipPackage.BINARY_MAPPING_REFERENCE__TARGET_MODEL_ELEM_REF:
-        return targetModelElemRef != null;
+        return this.targetModelElemRef != null;
     }
     return super.eIsSet(featureID);
   }
@@ -254,16 +259,16 @@ public class BinaryMappingReferenceImpl extends MappingReferenceImpl implements 
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
     if (baseClass == ExtendibleElementReference.class) {
-      switch (baseOperationID) {
-        case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT: return RelationshipPackage.BINARY_MAPPING_REFERENCE___GET_OBJECT;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT -> RelationshipPackage.BINARY_MAPPING_REFERENCE___GET_OBJECT;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     if (baseClass == MappingReference.class) {
-      switch (baseOperationID) {
-        case RelationshipPackage.MAPPING_REFERENCE___GET_OBJECT: return RelationshipPackage.BINARY_MAPPING_REFERENCE___GET_OBJECT;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case RelationshipPackage.MAPPING_REFERENCE___GET_OBJECT -> RelationshipPackage.BINARY_MAPPING_REFERENCE___GET_OBJECT;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     return super.eDerivedOperationID(baseOperationID, baseClass);
   }
@@ -293,6 +298,7 @@ public class BinaryMappingReferenceImpl extends MappingReferenceImpl implements 
     /**
      * @generated NOT
      */
+    @Override
     public void addModelElementTypeReference(ModelElementReference modelElemTypeRef, boolean isBinarySrc) throws MMINTException {
 
         MMINTException.mustBeType(this);

@@ -5,17 +5,17 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -30,6 +30,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 
 /**
  * This is the item provider adapter for a {@link java.util.Map.Entry} object.
@@ -63,13 +65,13 @@ public class EStringToExtendibleElementMapItemProvider
    */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addKeyPropertyDescriptor(object);
       addValuePropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
 	/**
@@ -79,9 +81,9 @@ public class EStringToExtendibleElementMapItemProvider
    * @generated
    */
 	protected void addKeyPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_EStringToExtendibleElementMap_key_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_EStringToExtendibleElementMap_key_feature", "_UI_EStringToExtendibleElementMap_type"),
@@ -101,9 +103,9 @@ public class EStringToExtendibleElementMapItemProvider
    * @generated
    */
 	protected void addValuePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_EStringToExtendibleElementMap_value_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_EStringToExtendibleElementMap_value_feature", "_UI_EStringToExtendibleElementMap_type"),
@@ -178,7 +180,7 @@ public class EStringToExtendibleElementMapItemProvider
    */
 	@Override
 	public ResourceLocator getResourceLocator() {
-    return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+    return ((IChildCreationExtender)this.adapterFactory).getResourceLocator();
   }
 
 }

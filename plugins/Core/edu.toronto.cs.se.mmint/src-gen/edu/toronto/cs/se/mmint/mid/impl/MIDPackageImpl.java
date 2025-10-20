@@ -19,11 +19,9 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.ui.IEditorPart;
@@ -213,11 +211,13 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
    * @generated
    */
     public static MIDPackage init() {
-    if (MIDPackageImpl.isInited) return (MIDPackage)EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI);
+    if (MIDPackageImpl.isInited) {
+      return (MIDPackage)EPackage.Registry.INSTANCE.getEPackage(MIDPackage.eNS_URI);
+    }
 
     // Obtain or create and register package
     var registeredMIDPackage = EPackage.Registry.INSTANCE.get(MIDPackage.eNS_URI);
-    var theMIDPackage = registeredMIDPackage instanceof MIDPackageImpl ? (MIDPackageImpl)registeredMIDPackage : new MIDPackageImpl();
+    var theMIDPackage = registeredMIDPackage instanceof MIDPackageImpl m ? m : new MIDPackageImpl();
 
     MIDPackageImpl.isInited = true;
 
@@ -1504,7 +1504,9 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
    * @generated
    */
     public void createPackageContents() {
-    if (this.isCreated) return;
+    if (this.isCreated) {
+      return;
+    }
     this.isCreated = true;
 
     // Create classes and their features
@@ -1661,7 +1663,9 @@ public class MIDPackageImpl extends EPackageImpl implements MIDPackage {
    * @generated
    */
     public void initializePackageContents() {
-    if (this.isInitialized) return;
+    if (this.isInitialized) {
+      return;
+    }
     this.isInitialized = true;
 
     // Initialize package

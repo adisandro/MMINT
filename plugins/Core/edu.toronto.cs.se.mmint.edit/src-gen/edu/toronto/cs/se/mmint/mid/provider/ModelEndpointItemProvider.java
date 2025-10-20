@@ -5,19 +5,21 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.ModelEndpoint} object.
@@ -45,11 +47,11 @@ public class ModelEndpointItemProvider
    */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
 	/**
@@ -71,7 +73,7 @@ public class ModelEndpointItemProvider
    */
 	@Override
 	public String getText(Object object) {
-    String label = ((ModelEndpoint)object).getName();
+    var label = ((ModelEndpoint)object).getName();
     return label == null || label.length() == 0 ?
       getString("_UI_ModelEndpoint_type") :
       getString("_UI_ModelEndpoint_type") + " " + label;

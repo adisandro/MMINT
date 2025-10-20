@@ -169,6 +169,7 @@ public interface Editor extends ExtendibleElement {
    * @model kind="operation" required="true"
    * @generated
    */
+    @Override
     Editor getMetatype();
 
     /**
@@ -181,6 +182,7 @@ public interface Editor extends ExtendibleElement {
    * @model kind="operation"
    * @generated
    */
+    @Override
     Editor getSupertype();
 
     /**
@@ -189,6 +191,7 @@ public interface Editor extends ExtendibleElement {
    * @model kind="operation"
    * @generated
    */
+    @Override
     MID getMIDContainer();
 
     /**

@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -131,6 +131,7 @@ public interface ExtendibleElementEndpoint extends ExtendibleElement {
    * @model kind="operation" required="true"
    * @generated
    */
+    @Override
     ExtendibleElementEndpoint getMetatype();
 
     /**
@@ -143,6 +144,7 @@ public interface ExtendibleElementEndpoint extends ExtendibleElement {
    * @model kind="operation"
    * @generated
    */
+    @Override
     ExtendibleElementEndpoint getSupertype();
 
 } // ExtendibleElementEndpoint

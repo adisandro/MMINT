@@ -112,8 +112,9 @@ public class ExtendibleElementConstraintImpl extends MinimalEObjectImpl.Containe
     public void setImplementation(String newImplementation) {
     var oldImplementation = this.implementation;
     this.implementation = newImplementation;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__IMPLEMENTATION, oldImplementation, this.implementation));
+    }
   }
 
     /**
@@ -135,8 +136,9 @@ public class ExtendibleElementConstraintImpl extends MinimalEObjectImpl.Containe
     public void setLanguage(String newLanguage) {
     var oldLanguage = this.language;
     this.language = newLanguage;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT__LANGUAGE, oldLanguage, this.language));
+    }
   }
 
     /**
@@ -214,9 +216,11 @@ public class ExtendibleElementConstraintImpl extends MinimalEObjectImpl.Containe
    */
     @Override
     public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (implementation: ");
     result.append(this.implementation);
     result.append(", language: ");

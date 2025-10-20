@@ -5,12 +5,22 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.relationship.provider;
 
+
+import java.util.Collection;
+import java.util.List;
+
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
 import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
@@ -18,14 +28,6 @@ import edu.toronto.cs.se.mmint.mid.provider.ModelItemProvider;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-import java.util.Collection;
-import java.util.List;
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.ModelRel} object.
@@ -53,11 +55,11 @@ public class ModelRelItemProvider
    */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
 	/**
@@ -70,14 +72,14 @@ public class ModelRelItemProvider
    */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-    if (childrenFeatures == null) {
+    if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINTS);
-      childrenFeatures.add(RelationshipPackage.Literals.MODEL_REL__MAPPINGS);
-      childrenFeatures.add(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINT_REFS);
-      childrenFeatures.add(RelationshipPackage.Literals.MODEL_REL__MAPPING_REFS);
+      this.childrenFeatures.add(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINTS);
+      this.childrenFeatures.add(RelationshipPackage.Literals.MODEL_REL__MAPPINGS);
+      this.childrenFeatures.add(RelationshipPackage.Literals.MODEL_REL__MODEL_ENDPOINT_REFS);
+      this.childrenFeatures.add(RelationshipPackage.Literals.MODEL_REL__MAPPING_REFS);
     }
-    return childrenFeatures;
+    return this.childrenFeatures;
   }
 
 	/**
@@ -112,7 +114,7 @@ public class ModelRelItemProvider
    */
 	@Override
 	public String getText(Object object) {
-    String label = ((ModelRel)object).getName();
+    var label = ((ModelRel)object).getName();
     return label == null || label.length() == 0 ?
       getString("_UI_ModelRel_type") :
       getString("_UI_ModelRel_type") + " " + label;

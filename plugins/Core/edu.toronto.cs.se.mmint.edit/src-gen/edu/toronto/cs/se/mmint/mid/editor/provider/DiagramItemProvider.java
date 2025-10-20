@@ -5,19 +5,21 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.editor.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+
+import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.editor.Diagram} object.
@@ -45,11 +47,11 @@ public class DiagramItemProvider
    */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
 	/**
@@ -71,7 +73,7 @@ public class DiagramItemProvider
    */
 	@Override
 	public String getText(Object object) {
-    String label = ((Diagram)object).getName();
+    var label = ((Diagram)object).getName();
     return label == null || label.length() == 0 ?
       getString("_UI_Diagram_type") :
       getString("_UI_Diagram_type") + " " + label;

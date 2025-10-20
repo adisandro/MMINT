@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -23,10 +23,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
@@ -87,10 +85,10 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
    */
     @Override
     public EList<ModelElementEndpointReference> getModelElemEndpointRefs() {
-    if (modelElemEndpointRefs == null) {
-      modelElemEndpointRefs = new EObjectWithInverseResolvingEList<ModelElementEndpointReference>(ModelElementEndpointReference.class, this, RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS, RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE__MODEL_ELEM_REF);
+    if (this.modelElemEndpointRefs == null) {
+      this.modelElemEndpointRefs = new EObjectWithInverseResolvingEList<>(ModelElementEndpointReference.class, this, RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS, RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE__MODEL_ELEM_REF);
     }
-    return modelElemEndpointRefs;
+    return this.modelElemEndpointRefs;
   }
 
     /**
@@ -100,7 +98,7 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
    */
     @Override
     public ModelElement getObject() {
-    ExtendibleElement object = super.getObject();
+    var object = super.getObject();
     return (object == null) ? null : (ModelElement) object;
   }
 
@@ -111,7 +109,7 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
    */
     @Override
     public ModelElementReference getSupertypeRef() {
-    ExtendibleElementReference supertypeRef = super.getSupertypeRef();
+    var supertypeRef = super.getSupertypeRef();
     return (supertypeRef == null) ? null : (ModelElementReference) supertypeRef;
   }
 
@@ -199,7 +197,7 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS:
-        return modelElemEndpointRefs != null && !modelElemEndpointRefs.isEmpty();
+        return this.modelElemEndpointRefs != null && !this.modelElemEndpointRefs.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -212,10 +210,10 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
     if (baseClass == ExtendibleElementReference.class) {
-      switch (baseOperationID) {
-        case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT: return RelationshipPackage.MODEL_ELEMENT_REFERENCE___GET_OBJECT;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT -> RelationshipPackage.MODEL_ELEMENT_REFERENCE___GET_OBJECT;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     return super.eDerivedOperationID(baseOperationID, baseClass);
   }
@@ -255,7 +253,7 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
     /**
      * Removes a reference to a model element type from the MID that
      * contains it.
-     * 
+     *
      * @param modelElemTypeRef
      *            The reference to be removed to a model element type.
      * @param modelTypeEndpointRef
@@ -270,18 +268,19 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
     /**
      * @generated NOT
      */
+    @Override
     public void deleteTypeReference() throws MMINTException {
 
         MMINTException.mustBeType(this);
 
-        ModelRel modelRelType = (ModelRel) eContainer().eContainer();
-        MID typeMID = modelRelType.getMIDContainer();
+        var modelRelType = (ModelRel) eContainer().eContainer();
+        var typeMID = modelRelType.getMIDContainer();
         // delete the corresponding reference
-        ModelEndpointReference modelTypeEndpointRef = (ModelEndpointReference) this.eContainer();
+        var modelTypeEndpointRef = (ModelEndpointReference) this.eContainer();
         List<BinaryMappingReference> delMappingTypeRefs = new ArrayList<>();
-        List<ModelElementEndpointReference> delModelElemTypeEndpointRefs = new ArrayList<ModelElementEndpointReference>();
+        List<ModelElementEndpointReference> delModelElemTypeEndpointRefs = new ArrayList<>();
         for (ModelElementEndpointReference modelElemTypeEndpointRef : getModelElemEndpointRefs()) {
-            MappingReference mappingTypeRef = (MappingReference) modelElemTypeEndpointRef.eContainer();
+            var mappingTypeRef = (MappingReference) modelElemTypeEndpointRef.eContainer();
             // avoid iterating over the list
             if (mappingTypeRef instanceof BinaryMappingReference) {
                 if (!delMappingTypeRefs.contains(mappingTypeRef)) {
@@ -309,9 +308,9 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
                 deleteTypeReference(modelElemSubtypeRef, modelSubtypeEndpointRef);
             }
             else {
-                boolean newModifiable = true;
+                var newModifiable = true;
                 for (ModelElementEndpointReference modelElemTypeEndpointRef : modelElemSubtypeRef.getModelElemEndpointRefs()) {
-                    MappingReference mappingSubtypeRef = (MappingReference) modelElemTypeEndpointRef.eContainer();
+                    var mappingSubtypeRef = (MappingReference) modelElemTypeEndpointRef.eContainer();
                     if (!mappingSubtypeRef.isModifiable()) {
                         newModifiable = false;
                         break;
@@ -326,14 +325,15 @@ public class ModelElementReferenceImpl extends ExtendibleElementReferenceImpl im
     /**
      * @generated NOT
      */
+    @Override
     public void deleteInstanceReference() throws MMINTException {
 
         MMINTException.mustBeInstance(this);
 
         List<MappingReference> delMappingRefs = new ArrayList<>();
-        List<ModelElementEndpointReference> delModelElemEndpointRefs = new ArrayList<ModelElementEndpointReference>();
+        List<ModelElementEndpointReference> delModelElemEndpointRefs = new ArrayList<>();
         for (ModelElementEndpointReference modelElemEndpointRef : getModelElemEndpointRefs()) {
-            MappingReference mappingRef = (MappingReference) modelElemEndpointRef.eContainer();
+            var mappingRef = (MappingReference) modelElemEndpointRef.eContainer();
             if (mappingRef instanceof BinaryMappingReference) {
                 if (!delMappingRefs.contains(mappingRef)) {
                     delMappingRefs.add(mappingRef);

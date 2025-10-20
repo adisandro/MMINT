@@ -5,20 +5,32 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.impl;
 
 import java.util.Map;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import edu.toronto.cs.se.mmint.mid.*;
+
+import edu.toronto.cs.se.mmint.mid.EMFInfo;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDLevel;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
+import edu.toronto.cs.se.mmint.mid.ModelOrigin;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +47,7 @@ public class MIDFactoryImpl extends EFactoryImpl implements MIDFactory {
    */
     public static MIDFactory init() {
     try {
-      MIDFactory theMIDFactory = (MIDFactory)EPackage.Registry.INSTANCE.getEFactory(MIDPackage.eNS_URI);
+      var theMIDFactory = (MIDFactory)EPackage.Registry.INSTANCE.getEFactory(MIDPackage.eNS_URI);
       if (theMIDFactory != null) {
         return theMIDFactory;
       }
@@ -63,17 +75,16 @@ public class MIDFactoryImpl extends EFactoryImpl implements MIDFactory {
    */
     @Override
     public EObject create(EClass eClass) {
-    switch (eClass.getClassifierID()) {
-      case MIDPackage.MID: return createMID();
-      case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP: return (EObject)createEStringToExtendibleElementMap();
-      case MIDPackage.MODEL: return createModel();
-      case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT: return createExtendibleElementConstraint();
-      case MIDPackage.MODEL_ELEMENT: return createModelElement();
-      case MIDPackage.MODEL_ENDPOINT: return createModelEndpoint();
-      case MIDPackage.EMF_INFO: return createEMFInfo();
-      default:
-        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-    }
+    return switch (eClass.getClassifierID()) {
+    case MIDPackage.MID -> createMID();
+    case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP -> (EObject)createEStringToExtendibleElementMap();
+    case MIDPackage.MODEL -> createModel();
+    case MIDPackage.EXTENDIBLE_ELEMENT_CONSTRAINT -> createExtendibleElementConstraint();
+    case MIDPackage.MODEL_ELEMENT -> createModelElement();
+    case MIDPackage.MODEL_ENDPOINT -> createModelEndpoint();
+    case MIDPackage.EMF_INFO -> createEMFInfo();
+    default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    };
   }
 
     /**
@@ -83,14 +94,11 @@ public class MIDFactoryImpl extends EFactoryImpl implements MIDFactory {
    */
     @Override
     public Object createFromString(EDataType eDataType, String initialValue) {
-    switch (eDataType.getClassifierID()) {
-      case MIDPackage.MID_LEVEL:
-        return createMIDLevelFromString(eDataType, initialValue);
-      case MIDPackage.MODEL_ORIGIN:
-        return createModelOriginFromString(eDataType, initialValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-    }
+    return switch (eDataType.getClassifierID()) {
+    case MIDPackage.MID_LEVEL -> createMIDLevelFromString(eDataType, initialValue);
+    case MIDPackage.MODEL_ORIGIN -> createModelOriginFromString(eDataType, initialValue);
+    default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    };
   }
 
     /**
@@ -100,14 +108,11 @@ public class MIDFactoryImpl extends EFactoryImpl implements MIDFactory {
    */
     @Override
     public String convertToString(EDataType eDataType, Object instanceValue) {
-    switch (eDataType.getClassifierID()) {
-      case MIDPackage.MID_LEVEL:
-        return convertMIDLevelToString(eDataType, instanceValue);
-      case MIDPackage.MODEL_ORIGIN:
-        return convertModelOriginToString(eDataType, instanceValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-    }
+    return switch (eDataType.getClassifierID()) {
+    case MIDPackage.MID_LEVEL -> convertMIDLevelToString(eDataType, instanceValue);
+    case MIDPackage.MODEL_ORIGIN -> convertModelOriginToString(eDataType, instanceValue);
+    default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    };
   }
 
     /**
@@ -192,8 +197,10 @@ public class MIDFactoryImpl extends EFactoryImpl implements MIDFactory {
    * @generated
    */
     public MIDLevel createMIDLevelFromString(EDataType eDataType, String initialValue) {
-    MIDLevel result = MIDLevel.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    var result = MIDLevel.get(initialValue);
+    if (result == null) {
+      throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    }
     return result;
   }
 
@@ -212,8 +219,10 @@ public class MIDFactoryImpl extends EFactoryImpl implements MIDFactory {
    * @generated
    */
     public ModelOrigin createModelOriginFromString(EDataType eDataType, String initialValue) {
-    ModelOrigin result = ModelOrigin.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    var result = ModelOrigin.get(initialValue);
+    if (result == null) {
+      throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    }
     return result;
   }
 

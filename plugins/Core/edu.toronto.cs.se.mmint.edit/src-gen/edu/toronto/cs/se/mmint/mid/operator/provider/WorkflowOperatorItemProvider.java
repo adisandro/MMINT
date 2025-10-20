@@ -5,15 +5,12 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.operator.provider;
 
-
-import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 
 import java.util.Collection;
 import java.util.List;
@@ -21,6 +18,9 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.operator.WorkflowOperator} object.
@@ -47,11 +47,11 @@ public class WorkflowOperatorItemProvider extends NestingOperatorItemProvider {
    */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
 	/**
@@ -73,12 +73,12 @@ public class WorkflowOperatorItemProvider extends NestingOperatorItemProvider {
    */
 	@Override
 	public String getText(Object object) {
-    String label = ((WorkflowOperator)object).getName();
+    var label = ((WorkflowOperator)object).getName();
     return label == null || label.length() == 0 ?
       getString("_UI_WorkflowOperator_type") :
       getString("_UI_WorkflowOperator_type") + " " + label;
   }
-	
+
 
 	/**
    * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -113,10 +113,10 @@ public class WorkflowOperatorItemProvider extends NestingOperatorItemProvider {
    */
 	@Override
 	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-    Object childFeature = feature;
-    Object childObject = child;
+    var childFeature = feature;
+    var childObject = child;
 
-    boolean qualify =
+    var qualify =
       childFeature == OperatorPackage.Literals.OPERATOR__INPUTS ||
       childFeature == OperatorPackage.Literals.OPERATOR__OUTPUTS;
 

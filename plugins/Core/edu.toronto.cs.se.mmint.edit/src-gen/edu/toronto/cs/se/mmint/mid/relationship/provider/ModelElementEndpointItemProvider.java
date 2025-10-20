@@ -5,22 +5,24 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.relationship.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.provider.ExtendibleElementEndpointItemProvider;
-import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
-import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+
+import edu.toronto.cs.se.mmint.mid.provider.ExtendibleElementEndpointItemProvider;
+import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint} object.
@@ -48,11 +50,11 @@ public class ModelElementEndpointItemProvider
    */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
 	/**
@@ -74,7 +76,7 @@ public class ModelElementEndpointItemProvider
    */
 	@Override
 	public String getText(Object object) {
-    String label = ((ModelElementEndpoint)object).getName();
+    var label = ((ModelElementEndpoint)object).getName();
     return label == null || label.length() == 0 ?
       getString("_UI_ModelElementEndpoint_type") :
       getString("_UI_ModelElementEndpoint_type") + " " + label;

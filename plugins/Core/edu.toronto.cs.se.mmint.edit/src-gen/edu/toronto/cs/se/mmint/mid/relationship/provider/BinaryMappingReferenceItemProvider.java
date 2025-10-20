@@ -5,24 +5,23 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.relationship.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference} object.
@@ -49,13 +48,13 @@ public class BinaryMappingReferenceItemProvider extends MappingReferenceItemProv
    */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addSourceModelElemRefPropertyDescriptor(object);
       addTargetModelElemRefPropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
 	/**
@@ -65,9 +64,9 @@ public class BinaryMappingReferenceItemProvider extends MappingReferenceItemProv
    * @generated
    */
 	protected void addSourceModelElemRefPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_BinaryMappingReference_sourceModelElemRef_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_BinaryMappingReference_sourceModelElemRef_feature", "_UI_BinaryMappingReference_type"),
@@ -87,9 +86,9 @@ public class BinaryMappingReferenceItemProvider extends MappingReferenceItemProv
    * @generated
    */
 	protected void addTargetModelElemRefPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_BinaryMappingReference_targetModelElemRef_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_BinaryMappingReference_targetModelElemRef_feature", "_UI_BinaryMappingReference_type"),
@@ -121,10 +120,10 @@ public class BinaryMappingReferenceItemProvider extends MappingReferenceItemProv
    */
 	@Override
 	public String getText(Object object) {
-    BinaryMappingReference binaryMappingReference = (BinaryMappingReference)object;
+    var binaryMappingReference = (BinaryMappingReference)object;
     return getString("_UI_BinaryMappingReference_type") + " " + binaryMappingReference.isModifiable();
   }
-	
+
 
 	/**
    * This handles model notifications by calling {@link #updateChildren} to update any cached

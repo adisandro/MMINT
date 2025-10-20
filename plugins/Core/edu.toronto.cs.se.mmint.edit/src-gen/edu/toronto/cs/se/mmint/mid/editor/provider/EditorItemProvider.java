@@ -5,19 +5,16 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.editor.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.editor.Editor;
-import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
-import edu.toronto.cs.se.mmint.mid.provider.ExtendibleElementItemProvider;
-import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -25,6 +22,11 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import edu.toronto.cs.se.mmint.mid.editor.Editor;
+import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
+import edu.toronto.cs.se.mmint.mid.provider.ExtendibleElementItemProvider;
+import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.editor.Editor} object.
@@ -52,7 +54,7 @@ public class EditorItemProvider
    */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addModelUriPropertyDescriptor(object);
@@ -61,7 +63,7 @@ public class EditorItemProvider
       addFileExtensionsPropertyDescriptor(object);
       addWizardDialogClassPropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
 	/**
@@ -71,9 +73,9 @@ public class EditorItemProvider
    * @generated
    */
 	protected void addModelUriPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_Editor_modelUri_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Editor_modelUri_feature", "_UI_Editor_type"),
@@ -93,9 +95,9 @@ public class EditorItemProvider
    * @generated
    */
 	protected void addIdPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_Editor_id_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Editor_id_feature", "_UI_Editor_type"),
@@ -115,9 +117,9 @@ public class EditorItemProvider
    * @generated
    */
 	protected void addWizardIdPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_Editor_wizardId_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Editor_wizardId_feature", "_UI_Editor_type"),
@@ -137,9 +139,9 @@ public class EditorItemProvider
    * @generated
    */
 	protected void addFileExtensionsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_Editor_fileExtensions_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Editor_fileExtensions_feature", "_UI_Editor_type"),
@@ -159,9 +161,9 @@ public class EditorItemProvider
    * @generated
    */
 	protected void addWizardDialogClassPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_Editor_wizardDialogClass_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Editor_wizardDialogClass_feature", "_UI_Editor_type"),
@@ -193,7 +195,7 @@ public class EditorItemProvider
    */
 	@Override
 	public String getText(Object object) {
-    String label = ((Editor)object).getName();
+    var label = ((Editor)object).getName();
     return label == null || label.length() == 0 ?
       getString("_UI_Editor_type") :
       getString("_UI_Editor_type") + " " + label;

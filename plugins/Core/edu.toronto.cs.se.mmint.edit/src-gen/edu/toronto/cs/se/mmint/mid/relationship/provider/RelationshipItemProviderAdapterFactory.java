@@ -5,13 +5,11 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.relationship.provider;
-
-import edu.toronto.cs.se.mmint.mid.relationship.util.RelationshipAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,6 +28,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
+import edu.toronto.cs.se.mmint.mid.relationship.util.RelationshipAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -63,7 +63,7 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
 	 * <!-- end-user-doc -->
    * @generated
    */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+	protected Collection<Object> supportedTypes = new ArrayList<>();
 
 	/**
    * This constructs an instance.
@@ -72,11 +72,11 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
    * @generated
    */
 	public RelationshipItemProviderAdapterFactory() {
-    supportedTypes.add(IEditingDomainItemProvider.class);
-    supportedTypes.add(IStructuredItemContentProvider.class);
-    supportedTypes.add(ITreeItemContentProvider.class);
-    supportedTypes.add(IItemLabelProvider.class);
-    supportedTypes.add(IItemPropertySource.class);
+    this.supportedTypes.add(IEditingDomainItemProvider.class);
+    this.supportedTypes.add(IStructuredItemContentProvider.class);
+    this.supportedTypes.add(ITreeItemContentProvider.class);
+    this.supportedTypes.add(IItemLabelProvider.class);
+    this.supportedTypes.add(IItemPropertySource.class);
   }
 
 	/**
@@ -95,11 +95,11 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
    */
 	@Override
 	public Adapter createModelRelAdapter() {
-    if (modelRelItemProvider == null) {
-      modelRelItemProvider = new ModelRelItemProvider(this);
+    if (this.modelRelItemProvider == null) {
+      this.modelRelItemProvider = new ModelRelItemProvider(this);
     }
 
-    return modelRelItemProvider;
+    return this.modelRelItemProvider;
   }
 
 	/**
@@ -118,11 +118,11 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
    */
 	@Override
 	public Adapter createBinaryModelRelAdapter() {
-    if (binaryModelRelItemProvider == null) {
-      binaryModelRelItemProvider = new BinaryModelRelItemProvider(this);
+    if (this.binaryModelRelItemProvider == null) {
+      this.binaryModelRelItemProvider = new BinaryModelRelItemProvider(this);
     }
 
-    return binaryModelRelItemProvider;
+    return this.binaryModelRelItemProvider;
   }
 
 	/**
@@ -141,11 +141,11 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
    */
 	@Override
 	public Adapter createModelEndpointReferenceAdapter() {
-    if (modelEndpointReferenceItemProvider == null) {
-      modelEndpointReferenceItemProvider = new ModelEndpointReferenceItemProvider(this);
+    if (this.modelEndpointReferenceItemProvider == null) {
+      this.modelEndpointReferenceItemProvider = new ModelEndpointReferenceItemProvider(this);
     }
 
-    return modelEndpointReferenceItemProvider;
+    return this.modelEndpointReferenceItemProvider;
   }
 
 	/**
@@ -164,11 +164,11 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
    */
 	@Override
 	public Adapter createModelElementReferenceAdapter() {
-    if (modelElementReferenceItemProvider == null) {
-      modelElementReferenceItemProvider = new ModelElementReferenceItemProvider(this);
+    if (this.modelElementReferenceItemProvider == null) {
+      this.modelElementReferenceItemProvider = new ModelElementReferenceItemProvider(this);
     }
 
-    return modelElementReferenceItemProvider;
+    return this.modelElementReferenceItemProvider;
   }
 
 	/**
@@ -187,11 +187,11 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
    */
 	@Override
 	public Adapter createMappingAdapter() {
-    if (mappingItemProvider == null) {
-      mappingItemProvider = new MappingItemProvider(this);
+    if (this.mappingItemProvider == null) {
+      this.mappingItemProvider = new MappingItemProvider(this);
     }
 
-    return mappingItemProvider;
+    return this.mappingItemProvider;
   }
 
 	/**
@@ -210,11 +210,11 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
    */
 	@Override
 	public Adapter createBinaryMappingAdapter() {
-    if (binaryMappingItemProvider == null) {
-      binaryMappingItemProvider = new BinaryMappingItemProvider(this);
+    if (this.binaryMappingItemProvider == null) {
+      this.binaryMappingItemProvider = new BinaryMappingItemProvider(this);
     }
 
-    return binaryMappingItemProvider;
+    return this.binaryMappingItemProvider;
   }
 
 	/**
@@ -233,11 +233,11 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
    */
 	@Override
 	public Adapter createModelElementEndpointAdapter() {
-    if (modelElementEndpointItemProvider == null) {
-      modelElementEndpointItemProvider = new ModelElementEndpointItemProvider(this);
+    if (this.modelElementEndpointItemProvider == null) {
+      this.modelElementEndpointItemProvider = new ModelElementEndpointItemProvider(this);
     }
 
-    return modelElementEndpointItemProvider;
+    return this.modelElementEndpointItemProvider;
   }
 
 	/**
@@ -256,11 +256,11 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
    */
 	@Override
 	public Adapter createMappingReferenceAdapter() {
-    if (mappingReferenceItemProvider == null) {
-      mappingReferenceItemProvider = new MappingReferenceItemProvider(this);
+    if (this.mappingReferenceItemProvider == null) {
+      this.mappingReferenceItemProvider = new MappingReferenceItemProvider(this);
     }
 
-    return mappingReferenceItemProvider;
+    return this.mappingReferenceItemProvider;
   }
 
 	/**
@@ -279,11 +279,11 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
    */
 	@Override
 	public Adapter createBinaryMappingReferenceAdapter() {
-    if (binaryMappingReferenceItemProvider == null) {
-      binaryMappingReferenceItemProvider = new BinaryMappingReferenceItemProvider(this);
+    if (this.binaryMappingReferenceItemProvider == null) {
+      this.binaryMappingReferenceItemProvider = new BinaryMappingReferenceItemProvider(this);
     }
 
-    return binaryMappingReferenceItemProvider;
+    return this.binaryMappingReferenceItemProvider;
   }
 
 	/**
@@ -302,11 +302,11 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
    */
 	@Override
 	public Adapter createModelElementEndpointReferenceAdapter() {
-    if (modelElementEndpointReferenceItemProvider == null) {
-      modelElementEndpointReferenceItemProvider = new ModelElementEndpointReferenceItemProvider(this);
+    if (this.modelElementEndpointReferenceItemProvider == null) {
+      this.modelElementEndpointReferenceItemProvider = new ModelElementEndpointReferenceItemProvider(this);
     }
 
-    return modelElementEndpointReferenceItemProvider;
+    return this.modelElementEndpointReferenceItemProvider;
   }
 
 	/**
@@ -317,7 +317,7 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
    */
 	@Override
   public ComposeableAdapterFactory getRootAdapterFactory() {
-    return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+    return this.parentAdapterFactory == null ? this : this.parentAdapterFactory.getRootAdapterFactory();
   }
 
 	/**
@@ -338,7 +338,7 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
    */
 	@Override
 	public boolean isFactoryForType(Object type) {
-    return supportedTypes.contains(type) || super.isFactoryForType(type);
+    return this.supportedTypes.contains(type) || super.isFactoryForType(type);
   }
 
 	/**
@@ -360,7 +360,7 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
 	@Override
 	public Object adapt(Object object, Object type) {
     if (isFactoryForType(type)) {
-      Object adapter = super.adapt(object, type);
+      var adapter = super.adapt(object, type);
       if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
         return adapter;
       }
@@ -377,7 +377,7 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
    */
 	@Override
   public void addListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.addListener(notifyChangedListener);
+    this.changeNotifier.addListener(notifyChangedListener);
   }
 
 	/**
@@ -388,7 +388,7 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
    */
 	@Override
   public void removeListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.removeListener(notifyChangedListener);
+    this.changeNotifier.removeListener(notifyChangedListener);
   }
 
 	/**
@@ -399,31 +399,51 @@ public class RelationshipItemProviderAdapterFactory extends RelationshipAdapterF
    */
 	@Override
   public void fireNotifyChanged(Notification notification) {
-    changeNotifier.fireNotifyChanged(notification);
+    this.changeNotifier.fireNotifyChanged(notification);
 
-    if (parentAdapterFactory != null) {
-      parentAdapterFactory.fireNotifyChanged(notification);
+    if (this.parentAdapterFactory != null) {
+      this.parentAdapterFactory.fireNotifyChanged(notification);
     }
   }
 
 	/**
-   * This disposes all of the item providers created by this factory. 
+   * This disposes all of the item providers created by this factory.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
 	@Override
   public void dispose() {
-    if (modelRelItemProvider != null) modelRelItemProvider.dispose();
-    if (binaryModelRelItemProvider != null) binaryModelRelItemProvider.dispose();
-    if (modelEndpointReferenceItemProvider != null) modelEndpointReferenceItemProvider.dispose();
-    if (modelElementReferenceItemProvider != null) modelElementReferenceItemProvider.dispose();
-    if (mappingItemProvider != null) mappingItemProvider.dispose();
-    if (binaryMappingItemProvider != null) binaryMappingItemProvider.dispose();
-    if (modelElementEndpointItemProvider != null) modelElementEndpointItemProvider.dispose();
-    if (mappingReferenceItemProvider != null) mappingReferenceItemProvider.dispose();
-    if (binaryMappingReferenceItemProvider != null) binaryMappingReferenceItemProvider.dispose();
-    if (modelElementEndpointReferenceItemProvider != null) modelElementEndpointReferenceItemProvider.dispose();
+    if (this.modelRelItemProvider != null) {
+      this.modelRelItemProvider.dispose();
+    }
+    if (this.binaryModelRelItemProvider != null) {
+      this.binaryModelRelItemProvider.dispose();
+    }
+    if (this.modelEndpointReferenceItemProvider != null) {
+      this.modelEndpointReferenceItemProvider.dispose();
+    }
+    if (this.modelElementReferenceItemProvider != null) {
+      this.modelElementReferenceItemProvider.dispose();
+    }
+    if (this.mappingItemProvider != null) {
+      this.mappingItemProvider.dispose();
+    }
+    if (this.binaryMappingItemProvider != null) {
+      this.binaryMappingItemProvider.dispose();
+    }
+    if (this.modelElementEndpointItemProvider != null) {
+      this.modelElementEndpointItemProvider.dispose();
+    }
+    if (this.mappingReferenceItemProvider != null) {
+      this.mappingReferenceItemProvider.dispose();
+    }
+    if (this.binaryMappingReferenceItemProvider != null) {
+      this.binaryMappingReferenceItemProvider.dispose();
+    }
+    if (this.modelElementEndpointReferenceItemProvider != null) {
+      this.modelElementEndpointReferenceItemProvider.dispose();
+    }
   }
 
 }

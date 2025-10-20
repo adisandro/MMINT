@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -84,15 +84,16 @@ public class BinaryModelRelImpl extends ModelRelImpl implements BinaryModelRel {
    */
     @Override
     public Model getSourceModel() {
-    if (sourceModel != null && sourceModel.eIsProxy()) {
-      InternalEObject oldSourceModel = (InternalEObject)sourceModel;
-      sourceModel = (Model)eResolveProxy(oldSourceModel);
-      if (sourceModel != oldSourceModel) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL, oldSourceModel, sourceModel));
+    if (this.sourceModel != null && this.sourceModel.eIsProxy()) {
+      var oldSourceModel = (InternalEObject)this.sourceModel;
+      this.sourceModel = (Model)eResolveProxy(oldSourceModel);
+      if (this.sourceModel != oldSourceModel) {
+        if (eNotificationRequired()) {
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL, oldSourceModel, this.sourceModel));
+        }
       }
     }
-    return sourceModel;
+    return this.sourceModel;
   }
 
     /**
@@ -101,7 +102,7 @@ public class BinaryModelRelImpl extends ModelRelImpl implements BinaryModelRel {
    * @generated
    */
     public Model basicGetSourceModel() {
-    return sourceModel;
+    return this.sourceModel;
   }
 
     /**
@@ -111,10 +112,11 @@ public class BinaryModelRelImpl extends ModelRelImpl implements BinaryModelRel {
    */
     @Override
     public void setSourceModel(Model newSourceModel) {
-    Model oldSourceModel = sourceModel;
-    sourceModel = newSourceModel;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL, oldSourceModel, sourceModel));
+    var oldSourceModel = this.sourceModel;
+    this.sourceModel = newSourceModel;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL, oldSourceModel, this.sourceModel));
+    }
   }
 
     /**
@@ -124,15 +126,16 @@ public class BinaryModelRelImpl extends ModelRelImpl implements BinaryModelRel {
    */
     @Override
     public Model getTargetModel() {
-    if (targetModel != null && targetModel.eIsProxy()) {
-      InternalEObject oldTargetModel = (InternalEObject)targetModel;
-      targetModel = (Model)eResolveProxy(oldTargetModel);
-      if (targetModel != oldTargetModel) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL, oldTargetModel, targetModel));
+    if (this.targetModel != null && this.targetModel.eIsProxy()) {
+      var oldTargetModel = (InternalEObject)this.targetModel;
+      this.targetModel = (Model)eResolveProxy(oldTargetModel);
+      if (this.targetModel != oldTargetModel) {
+        if (eNotificationRequired()) {
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL, oldTargetModel, this.targetModel));
+        }
       }
     }
-    return targetModel;
+    return this.targetModel;
   }
 
     /**
@@ -141,7 +144,7 @@ public class BinaryModelRelImpl extends ModelRelImpl implements BinaryModelRel {
    * @generated
    */
     public Model basicGetTargetModel() {
-    return targetModel;
+    return this.targetModel;
   }
 
     /**
@@ -151,10 +154,11 @@ public class BinaryModelRelImpl extends ModelRelImpl implements BinaryModelRel {
    */
     @Override
     public void setTargetModel(Model newTargetModel) {
-    Model oldTargetModel = targetModel;
-    targetModel = newTargetModel;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL, oldTargetModel, targetModel));
+    var oldTargetModel = this.targetModel;
+    this.targetModel = newTargetModel;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL, oldTargetModel, this.targetModel));
+    }
   }
 
     /**
@@ -166,10 +170,14 @@ public class BinaryModelRelImpl extends ModelRelImpl implements BinaryModelRel {
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
       case RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL:
-        if (resolve) return getSourceModel();
+        if (resolve) {
+          return getSourceModel();
+        }
         return basicGetSourceModel();
       case RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL:
-        if (resolve) return getTargetModel();
+        if (resolve) {
+          return getTargetModel();
+        }
         return basicGetTargetModel();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -220,9 +228,9 @@ public class BinaryModelRelImpl extends ModelRelImpl implements BinaryModelRel {
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case RelationshipPackage.BINARY_MODEL_REL__SOURCE_MODEL:
-        return sourceModel != null;
+        return this.sourceModel != null;
       case RelationshipPackage.BINARY_MODEL_REL__TARGET_MODEL:
-        return targetModel != null;
+        return this.targetModel != null;
     }
     return super.eIsSet(featureID);
   }
@@ -250,9 +258,10 @@ public class BinaryModelRelImpl extends ModelRelImpl implements BinaryModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public String toString() {
 
-        String ret = this.getName() + "(";
+        var ret = this.getName() + "(";
         if (this.getSourceModel() != null) {
             ret += this.getSourceModel().getName();
         }
@@ -268,6 +277,7 @@ public class BinaryModelRelImpl extends ModelRelImpl implements BinaryModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public void addModelType(Model modelType, boolean isBinarySrc) throws MMINTException {
 
         MMINTException.mustBeType(this);

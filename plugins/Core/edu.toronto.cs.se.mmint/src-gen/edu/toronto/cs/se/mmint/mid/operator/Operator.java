@@ -215,7 +215,7 @@ public interface Operator extends GenericElement {
      * @return The operator signature.
      * @throws MMINTException
      *             If this is not an operator type. <!-- end-user-doc -->
-   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsMany="true"
+   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsDataType="edu.toronto.cs.se.mmint.mid.operator.OperatorInput" inputsMany="true"
    * @generated
    */
     String getTypeSignature(EList<OperatorInput> inputs) throws MMINTException;
@@ -285,7 +285,7 @@ public interface Operator extends GenericElement {
      * @return An input to the operator, including necessary conversions.
      * @throws MMINTException
      *             If this is not an operator type. <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputMIDsMany="true" inputModelBlacklistsDataType="edu.toronto.cs.se.mmint.mid.operator.Set&lt;edu.toronto.cs.se.mmint.mid.Model&gt;" inputModelBlacklistsMany="true"
+   * @model dataType="edu.toronto.cs.se.mmint.mid.operator.OperatorInput" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputMIDsMany="true" inputModelBlacklistsDataType="edu.toronto.cs.se.mmint.mid.operator.Set&lt;edu.toronto.cs.se.mmint.mid.Model&gt;" inputModelBlacklistsMany="true"
    * @generated
    */
     EList<OperatorInput> findFirstAllowedInput(EList<MID> inputMIDs, EList<Set<Model>> inputModelBlacklists) throws MMINTException;
@@ -300,7 +300,7 @@ public interface Operator extends GenericElement {
      *         used.
      * @throws MMINTException
      *             If this is not an operator type. <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputModelsMany="true"
+   * @model dataType="edu.toronto.cs.se.mmint.mid.operator.OperatorInput" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputModelsMany="true"
    * @generated
    */
     EList<OperatorInput> checkAllowedInputs(EList<Model> inputModels) throws MMINTException;
@@ -359,7 +359,7 @@ public interface Operator extends GenericElement {
      * @throws MMINTException
      *             If this is not an operator type, or if a required generic has not been selected.
      *             <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsMany="true"
+   * @model dataType="edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsDataType="edu.toronto.cs.se.mmint.mid.operator.OperatorInput" inputsMany="true"
    * @generated
    */
     EList<OperatorGeneric> selectAllowedGenerics(EList<OperatorInput> inputs) throws MMINTException;
@@ -383,7 +383,7 @@ public interface Operator extends GenericElement {
      * @throws MMINTException
      *             If any required property is not available, or if a property is not in its intended format.
      *             <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputPropertiesDataType="edu.toronto.cs.se.mmint.mid.operator.Properties" inputPropertiesRequired="true"
+   * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputPropertiesDataType="edu.toronto.cs.se.mmint.mid.operator.Properties" inputPropertiesRequired="true" inputsByNameRequired="true"
    * @generated
    */
     void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException;
@@ -427,7 +427,7 @@ public interface Operator extends GenericElement {
      * @throws Exception
      *             If this is not an operator type, or if something went wrong starting the operator.
      *             <!-- end-user-doc -->
-   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsMany="true" inputPropertiesDataType="edu.toronto.cs.se.mmint.mid.operator.Properties" genericsMany="true" outputMIDsByNameRequired="true"
+   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inputsDataType="edu.toronto.cs.se.mmint.mid.operator.OperatorInput" inputsMany="true" inputPropertiesDataType="edu.toronto.cs.se.mmint.mid.operator.Properties" genericsDataType="edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric" genericsMany="true" outputMIDsByNameRequired="true"
    * @generated
    */
     Operator startInstance(EList<OperatorInput> inputs, Properties inputProperties, EList<OperatorGeneric> generics, Map<String, MID> outputMIDsByName, MID instanceMID) throws Exception;
@@ -441,6 +441,14 @@ public interface Operator extends GenericElement {
    * @generated
    */
     void openInstance() throws Exception;
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inIndexRequired="true" outIndexRequired="true" inputsByNameRequired="true" outputMIDsByNameRequired="true"
+   * @generated
+   */
+  Map<String, Model> outputFromInput(int inIndex, int outIndex, Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception;
 
     /**
    * <!-- begin-user-doc --> Creates and possibly adds an operator instance of this operator type to a Workflow MID.
@@ -497,7 +505,7 @@ public interface Operator extends GenericElement {
      * @return The created operator instance.
      * @throws MMINTException
      *             If this is not an operator type. <!-- end-user-doc -->
-   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsMany="true" genericsMany="true"
+   * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputsDataType="edu.toronto.cs.se.mmint.mid.operator.OperatorInput" inputsMany="true" genericsDataType="edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric" genericsMany="true"
    * @generated
    */
     Operator startWorkflowInstance(EList<OperatorInput> inputs, EList<OperatorGeneric> generics, MID workflowMID) throws MMINTException;

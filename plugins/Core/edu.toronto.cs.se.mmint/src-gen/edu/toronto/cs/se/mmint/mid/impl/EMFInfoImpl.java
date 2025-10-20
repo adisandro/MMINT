@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.mid.EMFInfo;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 
@@ -58,7 +58,7 @@ public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo
    * @generated
    * @ordered
    */
-    protected String className = CLASS_NAME_EDEFAULT;
+    protected String className = EMFInfoImpl.CLASS_NAME_EDEFAULT;
 
     /**
    * The default value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute.
@@ -78,7 +78,7 @@ public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo
    * @generated
    * @ordered
    */
-    protected String featureName = FEATURE_NAME_EDEFAULT;
+    protected String featureName = EMFInfoImpl.FEATURE_NAME_EDEFAULT;
 
     /**
    * The default value of the '{@link #isAttribute() <em>Attribute</em>}' attribute.
@@ -98,7 +98,7 @@ public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo
    * @generated
    * @ordered
    */
-    protected boolean attribute = ATTRIBUTE_EDEFAULT;
+    protected boolean attribute = EMFInfoImpl.ATTRIBUTE_EDEFAULT;
 
     /**
    * The default value of the '{@link #getRelatedClassName() <em>Related Class Name</em>}' attribute.
@@ -118,7 +118,7 @@ public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo
    * @generated
    * @ordered
    */
-    protected String relatedClassName = RELATED_CLASS_NAME_EDEFAULT;
+    protected String relatedClassName = EMFInfoImpl.RELATED_CLASS_NAME_EDEFAULT;
 
     /**
    * <!-- begin-user-doc -->
@@ -146,7 +146,7 @@ public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo
    */
     @Override
     public String getClassName() {
-    return className;
+    return this.className;
   }
 
     /**
@@ -156,10 +156,11 @@ public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo
    */
     @Override
     public void setClassName(String newClassName) {
-    String oldClassName = className;
-    className = newClassName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EMF_INFO__CLASS_NAME, oldClassName, className));
+    var oldClassName = this.className;
+    this.className = newClassName;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EMF_INFO__CLASS_NAME, oldClassName, this.className));
+    }
   }
 
     /**
@@ -169,7 +170,7 @@ public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo
    */
     @Override
     public String getFeatureName() {
-    return featureName;
+    return this.featureName;
   }
 
     /**
@@ -179,10 +180,11 @@ public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo
    */
     @Override
     public void setFeatureName(String newFeatureName) {
-    String oldFeatureName = featureName;
-    featureName = newFeatureName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EMF_INFO__FEATURE_NAME, oldFeatureName, featureName));
+    var oldFeatureName = this.featureName;
+    this.featureName = newFeatureName;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EMF_INFO__FEATURE_NAME, oldFeatureName, this.featureName));
+    }
   }
 
     /**
@@ -192,7 +194,7 @@ public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo
    */
     @Override
     public boolean isAttribute() {
-    return attribute;
+    return this.attribute;
   }
 
     /**
@@ -202,10 +204,11 @@ public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo
    */
     @Override
     public void setAttribute(boolean newAttribute) {
-    boolean oldAttribute = attribute;
-    attribute = newAttribute;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EMF_INFO__ATTRIBUTE, oldAttribute, attribute));
+    var oldAttribute = this.attribute;
+    this.attribute = newAttribute;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EMF_INFO__ATTRIBUTE, oldAttribute, this.attribute));
+    }
   }
 
     /**
@@ -215,7 +218,7 @@ public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo
    */
     @Override
     public String getRelatedClassName() {
-    return relatedClassName;
+    return this.relatedClassName;
   }
 
     /**
@@ -225,10 +228,11 @@ public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo
    */
     @Override
     public void setRelatedClassName(String newRelatedClassName) {
-    String oldRelatedClassName = relatedClassName;
-    relatedClassName = newRelatedClassName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EMF_INFO__RELATED_CLASS_NAME, oldRelatedClassName, relatedClassName));
+    var oldRelatedClassName = this.relatedClassName;
+    this.relatedClassName = newRelatedClassName;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.EMF_INFO__RELATED_CLASS_NAME, oldRelatedClassName, this.relatedClassName));
+    }
   }
 
     /**
@@ -284,16 +288,16 @@ public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo
     public void eUnset(int featureID) {
     switch (featureID) {
       case MIDPackage.EMF_INFO__CLASS_NAME:
-        setClassName(CLASS_NAME_EDEFAULT);
+        setClassName(EMFInfoImpl.CLASS_NAME_EDEFAULT);
         return;
       case MIDPackage.EMF_INFO__FEATURE_NAME:
-        setFeatureName(FEATURE_NAME_EDEFAULT);
+        setFeatureName(EMFInfoImpl.FEATURE_NAME_EDEFAULT);
         return;
       case MIDPackage.EMF_INFO__ATTRIBUTE:
-        setAttribute(ATTRIBUTE_EDEFAULT);
+        setAttribute(EMFInfoImpl.ATTRIBUTE_EDEFAULT);
         return;
       case MIDPackage.EMF_INFO__RELATED_CLASS_NAME:
-        setRelatedClassName(RELATED_CLASS_NAME_EDEFAULT);
+        setRelatedClassName(EMFInfoImpl.RELATED_CLASS_NAME_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -308,13 +312,13 @@ public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case MIDPackage.EMF_INFO__CLASS_NAME:
-        return CLASS_NAME_EDEFAULT == null ? className != null : !CLASS_NAME_EDEFAULT.equals(className);
+        return EMFInfoImpl.CLASS_NAME_EDEFAULT == null ? this.className != null : !EMFInfoImpl.CLASS_NAME_EDEFAULT.equals(this.className);
       case MIDPackage.EMF_INFO__FEATURE_NAME:
-        return FEATURE_NAME_EDEFAULT == null ? featureName != null : !FEATURE_NAME_EDEFAULT.equals(featureName);
+        return EMFInfoImpl.FEATURE_NAME_EDEFAULT == null ? this.featureName != null : !EMFInfoImpl.FEATURE_NAME_EDEFAULT.equals(this.featureName);
       case MIDPackage.EMF_INFO__ATTRIBUTE:
-        return attribute != ATTRIBUTE_EDEFAULT;
+        return this.attribute != EMFInfoImpl.ATTRIBUTE_EDEFAULT;
       case MIDPackage.EMF_INFO__RELATED_CLASS_NAME:
-        return RELATED_CLASS_NAME_EDEFAULT == null ? relatedClassName != null : !RELATED_CLASS_NAME_EDEFAULT.equals(relatedClassName);
+        return EMFInfoImpl.RELATED_CLASS_NAME_EDEFAULT == null ? this.relatedClassName != null : !EMFInfoImpl.RELATED_CLASS_NAME_EDEFAULT.equals(this.relatedClassName);
     }
     return super.eIsSet(featureID);
   }
@@ -342,17 +346,19 @@ public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo
    */
     @Override
     public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (className: ");
-    result.append(className);
+    result.append(this.className);
     result.append(", featureName: ");
-    result.append(featureName);
+    result.append(this.featureName);
     result.append(", attribute: ");
-    result.append(attribute);
+    result.append(this.attribute);
     result.append(", relatedClassName: ");
-    result.append(relatedClassName);
+    result.append(this.relatedClassName);
     result.append(')');
     return result.toString();
   }
@@ -360,15 +366,16 @@ public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo
     /**
      * @generated NOT
      */
+    @Override
     public String toTypeString() {
 
-        String typeString = getClassName();
+        var typeString = getClassName();
         if (getFeatureName() != null) {
-            typeString += MMINT.MODELELEMENT_FEATURE_SEPARATOR1 + getFeatureName();
+            typeString += MMINTConstants.MODELELEMENT_FEATURE_SEPARATOR1 + getFeatureName();
             if (!isAttribute()) {
-                typeString += MMINT.MODELELEMENT_REFERENCE_SEPARATOR;
+                typeString += MMINTConstants.MODELELEMENT_REFERENCE_SEPARATOR;
             }
-            typeString += MMINT.MODELELEMENT_FEATURE_SEPARATOR2;
+            typeString += MMINTConstants.MODELELEMENT_FEATURE_SEPARATOR2;
         }
 
         return typeString;
@@ -377,11 +384,12 @@ public class EMFInfoImpl extends MinimalEObjectImpl.Container implements EMFInfo
     /**
      * @generated NOT
      */
+    @Override
     public String toInstanceString() {
 
-        String instanceString = (isAttribute()) ?
-            MMINT.MODELELEMENT_EMFVALUE_PLACEHOLDER + MMINT.MODELELEMENT_FEATURE_SEPARATOR1 + getFeatureName() + MMINT.MODELELEMENT_FEATURE_SEPARATOR2 + " " + MMINT.MODELELEMENT_PRIMITIVEVALUE_PLACEHOLDER:
-            MMINT.MODELELEMENT_EMFVALUE_PLACEHOLDER;
+        var instanceString = (isAttribute()) ?
+            MMINTConstants.MODELELEMENT_EMFVALUE_PLACEHOLDER + MMINTConstants.MODELELEMENT_FEATURE_SEPARATOR1 + getFeatureName() + MMINTConstants.MODELELEMENT_FEATURE_SEPARATOR2 + " " + MMINTConstants.MODELELEMENT_PRIMITIVEVALUE_PLACEHOLDER:
+            MMINTConstants.MODELELEMENT_EMFVALUE_PLACEHOLDER;
 
         return instanceString;
     }

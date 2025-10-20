@@ -5,13 +5,11 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.operator.provider;
-
-import edu.toronto.cs.se.mmint.mid.operator.util.OperatorAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,6 +28,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
+import edu.toronto.cs.se.mmint.mid.operator.util.OperatorAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -63,7 +63,7 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 	 * <!-- end-user-doc -->
    * @generated
    */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+	protected Collection<Object> supportedTypes = new ArrayList<>();
 
 	/**
    * This constructs an instance.
@@ -72,11 +72,11 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
    * @generated
    */
 	public OperatorItemProviderAdapterFactory() {
-    supportedTypes.add(IEditingDomainItemProvider.class);
-    supportedTypes.add(IStructuredItemContentProvider.class);
-    supportedTypes.add(ITreeItemContentProvider.class);
-    supportedTypes.add(IItemLabelProvider.class);
-    supportedTypes.add(IItemPropertySource.class);
+    this.supportedTypes.add(IEditingDomainItemProvider.class);
+    this.supportedTypes.add(IStructuredItemContentProvider.class);
+    this.supportedTypes.add(ITreeItemContentProvider.class);
+    this.supportedTypes.add(IItemLabelProvider.class);
+    this.supportedTypes.add(IItemPropertySource.class);
   }
 
 	/**
@@ -95,11 +95,11 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
    */
 	@Override
 	public Adapter createOperatorAdapter() {
-    if (operatorItemProvider == null) {
-      operatorItemProvider = new OperatorItemProvider(this);
+    if (this.operatorItemProvider == null) {
+      this.operatorItemProvider = new OperatorItemProvider(this);
     }
 
-    return operatorItemProvider;
+    return this.operatorItemProvider;
   }
 
 	/**
@@ -118,11 +118,11 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
    */
 	@Override
 	public Adapter createConversionOperatorAdapter() {
-    if (conversionOperatorItemProvider == null) {
-      conversionOperatorItemProvider = new ConversionOperatorItemProvider(this);
+    if (this.conversionOperatorItemProvider == null) {
+      this.conversionOperatorItemProvider = new ConversionOperatorItemProvider(this);
     }
 
-    return conversionOperatorItemProvider;
+    return this.conversionOperatorItemProvider;
   }
 
 	/**
@@ -141,11 +141,11 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
    */
 	@Override
 	public Adapter createRandomOperatorAdapter() {
-    if (randomOperatorItemProvider == null) {
-      randomOperatorItemProvider = new RandomOperatorItemProvider(this);
+    if (this.randomOperatorItemProvider == null) {
+      this.randomOperatorItemProvider = new RandomOperatorItemProvider(this);
     }
 
-    return randomOperatorItemProvider;
+    return this.randomOperatorItemProvider;
   }
 
 	/**
@@ -164,11 +164,11 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
    */
 	@Override
 	public Adapter createNestingOperatorAdapter() {
-    if (nestingOperatorItemProvider == null) {
-      nestingOperatorItemProvider = new NestingOperatorItemProvider(this);
+    if (this.nestingOperatorItemProvider == null) {
+      this.nestingOperatorItemProvider = new NestingOperatorItemProvider(this);
     }
 
-    return nestingOperatorItemProvider;
+    return this.nestingOperatorItemProvider;
   }
 
 	/**
@@ -187,11 +187,11 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
    */
 	@Override
 	public Adapter createWorkflowOperatorAdapter() {
-    if (workflowOperatorItemProvider == null) {
-      workflowOperatorItemProvider = new WorkflowOperatorItemProvider(this);
+    if (this.workflowOperatorItemProvider == null) {
+      this.workflowOperatorItemProvider = new WorkflowOperatorItemProvider(this);
     }
 
-    return workflowOperatorItemProvider;
+    return this.workflowOperatorItemProvider;
   }
 
 	/**
@@ -210,57 +210,11 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
    */
 	@Override
 	public Adapter createGenericEndpointAdapter() {
-    if (genericEndpointItemProvider == null) {
-      genericEndpointItemProvider = new GenericEndpointItemProvider(this);
+    if (this.genericEndpointItemProvider == null) {
+      this.genericEndpointItemProvider = new GenericEndpointItemProvider(this);
     }
 
-    return genericEndpointItemProvider;
-  }
-
-	/**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.operator.OperatorInput} instances.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	protected OperatorInputItemProvider operatorInputItemProvider;
-
-	/**
-   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.operator.OperatorInput}.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	@Override
-	public Adapter createOperatorInputAdapter() {
-    if (operatorInputItemProvider == null) {
-      operatorInputItemProvider = new OperatorInputItemProvider(this);
-    }
-
-    return operatorInputItemProvider;
-  }
-
-	/**
-   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric} instances.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	protected OperatorGenericItemProvider operatorGenericItemProvider;
-
-	/**
-   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric}.
-   * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-   * @generated
-   */
-	@Override
-	public Adapter createOperatorGenericAdapter() {
-    if (operatorGenericItemProvider == null) {
-      operatorGenericItemProvider = new OperatorGenericItemProvider(this);
-    }
-
-    return operatorGenericItemProvider;
+    return this.genericEndpointItemProvider;
   }
 
 	/**
@@ -271,7 +225,7 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
    */
 	@Override
   public ComposeableAdapterFactory getRootAdapterFactory() {
-    return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+    return this.parentAdapterFactory == null ? this : this.parentAdapterFactory.getRootAdapterFactory();
   }
 
 	/**
@@ -292,7 +246,7 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
    */
 	@Override
 	public boolean isFactoryForType(Object type) {
-    return supportedTypes.contains(type) || super.isFactoryForType(type);
+    return this.supportedTypes.contains(type) || super.isFactoryForType(type);
   }
 
 	/**
@@ -314,7 +268,7 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
 	@Override
 	public Object adapt(Object object, Object type) {
     if (isFactoryForType(type)) {
-      Object adapter = super.adapt(object, type);
+      var adapter = super.adapt(object, type);
       if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
         return adapter;
       }
@@ -331,7 +285,7 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
    */
 	@Override
   public void addListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.addListener(notifyChangedListener);
+    this.changeNotifier.addListener(notifyChangedListener);
   }
 
 	/**
@@ -342,7 +296,7 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
    */
 	@Override
   public void removeListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.removeListener(notifyChangedListener);
+    this.changeNotifier.removeListener(notifyChangedListener);
   }
 
 	/**
@@ -353,29 +307,39 @@ public class OperatorItemProviderAdapterFactory extends OperatorAdapterFactory i
    */
 	@Override
   public void fireNotifyChanged(Notification notification) {
-    changeNotifier.fireNotifyChanged(notification);
+    this.changeNotifier.fireNotifyChanged(notification);
 
-    if (parentAdapterFactory != null) {
-      parentAdapterFactory.fireNotifyChanged(notification);
+    if (this.parentAdapterFactory != null) {
+      this.parentAdapterFactory.fireNotifyChanged(notification);
     }
   }
 
 	/**
-   * This disposes all of the item providers created by this factory. 
+   * This disposes all of the item providers created by this factory.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
 	@Override
   public void dispose() {
-    if (operatorItemProvider != null) operatorItemProvider.dispose();
-    if (conversionOperatorItemProvider != null) conversionOperatorItemProvider.dispose();
-    if (randomOperatorItemProvider != null) randomOperatorItemProvider.dispose();
-    if (nestingOperatorItemProvider != null) nestingOperatorItemProvider.dispose();
-    if (workflowOperatorItemProvider != null) workflowOperatorItemProvider.dispose();
-    if (genericEndpointItemProvider != null) genericEndpointItemProvider.dispose();
-    if (operatorInputItemProvider != null) operatorInputItemProvider.dispose();
-    if (operatorGenericItemProvider != null) operatorGenericItemProvider.dispose();
+    if (this.operatorItemProvider != null) {
+      this.operatorItemProvider.dispose();
+    }
+    if (this.conversionOperatorItemProvider != null) {
+      this.conversionOperatorItemProvider.dispose();
+    }
+    if (this.randomOperatorItemProvider != null) {
+      this.randomOperatorItemProvider.dispose();
+    }
+    if (this.nestingOperatorItemProvider != null) {
+      this.nestingOperatorItemProvider.dispose();
+    }
+    if (this.workflowOperatorItemProvider != null) {
+      this.workflowOperatorItemProvider.dispose();
+    }
+    if (this.genericEndpointItemProvider != null) {
+      this.genericEndpointItemProvider.dispose();
+    }
   }
 
 }

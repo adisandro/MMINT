@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -15,7 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
@@ -55,7 +55,7 @@ public abstract class ExtendibleElementEndpointReferenceImpl extends ExtendibleE
    */
     @Override
     public String getTargetUri() {
-    ExtendibleElementEndpoint object = this.getObject();
+    var object = this.getObject();
     return (object == null) ? null : object.getTargetUri();
   }
 
@@ -66,7 +66,7 @@ public abstract class ExtendibleElementEndpointReferenceImpl extends ExtendibleE
    */
     @Override
     public ExtendibleElementEndpoint getObject() {
-    ExtendibleElement object = super.getObject();
+    var object = super.getObject();
     return (object == null) ? null : (ExtendibleElementEndpoint) object;
   }
 
@@ -77,7 +77,7 @@ public abstract class ExtendibleElementEndpointReferenceImpl extends ExtendibleE
    */
     @Override
     public ExtendibleElementEndpointReference getSupertypeRef() {
-    ExtendibleElementReference supertypeRef = super.getSupertypeRef();
+    var supertypeRef = super.getSupertypeRef();
     return (supertypeRef == null) ? null : (ExtendibleElementEndpointReference) supertypeRef;
   }
 
@@ -89,10 +89,10 @@ public abstract class ExtendibleElementEndpointReferenceImpl extends ExtendibleE
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
     if (baseClass == ExtendibleElementReference.class) {
-      switch (baseOperationID) {
-        case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT: return RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT -> RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     return super.eDerivedOperationID(baseOperationID, baseClass);
   }

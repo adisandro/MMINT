@@ -5,15 +5,15 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.relationship;
 
-import edu.toronto.cs.se.mmint.MMINTException;
-
 import org.eclipse.emf.common.util.EList;
+
+import edu.toronto.cs.se.mmint.MMINTException;
 
 /**
  * <!-- begin-user-doc -->
@@ -61,6 +61,7 @@ public interface MappingReference extends ExtendibleElementReference {
    * @model kind="operation" required="true"
    * @generated
    */
+    @Override
     Mapping getObject();
 
     /**
@@ -73,12 +74,13 @@ public interface MappingReference extends ExtendibleElementReference {
    * @model kind="operation"
    * @generated
    */
+    @Override
     MappingReference getSupertypeRef();
 
     /**
    * <!-- begin-user-doc --> Deletes this reference to a mapping type from the
      * Type MID.
-     * 
+     *
      * @throws MMINTException
      *             If this is a reference to a mapping instance.
      *             <!-- end-user-doc -->
@@ -90,7 +92,7 @@ public interface MappingReference extends ExtendibleElementReference {
     /**
    * <!-- begin-user-doc --> Deletes the referenced mapping type, this and all
      * reference to it from the Type MID.
-     * 
+     *
      * @throws MMINTException
      *             If this is a reference to a mapping instance. <!-- end-user-doc -->
    * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
@@ -101,7 +103,7 @@ public interface MappingReference extends ExtendibleElementReference {
     /**
    * <!-- begin-user-doc --> Deletes this reference to a mapping instance from
      * the Instance MID that contains it.
-     * 
+     *
      * @throws MMINTException
      *             If this is a reference to a mapping type. <!-- end-user-doc -->
    * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
@@ -112,7 +114,7 @@ public interface MappingReference extends ExtendibleElementReference {
     /**
    * <!-- begin-user-doc --> Deletes the referenced mapping instance and this
      * reference to it from the Instance MID that contains them.
-     * 
+     *
      * @throws MMINTException
      *             If this is a reference to a mapping type. <!-- end-user-doc -->
    * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"

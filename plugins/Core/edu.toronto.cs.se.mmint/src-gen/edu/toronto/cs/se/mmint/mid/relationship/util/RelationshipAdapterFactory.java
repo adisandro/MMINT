@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -15,11 +15,24 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
-import edu.toronto.cs.se.mmint.mid.relationship.*;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
+import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
+import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,8 +58,8 @@ public class RelationshipAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
     public RelationshipAdapterFactory() {
-    if (modelPackage == null) {
-      modelPackage = RelationshipPackage.eINSTANCE;
+    if (RelationshipAdapterFactory.modelPackage == null) {
+      RelationshipAdapterFactory.modelPackage = RelationshipPackage.eINSTANCE;
     }
   }
 
@@ -60,11 +73,11 @@ public class RelationshipAdapterFactory extends AdapterFactoryImpl {
    */
     @Override
     public boolean isFactoryForType(Object object) {
-    if (object == modelPackage) {
+    if (object == RelationshipAdapterFactory.modelPackage) {
       return true;
     }
     if (object instanceof EObject) {
-      return ((EObject)object).eClass().getEPackage() == modelPackage;
+      return ((EObject)object).eClass().getEPackage() == RelationshipAdapterFactory.modelPackage;
     }
     return false;
   }
@@ -76,7 +89,7 @@ public class RelationshipAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
     protected RelationshipSwitch<Adapter> modelSwitch =
-        new RelationshipSwitch<Adapter>() {
+        new RelationshipSwitch<>() {
       @Override
       public Adapter caseModelRel(ModelRel object) {
         return createModelRelAdapter();
@@ -157,7 +170,7 @@ public class RelationshipAdapterFactory extends AdapterFactoryImpl {
    */
     @Override
     public Adapter createAdapter(Notifier target) {
-    return modelSwitch.doSwitch((EObject)target);
+    return this.modelSwitch.doSwitch((EObject)target);
   }
 
 

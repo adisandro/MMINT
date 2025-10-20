@@ -115,7 +115,12 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
     this.eInfo = newEInfo;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL_ELEMENT__EINFO, oldEInfo, newEInfo);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      if (msgs == null) {
+        msgs = notification;
+      }
+      else {
+        msgs.add(notification);
+      }
     }
     return msgs;
   }
@@ -129,15 +134,20 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
     public void setEInfo(EMFInfo newEInfo) {
     if (newEInfo != this.eInfo) {
       NotificationChain msgs = null;
-      if (this.eInfo != null)
+      if (this.eInfo != null) {
         msgs = ((InternalEObject)this.eInfo).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - MIDPackage.MODEL_ELEMENT__EINFO, null, msgs);
-      if (newEInfo != null)
+      }
+      if (newEInfo != null) {
         msgs = ((InternalEObject)newEInfo).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - MIDPackage.MODEL_ELEMENT__EINFO, null, msgs);
+      }
       msgs = basicSetEInfo(newEInfo, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null) {
+        msgs.dispatch();
+      }
     }
-    else if (eNotificationRequired())
+    else if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL_ELEMENT__EINFO, newEInfo, newEInfo));
+    }
   }
 
     /**
@@ -150,8 +160,9 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
       var oldEMFInstanceObject = (InternalEObject)this.emfInstanceObject;
       this.emfInstanceObject = eResolveProxy(oldEMFInstanceObject);
       if (this.emfInstanceObject != oldEMFInstanceObject) {
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
           eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.MODEL_ELEMENT__EMF_INSTANCE_OBJECT, oldEMFInstanceObject, this.emfInstanceObject));
+        }
       }
     }
     return this.emfInstanceObject;
@@ -214,8 +225,9 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
   public void setEMFInstanceObject(EObject newEMFInstanceObject) {
     var oldEMFInstanceObject = this.emfInstanceObject;
     this.emfInstanceObject = newEMFInstanceObject;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.MODEL_ELEMENT__EMF_INSTANCE_OBJECT, oldEMFInstanceObject, this.emfInstanceObject));
+    }
   }
 
     /**
@@ -275,7 +287,9 @@ public class ModelElementImpl extends ExtendibleElementImpl implements ModelElem
       case MIDPackage.MODEL_ELEMENT__EINFO:
         return getEInfo();
       case MIDPackage.MODEL_ELEMENT__EMF_INSTANCE_OBJECT:
-        if (resolve) return getEMFInstanceObject();
+        if (resolve) {
+          return getEMFInstanceObject();
+        }
         return basicGetEMFInstanceObject();
     }
     return super.eGet(featureID, resolve, coreType);

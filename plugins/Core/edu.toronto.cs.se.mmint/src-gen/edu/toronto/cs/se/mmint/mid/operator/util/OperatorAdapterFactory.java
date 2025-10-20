@@ -16,8 +16,6 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
-import edu.toronto.cs.se.mmint.OperatorGeneric;
-import edu.toronto.cs.se.mmint.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -84,7 +82,7 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
     protected OperatorSwitch<Adapter> modelSwitch =
-        new OperatorSwitch<Adapter>() {
+        new OperatorSwitch<>() {
       @Override
       public Adapter caseOperator(Operator object) {
         return createOperatorAdapter();
@@ -108,14 +106,6 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
       @Override
       public Adapter caseGenericEndpoint(GenericEndpoint object) {
         return createGenericEndpointAdapter();
-      }
-      @Override
-      public Adapter caseOperatorInput(OperatorInput object) {
-        return createOperatorInputAdapter();
-      }
-      @Override
-      public Adapter caseOperatorGeneric(OperatorGeneric object) {
-        return createOperatorGenericAdapter();
       }
       @Override
       public Adapter caseExtendibleElement(ExtendibleElement object) {
@@ -230,34 +220,6 @@ public class OperatorAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
     public Adapter createGenericEndpointAdapter() {
-    return null;
-  }
-
-    /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorInput <em>Input</em>}'.
-   * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.mmint.mid.operator.OperatorInput
-   * @generated
-   */
-    public Adapter createOperatorInputAdapter() {
-    return null;
-  }
-
-    /**
-   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric <em>Generic</em>}'.
-   * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.toronto.cs.se.mmint.mid.operator.OperatorGeneric
-   * @generated
-   */
-    public Adapter createOperatorGenericAdapter() {
     return null;
   }
 

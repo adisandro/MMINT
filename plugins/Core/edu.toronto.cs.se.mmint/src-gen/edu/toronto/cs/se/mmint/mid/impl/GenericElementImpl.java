@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -49,7 +49,7 @@ public abstract class GenericElementImpl extends ExtendibleElementImpl implement
    * @generated
    * @ordered
    */
-    protected boolean abstract_ = ABSTRACT_EDEFAULT;
+    protected boolean abstract_ = GenericElementImpl.ABSTRACT_EDEFAULT;
 
     /**
    * <!-- begin-user-doc -->
@@ -77,7 +77,7 @@ public abstract class GenericElementImpl extends ExtendibleElementImpl implement
    */
     @Override
     public boolean isAbstract() {
-    return abstract_;
+    return this.abstract_;
   }
 
     /**
@@ -87,10 +87,11 @@ public abstract class GenericElementImpl extends ExtendibleElementImpl implement
    */
     @Override
     public void setAbstract(boolean newAbstract) {
-    boolean oldAbstract = abstract_;
-    abstract_ = newAbstract;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.GENERIC_ELEMENT__ABSTRACT, oldAbstract, abstract_));
+    var oldAbstract = this.abstract_;
+    this.abstract_ = newAbstract;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.GENERIC_ELEMENT__ABSTRACT, oldAbstract, this.abstract_));
+    }
   }
 
     /**
@@ -131,7 +132,7 @@ public abstract class GenericElementImpl extends ExtendibleElementImpl implement
     public void eUnset(int featureID) {
     switch (featureID) {
       case MIDPackage.GENERIC_ELEMENT__ABSTRACT:
-        setAbstract(ABSTRACT_EDEFAULT);
+        setAbstract(GenericElementImpl.ABSTRACT_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -146,7 +147,7 @@ public abstract class GenericElementImpl extends ExtendibleElementImpl implement
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case MIDPackage.GENERIC_ELEMENT__ABSTRACT:
-        return abstract_ != ABSTRACT_EDEFAULT;
+        return this.abstract_ != GenericElementImpl.ABSTRACT_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -158,11 +159,13 @@ public abstract class GenericElementImpl extends ExtendibleElementImpl implement
    */
     @Override
     public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (abstract: ");
-    result.append(abstract_);
+    result.append(this.abstract_);
     result.append(')');
     return result.toString();
   }

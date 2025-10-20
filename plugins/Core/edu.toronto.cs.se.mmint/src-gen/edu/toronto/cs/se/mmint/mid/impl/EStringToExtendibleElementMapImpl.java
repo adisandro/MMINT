@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -15,7 +15,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -56,7 +55,7 @@ public class EStringToExtendibleElementMapImpl extends MinimalEObjectImpl.Contai
    * @generated
    * @ordered
    */
-    protected String key = KEY_EDEFAULT;
+    protected String key = EStringToExtendibleElementMapImpl.KEY_EDEFAULT;
 
     /**
    * The cached value of the '{@link #getTypedValue() <em>Value</em>}' reference.
@@ -93,7 +92,7 @@ public class EStringToExtendibleElementMapImpl extends MinimalEObjectImpl.Contai
    * @generated
    */
     public String getTypedKey() {
-    return key;
+    return this.key;
   }
 
     /**
@@ -102,10 +101,11 @@ public class EStringToExtendibleElementMapImpl extends MinimalEObjectImpl.Contai
    * @generated
    */
     public void setTypedKey(String newKey) {
-    String oldKey = key;
-    key = newKey;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY, oldKey, key));
+    var oldKey = this.key;
+    this.key = newKey;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY, oldKey, this.key));
+    }
   }
 
     /**
@@ -114,15 +114,16 @@ public class EStringToExtendibleElementMapImpl extends MinimalEObjectImpl.Contai
    * @generated
    */
     public ExtendibleElement getTypedValue() {
-    if (value != null && value.eIsProxy()) {
-      InternalEObject oldValue = (InternalEObject)value;
-      value = (ExtendibleElement)eResolveProxy(oldValue);
-      if (value != oldValue) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE, oldValue, value));
+    if (this.value != null && this.value.eIsProxy()) {
+      var oldValue = (InternalEObject)this.value;
+      this.value = (ExtendibleElement)eResolveProxy(oldValue);
+      if (this.value != oldValue) {
+        if (eNotificationRequired()) {
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE, oldValue, this.value));
+        }
       }
     }
-    return value;
+    return this.value;
   }
 
     /**
@@ -131,7 +132,7 @@ public class EStringToExtendibleElementMapImpl extends MinimalEObjectImpl.Contai
    * @generated
    */
     public ExtendibleElement basicGetTypedValue() {
-    return value;
+    return this.value;
   }
 
     /**
@@ -140,10 +141,11 @@ public class EStringToExtendibleElementMapImpl extends MinimalEObjectImpl.Contai
    * @generated
    */
     public void setTypedValue(ExtendibleElement newValue) {
-    ExtendibleElement oldValue = value;
-    value = newValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE, oldValue, value));
+    var oldValue = this.value;
+    this.value = newValue;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE, oldValue, this.value));
+    }
   }
 
     /**
@@ -157,7 +159,9 @@ public class EStringToExtendibleElementMapImpl extends MinimalEObjectImpl.Contai
       case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
         return getTypedKey();
       case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
-        if (resolve) return getTypedValue();
+        if (resolve) {
+          return getTypedValue();
+        }
         return basicGetTypedValue();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -190,7 +194,7 @@ public class EStringToExtendibleElementMapImpl extends MinimalEObjectImpl.Contai
     public void eUnset(int featureID) {
     switch (featureID) {
       case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
-        setTypedKey(KEY_EDEFAULT);
+        setTypedKey(EStringToExtendibleElementMapImpl.KEY_EDEFAULT);
         return;
       case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
         setTypedValue((ExtendibleElement)null);
@@ -208,9 +212,9 @@ public class EStringToExtendibleElementMapImpl extends MinimalEObjectImpl.Contai
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__KEY:
-        return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
+        return EStringToExtendibleElementMapImpl.KEY_EDEFAULT == null ? this.key != null : !EStringToExtendibleElementMapImpl.KEY_EDEFAULT.equals(this.key);
       case MIDPackage.ESTRING_TO_EXTENDIBLE_ELEMENT_MAP__VALUE:
-        return value != null;
+        return this.value != null;
     }
     return super.eIsSet(featureID);
   }
@@ -222,11 +226,13 @@ public class EStringToExtendibleElementMapImpl extends MinimalEObjectImpl.Contai
    */
     @Override
     public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (key: ");
-    result.append(key);
+    result.append(this.key);
     result.append(')');
     return result.toString();
   }
@@ -245,11 +251,11 @@ public class EStringToExtendibleElementMapImpl extends MinimalEObjectImpl.Contai
    */
     @Override
     public int getHash() {
-    if (hash == -1) {
+    if (this.hash == -1) {
       Object theKey = getKey();
-      hash = (theKey == null ? 0 : theKey.hashCode());
+      this.hash = (theKey == null ? 0 : theKey.hashCode());
     }
-    return hash;
+    return this.hash;
   }
 
     /**
@@ -299,7 +305,7 @@ public class EStringToExtendibleElementMapImpl extends MinimalEObjectImpl.Contai
    */
     @Override
     public ExtendibleElement setValue(ExtendibleElement value) {
-    ExtendibleElement oldValue = getValue();
+    var oldValue = getValue();
     setTypedValue(value);
     return oldValue;
   }
@@ -311,7 +317,7 @@ public class EStringToExtendibleElementMapImpl extends MinimalEObjectImpl.Contai
    */
     @SuppressWarnings("unchecked")
     public EMap<String, ExtendibleElement> getEMap() {
-    EObject container = eContainer();
+    var container = eContainer();
     return container == null ? null : (EMap<String, ExtendibleElement>)container.eGet(eContainmentFeature());
   }
 

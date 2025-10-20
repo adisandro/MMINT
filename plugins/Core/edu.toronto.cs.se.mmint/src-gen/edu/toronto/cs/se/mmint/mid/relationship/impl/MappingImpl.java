@@ -31,6 +31,7 @@ import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.impl.ExtendibleElementImpl;
 import edu.toronto.cs.se.mmint.mid.reasoning.MIDConstraintChecker;
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryMapping;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpoint;
@@ -102,10 +103,10 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
    */
     @Override
     public EList<ModelElementEndpoint> getModelElemEndpoints() {
-    if (modelElemEndpoints == null) {
-      modelElemEndpoints = new EObjectContainmentEList<ModelElementEndpoint>(ModelElementEndpoint.class, this, RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINTS);
+    if (this.modelElemEndpoints == null) {
+      this.modelElemEndpoints = new EObjectContainmentEList<>(ModelElementEndpoint.class, this, RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINTS);
     }
-    return modelElemEndpoints;
+    return this.modelElemEndpoints;
   }
 
     /**
@@ -115,10 +116,10 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
    */
     @Override
     public EList<ModelElementEndpointReference> getModelElemEndpointRefs() {
-    if (modelElemEndpointRefs == null) {
-      modelElemEndpointRefs = new EObjectResolvingEList<ModelElementEndpointReference>(ModelElementEndpointReference.class, this, RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINT_REFS);
+    if (this.modelElemEndpointRefs == null) {
+      this.modelElemEndpointRefs = new EObjectResolvingEList<>(ModelElementEndpointReference.class, this, RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINT_REFS);
     }
-    return modelElemEndpointRefs;
+    return this.modelElemEndpointRefs;
   }
 
     /**
@@ -128,7 +129,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
    */
     @Override
     public Mapping getMetatype() {
-    ExtendibleElement metatype = super.getMetatype();
+    var metatype = super.getMetatype();
     return (metatype == null) ? null : (Mapping) metatype;
   }
 
@@ -139,7 +140,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
    */
     @Override
     public Mapping getSupertype() {
-    ExtendibleElement supertype = super.getSupertype();
+    var supertype = super.getSupertype();
     return (supertype == null) ? null : (Mapping) supertype;
   }
 
@@ -231,9 +232,9 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINTS:
-        return modelElemEndpoints != null && !modelElemEndpoints.isEmpty();
+        return this.modelElemEndpoints != null && !this.modelElemEndpoints.isEmpty();
       case RelationshipPackage.MAPPING__MODEL_ELEM_ENDPOINT_REFS:
-        return modelElemEndpointRefs != null && !modelElemEndpointRefs.isEmpty();
+        return this.modelElemEndpointRefs != null && !this.modelElemEndpointRefs.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -246,11 +247,11 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
     if (baseClass == ExtendibleElement.class) {
-      switch (baseOperationID) {
-        case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return RelationshipPackage.MAPPING___GET_METATYPE;
-        case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return RelationshipPackage.MAPPING___GET_MID_CONTAINER;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE -> RelationshipPackage.MAPPING___GET_METATYPE;
+      case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER -> RelationshipPackage.MAPPING___GET_MID_CONTAINER;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     return super.eDerivedOperationID(baseOperationID, baseClass);
   }
@@ -356,7 +357,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 
         MMINTException.mustBeType(this);
 
-        MappingReference newMappingTypeRef = super.createThisReferenceEClass();
+        var newMappingTypeRef = super.<MappingReference>createThisReferenceEClass();
         this.addTypeReference(newMappingTypeRef, mappingTypeRef, isModifiable, containerModelRelType);
 
         return newMappingTypeRef;
@@ -371,16 +372,16 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
         MMINTException.mustBeType(this);
 
         // create the "thing" and the corresponding reference
-        Mapping newMappingType = (isBinary) ?
-            super.createThisBinaryEClass() :
-            super.createThisEClass();
-        MID typeMID = containerModelRelType.getMIDContainer();
+        var newMappingType = (isBinary) ?
+            super.<BinaryMapping>createThisBinaryEClass() :
+            super.<Mapping>createThisEClass();
+        var typeMID = containerModelRelType.getMIDContainer();
         super.addSubtype(newMappingType, containerModelRelType, containerModelRelType.getName(), newMappingTypeName);
         MIDTypeFactory.addMappingType(newMappingType, this, containerModelRelType);
-        MappingReference newMappingTypeRef = newMappingType.createTypeReference(mappingTypeRef, true, containerModelRelType);
+        var newMappingTypeRef = newMappingType.createTypeReference(mappingTypeRef, true, containerModelRelType);
         // create references of the "thing" in subtypes of the container
         for (ModelRel containerModelRelSubtype : MIDTypeHierarchy.getSubtypes(containerModelRelType, typeMID)) {
-            MappingReference mappingSubtypeRef = (mappingTypeRef == null) ?
+            var mappingSubtypeRef = (mappingTypeRef == null) ?
                 null :
                 MIDRegistry.getReference(mappingTypeRef, containerModelRelSubtype.getMappingRefs());
             newMappingType.createTypeReference(mappingSubtypeRef, false, containerModelRelSubtype);
@@ -401,7 +402,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
         for (ModelElementEndpoint modelElemTypeEndpoint : getModelElemEndpoints()) {
             modelElemTypeEndpoint.deleteType(false);
         }
-        ModelRel modelRelType = (ModelRel) eContainer();
+        var modelRelType = (ModelRel) eContainer();
         modelRelType.getMappings().remove(this);
     }
 
@@ -429,7 +430,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 
         MMINTException.mustBeInstance(this);
 
-        MappingReference newMappingRef = super.createThisReferenceEClass();
+        var newMappingRef = super.<MappingReference>createThisReferenceEClass();
         this.addInstanceReference(newMappingRef, containerModelRel);
 
         return newMappingRef;
@@ -446,9 +447,9 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
             throw new MMINTException("This mapping type is not allowed in the container model rel");
         }
 
-        Mapping newMapping = (isBinary) ?
-            super.createThisBinaryEClass() :
-            super.createThisEClass();
+        var newMapping = (isBinary) ?
+            super.<BinaryMapping>createThisBinaryEClass() :
+            super.<Mapping>createThisEClass();
         super.addBasicInstance(newMapping, null, null, MIDLevel.INSTANCES);
         containerModelRel.getMappings().add(newMapping);
         var newMappingRef = newMapping.createInstanceReference(containerModelRel);
@@ -509,7 +510,7 @@ public class MappingImpl extends ExtendibleElementImpl implements Mapping {
 
         MMINTException.mustBeInstance(this);
 
-        ModelRel modelRel = (ModelRel) eContainer();
+        var modelRel = (ModelRel) eContainer();
         modelRel.getMappings().remove(this);
     }
 

@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -72,6 +72,7 @@ public interface ModelElementEndpointReference extends ExtendibleElementEndpoint
    * @model kind="operation" required="true"
    * @generated
    */
+    @Override
     ModelElementEndpoint getObject();
 
     /**
@@ -84,12 +85,13 @@ public interface ModelElementEndpointReference extends ExtendibleElementEndpoint
    * @model kind="operation"
    * @generated
    */
+    @Override
     ModelElementEndpointReference getSupertypeRef();
 
     /**
    * <!-- begin-user-doc --> Deletes this reference to a model element type
      * endpoint from the Type MID.
-     * 
+     *
      * @param isFullDelete
      *            True if the reference to the model element type endpoint is
      *            going to be fully removed, false if it is going to be replaced
@@ -105,7 +107,7 @@ public interface ModelElementEndpointReference extends ExtendibleElementEndpoint
     /**
    * <!-- begin-user-doc --> Deletes this referenced model element type
      * endpoint and all references to it from the Type MID.
-     * 
+     *
      * @param isFullDelete
      *            True if the model element type endpoint is going to be fully
      *            removed, false if it is going to be replaced later.
@@ -121,7 +123,7 @@ public interface ModelElementEndpointReference extends ExtendibleElementEndpoint
    * <!-- begin-user-doc --> Deletes this referenced model element instance
      * endpoint and the reference to it from the Instance MID that contains
      * them.
-     * 
+     *
      * @param isFullDelete
      *            True if the model element endpoint is going to be fully
      *            removed, false if it is going to be replaced later.

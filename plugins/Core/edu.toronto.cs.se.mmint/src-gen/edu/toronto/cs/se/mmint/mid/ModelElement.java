@@ -13,6 +13,7 @@ package edu.toronto.cs.se.mmint.mid;
 
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelEndpointReference;
@@ -96,6 +97,7 @@ public interface ModelElement extends ExtendibleElement {
    * @model kind="operation" required="true"
    * @generated
    */
+    @Override
     ModelElement getMetatype();
 
     /**
@@ -108,6 +110,7 @@ public interface ModelElement extends ExtendibleElement {
    * @model kind="operation"
    * @generated
    */
+    @Override
     ModelElement getSupertype();
 
     /**
@@ -116,6 +119,7 @@ public interface ModelElement extends ExtendibleElement {
    * @model kind="operation"
    * @generated
    */
+    @Override
     MID getMIDContainer();
 
     /**

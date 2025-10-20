@@ -15,8 +15,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
-import edu.toronto.cs.se.mmint.OperatorGeneric;
-import edu.toronto.cs.se.mmint.OperatorInput;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -275,36 +273,6 @@ public class OperatorSwitch<T> extends Switch<T> {
    * @generated
    */
     public T caseGenericEndpoint(GenericEndpoint object) {
-    return null;
-  }
-
-    /**
-   * Returns the result of interpreting the object as an instance of '<em>Input</em>'.
-   * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Input</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-    public T caseOperatorInput(OperatorInput object) {
-    return null;
-  }
-
-    /**
-   * Returns the result of interpreting the object as an instance of '<em>Generic</em>'.
-   * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Generic</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-    public T caseOperatorGeneric(OperatorGeneric object) {
     return null;
   }
 

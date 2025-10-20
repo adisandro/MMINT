@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import edu.toronto.cs.se.mmint.OperatorGeneric;
 import edu.toronto.cs.se.mmint.OperatorInput;
+import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
 import edu.toronto.cs.se.mmint.mid.editor.impl.EditorPackageImpl;
@@ -94,20 +95,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
      * <!-- end-user-doc -->
    * @generated
    */
-    private EClass operatorInputEClass = null;
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    private EClass operatorGenericEClass = null;
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
     private EDataType randomEDataType = null;
 
     /**
@@ -130,6 +117,27 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
    * @generated
    */
     private EDataType setEDataType = null;
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType operatorInputEDataType = null;
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType operatorGenericEDataType = null;
+
+    /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType operatorParameterEDataType = null;
 
     /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -440,11 +448,11 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
     /**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public EOperation getOperator__ReadInputProperties__Properties() {
+  @Override
+  public EOperation getOperator__Init__Properties_Map() {
     return this.operatorEClass.getEOperations().get(16);
   }
 
@@ -480,11 +488,11 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
     /**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public EOperation getOperator__CreateWorkflowInstance__MID() {
+  @Override
+  public EOperation getOperator__OutputFromInput__int_int_Map_Map() {
     return this.operatorEClass.getEOperations().get(20);
   }
 
@@ -494,8 +502,18 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
    * @generated
    */
     @Override
-    public EOperation getOperator__DeleteWorkflowInstance() {
+    public EOperation getOperator__CreateWorkflowInstance__MID() {
     return this.operatorEClass.getEOperations().get(21);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+   * @generated
+   */
+    @Override
+    public EOperation getOperator__DeleteWorkflowInstance() {
+    return this.operatorEClass.getEOperations().get(22);
   }
 
     /**
@@ -505,16 +523,6 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
    */
   @Override
   public EOperation getOperator__CreateWorkflowInstanceOutputs__Operator_Map_Map_MID() {
-    return this.operatorEClass.getEOperations().get(22);
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    @Override
-    public EOperation getOperator__StartWorkflowInstance__EList_EList_MID() {
     return this.operatorEClass.getEOperations().get(23);
   }
 
@@ -524,8 +532,18 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
    * @generated
    */
     @Override
-    public EOperation getOperator__OpenWorkflowInstance() {
+    public EOperation getOperator__StartWorkflowInstance__EList_EList_MID() {
     return this.operatorEClass.getEOperations().get(24);
+  }
+
+    /**
+   * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+   * @generated
+   */
+    @Override
+    public EOperation getOperator__OpenWorkflowInstance() {
+    return this.operatorEClass.getEOperations().get(25);
   }
 
     /**
@@ -724,8 +742,8 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
    * @generated
    */
     @Override
-    public EClass getOperatorInput() {
-    return this.operatorInputEClass;
+    public EDataType getOperatorInput() {
+    return this.operatorInputEDataType;
   }
 
     /**
@@ -734,58 +752,18 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
    * @generated
    */
     @Override
-    public EReference getOperatorInput_Model() {
-    return (EReference)this.operatorInputEClass.getEStructuralFeatures().get(0);
+    public EDataType getOperatorGeneric() {
+    return this.operatorGenericEDataType;
   }
 
     /**
    * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-    @Override
-    public EReference getOperatorInput_Conversions() {
-    return (EReference)this.operatorInputEClass.getEStructuralFeatures().get(1);
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    @Override
-    public EReference getOperatorInput_ModelTypeEndpoint() {
-    return (EReference)this.operatorInputEClass.getEStructuralFeatures().get(2);
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    @Override
-    public EClass getOperatorGeneric() {
-    return this.operatorGenericEClass;
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    @Override
-    public EReference getOperatorGeneric_Generic() {
-    return (EReference)this.operatorGenericEClass.getEStructuralFeatures().get(0);
-  }
-
-    /**
-   * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-   * @generated
-   */
-    @Override
-    public EReference getOperatorGeneric_GenericSuperTypeEndpoint() {
-    return (EReference)this.operatorGenericEClass.getEStructuralFeatures().get(1);
+  @Override
+  public EDataType getOperatorParameter() {
+    return this.operatorParameterEDataType;
   }
 
     /**
@@ -882,10 +860,11 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
     createEOperation(this.operatorEClass, OperatorPackage.OPERATOR___DELETE_INSTANCE);
     createEOperation(this.operatorEClass, OperatorPackage.OPERATOR___SELECT_ALLOWED_GENERICS__ELIST);
     createEOperation(this.operatorEClass, OperatorPackage.OPERATOR___GET_INPUT_PROPERTIES);
-    createEOperation(this.operatorEClass, OperatorPackage.OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES);
+    createEOperation(this.operatorEClass, OperatorPackage.OPERATOR___INIT__PROPERTIES_MAP);
     createEOperation(this.operatorEClass, OperatorPackage.OPERATOR___RUN__MAP_MAP_MAP);
     createEOperation(this.operatorEClass, OperatorPackage.OPERATOR___START_INSTANCE__ELIST_PROPERTIES_ELIST_MAP_MID);
     createEOperation(this.operatorEClass, OperatorPackage.OPERATOR___OPEN_INSTANCE);
+    createEOperation(this.operatorEClass, OperatorPackage.OPERATOR___OUTPUT_FROM_INPUT__INT_INT_MAP_MAP);
     createEOperation(this.operatorEClass, OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE__MID);
     createEOperation(this.operatorEClass, OperatorPackage.OPERATOR___DELETE_WORKFLOW_INSTANCE);
     createEOperation(this.operatorEClass, OperatorPackage.OPERATOR___CREATE_WORKFLOW_INSTANCE_OUTPUTS__OPERATOR_MAP_MAP_MID);
@@ -916,20 +895,14 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
     createEOperation(this.genericEndpointEClass, OperatorPackage.GENERIC_ENDPOINT___CREATE_INSTANCE__GENERICELEMENT_OPERATOR);
     createEOperation(this.genericEndpointEClass, OperatorPackage.GENERIC_ENDPOINT___CREATE_WORKFLOW_INSTANCE__GENERICELEMENT_OPERATOR);
 
-    this.operatorInputEClass = createEClass(OperatorPackage.OPERATOR_INPUT);
-    createEReference(this.operatorInputEClass, OperatorPackage.OPERATOR_INPUT__MODEL);
-    createEReference(this.operatorInputEClass, OperatorPackage.OPERATOR_INPUT__CONVERSIONS);
-    createEReference(this.operatorInputEClass, OperatorPackage.OPERATOR_INPUT__MODEL_TYPE_ENDPOINT);
-
-    this.operatorGenericEClass = createEClass(OperatorPackage.OPERATOR_GENERIC);
-    createEReference(this.operatorGenericEClass, OperatorPackage.OPERATOR_GENERIC__GENERIC);
-    createEReference(this.operatorGenericEClass, OperatorPackage.OPERATOR_GENERIC__GENERIC_SUPER_TYPE_ENDPOINT);
-
     // Create data types
     this.randomEDataType = createEDataType(OperatorPackage.RANDOM);
     this.exceptionEDataType = createEDataType(OperatorPackage.EXCEPTION);
     this.propertiesEDataType = createEDataType(OperatorPackage.PROPERTIES);
     this.setEDataType = createEDataType(OperatorPackage.SET);
+    this.operatorInputEDataType = createEDataType(OperatorPackage.OPERATOR_INPUT);
+    this.operatorGenericEDataType = createEDataType(OperatorPackage.OPERATOR_GENERIC);
+    this.operatorParameterEDataType = createEDataType(OperatorPackage.OPERATOR_PARAMETER);
   }
 
     /**
@@ -1054,8 +1027,14 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
     initEOperation(getOperator__GetInputProperties(), this.getProperties(), "getInputProperties", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
-    op = initEOperation(getOperator__ReadInputProperties__Properties(), null, "readInputProperties", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    op = initEOperation(getOperator__Init__Properties_Map(), null, "init", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, this.getProperties(), "inputProperties", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    g1 = createEGenericType(this.ecorePackage.getEMap());
+    g2 = createEGenericType(this.ecorePackage.getEString());
+    g1.getETypeArguments().add(g2);
+    g2 = createEGenericType(theMIDPackage.getModel());
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "inputsByName", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theMIDPackage.getMMINTException());
 
     op = initEOperation(getOperator__Run__Map_Map_Map(), null, "run", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
@@ -1100,6 +1079,29 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
 
     op = initEOperation(getOperator__OpenInstance(), null, "openInstance", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, this.getException());
+
+    op = initEOperation(getOperator__OutputFromInput__int_int_Map_Map(), null, "outputFromInput", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEInt(), "inIndex", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEInt(), "outIndex", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    g1 = createEGenericType(this.ecorePackage.getEMap());
+    g2 = createEGenericType(this.ecorePackage.getEString());
+    g1.getETypeArguments().add(g2);
+    g2 = createEGenericType(theMIDPackage.getModel());
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "inputsByName", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    g1 = createEGenericType(this.ecorePackage.getEMap());
+    g2 = createEGenericType(this.ecorePackage.getEString());
+    g1.getETypeArguments().add(g2);
+    g2 = createEGenericType(theMIDPackage.getMID());
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "outputMIDsByName", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEException(op, this.getException());
+    g1 = createEGenericType(this.ecorePackage.getEMap());
+    g2 = createEGenericType(this.ecorePackage.getEString());
+    g1.getETypeArguments().add(g2);
+    g2 = createEGenericType(theMIDPackage.getModel());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
 
     op = initEOperation(getOperator__CreateWorkflowInstance__MID(), this.getOperator(), "createWorkflowInstance", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEParameter(op, theMIDPackage.getMID(), "workflowMID", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
@@ -1191,20 +1193,14 @@ public class OperatorPackageImpl extends EPackageImpl implements OperatorPackage
     addEParameter(op, this.getOperator(), "containerOperator", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theMIDPackage.getMMINTException());
 
-    initEClass(this.operatorInputEClass, OperatorInput.class, "OperatorInput", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getOperatorInput_Model(), theMIDPackage.getModel(), null, "model", null, 1, 1, OperatorInput.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getOperatorInput_Conversions(), this.getConversionOperator(), null, "conversions", null, 0, -1, OperatorInput.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getOperatorInput_ModelTypeEndpoint(), theMIDPackage.getModelEndpoint(), null, "modelTypeEndpoint", null, 1, 1, OperatorInput.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-
-    initEClass(this.operatorGenericEClass, OperatorGeneric.class, "OperatorGeneric", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getOperatorGeneric_Generic(), theMIDPackage.getGenericElement(), null, "generic", null, 1, 1, OperatorGeneric.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getOperatorGeneric_GenericSuperTypeEndpoint(), this.getGenericEndpoint(), null, "genericSuperTypeEndpoint", null, 1, 1, OperatorGeneric.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-
     // Initialize data types
     initEDataType(this.randomEDataType, Random.class, "Random", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEDataType(this.exceptionEDataType, Exception.class, "Exception", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEDataType(this.propertiesEDataType, Properties.class, "Properties", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEDataType(this.setEDataType, Set.class, "Set", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.operatorInputEDataType, OperatorInput.class, "OperatorInput", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.operatorGenericEDataType, OperatorGeneric.class, "OperatorGeneric", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.operatorParameterEDataType, OperatorParameter.class, "OperatorParameter", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
   }
 
 } //OperatorPackageImpl

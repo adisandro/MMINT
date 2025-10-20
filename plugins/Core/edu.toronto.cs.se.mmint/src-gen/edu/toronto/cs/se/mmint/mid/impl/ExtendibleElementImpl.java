@@ -388,7 +388,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
     var oldConstraint = this.constraint;
     this.constraint = newConstraint;
     if (eNotificationRequired()) {
-      var notification = new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, oldConstraint, newConstraint);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MIDPackage.EXTENDIBLE_ELEMENT__CONSTRAINT, oldConstraint, newConstraint);
       if (msgs == null) {
         msgs = notification;
       }
@@ -653,7 +653,7 @@ public abstract class ExtendibleElementImpl extends MinimalEObjectImpl.Container
       return super.toString();
     }
 
-    var result = new StringBuilder(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (uri: ");
     result.append(this.uri);
     result.append(", name: ");

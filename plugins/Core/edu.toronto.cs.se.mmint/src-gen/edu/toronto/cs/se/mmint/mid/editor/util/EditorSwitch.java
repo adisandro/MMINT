@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -14,8 +14,8 @@ package edu.toronto.cs.se.mmint.mid.editor.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.editor.*;
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorPackage;
@@ -49,8 +49,8 @@ public class EditorSwitch<T> extends Switch<T> {
    * @generated
    */
     public EditorSwitch() {
-    if (modelPackage == null) {
-      modelPackage = EditorPackage.eINSTANCE;
+    if (EditorSwitch.modelPackage == null) {
+      EditorSwitch.modelPackage = EditorPackage.eINSTANCE;
     }
   }
 
@@ -64,7 +64,7 @@ public class EditorSwitch<T> extends Switch<T> {
    */
     @Override
     protected boolean isSwitchFor(EPackage ePackage) {
-    return ePackage == modelPackage;
+    return ePackage == EditorSwitch.modelPackage;
   }
 
     /**
@@ -78,18 +78,28 @@ public class EditorSwitch<T> extends Switch<T> {
     protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
       case EditorPackage.EDITOR: {
-        Editor editor = (Editor)theEObject;
-        T result = caseEditor(editor);
-        if (result == null) result = caseExtendibleElement(editor);
-        if (result == null) result = defaultCase(theEObject);
+        var editor = (Editor)theEObject;
+        var result = caseEditor(editor);
+        if (result == null) {
+          result = caseExtendibleElement(editor);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       case EditorPackage.DIAGRAM: {
-        Diagram diagram = (Diagram)theEObject;
-        T result = caseDiagram(diagram);
-        if (result == null) result = caseEditor(diagram);
-        if (result == null) result = caseExtendibleElement(diagram);
-        if (result == null) result = defaultCase(theEObject);
+        var diagram = (Diagram)theEObject;
+        var result = caseDiagram(diagram);
+        if (result == null) {
+          result = caseEditor(diagram);
+        }
+        if (result == null) {
+          result = caseExtendibleElement(diagram);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
         return result;
       }
       default: return defaultCase(theEObject);

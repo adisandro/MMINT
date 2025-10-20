@@ -5,21 +5,23 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.relationship.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+
+import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel} object.
@@ -47,13 +49,13 @@ public class BinaryModelRelItemProvider
    */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addSourceModelPropertyDescriptor(object);
       addTargetModelPropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
 	/**
@@ -63,9 +65,9 @@ public class BinaryModelRelItemProvider
    * @generated
    */
 	protected void addSourceModelPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_BinaryModelRel_sourceModel_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_BinaryModelRel_sourceModel_feature", "_UI_BinaryModelRel_type"),
@@ -85,9 +87,9 @@ public class BinaryModelRelItemProvider
    * @generated
    */
 	protected void addTargetModelPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_BinaryModelRel_targetModel_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_BinaryModelRel_targetModel_feature", "_UI_BinaryModelRel_type"),
@@ -119,7 +121,7 @@ public class BinaryModelRelItemProvider
    */
 	@Override
 	public String getText(Object object) {
-    String label = ((BinaryModelRel)object).getName();
+    var label = ((BinaryModelRel)object).getName();
     return label == null || label.length() == 0 ?
       getString("_UI_BinaryModelRel_type") :
       getString("_UI_BinaryModelRel_type") + " " + label;

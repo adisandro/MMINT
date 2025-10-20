@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -428,7 +428,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM__SUPERTYPE = EDITOR__SUPERTYPE;
+    int DIAGRAM__SUPERTYPE = EditorPackage.EDITOR__SUPERTYPE;
 
     /**
    * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -437,7 +437,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM__URI = EDITOR__URI;
+    int DIAGRAM__URI = EditorPackage.EDITOR__URI;
 
     /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -446,7 +446,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM__NAME = EDITOR__NAME;
+    int DIAGRAM__NAME = EditorPackage.EDITOR__NAME;
 
     /**
    * The feature id for the '<em><b>Level</b></em>' attribute.
@@ -455,7 +455,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM__LEVEL = EDITOR__LEVEL;
+    int DIAGRAM__LEVEL = EditorPackage.EDITOR__LEVEL;
 
     /**
    * The feature id for the '<em><b>Metatype Uri</b></em>' attribute.
@@ -464,7 +464,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM__METATYPE_URI = EDITOR__METATYPE_URI;
+    int DIAGRAM__METATYPE_URI = EditorPackage.EDITOR__METATYPE_URI;
 
     /**
    * The feature id for the '<em><b>Dynamic</b></em>' attribute.
@@ -473,7 +473,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM__DYNAMIC = EDITOR__DYNAMIC;
+    int DIAGRAM__DYNAMIC = EditorPackage.EDITOR__DYNAMIC;
 
     /**
    * The feature id for the '<em><b>Constraint</b></em>' containment reference.
@@ -482,7 +482,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM__CONSTRAINT = EDITOR__CONSTRAINT;
+    int DIAGRAM__CONSTRAINT = EditorPackage.EDITOR__CONSTRAINT;
 
     /**
    * The feature id for the '<em><b>Model Uri</b></em>' attribute.
@@ -491,7 +491,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM__MODEL_URI = EDITOR__MODEL_URI;
+    int DIAGRAM__MODEL_URI = EditorPackage.EDITOR__MODEL_URI;
 
     /**
    * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -500,7 +500,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM__ID = EDITOR__ID;
+    int DIAGRAM__ID = EditorPackage.EDITOR__ID;
 
     /**
    * The feature id for the '<em><b>Wizard Id</b></em>' attribute.
@@ -509,7 +509,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM__WIZARD_ID = EDITOR__WIZARD_ID;
+    int DIAGRAM__WIZARD_ID = EditorPackage.EDITOR__WIZARD_ID;
 
     /**
    * The feature id for the '<em><b>File Extensions</b></em>' attribute list.
@@ -518,7 +518,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM__FILE_EXTENSIONS = EDITOR__FILE_EXTENSIONS;
+    int DIAGRAM__FILE_EXTENSIONS = EditorPackage.EDITOR__FILE_EXTENSIONS;
 
     /**
    * The feature id for the '<em><b>Wizard Dialog Class</b></em>' attribute.
@@ -527,7 +527,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM__WIZARD_DIALOG_CLASS = EDITOR__WIZARD_DIALOG_CLASS;
+    int DIAGRAM__WIZARD_DIALOG_CLASS = EditorPackage.EDITOR__WIZARD_DIALOG_CLASS;
 
     /**
    * The number of structural features of the '<em>Diagram</em>' class.
@@ -536,7 +536,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM_FEATURE_COUNT = EDITOR_FEATURE_COUNT + 0;
+    int DIAGRAM_FEATURE_COUNT = EditorPackage.EDITOR_FEATURE_COUNT + 0;
 
     /**
    * The operation id for the '<em>Is Level</em>' operation.
@@ -545,7 +545,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___IS_LEVEL__MIDLEVEL = EDITOR___IS_LEVEL__MIDLEVEL;
+    int DIAGRAM___IS_LEVEL__MIDLEVEL = EditorPackage.EDITOR___IS_LEVEL__MIDLEVEL;
 
     /**
    * The operation id for the '<em>Is Types Level</em>' operation.
@@ -554,7 +554,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___IS_TYPES_LEVEL = EDITOR___IS_TYPES_LEVEL;
+    int DIAGRAM___IS_TYPES_LEVEL = EditorPackage.EDITOR___IS_TYPES_LEVEL;
 
     /**
    * The operation id for the '<em>Create Subtype Uri</em>' operation.
@@ -563,7 +563,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___CREATE_SUBTYPE_URI__STRING_STRING = EDITOR___CREATE_SUBTYPE_URI__STRING_STRING;
+    int DIAGRAM___CREATE_SUBTYPE_URI__STRING_STRING = EditorPackage.EDITOR___CREATE_SUBTYPE_URI__STRING_STRING;
 
     /**
    * The operation id for the '<em>Add Type Constraint</em>' operation.
@@ -572,7 +572,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___ADD_TYPE_CONSTRAINT__STRING_STRING = EDITOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
+    int DIAGRAM___ADD_TYPE_CONSTRAINT__STRING_STRING = EditorPackage.EDITOR___ADD_TYPE_CONSTRAINT__STRING_STRING;
 
     /**
    * The operation id for the '<em>Is Instances Level</em>' operation.
@@ -581,7 +581,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___IS_INSTANCES_LEVEL = EDITOR___IS_INSTANCES_LEVEL;
+    int DIAGRAM___IS_INSTANCES_LEVEL = EditorPackage.EDITOR___IS_INSTANCES_LEVEL;
 
     /**
    * The operation id for the '<em>Get Runtime Types</em>' operation.
@@ -590,7 +590,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___GET_RUNTIME_TYPES = EDITOR___GET_RUNTIME_TYPES;
+    int DIAGRAM___GET_RUNTIME_TYPES = EditorPackage.EDITOR___GET_RUNTIME_TYPES;
 
     /**
    * The operation id for the '<em>Get Closest Type Constraint</em>' operation.
@@ -599,7 +599,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___GET_CLOSEST_TYPE_CONSTRAINT = EDITOR___GET_CLOSEST_TYPE_CONSTRAINT;
+    int DIAGRAM___GET_CLOSEST_TYPE_CONSTRAINT = EditorPackage.EDITOR___GET_CLOSEST_TYPE_CONSTRAINT;
 
     /**
    * The operation id for the '<em>Validate Instance Type</em>' operation.
@@ -608,7 +608,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = EDITOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
+    int DIAGRAM___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT = EditorPackage.EDITOR___VALIDATE_INSTANCE_TYPE__EXTENDIBLEELEMENT;
 
     /**
    * The operation id for the '<em>Validate Instance</em>' operation.
@@ -617,7 +617,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___VALIDATE_INSTANCE = EDITOR___VALIDATE_INSTANCE;
+    int DIAGRAM___VALIDATE_INSTANCE = EditorPackage.EDITOR___VALIDATE_INSTANCE;
 
     /**
    * The operation id for the '<em>Validate Instance In Editor</em>' operation.
@@ -626,7 +626,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EDITOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
+    int DIAGRAM___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT = EditorPackage.EDITOR___VALIDATE_INSTANCE_IN_EDITOR__IVALIDATIONCONTEXT;
 
     /**
    * The operation id for the '<em>Is Workflows Level</em>' operation.
@@ -635,7 +635,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___IS_WORKFLOWS_LEVEL = EDITOR___IS_WORKFLOWS_LEVEL;
+    int DIAGRAM___IS_WORKFLOWS_LEVEL = EditorPackage.EDITOR___IS_WORKFLOWS_LEVEL;
 
     /**
    * The operation id for the '<em>Update Workflow Instance Id</em>' operation.
@@ -644,7 +644,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___UPDATE_WORKFLOW_INSTANCE_ID__STRING = EDITOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
+    int DIAGRAM___UPDATE_WORKFLOW_INSTANCE_ID__STRING = EditorPackage.EDITOR___UPDATE_WORKFLOW_INSTANCE_ID__STRING;
 
     /**
    * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -653,7 +653,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___TO_MID_CUSTOM_PRINT_LABEL = EDITOR___TO_MID_CUSTOM_PRINT_LABEL;
+    int DIAGRAM___TO_MID_CUSTOM_PRINT_LABEL = EditorPackage.EDITOR___TO_MID_CUSTOM_PRINT_LABEL;
 
     /**
    * The operation id for the '<em>To MID Custom Edit Label</em>' operation.
@@ -662,7 +662,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___TO_MID_CUSTOM_EDIT_LABEL = EDITOR___TO_MID_CUSTOM_EDIT_LABEL;
+    int DIAGRAM___TO_MID_CUSTOM_EDIT_LABEL = EditorPackage.EDITOR___TO_MID_CUSTOM_EDIT_LABEL;
 
     /**
    * The operation id for the '<em>Update MID Custom Label</em>' operation.
@@ -671,7 +671,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___UPDATE_MID_CUSTOM_LABEL__STRING = EDITOR___UPDATE_MID_CUSTOM_LABEL__STRING;
+    int DIAGRAM___UPDATE_MID_CUSTOM_LABEL__STRING = EditorPackage.EDITOR___UPDATE_MID_CUSTOM_LABEL__STRING;
 
     /**
    * The operation id for the '<em>Get Metatype</em>' operation.
@@ -680,7 +680,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___GET_METATYPE = EDITOR___GET_METATYPE;
+    int DIAGRAM___GET_METATYPE = EditorPackage.EDITOR___GET_METATYPE;
 
     /**
    * The operation id for the '<em>Get Supertype</em>' operation.
@@ -689,7 +689,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___GET_SUPERTYPE = EDITOR___GET_SUPERTYPE;
+    int DIAGRAM___GET_SUPERTYPE = EditorPackage.EDITOR___GET_SUPERTYPE;
 
     /**
    * The operation id for the '<em>Get MID Container</em>' operation.
@@ -698,7 +698,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___GET_MID_CONTAINER = EDITOR___GET_MID_CONTAINER;
+    int DIAGRAM___GET_MID_CONTAINER = EditorPackage.EDITOR___GET_MID_CONTAINER;
 
     /**
    * The operation id for the '<em>Create Subtype</em>' operation.
@@ -707,7 +707,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING = EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING;
+    int DIAGRAM___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING = EditorPackage.EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING;
 
     /**
    * The operation id for the '<em>Delete Type</em>' operation.
@@ -716,7 +716,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___DELETE_TYPE = EDITOR___DELETE_TYPE;
+    int DIAGRAM___DELETE_TYPE = EditorPackage.EDITOR___DELETE_TYPE;
 
     /**
    * The operation id for the '<em>Create Instance</em>' operation.
@@ -725,7 +725,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___CREATE_INSTANCE__STRING_BOOLEAN_MID = EDITOR___CREATE_INSTANCE__STRING_BOOLEAN_MID;
+    int DIAGRAM___CREATE_INSTANCE__STRING_BOOLEAN_MID = EditorPackage.EDITOR___CREATE_INSTANCE__STRING_BOOLEAN_MID;
 
     /**
    * The operation id for the '<em>Invoke Instance Wizard</em>' operation.
@@ -734,7 +734,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION = EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION;
+    int DIAGRAM___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION = EditorPackage.EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION;
 
     /**
    * The operation id for the '<em>Delete Instance</em>' operation.
@@ -743,7 +743,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM___DELETE_INSTANCE = EDITOR___DELETE_INSTANCE;
+    int DIAGRAM___DELETE_INSTANCE = EditorPackage.EDITOR___DELETE_INSTANCE;
 
     /**
    * The number of operations of the '<em>Diagram</em>' class.
@@ -752,7 +752,7 @@ public interface EditorPackage extends EPackage {
    * @generated
    * @ordered
    */
-    int DIAGRAM_OPERATION_COUNT = EDITOR_OPERATION_COUNT + 0;
+    int DIAGRAM_OPERATION_COUNT = EditorPackage.EDITOR_OPERATION_COUNT + 0;
 
 
     /**
@@ -990,7 +990,7 @@ public interface EditorPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.editor.impl.EditorPackageImpl#getEditor()
      * @generated
      */
-        EClass EDITOR = eINSTANCE.getEditor();
+        EClass EDITOR = EditorPackage.eINSTANCE.getEditor();
 
         /**
      * The meta object literal for the '<em><b>Model Uri</b></em>' attribute feature.
@@ -998,7 +998,7 @@ public interface EditorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EDITOR__MODEL_URI = eINSTANCE.getEditor_ModelUri();
+        EAttribute EDITOR__MODEL_URI = EditorPackage.eINSTANCE.getEditor_ModelUri();
 
         /**
      * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
@@ -1006,7 +1006,7 @@ public interface EditorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EDITOR__ID = eINSTANCE.getEditor_Id();
+        EAttribute EDITOR__ID = EditorPackage.eINSTANCE.getEditor_Id();
 
         /**
      * The meta object literal for the '<em><b>Wizard Id</b></em>' attribute feature.
@@ -1014,7 +1014,7 @@ public interface EditorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EDITOR__WIZARD_ID = eINSTANCE.getEditor_WizardId();
+        EAttribute EDITOR__WIZARD_ID = EditorPackage.eINSTANCE.getEditor_WizardId();
 
         /**
      * The meta object literal for the '<em><b>File Extensions</b></em>' attribute list feature.
@@ -1022,7 +1022,7 @@ public interface EditorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EDITOR__FILE_EXTENSIONS = eINSTANCE.getEditor_FileExtensions();
+        EAttribute EDITOR__FILE_EXTENSIONS = EditorPackage.eINSTANCE.getEditor_FileExtensions();
 
         /**
      * The meta object literal for the '<em><b>Wizard Dialog Class</b></em>' attribute feature.
@@ -1030,7 +1030,7 @@ public interface EditorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EAttribute EDITOR__WIZARD_DIALOG_CLASS = eINSTANCE.getEditor_WizardDialogClass();
+        EAttribute EDITOR__WIZARD_DIALOG_CLASS = EditorPackage.eINSTANCE.getEditor_WizardDialogClass();
 
         /**
      * The meta object literal for the '<em><b>Get Metatype</b></em>' operation.
@@ -1038,7 +1038,7 @@ public interface EditorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EDITOR___GET_METATYPE = eINSTANCE.getEditor__GetMetatype();
+        EOperation EDITOR___GET_METATYPE = EditorPackage.eINSTANCE.getEditor__GetMetatype();
 
         /**
      * The meta object literal for the '<em><b>Get Supertype</b></em>' operation.
@@ -1046,7 +1046,7 @@ public interface EditorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EDITOR___GET_SUPERTYPE = eINSTANCE.getEditor__GetSupertype();
+        EOperation EDITOR___GET_SUPERTYPE = EditorPackage.eINSTANCE.getEditor__GetSupertype();
 
         /**
      * The meta object literal for the '<em><b>Get MID Container</b></em>' operation.
@@ -1054,7 +1054,7 @@ public interface EditorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EDITOR___GET_MID_CONTAINER = eINSTANCE.getEditor__GetMIDContainer();
+        EOperation EDITOR___GET_MID_CONTAINER = EditorPackage.eINSTANCE.getEditor__GetMIDContainer();
 
         /**
      * The meta object literal for the '<em><b>Create Subtype</b></em>' operation.
@@ -1062,7 +1062,7 @@ public interface EditorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING = eINSTANCE.getEditor__CreateSubtype__String_String_String_String_String_String();
+        EOperation EDITOR___CREATE_SUBTYPE__STRING_STRING_STRING_STRING_STRING_STRING = EditorPackage.eINSTANCE.getEditor__CreateSubtype__String_String_String_String_String_String();
 
         /**
      * The meta object literal for the '<em><b>Delete Type</b></em>' operation.
@@ -1070,7 +1070,7 @@ public interface EditorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EDITOR___DELETE_TYPE = eINSTANCE.getEditor__DeleteType();
+        EOperation EDITOR___DELETE_TYPE = EditorPackage.eINSTANCE.getEditor__DeleteType();
 
         /**
      * The meta object literal for the '<em><b>Create Instance</b></em>' operation.
@@ -1078,7 +1078,7 @@ public interface EditorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EDITOR___CREATE_INSTANCE__STRING_BOOLEAN_MID = eINSTANCE.getEditor__CreateInstance__String_boolean_MID();
+        EOperation EDITOR___CREATE_INSTANCE__STRING_BOOLEAN_MID = EditorPackage.eINSTANCE.getEditor__CreateInstance__String_boolean_MID();
 
         /**
      * The meta object literal for the '<em><b>Invoke Instance Wizard</b></em>' operation.
@@ -1086,7 +1086,7 @@ public interface EditorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION = eINSTANCE.getEditor__InvokeInstanceWizard__IStructuredSelection();
+        EOperation EDITOR___INVOKE_INSTANCE_WIZARD__ISTRUCTUREDSELECTION = EditorPackage.eINSTANCE.getEditor__InvokeInstanceWizard__IStructuredSelection();
 
         /**
      * The meta object literal for the '<em><b>Delete Instance</b></em>' operation.
@@ -1094,7 +1094,7 @@ public interface EditorPackage extends EPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        EOperation EDITOR___DELETE_INSTANCE = eINSTANCE.getEditor__DeleteInstance();
+        EOperation EDITOR___DELETE_INSTANCE = EditorPackage.eINSTANCE.getEditor__DeleteInstance();
 
         /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.mid.editor.impl.DiagramImpl <em>Diagram</em>}' class.
@@ -1104,7 +1104,7 @@ public interface EditorPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.editor.impl.EditorPackageImpl#getDiagram()
      * @generated
      */
-        EClass DIAGRAM = eINSTANCE.getDiagram();
+        EClass DIAGRAM = EditorPackage.eINSTANCE.getDiagram();
 
         /**
      * The meta object literal for the '<em>IStructured Selection</em>' data type.
@@ -1114,7 +1114,7 @@ public interface EditorPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.editor.impl.EditorPackageImpl#getIStructuredSelection()
      * @generated
      */
-        EDataType ISTRUCTURED_SELECTION = eINSTANCE.getIStructuredSelection();
+        EDataType ISTRUCTURED_SELECTION = EditorPackage.eINSTANCE.getIStructuredSelection();
 
         /**
      * The meta object literal for the '<em>Creation Wizard Dialog</em>' data type.
@@ -1124,7 +1124,7 @@ public interface EditorPackage extends EPackage {
      * @see edu.toronto.cs.se.mmint.mid.editor.impl.EditorPackageImpl#getEditorCreationWizardDialog()
      * @generated
      */
-        EDataType EDITOR_CREATION_WIZARD_DIALOG = eINSTANCE.getEditorCreationWizardDialog();
+        EDataType EDITOR_CREATION_WIZARD_DIALOG = EditorPackage.eINSTANCE.getEditorCreationWizardDialog();
 
     }
 

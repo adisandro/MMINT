@@ -5,18 +5,29 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.util;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import edu.toronto.cs.se.mmint.mid.*;
+
+import edu.toronto.cs.se.mmint.mid.EMFInfo;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
+import edu.toronto.cs.se.mmint.mid.GenericElement;
+import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.ModelElement;
+import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,8 +53,8 @@ public class MIDAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
     public MIDAdapterFactory() {
-    if (modelPackage == null) {
-      modelPackage = MIDPackage.eINSTANCE;
+    if (MIDAdapterFactory.modelPackage == null) {
+      MIDAdapterFactory.modelPackage = MIDPackage.eINSTANCE;
     }
   }
 
@@ -57,11 +68,11 @@ public class MIDAdapterFactory extends AdapterFactoryImpl {
    */
     @Override
     public boolean isFactoryForType(Object object) {
-    if (object == modelPackage) {
+    if (object == MIDAdapterFactory.modelPackage) {
       return true;
     }
     if (object instanceof EObject) {
-      return ((EObject)object).eClass().getEPackage() == modelPackage;
+      return ((EObject)object).eClass().getEPackage() == MIDAdapterFactory.modelPackage;
     }
     return false;
   }
@@ -73,7 +84,7 @@ public class MIDAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
     protected MIDSwitch<Adapter> modelSwitch =
-        new MIDSwitch<Adapter>() {
+        new MIDSwitch<>() {
       @Override
       public Adapter caseMID(MID object) {
         return createMIDAdapter();
@@ -130,7 +141,7 @@ public class MIDAdapterFactory extends AdapterFactoryImpl {
    */
     @Override
     public Adapter createAdapter(Notifier target) {
-    return modelSwitch.doSwitch((EObject)target);
+    return this.modelSwitch.doSwitch((EObject)target);
   }
 
 

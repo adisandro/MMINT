@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -20,10 +20,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
-import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
@@ -85,15 +83,16 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
    */
     @Override
     public ModelElementReference getModelElemRef() {
-    if (modelElemRef != null && modelElemRef.eIsProxy()) {
-      InternalEObject oldModelElemRef = (InternalEObject)modelElemRef;
-      modelElemRef = (ModelElementReference)eResolveProxy(oldModelElemRef);
-      if (modelElemRef != oldModelElemRef) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE__MODEL_ELEM_REF, oldModelElemRef, modelElemRef));
+    if (this.modelElemRef != null && this.modelElemRef.eIsProxy()) {
+      var oldModelElemRef = (InternalEObject)this.modelElemRef;
+      this.modelElemRef = (ModelElementReference)eResolveProxy(oldModelElemRef);
+      if (this.modelElemRef != oldModelElemRef) {
+        if (eNotificationRequired()) {
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE__MODEL_ELEM_REF, oldModelElemRef, this.modelElemRef));
+        }
       }
     }
-    return modelElemRef;
+    return this.modelElemRef;
   }
 
     /**
@@ -102,7 +101,7 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
    * @generated
    */
     public ModelElementReference basicGetModelElemRef() {
-    return modelElemRef;
+    return this.modelElemRef;
   }
 
     /**
@@ -111,11 +110,16 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
    * @generated
    */
     public NotificationChain basicSetModelElemRef(ModelElementReference newModelElemRef, NotificationChain msgs) {
-    ModelElementReference oldModelElemRef = modelElemRef;
-    modelElemRef = newModelElemRef;
+    var oldModelElemRef = this.modelElemRef;
+    this.modelElemRef = newModelElemRef;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE__MODEL_ELEM_REF, oldModelElemRef, newModelElemRef);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      if (msgs == null) {
+        msgs = notification;
+      }
+      else {
+        msgs.add(notification);
+      }
     }
     return msgs;
   }
@@ -127,17 +131,22 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
    */
     @Override
     public void setModelElemRef(ModelElementReference newModelElemRef) {
-    if (newModelElemRef != modelElemRef) {
+    if (newModelElemRef != this.modelElemRef) {
       NotificationChain msgs = null;
-      if (modelElemRef != null)
-        msgs = ((InternalEObject)modelElemRef).eInverseRemove(this, RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS, ModelElementReference.class, msgs);
-      if (newModelElemRef != null)
+      if (this.modelElemRef != null) {
+        msgs = ((InternalEObject)this.modelElemRef).eInverseRemove(this, RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS, ModelElementReference.class, msgs);
+      }
+      if (newModelElemRef != null) {
         msgs = ((InternalEObject)newModelElemRef).eInverseAdd(this, RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS, ModelElementReference.class, msgs);
+      }
       msgs = basicSetModelElemRef(newModelElemRef, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null) {
+        msgs.dispatch();
+      }
     }
-    else if (eNotificationRequired())
+    else if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE__MODEL_ELEM_REF, newModelElemRef, newModelElemRef));
+    }
   }
 
     /**
@@ -147,7 +156,7 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
    */
     @Override
     public ModelElementEndpoint getObject() {
-    ExtendibleElementEndpoint object = super.getObject();
+    var object = super.getObject();
     return (object == null) ? null : (ModelElementEndpoint) object;
   }
 
@@ -158,7 +167,7 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
    */
     @Override
     public ModelElementEndpointReference getSupertypeRef() {
-    ExtendibleElementEndpointReference supertypeRef = super.getSupertypeRef();
+    var supertypeRef = super.getSupertypeRef();
     return (supertypeRef == null) ? null : (ModelElementEndpointReference) supertypeRef;
   }
 
@@ -171,8 +180,9 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
       case RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE__MODEL_ELEM_REF:
-        if (modelElemRef != null)
-          msgs = ((InternalEObject)modelElemRef).eInverseRemove(this, RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS, ModelElementReference.class, msgs);
+        if (this.modelElemRef != null) {
+          msgs = ((InternalEObject)this.modelElemRef).eInverseRemove(this, RelationshipPackage.MODEL_ELEMENT_REFERENCE__MODEL_ELEM_ENDPOINT_REFS, ModelElementReference.class, msgs);
+        }
         return basicSetModelElemRef((ModelElementReference)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -201,7 +211,9 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
       case RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE__MODEL_ELEM_REF:
-        if (resolve) return getModelElemRef();
+        if (resolve) {
+          return getModelElemRef();
+        }
         return basicGetModelElemRef();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -246,7 +258,7 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE__MODEL_ELEM_REF:
-        return modelElemRef != null;
+        return this.modelElemRef != null;
     }
     return super.eIsSet(featureID);
   }
@@ -259,17 +271,17 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
     if (baseClass == ExtendibleElementReference.class) {
-      switch (baseOperationID) {
-        case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT: return RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT -> RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     if (baseClass == ExtendibleElementEndpointReference.class) {
-      switch (baseOperationID) {
-        case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT: return RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT;
-        case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF: return RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT -> RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT;
+      case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF -> RelationshipPackage.MODEL_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     return super.eDerivedOperationID(baseOperationID, baseClass);
   }
@@ -317,6 +329,7 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
     /**
      * @generated NOT
      */
+    @Override
     public void deleteTypeReference(boolean isFullDelete) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -330,13 +343,14 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
     /**
      * @generated NOT
      */
+    @Override
     public void deleteTypeAndReference(boolean isFullDelete) throws MMINTException {
 
         MMINTException.mustBeType(this);
 
-        MID typeMID = this.getMIDContainer();
-        MappingReference mappingTypeRef = (MappingReference) this.eContainer();
-        ModelRel modelRelType = (ModelRel) mappingTypeRef.eContainer();
+        var typeMID = this.getMIDContainer();
+        var mappingTypeRef = (MappingReference) this.eContainer();
+        var modelRelType = (ModelRel) mappingTypeRef.eContainer();
         // delete the "thing" and the corresponding reference
         getObject().deleteType(isFullDelete);
         if (isFullDelete) {
@@ -360,12 +374,13 @@ public class ModelElementEndpointReferenceImpl extends ExtendibleElementEndpoint
     /**
      * @generated NOT
      */
+    @Override
     public void deleteInstanceAndReference(boolean isFullDelete) throws MMINTException {
 
         MMINTException.mustBeInstance(this);
 
-        MappingReference mappingRef = (MappingReference) this.eContainer();
-        Mapping mapping = mappingRef.getObject();
+        var mappingRef = (MappingReference) this.eContainer();
+        var mapping = mappingRef.getObject();
         if (isFullDelete) {
             mapping.getModelElemEndpoints().remove(getObject());
             mappingRef.getModelElemEndpointRefs().remove(this);

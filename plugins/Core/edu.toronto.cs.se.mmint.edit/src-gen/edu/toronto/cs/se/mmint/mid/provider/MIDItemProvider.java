@@ -5,34 +5,20 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.MID;
-import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.MIDLevel;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
-
-import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
-
-import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
-
-import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
-
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -45,13 +31,20 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorFactory;
+import edu.toronto.cs.se.mmint.mid.relationship.RelationshipFactory;
+
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.MID} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MIDItemProvider 
+public class MIDItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -77,12 +70,12 @@ public class MIDItemProvider
    */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addLevelPropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
 	/**
@@ -92,9 +85,9 @@ public class MIDItemProvider
    * @generated
    */
 	protected void addLevelPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_MID_level_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_MID_level_feature", "_UI_MID_type"),
@@ -117,14 +110,14 @@ public class MIDItemProvider
    */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-    if (childrenFeatures == null) {
+    if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(MIDPackage.Literals.MID__MODELS);
-      childrenFeatures.add(MIDPackage.Literals.MID__EDITORS);
-      childrenFeatures.add(MIDPackage.Literals.MID__OPERATORS);
-      childrenFeatures.add(MIDPackage.Literals.MID__EXTENDIBLE_TABLE);
+      this.childrenFeatures.add(MIDPackage.Literals.MID__MODELS);
+      this.childrenFeatures.add(MIDPackage.Literals.MID__EDITORS);
+      this.childrenFeatures.add(MIDPackage.Literals.MID__OPERATORS);
+      this.childrenFeatures.add(MIDPackage.Literals.MID__EXTENDIBLE_TABLE);
     }
-    return childrenFeatures;
+    return this.childrenFeatures;
   }
 
 	/**
@@ -159,13 +152,13 @@ public class MIDItemProvider
    */
 	@Override
 	public String getText(Object object) {
-    MIDLevel labelValue = ((MID)object).getLevel();
-    String label = labelValue == null ? null : labelValue.toString();
+    var labelValue = ((MID)object).getLevel();
+    var label = labelValue == null ? null : labelValue.toString();
     return label == null || label.length() == 0 ?
       getString("_UI_MID_type") :
       getString("_UI_MID_type") + " " + label;
   }
-	
+
 
 	/**
    * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -267,7 +260,7 @@ public class MIDItemProvider
    */
 	@Override
 	public ResourceLocator getResourceLocator() {
-    return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+    return ((IChildCreationExtender)this.adapterFactory).getResourceLocator();
   }
 
 }

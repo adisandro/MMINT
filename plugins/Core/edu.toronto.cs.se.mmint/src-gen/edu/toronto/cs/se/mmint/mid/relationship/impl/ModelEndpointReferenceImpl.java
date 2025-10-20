@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementEndpoint;
 import edu.toronto.cs.se.mmint.mid.MIDLevel;
 import edu.toronto.cs.se.mmint.mid.ModelElement;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
@@ -100,7 +101,7 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
    */
     @Override
     public ModelEndpoint getObject() {
-    var object = super.getObject();
+    ExtendibleElementEndpoint object = super.getObject();
     return (object == null) ? null : (ModelEndpoint) object;
   }
 
@@ -197,17 +198,17 @@ public class ModelEndpointReferenceImpl extends ExtendibleElementEndpointReferen
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
     if (baseClass == ExtendibleElementReference.class) {
-      switch (baseOperationID) {
-        case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT: return RelationshipPackage.MODEL_ENDPOINT_REFERENCE___GET_OBJECT;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT -> RelationshipPackage.MODEL_ENDPOINT_REFERENCE___GET_OBJECT;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     if (baseClass == ExtendibleElementEndpointReference.class) {
-      switch (baseOperationID) {
-        case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT: return RelationshipPackage.MODEL_ENDPOINT_REFERENCE___GET_OBJECT;
-        case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF: return RelationshipPackage.MODEL_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_OBJECT -> RelationshipPackage.MODEL_ENDPOINT_REFERENCE___GET_OBJECT;
+      case RelationshipPackage.EXTENDIBLE_ELEMENT_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF -> RelationshipPackage.MODEL_ENDPOINT_REFERENCE___GET_SUPERTYPE_REF;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     return super.eDerivedOperationID(baseOperationID, baseClass);
   }

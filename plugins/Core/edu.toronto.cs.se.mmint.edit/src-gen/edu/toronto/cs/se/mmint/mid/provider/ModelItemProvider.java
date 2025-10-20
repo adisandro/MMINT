@@ -5,18 +5,16 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
-import edu.toronto.cs.se.mmint.mid.Model;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -24,6 +22,10 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.Model;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.Model} object.
@@ -51,7 +53,7 @@ public class ModelItemProvider
    */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addOriginPropertyDescriptor(object);
@@ -59,7 +61,7 @@ public class ModelItemProvider
       addEditorsPropertyDescriptor(object);
       addConversionOperatorsPropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
 	/**
@@ -69,9 +71,9 @@ public class ModelItemProvider
    * @generated
    */
 	protected void addOriginPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_Model_origin_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Model_origin_feature", "_UI_Model_type"),
@@ -91,9 +93,9 @@ public class ModelItemProvider
    * @generated
    */
 	protected void addFileExtensionPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_Model_fileExtension_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Model_fileExtension_feature", "_UI_Model_type"),
@@ -113,9 +115,9 @@ public class ModelItemProvider
    * @generated
    */
 	protected void addEditorsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_Model_editors_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Model_editors_feature", "_UI_Model_type"),
@@ -135,9 +137,9 @@ public class ModelItemProvider
    * @generated
    */
 	protected void addConversionOperatorsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_Model_conversionOperators_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Model_conversionOperators_feature", "_UI_Model_type"),
@@ -160,11 +162,11 @@ public class ModelItemProvider
    */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-    if (childrenFeatures == null) {
+    if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(MIDPackage.Literals.MODEL__MODEL_ELEMS);
+      this.childrenFeatures.add(MIDPackage.Literals.MODEL__MODEL_ELEMS);
     }
-    return childrenFeatures;
+    return this.childrenFeatures;
   }
 
 	/**
@@ -199,7 +201,7 @@ public class ModelItemProvider
    */
 	@Override
 	public String getText(Object object) {
-    String label = ((Model)object).getName();
+    var label = ((Model)object).getName();
     return label == null || label.length() == 0 ?
       getString("_UI_Model_type") :
       getString("_UI_Model_type") + " " + label;

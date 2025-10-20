@@ -169,6 +169,6 @@ public class ToProductLine extends OperatorImpl {
                                 Map<String, MID> outputMIDsByName) throws Exception {
     toProductLine(inputsByName);
 
-    return OperatorParameter.outFromIn(this, 0, 0, inputsByName, outputMIDsByName);
+    return outputFromInput(0, 0, inputsByName, outputMIDsByName);
   }
 }

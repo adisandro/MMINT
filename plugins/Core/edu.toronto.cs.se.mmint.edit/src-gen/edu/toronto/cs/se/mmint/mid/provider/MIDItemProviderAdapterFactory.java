@@ -5,15 +5,11 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.provider;
-
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
-
-import edu.toronto.cs.se.mmint.mid.util.MIDAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,11 +18,8 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -40,6 +33,9 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
+import edu.toronto.cs.se.mmint.mid.util.MIDAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -81,7 +77,7 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
 	 * <!-- end-user-doc -->
    * @generated
    */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+	protected Collection<Object> supportedTypes = new ArrayList<>();
 
 	/**
    * This constructs an instance.
@@ -90,11 +86,11 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
    * @generated
    */
 	public MIDItemProviderAdapterFactory() {
-    supportedTypes.add(IEditingDomainItemProvider.class);
-    supportedTypes.add(IStructuredItemContentProvider.class);
-    supportedTypes.add(ITreeItemContentProvider.class);
-    supportedTypes.add(IItemLabelProvider.class);
-    supportedTypes.add(IItemPropertySource.class);
+    this.supportedTypes.add(IEditingDomainItemProvider.class);
+    this.supportedTypes.add(IStructuredItemContentProvider.class);
+    this.supportedTypes.add(ITreeItemContentProvider.class);
+    this.supportedTypes.add(IItemLabelProvider.class);
+    this.supportedTypes.add(IItemPropertySource.class);
   }
 
 	/**
@@ -113,11 +109,11 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
    */
 	@Override
 	public Adapter createMIDAdapter() {
-    if (midItemProvider == null) {
-      midItemProvider = new MIDItemProvider(this);
+    if (this.midItemProvider == null) {
+      this.midItemProvider = new MIDItemProvider(this);
     }
 
-    return midItemProvider;
+    return this.midItemProvider;
   }
 
 	/**
@@ -136,11 +132,11 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
    */
 	@Override
 	public Adapter createEStringToExtendibleElementMapAdapter() {
-    if (eStringToExtendibleElementMapItemProvider == null) {
-      eStringToExtendibleElementMapItemProvider = new EStringToExtendibleElementMapItemProvider(this);
+    if (this.eStringToExtendibleElementMapItemProvider == null) {
+      this.eStringToExtendibleElementMapItemProvider = new EStringToExtendibleElementMapItemProvider(this);
     }
 
-    return eStringToExtendibleElementMapItemProvider;
+    return this.eStringToExtendibleElementMapItemProvider;
   }
 
 	/**
@@ -159,11 +155,11 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
    */
 	@Override
 	public Adapter createModelAdapter() {
-    if (modelItemProvider == null) {
-      modelItemProvider = new ModelItemProvider(this);
+    if (this.modelItemProvider == null) {
+      this.modelItemProvider = new ModelItemProvider(this);
     }
 
-    return modelItemProvider;
+    return this.modelItemProvider;
   }
 
 	/**
@@ -182,11 +178,11 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
    */
 	@Override
 	public Adapter createExtendibleElementConstraintAdapter() {
-    if (extendibleElementConstraintItemProvider == null) {
-      extendibleElementConstraintItemProvider = new ExtendibleElementConstraintItemProvider(this);
+    if (this.extendibleElementConstraintItemProvider == null) {
+      this.extendibleElementConstraintItemProvider = new ExtendibleElementConstraintItemProvider(this);
     }
 
-    return extendibleElementConstraintItemProvider;
+    return this.extendibleElementConstraintItemProvider;
   }
 
 	/**
@@ -205,11 +201,11 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
    */
 	@Override
 	public Adapter createModelElementAdapter() {
-    if (modelElementItemProvider == null) {
-      modelElementItemProvider = new ModelElementItemProvider(this);
+    if (this.modelElementItemProvider == null) {
+      this.modelElementItemProvider = new ModelElementItemProvider(this);
     }
 
-    return modelElementItemProvider;
+    return this.modelElementItemProvider;
   }
 
 	/**
@@ -228,11 +224,11 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
    */
 	@Override
 	public Adapter createModelEndpointAdapter() {
-    if (modelEndpointItemProvider == null) {
-      modelEndpointItemProvider = new ModelEndpointItemProvider(this);
+    if (this.modelEndpointItemProvider == null) {
+      this.modelEndpointItemProvider = new ModelEndpointItemProvider(this);
     }
 
-    return modelEndpointItemProvider;
+    return this.modelEndpointItemProvider;
   }
 
 	/**
@@ -251,11 +247,11 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
    */
 	@Override
 	public Adapter createEMFInfoAdapter() {
-    if (emfInfoItemProvider == null) {
-      emfInfoItemProvider = new EMFInfoItemProvider(this);
+    if (this.emfInfoItemProvider == null) {
+      this.emfInfoItemProvider = new EMFInfoItemProvider(this);
     }
 
-    return emfInfoItemProvider;
+    return this.emfInfoItemProvider;
   }
 
 	/**
@@ -266,7 +262,7 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
    */
 	@Override
   public ComposeableAdapterFactory getRootAdapterFactory() {
-    return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+    return this.parentAdapterFactory == null ? this : this.parentAdapterFactory.getRootAdapterFactory();
   }
 
 	/**
@@ -287,7 +283,7 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
    */
 	@Override
 	public boolean isFactoryForType(Object type) {
-    return supportedTypes.contains(type) || super.isFactoryForType(type);
+    return this.supportedTypes.contains(type) || super.isFactoryForType(type);
   }
 
 	/**
@@ -309,7 +305,7 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
 	@Override
 	public Object adapt(Object object, Object type) {
     if (isFactoryForType(type)) {
-      Object adapter = super.adapt(object, type);
+      var adapter = super.adapt(object, type);
       if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
         return adapter;
       }
@@ -324,7 +320,7 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
    * @generated
    */
 	public List<IChildCreationExtender> getChildCreationExtenders() {
-    return childCreationExtenderManager.getChildCreationExtenders();
+    return this.childCreationExtenderManager.getChildCreationExtenders();
   }
 
 	/**
@@ -332,8 +328,9 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
-    return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
+	@Override
+  public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+    return this.childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
   }
 
 	/**
@@ -341,8 +338,9 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
 	 * <!-- end-user-doc -->
    * @generated
    */
-	public ResourceLocator getResourceLocator() {
-    return childCreationExtenderManager;
+	@Override
+  public ResourceLocator getResourceLocator() {
+    return this.childCreationExtenderManager;
   }
 
 	/**
@@ -353,7 +351,7 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
    */
 	@Override
   public void addListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.addListener(notifyChangedListener);
+    this.changeNotifier.addListener(notifyChangedListener);
   }
 
 	/**
@@ -364,7 +362,7 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
    */
 	@Override
   public void removeListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.removeListener(notifyChangedListener);
+    this.changeNotifier.removeListener(notifyChangedListener);
   }
 
 	/**
@@ -375,28 +373,42 @@ public class MIDItemProviderAdapterFactory extends MIDAdapterFactory implements 
    */
 	@Override
   public void fireNotifyChanged(Notification notification) {
-    changeNotifier.fireNotifyChanged(notification);
+    this.changeNotifier.fireNotifyChanged(notification);
 
-    if (parentAdapterFactory != null) {
-      parentAdapterFactory.fireNotifyChanged(notification);
+    if (this.parentAdapterFactory != null) {
+      this.parentAdapterFactory.fireNotifyChanged(notification);
     }
   }
 
 	/**
-   * This disposes all of the item providers created by this factory. 
+   * This disposes all of the item providers created by this factory.
    * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
    * @generated
    */
 	@Override
   public void dispose() {
-    if (midItemProvider != null) midItemProvider.dispose();
-    if (eStringToExtendibleElementMapItemProvider != null) eStringToExtendibleElementMapItemProvider.dispose();
-    if (modelItemProvider != null) modelItemProvider.dispose();
-    if (extendibleElementConstraintItemProvider != null) extendibleElementConstraintItemProvider.dispose();
-    if (modelElementItemProvider != null) modelElementItemProvider.dispose();
-    if (modelEndpointItemProvider != null) modelEndpointItemProvider.dispose();
-    if (emfInfoItemProvider != null) emfInfoItemProvider.dispose();
+    if (this.midItemProvider != null) {
+      this.midItemProvider.dispose();
+    }
+    if (this.eStringToExtendibleElementMapItemProvider != null) {
+      this.eStringToExtendibleElementMapItemProvider.dispose();
+    }
+    if (this.modelItemProvider != null) {
+      this.modelItemProvider.dispose();
+    }
+    if (this.extendibleElementConstraintItemProvider != null) {
+      this.extendibleElementConstraintItemProvider.dispose();
+    }
+    if (this.modelElementItemProvider != null) {
+      this.modelElementItemProvider.dispose();
+    }
+    if (this.modelEndpointItemProvider != null) {
+      this.modelEndpointItemProvider.dispose();
+    }
+    if (this.emfInfoItemProvider != null) {
+      this.emfInfoItemProvider.dispose();
+    }
   }
 
 }

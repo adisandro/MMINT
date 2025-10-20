@@ -5,11 +5,13 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.relationship.impl;
+
+import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -23,7 +25,6 @@ import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * <!-- begin-user-doc -->
@@ -90,7 +91,7 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
    * @generated
    * @ordered
    */
-    protected boolean modifiable = MODIFIABLE_EDEFAULT;
+    protected boolean modifiable = ExtendibleElementReferenceImpl.MODIFIABLE_EDEFAULT;
 
     /**
    * <!-- begin-user-doc -->
@@ -118,15 +119,16 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
    */
     @Override
     public ExtendibleElement getReferencedObject() {
-    if (referencedObject != null && referencedObject.eIsProxy()) {
-      InternalEObject oldReferencedObject = (InternalEObject)referencedObject;
-      referencedObject = (ExtendibleElement)eResolveProxy(oldReferencedObject);
-      if (referencedObject != oldReferencedObject) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT, oldReferencedObject, referencedObject));
+    if (this.referencedObject != null && this.referencedObject.eIsProxy()) {
+      var oldReferencedObject = (InternalEObject)this.referencedObject;
+      this.referencedObject = (ExtendibleElement)eResolveProxy(oldReferencedObject);
+      if (this.referencedObject != oldReferencedObject) {
+        if (eNotificationRequired()) {
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT, oldReferencedObject, this.referencedObject));
+        }
       }
     }
-    return referencedObject;
+    return this.referencedObject;
   }
 
     /**
@@ -135,7 +137,7 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
    * @generated
    */
     public ExtendibleElement basicGetReferencedObject() {
-    return referencedObject;
+    return this.referencedObject;
   }
 
     /**
@@ -145,10 +147,11 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
    */
     @Override
     public void setReferencedObject(ExtendibleElement newReferencedObject) {
-    ExtendibleElement oldReferencedObject = referencedObject;
-    referencedObject = newReferencedObject;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT, oldReferencedObject, referencedObject));
+    var oldReferencedObject = this.referencedObject;
+    this.referencedObject = newReferencedObject;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT, oldReferencedObject, this.referencedObject));
+    }
   }
 
     /**
@@ -158,7 +161,7 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
    */
     @Override
     public ExtendibleElement getContainedObject() {
-    return containedObject;
+    return this.containedObject;
   }
 
     /**
@@ -167,11 +170,16 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
    * @generated
    */
     public NotificationChain basicSetContainedObject(ExtendibleElement newContainedObject, NotificationChain msgs) {
-    ExtendibleElement oldContainedObject = containedObject;
-    containedObject = newContainedObject;
+    var oldContainedObject = this.containedObject;
+    this.containedObject = newContainedObject;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT, oldContainedObject, newContainedObject);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      if (msgs == null) {
+        msgs = notification;
+      }
+      else {
+        msgs.add(notification);
+      }
     }
     return msgs;
   }
@@ -183,17 +191,22 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
    */
     @Override
     public void setContainedObject(ExtendibleElement newContainedObject) {
-    if (newContainedObject != containedObject) {
+    if (newContainedObject != this.containedObject) {
       NotificationChain msgs = null;
-      if (containedObject != null)
-        msgs = ((InternalEObject)containedObject).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT, null, msgs);
-      if (newContainedObject != null)
-        msgs = ((InternalEObject)newContainedObject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT, null, msgs);
+      if (this.containedObject != null) {
+        msgs = ((InternalEObject)this.containedObject).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT, null, msgs);
+      }
+      if (newContainedObject != null) {
+        msgs = ((InternalEObject)newContainedObject).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT, null, msgs);
+      }
       msgs = basicSetContainedObject(newContainedObject, msgs);
-      if (msgs != null) msgs.dispatch();
+      if (msgs != null) {
+        msgs.dispatch();
+      }
     }
-    else if (eNotificationRequired())
+    else if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT, newContainedObject, newContainedObject));
+    }
   }
 
     /**
@@ -215,15 +228,16 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
    */
     @Override
     public ExtendibleElementReference getSupertypeRef() {
-    if (supertypeRef != null && supertypeRef.eIsProxy()) {
-      InternalEObject oldSupertypeRef = (InternalEObject)supertypeRef;
-      supertypeRef = (ExtendibleElementReference)eResolveProxy(oldSupertypeRef);
-      if (supertypeRef != oldSupertypeRef) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF, oldSupertypeRef, supertypeRef));
+    if (this.supertypeRef != null && this.supertypeRef.eIsProxy()) {
+      var oldSupertypeRef = (InternalEObject)this.supertypeRef;
+      this.supertypeRef = (ExtendibleElementReference)eResolveProxy(oldSupertypeRef);
+      if (this.supertypeRef != oldSupertypeRef) {
+        if (eNotificationRequired()) {
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF, oldSupertypeRef, this.supertypeRef));
+        }
       }
     }
-    return supertypeRef;
+    return this.supertypeRef;
   }
 
     /**
@@ -232,7 +246,7 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
    * @generated
    */
     public ExtendibleElementReference basicGetSupertypeRef() {
-    return supertypeRef;
+    return this.supertypeRef;
   }
 
     /**
@@ -242,10 +256,11 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
    */
     @Override
     public void setSupertypeRef(ExtendibleElementReference newSupertypeRef) {
-    ExtendibleElementReference oldSupertypeRef = supertypeRef;
-    supertypeRef = newSupertypeRef;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF, oldSupertypeRef, supertypeRef));
+    var oldSupertypeRef = this.supertypeRef;
+    this.supertypeRef = newSupertypeRef;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF, oldSupertypeRef, this.supertypeRef));
+    }
   }
 
     /**
@@ -255,7 +270,7 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
    */
     @Override
     public boolean isModifiable() {
-    return modifiable;
+    return this.modifiable;
   }
 
     /**
@@ -265,10 +280,11 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
    */
     @Override
     public void setModifiable(boolean newModifiable) {
-    boolean oldModifiable = modifiable;
-    modifiable = newModifiable;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE, oldModifiable, modifiable));
+    var oldModifiable = this.modifiable;
+    this.modifiable = newModifiable;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE, oldModifiable, this.modifiable));
+    }
   }
 
     /**
@@ -278,7 +294,7 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
    */
     @Override
     public String getUri() {
-    ExtendibleElement object = this.getObject();
+    var object = this.getObject();
     return (object == null) ? null : object.getUri();
   }
 
@@ -345,12 +361,16 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
       case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT:
-        if (resolve) return getReferencedObject();
+        if (resolve) {
+          return getReferencedObject();
+        }
         return basicGetReferencedObject();
       case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT:
         return getContainedObject();
       case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF:
-        if (resolve) return getSupertypeRef();
+        if (resolve) {
+          return getSupertypeRef();
+        }
         return basicGetSupertypeRef();
       case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE:
         return isModifiable();
@@ -400,7 +420,7 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
         setSupertypeRef((ExtendibleElementReference)null);
         return;
       case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE:
-        setModifiable(MODIFIABLE_EDEFAULT);
+        setModifiable(ExtendibleElementReferenceImpl.MODIFIABLE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -415,13 +435,13 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__REFERENCED_OBJECT:
-        return referencedObject != null;
+        return this.referencedObject != null;
       case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__CONTAINED_OBJECT:
-        return containedObject != null;
+        return this.containedObject != null;
       case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__SUPERTYPE_REF:
-        return supertypeRef != null;
+        return this.supertypeRef != null;
       case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE__MODIFIABLE:
-        return modifiable != MODIFIABLE_EDEFAULT;
+        return this.modifiable != ExtendibleElementReferenceImpl.MODIFIABLE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -457,11 +477,13 @@ public abstract class ExtendibleElementReferenceImpl extends MinimalEObjectImpl.
    */
     @Override
     public String toString() {
-    if (eIsProxy()) return super.toString();
+    if (eIsProxy()) {
+      return super.toString();
+    }
 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (modifiable: ");
-    result.append(modifiable);
+    result.append(this.modifiable);
     result.append(')');
     return result.toString();
   }

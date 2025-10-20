@@ -5,16 +5,24 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.relationship.impl;
 
-import edu.toronto.cs.se.mmint.MMINTException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.relationship.ExtendibleElementReference;
 import edu.toronto.cs.se.mmint.mid.relationship.Mapping;
 import edu.toronto.cs.se.mmint.mid.relationship.MappingReference;
@@ -22,20 +30,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.ModelElementEndpointReference;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
-
-import java.lang.reflect.InvocationTargetException;
-
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -87,10 +81,10 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
    */
     @Override
     public EList<ModelElementEndpointReference> getModelElemEndpointRefs() {
-    if (modelElemEndpointRefs == null) {
-      modelElemEndpointRefs = new EObjectContainmentEList<ModelElementEndpointReference>(ModelElementEndpointReference.class, this, RelationshipPackage.MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS);
+    if (this.modelElemEndpointRefs == null) {
+      this.modelElemEndpointRefs = new EObjectContainmentEList<>(ModelElementEndpointReference.class, this, RelationshipPackage.MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS);
     }
-    return modelElemEndpointRefs;
+    return this.modelElemEndpointRefs;
   }
 
     /**
@@ -100,7 +94,7 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
    */
     @Override
     public Mapping getObject() {
-    ExtendibleElement object = super.getObject();
+    var object = super.getObject();
     return (object == null) ? null : (Mapping) object;
   }
 
@@ -111,7 +105,7 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
    */
     @Override
     public MappingReference getSupertypeRef() {
-    ExtendibleElementReference supertypeRef = super.getSupertypeRef();
+    var supertypeRef = super.getSupertypeRef();
     return (supertypeRef == null) ? null : (MappingReference) supertypeRef;
   }
 
@@ -184,7 +178,7 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
     public boolean eIsSet(int featureID) {
     switch (featureID) {
       case RelationshipPackage.MAPPING_REFERENCE__MODEL_ELEM_ENDPOINT_REFS:
-        return modelElemEndpointRefs != null && !modelElemEndpointRefs.isEmpty();
+        return this.modelElemEndpointRefs != null && !this.modelElemEndpointRefs.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -197,10 +191,10 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
     if (baseClass == ExtendibleElementReference.class) {
-      switch (baseOperationID) {
-        case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT: return RelationshipPackage.MAPPING_REFERENCE___GET_OBJECT;
-        default: return super.eDerivedOperationID(baseOperationID, baseClass);
-      }
+      return switch (baseOperationID) {
+      case RelationshipPackage.EXTENDIBLE_ELEMENT_REFERENCE___GET_OBJECT -> RelationshipPackage.MAPPING_REFERENCE___GET_OBJECT;
+      default -> super.eDerivedOperationID(baseOperationID, baseClass);
+      };
     }
     return super.eDerivedOperationID(baseOperationID, baseClass);
   }
@@ -256,6 +250,7 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
     /**
      * @generated NOT
      */
+    @Override
     public void deleteTypeReference() throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -263,19 +258,20 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
         for (ModelElementEndpointReference modelElemTypeEndpointRef : getModelElemEndpointRefs()) {
             modelElemTypeEndpointRef.setModelElemRef(null);
         }
-        ModelRel modelRelType = (ModelRel) eContainer();
+        var modelRelType = (ModelRel) eContainer();
         modelRelType.getMappingRefs().remove(this);
     }
 
     /**
      * @generated NOT
      */
+    @Override
     public void deleteTypeAndReference() throws MMINTException {
 
         MMINTException.mustBeType(this);
 
-        MID typeMID = this.getMIDContainer();
-        ModelRel modelRelType = (ModelRel) eContainer();
+        var typeMID = this.getMIDContainer();
+        var modelRelType = (ModelRel) eContainer();
         // delete the "thing" and the corresponding reference
         getObject().deleteType();
         deleteTypeReference();
@@ -286,7 +282,7 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
         }
         // delete the subtypes of the "thing"
         for (Mapping mappingSubtype : MIDTypeHierarchy.getDirectSubtypes(getObject(), typeMID)) {
-            ModelRel modelRelTypeOrSubtype = (ModelRel) mappingSubtype.eContainer();
+            var modelRelTypeOrSubtype = (ModelRel) mappingSubtype.eContainer();
             MappingReference mappingSubtypeRef = MIDRegistry.getReference(mappingSubtype.getUri(), modelRelTypeOrSubtype.getMappingRefs());
             mappingSubtypeRef.deleteTypeAndReference();
         }
@@ -295,6 +291,7 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
     /**
      * @generated NOT
      */
+    @Override
     public void deleteInstanceReference() throws MMINTException {
 
         MMINTException.mustBeInstance(this);
@@ -302,13 +299,14 @@ public class MappingReferenceImpl extends ExtendibleElementReferenceImpl impleme
         for (ModelElementEndpointReference modelElemEndpointRef : getModelElemEndpointRefs()) {
             modelElemEndpointRef.setModelElemRef(null);
         }
-        ModelRel modelRel = (ModelRel) eContainer();
+        var modelRel = (ModelRel) eContainer();
         modelRel.getMappingRefs().remove(this);
     }
 
     /**
      * @generated NOT
      */
+    @Override
     public void deleteInstanceAndReference() throws MMINTException {
 
         MMINTException.mustBeInstance(this);

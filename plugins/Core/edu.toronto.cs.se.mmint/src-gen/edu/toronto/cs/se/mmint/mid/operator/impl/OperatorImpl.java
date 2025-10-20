@@ -34,6 +34,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -48,6 +49,7 @@ import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.OperatorGeneric;
 import edu.toronto.cs.se.mmint.OperatorInput;
+import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -563,9 +565,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         }
       case OperatorPackage.OPERATOR___GET_INPUT_PROPERTIES:
         return getInputProperties();
-      case OperatorPackage.OPERATOR___READ_INPUT_PROPERTIES__PROPERTIES:
+      case OperatorPackage.OPERATOR___INIT__PROPERTIES_MAP:
         try {
-          init((Properties)arguments.get(0), null);
+          init((Properties)arguments.get(0), (Map<String, Model>)arguments.get(1));
           return null;
         }
         catch (Throwable throwable) {
@@ -589,6 +591,13 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         try {
           openInstance();
           return null;
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case OperatorPackage.OPERATOR___OUTPUT_FROM_INPUT__INT_INT_MAP_MAP:
+        try {
+          return outputFromInput((Integer)arguments.get(0), (Integer)arguments.get(1), (Map<String, Model>)arguments.get(2), (Map<String, MID>)arguments.get(3));
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
@@ -1474,6 +1483,38 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
 
         this.openInstanceMetatype();
     }
+
+    /**
+   * @generated NOT
+   */
+  @Override
+  public Map<String, Model> outputFromInput(int inIndex, int outIndex, Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
+
+    MMINTException.mustBeInstance(this);
+
+    var outName = MMINTConstants.OPERATORS_OUTPUTS + inIndex;
+    var out = (OperatorParameter) getClass().getField(outName).get(this);
+    var inName = MMINTConstants.OPERATORS_INPUTS + inIndex;
+    var in = (OperatorParameter) getClass().getField(inName).get(this);
+    // out model type
+    var outModelType = MIDTypeRegistry.<Model>getType(out.type());
+    if (outModelType == null) {
+      throw new MMINTException("Model type " + out.type() + " not found");
+    }
+    // out path
+    var inModel = inputsByName.get(in.name());
+    var outModelName = inModel.getName().split("\\.")[0]; // removes file extensions in names, e.g. from File model type
+    outModelName += out.suffix().orElse("") + "." + out.ext().orElse(outModelType.getFileExtension());
+    var outPath = (getWorkingPath() == null) ?
+      FileUtils.replaceLastSegmentInPath(inModel.getUri(), outModelName) :
+      getWorkingPath() + IPath.SEPARATOR + outModelName;
+    outPath = FileUtils.getUniquePath(outPath, true, false);
+    // out model
+    var outRoot = (EObject) getClass().getField(outName.toLowerCase()).get(this);
+    var outModel = outModelType.createInstanceAndEditor(outRoot, outPath, outputMIDsByName.get(out.name()));
+
+    return Map.of(out.name(), outModel);
+  }
 
     /**
      * @generated NOT

@@ -5,18 +5,16 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
-import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -32,6 +30,10 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.ExtendibleElement} object.
@@ -59,7 +61,7 @@ public class ExtendibleElementItemProvider
    */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addSupertypePropertyDescriptor(object);
@@ -69,7 +71,7 @@ public class ExtendibleElementItemProvider
       addMetatypeUriPropertyDescriptor(object);
       addDynamicPropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
 	/**
@@ -79,9 +81,9 @@ public class ExtendibleElementItemProvider
    * @generated
    */
 	protected void addUriPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_ExtendibleElement_uri_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_uri_feature", "_UI_ExtendibleElement_type"),
@@ -101,9 +103,9 @@ public class ExtendibleElementItemProvider
    * @generated
    */
 	protected void addSupertypePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_ExtendibleElement_supertype_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_supertype_feature", "_UI_ExtendibleElement_type"),
@@ -123,9 +125,9 @@ public class ExtendibleElementItemProvider
    * @generated
    */
 	protected void addNamePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_ExtendibleElement_name_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_name_feature", "_UI_ExtendibleElement_type"),
@@ -145,9 +147,9 @@ public class ExtendibleElementItemProvider
    * @generated
    */
 	protected void addLevelPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_ExtendibleElement_level_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_level_feature", "_UI_ExtendibleElement_type"),
@@ -167,9 +169,9 @@ public class ExtendibleElementItemProvider
    * @generated
    */
 	protected void addMetatypeUriPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_ExtendibleElement_metatypeUri_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_metatypeUri_feature", "_UI_ExtendibleElement_type"),
@@ -189,9 +191,9 @@ public class ExtendibleElementItemProvider
    * @generated
    */
 	protected void addDynamicPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_ExtendibleElement_dynamic_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElement_dynamic_feature", "_UI_ExtendibleElement_type"),
@@ -214,11 +216,11 @@ public class ExtendibleElementItemProvider
    */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-    if (childrenFeatures == null) {
+    if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(MIDPackage.Literals.EXTENDIBLE_ELEMENT__CONSTRAINT);
+      this.childrenFeatures.add(MIDPackage.Literals.EXTENDIBLE_ELEMENT__CONSTRAINT);
     }
-    return childrenFeatures;
+    return this.childrenFeatures;
   }
 
 	/**
@@ -242,7 +244,7 @@ public class ExtendibleElementItemProvider
    */
 	@Override
 	public String getText(Object object) {
-    String label = ((ExtendibleElement)object).getName();
+    var label = ((ExtendibleElement)object).getName();
     return label == null || label.length() == 0 ?
       getString("_UI_ExtendibleElement_type") :
       getString("_UI_ExtendibleElement_type") + " " + label;
@@ -299,7 +301,7 @@ public class ExtendibleElementItemProvider
    */
 	@Override
 	public ResourceLocator getResourceLocator() {
-    return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+    return ((IChildCreationExtender)this.adapterFactory).getResourceLocator();
   }
 
 }

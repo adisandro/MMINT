@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import edu.toronto.cs.se.mmint.mid.editor.Diagram;
 import edu.toronto.cs.se.mmint.mid.editor.Editor;
 import edu.toronto.cs.se.mmint.mid.editor.EditorFactory;
@@ -37,7 +38,7 @@ public class EditorFactoryImpl extends EFactoryImpl implements EditorFactory {
    */
     public static EditorFactory init() {
     try {
-      EditorFactory theEditorFactory = (EditorFactory)EPackage.Registry.INSTANCE.getEFactory(EditorPackage.eNS_URI);
+      var theEditorFactory = (EditorFactory)EPackage.Registry.INSTANCE.getEFactory(EditorPackage.eNS_URI);
       if (theEditorFactory != null) {
         return theEditorFactory;
       }
@@ -65,12 +66,11 @@ public class EditorFactoryImpl extends EFactoryImpl implements EditorFactory {
    */
     @Override
     public EObject create(EClass eClass) {
-    switch (eClass.getClassifierID()) {
-      case EditorPackage.EDITOR: return createEditor();
-      case EditorPackage.DIAGRAM: return createDiagram();
-      default:
-        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-    }
+    return switch (eClass.getClassifierID()) {
+    case EditorPackage.EDITOR -> createEditor();
+    case EditorPackage.DIAGRAM -> createDiagram();
+    default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    };
   }
 
     /**

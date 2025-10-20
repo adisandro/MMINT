@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -64,6 +64,7 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
    * @model kind="operation" required="true"
    * @generated
    */
+    @Override
     ModelEndpoint getObject();
 
     /**
@@ -76,12 +77,13 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
    * @model kind="operation"
    * @generated
    */
+    @Override
     ModelEndpointReference getSupertypeRef();
 
     /**
    * <!-- begin-user-doc --> Accepts a metamodel object as model element type
      * in this reference to model type endpoint.
-     * 
+     *
      * @param metamodelObj
      *            The metamodel object.
      * @return True if the metamodel object is accepted, false otherwise.
@@ -96,7 +98,7 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
     /**
    * <!-- begin-user-doc --> Deletes this reference to a model type endpoint
      * from the Type MID.
-     * 
+     *
      * @param isFullDelete
      *            True if this reference to model type endpoint is going to be
      *            fully deleted, false if it is going to be replaced later.
@@ -111,7 +113,7 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
     /**
    * <!-- begin-user-doc --> Accepts a model object as model element instance
      * in this reference to model instance endpoint.
-     * 
+     *
      * @param modelObj
      *            The model object.
      * @return The model element type of the model object if it is accepted,
@@ -127,7 +129,7 @@ public interface ModelEndpointReference extends ExtendibleElementEndpointReferen
     /**
    * <!-- begin-user-doc --> Creates and adds a model element instance of a type to be automatically detected and a
      * reference to it to an Instance MID.
-     * 
+     *
      * @param modelObj
      *            The EMF model object to be wrapped by the new model element.
      * @param newModelElemName

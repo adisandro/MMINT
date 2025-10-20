@@ -5,17 +5,16 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
-import edu.toronto.cs.se.mmint.mid.MIDPackage;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -30,6 +29,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint;
+import edu.toronto.cs.se.mmint.mid.MIDPackage;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.ExtendibleElementConstraint} object.
@@ -63,13 +65,13 @@ public class ExtendibleElementConstraintItemProvider
    */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addImplementationPropertyDescriptor(object);
       addLanguagePropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
 	/**
@@ -79,9 +81,9 @@ public class ExtendibleElementConstraintItemProvider
    * @generated
    */
 	protected void addImplementationPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_ExtendibleElementConstraint_implementation_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementConstraint_implementation_feature", "_UI_ExtendibleElementConstraint_type"),
@@ -101,9 +103,9 @@ public class ExtendibleElementConstraintItemProvider
    * @generated
    */
 	protected void addLanguagePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_ExtendibleElementConstraint_language_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_ExtendibleElementConstraint_language_feature", "_UI_ExtendibleElementConstraint_type"),
@@ -135,7 +137,7 @@ public class ExtendibleElementConstraintItemProvider
    */
 	@Override
 	public String getText(Object object) {
-    String label = ((ExtendibleElementConstraint)object).getImplementation();
+    var label = ((ExtendibleElementConstraint)object).getImplementation();
     return label == null || label.length() == 0 ?
       getString("_UI_ExtendibleElementConstraint_type") :
       getString("_UI_ExtendibleElementConstraint_type") + " " + label;
@@ -181,7 +183,7 @@ public class ExtendibleElementConstraintItemProvider
    */
 	@Override
 	public ResourceLocator getResourceLocator() {
-    return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+    return ((IChildCreationExtender)this.adapterFactory).getResourceLocator();
   }
 
 }

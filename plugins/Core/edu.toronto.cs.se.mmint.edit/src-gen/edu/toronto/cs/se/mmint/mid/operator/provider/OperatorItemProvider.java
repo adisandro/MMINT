@@ -5,20 +5,16 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.operator.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.MIDFactory;
-import edu.toronto.cs.se.mmint.mid.operator.Operator;
-import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmint.mid.provider.GenericElementItemProvider;
-import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -27,6 +23,12 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import edu.toronto.cs.se.mmint.mid.MIDFactory;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.provider.GenericElementItemProvider;
+import edu.toronto.cs.se.mmint.mid.provider.MIDEditPlugin;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.operator.Operator} object.
@@ -54,7 +56,7 @@ public class OperatorItemProvider
    */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addGenericsPropertyDescriptor(object);
@@ -62,7 +64,7 @@ public class OperatorItemProvider
       addExecutionTimePropertyDescriptor(object);
       addCommutativePropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
 	/**
@@ -72,9 +74,9 @@ public class OperatorItemProvider
    * @generated
    */
 	protected void addGenericsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_Operator_generics_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Operator_generics_feature", "_UI_Operator_type"),
@@ -94,9 +96,9 @@ public class OperatorItemProvider
    * @generated
    */
   protected void addWorkingPathPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_Operator_workingPath_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Operator_workingPath_feature", "_UI_Operator_type"),
@@ -116,9 +118,9 @@ public class OperatorItemProvider
    * @generated
    */
 	protected void addExecutionTimePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_Operator_executionTime_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Operator_executionTime_feature", "_UI_Operator_type"),
@@ -138,9 +140,9 @@ public class OperatorItemProvider
    * @generated
    */
 	protected void addCommutativePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_Operator_commutative_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_Operator_commutative_feature", "_UI_Operator_type"),
@@ -163,12 +165,12 @@ public class OperatorItemProvider
    */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-    if (childrenFeatures == null) {
+    if (this.childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(OperatorPackage.Literals.OPERATOR__INPUTS);
-      childrenFeatures.add(OperatorPackage.Literals.OPERATOR__OUTPUTS);
+      this.childrenFeatures.add(OperatorPackage.Literals.OPERATOR__INPUTS);
+      this.childrenFeatures.add(OperatorPackage.Literals.OPERATOR__OUTPUTS);
     }
-    return childrenFeatures;
+    return this.childrenFeatures;
   }
 
 	/**
@@ -203,7 +205,7 @@ public class OperatorItemProvider
    */
 	@Override
 	public String getText(Object object) {
-    String label = ((Operator)object).getName();
+    var label = ((Operator)object).getName();
     return label == null || label.length() == 0 ?
       getString("_UI_Operator_type") :
       getString("_UI_Operator_type") + " " + label;
@@ -264,10 +266,10 @@ public class OperatorItemProvider
    */
 	@Override
 	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-    Object childFeature = feature;
-    Object childObject = child;
+    var childFeature = feature;
+    var childObject = child;
 
-    boolean qualify =
+    var qualify =
       childFeature == OperatorPackage.Literals.OPERATOR__INPUTS ||
       childFeature == OperatorPackage.Literals.OPERATOR__OUTPUTS;
 

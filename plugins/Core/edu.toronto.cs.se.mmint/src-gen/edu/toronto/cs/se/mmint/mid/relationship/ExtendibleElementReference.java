@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -164,7 +164,7 @@ public interface ExtendibleElementReference extends EObject {
 
     /**
    * <!-- begin-user-doc --> Returns the MID container.
-     * 
+     *
      * @return The MID container, or null if this references an element that is not contained in a MID.
      * <!-- end-user-doc -->
    * @model kind="operation"
@@ -174,7 +174,7 @@ public interface ExtendibleElementReference extends EObject {
 
     /**
    * <!-- begin-user-doc --> Checks whether this is a reference to a type.
-     * 
+     *
      * @return True if this is a reference to a type, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
    * @generated
@@ -183,7 +183,7 @@ public interface ExtendibleElementReference extends EObject {
 
     /**
    * <!-- begin-user-doc --> Checks whether this is a reference to an instance.
-     * 
+     *
      * @return True if this is a reference to an instance, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
    * @generated
@@ -192,7 +192,7 @@ public interface ExtendibleElementReference extends EObject {
 
     /**
    * <!-- begin-user-doc --> Checks whether this is a reference to a workflow element.
-     * 
+     *
      * @return True if this is a reference to a workflow element, false otherwise. <!-- end-user-doc -->
    * @model kind="operation" required="true"
    * @generated

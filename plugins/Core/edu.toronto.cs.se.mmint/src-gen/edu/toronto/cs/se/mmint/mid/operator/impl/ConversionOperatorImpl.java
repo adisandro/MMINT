@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -89,6 +89,7 @@ public class ConversionOperatorImpl extends OperatorImpl implements ConversionOp
     /**
      * @generated NOT
      */
+    @Override
     public void cleanup() throws Exception {
 
         //TODO MMINT[OPERATOR] Integrate better with new apis, e.g. a transformation output now can be a model rel and it implies the converted model

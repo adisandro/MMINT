@@ -5,23 +5,25 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.mmint.mid.operator.provider;
 
 
-import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
-import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
+import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 
 /**
  * This is the item provider adapter for a {@link edu.toronto.cs.se.mmint.mid.operator.RandomOperator} object.
@@ -49,12 +51,12 @@ public class RandomOperatorItemProvider
    */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
+    if (this.itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
       addStatePropertyDescriptor(object);
     }
-    return itemPropertyDescriptors;
+    return this.itemPropertyDescriptors;
   }
 
 	/**
@@ -64,9 +66,9 @@ public class RandomOperatorItemProvider
    * @generated
    */
 	protected void addStatePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
+    this.itemPropertyDescriptors.add
       (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+        (((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
          getResourceLocator(),
          getString("_UI_RandomOperator_state_feature"),
          getString("_UI_PropertyDescriptor_description", "_UI_RandomOperator_state_feature", "_UI_RandomOperator_type"),
@@ -98,7 +100,7 @@ public class RandomOperatorItemProvider
    */
 	@Override
 	public String getText(Object object) {
-    String label = ((RandomOperator)object).getName();
+    var label = ((RandomOperator)object).getName();
     return label == null || label.length() == 0 ?
       getString("_UI_RandomOperator_type") :
       getString("_UI_RandomOperator_type") + " " + label;
@@ -143,10 +145,10 @@ public class RandomOperatorItemProvider
    */
 	@Override
 	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-    Object childFeature = feature;
-    Object childObject = child;
+    var childFeature = feature;
+    var childObject = child;
 
-    boolean qualify =
+    var qualify =
       childFeature == OperatorPackage.Literals.OPERATOR__INPUTS ||
       childFeature == OperatorPackage.Literals.OPERATOR__OUTPUTS;
 
