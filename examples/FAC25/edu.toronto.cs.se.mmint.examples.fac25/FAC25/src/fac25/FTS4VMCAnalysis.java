@@ -95,8 +95,8 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     var vmcPath = FileUtils.replaceFileExtensionInPath(modelPath, "vmc");
     FileUtils.createTextFile(dotPath, dot, false);
     final var RUN_SH = """
-      python3 -m venv venv
-      source venv/bin/activate
+      python3 -m venv .venv
+      source .venv/bin/activate
       git clone https://github.com/fts4vmc/FTS4VMC.git &> /dev/null
       pip3 install -r FTS4VMC/requirements.txt &> /dev/null
       pip3 install --upgrade z3-solver &> /dev/null
@@ -183,7 +183,7 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
       .replace("{output}", FileUtils.getLastSegmentFromPath(resultPath));
     satSolution.setAttribute(this.gsn.getArgumentElement_Description(), satSolDesc);
     if (!safetyGoal.isAlwaysPresent()) {
-      PLGSNChangeStep.changePCDownstream(safetyGoal, (_) -> safetyGoal.getPresenceCondition());
+      PLGSNChangeStep.changePCDownstream(safetyGoal, _ -> safetyGoal.getPresenceCondition());
     }
   }
 

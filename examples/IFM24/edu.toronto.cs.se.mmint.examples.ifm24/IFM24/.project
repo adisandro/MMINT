@@ -44,7 +44,7 @@
 			<type>26</type>
 			<matcher>
 				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-venv</arguments>
+				<arguments>1.0-name-matches-false-false-.venv</arguments>
 			</matcher>
 		</filter>
 		<filter>
