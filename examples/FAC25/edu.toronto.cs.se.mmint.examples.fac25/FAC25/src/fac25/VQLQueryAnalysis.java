@@ -31,6 +31,7 @@ import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait;
 import edu.toronto.cs.se.mmint.mid.reasoning.IQueryTrait.QuerySpec;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
@@ -63,12 +64,12 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     this.gsn = GSNPackage.eINSTANCE;
   }
 
-  public static ResultPrinter PL_NAME_PRINTER = (result) -> {
+  public static ResultPrinter PL_NAME_PRINTER = result -> {
     if (result instanceof Class plClass) {
       // try finding a name
       var name = plClass.getAttributes().stream()
         .filter(a -> a.getType().getName().equals("name"))
-        .map(a -> a.getValue())
+        .map(Attribute::getValue)
         .collect(Collectors.joining(", "));
       if (!name.isEmpty()) {
         return name;
@@ -340,6 +341,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var results = (List<Map.Entry<String, String>>) ChangeStep.getData().get(propsKey);
     // bottom up impact
     var impacts = new ArrayList<Map<ImpactType, Optional<String>>>();
+    var impactPCs = new ArrayList<String>();
     for (var i = 0; ; i++) {
       var resultGoal = templateElems.get("resultGoal" + i);
       if (resultGoal == null) {
@@ -355,13 +357,16 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
         continue;
       }
       impacts.add(resultImpact);
+      impactPCs.add(resultGoal.getPresenceCondition());
     }
     if (revise) { // include revised result strategy
-      impacts.add(templateElems.get("resultStrategy").getImpact());
+      var resultStrategy = templateElems.get("resultStrategy");
+      impacts.add(resultStrategy.getImpact());
+      impactPCs.add(resultStrategy.getPresenceCondition());
     }
-    var impactTypes = PLGSNChangeStep.min(impacts);
-    templateElems.get("scenarioGoal").setImpact(impactTypes);
-    templateElems.get("safetyGoal").setImpact(impactTypes);
+    var impact = PLGSNChangeStep.min(impacts, impactPCs);
+    templateElems.get("scenarioGoal").setImpact(impact);
+    templateElems.get("safetyGoal").setImpact(impact);
     // reuse everything else in the template
     PLGSNChangeStep.setAllRemainingImpacts(plTemplate, ImpactType.REUSE);
   }
@@ -431,7 +436,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
           var plReasoner = productLine.getReasoner();
           var reusePC = plReasoner.simplify(plReasoner.and(oldPC, pc));
           if (!oldPC.equals(reusePC)) { // modify existing result's presence condition
-            PLGSNChangeStep.changePCDownstream(resultGoal, (p) -> p.replace(oldPC, reusePC));
+            PLGSNChangeStep.changePCDownstream(resultGoal, p -> p.replace(oldPC, reusePC));
           }
           var newPC = plReasoner.and(plReasoner.not(oldPC), pc);
           var phiPrime = (String) ChangeStep.getData().get(PLGSNChangeStep.NEW_FEATURES_CONSTRAINT_KEY);
@@ -488,16 +493,18 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var revised = (Boolean) ChangeStep.getData().get(propsKey);
     // bottom up repair
     var impacts = new ArrayList<Map<ImpactType, Optional<String>>>();
+    var impactPCs = new ArrayList<String>();
     for (var i = 0; ; i++) {
       var resultGoal = templateElems.get("resultGoal" + i);
       if (resultGoal == null) {
         break;
       }
       impacts.add(resultGoal.getImpact());
+      impactPCs.add(resultGoal.getPresenceCondition());
     }
-    var impactTypes = PLGSNChangeStep.min(impacts);
-    templateElems.get("scenarioGoal").setImpact(impactTypes);
-    templateElems.get("safetyGoal").setImpact(impactTypes);
+    var impact = PLGSNChangeStep.min(impacts, impactPCs);
+    templateElems.get("scenarioGoal").setImpact(impact);
+    templateElems.get("safetyGoal").setImpact(impact);
     if (revised) { // clean impact on result strategy and context
       propsKey = getClass().getName() + "_CTX_" + modelPath + "_" + queryFilePath + "_" + query;
       var resultCtxDesc = (String) ChangeStep.getData().get(propsKey);

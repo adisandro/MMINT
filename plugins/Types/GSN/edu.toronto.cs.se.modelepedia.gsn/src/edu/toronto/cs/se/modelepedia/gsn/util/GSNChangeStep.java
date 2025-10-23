@@ -91,10 +91,10 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
       case Contextual _ -> {}
       default -> {}
     };
-    // check for top down impact and propagate if present when not leaf
+    // when not leaf, check for top down impact and propagate if present
     if (!nextSteps.isEmpty()) {
       var prevElem = this.forwardTrace.stream()
-        .filter(t -> t instanceof ArgumentElement)
+        .filter(ArgumentElement.class::isInstance)
         .map(ArgumentElement.class::cast)
         .findFirst();
       prevElem.ifPresent(e -> {
@@ -109,15 +109,15 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
 
   @Override
   public void baselineImpact() {
-    ImpactType prevImpactType = null;
-    var prevElem = this.forwardTrace.stream()
-      .filter(t -> t instanceof ArgumentElement)
+    ImpactType topImpactType = null;
+    var topElem = this.forwardTrace.stream()
+      .filter(ArgumentElement.class::isInstance)
       .map(ArgumentElement.class::cast)
       .findFirst();
-    if (prevElem.isPresent()) {
-      var prevImpact = prevElem.get().getStatus();
-      if (prevImpact != null) {
-        prevImpactType = prevImpact.getType();
+    if (topElem.isPresent()) {
+      var topImpact = topElem.get().getStatus();
+      if (topImpact != null) {
+        topImpactType = topImpact.getType();
       }
     }
     ImpactType impactType;
@@ -133,8 +133,8 @@ public class GSNChangeStep extends ChangeStep<ArgumentElement> {
         .max(Comparator.comparing(ImpactType::getValue))
         .get();
     }
-    if (prevImpactType != null && prevImpactType.getValue() > impactType.getValue()) { // top down impact
-      impactType = prevImpactType;
+    if (topImpactType != null && topImpactType.getValue() > impactType.getValue()) { // top down impact
+      impactType = topImpactType;
     }
     setImpact(impactType);
   }

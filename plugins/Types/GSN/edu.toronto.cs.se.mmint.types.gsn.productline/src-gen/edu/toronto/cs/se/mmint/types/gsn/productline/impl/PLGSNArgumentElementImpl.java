@@ -148,8 +148,7 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
    */
   @Override
   public void setImpact(ImpactType impactType) {
-//    var pc = getPresenceCondition();
-    var pc = "$true";
+    var pc = "$true"; //TODO reasoner.getTrueLiteral()
     var impactTypes = switch (impactType) {
       case REUSE   -> Map.of(ImpactType.REUSE,   Optional.of(pc),
                              ImpactType.RECHECK, Optional.<String>empty(),
