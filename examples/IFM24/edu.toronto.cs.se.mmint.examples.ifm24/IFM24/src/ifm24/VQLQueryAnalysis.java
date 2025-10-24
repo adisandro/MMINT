@@ -23,6 +23,7 @@ import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusEvaluateQuery;
 import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusEvaluateQuery.ResultPrinter;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
@@ -52,12 +53,12 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     this.gsn = GSNPackage.eINSTANCE;
   }
 
-  public static ResultPrinter PL_NAME_PRINTER = (result) -> {
+  public static ResultPrinter PL_NAME_PRINTER = result -> {
     if (result instanceof Class plClass) {
       // try finding a name
       var name = plClass.getAttributes().stream()
         .filter(a -> a.getType().getName().equals("name"))
-        .map(a -> a.getValue())
+        .map(Attribute::getValue)
         .collect(Collectors.joining(", "));
       if (!name.isEmpty()) {
         return name;

@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.xtext.xbase.lib,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.types.lts
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=25))"
 Automatic-Module-Name: SOSYM22
 Import-Package: org.apache.log4j
 Bundle-ActivationPolicy: lazy
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=25))"

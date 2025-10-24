@@ -19,7 +19,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.mmint.productline.operators,
  edu.toronto.cs.se.mmint.types.gsn.productline,
  edu.toronto.cs.se.modelepedia.statemachine
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=25))"
 Automatic-Module-Name: FAC25
 Import-Package: org.apache.log4j
 Bundle-ActivationPolicy: lazy
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=25))"

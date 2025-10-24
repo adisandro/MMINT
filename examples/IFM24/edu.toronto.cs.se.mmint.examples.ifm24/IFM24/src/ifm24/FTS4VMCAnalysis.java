@@ -15,6 +15,7 @@ package ifm24;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.ECollections;
@@ -28,6 +29,7 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNBuilder;
+import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
@@ -118,22 +120,30 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     builder.addSupporter(mcStrategy, liftedGoal);
   }
 
+  private PLGSNArgumentElement getSafetyGoal(Map<String, PLGSNArgumentElement> templateElems) {
+    var safetyGoal = templateElems.get("safetyGoal");
+    if (safetyGoal == null) {
+      // using the forward trace to get safetyGoal does not work with linked templates, so navigate the gsn tree
+      safetyGoal = (PLGSNArgumentElement) templateElems.get("mcStrategy")
+        .getReference(this.gsn.getSupporter_Supports()).get(0)
+        .getReference(this.gsn.getSupportedBy_Source()).get(0);
+    }
+
+    return safetyGoal;
+  }
+
   @Override
   public void instantiate(PLGSNAnalyticTemplate plTemplate) throws Exception {
     var templateElems = plTemplate.getElementsById();
     // select PL model and property
     String modelPath = null;
     String dialogInitial = null;
-    var safetyGoal = templateElems.get("safetyGoal");
-    if (safetyGoal == null) {
-      safetyGoal = (PLGSNArgumentElement) templateElems.get("mcStrategy")
-        .getReference(this.gsn.getSupporter_Supports()).get(0)
-        .getReference(this.gsn.getSupportedBy_Source()).get(0);
+    var safetyGoal = getSafetyGoal(templateElems);
+    if (!templateElems.containsKey("safetyGoal")) {
       var otherTemplate = safetyGoal.getReference(this.gsn.getArgumentElement_Template());
       if (!otherTemplate.isEmpty()) {
         var otherFilesCtx = ((PLGSNTemplate) otherTemplate.get(0)).getElementsById().get("filesCtx");
-        if (otherFilesCtx != null) {
-          // connected with model-based template, extract model from it
+        if (otherFilesCtx != null) { // connected with model-based template, extract model from it
           var paths = otherFilesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
           modelPath = paths.get(1);
           dialogInitial = safetyGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).split("'")[1];
@@ -171,12 +181,7 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
       .replace("{output}", FileUtils.getLastSegmentFromPath(resultPath));
     satSolution.setAttribute(this.gsn.getArgumentElement_Description(), satSolDesc);
     if (!safetyGoal.isAlwaysPresent()) {
-      var pc = safetyGoal.getPresenceCondition();
-      plTemplate.getStreamOfReference(this.gsn.getTemplate_Elements()).forEach(e -> {
-        e.setPresenceCondition(pc);
-        e.getStreamOfReference(this.gsn.getSupportable_SupportedBy()).forEach(sb -> sb.setPresenceCondition(pc));
-        e.getStreamOfReference(this.gsn.getContextualizable_InContextOf()).forEach(ico -> ico.setPresenceCondition(pc));
-      });
+      PLGSNChangeStep.changePCDownstream(safetyGoal, _ -> safetyGoal.getPresenceCondition());
     }
   }
 }
