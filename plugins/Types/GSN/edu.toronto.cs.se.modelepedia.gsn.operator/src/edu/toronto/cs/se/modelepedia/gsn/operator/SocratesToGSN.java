@@ -34,6 +34,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesFactory;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.Contextual;
 import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
+import edu.toronto.cs.se.modelepedia.gsn.DecoratorType;
 import edu.toronto.cs.se.modelepedia.gsn.GSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
@@ -60,6 +61,7 @@ public class SocratesToGSN extends OperatorImpl {
   }
 
   private void convert(Map<String, Model> inputsByName) throws Exception {
+    final var DECORATOR_LABEL = "{N-ARY_SUBTREE} ";
     var json = Files.readString(Paths.get(
       FileUtils.prependWorkspacePath(inputsByName.get(SocratesToGSN.IN0.name()).getUri())));
     var jsonObj = JsonParser.parseString(json).getAsJsonObject();
@@ -113,16 +115,18 @@ public class SocratesToGSN extends OperatorImpl {
       if (!extraDesc.isJsonNull()) {
         desc += "\n(" + extraDesc.getAsString() + ")";
       }
-      gsnElem.setDescription(desc);
-      if (desc.contains("{")) {
+      if (desc.contains("<")) {
         gsnElem.setValid(false);
         isTemplate = true;
+        desc = desc.replace("<", "{").replace(">", "}");
       }
+      gsnElem.setDescription(desc);
       idToElem.put(id, gsnElem);
       idToChildren.put(id, nodeObj.get("children").getAsJsonArray());
     }
     for (var childEntry : idToChildren.entrySet()) {
-      var parent = idToElem.get(childEntry.getKey());
+      var parentId = childEntry.getKey();
+      var parent = idToElem.get(parentId);
       for (var childId : childEntry.getValue()) {
         var child = idToElem.get(childId.getAsInt());
         if (child instanceof Contextual contextual) {
@@ -132,8 +136,19 @@ public class SocratesToGSN extends OperatorImpl {
         }
         else { // instanceof Supporter
           var supportedBy = GSNFactory.eINSTANCE.createSupportedBy();
-          ((Supportable) parent).getSupportedBy().add(supportedBy);
           supportedBy.setTarget((Supporter) child);
+          var supportable = (Supportable) parent;
+          if (child.getDescription().startsWith(DECORATOR_LABEL)) {
+            child.setDescription(child.getDescription().replace(DECORATOR_LABEL, ""));
+            var decorator = GSNFactory.eINSTANCE.createRelationshipDecorator();
+            decorator.setType(DecoratorType.MULTIPLE);
+            decorator.setCardinality(-1);
+            decorator.setValid(false);
+            idToElem.put(-childId.getAsInt(), decorator);
+            ((Supportable) parent).getDecorators().add(decorator);
+            supportable = decorator;
+          }
+          supportable.getSupportedBy().add(supportedBy);
         }
       }
     }
