@@ -125,8 +125,7 @@ public class SocratesToGSN extends OperatorImpl {
       idToChildren.put(id, nodeObj.get("children").getAsJsonArray());
     }
     for (var childEntry : idToChildren.entrySet()) {
-      var parentId = childEntry.getKey();
-      var parent = idToElem.get(parentId);
+      var parent = idToElem.get(childEntry.getKey());
       for (var childId : childEntry.getValue()) {
         var child = idToElem.get(childId.getAsInt());
         if (child instanceof Contextual contextual) {
@@ -141,6 +140,8 @@ public class SocratesToGSN extends OperatorImpl {
           if (child.getDescription().startsWith(DECORATOR_LABEL)) {
             child.setDescription(child.getDescription().replace(DECORATOR_LABEL, ""));
             var decorator = GSNFactory.eINSTANCE.createRelationshipDecorator();
+            decorator.setId(child.getId() + "N");
+            decorator.setDescription(DECORATOR_LABEL);
             decorator.setType(DecoratorType.MULTIPLE);
             decorator.setCardinality(-1);
             decorator.setValid(false);
@@ -154,8 +155,12 @@ public class SocratesToGSN extends OperatorImpl {
     }
     if (isTemplate) {
       var template = GSNTemplatesFactory.eINSTANCE.createAnalyticTemplate();
-      template.getElements().addAll(idToElem.values());
       this.out0.getTemplates().add(template);
+      var templateElems = template.getElements();
+      for (var templateElem : idToElem.values()) {
+        templateElem.setTemplateId(templateElem.getId());
+        templateElems.add(templateElem);
+      }
     }
   }
 

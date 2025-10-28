@@ -13,6 +13,8 @@
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
 import java.util.Collection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -44,6 +46,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Solution;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 /**
  * <!-- begin-user-doc -->
@@ -408,6 +411,13 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
   private <T extends ArgumentElement> T copySubtree(T elem, String idSuffix, SafetyCase safetyCase, Template template) {
     var copyElem = EcoreUtil.copy(elem);
     copyElem.setId(copyElem.getId() + idSuffix);
+    copyElem.setTemplateId(copyElem.getTemplateId() + idSuffix);
+    // append idSuffix to all placeholders
+    var find = Pattern.quote(GSNBuilder.PATTERN1) + "([^" + Pattern.quote(GSNBuilder.PATTERN2) + "]+)" +
+               Pattern.quote(GSNBuilder.PATTERN2);
+    var replace = Matcher.quoteReplacement(GSNBuilder.PATTERN1) + "$1" +
+                  Matcher.quoteReplacement(idSuffix + GSNBuilder.PATTERN2);
+    copyElem.setDescription(copyElem.getDescription().replaceAll(find, replace));
     switch (copyElem) {
       case Goal g -> safetyCase.getGoals().add(g);
       case Strategy s -> safetyCase.getStrategies().add(s);

@@ -581,14 +581,14 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
     var node = eClass().getName() + " " + getId();
     while (true) {
       var desc = getDescription();
-      var pattern = GSNBuilder.findPattern(desc);
-      if (pattern.isEmpty()) {
+      var placeholder = GSNBuilder.findPlaceholder(desc);
+      if (placeholder.isEmpty()) {
         break;
       }
-      var toReplace = pattern.get();
+      var toReplace = placeholder.get();
       var msg = "Replace '" + toReplace + "' in " + node + " with:";
       var replacement = MIDDialogs.getStringInput(title, msg, null);
-      setDescription(desc.replace(GSNBuilder.PATTERN1 + toReplace + GSNBuilder.PATTERN2, replacement));
+      setDescription(desc.replace(GSNBuilder.placeholder(toReplace), replacement));
     }
   }
 
@@ -597,7 +597,7 @@ public abstract class ArgumentElementImpl extends MinimalEObjectImpl.Container i
    */
   @Override
   public void validate() throws Exception {
-    if (GSNBuilder.findPattern(getDescription()).isPresent()) {
+    if (GSNBuilder.findPlaceholder(getDescription()).isPresent()) {
       setValid(false);
       throw new MMINTException(eClass().getName() + " " + getId() +
                                " description contains placeholder text to be instantiated");

@@ -269,13 +269,13 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
       throw new MMINTException("Missing analysis runner Java path");
     }
     var bundleName = getLoaderBundleName();
-    var classLoader = getClass().getClassLoader();
-    if (bundleName != null) {
-      var bundle = Platform.getBundle(bundleName);
-      if (bundle != null) {
-        classLoader = bundle.adapt(BundleWiring.class).getClassLoader();
-      }
+    if (bundleName == null) {
+      bundleName = "edu.toronto.cs.se.modelepedia.gsn.operator";
     }
+    var bundle = Platform.getBundle(bundleName);
+    var classLoader = (bundle == null) ?
+      getClass().getClassLoader() :
+      bundle.adapt(BundleWiring.class).getClassLoader();
     return (IAnalysis) FileUtils.loadClassFromWorkspace(javaPath, classLoader);
   }
 

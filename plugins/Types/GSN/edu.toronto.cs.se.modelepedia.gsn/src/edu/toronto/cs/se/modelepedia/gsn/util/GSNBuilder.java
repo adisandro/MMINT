@@ -50,7 +50,11 @@ public class GSNBuilder {
     this.factory = GSNFactory.eINSTANCE;
   }
 
-  public static Optional<String> findPattern(String text) {
+  public static String placeholder(String text) {
+    return GSNBuilder.PATTERN1 + text + GSNBuilder.PATTERN2;
+  }
+
+  public static Optional<String> findPlaceholder(String text) {
     var i = text.indexOf(GSNBuilder.PATTERN1);
     if (i == -1) {
       return Optional.empty();

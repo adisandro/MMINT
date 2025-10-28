@@ -72,7 +72,7 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
       }
       while (true) {
         var desc = attr.getValue();
-        var pattern = GSNBuilder.findPattern(desc);
+        var pattern = GSNBuilder.findPlaceholder(desc);
         if (pattern.isEmpty()) {
           break;
         }
@@ -93,7 +93,7 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
       .filter(a -> a.getType() == GSNPackage.eINSTANCE.getArgumentElement_Valid());
     if (getAttributes().stream()
           .filter(a -> a.getType() == GSNPackage.eINSTANCE.getArgumentElement_Description())
-          .anyMatch(a -> GSNBuilder.findPattern(a.getValue()).isPresent())) {
+          .anyMatch(a -> GSNBuilder.findPlaceholder(a.getValue()).isPresent())) {
       //TODO abstract into function
       var node = getType().getName() + " " +
                  String.join(",", getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()));

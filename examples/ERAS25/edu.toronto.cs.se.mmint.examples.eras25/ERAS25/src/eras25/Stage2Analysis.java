@@ -60,7 +60,7 @@ public class Stage2Analysis implements IAnalysis {
       .filter(t -> t.getId().equals("ML Scoping"))
       .findFirst().get();
     var py = Stream.concat(scopingTemplate.getElements().stream(), template.getElements().stream())
-      .filter(e -> e instanceof FilesContext)
+      .filter(FilesContext.class::isInstance)
       .flatMap(c -> ((FilesContext) c).getPaths().stream())
       .map(p -> "from " + FileUtils.getFileNameFromPath(p) + " import *")
       .collect(Collectors.joining("\n")) +
@@ -72,7 +72,6 @@ public class Stage2Analysis implements IAnalysis {
     var result = FileUtils.runShell(absWorkingPath, "bash", RUN_SH_FILE);
     var lines = result.split("\n");
     var safeOk = Boolean.parseBoolean(lines[lines.length-3]);
-    //TODO MMINT[GSN] Find by id is tricky as they could be changed -> Add templateId to all template elements.
     if (!safeOk) {
       var safeGoal = template.getElements().stream().filter(e -> e.getId().equals("G2.92")).findFirst().get();
       safeGoal.setValid(false);
