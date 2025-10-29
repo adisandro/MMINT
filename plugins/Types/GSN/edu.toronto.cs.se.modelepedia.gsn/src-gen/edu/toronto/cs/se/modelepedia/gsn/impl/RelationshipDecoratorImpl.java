@@ -533,7 +533,7 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
                                   throws MMINTException {
     var max = getCardinality();
     var x = (max < 0) ? "any number of" : "up to " + max;
-    var msg = "How many times do you want to replicate the sub-tree starting below " + decorated.eClass().getName() +
+    var msg = "How many times do you want to instantiate the sub-tree starting below " + decorated.eClass().getName() +
               " " + decorated.getId() + "?";
     if (hint != null && !hint.isBlank()) {
       msg += "\nHint: " + hint;
