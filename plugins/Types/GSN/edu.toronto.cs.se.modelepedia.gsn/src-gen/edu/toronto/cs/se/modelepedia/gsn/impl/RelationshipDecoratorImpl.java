@@ -533,14 +533,20 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
                                   throws MMINTException {
     var max = getCardinality();
     var x = (max < 0) ? "any number of" : "up to " + max;
-    var msg = "How many times do you want to instantiate the sub-tree starting below " + decorated.eClass().getName() +
-              " " + decorated.getId() + "?";
+    var msg = "How many times do you want to instantiate the sub-tree below " + decorated.eClass().getName() + " " +
+              decorated.getId() + "?";
+    int n;
     if (hint != null && !hint.isBlank()) {
-      msg += "\nHint: " + hint;
+      try {
+        n = Integer.parseInt(hint);
+      }
+      catch (NumberFormatException e) {
+        msg += "\nHint: " + hint;
+        n = Integer.parseInt(MIDDialogs.getStringInput("Instantiate " + x + " sub-trees", msg, "1"));
+      }
     }
-    var n = Integer.parseInt(MIDDialogs.getStringInput("Instantiate " + x + " sub-trees", msg, "1"));
-    if (n <= 0) {
-      throw new MMINTException("At least 1 sub-tree must be instantiated");
+    else {
+      n = Integer.parseInt(MIDDialogs.getStringInput("Instantiate " + x + " sub-trees", msg, "1"));
     }
     if (max > 0 && n >= max) {
       throw new MMINTException("A max of " + max + " sub-trees can be instantiated");
