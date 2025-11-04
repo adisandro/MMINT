@@ -1511,7 +1511,9 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     outPath = FileUtils.getUniquePath(outPath, true, false);
     // out model
     var outRoot = (EObject) getClass().getField(outName.toLowerCase()).get(this);
-    var outModel = outModelType.createInstanceAndEditor(outRoot, outPath, outputMIDsByName.get(out.name()));
+    var outModel = (outModelType.getEditors().size() == 0) ?
+      outModelType.createInstance(outRoot, outPath, outputMIDsByName.get(out.name())) :
+      outModelType.createInstanceAndEditor(outRoot, outPath, outputMIDsByName.get(out.name()));
 
     return Map.of(out.name(), outModel);
   }

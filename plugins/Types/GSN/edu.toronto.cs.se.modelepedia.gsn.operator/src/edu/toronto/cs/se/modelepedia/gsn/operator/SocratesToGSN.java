@@ -55,6 +55,15 @@ public class SocratesToGSN extends OperatorImpl {
     }
   };
 
+  public final static String NODES = "nodes";
+  public final static String NODE_ID = "lid";
+  public final static String NODE_TYPE = "nodeType";
+  public final static String NODE_TEXT = "text";
+  public final static String NODE_DESC = "description";
+  public final static String NODE_ROOT = "isRoot";
+  public final static String NODE_PARENTS = "parents";
+  public final static String NODE_CHILDREN = "children";
+
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
     this.out0 = GSNFactory.eINSTANCE.createSafetyCase();
@@ -68,10 +77,10 @@ public class SocratesToGSN extends OperatorImpl {
     var idToElem = new HashMap<Integer, ArgumentElement>();
     var idToChildren = new HashMap<Integer, JsonArray>();
     var isTemplate = false;
-    for (var node : jsonObj.get("nodes").getAsJsonArray()) {
+    for (var node : jsonObj.get(SocratesToGSN.NODES).getAsJsonArray()) {
       var nodeObj = node.getAsJsonObject();
-      var id = nodeObj.get("lid").getAsInt();
-      var gsnElem = switch(nodeObj.get("nodeType").getAsString()) {
+      var id = nodeObj.get(SocratesToGSN.NODE_ID).getAsInt();
+      var gsnElem = switch(nodeObj.get(SocratesToGSN.NODE_TYPE).getAsString()) {
         case "GOAL" -> {
           var goal = GSNFactory.eINSTANCE.createGoal();
           goal.setId("G" + id);
@@ -110,8 +119,8 @@ public class SocratesToGSN extends OperatorImpl {
         }
         case String type -> throw new MMINTException("Unsupported node " + type);
       };
-      var desc = nodeObj.get("text").getAsString();
-      var extraDesc = nodeObj.get("description");
+      var desc = nodeObj.get(SocratesToGSN.NODE_TEXT).getAsString();
+      var extraDesc = nodeObj.get(SocratesToGSN.NODE_DESC);
       if (!extraDesc.isJsonNull()) {
         desc += "\n(" + extraDesc.getAsString() + ")";
       }
@@ -122,7 +131,7 @@ public class SocratesToGSN extends OperatorImpl {
       }
       gsnElem.setDescription(desc);
       idToElem.put(id, gsnElem);
-      idToChildren.put(id, nodeObj.get("children").getAsJsonArray());
+      idToChildren.put(id, nodeObj.get(SocratesToGSN.NODE_CHILDREN).getAsJsonArray());
     }
     for (var childEntry : idToChildren.entrySet()) {
       var parent = idToElem.get(childEntry.getKey());
