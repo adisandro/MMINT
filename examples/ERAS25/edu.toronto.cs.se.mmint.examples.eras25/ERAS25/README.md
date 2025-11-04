@@ -1,6 +1,10 @@
 ## ERAS 2025 paper
 
-Arguing Reliability of Machine Learning-based Components
+[Arguing Reliability of Machine Learning-based Components](https://doi.org/10.1109/ERAS63351.2025.11135634)
+
+Machine Learning-based Components (MLCs) are increasingly being used in high-dependability systems. To ensure that such systems function safely during their operation, one must systematically demonstrate that they meet their safety requirements in the specified operating environment (OE). The Assurance of Machine Learning for use in Autonomous Systems (AMLAS) process is a state-of-the-art approach for assuring safety and guiding the creation of safety arguments for systems incorporating MLCs.  
+During deployment, changes in the OE, for example, the addition of frost or dimmer light, can affect MLC performance and lead to accidents. To ensure system safety, MLC performance should remain "reasonably unaffected" by potential changes in the OE, i.e., MLC should be reliable against these changes. Therefore, before deployment, arguments for MLC reliability must be created and presented along with arguments about the system safety. However, AMLAS does not sufficiently address the question of assuring reliability against changes in the OE.  
+In this paper, we address reliability arguments by proposing a generalized MLC reliability definition and then presenting AMLAS-r, a reliability-focused extension of AMLAS.
 
 ### Instructions to reproduce the examples
 
