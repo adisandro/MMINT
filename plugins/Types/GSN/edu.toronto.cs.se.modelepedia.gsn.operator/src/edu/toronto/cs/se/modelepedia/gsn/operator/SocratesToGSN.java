@@ -61,7 +61,6 @@ public class SocratesToGSN extends OperatorImpl {
   public final static String NODE_TEXT = "text";
   public final static String NODE_DESC = "description";
   public final static String NODE_ROOT = "isRoot";
-  public final static String NODE_PARENTS = "parents";
   public final static String NODE_CHILDREN = "children";
 
   @Override

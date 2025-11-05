@@ -12,6 +12,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.modelepedia.gsn.operator;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Properties;
 
@@ -28,9 +30,9 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
+import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.primitive.file.FilePackage;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
-import edu.toronto.cs.se.modelepedia.gsn.Contextual;
 import edu.toronto.cs.se.modelepedia.gsn.Contextualizable;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
@@ -42,9 +44,13 @@ public class GSNToSocrates extends OperatorImpl {
   public SafetyCase in0;
   public final static OperatorParameter OUT0 = new OperatorParameter("json", FilePackage.eNS_URI, "json", null);
   public EObject out0;
+  public final static String PROP_OWNER = "owner";
+  protected String owner;
 
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+    //TODO change to ask with dialog
+    this.owner = MIDOperatorIOUtils.getStringProperty(inputProperties, GSNToSocrates.PROP_OWNER);
     this.in0 = (SafetyCase) inputsByName.get(GSNToSocrates.IN0.name()).getEMFInstanceRoot();
     this.out0 = null; // do not create output model file
   }
@@ -54,9 +60,16 @@ public class GSNToSocrates extends OperatorImpl {
   }
 
   private JsonObject createRoot(String inName) {
+    while (inName.length() <= 2) {
+      inName += "_";
+    }
     var jsonObj = new JsonObject();
     jsonObj.addProperty("type", "GSN");
     jsonObj.addProperty("name", inName);
+    jsonObj.addProperty("owner", this.owner);
+    var now = ZonedDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSxx")).toString();
+    jsonObj.addProperty("created", now);
+    jsonObj.addProperty("modified", now);
     var schema = new JsonObject();
     jsonObj.add("schema", schema);
     schema.addProperty("version", 10);
@@ -79,21 +92,10 @@ public class GSNToSocrates extends OperatorImpl {
       nodeObj.addProperty(SocratesToGSN.NODE_TYPE, elem.eClass().getName().toUpperCase());
       nodeObj.addProperty(SocratesToGSN.NODE_TEXT, elem.getDescription());
       nodeObj.add(SocratesToGSN.NODE_DESC, null);
-      var parents = new JsonArray();
-//      nodeObj.add(SocratesToGSN.NODE_PARENTS, parents);
-      if (elem instanceof Contextual con) {
-        con.getContextOf().stream().forEach(co -> parents.add(getNodeId(co.getContextOf())));
-      }
-      if (elem instanceof Supporter supp) {
-        supp.getSupports().stream().forEach(s -> parents.add(getNodeId(s.getSource())));
-      }
-      boolean isRoot;
-      if (parents.size() == 0) {
+      var isRoot = false;
+      if (elem instanceof Supporter supp && supp.getSupports().size() == 0) {
         isRoot = true;
         jsonObj.addProperty("root", elemId);
-      }
-      else {
-        isRoot = false;
       }
       nodeObj.addProperty(SocratesToGSN.NODE_ROOT, isRoot);
       var children = new JsonArray();
