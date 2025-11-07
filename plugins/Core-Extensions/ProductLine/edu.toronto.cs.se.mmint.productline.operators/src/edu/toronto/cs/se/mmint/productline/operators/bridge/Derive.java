@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -50,7 +51,7 @@ public class Derive extends RandomOperatorImpl {
   protected IPLFeaturesTrait featureReasoner;
   protected Map<String, Boolean> allFeatureValues;
   protected Map<String, Boolean> presenceConditionCache;
-  protected Boolean userAssigned;
+  protected Optional<Boolean> userAssigned;
 
   public static class In {
     public final static String PROP_USERASSIGNED = "userAssigned";
@@ -118,7 +119,7 @@ public class Derive extends RandomOperatorImpl {
 
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
-    this.userAssigned = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, In.PROP_USERASSIGNED, null);
+    this.userAssigned = MIDOperatorIOUtils.getOptBoolProp(inputProperties, In.PROP_USERASSIGNED);
   }
 
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
@@ -137,15 +138,16 @@ public class Derive extends RandomOperatorImpl {
     if (features.isEmpty()) {
       return true;
     }
-    if (this.userAssigned == null) {
-      this.userAssigned = MIDDialogs.getBooleanInput("Create product", "Do you want to manually assign features?");
+    if (this.userAssigned.isEmpty()) {
+      this.userAssigned = Optional.of(
+        MIDDialogs.getBooleanInput("Create product", "Do you want to manually assign features?"));
     }
     if (this.presenceConditionCache.containsKey(plFormula)) {
       return this.presenceConditionCache.get(plFormula);
     }
 
     boolean canInstantiate;
-    if (this.userAssigned) {
+    if (this.userAssigned.isPresent()) {
       var featureValues = new HashMap<String, Boolean>();
       features.forEach(feature -> {
         var value = this.allFeatureValues.computeIfAbsent(

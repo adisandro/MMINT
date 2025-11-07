@@ -15,6 +15,7 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
@@ -64,25 +65,25 @@ public class SOSYM18 extends RandomOperatorImpl {
     private int numOtherModels;
 
     public Output(@NonNull Map<String, MID> outputMIDsByName) {
-      this.polyMIDModelContainer = outputMIDsByName.get(OUT_MID);
+      this.polyMIDModelContainer = outputMIDsByName.get(Output.OUT_MID);
       this.numPolyModels = 0;
       this.numOtherModels = 0;
     }
 
     public @NonNull Map<String, Model> packed() {
       var outputsByName = new HashMap<String, Model>();
-      outputsByName.put(OUT_MID, this.polyMIDModel);
+      outputsByName.put(Output.OUT_MID, this.polyMIDModel);
       return outputsByName;
     }
   }
 
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
-    this.polyTypeId = MIDOperatorIOUtils.getStringProperty(inputProperties, PROP_IN_POLYTYPEID);
-    this.otherTypeId = MIDOperatorIOUtils.getStringProperty(inputProperties, PROP_IN_OTHERTYPEID);
-    this.numPolyTypes = MIDOperatorIOUtils.getIntProperty(inputProperties, PROP_IN_NUMPOLYTYPES);
-    this.numSignatureSites = MIDOperatorIOUtils.getIntProperty(inputProperties, PROP_IN_NUMSIGNATURESITES);
-    this.ratioPolySites = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROP_IN_RATIOPOLYSITES);
+    this.polyTypeId = MIDOperatorIOUtils.getStringProp(inputProperties, SOSYM18.PROP_IN_POLYTYPEID, Optional.empty());
+    this.otherTypeId = MIDOperatorIOUtils.getStringProp(inputProperties, SOSYM18.PROP_IN_OTHERTYPEID, Optional.empty());
+    this.numPolyTypes = MIDOperatorIOUtils.getIntProp(inputProperties, SOSYM18.PROP_IN_NUMPOLYTYPES, Optional.empty());
+    this.numSignatureSites = MIDOperatorIOUtils.getIntProp(inputProperties, SOSYM18.PROP_IN_NUMSIGNATURESITES, Optional.empty());
+    this.ratioPolySites = MIDOperatorIOUtils.getDoubleProp(inputProperties, SOSYM18.PROP_IN_RATIOPOLYSITES, Optional.empty());
   }
 
   private void init(@NonNull Map<String, Model> inputsByName, @NonNull Map<String, MID> outputMIDsByName) {
@@ -139,7 +140,7 @@ public class SOSYM18 extends RandomOperatorImpl {
     var otherEPackage = otherModelType.getEMFTypeRoot();
     var otherEFactory = otherEPackage.getEFactoryInstance();
     var otherEClass = (EClass) otherEPackage.eContents().get(0);
-    for (int i = 0; i < this.numOtherSites; i++) {
+    for (var i = 0; i < this.numOtherSites; i++) {
       generateModel(otherModelType, otherEFactory, otherEClass, Output.OTHER_NAME + i, polyMID);
     }
   }
@@ -162,24 +163,28 @@ public class SOSYM18 extends RandomOperatorImpl {
       choices = 1;
     }
     Model model1, model2;
-    switch (getState().nextInt(choices)) {
-    case 0:
-    default:
+    model2 = switch (getState().nextInt(choices)) {
+    case 0 -> {
       // create new rel between 2 new models
       model1 = generateModel(modelType, modelTypeFactory, modelTypeRootObj, baseName + "a", polyMID);
-      model2 = generateModel(modelType, modelTypeFactory, modelTypeRootObj, baseName + "b", polyMID);
-      break;
-    case 1:
+      yield generateModel(modelType, modelTypeFactory, modelTypeRootObj, baseName + "b", polyMID);
+    }
+    default -> {
+      // create new rel between 2 new models
+      model1 = generateModel(modelType, modelTypeFactory, modelTypeRootObj, baseName + "a", polyMID);
+      yield generateModel(modelType, modelTypeFactory, modelTypeRootObj, baseName + "b", polyMID);
+    }
+    case 1 -> {
       // create new rel between 1 existing model and 1 new model
       model1 = models.get(getState().nextInt(numModels));
-      model2 = generateModel(modelType, modelTypeFactory, modelTypeRootObj, baseName + "b", polyMID);
-      break;
-    case 2:
+      yield generateModel(modelType, modelTypeFactory, modelTypeRootObj, baseName + "b", polyMID);
+    }
+    case 2 -> {
       //create new rel between existing models
       model1 = models.get(getState().nextInt(numModels));
-      model2 = models.get(getState().nextInt(numModels));
-      break;
+      yield models.get(getState().nextInt(numModels));
     }
+    };
 
     //TODO It creates with endpoint types of the abstract superclass
     return relType.createInstanceAndEndpoints(null, baseName, ECollections.asEList(model1, model2), polyMID);
@@ -215,7 +220,7 @@ public class SOSYM18 extends RandomOperatorImpl {
     var otherEPackage = otherModelType.getEMFTypeRoot();
     var otherEFactory = otherEPackage.getEFactoryInstance();
     var otherEClass = (EClass) otherEPackage.eContents().get(0);
-    for (int i = 0; i < this.numOtherSites; i++) {
+    for (var i = 0; i < this.numOtherSites; i++) {
       generateModelRel(otherRelType, otherModelType, otherEFactory, otherEClass, Output.OTHER_NAME + i, polyMID);
     }
   }

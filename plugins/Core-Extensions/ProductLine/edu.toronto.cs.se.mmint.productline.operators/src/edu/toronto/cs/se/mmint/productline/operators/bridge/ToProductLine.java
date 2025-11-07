@@ -64,19 +64,17 @@ public class ToProductLine extends OperatorImpl {
 
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
-    var reasonerName =
-      MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, ToProductLine.PROP_REASONERNAME, null);
-    this.reasoner = (reasonerName == null) ?
-      MIDDialogs.selectReasoner(IPLFeaturesTrait.class, "Product Line features", null) :
-      (IPLFeaturesTrait) MMINT.getReasoner(reasonerName);
-    this.presenceCondition =
-      MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, ToProductLine.PROP_PRESENCECONDITION, null);
-    if (this.presenceCondition == null) {
-      this.presenceCondition =
-        MIDDialogs.getStringInput("Convert to Product Line",
-                                  "Insert the presence condition to annotate all model elements with",
-                                  this.reasoner.getTrueLiteral());
-    }
+    var reasonerName = MIDOperatorIOUtils.getOptStringProp(inputProperties, ToProductLine.PROP_REASONERNAME);
+    this.reasoner = (reasonerName.isPresent()) ?
+      (IPLFeaturesTrait) MMINT.getReasoner(reasonerName.get()) :
+      MIDDialogs.selectReasoner(IPLFeaturesTrait.class, "Product Line features", null);
+    var presenceConditionOpt = MIDOperatorIOUtils.getOptStringProp(inputProperties,
+                                                                   ToProductLine.PROP_PRESENCECONDITION);
+    this.presenceCondition = (presenceConditionOpt.isPresent()) ?
+      presenceConditionOpt.get() :
+      MIDDialogs.getStringInput("Convert to Product Line",
+                                "Insert the presence condition to annotate all model elements with",
+                                this.reasoner.getTrueLiteral());
     var productModel = inputsByName.get(ToProductLine.IN0.name());
     this.in0 = productModel.getEMFInstanceRoot();
     this.out0 = PLFactory.eINSTANCE.createProductLine();

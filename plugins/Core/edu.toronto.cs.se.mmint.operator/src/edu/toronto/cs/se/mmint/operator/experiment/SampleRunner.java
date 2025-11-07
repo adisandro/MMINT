@@ -76,8 +76,8 @@ public class SampleRunner implements Runnable {
         var operatorName = propsEntry.getKey();
         var props = propsEntry.getValue();
         var propsPath = FileUtils.prependWorkspacePath(
-                          this.path.append(operatorName + MIDOperatorIOUtils.INPUT_PROPERTIES_SUFFIX +
-                                           MIDOperatorIOUtils.PROPERTIES_SUFFIX)
+                          this.path.append(operatorName + MIDOperatorIOUtils.IN_PROPS_SUFFIX +
+                                           MIDOperatorIOUtils.PROPS_SUFFIX)
                           .toOSString());
         props.store(new FileOutputStream(propsPath), null);
       }

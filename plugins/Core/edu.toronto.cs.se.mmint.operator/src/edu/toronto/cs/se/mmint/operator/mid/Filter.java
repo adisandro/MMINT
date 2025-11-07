@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
 
@@ -127,8 +128,9 @@ public class Filter extends OperatorImpl {
 
   @Override
   public void init(Properties inputProps, Map<String, Model> inputsByName) throws MMINTException {
-    this.timeOverheadEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(
-                                 inputProps, Filter.PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
+    this.timeOverheadEnabled = MIDOperatorIOUtils.getBoolProp(
+                                 inputProps, Filter.PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX,
+                                 Optional.of(false));
   }
 
   private void init(@NonNull Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,

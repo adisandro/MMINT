@@ -1226,10 +1226,10 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         }
         workingPath = FileUtils.prependWorkspacePath(workingPath);
         var propertiesPath = workingPath + File.separator + getClass().getSimpleName() +
-                             MIDOperatorIOUtils.INPUT_PROPERTIES_SUFFIX + MIDOperatorIOUtils.PROPERTIES_SUFFIX;
+                             MIDOperatorIOUtils.IN_PROPS_SUFFIX + MIDOperatorIOUtils.PROPS_SUFFIX;
         if (!FileUtils.isFile(propertiesPath, false)) {
-          propertiesPath = workingPath + File.separator + getName() + MIDOperatorIOUtils.INPUT_PROPERTIES_SUFFIX +
-                           MIDOperatorIOUtils.PROPERTIES_SUFFIX;
+          propertiesPath = workingPath + File.separator + getName() + MIDOperatorIOUtils.IN_PROPS_SUFFIX +
+                           MIDOperatorIOUtils.PROPS_SUFFIX;
         }
         try {
             inputProperties.load(new FileInputStream(propertiesPath));
@@ -1245,7 +1245,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated NOT
      */
     @Override
-    public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+    public void init(Properties inProps, Map<String, Model> inputsByName) throws MMINTException {
       // do nothing
     }
 

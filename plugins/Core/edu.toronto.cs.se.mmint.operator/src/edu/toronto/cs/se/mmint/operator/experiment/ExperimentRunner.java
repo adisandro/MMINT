@@ -15,6 +15,7 @@ import java.io.FileOutputStream;
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.Executors;
@@ -29,6 +30,7 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.RandomOperator;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
@@ -90,8 +92,8 @@ public class ExperimentRunner implements Runnable {
         var operatorName = propsEntry.getKey();
         var props = propsEntry.getValue();
         var propsPath = FileUtils.prependWorkspacePath(
-                          this.path.append(operatorName + MIDOperatorIOUtils.INPUT_PROPERTIES_SUFFIX +
-                                           MIDOperatorIOUtils.PROPERTIES_SUFFIX)
+                          this.path.append(operatorName + MIDOperatorIOUtils.IN_PROPS_SUFFIX +
+                                           MIDOperatorIOUtils.PROPS_SUFFIX)
                         .toOSString());
         props.store(new FileOutputStream(propsPath), null);
       }
@@ -106,8 +108,8 @@ public class ExperimentRunner implements Runnable {
         var inputs = this.exp.input.setupWorkflow.checkAllowedInputs(setupInputs);
         var outputMIDsByName = MIDOperatorIOUtils.createSameOutputMIDsByName(this.exp.input.setupWorkflow, null);
         this.exp.input.setupWorkflow.getNestedWorkflowMID().getOperators().stream() // init seeded random state
-          .map(o -> o.getMetatype())
-          .filter(o -> o instanceof RandomOperator)
+          .map(Operator::getMetatype)
+          .filter(RandomOperator.class::isInstance)
           .findFirst()
           .ifPresent(o -> ((RandomOperator) o).setState(this.state));
         var setup = this.exp.input.setupWorkflow.startInstance(inputs, null, ECollections.emptyEList(),
@@ -153,12 +155,12 @@ public class ExperimentRunner implements Runnable {
             else {
               var samplePropsPath = FileUtils.prependWorkspacePath(
                                       sampleRunner.path.append(outputSpecs.operatorName +
-                                                               MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX +
-                                                               MIDOperatorIOUtils.PROPERTIES_SUFFIX)
+                                                               MIDOperatorIOUtils.OUT_PROPS_SUFFIX +
+                                                               MIDOperatorIOUtils.PROPS_SUFFIX)
                                       .toOSString());
               var sampleProps = new Properties();
               sampleProps.load(new FileInputStream(samplePropsPath));
-              sample = MIDOperatorIOUtils.getDoubleProperty(sampleProps, output.split("\\.")[1]);
+              sample = MIDOperatorIOUtils.getDoubleProp(sampleProps, output.split("\\.")[1], Optional.empty());
             }
           }
           if (sample == Double.MAX_VALUE) {
@@ -194,8 +196,8 @@ public class ExperimentRunner implements Runnable {
         expProps.setProperty(variable, value);
       }
       var expPropsPath = FileUtils.prependWorkspacePath(
-                           this.path.append(this.exp.getName() + MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX +
-                                            MIDOperatorIOUtils.PROPERTIES_SUFFIX)
+                           this.path.append(this.exp.getName() + MIDOperatorIOUtils.OUT_PROPS_SUFFIX +
+                                            MIDOperatorIOUtils.PROPS_SUFFIX)
                            .toOSString());
       expProps.store(new FileOutputStream(expPropsPath), null);
     }

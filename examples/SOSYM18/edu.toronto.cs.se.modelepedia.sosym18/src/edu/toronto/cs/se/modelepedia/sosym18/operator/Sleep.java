@@ -13,6 +13,7 @@ package edu.toronto.cs.se.modelepedia.sosym18.operator;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 
 import org.eclipse.jdt.annotation.NonNull;
@@ -33,8 +34,8 @@ public class Sleep extends OperatorImpl {
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
 
-    this.ms = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, PROP_IN_MILLISECONDS,
-                                                        PROP_IN_MILLISECONDS_DEFAULT);
+    this.ms = MIDOperatorIOUtils.getIntProp(inputProperties, Sleep.PROP_IN_MILLISECONDS,
+                                            Optional.of(Sleep.PROP_IN_MILLISECONDS_DEFAULT));
   }
 
   private void sleep() {

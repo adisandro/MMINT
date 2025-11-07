@@ -1246,7 +1246,7 @@
       </eOperations>
       <eOperations name="getInputProperties" lowerBound="1" eType="#//operator/Properties"/>
       <eOperations name="init" eExceptions="#//MMINTException">
-        <eParameters name="inputProperties" lowerBound="1" eType="#//operator/Properties"/>
+        <eParameters name="inProps" lowerBound="1" eType="#//operator/Properties"/>
         <eParameters name="inputsByName" lowerBound="1">
           <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
             <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

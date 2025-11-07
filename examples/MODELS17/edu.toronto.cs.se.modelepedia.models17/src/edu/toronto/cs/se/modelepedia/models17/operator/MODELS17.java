@@ -13,16 +13,16 @@ package edu.toronto.cs.se.modelepedia.models17.operator;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -56,8 +56,7 @@ public class MODELS17 extends OperatorImpl {
 
     @Override
     public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
-
-        multiplier = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MULTIPLIER);
+        this.multiplier = MIDOperatorIOUtils.getIntProp(inputProperties, MODELS17.PROPERTY_IN_MULTIPLIER, Optional.empty());
     }
 
     private ModelRel copyInstanceAndChangeModelPaths(ModelRel newModelRelType, ModelRel origModelRel,
@@ -65,42 +64,42 @@ public class MODELS17 extends OperatorImpl {
                                                          throws Exception {
 
         // create initial empty copy
-        String newModelRelName = origModelRel.getName() + newNamesSuffix;
-        ModelRel newModelRel = (origModelRel instanceof BinaryModelRel) ?
+        var newModelRelName = origModelRel.getName() + newNamesSuffix;
+        var newModelRel = (origModelRel instanceof BinaryModelRel) ?
             newModelRelType.createBinaryInstance(null, newModelRelName, newModelRelContainerMID) :
             (ModelRel) newModelRelType.createInstance(null, newModelRelName, newModelRelContainerMID);
 
         // models
         Map<String, ModelElementReference> newModelElemRefs = new HashMap<>();
         for (ModelEndpointReference origModelEndpointRef : origModelRel.getModelEndpointRefs()) {
-            String origModelUri = origModelEndpointRef.getTargetUri();
+            var origModelUri = origModelEndpointRef.getTargetUri();
             String newModelUri = FileUtils.addFileNameSuffixInPath(origModelUri, newNamesSuffix);
-            Model newModel = modelsMID.getExtendibleElement(newModelUri);
-            ModelEndpointReference newModelEndpointRef = origModelEndpointRef.getObject().getMetatype()
+            var newModel = modelsMID.<Model>getExtendibleElement(newModelUri);
+            var newModelEndpointRef = origModelEndpointRef.getObject().getMetatype()
                 .createInstance(newModel, newModelRel);
             // model elements
             URI newModelEMFUri = FileUtils.createEMFUri(newModelUri, true);
             ResourceSet rs = new ResourceSetImpl();
-            Resource r = rs.getResource(newModelEMFUri, true);
+            var r = rs.getResource(newModelEMFUri, true);
             for (ModelElementReference origModelElemRef : origModelEndpointRef.getModelElemRefs()) {
-                String newModelElemUri = origModelElemRef.getUri()
-                    .substring(0, origModelElemRef.getUri().indexOf(MMINT.ROLE_SEPARATOR))
+                var newModelElemUri = origModelElemRef.getUri()
+                    .substring(0, origModelElemRef.getUri().indexOf(MMINTConstants.ROLE_SEPARATOR))
                     .replace(origModelUri, newModelUri);
                 EObject newModelObj = FileUtils.readModelObject(newModelElemUri, r);
-                ModelElementReference newModelElemRef = newModelEndpointRef.createModelElementInstanceAndReference(
+                var newModelElemRef = newModelEndpointRef.createModelElementInstanceAndReference(
                     newModelObj, origModelElemRef.getObject().getName());
                 newModelElemRefs.put(newModelElemRef.getUri(), newModelElemRef);
             }
         }
         // mappings
         for (MappingReference origMappingRef : origModelRel.getMappingRefs()) {
-            MappingReference newMappingRef = origMappingRef.getObject().getMetatype().createInstanceAndReference(
+            var newMappingRef = origMappingRef.getObject().getMetatype().createInstanceAndReference(
                 (origMappingRef.getObject() instanceof BinaryMapping), newModelRel);
             newMappingRef.getObject().setName(origMappingRef.getObject().getName());
             for (ModelElementEndpointReference origModelElemEndpointRef : origMappingRef.getModelElemEndpointRefs()) {
-                String origModelUri = ((Model) origModelElemEndpointRef.getObject().getTarget().eContainer()).getUri();
+                var origModelUri = ((Model) origModelElemEndpointRef.getObject().getTarget().eContainer()).getUri();
                 String newModelUri = FileUtils.addFileNameSuffixInPath(origModelUri, newNamesSuffix);
-                ModelElementReference newModelElemRef = newModelElemRefs.get(
+                var newModelElemRef = newModelElemRefs.get(
                     origModelElemEndpointRef.getTargetUri().replace(origModelUri, newModelUri));
                 origModelElemEndpointRef.getObject().getMetatype().createInstanceAndReference(newModelElemRef,
                                                                                               newMappingRef);
@@ -116,9 +115,9 @@ public class MODELS17 extends OperatorImpl {
             if (model instanceof ModelRel) {
                 continue;
             }
-            Model modelType = model.getMetatype();
+            var modelType = model.getMetatype();
             String modelName = FileUtils.getFileNameFromPath(model.getUri());
-            for (int i = 0; i < multiplier; i++) {
+            for (var i = 0; i < this.multiplier; i++) {
                 try {
                     modelType.copyInstance(model, modelName + i, bigModelsMID);
                 }
@@ -128,8 +127,8 @@ public class MODELS17 extends OperatorImpl {
             }
         }
         for (ModelRel traceRel : modelsMID.getModelRels()) {
-            ModelRel traceRelType = traceRel.getMetatype();
-            for (int i = 0; i < multiplier; i++) {
+            var traceRelType = traceRel.getMetatype();
+            for (var i = 0; i < this.multiplier; i++) {
                 try {
                     this.copyInstanceAndChangeModelPaths(traceRelType, traceRel, Integer.toString(i), bigModelsMID,
                                                          bigModelsMID);
@@ -140,8 +139,8 @@ public class MODELS17 extends OperatorImpl {
             }
         }
         for (ModelRel critRel : criteriaMIDRel.getModelRels()) {
-            ModelRel critRelType = critRel.getMetatype();
-            for (int i = 0; i < multiplier; i++) {
+            var critRelType = critRel.getMetatype();
+            for (var i = 0; i < this.multiplier; i++) {
                 try {
                     this.copyInstanceAndChangeModelPaths(critRelType, critRel, Integer.toString(i), bigModelsMID,
                                                          bigCriteriaMIDRel);
@@ -158,28 +157,28 @@ public class MODELS17 extends OperatorImpl {
                                   Map<String, MID> outputMIDsByName) throws Exception {
 
         // input
-        Model modelsMIDModel = inputsByName.get(IN_MID1);
-        Model criteriaMIDRelModel = inputsByName.get(IN_MID2);
-        MID modelsMID = (MID) modelsMIDModel.getEMFInstanceRoot();
-        MID criteriaMIDRel = (MID) criteriaMIDRelModel.getEMFInstanceRoot();
+        var modelsMIDModel = inputsByName.get(MODELS17.IN_MID1);
+        var criteriaMIDRelModel = inputsByName.get(MODELS17.IN_MID2);
+        var modelsMID = (MID) modelsMIDModel.getEMFInstanceRoot();
+        var criteriaMIDRel = (MID) criteriaMIDRelModel.getEMFInstanceRoot();
 
         // multiply the input
-        MID bigModelsMID = MIDFactory.eINSTANCE.createMID();
+        var bigModelsMID = MIDFactory.eINSTANCE.createMID();
         bigModelsMID.setLevel(MIDLevel.INSTANCES);
-        MID bigCriteriaMIDRel = MIDFactory.eINSTANCE.createMID();
+        var bigCriteriaMIDRel = MIDFactory.eINSTANCE.createMID();
         bigCriteriaMIDRel.setLevel(MIDLevel.INSTANCES);
         this.multiply(modelsMID, criteriaMIDRel, bigModelsMID, bigCriteriaMIDRel);
 
         // output
-        Model bigModelsMIDModel = modelsMIDModel.getMetatype().createInstanceAndEditor(
-            bigModelsMID, FileUtils.addFileNameSuffixInPath(modelsMIDModel.getUri(), OUT_MID_SUFFIX),
-            outputMIDsByName.get(OUT_MID1));
-        Model bigCriteriaMIDRelModel = criteriaMIDRelModel.getMetatype().createInstanceAndEditor(
-            bigCriteriaMIDRel, FileUtils.addFileNameSuffixInPath(criteriaMIDRelModel.getUri(), OUT_MID_SUFFIX),
-            outputMIDsByName.get(OUT_MID2));
+        var bigModelsMIDModel = modelsMIDModel.getMetatype().createInstanceAndEditor(
+            bigModelsMID, FileUtils.addFileNameSuffixInPath(modelsMIDModel.getUri(), MODELS17.OUT_MID_SUFFIX),
+            outputMIDsByName.get(MODELS17.OUT_MID1));
+        var bigCriteriaMIDRelModel = criteriaMIDRelModel.getMetatype().createInstanceAndEditor(
+            bigCriteriaMIDRel, FileUtils.addFileNameSuffixInPath(criteriaMIDRelModel.getUri(), MODELS17.OUT_MID_SUFFIX),
+            outputMIDsByName.get(MODELS17.OUT_MID2));
         Map<String, Model> outputsByName = new HashMap<>();
-        outputsByName.put(OUT_MID1, bigModelsMIDModel);
-        outputsByName.put(OUT_MID2, bigCriteriaMIDRelModel);
+        outputsByName.put(MODELS17.OUT_MID1, bigModelsMIDModel);
+        outputsByName.put(MODELS17.OUT_MID2, bigCriteriaMIDRelModel);
 
         return outputsByName;
     }

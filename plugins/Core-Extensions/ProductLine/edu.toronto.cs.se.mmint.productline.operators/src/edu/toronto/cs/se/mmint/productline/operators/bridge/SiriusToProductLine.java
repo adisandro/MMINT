@@ -15,6 +15,7 @@ package edu.toronto.cs.se.mmint.productline.operators.bridge;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.IPath;
@@ -125,12 +126,12 @@ public class SiriusToProductLine extends OperatorImpl {
 
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
-    this.servicesJava = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, In.PROP_SERVICESJAVA,
-                                                                     In.PROP_SERVICESJAVA_DEFAULT);
-    this.nodesJava = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, In.PROP_NODESJAVA,
-                                                                  In.PROP_NODESJAVA_DEFAULT);
-    this.edgesJava = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, In.PROP_EDGESJAVA,
-                                                                  In.PROP_EDGESJAVA_DEFAULT);
+    this.servicesJava = MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_SERVICESJAVA,
+                                                         Optional.of(In.PROP_SERVICESJAVA_DEFAULT));
+    this.nodesJava = MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_NODESJAVA,
+                                                      Optional.of(In.PROP_NODESJAVA_DEFAULT));
+    this.edgesJava = MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_EDGESJAVA,
+                                                      Optional.of(In.PROP_EDGESJAVA_DEFAULT));
   }
 
   private void toProductLine() throws Exception {

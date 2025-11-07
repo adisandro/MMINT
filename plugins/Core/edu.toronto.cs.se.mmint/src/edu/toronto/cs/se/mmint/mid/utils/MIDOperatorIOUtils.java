@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -29,146 +30,92 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 
 public class MIDOperatorIOUtils {
 
-	public static final String INPUT_PROPERTIES_SUFFIX = "In";
-	public static final String OUTPUT_PROPERTIES_SUFFIX = "Out";
-	public static final String PROPERTIES_SUFFIX = ".properties";
+	public static final String IN_PROPS_SUFFIX = "In";
+	public static final String OUT_PROPS_SUFFIX = "Out";
+	public static final String PROPS_SUFFIX = ".properties";
 	/** The separator for multiple properties with the same key. */
-	private static final String PROPERTY_SEPARATOR = ",";
+	private static final String PROP_SEP = ",";
 	public static final String PROP_OUTENABLED_SUFFIX = ".enabled";
 
 	public static void writeOutputProperties(Operator operator, Properties outProps) throws Exception {
 	  var path = operator.getWorkingPath() + File.separator + operator.getName() +
-	             MIDOperatorIOUtils.OUTPUT_PROPERTIES_SUFFIX + MIDOperatorIOUtils.PROPERTIES_SUFFIX;
+	             MIDOperatorIOUtils.OUT_PROPS_SUFFIX + MIDOperatorIOUtils.PROPS_SUFFIX;
 	  path = FileUtils.getUniquePath(path, true, false);
 	  outProps.store(new FileOutputStream(FileUtils.prependWorkspacePath(path)), null);
 	}
 
-	public static String getStringProperty(Properties properties, String propertyName) throws MMINTException {
+  public static Optional<String> getOptStringProp(Properties props, String propName) {
+    return Optional.ofNullable(props.getProperty(propName));
+  }
 
-		var property = properties.getProperty(propertyName);
-		if (property == null) {
-			throw new MMINTException("Missing property " + propertyName);
-		}
+  public static String getStringProp(Properties props, String propName, Optional<String> defaultValue)
+                                    throws MMINTException {
+    return getOptStringProp(props, propName).orElse(
+      defaultValue.orElse(
+        MIDDialogs.getStringInput("Insert " + propName, "Insert property " + propName, null)));
+  }
 
-		return property;
+  public static <E extends Enum<E>> Optional<E> getOptEnumProp(Properties props, String propName, Class<E> enumClass) {
+    return getOptStringProp(props, propName).map(p -> Enum.valueOf(enumClass, p));
+  }
+
+	public static <E extends Enum<E>> E getEnumProp(Properties props, String propName, Optional<E> defaultValue,
+	                                                Class<E> enumClass) throws MMINTException {
+	  return Enum.valueOf(enumClass, getStringProp(props, propName, defaultValue.map(String::valueOf)));
 	}
 
-	public static @Nullable String getOptionalStringProperty(Properties properties, String propertyName, @Nullable String defaultValue) {
+  //TODO MMINT[OPERATOR] Make version to read x.enabled with default to false
+  public static Optional<Boolean> getOptBoolProp(Properties props, String propName) {
+    return getOptStringProp(props, propName).map(Boolean::parseBoolean);
+  }
 
-		try {
-			return getStringProperty(properties, propertyName);
-		}
-		catch (MMINTException e) {
-			return defaultValue;
-		}
+	public static boolean getBoolProp(Properties props, String propName, Optional<Boolean> defaultValue)
+	                                 throws MMINTException {
+		return Boolean.parseBoolean(getStringProp(props, propName, defaultValue.map(String::valueOf)));
 	}
 
-	public static <E extends Enum<E>> E getEnumProperty(Properties properties, String propertyName, Class<E> enumClass) throws MMINTException {
+  public static Optional<Integer> getOptIntProp(Properties props, String propName) {
+    return getOptStringProp(props, propName).map(Integer::parseInt);
+  }
 
-		var property = Enum.valueOf(enumClass, getStringProperty(properties, propertyName));
-
-		return property;
+	public static int getIntProp(Properties props, String propName, Optional<Integer> defaultValue)
+	                            throws MMINTException {
+    return Integer.parseInt(getStringProp(props, propName, defaultValue.map(String::valueOf)));
 	}
 
-	public static <E extends Enum<E>> E getOptionalEnumProperty(Properties properties, String propertyName, E defaultValue, Class<E> enumClass) {
+  public static Optional<Double> getOptDoubleProp(Properties props, String propName) {
+    return getOptStringProp(props, propName).map(Double::parseDouble);
+  }
 
-		try {
-			return getEnumProperty(properties, propertyName, enumClass);
-		}
-		catch (MMINTException e) {
-			return defaultValue;
-		}
+	public static double getDoubleProp(Properties props, String propName, Optional<Double> defaultValue)
+	                                  throws MMINTException {
+	  return Double.parseDouble(getStringProp(props, propName, defaultValue.map(String::valueOf)));
 	}
 
-	public static boolean getBoolProperty(Properties properties, String propertyName) throws MMINTException {
+  public static Optional<List<String>> getOptStringPropList(Properties props, String propName) {
+    return getOptStringProp(props, propName).map(p -> List.of(p.split(MIDOperatorIOUtils.PROP_SEP)));
+  }
 
-		var property = Boolean.parseBoolean(getStringProperty(properties, propertyName));
-
-		return property;
+	public static List<String> getStringPropList(Properties props, String propName, Optional<List<String>> defaultValue)
+	                                            throws MMINTException {
+    return List.of(
+      getStringProp(props, propName, defaultValue.map(l -> String.join(MIDOperatorIOUtils.PROP_SEP, l)))
+        .split(MIDOperatorIOUtils.PROP_SEP));
 	}
 
-	//TODO MMINT[OPERATOR] Make version to read x.enabled with default to false
-	public static @Nullable Boolean getOptionalBoolProperty(Properties properties, String propertyName, @Nullable Boolean defaultValue) {
+  public static Optional<Set<String>> getOptStringPropSet(Properties props, String propName) {
+    return getOptStringProp(props, propName).map(p -> Set.of(p.split(MIDOperatorIOUtils.PROP_SEP)));
+  }
 
-		try {
-			return getBoolProperty(properties, propertyName);
-		}
-		catch (MMINTException e) {
-			return defaultValue;
-		}
-	}
-
-	public static int getIntProperty(Properties properties, String propertyName) throws MMINTException {
-
-		var property = Integer.parseInt(getStringProperty(properties, propertyName));
-		if (property == -1) {
-			property = Integer.MAX_VALUE;
-		}
-
-		return property;
-	}
-
-	public static int getOptionalIntProperty(Properties properties, String propertyName, int defaultValue) {
-
-		try {
-			return getIntProperty(properties, propertyName);
-		}
-		catch (MMINTException e) {
-			return defaultValue;
-		}
-	}
-
-	public static double getDoubleProperty(Properties properties, String propertyName) throws MMINTException {
-
-		var property = Double.parseDouble(getStringProperty(properties, propertyName));
-		if (property == -1) {
-			property = Double.MAX_VALUE;
-		}
-
-		return property;
-	}
-
-	public static double getOptionalDoubleProperty(Properties properties, String propertyName, double defaultValue) {
-
-		try {
-			return getDoubleProperty(properties, propertyName);
-		}
-		catch (MMINTException e) {
-			return defaultValue;
-		}
-	}
-
-	public static List<String> getStringPropertyList(Properties properties, String propertyName) throws MMINTException {
-
-		return List.of(getStringProperty(properties, propertyName).split(MIDOperatorIOUtils.PROPERTY_SEPARATOR));
-	}
-
-	public static Set<String> getStringPropertySet(Properties properties, String propertyName) throws MMINTException {
-
-	    return Set.of(getStringProperty(properties, propertyName).split(MIDOperatorIOUtils.PROPERTY_SEPARATOR));
-	}
-
-	public static List<String> getOptionalStringPropertyList(Properties properties, String propertyName, List<String> defaultValue) {
-
-		try {
-			return getStringPropertyList(properties, propertyName);
-		}
-		catch (MMINTException e) {
-			return defaultValue;
-		}
-	}
-
-	public static Set<String> getOptionalStringPropertySet(Properties properties, String propertyName, Set<String> defaultValue) {
-
-		try {
-			return getStringPropertySet(properties, propertyName);
-		}
-		catch (MMINTException e) {
-			return defaultValue;
-		}
+	public static Set<String> getStringPropSet(Properties props, String propName, Optional<Set<String>> defaultValue)
+	                                          throws MMINTException {
+    return Set.of(
+      getStringProp(props, propName, defaultValue.map(s -> String.join(MIDOperatorIOUtils.PROP_SEP, s)))
+        .split(MIDOperatorIOUtils.PROP_SEP));
 	}
 
 	public static <T> List<T> getVarargs(Map<String, T> varargsByName, String varargName) {
@@ -199,7 +146,7 @@ public class MIDOperatorIOUtils {
 			var outputMID = outputMIDsByName.get(varargName);
 			outputMIDsByOtherName = nameElements.stream()
 				.collect(Collectors.toMap(
-					nameElement -> nameElement.getName(),
+					ExtendibleElement::getName,
 					nameElement -> outputMID));
 		}
 		else {

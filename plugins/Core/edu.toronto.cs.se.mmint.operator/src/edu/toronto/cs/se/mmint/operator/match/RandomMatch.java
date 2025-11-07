@@ -15,6 +15,7 @@ package edu.toronto.cs.se.mmint.operator.match;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -42,7 +43,7 @@ public class RandomMatch extends Match {
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
     super.init(inputProperties, inputsByName);
-    this.numMatches = MIDOperatorIOUtils.getIntProperty(inputProperties, RandomIn.PROP_NUMMATCHES);
+    this.numMatches = MIDOperatorIOUtils.getIntProp(inputProperties, RandomIn.PROP_NUMMATCHES, Optional.empty());
   }
 
   @Override
@@ -63,8 +64,8 @@ public class RandomMatch extends Match {
                                     throws MMINTException {
     var r = getState();
     int ri;
-    var model1Count = modelObjAttrs1.values().stream().collect(Collectors.summingInt(objs -> objs.size()));
-    var model2Count = modelObjAttrs2.values().stream().collect(Collectors.summingInt(objs -> objs.size()));
+    var model1Count = modelObjAttrs1.values().stream().collect(Collectors.summingInt(Set::size));
+    var model2Count = modelObjAttrs2.values().stream().collect(Collectors.summingInt(Set::size));
     var maxMatches = Math.min(this.numMatches, Math.min(model1Count, model2Count));
     var entries1 = new ArrayList<>(modelObjAttrs1.entrySet());
     var matched = new HashMap<EObject, EObject>();

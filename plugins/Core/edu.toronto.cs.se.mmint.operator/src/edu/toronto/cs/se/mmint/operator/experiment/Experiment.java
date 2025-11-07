@@ -12,9 +12,9 @@ package edu.toronto.cs.se.mmint.operator.experiment;
 
 import java.text.MessageFormat;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.Executors;
@@ -101,7 +101,7 @@ public class Experiment extends OperatorImpl {
   private int numThreads; // number of samples to process in parallel
   /** The outputs */
   private final static @NonNull String PROP_IN_OUTPUTS = "outputs";
-  private final static @NonNull Set<String> PROP_IN_OUTPUTS_DEFAULT = new HashSet<>();
+  private final static @NonNull Set<String> PROP_IN_OUTPUTS_DEFAULT = Set.of();
   private final static @NonNull String PROP_IN_OUTPUTOPERATORNAME_SUFFIX = ".operatorName";
   private final static @NonNull String PROP_IN_OUTPUTTIMEOUTVALUE_SUFFIX = ".timeoutValue";
   private final static @NonNull String PROP_IN_OUTPUTMINVALUE_SUFFIX = ".minValue";
@@ -125,44 +125,43 @@ public class Experiment extends OperatorImpl {
   Map<String, ExperimentOutput> outputs;
 
   @Override
-  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inProps, Map<String, Model> inputsByName) throws MMINTException {
     // variables of the experiment
     this.numExperiments = 1;
     this.variables = new HashMap<>();
-    for (var variable : MIDOperatorIOUtils.getStringPropertySet(inputProperties, Experiment.PROP_IN_VARIABLES)) {
-      var values = MIDOperatorIOUtils.getStringPropertyList(inputProperties, variable + Experiment.PROP_IN_VARIABLEVALUES_SUFFIX);
+    for (var variable : MIDOperatorIOUtils.getStringPropSet(inProps, Experiment.PROP_IN_VARIABLES, Optional.empty())) {
+      var values = MIDOperatorIOUtils.getStringPropList(inProps, variable + Experiment.PROP_IN_VARIABLEVALUES_SUFFIX, Optional.empty());
       this.variables.put(variable, new ExperimentVariable(
-        MIDOperatorIOUtils.getStringPropertyList(inputProperties, variable + Experiment.PROP_IN_VARIABLEOPERATORNAME_SUFFIX),
+        MIDOperatorIOUtils.getStringPropList(inProps, variable + Experiment.PROP_IN_VARIABLEOPERATORNAME_SUFFIX, Optional.empty()),
         values
       ));
-      if (MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, variable + Experiment.PROP_IN_VARIABLEX_SUFFIX, false)) {
+      if (MIDOperatorIOUtils.getBoolProp(inProps, variable + Experiment.PROP_IN_VARIABLEX_SUFFIX, Optional.of(false))) {
         this.varX = variable;
       }
       this.numExperiments *= values.size();
     }
     // statistics
-    this.seed = MIDOperatorIOUtils.getIntProperty(inputProperties, Experiment.PROP_IN_SEED);
-    this.skipWarmupSamples = MIDOperatorIOUtils.getIntProperty(inputProperties, Experiment.PROP_IN_SKIPWARMUPSAMPLES);
-    this.minSamples = MIDOperatorIOUtils.getIntProperty(inputProperties, Experiment.PROP_IN_MINSAMPLES);
-    this.maxSamples = MIDOperatorIOUtils.getIntProperty(inputProperties, Experiment.PROP_IN_MAXSAMPLES);
-    this.distribution = DistributionType.valueOf(MIDOperatorIOUtils.getStringProperty(inputProperties,
-                                                                                      Experiment.PROP_IN_DISTRIBUTION));
-    this.targetConfidence = MIDOperatorIOUtils.getDoubleProperty(inputProperties, Experiment.PROP_IN_TARGETCONFIDENCE);
+    this.seed = MIDOperatorIOUtils.getIntProp(inProps, Experiment.PROP_IN_SEED, Optional.empty());
+    this.skipWarmupSamples = MIDOperatorIOUtils.getIntProp(inProps, Experiment.PROP_IN_SKIPWARMUPSAMPLES, Optional.empty());
+    this.minSamples = MIDOperatorIOUtils.getIntProp(inProps, Experiment.PROP_IN_MINSAMPLES, Optional.empty());
+    this.maxSamples = MIDOperatorIOUtils.getIntProp(inProps, Experiment.PROP_IN_MAXSAMPLES, Optional.empty());
+    this.distribution = MIDOperatorIOUtils.getEnumProp(inProps, Experiment.PROP_IN_DISTRIBUTION, Optional.empty(), DistributionType.class);
+    this.targetConfidence = MIDOperatorIOUtils.getDoubleProp(inProps, Experiment.PROP_IN_TARGETCONFIDENCE, Optional.empty());
     // processing
     this.path = MMINT.getActiveInstanceMIDFile().getParent().getFullPath();
-    this.maxProcessingTime = MIDOperatorIOUtils.getIntProperty(inputProperties, Experiment.PROP_IN_MAXPROCESSINGTIME);
-    this.numThreads = MIDOperatorIOUtils.getOptionalIntProperty(inputProperties, Experiment.PROP_IN_NUMTHREADS,
-                                                                Experiment.PROP_IN_NUMTHREADS_DEFAULT);
+    this.maxProcessingTime = MIDOperatorIOUtils.getIntProp(inProps, Experiment.PROP_IN_MAXPROCESSINGTIME, Optional.empty());
+    this.numThreads = MIDOperatorIOUtils.getIntProp(inProps, Experiment.PROP_IN_NUMTHREADS,
+                                                    Optional.of(Experiment.PROP_IN_NUMTHREADS_DEFAULT));
     // outputs
     this.outputs = new HashMap<>();
-    for (var output : MIDOperatorIOUtils.getOptionalStringPropertySet(inputProperties, Experiment.PROP_IN_OUTPUTS,
-                                                                      Experiment.PROP_IN_OUTPUTS_DEFAULT)) {
+    for (var output : MIDOperatorIOUtils.getStringPropSet(inProps, Experiment.PROP_IN_OUTPUTS,
+                                                          Optional.of(Experiment.PROP_IN_OUTPUTS_DEFAULT))) {
       // there can be multiple invocations of the same operator, with different names but same output specs
-      var operatorNames = MIDOperatorIOUtils.getStringPropertyList(inputProperties, output + Experiment.PROP_IN_OUTPUTOPERATORNAME_SUFFIX);
-      var timeoutValue = MIDOperatorIOUtils.getDoubleProperty(inputProperties, output + Experiment.PROP_IN_OUTPUTTIMEOUTVALUE_SUFFIX);
-      var minValue = MIDOperatorIOUtils.getDoubleProperty(inputProperties, output + Experiment.PROP_IN_OUTPUTMINVALUE_SUFFIX);
-      var maxValue = MIDOperatorIOUtils.getDoubleProperty(inputProperties, output + Experiment.PROP_IN_OUTPUTMAXVALUE_SUFFIX);
-      var doConfidence = MIDOperatorIOUtils.getBoolProperty(inputProperties, output + Experiment.PROP_IN_OUTPUTDOCONFIDENCE_SUFFIX);
+      var operatorNames = MIDOperatorIOUtils.getStringPropList(inProps, output + Experiment.PROP_IN_OUTPUTOPERATORNAME_SUFFIX, Optional.empty());
+      var timeoutValue = MIDOperatorIOUtils.getDoubleProp(inProps, output + Experiment.PROP_IN_OUTPUTTIMEOUTVALUE_SUFFIX, Optional.empty());
+      var minValue = MIDOperatorIOUtils.getDoubleProp(inProps, output + Experiment.PROP_IN_OUTPUTMINVALUE_SUFFIX, Optional.empty());
+      var maxValue = MIDOperatorIOUtils.getDoubleProp(inProps, output + Experiment.PROP_IN_OUTPUTMAXVALUE_SUFFIX, Optional.empty());
+      var doConfidence = MIDOperatorIOUtils.getBoolProp(inProps, output + Experiment.PROP_IN_OUTPUTDOCONFIDENCE_SUFFIX, Optional.empty());
       for (var operatorName : operatorNames) {
         this.outputs.put(operatorName + "." + output,
                          new ExperimentOutput(operatorName, timeoutValue, minValue, maxValue, doConfidence));

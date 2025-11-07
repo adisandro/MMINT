@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.operator.match;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 
 import edu.toronto.cs.se.mmint.MMINT;
@@ -78,10 +79,10 @@ public class Query extends OperatorImpl {
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
     this.queryPath = FileUtils.prependWorkspacePath(
-      MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_QUERYPATH));
-    this.queryName = MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_QUERYNAME);
+      MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_QUERYPATH, Optional.empty()));
+    this.queryName = MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_QUERYNAME, Optional.empty());
     this.reasoner = (IQueryTrait) MMINT.getReasoner(
-      MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_REASONERNAME));
+      MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_REASONERNAME, Optional.empty()));
   }
 
   protected void runQuery() throws Exception {

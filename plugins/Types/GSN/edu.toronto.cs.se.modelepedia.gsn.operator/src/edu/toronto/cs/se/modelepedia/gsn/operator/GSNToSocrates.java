@@ -15,6 +15,7 @@ package edu.toronto.cs.se.modelepedia.gsn.operator;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 
 import org.eclipse.emf.ecore.EObject;
@@ -48,9 +49,8 @@ public class GSNToSocrates extends OperatorImpl {
   protected String owner;
 
   @Override
-  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
-    //TODO change to ask with dialog
-    this.owner = MIDOperatorIOUtils.getStringProperty(inputProperties, GSNToSocrates.PROP_OWNER);
+  public void init(Properties inProps, Map<String, Model> inputsByName) throws MMINTException {
+    this.owner = MIDOperatorIOUtils.getStringProp(inProps, GSNToSocrates.PROP_OWNER, Optional.empty());
     this.in0 = (SafetyCase) inputsByName.get(GSNToSocrates.IN0.name()).getEMFInstanceRoot();
     this.out0 = null; // do not create output model file
   }

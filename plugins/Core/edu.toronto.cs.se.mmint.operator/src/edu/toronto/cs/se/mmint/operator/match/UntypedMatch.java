@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
 
@@ -111,8 +112,8 @@ public class UntypedMatch extends RandomOperatorImpl {
 
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
-    this.matchOn = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, UntypedIn.PROP_MATCHON,
-                                                                UntypedIn.PROP_MATCHON_DEFAULT);
+    this.matchOn = MIDOperatorIOUtils.getStringProp(inputProperties, UntypedIn.PROP_MATCHON,
+                                                    Optional.of(UntypedIn.PROP_MATCHON_DEFAULT));
   }
 
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {

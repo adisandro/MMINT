@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.examples.vamos23.operators;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 
 import edu.toronto.cs.se.mmint.MMINT;
@@ -80,7 +81,7 @@ public class VAMOS23 extends OperatorImpl {
 
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
-    this.queryName = MIDOperatorIOUtils.getStringProperty(inputProperties, In.PROP_IN_QUERYNAME);
+    this.queryName = MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_IN_QUERYNAME, Optional.empty());
   }
 
   private void vamos23() throws Exception {

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 
 import org.eclipse.emf.ecore.EObject;
@@ -25,7 +26,6 @@ import org.eclipse.emf.henshin.interpreter.RuleApplication;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
 import org.eclipse.emf.henshin.interpreter.impl.RuleApplicationImpl;
-import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.Rule;
 import org.eclipse.emf.henshin.model.Unit;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
@@ -40,7 +40,6 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmint.mid.relationship.BinaryModelRel;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
@@ -66,8 +65,8 @@ public class HenshinTransformation extends OperatorImpl {
         public @NonNull Map<ModelRel, List<Model>> getOutputModelRelEndpoints(Map<String, GenericElement> genericsByName, @NonNull Map<String, Model> inputsByName, @NonNull Map<String, Model> outputsByName) {
 
             Input input = new Input(inputsByName);
-            Model transformedModel = outputsByName.get(OUT_MODEL);
-            ModelRel traceRel = (ModelRel) outputsByName.get(OUT_MODELREL);
+            var transformedModel = outputsByName.get(HenshinTransformation.OUT_MODEL);
+            var traceRel = (ModelRel) outputsByName.get(HenshinTransformation.OUT_MODELREL);
             Map<ModelRel, List<Model>> validOutputs = new HashMap<>();
             List<Model> endpointModels = new ArrayList<>();
             endpointModels.add(input.original);
@@ -85,14 +84,13 @@ public class HenshinTransformation extends OperatorImpl {
 
         public Input(Map<String, Model> inputsByName) {
 
-            this.original = inputsByName.get(IN_MODEL);
+            this.original = inputsByName.get(HenshinTransformation.IN_MODEL);
         }
     }
 
 	@Override
 	public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
-
-		henshinFileName = MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_HENSHINFILENAME);
+		this.henshinFileName = MIDOperatorIOUtils.getStringProp(inputProperties, HenshinTransformation.PROPERTY_IN_HENSHINFILENAME, Optional.empty());
 	}
 
 	private EObject transform(Model originalModel) throws MMINTException {
@@ -101,18 +99,17 @@ public class HenshinTransformation extends OperatorImpl {
 		String originalModelDirectoryUri = FileUtils.prependWorkspacePath(
 			FileUtils.replaceLastSegmentInPath(originalModel.getUri(), ""));
 		HenshinResourceSet hResourceSet = new HenshinResourceSet(originalModelDirectoryUri);
-		Module hModule = hResourceSet.getModule(henshinFileName, false);
+		var hModule = hResourceSet.getModule(this.henshinFileName, false);
 		Engine hEngine = new EngineImpl();
 		hEngine.getOptions().put(Engine.OPTION_SORT_VARIABLES, false);
 		EGraph hGraph = new EGraphImpl(hResourceSet.getResource(FileUtils.getLastSegmentFromPath(
 			originalModel.getUri())));
 		// apply rules
 		for (Unit hUnit : hModule.getUnits()) {
-			if (!(hUnit instanceof Rule)) {
+			if (!(hUnit instanceof Rule hRule)) {
 				// TODO MMINT[HENSHIN] Add support for other constructs
 				continue;
 			}
-			Rule hRule = (Rule) hUnit;
 			RuleApplication hApplication = new RuleApplicationImpl(hEngine);
 			hApplication.setRule(hRule);
 			hApplication.setEGraph(hGraph);
@@ -145,28 +142,28 @@ public class HenshinTransformation extends OperatorImpl {
 	    Input input = new Input(inputsByName);
 
 		// transform
-		EObject transformedRootModelObj = transform(input.original);
+		var transformedRootModelObj = transform(input.original);
 
 		// output
 		String transformedModelPath = FileUtils.getUniquePath(
-			FileUtils.addFileNameSuffixInPath(input.original.getUri(), TRANSFORMED_MODEL_SUFFIX),
+			FileUtils.addFileNameSuffixInPath(input.original.getUri(), HenshinTransformation.TRANSFORMED_MODEL_SUFFIX),
 			true,
 			false);
 		Model transformedModelType = MIDTypeRegistry.getType(
 			transformedRootModelObj.eClass().getEPackage().getNsURI());
-		Model transformedModel = transformedModelType.createInstanceAndEditor(
+		var transformedModel = transformedModelType.createInstanceAndEditor(
 			transformedRootModelObj,
 			transformedModelPath,
-			outputMIDsByName.get(OUT_MODEL));
-		BinaryModelRel traceRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
+			outputMIDsByName.get(HenshinTransformation.OUT_MODEL));
+		var traceRel = MIDTypeHierarchy.getRootModelRelType().createBinaryInstanceAndEndpoints(
 			null,
-			OUT_MODELREL,
+			HenshinTransformation.OUT_MODELREL,
 			input.original,
 			transformedModel,
-			outputMIDsByName.get(OUT_MODELREL));
+			outputMIDsByName.get(HenshinTransformation.OUT_MODELREL));
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUT_MODEL, transformedModel);
-		outputsByName.put(OUT_MODELREL, traceRel);
+		outputsByName.put(HenshinTransformation.OUT_MODEL, transformedModel);
+		outputsByName.put(HenshinTransformation.OUT_MODELREL, traceRel);
 
 		return outputsByName;
 	}

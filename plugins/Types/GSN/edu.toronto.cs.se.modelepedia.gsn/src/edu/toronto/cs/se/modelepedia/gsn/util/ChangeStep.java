@@ -19,10 +19,12 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Properties;
 
 import org.eclipse.emf.ecore.EObject;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
@@ -41,20 +43,20 @@ public abstract class ChangeStep<T> {
     ChangeStep.data.clear();
   }
 
-  public static Properties initData(EObject modelObj) {
+  public static Properties initData(EObject modelObj) throws MMINTException {
     // load new properties
     resetData();
     var propsPath = FileUtils.prependWorkspacePath(
       FileUtils.replaceLastSegmentInPath(MIDRegistry.getModelUri(modelObj),
-                                         ChangeStep.PROPS_NAME + MIDOperatorIOUtils.PROPERTIES_SUFFIX));
+                                         ChangeStep.PROPS_NAME + MIDOperatorIOUtils.PROPS_SUFFIX));
     var props = new Properties();
     try {
       props.load(new FileInputStream(propsPath));
     }
     catch (Exception e) {}
     // read into vars
-    var eagerEvdImpact = MIDOperatorIOUtils.getOptionalBoolProperty(props, ChangeStep.EAGER_EVIDENCE_IMPACT_KEY,
-                                                                    ChangeStep.EAGER_EVIDENCE_IMPACT_DEFAULT);
+    var eagerEvdImpact = MIDOperatorIOUtils.getBoolProp(props, ChangeStep.EAGER_EVIDENCE_IMPACT_KEY,
+                                                        Optional.of(ChangeStep.EAGER_EVIDENCE_IMPACT_DEFAULT));
     ChangeStep.data.put(ChangeStep.EAGER_EVIDENCE_IMPACT_KEY, eagerEvdImpact);
 
     return props;

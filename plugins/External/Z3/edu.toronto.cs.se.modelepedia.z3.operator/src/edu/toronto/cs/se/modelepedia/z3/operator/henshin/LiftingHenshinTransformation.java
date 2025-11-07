@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
 
@@ -174,16 +175,15 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	protected Map<PLElement, Integer> modelObjsLiterals;
 
 	@Override
-	public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
-
-		super.init(inputProperties, inputsByName);
-		this.constraint = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINT, LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINT_DEFAULT);
-		this.constraintVariables = MIDOperatorIOUtils.getOptionalStringPropertyList(inputProperties, LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINTVARIABLES, LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINTVARIABLES_DEFAULT);
-		this.transformationModule = MIDOperatorIOUtils.getStringProperty(inputProperties, LiftingHenshinTransformation.PROPERTY_IN_TRANSFORMATIONMODULE);
-		this.transformationRules = MIDOperatorIOUtils.getOptionalStringPropertyList(inputProperties, LiftingHenshinTransformation.PROPERTY_IN_TRANSFORMATIONRULES, LiftingHenshinTransformation.PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT);
-		this.transformationRulesLifting = MIDOperatorIOUtils.getStringPropertyList(inputProperties, LiftingHenshinTransformation.PROPERTY_IN_TRANSFORMATIONRULESLIFTING);
-		this.timeClassicalEnabled = MIDOperatorIOUtils.getBoolProperty(inputProperties, LiftingHenshinTransformation.PROPERTY_OUT_TIMECLASSICAL+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX);
-		this.transformedConstraintEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, LiftingHenshinTransformation.PROPERTY_OUT_TRANSFORMEDCONSTRAINT+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
+	public void init(Properties inProps, Map<String, Model> inputsByName) throws MMINTException {
+		super.init(inProps, inputsByName);
+		this.constraint = MIDOperatorIOUtils.getStringProp(inProps, LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINT, Optional.of(LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINT_DEFAULT));
+		this.constraintVariables = MIDOperatorIOUtils.getStringPropList(inProps, LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINTVARIABLES, Optional.of(LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINTVARIABLES_DEFAULT));
+		this.transformationModule = MIDOperatorIOUtils.getStringProp(inProps, LiftingHenshinTransformation.PROPERTY_IN_TRANSFORMATIONMODULE, Optional.empty());
+		this.transformationRules = MIDOperatorIOUtils.getStringPropList(inProps, LiftingHenshinTransformation.PROPERTY_IN_TRANSFORMATIONRULES, Optional.of(LiftingHenshinTransformation.PROPERTY_IN_TRANSFORMATIONRULES_DEFAULT));
+		this.transformationRulesLifting = MIDOperatorIOUtils.getStringPropList(inProps, LiftingHenshinTransformation.PROPERTY_IN_TRANSFORMATIONRULESLIFTING, Optional.empty());
+		this.timeClassicalEnabled = MIDOperatorIOUtils.getBoolProp(inProps, LiftingHenshinTransformation.PROPERTY_OUT_TIMECLASSICAL+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, Optional.empty());
+		this.transformedConstraintEnabled = MIDOperatorIOUtils.getBoolProp(inProps, LiftingHenshinTransformation.PROPERTY_OUT_TRANSFORMEDCONSTRAINT+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, Optional.of(false));
 	}
 
 	protected void writeProperties(Properties properties) {

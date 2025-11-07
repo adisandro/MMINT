@@ -22,7 +22,6 @@ import java.util.Set;
 import java.util.function.Function;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
@@ -37,10 +36,8 @@ import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep;
 public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
 
   public final static String OLD_FEATURES_CONSTRAINT_KEY = "oldFeaturesConstraint";
-  public final static @Nullable String OLD_FEATURES_CONSTRAINT_DEFAULT = null;
   public final static String NEW_FEATURES_CONSTRAINT_KEY = "newFeaturesConstraint";
   public final static String NEW_FEATURE_KEY = "newFeature";
-  public final static @Nullable String NEW_FEATURE_DEFAULT = null;
   public final static String PHI_DELTA_KEY = "phiDelta";
   public final static String PHI_KEEP_KEY = "phiKeep";
   public final static String PHI_NEW_KEY = "phiNew";
@@ -53,15 +50,14 @@ public class PLGSNChangeStep extends ChangeStep<PLGSNArgumentElement> {
     ChangeStep.resetData();
     var props = ChangeStep.initData(plModelObj);
     // read into vars
-    var phiOpt = Optional.ofNullable(MIDOperatorIOUtils.getOptionalStringProperty(
-      props, PLGSNChangeStep.OLD_FEATURES_CONSTRAINT_KEY, PLGSNChangeStep.OLD_FEATURES_CONSTRAINT_DEFAULT));
+    var phiOpt = MIDOperatorIOUtils.getOptStringProp(props, PLGSNChangeStep.OLD_FEATURES_CONSTRAINT_KEY);
     ChangeStep.data.put(PLGSNChangeStep.OLD_FEATURES_CONSTRAINT_KEY, phiOpt);
-    var phiPrime = MIDOperatorIOUtils.getStringProperty(props, PLGSNChangeStep.NEW_FEATURES_CONSTRAINT_KEY);
+    var phiPrime = MIDOperatorIOUtils.getStringProp(props, PLGSNChangeStep.NEW_FEATURES_CONSTRAINT_KEY,
+                                                    Optional.empty());
     ChangeStep.data.put(PLGSNChangeStep.NEW_FEATURES_CONSTRAINT_KEY, phiPrime);
-    var fOpt = Optional.ofNullable(MIDOperatorIOUtils.getOptionalStringProperty(
-      props, PLGSNChangeStep.NEW_FEATURE_KEY, PLGSNChangeStep.NEW_FEATURE_DEFAULT));
+    var fOpt = MIDOperatorIOUtils.getOptStringProp(props, PLGSNChangeStep.NEW_FEATURE_KEY);
     ChangeStep.data.put(PLGSNChangeStep.NEW_FEATURE_KEY, fOpt);
-    var phiDelta = MIDOperatorIOUtils.getStringProperty(props, PLGSNChangeStep.PHI_DELTA_KEY);
+    var phiDelta = MIDOperatorIOUtils.getStringProp(props, PLGSNChangeStep.PHI_DELTA_KEY, Optional.empty());
     ChangeStep.data.put(PLGSNChangeStep.PHI_DELTA_KEY, phiDelta);
     var plReasoner = plModelObj.getProductLine().getReasoner();
     PLGSNChangeStep.PL_REASONER = plReasoner;

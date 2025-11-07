@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
@@ -154,7 +155,8 @@ public class Merge extends OperatorImpl {
 
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
-    this.engine = MIDOperatorIOUtils.getOptionalStringProperty(inputProperties, In.PROP_ENGINE, In.PROP_ENGINE_DEFAULT);
+    this.engine = MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_ENGINE,
+                                                   Optional.of(In.PROP_ENGINE_DEFAULT));
   }
 
   protected Map<String, String> getOverlapModelElementUris() {

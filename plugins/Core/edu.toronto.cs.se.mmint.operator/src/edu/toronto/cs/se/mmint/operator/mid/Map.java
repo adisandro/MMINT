@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -82,9 +83,9 @@ public class Map extends NestingOperatorImpl {
 
   @Override
   public void init(Properties inputProps, java.util.Map<String, Model> inputsByName) throws MMINTException {
-    this.timeOverheadEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(
+    this.timeOverheadEnabled = MIDOperatorIOUtils.getBoolProp(
                                  inputProps, Map.PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX,
-                                 false);
+                                 Optional.of(false));
   }
 
   public void writeOutputProperties() throws Exception {

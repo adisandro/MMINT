@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.productline.operators.variability;
 
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.IPath;
@@ -77,8 +78,8 @@ public class RemoveFeature extends OperatorImpl {
 
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
-    this.featureSubstitute = MIDOperatorIOUtils.getOptionalBoolProperty(inputProperties, In.PROP_FEATURESUB,
-                                                                        In.PROP_FEATURESUB_DEFAULT);
+    this.featureSubstitute = MIDOperatorIOUtils.getBoolProp(inputProperties, In.PROP_FEATURESUB,
+                                                            Optional.of(In.PROP_FEATURESUB_DEFAULT));
   }
 
   protected void remove() throws Exception {

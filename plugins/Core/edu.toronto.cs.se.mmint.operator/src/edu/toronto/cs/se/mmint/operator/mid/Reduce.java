@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -101,8 +102,9 @@ public class Reduce extends NestingOperatorImpl {
 
   @Override
   public void init(Properties inputProps, Map<String, Model> inputsByName) throws MMINTException {
-    this.timeOverheadEnabled = MIDOperatorIOUtils.getOptionalBoolProperty(
-                                 inputProps, Reduce.PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX, false);
+    this.timeOverheadEnabled = MIDOperatorIOUtils.getBoolProp(
+                                 inputProps, Reduce.PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX,
+                                 Optional.of(false));
   }
 
   public void writeOutputProperties() throws Exception {

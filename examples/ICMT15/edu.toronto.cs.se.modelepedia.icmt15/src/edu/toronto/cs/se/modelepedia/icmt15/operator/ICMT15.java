@@ -5,7 +5,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
@@ -15,11 +15,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
-import java.util.Random;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -27,7 +26,7 @@ import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -73,29 +72,29 @@ public class ICMT15 extends RandomOperatorImpl {
 	public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
 
 		super.init(inputProperties, inputsByName);
-		modelMultiplier = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_MODELMULTIPLIER);
-		variablesMultiplier = MIDOperatorIOUtils.getIntProperty(inputProperties, PROPERTY_IN_VARIABLESMULTIPLIER);
-		idAttribute = MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_IDATTRIBUTE);
-		constraint = MIDOperatorIOUtils.getStringProperty(inputProperties, PROPERTY_IN_CONSTRAINT);
-		variables = MIDOperatorIOUtils.getStringPropertyList(inputProperties, PROPERTY_IN_VARIABLES);
-		clausesToVariablesRatio = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROPERTY_IN_CLAUSESTOVARIABLESRATIO);
-		presenceConditionsToModelSizeRatio = MIDOperatorIOUtils.getDoubleProperty(inputProperties, PROPERTY_IN_PRESENCECONDITIONSTOMODELSIZERATIO);
+		this.modelMultiplier = MIDOperatorIOUtils.getIntProp(inputProperties, ICMT15.PROPERTY_IN_MODELMULTIPLIER, Optional.empty());
+		this.variablesMultiplier = MIDOperatorIOUtils.getIntProp(inputProperties, ICMT15.PROPERTY_IN_VARIABLESMULTIPLIER, Optional.empty());
+		this.idAttribute = MIDOperatorIOUtils.getStringProp(inputProperties, ICMT15.PROPERTY_IN_IDATTRIBUTE, Optional.empty());
+		this.constraint = MIDOperatorIOUtils.getStringProp(inputProperties, ICMT15.PROPERTY_IN_CONSTRAINT, Optional.empty());
+		this.variables = MIDOperatorIOUtils.getStringPropList(inputProperties, ICMT15.PROPERTY_IN_VARIABLES, Optional.empty());
+		this.clausesToVariablesRatio = MIDOperatorIOUtils.getDoubleProp(inputProperties, ICMT15.PROPERTY_IN_CLAUSESTOVARIABLESRATIO, Optional.empty());
+		this.presenceConditionsToModelSizeRatio = MIDOperatorIOUtils.getDoubleProp(inputProperties, ICMT15.PROPERTY_IN_PRESENCECONDITIONSTOMODELSIZERATIO, Optional.empty());
 	}
 
 	private void init() {
 
 		// output
-		outputConstraint = "";
-		outputVariables = new ArrayList<>();
-		for (int i = 0; i < Math.pow(2, variablesMultiplier-1); i++) {
-			String tempConstraint = constraint;
-			for (int j = 0; j < variables.size(); j++) {
-				String variable = variables.get(j);
-				String outputVariable = variable + "_" + i;
-				outputVariables.add(outputVariable);
+		this.outputConstraint = "";
+		this.outputVariables = new ArrayList<>();
+		for (var i = 0; i < Math.pow(2, this.variablesMultiplier-1); i++) {
+			var tempConstraint = this.constraint;
+			for (var j = 0; j < this.variables.size(); j++) {
+				var variable = this.variables.get(j);
+				var outputVariable = variable + "_" + i;
+				this.outputVariables.add(outputVariable);
 				tempConstraint = tempConstraint.replace(variable, outputVariable);
 			}
-			outputConstraint += tempConstraint;
+			this.outputConstraint += tempConstraint;
 		}
 	}
 
@@ -103,16 +102,16 @@ public class ICMT15 extends RandomOperatorImpl {
 
 		return
 			modelObj.eClass().getName() +
-			CSV_SEPARATOR +
-			FileUtils.getModelObjectFeature(modelObj, idAttribute) +
-			CSV_SEPARATOR;
+			ICMT15.CSV_SEPARATOR +
+			FileUtils.getModelObjectFeature(modelObj, this.idAttribute) +
+			ICMT15.CSV_SEPARATOR;
 	}
 
 	private String getModelReferenceEncoding(@NonNull EObject srcModelObj, @NonNull EObject tgtModelObj, @NonNull EStructuralFeature reference) throws MMINTException {
 
 		return
 			reference.getName() +
-			CSV_SEPARATOR +
+			ICMT15.CSV_SEPARATOR +
 			getModelObjectEncoding(srcModelObj) +
 			getModelObjectEncoding(tgtModelObj);
 	}
@@ -120,12 +119,12 @@ public class ICMT15 extends RandomOperatorImpl {
 	private List<String> generateModelEncodings(@NonNull EObject inputRootModelObj) {
 
 		List<String> modelEncodings = new ArrayList<>();
-		TreeIterator<EObject> iter = inputRootModelObj.eAllContents();
+		var iter = inputRootModelObj.eAllContents();
 		while (iter.hasNext()) {
-			EObject modelObj = iter.next();
+			var modelObj = iter.next();
 			try {
 				modelEncodings.add(getModelObjectEncoding(modelObj));
-				EContentsEList.FeatureIterator<EObject> crossIter = (EContentsEList.FeatureIterator<EObject>) modelObj.eCrossReferences().iterator();
+				var crossIter = (EContentsEList.FeatureIterator<EObject>) modelObj.eCrossReferences().iterator();
 				while (crossIter.hasNext()) {
 					modelEncodings.add(getModelReferenceEncoding(modelObj, crossIter.next(), crossIter.feature()));
 				}
@@ -140,22 +139,22 @@ public class ICMT15 extends RandomOperatorImpl {
 
 	private int getNumClauses() {
 
-		double numClauses = (clausesToVariablesRatio * (double) outputVariables.size() - EASY_PRESENCECONDITION_PERCENTAGE) / HARD_PRESENCECONDITION_PERCENTAGE;
+		var numClauses = (this.clausesToVariablesRatio * this.outputVariables.size() - ICMT15.EASY_PRESENCECONDITION_PERCENTAGE) / ICMT15.HARD_PRESENCECONDITION_PERCENTAGE;
 
 		return (int) Math.max(0, Math.round(numClauses));
 	}
 
 	private void changeCopyIds(@NonNull EObject rootModelObjCopy, @NonNull String sliceIdSuffix) throws Exception {
 
-		TreeIterator<EObject> iter = rootModelObjCopy.eAllContents();
+		var iter = rootModelObjCopy.eAllContents();
 		while (iter.hasNext()) {
-			EObject modelObjCopy = iter.next();
+			var modelObjCopy = iter.next();
 			String id = null, newId = null;
 			try {
-				id = (String) FileUtils.getModelObjectFeature(modelObjCopy, idAttribute);
+				id = (String) FileUtils.getModelObjectFeature(modelObjCopy, this.idAttribute);
 				if (id != null) {
 					newId = id + sliceIdSuffix;
-					FileUtils.setModelObjectFeature(modelObjCopy, idAttribute, newId);
+					FileUtils.setModelObjectFeature(modelObjCopy, this.idAttribute, newId);
 				}
 			}
 			catch (MMINTException e) {
@@ -167,20 +166,20 @@ public class ICMT15 extends RandomOperatorImpl {
 
 	private @NonNull String generatePresenceCondition(@NonNull List<String> outputModelEncodings, int numClauses) {
 
-		Random random = this.getState();
-		int i = random.nextInt(outputModelEncodings.size());
-		String outputModelEncoding = outputModelEncodings.remove(i);
-		String presenceCondition = "";
+		var random = this.getState();
+		var i = random.nextInt(outputModelEncodings.size());
+		var outputModelEncoding = outputModelEncodings.remove(i);
+		var presenceCondition = "";
 		if (numClauses == 1) {
-			i = random.nextInt(outputVariables.size());
-			presenceCondition = outputVariables.get(i);
+			i = random.nextInt(this.outputVariables.size());
+			presenceCondition = this.outputVariables.get(i);
 		}
 		else {
-			for (int j = 0; j < numClauses-1; j++) {
+			for (var j = 0; j < numClauses-1; j++) {
 				List<String> clause = new ArrayList<>();
-				for (int k = 0; k < VARIABLES_PER_CLAUSE; k++) {
-					i = random.nextInt(outputVariables.size());
-					String variable = outputVariables.get(i);
+				for (var k = 0; k < ICMT15.VARIABLES_PER_CLAUSE; k++) {
+					i = random.nextInt(this.outputVariables.size());
+					var variable = this.outputVariables.get(i);
 					if (clause.contains(variable)) {
 						k--;
 						continue;
@@ -201,34 +200,34 @@ public class ICMT15 extends RandomOperatorImpl {
 			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		Model inputModel = inputsByName.get(IN_MODEL);
-		MID instanceMID = outputMIDsByName.get(OUT_MODEL);
+		var inputModel = inputsByName.get(ICMT15.IN_MODEL);
+		var instanceMID = outputMIDsByName.get(ICMT15.OUT_MODEL);
 		this.init();
 
 		// generate output model
-		EObject inputRootModelObj = inputModel.getEMFInstanceRoot();
-		EObject outputRootModelObj = inputRootModelObj.eClass().getEPackage().getEFactoryInstance().create(inputRootModelObj.eClass());
-		String presenceConditions = Z3Utils.or(outputConstraint) + "\n";
-		for (int i = 0; i < Math.pow(2, modelMultiplier-1); i++) {
-			EObject inputRootModelObjCopy = EcoreUtil.copy(inputRootModelObj);
+		var inputRootModelObj = inputModel.getEMFInstanceRoot();
+		var outputRootModelObj = inputRootModelObj.eClass().getEPackage().getEFactoryInstance().create(inputRootModelObj.eClass());
+		var presenceConditions = Z3Utils.or(this.outputConstraint) + "\n";
+		for (var i = 0; i < Math.pow(2, this.modelMultiplier-1); i++) {
+			var inputRootModelObjCopy = EcoreUtil.copy(inputRootModelObj);
 			changeCopyIds(inputRootModelObjCopy, "_" + i);
 			for (EReference containmentFeature : inputRootModelObjCopy.eClass().getEAllContainments()) {
 				@SuppressWarnings("unchecked")
-				EList<EObject> inputModelObjsCopy = (EList<EObject>) FileUtils.getModelObjectFeature(inputRootModelObjCopy, containmentFeature.getName());
+				var inputModelObjsCopy = (EList<EObject>) FileUtils.getModelObjectFeature(inputRootModelObjCopy, containmentFeature.getName());
 				@SuppressWarnings("unchecked")
-				EList<EObject> outputModelObjs = (EList<EObject>) FileUtils.getModelObjectFeature(outputRootModelObj, containmentFeature.getName());
+				var outputModelObjs = (EList<EObject>) FileUtils.getModelObjectFeature(outputRootModelObj, containmentFeature.getName());
 				outputModelObjs.addAll(inputModelObjsCopy);
 			}
 		}
 		// generate presence conditions
-		List<String> outputModelEncodings = generateModelEncodings(outputRootModelObj);
-		int numPresenceConditions = (int) (outputModelEncodings.size() * presenceConditionsToModelSizeRatio);
-		int numClauses = getNumClauses();
-		for (int i = 0; i < (numPresenceConditions * EASY_PRESENCECONDITION_PERCENTAGE); i++) {
+		var outputModelEncodings = generateModelEncodings(outputRootModelObj);
+		var numPresenceConditions = (int) (outputModelEncodings.size() * this.presenceConditionsToModelSizeRatio);
+		var numClauses = getNumClauses();
+		for (var i = 0; i < (numPresenceConditions * ICMT15.EASY_PRESENCECONDITION_PERCENTAGE); i++) {
 			presenceConditions += generatePresenceCondition(outputModelEncodings, 1) + "\n";
 		}
 		if (numClauses > 0) {
-			for (int i = 0; i < (numPresenceConditions * HARD_PRESENCECONDITION_PERCENTAGE); i++) {
+			for (var i = 0; i < (numPresenceConditions * ICMT15.HARD_PRESENCECONDITION_PERCENTAGE); i++) {
 				presenceConditions += generatePresenceCondition(outputModelEncodings, numClauses) + "\n";
 			}
 		}
@@ -237,17 +236,17 @@ public class ICMT15 extends RandomOperatorImpl {
 		}
 
 		// output
-		String uri = (getWorkingPath() != null) ?
+		var uri = (getWorkingPath() != null) ?
 			FileUtils.replaceLastSegmentInPath(
 				inputModel.getUri(),
-				getWorkingPath() + MMINT.URI_SEPARATOR + FileUtils.getLastSegmentFromPath(inputModel.getUri())
+				getWorkingPath() + MMINTConstants.URI_SEPARATOR + FileUtils.getLastSegmentFromPath(inputModel.getUri())
 			) :
 			inputModel.getUri();
-		String outputModelPath = FileUtils.getUniquePath(FileUtils.addFileNameSuffixInPath(uri, MODEL_GENERATED_SUFFIX), true, false);
-		Model outputModel = inputModel.getMetatype().createInstanceAndEditor(outputRootModelObj, outputModelPath, instanceMID);
+		String outputModelPath = FileUtils.getUniquePath(FileUtils.addFileNameSuffixInPath(uri, ICMT15.MODEL_GENERATED_SUFFIX), true, false);
+		var outputModel = inputModel.getMetatype().createInstanceAndEditor(outputRootModelObj, outputModelPath, instanceMID);
 		FileUtils.createTextFile(FileUtils.replaceFileExtensionInPath(outputModelPath, "csv"), presenceConditions, true);
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUT_MODEL, outputModel);
+		outputsByName.put(ICMT15.OUT_MODEL, outputModel);
 
 		return outputsByName;
 	}
