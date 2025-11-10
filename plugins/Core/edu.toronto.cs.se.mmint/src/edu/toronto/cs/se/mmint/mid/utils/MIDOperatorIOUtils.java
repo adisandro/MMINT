@@ -24,12 +24,12 @@ import java.util.stream.Collectors;
 
 import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.ModelEndpoint;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
+import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 
 public class MIDOperatorIOUtils {
@@ -53,10 +53,15 @@ public class MIDOperatorIOUtils {
   }
 
   public static String getStringProp(Properties props, String propName, Optional<String> defaultValue)
-                                    throws MMINTException {
-    return getOptStringProp(props, propName).orElse(
-      defaultValue.orElse(
-        MIDDialogs.getStringInput("Insert " + propName, "Insert property " + propName, null)));
+                                    throws MIDDialogCancellation {
+    var prop = getOptStringProp(props, propName);
+    if (prop.isPresent()) {
+      return prop.get();
+    }
+    if (defaultValue.isPresent()) {
+      return defaultValue.get();
+    }
+    return MIDDialogs.getStringInput("Insert " + propName, "Insert property " + propName, null);
   }
 
   public static <E extends Enum<E>> Optional<E> getOptEnumProp(Properties props, String propName, Class<E> enumClass) {
@@ -64,7 +69,7 @@ public class MIDOperatorIOUtils {
   }
 
 	public static <E extends Enum<E>> E getEnumProp(Properties props, String propName, Optional<E> defaultValue,
-	                                                Class<E> enumClass) throws MMINTException {
+	                                                Class<E> enumClass) throws MIDDialogCancellation {
 	  return Enum.valueOf(enumClass, getStringProp(props, propName, defaultValue.map(String::valueOf)));
 	}
 
@@ -74,7 +79,7 @@ public class MIDOperatorIOUtils {
   }
 
 	public static boolean getBoolProp(Properties props, String propName, Optional<Boolean> defaultValue)
-	                                 throws MMINTException {
+	                                 throws MIDDialogCancellation {
 		return Boolean.parseBoolean(getStringProp(props, propName, defaultValue.map(String::valueOf)));
 	}
 
@@ -83,7 +88,7 @@ public class MIDOperatorIOUtils {
   }
 
 	public static int getIntProp(Properties props, String propName, Optional<Integer> defaultValue)
-	                            throws MMINTException {
+	                            throws MIDDialogCancellation {
     return Integer.parseInt(getStringProp(props, propName, defaultValue.map(String::valueOf)));
 	}
 
@@ -92,7 +97,7 @@ public class MIDOperatorIOUtils {
   }
 
 	public static double getDoubleProp(Properties props, String propName, Optional<Double> defaultValue)
-	                                  throws MMINTException {
+	                                  throws MIDDialogCancellation {
 	  return Double.parseDouble(getStringProp(props, propName, defaultValue.map(String::valueOf)));
 	}
 
@@ -101,7 +106,7 @@ public class MIDOperatorIOUtils {
   }
 
 	public static List<String> getStringPropList(Properties props, String propName, Optional<List<String>> defaultValue)
-	                                            throws MMINTException {
+	                                            throws MIDDialogCancellation {
     return List.of(
       getStringProp(props, propName, defaultValue.map(l -> String.join(MIDOperatorIOUtils.PROP_SEP, l)))
         .split(MIDOperatorIOUtils.PROP_SEP));
@@ -112,7 +117,7 @@ public class MIDOperatorIOUtils {
   }
 
 	public static Set<String> getStringPropSet(Properties props, String propName, Optional<Set<String>> defaultValue)
-	                                          throws MMINTException {
+	                                          throws MIDDialogCancellation {
     return Set.of(
       getStringProp(props, propName, defaultValue.map(s -> String.join(MIDOperatorIOUtils.PROP_SEP, s)))
         .split(MIDOperatorIOUtils.PROP_SEP));
