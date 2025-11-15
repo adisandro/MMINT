@@ -40,6 +40,7 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Supportable;
 import edu.toronto.cs.se.modelepedia.gsn.Supporter;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 public class SocratesToGSN extends OperatorImpl {
   public final static OperatorParameter IN0 = new OperatorParameter("json", FilePackage.eNS_URI);
@@ -69,7 +70,7 @@ public class SocratesToGSN extends OperatorImpl {
   }
 
   private void convert(Map<String, Model> inputsByName) throws Exception {
-    final var DECORATOR_LABEL = "{N-ARY_SUBTREE} ";
+    final var DECORATOR_LABEL = GSNBuilder.PATTERN1 + "MULTIPLE_";
     var json = Files.readString(Paths.get(
       FileUtils.prependWorkspacePath(inputsByName.get(SocratesToGSN.IN0.name()).getUri())));
     var jsonObj = JsonParser.parseString(json).getAsJsonObject();
@@ -123,10 +124,10 @@ public class SocratesToGSN extends OperatorImpl {
       if (!extraDesc.isJsonNull()) {
         desc += "\n(" + extraDesc.getAsString() + ")";
       }
-      if (desc.contains("<")) {
+      if (desc.contains("<") && desc.contains(">")) {
         gsnElem.setValid(false);
         isTemplate = true;
-        desc = desc.replace("<", "{").replace(">", "}");
+        desc = desc.replace("<", GSNBuilder.PATTERN1).replace(">", GSNBuilder.PATTERN2);
       }
       gsnElem.setDescription(desc);
       idToElem.put(id, gsnElem);
@@ -145,11 +146,15 @@ public class SocratesToGSN extends OperatorImpl {
           var supportedBy = GSNFactory.eINSTANCE.createSupportedBy();
           supportedBy.setTarget((Supporter) child);
           var supportable = (Supportable) parent;
-          if (child.getDescription().startsWith(DECORATOR_LABEL)) {
-            child.setDescription(child.getDescription().replace(DECORATOR_LABEL, ""));
+          var desc = child.getDescription();
+          var decoratorI = desc.indexOf(DECORATOR_LABEL);
+          if (decoratorI >= 0) {
+            var hint = desc.substring(decoratorI + DECORATOR_LABEL.length(),
+                                      desc.indexOf(GSNBuilder.PATTERN2, decoratorI));
+            child.setDescription(desc.replace(DECORATOR_LABEL + hint + GSNBuilder.PATTERN2, ""));
             var decorator = GSNFactory.eINSTANCE.createRelationshipDecorator();
             decorator.setId(child.getId() + "N");
-            decorator.setDescription(DECORATOR_LABEL);
+            decorator.setDescription(hint);
             decorator.setType(DecoratorType.MULTIPLE);
             decorator.setCardinality(-1);
             decorator.setValid(false);
