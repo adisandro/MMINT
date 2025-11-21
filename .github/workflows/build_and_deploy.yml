@@ -10,7 +10,7 @@ jobs:
     steps:
 
       - name: Checkout MMINT
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install Java
         uses: actions/setup-java@v5
@@ -34,7 +34,7 @@ jobs:
 
       - name: Checkout update site
         if: github.event_name == 'push'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: adisandro/adisandro.github.io
           path: deploy
