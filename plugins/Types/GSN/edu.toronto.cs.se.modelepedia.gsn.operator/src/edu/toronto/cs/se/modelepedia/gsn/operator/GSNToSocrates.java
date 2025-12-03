@@ -65,7 +65,7 @@ public class GSNToSocrates extends OperatorImpl {
     }
     var jsonObj = new JsonObject();
     jsonObj.addProperty("type", "GSN");
-    jsonObj.addProperty("name", inName);
+    jsonObj.addProperty(SocratesToGSN.NAME, inName);
     jsonObj.addProperty("owner", this.owner);
     var now = ZonedDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSxx")).toString();
     jsonObj.addProperty("created", now);

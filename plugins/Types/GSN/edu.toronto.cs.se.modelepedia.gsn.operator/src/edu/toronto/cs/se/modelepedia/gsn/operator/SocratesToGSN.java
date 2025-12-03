@@ -56,6 +56,7 @@ public class SocratesToGSN extends OperatorImpl {
     }
   };
 
+  public final static String NAME = "name";
   public final static String NODES = "nodes";
   public final static String NODE_ID = "lid";
   public final static String NODE_TYPE = "nodeType";
@@ -169,6 +170,7 @@ public class SocratesToGSN extends OperatorImpl {
     if (isTemplate) {
       var template = GSNTemplatesFactory.eINSTANCE.createAnalyticTemplate();
       this.out0.getTemplates().add(template);
+      template.setId(jsonObj.get(SocratesToGSN.NAME).getAsString());
       var templateElems = template.getElements();
       for (var templateElem : idToElem.values()) {
         templateElem.setTemplateId(templateElem.getId());
