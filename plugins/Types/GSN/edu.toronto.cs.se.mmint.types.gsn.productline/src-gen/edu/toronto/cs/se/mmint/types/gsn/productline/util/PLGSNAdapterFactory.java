@@ -21,6 +21,7 @@ import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNRelationshipDecorator;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 
 /**
@@ -92,6 +93,10 @@ public class PLGSNAdapterFactory extends AdapterFactoryImpl {
         return createPLGSNAnalyticTemplateAdapter();
       }
       @Override
+      public Adapter casePLGSNRelationshipDecorator(PLGSNRelationshipDecorator object) {
+        return createPLGSNRelationshipDecoratorAdapter();
+      }
+      @Override
       public Adapter casePLElement(PLElement object) {
         return createPLElementAdapter();
       }
@@ -158,6 +163,20 @@ public class PLGSNAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createPLGSNAnalyticTemplateAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNRelationshipDecorator <em>Relationship Decorator</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNRelationshipDecorator
+   * @generated
+   */
+  public Adapter createPLGSNRelationshipDecoratorAdapter() {
     return null;
   }
 

@@ -25,6 +25,7 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNRelationshipDecorator;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
@@ -56,6 +57,12 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   private EClass plgsnAnalyticTemplateEClass = null;
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass plgsnRelationshipDecoratorEClass = null;
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -118,7 +125,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
 
     // Obtain or create and register package
     var registeredPLGSNPackage = EPackage.Registry.INSTANCE.get(PLGSNPackage.eNS_URI);
-    var thePLGSNPackage = registeredPLGSNPackage instanceof PLGSNPackageImpl ? (PLGSNPackageImpl)registeredPLGSNPackage : new PLGSNPackageImpl();
+    var thePLGSNPackage = registeredPLGSNPackage instanceof PLGSNPackageImpl p ? p : new PLGSNPackageImpl();
 
     PLGSNPackageImpl.isInited = true;
 
@@ -317,6 +324,16 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
+  public EClass getPLGSNRelationshipDecorator() {
+    return this.plgsnRelationshipDecoratorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EDataType getIPLGSNAnalysis() {
     return this.iplgsnAnalysisEDataType;
   }
@@ -392,6 +409,8 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     this.plgsnAnalyticTemplateEClass = createEClass(PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE);
     createEOperation(this.plgsnAnalyticTemplateEClass, PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE___GET_ANALYSIS);
 
+    this.plgsnRelationshipDecoratorEClass = createEClass(PLGSNPackage.PLGSN_RELATIONSHIP_DECORATOR);
+
     // Create data types
     this.iplgsnAnalysisEDataType = createEDataType(PLGSNPackage.IPLGSN_ANALYSIS);
     this.plgsnChangeStepEDataType = createEDataType(PLGSNPackage.PLGSN_CHANGE_STEP);
@@ -436,6 +455,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     this.plgsnArgumentElementEClass.getESuperTypes().add(thePLPackage.getClass_());
     this.plgsnTemplateEClass.getESuperTypes().add(thePLPackage.getClass_());
     this.plgsnAnalyticTemplateEClass.getESuperTypes().add(this.getPLGSNTemplate());
+    this.plgsnRelationshipDecoratorEClass.getESuperTypes().add(this.getPLGSNArgumentElement());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(this.plgsnArgumentElementEClass, PLGSNArgumentElement.class, "PLGSNArgumentElement", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
@@ -509,6 +529,8 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
 
     op = initEOperation(getPLGSNAnalyticTemplate__GetAnalysis(), this.getIPLGSNAnalysis(), "getAnalysis", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
     addEException(op, theGSNPackage.getException());
+
+    initEClass(this.plgsnRelationshipDecoratorEClass, PLGSNRelationshipDecorator.class, "PLGSNRelationshipDecorator", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Initialize data types
     initEDataType(this.iplgsnAnalysisEDataType, IPLGSNAnalysis.class, "IPLGSNAnalysis", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);

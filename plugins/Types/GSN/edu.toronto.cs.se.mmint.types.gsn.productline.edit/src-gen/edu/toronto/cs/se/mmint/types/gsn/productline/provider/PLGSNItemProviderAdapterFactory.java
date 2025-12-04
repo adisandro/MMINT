@@ -160,6 +160,29 @@ public class PLGSNItemProviderAdapterFactory extends PLGSNAdapterFactory impleme
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNRelationshipDecorator} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected PLGSNRelationshipDecoratorItemProvider plgsnRelationshipDecoratorItemProvider;
+
+  /**
+   * This creates an adapter for a {@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNRelationshipDecorator}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createPLGSNRelationshipDecoratorAdapter() {
+    if (this.plgsnRelationshipDecoratorItemProvider == null) {
+      this.plgsnRelationshipDecoratorItemProvider = new PLGSNRelationshipDecoratorItemProvider(this);
+    }
+
+    return this.plgsnRelationshipDecoratorItemProvider;
+  }
+
+  /**
    * This returns the root adapter factory that contains this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -273,6 +296,9 @@ public class PLGSNItemProviderAdapterFactory extends PLGSNAdapterFactory impleme
     if (this.plgsnAnalyticTemplateItemProvider != null) {
       this.plgsnAnalyticTemplateItemProvider.dispose();
     }
+    if (this.plgsnRelationshipDecoratorItemProvider != null) {
+      this.plgsnRelationshipDecoratorItemProvider.dispose();
+    }
   }
 
   /**
@@ -336,6 +362,11 @@ public class PLGSNItemProviderAdapterFactory extends PLGSNAdapterFactory impleme
           (createChildParameter
             (PLPackage.Literals.PRODUCT_LINE__CLASSES,
              PLGSNFactory.eINSTANCE.createPLGSNAnalyticTemplate()));
+
+        this.newChildDescriptors.add
+          (createChildParameter
+            (PLPackage.Literals.PRODUCT_LINE__CLASSES,
+             PLGSNFactory.eINSTANCE.createPLGSNRelationshipDecorator()));
 
         return null;
       }

@@ -4,7 +4,7 @@
     editDirectory="/edu.toronto.cs.se.mmint.types.gsn.productline.edit/src-gen" editorDirectory="/edu.toronto.cs.se.mmint.types.gsn.productline.editor/src-gen"
     modelPluginID="edu.toronto.cs.se.mmint.types.gsn.productline" modelName="PLGSN"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="24.0" copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.genmodel#//gsn ../../edu.toronto.cs.se.mmint.types.gsn.templates/model/gsn.templates.genmodel#//templates ../../edu.toronto.cs.se.mmint.productline/model/productline.genmodel#//productline"
+    complianceLevel="25.0" copyrightFields="false" usedGenPackages="../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.genmodel#//gsn ../../edu.toronto.cs.se.mmint.types.gsn.templates/model/gsn.templates.genmodel#//templates ../../edu.toronto.cs.se.mmint.productline/model/productline.genmodel#//productline"
     operationReflection="true" importOrganizing="true">
   <foreignModel>gsn.productline.ecore</foreignModel>
   <genPackages prefix="PLGSN" basePackage="edu.toronto.cs.se.mmint.types.gsn" disposableProviderFactory="true"
@@ -48,5 +48,6 @@
     <genClasses ecoreClass="gsn.productline.ecore#//PLGSNAnalyticTemplate">
       <genOperations ecoreOperation="gsn.productline.ecore#//PLGSNAnalyticTemplate/getAnalysis"/>
     </genClasses>
+    <genClasses ecoreClass="gsn.productline.ecore#//PLGSNRelationshipDecorator"/>
   </genPackages>
 </genmodel:GenModel>

@@ -972,6 +972,286 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_ANALYTIC_TEMPLATE_OPERATION_COUNT = PLGSNPackage.PLGSN_TEMPLATE_OPERATION_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNRelationshipDecoratorImpl <em>Relationship Decorator</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNRelationshipDecoratorImpl
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getPLGSNRelationshipDecorator()
+   * @generated
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR = 3;
+
+  /**
+   * The feature id for the '<em><b>Presence Condition</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR__PRESENCE_CONDITION = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT__PRESENCE_CONDITION;
+
+  /**
+   * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR__ATTRIBUTES = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT__ATTRIBUTES;
+
+  /**
+   * The feature id for the '<em><b>References</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR__REFERENCES = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT__REFERENCES;
+
+  /**
+   * The feature id for the '<em><b>References As Target</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR__REFERENCES_AS_TARGET = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT__REFERENCES_AS_TARGET;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR__TYPE = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT__TYPE;
+
+  /**
+   * The number of structural features of the '<em>Relationship Decorator</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR_FEATURE_COUNT = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The operation id for the '<em>Get Product Line</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___GET_PRODUCT_LINE = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___GET_PRODUCT_LINE;
+
+  /**
+   * The operation id for the '<em>Is Always Present</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___IS_ALWAYS_PRESENT = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___IS_ALWAYS_PRESENT;
+
+  /**
+   * The operation id for the '<em>Get Presence Condition Label</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
+
+  /**
+   * The operation id for the '<em>Get Stream Of Reference</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___GET_STREAM_OF_REFERENCE__EREFERENCE = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___GET_STREAM_OF_REFERENCE__EREFERENCE;
+
+  /**
+   * The operation id for the '<em>Get Reference</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___GET_REFERENCE__EREFERENCE = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___GET_REFERENCE__EREFERENCE;
+
+  /**
+   * The operation id for the '<em>Add Reference</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___ADD_REFERENCE__EREFERENCE_CLASS_STRING = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___ADD_REFERENCE__EREFERENCE_CLASS_STRING;
+
+  /**
+   * The operation id for the '<em>Add Reference</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___ADD_REFERENCE__EREFERENCE_CLASS = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___ADD_REFERENCE__EREFERENCE_CLASS;
+
+  /**
+   * The operation id for the '<em>Set Reference</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___SET_REFERENCE__EREFERENCE_CLASS = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___SET_REFERENCE__EREFERENCE_CLASS;
+
+  /**
+   * The operation id for the '<em>Get Stream Of Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE;
+
+  /**
+   * The operation id for the '<em>Get Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___GET_ATTRIBUTE__EATTRIBUTE = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___GET_ATTRIBUTE__EATTRIBUTE;
+
+  /**
+   * The operation id for the '<em>Get Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___GET_MANY_ATTRIBUTE__EATTRIBUTE = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___GET_MANY_ATTRIBUTE__EATTRIBUTE;
+
+  /**
+   * The operation id for the '<em>Add Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___ADD_ATTRIBUTE__EATTRIBUTE_STRING;
+
+  /**
+   * The operation id for the '<em>Add Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST;
+
+  /**
+   * The operation id for the '<em>Set Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___SET_ATTRIBUTE__EATTRIBUTE_STRING = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___SET_ATTRIBUTE__EATTRIBUTE_STRING;
+
+  /**
+   * The operation id for the '<em>Set Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___SET_MANY_ATTRIBUTE__EATTRIBUTE_ELIST = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___SET_MANY_ATTRIBUTE__EATTRIBUTE_ELIST;
+
+  /**
+   * The operation id for the '<em>Instance Of</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___INSTANCE_OF__ECLASS = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___INSTANCE_OF__ECLASS;
+
+  /**
+   * The operation id for the '<em>Get EContainer</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___GET_ECONTAINER = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___GET_ECONTAINER;
+
+  /**
+   * The operation id for the '<em>Delete</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___DELETE = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___DELETE;
+
+  /**
+   * The operation id for the '<em>Instantiate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___INSTANTIATE = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___INSTANTIATE;
+
+  /**
+   * The operation id for the '<em>Validate</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___VALIDATE = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___VALIDATE;
+
+  /**
+   * The operation id for the '<em>Get Impact</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___GET_IMPACT = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___GET_IMPACT;
+
+  /**
+   * The operation id for the '<em>Set Impact</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___SET_IMPACT__MAP = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__MAP;
+
+  /**
+   * The operation id for the '<em>Set Impact</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___SET_IMPACT__IMPACTTYPE = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___SET_IMPACT__IMPACTTYPE;
+
+  /**
+   * The number of operations of the '<em>Relationship Decorator</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR_OPERATION_COUNT = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
+
+  /**
    * The meta object id for the '<em>IPLGSN Analysis</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -979,7 +1259,7 @@ public interface PLGSNPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getIPLGSNAnalysis()
    * @generated
    */
-  int IPLGSN_ANALYSIS = 3;
+  int IPLGSN_ANALYSIS = 4;
 
   /**
    * The meta object id for the '<em>Change Step</em>' data type.
@@ -989,7 +1269,7 @@ public interface PLGSNPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getPLGSNChangeStep()
    * @generated
    */
-  int PLGSN_CHANGE_STEP = 4;
+  int PLGSN_CHANGE_STEP = 5;
 
   /**
    * The meta object id for the '<em>Optional</em>' data type.
@@ -999,7 +1279,7 @@ public interface PLGSNPackage extends EPackage {
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getOptional()
    * @generated
    */
-  int OPTIONAL = 5;
+  int OPTIONAL = 6;
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement <em>Argument Element</em>}'.
@@ -1170,6 +1450,16 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    */
   EOperation getPLGSNAnalyticTemplate__GetAnalysis();
+
+  /**
+   * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNRelationshipDecorator <em>Relationship Decorator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Relationship Decorator</em>'.
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNRelationshipDecorator
+   * @generated
+   */
+  EClass getPLGSNRelationshipDecorator();
 
   /**
    * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis <em>IPLGSN Analysis</em>}'.
@@ -1352,6 +1642,15 @@ public interface PLGSNPackage extends EPackage {
      * @generated
      */
     EOperation PLGSN_ANALYTIC_TEMPLATE___GET_ANALYSIS = PLGSNPackage.eINSTANCE.getPLGSNAnalyticTemplate__GetAnalysis();
+    /**
+     * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNRelationshipDecoratorImpl <em>Relationship Decorator</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNRelationshipDecoratorImpl
+     * @see edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNPackageImpl#getPLGSNRelationshipDecorator()
+     * @generated
+     */
+    EClass PLGSN_RELATIONSHIP_DECORATOR = PLGSNPackage.eINSTANCE.getPLGSNRelationshipDecorator();
     /**
      * The meta object literal for the '<em>IPLGSN Analysis</em>' data type.
      * <!-- begin-user-doc -->

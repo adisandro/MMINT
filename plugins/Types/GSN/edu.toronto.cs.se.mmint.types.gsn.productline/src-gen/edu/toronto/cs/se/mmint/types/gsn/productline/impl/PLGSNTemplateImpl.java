@@ -87,12 +87,12 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
   @Override
   public void instantiate() throws Exception {
     var plElements = getStreamOfReference(GSNPackage.eINSTANCE.getTemplate_Elements())
-      .filter(e -> e instanceof PLGSNArgumentElement)
+      .filter(PLGSNArgumentElement.class::isInstance)
       .map(e -> (PLGSNArgumentElement) e)
       .collect(Collectors.toList());
     for (var plElement : plElements) {
       if (plElement.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Valid()).stream()
-            .allMatch(v -> Boolean.valueOf(v)) ||
+            .allMatch(Boolean::valueOf) ||
           plElement.instanceOf(GSNPackage.eINSTANCE.getRelationshipDecorator()) ||
           plElement.eContainer() == null) {
         continue;
@@ -107,7 +107,7 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
   @Override
   public void validate() throws Exception {
     var plElements = getStreamOfReference(GSNPackage.eINSTANCE.getTemplate_Elements())
-      .filter(e -> e instanceof PLGSNArgumentElement)
+      .filter(PLGSNArgumentElement.class::isInstance)
       .map(e -> (PLGSNArgumentElement) e)
       .collect(Collectors.toList());
     for (var plElement : plElements) {

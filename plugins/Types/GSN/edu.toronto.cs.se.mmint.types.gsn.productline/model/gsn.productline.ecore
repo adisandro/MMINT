@@ -62,4 +62,5 @@
   <eClassifiers xsi:type="ecore:EDataType" name="Optional" instanceClassName="java.util.Optional">
     <eTypeParameters name="T"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PLGSNRelationshipDecorator" eSuperTypes="#//PLGSNArgumentElement"/>
 </ecore:EPackage>

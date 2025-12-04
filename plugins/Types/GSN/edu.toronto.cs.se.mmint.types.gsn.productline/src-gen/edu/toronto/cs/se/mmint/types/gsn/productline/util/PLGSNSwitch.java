@@ -20,6 +20,7 @@ import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNRelationshipDecorator;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 
 /**
@@ -124,6 +125,23 @@ public class PLGSNSwitch<T> extends Switch<T> {
         }
         return result;
       }
+      case PLGSNPackage.PLGSN_RELATIONSHIP_DECORATOR: {
+        var plgsnRelationshipDecorator = (PLGSNRelationshipDecorator)theEObject;
+        var result = casePLGSNRelationshipDecorator(plgsnRelationshipDecorator);
+        if (result == null) {
+          result = casePLGSNArgumentElement(plgsnRelationshipDecorator);
+        }
+        if (result == null) {
+          result = caseClass(plgsnRelationshipDecorator);
+        }
+        if (result == null) {
+          result = casePLElement(plgsnRelationshipDecorator);
+        }
+        if (result == null) {
+          result = defaultCase(theEObject);
+        }
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -170,6 +188,21 @@ public class PLGSNSwitch<T> extends Switch<T> {
    * @generated
    */
   public T casePLGSNAnalyticTemplate(PLGSNAnalyticTemplate object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Relationship Decorator</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Relationship Decorator</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePLGSNRelationshipDecorator(PLGSNRelationshipDecorator object) {
     return null;
   }
 

@@ -25,6 +25,7 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNRelationshipDecorator;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
@@ -76,6 +77,7 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
     case PLGSNPackage.PLGSN_ARGUMENT_ELEMENT -> createPLGSNArgumentElement();
     case PLGSNPackage.PLGSN_TEMPLATE -> createPLGSNTemplate();
     case PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE -> createPLGSNAnalyticTemplate();
+    case PLGSNPackage.PLGSN_RELATIONSHIP_DECORATOR -> createPLGSNRelationshipDecorator();
     default -> throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     };
   }
@@ -141,6 +143,17 @@ public class PLGSNFactoryImpl extends EFactoryImpl implements PLGSNFactory {
   public PLGSNAnalyticTemplate createPLGSNAnalyticTemplate() {
     PLGSNAnalyticTemplateImpl plgsnAnalyticTemplate = new PLGSNAnalyticTemplateImpl();
     return plgsnAnalyticTemplate;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public PLGSNRelationshipDecorator createPLGSNRelationshipDecorator() {
+    PLGSNRelationshipDecoratorImpl plgsnRelationshipDecorator = new PLGSNRelationshipDecoratorImpl();
+    return plgsnRelationshipDecorator;
   }
 
   /**

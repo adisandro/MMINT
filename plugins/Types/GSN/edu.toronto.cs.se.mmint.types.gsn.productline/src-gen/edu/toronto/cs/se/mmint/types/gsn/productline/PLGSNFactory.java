@@ -59,6 +59,15 @@ public interface PLGSNFactory extends EFactory {
   PLGSNAnalyticTemplate createPLGSNAnalyticTemplate();
 
   /**
+   * Returns a new object of class '<em>Relationship Decorator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Relationship Decorator</em>'.
+   * @generated
+   */
+  PLGSNRelationshipDecorator createPLGSNRelationshipDecorator();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

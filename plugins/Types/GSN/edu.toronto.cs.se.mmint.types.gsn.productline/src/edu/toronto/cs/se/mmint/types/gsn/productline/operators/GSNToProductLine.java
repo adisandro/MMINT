@@ -35,6 +35,8 @@ public class GSNToProductLine extends ToProductLine {
         PLGSNFactory.eINSTANCE.createPLGSNAnalyticTemplate();
       case EClass e when GSNPackage.eINSTANCE.getTemplate().isSuperTypeOf(e) ->
         PLGSNFactory.eINSTANCE.createPLGSNTemplate();
+      case EClass e when GSNPackage.eINSTANCE.getRelationshipDecorator().isSuperTypeOf(e) ->
+        PLGSNFactory.eINSTANCE.createPLGSNRelationshipDecorator();
       case EClass e when GSNPackage.eINSTANCE.getArgumentElement().isSuperTypeOf(e) ->
         PLGSNFactory.eINSTANCE.createPLGSNArgumentElement();
       default -> PLFactory.eINSTANCE.createClass();
