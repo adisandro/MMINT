@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
@@ -40,6 +41,7 @@ import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
  * This template is producing evidence based on checking a property over the underlying model with the FTS4VMC model
  * checker. It is a leaf template, with no downstream supporters.
  */
+@NonNullByDefault
 public class FTS4VMCAnalysis implements IPLGSNAnalysis {
   protected final static String PROPERTY_FILE = "property.txt";
   protected final static String RUN_FILE = "run.sh";

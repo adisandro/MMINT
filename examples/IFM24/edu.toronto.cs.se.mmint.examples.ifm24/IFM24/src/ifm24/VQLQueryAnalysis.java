@@ -18,6 +18,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 
 import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusEvaluateQuery;
 import edu.toronto.cs.se.mmint.mid.diagram.library.SiriusEvaluateQuery.ResultPrinter;
@@ -46,6 +47,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Strategy;
  * query. It does not generate any evidence, but is supported by downstream goals corresponding to each of the
  * identified patterns.
  */
+@NonNullByDefault
 public class VQLQueryAnalysis implements IPLGSNAnalysis {
   protected GSNPackage gsn;
 
