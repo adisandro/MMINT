@@ -70,7 +70,7 @@
               </style>
             </conditionnalStyles>
             <conditionnalStyles predicateExpression="aql:self.type = gsn::DecoratorType::CHOICE">
-              <style xsi:type="style:LozengeNodeDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql: if self.cardinality = -1 then '' else self.cardinality + ' of ' + (self.supportedBy->size()+self.inContextOf->size()) endif" resizeKind="NSEW">
+              <style xsi:type="style:LozengeNodeDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql: if self.cardinality = -1 then '' else self.cardinality endif" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>

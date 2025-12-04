@@ -6,17 +6,31 @@
       <layers name="GSNDefault" label="PL GSN">
         <nodeMappings name="PLGoalNode" preconditionExpression="aql: self.type.name = 'Goal' or self.type.eAllSuperTypes->exists(s | s.name = 'Goal')" deletionDescription="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@toolSections.0/@ownedTools[name='PLDeleteClass']" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
-          <borderedNodeMappings name="PLRelationshipDecoratorNode" preconditionExpression="aql: self.type.name = 'RelationshipDecorator'" domainClass="productline.Class">
+          <borderedNodeMappings name="PLRelationshipDecoratorNode" preconditionExpression="aql: self.type.name = 'RelationshipDecorator'" deletionDescription="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@toolSections.0/@ownedTools[name='PLDeleteClass']" semanticCandidatesExpression="aql: self.references->select(r | r.type.name = 'decorators')->collect(r | r.target)" domainClass="productline.Class">
             <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
-            <conditionnalStyles>
-              <style xsi:type="style:DotDescription" labelSize="10" showIcon="false" labelExpression="" labelPosition="node" resizeKind="NSEW">
+            <conditionnalStyles predicateExpression="aql: self.attributes->select(a | a.type.name = 'type')->first().value = 'MULTIPLE'">
+              <style xsi:type="style:DotDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql: let cardinality = self.attributes->select(a | a.type.name = 'cardinality')->first().value in if cardinality = '-1' then '' else cardinality endif" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               </style>
             </conditionnalStyles>
+            <conditionnalStyles predicateExpression="aql: self.attributes->select(a | a.type.name = 'type')->first().value = 'OPTIONAL'">
+              <style xsi:type="style:DotDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              </style>
+            </conditionnalStyles>
+            <conditionnalStyles predicateExpression="aql: self.attributes->select(a | a.type.name = 'type')->first().value = 'CHOICE'">
+              <style xsi:type="style:LozengeNodeDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql: let cardinality = self.attributes->select(a | a.type.name = 'cardinality')->first().value in if cardinality = '-1' then '' else cardinality endif" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              </style>
+            </conditionnalStyles>
           </borderedNodeMappings>
-          <borderedNodeMappings name="PLImpactNode" preconditionExpression="aql: self.type.name = 'ImpactAnnotation' or self.type.eAllSuperTypes->exists(s | s.name = 'ImpactAnnotation')" deletionDescription="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@toolSections.0/@ownedTools[name='PLDeleteClass']" semanticCandidatesExpression="aql: self.references->select(r | r.type.name = 'status')->collect(r | r.target)" domainClass="productline.Class">
+          <borderedNodeMappings name="PLImpactNode" preconditionExpression="aql: self.type.name = 'ImpactAnnotation'" deletionDescription="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@toolSections.0/@ownedTools[name='PLDeleteClass']" semanticCandidatesExpression="aql: self.references->select(r | r.type.name = 'status')->collect(r | r.target)" domainClass="productline.Class">
             <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
             <conditionnalStyles predicateExpression="aql: self.attributes->select(a | a.type.name = 'type')->first().value = 'REUSE'">
               <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" labelAlignment="LEFT" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Reuse.png">
