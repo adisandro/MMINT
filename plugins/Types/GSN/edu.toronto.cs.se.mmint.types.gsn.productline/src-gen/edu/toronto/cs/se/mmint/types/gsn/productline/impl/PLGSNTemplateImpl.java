@@ -62,8 +62,8 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
   public Map<String, PLGSNArgumentElement> getElementsById() {
     return getStreamOfReference(GSNPackage.eINSTANCE.getTemplate_Elements())
              .filter(e -> e instanceof PLGSNArgumentElement &&
-                          !e.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_TemplateId()).isEmpty())
-             .collect(Collectors.toMap(e -> e.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_TemplateId()).get(0),
+                          !e.getListOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_TemplateId()).isEmpty())
+             .collect(Collectors.toMap(e -> e.getListOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_TemplateId()).get(0),
                                        e -> (PLGSNArgumentElement) e));
   }
 
@@ -91,7 +91,7 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
       .map(e -> (PLGSNArgumentElement) e)
       .collect(Collectors.toList());
     for (var plElement : plElements) {
-      if (plElement.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Valid()).stream()
+      if (plElement.getListOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_Valid()).stream()
             .allMatch(Boolean::valueOf) ||
           plElement.instanceOf(GSNPackage.eINSTANCE.getRelationshipDecorator()) ||
           plElement.eContainer() == null) {

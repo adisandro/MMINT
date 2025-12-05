@@ -43,7 +43,7 @@ public class PLGSNRepairChange extends AbstractExternalJavaAction {
         .allMatch(o -> o instanceof PLGSNArgumentElement e &&
                        !e.getReference(GSNPackage.eINSTANCE.getArgumentElement_Status()).isEmpty() &&
                        e.getReference(GSNPackage.eINSTANCE.getArgumentElement_Status()).stream()
-                         .anyMatch(s -> !s.getAttribute(GSNPackage.eINSTANCE.getImpactAnnotation_Type()).get(0)
+                         .anyMatch(s -> !s.getListOfAttribute(GSNPackage.eINSTANCE.getImpactAnnotation_Type()).get(0)
                                           .equals(ImpactType.REUSE.toString())));
   }
 

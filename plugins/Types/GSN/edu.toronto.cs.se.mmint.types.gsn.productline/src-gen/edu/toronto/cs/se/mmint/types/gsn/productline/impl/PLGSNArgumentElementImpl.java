@@ -65,7 +65,7 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
   public void instantiate() throws Exception {
     var title = "Instantiate placeholder text";
     //TODO abstract into function
-    var node = getType().getName() + " " + String.join(",", getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()));
+    var node = getType().getName() + " " + String.join(",", getListOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()));
     for (var attr : getAttributes()) {
       if (attr.getType() != GSNPackage.eINSTANCE.getArgumentElement_Description()) {
         continue;
@@ -96,7 +96,7 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
           .anyMatch(a -> GSNBuilder.findPlaceholder(a.getValue()).isPresent())) {
       //TODO abstract into function
       var node = getType().getName() + " " +
-                 String.join(",", getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()));
+                 String.join(",", getListOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()));
       validAttrs.forEach(a -> a.setValue(Boolean.FALSE.toString()));
       throw new MMINTException(node + " description contains placeholder text to be instantiated");
     }
@@ -110,7 +110,7 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
   public Map<ImpactType, Optional<String>> getImpact() {
     var impactMap = getStreamOfReference(GSNPackage.eINSTANCE.getArgumentElement_Status())
       .collect(Collectors.toMap(
-        impact -> ImpactType.valueOf(impact.getAttribute(GSNPackage.eINSTANCE.getImpactAnnotation_Type()).get(0)),
+        impact -> ImpactType.valueOf(impact.getListOfAttribute(GSNPackage.eINSTANCE.getImpactAnnotation_Type()).get(0)),
         impact -> Optional.of(impact.getPresenceCondition())));
     ImpactType.VALUES.forEach(t -> impactMap.computeIfAbsent(t, _ -> Optional.empty()));
 
@@ -129,7 +129,7 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
     getStreamOfReference(GSNPackage.eINSTANCE.getArgumentElement_Status())
       .collect(Collectors.toList())
       .forEach(impact -> {
-        var impactType = ImpactType.valueOf(impact.getAttribute(GSNPackage.eINSTANCE.getImpactAnnotation_Type()).get(0));
+        var impactType = ImpactType.valueOf(impact.getListOfAttribute(GSNPackage.eINSTANCE.getImpactAnnotation_Type()).get(0));
         impactTypes.get(impactType).ifPresentOrElse(pc -> impact.setPresenceCondition(pc), () -> impact.delete());
         addImpactTypes.remove(impactType);
       });

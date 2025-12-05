@@ -27,8 +27,14 @@ public class PLGSNServices extends PLServices {
     var pc = ((PLElement) self).getPresenceConditionLabel(true);
     var label = switch (self) {
       case PLGSNArgumentElement e -> {
-        var id = mergePLAttributeLabels(e, GSNPackage.eINSTANCE.getArgumentElement_Id());
-        var desc = mergePLAttributeLabels(e, GSNPackage.eINSTANCE.getArgumentElement_Description());
+        var id = e.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id());
+        if (id == null) {
+          id = "";
+        }
+        var desc = e.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Description());
+        if (desc == null) {
+          desc = "";
+        }
         var text = (id + "\n" + desc).strip();
         yield (pc.isBlank()) ? text : pc + " " + text;
       }

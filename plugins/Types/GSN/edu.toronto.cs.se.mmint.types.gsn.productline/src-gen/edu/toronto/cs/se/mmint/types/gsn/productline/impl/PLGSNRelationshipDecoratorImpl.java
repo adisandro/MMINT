@@ -3,9 +3,15 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.jdt.annotation.Nullable;
 
+import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNRelationshipDecorator;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
+import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,9 +43,46 @@ public class PLGSNRelationshipDecoratorImpl extends PLGSNArgumentElementImpl imp
   /**
    * @generated NOT
    */
+  private void instantiateOptional(Class decorated, boolean isSupported, @Nullable String hint) {
+
+  }
+
+  /**
+   * @generated NOT
+   */
+  private void instantiateChoice(Class decorated, boolean isSupported, int cardinality, @Nullable String hint) {
+
+  }
+
+  /**
+   * @generated NOT
+   */
+  private void instantiateMultiple(Class decorated, boolean isSupported, int cardinality, @Nullable String hint,
+                                   PLGSNTemplate template)
+                                  throws MMINTException {
+    var n = GSNBuilder.askForMultiple(decorated.getType().getName() + " " + decorated.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()), cardinality, hint);
+    if (n == 1) { // fast path, equivalent to optional
+
+    }
+    else {
+
+    }
+  }
+
+  /**
+   * @generated NOT
+   */
   @Override
   public void instantiate() throws Exception {
-    super.instantiate();
+    var decorated = getEContainer();
+    var cardinality = Integer.valueOf(getAttribute(GSNPackage.eINSTANCE.getRelationshipDecorator_Cardinality()));
+    var isSupported = !getReference(GSNPackage.eINSTANCE.getSupportable_SupportedBy()).isEmpty();
+    var hint = getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Description());
+    switch(getAttribute(GSNPackage.eINSTANCE.getRelationshipDecorator_Type())) {
+      case "OPTIONAL" -> instantiateOptional(decorated, isSupported, hint);
+      case "CHOICE" -> instantiateChoice(decorated, isSupported, cardinality, hint);
+      case "MULTIPLE" -> instantiateMultiple(decorated, isSupported, cardinality, hint, null);
+    }
   }
 
   /**
@@ -47,7 +90,8 @@ public class PLGSNRelationshipDecoratorImpl extends PLGSNArgumentElementImpl imp
    */
   @Override
   public void validate() throws Exception {
-    super.validate();
+    setAttribute(GSNPackage.eINSTANCE.getArgumentElement_Valid(), Boolean.FALSE.toString());
+    throw new MMINTException("Relationship decorators must be instantiated");
   }
 
 } //PLGSNRelationshipDecoratorImpl

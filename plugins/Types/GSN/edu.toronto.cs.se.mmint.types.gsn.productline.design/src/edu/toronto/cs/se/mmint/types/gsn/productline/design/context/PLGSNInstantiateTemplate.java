@@ -76,7 +76,7 @@ public class PLGSNInstantiateTemplate extends AbstractExternalJavaAction {
       }
       catch (MIDDialogCancellation e) {}
       catch (Exception e) {
-        var id = this.plTemplate.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()).get(0);
+        var id = this.plTemplate.getListOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()).get(0);
         MMINTException.print(IStatus.ERROR, "Error instantiating GSN template " + id, e);
       }
     }

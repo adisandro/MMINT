@@ -25,19 +25,23 @@ public class PLStateMachineServices extends PLServices {
   public String getPLStateMachineElementLabel(EObject self) {
     var pc = ((PLElement) self).getPresenceConditionLabel(true);
     var label = switch (self) {
-      case Class c when StateMachinePackage.eINSTANCE.getState() == c.getType() -> {
-        var name = mergePLAttributeLabels(c, StateMachinePackage.eINSTANCE.getAbstractState_Name());
+      case Class c when c.instanceOf(StateMachinePackage.eINSTANCE.getState()) -> {
+        var name = c.getAttribute(StateMachinePackage.eINSTANCE.getAbstractState_Name());
+        if (name == null) {
+          name = "";
+        }
         yield (pc.isBlank()) ? name : pc + "\n" + name;
       }
-      case Class c when StateMachinePackage.eINSTANCE.getTransition() == c.getType() -> {
-        var trigger = mergePLAttributeLabels(c, StateMachinePackage.eINSTANCE.getFiringElement_Trigger());
-        var action = mergePLAttributeLabels(c, StateMachinePackage.eINSTANCE.getFiringElement_Action());
-        var text = (action.isBlank()) ? trigger.strip() : (trigger + "/" + action).strip();
-        yield (pc.isBlank()) ? text : pc + "\n" + text;
-      }
-      case Class c when StateMachinePackage.eINSTANCE.getStateAction() == c.getType() -> {
-        var trigger = mergePLAttributeLabels(c, StateMachinePackage.eINSTANCE.getFiringElement_Trigger());
-        var action = mergePLAttributeLabels(c, StateMachinePackage.eINSTANCE.getFiringElement_Action());
+      case Class c when c.instanceOf(StateMachinePackage.eINSTANCE.getTransition()) ||
+                        c.instanceOf(StateMachinePackage.eINSTANCE.getStateAction()) -> {
+        var trigger = c.getAttribute(StateMachinePackage.eINSTANCE.getFiringElement_Trigger());
+        if (trigger == null) {
+          trigger = "";
+        }
+        var action = c.getAttribute(StateMachinePackage.eINSTANCE.getFiringElement_Action());
+        if (action == null) {
+          action = "";
+        }
         var text = (action.isBlank()) ? trigger.strip() : (trigger + "/" + action).strip();
         yield (pc.isBlank()) ? text : pc + "\n" + text;
       }

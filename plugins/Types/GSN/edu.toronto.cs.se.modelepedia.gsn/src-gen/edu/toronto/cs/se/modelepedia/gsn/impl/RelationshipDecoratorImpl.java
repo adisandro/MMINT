@@ -468,9 +468,9 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
   /**
    * @generated NOT
    */
-  private void instantiateChoice(Decoratable decorated, boolean isSupported, @Nullable String hint)
+  private void instantiateChoice(Decoratable decorated, boolean isSupported, int cardinality, @Nullable String hint)
                                 throws MMINTException {
-    var max = getCardinality();
+    var max = cardinality;
     if (max < 0) {
       max = (isSupported) ? getSupportedBy().size() : getInContextOf().size();
     }
@@ -529,28 +529,10 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
   /**
    * @generated NOT
    */
-  private void instantiateMultiple(Decoratable decorated, boolean isSupported, @Nullable String hint, Template template)
+  private void instantiateMultiple(Decoratable decorated, boolean isSupported, int cardinality, @Nullable String hint,
+                                   Template template)
                                   throws MMINTException {
-    var max = getCardinality();
-    var x = (max < 0) ? "any number of" : "up to " + max;
-    var msg = "How many times do you want to instantiate the sub-tree below " + decorated.eClass().getName() + " " +
-              decorated.getId() + "?";
-    int n;
-    if (hint != null && !hint.isBlank()) {
-      try {
-        n = Integer.parseInt(hint);
-      }
-      catch (NumberFormatException e) {
-        msg += "\nHint: " + hint;
-        n = Integer.parseInt(MIDDialogs.getStringInput("Instantiate " + x + " sub-trees", msg, "1"));
-      }
-    }
-    else {
-      n = Integer.parseInt(MIDDialogs.getStringInput("Instantiate " + x + " sub-trees", msg, "1"));
-    }
-    if (max > 0 && n >= max) {
-      throw new MMINTException("A max of " + max + " sub-trees can be instantiated");
-    }
+    var n = GSNBuilder.askForMultiple(decorated.eClass().getName() + " " + decorated.getId(), cardinality, hint);
     if (n == 1) { // fast path, equivalent to optional
       if (isSupported) {
         ((Supportable) decorated).getSupportedBy().addAll(getSupportedBy());
@@ -593,11 +575,12 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
   public void instantiate() throws Exception {
     var decorated = (Decoratable) eContainer();
     var isSupported = !getSupportedBy().isEmpty();
+    var cardinality = getCardinality();
     var hint = getDescription();
     switch (this.getType()) {
       case OPTIONAL -> instantiateOptional(decorated, isSupported, hint);
-      case CHOICE -> instantiateChoice(decorated, isSupported, hint);
-      case MULTIPLE -> instantiateMultiple(decorated, isSupported, hint, this.template);
+      case CHOICE -> instantiateChoice(decorated, isSupported, cardinality, hint);
+      case MULTIPLE -> instantiateMultiple(decorated, isSupported, cardinality, hint, this.template);
     };
     decorated.getDecorators().remove(this);
   }

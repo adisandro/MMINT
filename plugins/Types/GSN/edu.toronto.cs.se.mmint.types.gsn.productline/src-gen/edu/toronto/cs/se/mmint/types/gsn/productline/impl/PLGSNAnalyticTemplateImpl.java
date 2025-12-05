@@ -82,11 +82,11 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
    */
   @Override
   public IPLGSNAnalysis getAnalysis() throws Exception {
-    var javaPath = getAttribute(GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_AnalysisPath());
+    var javaPath = getListOfAttribute(GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_AnalysisPath());
     if (javaPath.isEmpty()) {
       throw new MMINTException("Missing analysis runner Java path");
     }
-    var bundleName = getAttribute(GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_LoaderBundleName());
+    var bundleName = getListOfAttribute(GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_LoaderBundleName());
     var classLoader = getClass().getClassLoader();
     if (!bundleName.isEmpty()) {
       var bundle = Platform.getBundle(bundleName.get(0));

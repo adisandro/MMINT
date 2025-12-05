@@ -17,9 +17,11 @@ import java.util.Optional;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogCancellation;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.ui.MIDTreeSelectionDialog;
@@ -73,6 +75,29 @@ public class GSNBuilder {
     var resource = (IResource) MIDDialogs.openTreeDialog(dialog, title, message);
 
     return resource.getFullPath().toString();
+  }
+
+  public static int askForMultiple(String nodeName, int max, @Nullable String hint) throws MMINTException {
+    var x = (max < 0) ? "any number of" : "up to " + max;
+    var msg = "How many times do you want to instantiate the sub-tree below " + nodeName + "?";
+    int n;
+    if (hint != null && !hint.isBlank()) {
+      try {
+        n = Integer.parseInt(hint);
+      }
+      catch (NumberFormatException e) {
+        msg += "\nHint: " + hint;
+        n = Integer.parseInt(MIDDialogs.getStringInput("Instantiate " + x + " sub-trees", msg, "1"));
+      }
+    }
+    else {
+      n = Integer.parseInt(MIDDialogs.getStringInput("Instantiate " + x + " sub-trees", msg, "1"));
+    }
+    if (max > 0 && n >= max) {
+      throw new MMINTException("A max of " + max + " sub-trees can be instantiated");
+    }
+
+    return n;
   }
 
   public void addSupporter(Supportable supportable, Supporter supporter) {

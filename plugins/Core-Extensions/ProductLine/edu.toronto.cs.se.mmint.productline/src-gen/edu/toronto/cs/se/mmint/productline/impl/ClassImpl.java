@@ -348,6 +348,8 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
       return null;
     case PLPackage.CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE:
       return getStreamOfAttribute((EAttribute) arguments.get(0));
+    case PLPackage.CLASS___GET_LIST_OF_ATTRIBUTE__EATTRIBUTE:
+      return getListOfAttribute((EAttribute) arguments.get(0));
     case PLPackage.CLASS___GET_ATTRIBUTE__EATTRIBUTE:
       return getAttribute((EAttribute) arguments.get(0));
     case PLPackage.CLASS___GET_MANY_ATTRIBUTE__EATTRIBUTE:
@@ -396,7 +398,7 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    */
   @Override
   public Stream<edu.toronto.cs.se.mmint.productline.Class> getStreamOfReference(EReference referenceType) {
-    var stream = getStreamOfReference_(getReferences(), referenceType).map(r -> r.getTarget());
+    var stream = getStreamOfReference_(getReferences(), referenceType).map(Reference::getTarget);
     var oppositeReferenceType = referenceType.getEOpposite();
     if (oppositeReferenceType != null) {
       var oppositeStream = getStreamOfReference_(getReferencesAsTarget(), oppositeReferenceType).map(
@@ -466,15 +468,32 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    */
   @Override
   public Stream<String> getStreamOfAttribute(EAttribute attributeType) {
-    return getStreamOfAttribute_(attributeType).map(a -> a.getValue());
+    return getStreamOfAttribute_(attributeType).map(Attribute::getValue);
   }
 
   /**
    * @generated NOT
    */
   @Override
-  public EList<String> getAttribute(EAttribute attributeType) {
+  public EList<String> getListOfAttribute(EAttribute attributeType) {
     return ECollections.asEList(getStreamOfAttribute(attributeType).toList());
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public String getAttribute(EAttribute attributeType) {
+    var attrs = getStreamOfAttribute_(attributeType).toList();
+    if (attrs.isEmpty()) {
+      return null;
+    }
+    if (attrs.size() == 1) {
+      return attrs.get(0).getValue();
+    }
+    return attrs.stream()
+      .map(a -> a.getPresenceConditionLabel(true) + " " + a.getValue())
+      .collect(Collectors.joining("\n"));
   }
 
   /**
