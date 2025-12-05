@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.design.tools;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -28,9 +29,11 @@ public class PLGSNCreateEdge extends CreateEdge {
   }
 
   protected class PLCreateEdgeCommand extends CreateEdgeCommand {
+    private GSNPackage gsn;
 
     public PLCreateEdgeCommand(TransactionalEditingDomain domain, Class srcClass, Class tgtClass, String classType) {
       super(domain, srcClass, tgtClass, classType);
+      this.gsn = GSNPackage.eINSTANCE;
     }
 
     @Override
@@ -43,9 +46,10 @@ public class PLGSNCreateEdge extends CreateEdge {
     @Override
     protected @Nullable RefSpec getSrcSpec(Class edgeClass) {
       return switch (this.classType) {
-        case "SupportedBy" -> new RefSpec(this.srcClass, GSNPackage.eINSTANCE.getSupportable_SupportedBy(), edgeClass);
-        case "InContextOf" -> new RefSpec(this.srcClass, GSNPackage.eINSTANCE.getContextualizable_InContextOf(),
-                                          edgeClass);
+        case EClass e when this.gsn.getSupportedBy().isSuperTypeOf(e) ->
+          new RefSpec(this.srcClass, this.gsn.getSupportable_SupportedBy(), edgeClass);
+        case EClass e when this.gsn.getInContextOf().isSuperTypeOf(e) ->
+          new RefSpec(this.srcClass, this.gsn.getContextualizable_InContextOf(), edgeClass);
         default -> null;
       };
     }
@@ -53,8 +57,10 @@ public class PLGSNCreateEdge extends CreateEdge {
     @Override
     protected @Nullable RefSpec getTgtSpec(Class edgeClass) {
       return switch (this.classType) {
-        case "SupportedBy" -> new RefSpec(edgeClass, GSNPackage.eINSTANCE.getSupportedBy_Target(), this.tgtClass);
-        case "InContextOf" -> new RefSpec(edgeClass, GSNPackage.eINSTANCE.getInContextOf_Context(), this.tgtClass);
+        case EClass e when this.gsn.getSupportedBy().isSuperTypeOf(e) ->
+          new RefSpec(edgeClass, this.gsn.getSupportedBy_Target(), this.tgtClass);
+        case EClass e when this.gsn.getInContextOf().isSuperTypeOf(e) ->
+          new RefSpec(edgeClass, this.gsn.getInContextOf_Context(), this.tgtClass);
         default -> null;
       };
     }

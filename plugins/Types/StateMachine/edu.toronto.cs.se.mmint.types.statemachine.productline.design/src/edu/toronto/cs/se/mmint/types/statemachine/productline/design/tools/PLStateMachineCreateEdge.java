@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -28,18 +29,19 @@ public class PLStateMachineCreateEdge extends CreateEdge {
   }
 
   protected class PLCreateEdgeCommand extends CreateEdgeCommand {
-    protected StateMachinePackage types;
+    private StateMachinePackage sm;
 
     public PLCreateEdgeCommand(TransactionalEditingDomain domain, Class srcClass, Class tgtClass, String classType) {
       super(domain, srcClass, tgtClass, classType);
-      this.types = StateMachinePackage.eINSTANCE;
+      this.sm = StateMachinePackage.eINSTANCE;
     }
 
     @Override
     protected @Nullable RefSpec getContainerSpec(Class edgeClass) {
       return switch (this.classType) {
-        case "Transition" -> new RefSpec(this.productLine.getRoot(this.types.getStateMachine()),
-                                         this.types.getStateMachine_Transitions(), edgeClass);
+        case EClass e when this.sm.getTransition().isSuperTypeOf(e) ->
+          new RefSpec(this.productLine.getRoot(this.sm.getStateMachine()), this.sm.getStateMachine_Transitions(),
+                      edgeClass);
         default -> null;
       };
     }
@@ -47,7 +49,8 @@ public class PLStateMachineCreateEdge extends CreateEdge {
     @Override
     protected @Nullable RefSpec getSrcSpec(Class edgeClass) {
       return switch (this.classType) {
-        case "Transition" -> new RefSpec(edgeClass, this.types.getTransition_Source(), this.srcClass);
+        case EClass e when this.sm.getTransition().isSuperTypeOf(e) ->
+          new RefSpec(edgeClass, this.sm.getTransition_Source(), this.srcClass);
         default -> null;
       };
     }
@@ -55,7 +58,8 @@ public class PLStateMachineCreateEdge extends CreateEdge {
     @Override
     protected @Nullable RefSpec getTgtSpec(Class edgeClass) {
       return switch (this.classType) {
-        case "Transition" -> new RefSpec(edgeClass, this.types.getTransition_Target(), this.tgtClass);
+        case EClass e when this.sm.getTransition().isSuperTypeOf(e) ->
+          new RefSpec(edgeClass, this.sm.getTransition_Target(), this.tgtClass);
         default -> null;
       };
     }

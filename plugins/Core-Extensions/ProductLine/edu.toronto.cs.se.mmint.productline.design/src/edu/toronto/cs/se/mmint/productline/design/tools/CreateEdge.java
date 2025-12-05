@@ -18,7 +18,6 @@ import java.util.Map;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -56,15 +55,14 @@ public abstract class CreateEdge extends AbstractExternalJavaAction {
     protected ProductLine productLine;
     protected Class srcClass;
     protected Class tgtClass;
-    protected String classType;
-    protected EPackage types;
+    protected EClass classType;
 
     public CreateEdgeCommand(TransactionalEditingDomain domain, Class srcClass, Class tgtClass, String classType) {
       super(domain);
       this.productLine = srcClass.getProductLine();
       this.srcClass = srcClass;
       this.tgtClass = tgtClass;
-      this.classType = classType;
+      this.classType = (EClass) this.productLine.getMetamodel().getEClassifier(classType);
     }
 
     protected abstract @Nullable RefSpec getContainerSpec(Class edgeClass);
@@ -86,7 +84,7 @@ public abstract class CreateEdge extends AbstractExternalJavaAction {
       var pc = PLElementImpl.merge(this.productLine, this.srcClass.getPresenceCondition(),
                                    this.tgtClass.getPresenceCondition());
       var edgeClass = PLFactory.eINSTANCE.createClass();
-      edgeClass.setType((EClass) this.productLine.getMetamodel().getEClassifier(this.classType));
+      edgeClass.setType(this.classType);
       edgeClass.setPresenceCondition(pc);
       this.productLine.getClasses().add(edgeClass);
       var containerSpec = getContainerSpec(edgeClass);

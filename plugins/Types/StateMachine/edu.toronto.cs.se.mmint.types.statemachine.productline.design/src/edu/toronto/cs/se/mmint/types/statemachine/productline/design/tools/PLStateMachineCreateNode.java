@@ -31,26 +31,28 @@ public class PLStateMachineCreateNode extends CreateNode {
   }
 
   protected class PLCreateNodeCommand extends CreateNodeCommand {
+    private StateMachinePackage sm;
 
     public PLCreateNodeCommand(TransactionalEditingDomain domain, EObject container, String classType) {
       super(domain, container, classType);
+      this.sm = StateMachinePackage.eINSTANCE;
     }
 
     @Override
     protected Class getContainer() {
       return switch (this.classType) {
-        case EClass e when StateMachinePackage.eINSTANCE.getStateAction().isSuperTypeOf(e) -> (Class) this.container;
-        default -> this.productLine.getRoot(StateMachinePackage.eINSTANCE.getStateMachine());
+        case EClass e when this.sm.getStateAction().isSuperTypeOf(e) -> (Class) this.container;
+        default -> this.productLine.getRoot(this.sm.getStateMachine());
       };
     }
 
     @Override
     protected @Nullable EReference getContainmentType() {
       return switch (this.classType) {
-        case EClass e when StateMachinePackage.eINSTANCE.getAbstractState().isSuperTypeOf(e) ->
-          StateMachinePackage.eINSTANCE.getStateMachine_States();
-        case EClass e when StateMachinePackage.eINSTANCE.getStateAction().isSuperTypeOf(e) ->
-          StateMachinePackage.eINSTANCE.getState_InternalActions();
+        case EClass e when this.sm.getAbstractState().isSuperTypeOf(e) ->
+          this.sm.getStateMachine_States();
+        case EClass e when this.sm.getStateAction().isSuperTypeOf(e) ->
+          this.sm.getState_InternalActions();
         default -> null;
       };
     }
