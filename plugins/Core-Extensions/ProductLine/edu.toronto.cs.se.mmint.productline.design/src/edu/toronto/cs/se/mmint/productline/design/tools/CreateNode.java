@@ -51,34 +51,33 @@ public abstract class CreateNode extends AbstractExternalJavaAction {
   protected abstract class CreateNodeCommand extends RecordingCommand {
     protected ProductLine productLine;
     protected EObject container;
-    protected String classType;
+    protected EClass classType;
 
     public CreateNodeCommand(TransactionalEditingDomain domain, EObject container, String classType) {
       super(domain);
       this.productLine = (container instanceof ProductLine pl) ? pl : ((PLElement) container).getProductLine();
       this.container = container;
-      this.classType = classType;
+      this.classType = (EClass) this.productLine.getMetamodel().getEClassifier(classType);
     }
 
     protected abstract Class getContainer();
 
     protected abstract @Nullable EReference getContainmentType();
 
-    protected Class createClass(EClass classType) {
+    protected Class createClass() {
       return PLFactory.eINSTANCE.createClass();
     }
 
     @Override
     protected void doExecute() {
-      var classType = (EClass) this.productLine.getMetamodel().getEClassifier(this.classType);
-      var clazz = createClass(classType);
-      clazz.setType(classType);
+      var clazz = createClass();
+      clazz.setType(this.classType);
       this.productLine.getClasses().add(clazz);
       var reference = PLFactory.eINSTANCE.createReference();
       reference.setType(getContainmentType());
       reference.setTarget(clazz);
       getContainer().getReferences().add(reference);
-      for (var attrType : classType.getEAllAttributes()) {
+      for (var attrType : this.classType.getEAllAttributes()) {
         var attribute = PLFactory.eINSTANCE.createAttribute();
         attribute.setType(attrType);
         clazz.getAttributes().add(attribute);

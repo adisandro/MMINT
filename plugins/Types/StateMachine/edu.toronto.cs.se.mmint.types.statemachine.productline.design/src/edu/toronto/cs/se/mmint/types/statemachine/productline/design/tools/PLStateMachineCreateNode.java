@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -38,18 +39,18 @@ public class PLStateMachineCreateNode extends CreateNode {
     @Override
     protected Class getContainer() {
       return switch (this.classType) {
-        case "StateAction" -> (Class) this.container;
-        default -> this.productLine.getClasses().stream()
-          .filter(c -> c.getType() == StateMachinePackage.eINSTANCE.getStateMachine())
-          .findFirst().get();
+        case EClass e when StateMachinePackage.eINSTANCE.getStateAction().isSuperTypeOf(e) -> (Class) this.container;
+        default -> this.productLine.getRoot(StateMachinePackage.eINSTANCE.getStateMachine());
       };
     }
 
     @Override
     protected @Nullable EReference getContainmentType() {
       return switch (this.classType) {
-        case "InitialState", "FinalState", "State" -> StateMachinePackage.eINSTANCE.getStateMachine_States();
-        case "StateAction" -> StateMachinePackage.eINSTANCE.getState_InternalActions();
+        case EClass e when StateMachinePackage.eINSTANCE.getAbstractState().isSuperTypeOf(e) ->
+          StateMachinePackage.eINSTANCE.getStateMachine_States();
+        case EClass e when StateMachinePackage.eINSTANCE.getStateAction().isSuperTypeOf(e) ->
+          StateMachinePackage.eINSTANCE.getState_InternalActions();
         default -> null;
       };
     }

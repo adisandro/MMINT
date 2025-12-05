@@ -39,27 +39,41 @@ public class PLGSNCreateNode extends CreateNode {
 
     @Override
     protected Class getContainer() {
-      return this.productLine.getRoot(GSNPackage.eINSTANCE.getSafetyCase());
+      return switch (this.classType) {
+        case EClass e when GSNPackage.eINSTANCE.getRelationshipDecorator().isSuperTypeOf(e) ->
+          (Class) this.container;
+        default -> this.productLine.getRoot(GSNPackage.eINSTANCE.getSafetyCase());
+      };
     }
 
     @Override
-    protected Class createClass(EClass classType) {
-      return switch (classType) {
+    protected Class createClass() {
+      return switch (this.classType) {
+        case EClass e when GSNPackage.eINSTANCE.getRelationshipDecorator().isSuperTypeOf(e) ->
+          PLGSNFactory.eINSTANCE.createPLGSNRelationshipDecorator();
         case EClass e when GSNPackage.eINSTANCE.getArgumentElement().isSuperTypeOf(e) ->
           PLGSNFactory.eINSTANCE.createPLGSNArgumentElement();
-        default -> super.createClass(classType);
+        default -> super.createClass();
       };
     }
 
     @Override
     protected @Nullable EReference getContainmentType() {
       return switch (this.classType) {
-        case "Goal" -> GSNPackage.eINSTANCE.getSafetyCase_Goals();
-        case "Strategy" -> GSNPackage.eINSTANCE.getSafetyCase_Strategies();
-        case "Solution" -> GSNPackage.eINSTANCE.getSafetyCase_Solutions();
-        case "Context" -> GSNPackage.eINSTANCE.getSafetyCase_Contexts();
-        case "Justification" -> GSNPackage.eINSTANCE.getSafetyCase_Justifications();
-        case "Assumption" -> GSNPackage.eINSTANCE.getSafetyCase_Assumptions();
+        case EClass e when GSNPackage.eINSTANCE.getGoal().isSuperTypeOf(e) ->
+          GSNPackage.eINSTANCE.getSafetyCase_Goals();
+        case EClass e when GSNPackage.eINSTANCE.getStrategy().isSuperTypeOf(e) ->
+          GSNPackage.eINSTANCE.getSafetyCase_Strategies();
+        case EClass e when GSNPackage.eINSTANCE.getSolution().isSuperTypeOf(e) ->
+          GSNPackage.eINSTANCE.getSafetyCase_Solutions();
+        case EClass e when GSNPackage.eINSTANCE.getContext().isSuperTypeOf(e) ->
+          GSNPackage.eINSTANCE.getSafetyCase_Contexts();
+        case EClass e when GSNPackage.eINSTANCE.getJustification().isSuperTypeOf(e) ->
+          GSNPackage.eINSTANCE.getSafetyCase_Justifications();
+        case EClass e when GSNPackage.eINSTANCE.getAssumption().isSuperTypeOf(e) ->
+          GSNPackage.eINSTANCE.getSafetyCase_Assumptions();
+        case EClass e when GSNPackage.eINSTANCE.getRelationshipDecorator().isSuperTypeOf(e) ->
+          GSNPackage.eINSTANCE.getDecoratable_Decorators();
         default -> null;
       };
     }

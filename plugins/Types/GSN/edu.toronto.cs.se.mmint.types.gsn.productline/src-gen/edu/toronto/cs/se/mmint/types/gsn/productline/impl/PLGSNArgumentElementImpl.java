@@ -64,8 +64,7 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
   @Override
   public void instantiate() throws Exception {
     var title = "Instantiate placeholder text";
-    //TODO abstract into function
-    var node = getType().getName() + " " + String.join(",", getListOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()));
+    var node = getType().getName() + " " + getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id());
     for (var attr : getAttributes()) {
       if (attr.getType() != GSNPackage.eINSTANCE.getArgumentElement_Description()) {
         continue;
@@ -89,18 +88,13 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
    */
   @Override
   public void validate() throws Exception {
-    var validAttrs = getAttributes().stream()
-      .filter(a -> a.getType() == GSNPackage.eINSTANCE.getArgumentElement_Valid());
-    if (getAttributes().stream()
-          .filter(a -> a.getType() == GSNPackage.eINSTANCE.getArgumentElement_Description())
-          .anyMatch(a -> GSNBuilder.findPlaceholder(a.getValue()).isPresent())) {
-      //TODO abstract into function
-      var node = getType().getName() + " " +
-                 String.join(",", getListOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()));
-      validAttrs.forEach(a -> a.setValue(Boolean.FALSE.toString()));
+    if (getStreamOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_Description())
+          .anyMatch(a -> GSNBuilder.findPlaceholder(a).isPresent())) {
+      var node = getType().getName() + " " + getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id());
+      setAttribute(GSNPackage.eINSTANCE.getArgumentElement_Valid(), Boolean.FALSE.toString());
       throw new MMINTException(node + " description contains placeholder text to be instantiated");
     }
-    validAttrs.forEach(a -> a.setValue(Boolean.TRUE.toString()));
+    setAttribute(GSNPackage.eINSTANCE.getArgumentElement_Valid(), Boolean.TRUE.toString());
   }
 
   /**
