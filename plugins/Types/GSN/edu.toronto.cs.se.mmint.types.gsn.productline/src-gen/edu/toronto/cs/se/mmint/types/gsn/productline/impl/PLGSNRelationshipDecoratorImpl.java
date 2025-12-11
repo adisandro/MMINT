@@ -60,12 +60,20 @@ public class PLGSNRelationshipDecoratorImpl extends PLGSNArgumentElementImpl imp
   private void instantiateMultiple(Class decorated, boolean isSupported, int cardinality, @Nullable String hint,
                                    PLGSNTemplate template)
                                   throws MMINTException {
-    var n = GSNBuilder.askForMultiple(decorated.getType().getName() + " " + decorated.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()), cardinality, hint);
+    var n = GSNBuilder.askForMultiple(decorated.getType().getName() + " " +
+                                      decorated.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()), cardinality,
+                                      hint);
     if (n == 1) { // fast path, equivalent to optional
-
+      decorated.getReferences().addAll(
+        getReferences().stream()
+          .filter(r -> r.getType() != GSNPackage.eINSTANCE.getArgumentElement_Template())
+          .toList());
     }
     else {
-
+      for (var i = 0; i < n; i++) {
+        var idSuffix = "." + (i+1);
+        getReference(GSNPackage.eINSTANCE.getSupportable_SupportedBy());
+      }
     }
   }
 
@@ -83,6 +91,7 @@ public class PLGSNRelationshipDecoratorImpl extends PLGSNArgumentElementImpl imp
       case "CHOICE" -> instantiateChoice(decorated, isSupported, cardinality, hint);
       case "MULTIPLE" -> instantiateMultiple(decorated, isSupported, cardinality, hint, null);
     }
+    delete();
   }
 
   /**

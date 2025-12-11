@@ -44,7 +44,7 @@ public class PLGSNInstantiateTemplate extends AbstractExternalJavaAction {
     if (plTemplates.isEmpty() ||
         plTemplates.get(0).getStreamOfReference(GSNPackage.eINSTANCE.getTemplate_Elements())
           .flatMap(c -> c.getStreamOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_Valid()))
-          .allMatch(v -> Boolean.valueOf(v))) {
+          .allMatch(Boolean::valueOf)) {
       return false;
     }
     return true;
@@ -76,7 +76,7 @@ public class PLGSNInstantiateTemplate extends AbstractExternalJavaAction {
       }
       catch (MIDDialogCancellation e) {}
       catch (Exception e) {
-        var id = this.plTemplate.getListOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()).get(0);
+        var id = this.plTemplate.getAttribute(GSNPackage.eINSTANCE.getTemplate_Id());
         MMINTException.print(IStatus.ERROR, "Error instantiating GSN template " + id, e);
       }
     }

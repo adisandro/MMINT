@@ -89,7 +89,17 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
     var plElements = getStreamOfReference(GSNPackage.eINSTANCE.getTemplate_Elements())
       .filter(PLGSNArgumentElement.class::isInstance)
       .map(e -> (PLGSNArgumentElement) e)
-      .collect(Collectors.toList());
+      .toList();
+    // instantiate relationship decorators first to fix the structure
+    for (var plElement : plElements) {
+      if (plElement.getListOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_Valid()).stream()
+            .allMatch(Boolean::valueOf) ||
+          !plElement.instanceOf(GSNPackage.eINSTANCE.getRelationshipDecorator()) ||
+          plElement.eContainer() == null) {
+        continue;
+      }
+      plElement.instantiate();
+    }
     for (var plElement : plElements) {
       if (plElement.getListOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_Valid()).stream()
             .allMatch(Boolean::valueOf) ||
