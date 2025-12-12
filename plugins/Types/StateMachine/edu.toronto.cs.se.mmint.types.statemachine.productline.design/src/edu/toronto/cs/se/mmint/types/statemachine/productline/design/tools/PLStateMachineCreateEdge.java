@@ -40,7 +40,7 @@ public class PLStateMachineCreateEdge extends CreateEdge {
     protected @Nullable RefSpec getContainerSpec(Class edgeClass) {
       return switch (this.classType) {
         case EClass e when this.sm.getTransition().isSuperTypeOf(e) ->
-          new RefSpec(this.productLine.getRoot(this.sm.getStateMachine()), this.sm.getStateMachine_Transitions(),
+          new RefSpec(this.productLine.getRoot(), this.sm.getStateMachine_Transitions(),
                       edgeClass);
         default -> null;
       };

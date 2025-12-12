@@ -58,8 +58,7 @@ public class PLGSNRelationshipDecoratorImpl extends PLGSNArgumentElementImpl imp
    * @generated NOT
    */
   private void instantiateMultiple(Class decorated, boolean isSupported, int cardinality, @Nullable String hint,
-                                   PLGSNTemplate template)
-                                  throws MMINTException {
+                                   PLGSNTemplate template) throws MMINTException {
     var n = GSNBuilder.askForMultiple(decorated.getType().getName() + " " +
                                       decorated.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()), cardinality,
                                       hint);
@@ -74,6 +73,29 @@ public class PLGSNRelationshipDecoratorImpl extends PLGSNArgumentElementImpl imp
         var idSuffix = "." + (i+1);
         getReference(GSNPackage.eINSTANCE.getSupportable_SupportedBy());
       }
+//    var safetyCase = decorated.getProductLine().getRoot(GSNPackage.eINSTANCE.getSafetyCase());
+//    if (isSupported) {
+//      for (var i = 0; i < n; i++) {
+//        var idSuffix = "." + (i+1);
+//        getSupportedBy().forEach(sb -> {
+//          var copySupportedBy = GSNFactory.eINSTANCE.createSupportedBy();
+//          copySupportedBy.setTarget(copySubtree(sb.getTarget(), idSuffix, safetyCase, template));
+//          ((Supportable) decorated).getSupportedBy().add(copySupportedBy);
+//        });
+//      }
+//      getSupportedBy().forEach(sb -> dropSubtree(sb.getTarget(), safetyCase));
+//    }
+//    else {
+//      for (var i = 0; i < n; i++) {
+//        var idSuffix = "." + (i+1);
+//        getInContextOf().forEach(ico -> {
+//          var copyInContextOf = GSNFactory.eINSTANCE.createInContextOf();
+//          copyInContextOf.setContext(copySubtree(ico.getContext(), idSuffix, safetyCase, template));
+//          ((Contextualizable) decorated).getInContextOf().add(copyInContextOf);
+//        });
+//      }
+//      getInContextOf().forEach(ico -> dropSubtree(ico.getContext(), safetyCase));
+//    }
     }
   }
 

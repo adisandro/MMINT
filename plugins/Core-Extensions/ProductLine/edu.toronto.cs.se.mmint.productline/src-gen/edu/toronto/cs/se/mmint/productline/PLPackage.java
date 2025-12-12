@@ -138,7 +138,7 @@ public interface PLPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCT_LINE___GET_ROOT__ECLASS = 1;
+  int PRODUCT_LINE___GET_ROOT = 1;
 
   /**
    * The number of operations of the '<em>Product Line</em>' class.
@@ -716,14 +716,14 @@ public interface PLPackage extends EPackage {
   EOperation getProductLine__GetReasoner();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.ProductLine#getRoot(org.eclipse.emf.ecore.EClass) <em>Get Root</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.productline.ProductLine#getRoot() <em>Get Root</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Get Root</em>' operation.
-   * @see edu.toronto.cs.se.mmint.productline.ProductLine#getRoot(org.eclipse.emf.ecore.EClass)
+   * @see edu.toronto.cs.se.mmint.productline.ProductLine#getRoot()
    * @generated
    */
-  EOperation getProductLine__GetRoot__EClass();
+  EOperation getProductLine__GetRoot();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.productline.PLElement <em>Element</em>}'.
@@ -1165,7 +1165,7 @@ public interface PLPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation PRODUCT_LINE___GET_ROOT__ECLASS = PLPackage.eINSTANCE.getProductLine__GetRoot__EClass();
+    EOperation PRODUCT_LINE___GET_ROOT = PLPackage.eINSTANCE.getProductLine__GetRoot();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.productline.impl.PLElementImpl <em>Element</em>}' class.

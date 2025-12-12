@@ -13,7 +13,6 @@
 package edu.toronto.cs.se.mmint.productline;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -129,9 +128,9 @@ public interface ProductLine extends EObject {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model required="true" rootTypeRequired="true"
+   * @model kind="operation" required="true"
    * @generated
    */
-  edu.toronto.cs.se.mmint.productline.Class getRoot(EClass rootType);
+  edu.toronto.cs.se.mmint.productline.Class getRoot();
 
 } // ProductLine

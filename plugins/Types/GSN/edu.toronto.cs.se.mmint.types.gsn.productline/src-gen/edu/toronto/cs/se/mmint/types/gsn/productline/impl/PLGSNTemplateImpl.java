@@ -74,8 +74,8 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
   public void import_(ProductLine productLine) throws Exception {
     var templatePL = this.getProductLine();
     var rootType = GSNPackage.eINSTANCE.getSafetyCase();
-    var plSC = productLine.getRoot(rootType);
-    var templatePLSC = templatePL.getRoot(rootType);
+    var plSC = productLine.getRoot();
+    var templatePLSC = templatePL.getRoot();
     plSC.getReferences().addAll(templatePLSC.getReferences());
     templatePL.getClasses().remove(templatePLSC);
     productLine.getClasses().addAll(templatePL.getClasses());

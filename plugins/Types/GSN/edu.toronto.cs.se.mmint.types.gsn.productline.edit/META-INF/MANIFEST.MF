@@ -12,6 +12,7 @@ Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=25))"
 Export-Package: edu.toronto.cs.se.mmint.types.gsn.productline.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit,
+ org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.modelepedia.gsn,
  edu.toronto.cs.se.modelepedia.gsn.edit,
  edu.toronto.cs.se.mmint.types.gsn.templates,

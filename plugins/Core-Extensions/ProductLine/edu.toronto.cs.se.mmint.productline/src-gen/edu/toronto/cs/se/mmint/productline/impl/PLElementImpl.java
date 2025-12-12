@@ -209,16 +209,16 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
   /**
    * @generated NOT
    */
-  public static @Nullable String getPresenceCondition(ProductLine productLine, @Nullable String presenceCondition) {
-    if (presenceCondition == null) {
+  public static @Nullable String getPresenceCondition(ProductLine pl, @Nullable String pc) {
+    if (pc == null) {
       try {
-        presenceCondition = productLine.getReasoner().getTrueLiteral();
+        pc = pl.getReasoner().getTrueLiteral();
       }
       catch (MMINTException e) {
         // fallback to null presence condition
       }
     }
-    return presenceCondition;
+    return pc;
   }
 
   /**
@@ -232,9 +232,9 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
   /**
    * @generated NOT
    */
-  public static boolean isAlwaysPresent(ProductLine productLine, @Nullable String presenceCondition) {
+  public static boolean isAlwaysPresent(ProductLine pl, @Nullable String pc) {
     try {
-      if (presenceCondition == null || presenceCondition.strip().equals(productLine.getReasoner().getTrueLiteral())) {
+      if (pc == null || pc.strip().equals(pl.getReasoner().getTrueLiteral())) {
         return true;
       }
       return false;
@@ -277,22 +277,21 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
   /**
    * @generated NOT
    */
-  public static String merge(ProductLine productLine, @Nullable String presenceCondition1,
-                             @Nullable String presenceCondition2) {
+  public static String merge(ProductLine pl, @Nullable String pc1, @Nullable String pc2) {
     String pc = null;
     try {
-      if (isAlwaysPresent(productLine, presenceCondition1)) {
-        pc = presenceCondition2;
+      if (isAlwaysPresent(pl, pc1)) {
+        pc = pc2;
       }
-      else if (isAlwaysPresent(productLine, presenceCondition2)) {
-        pc = presenceCondition1;
+      else if (isAlwaysPresent(pl, pc2)) {
+        pc = pc1;
       }
-      else if (presenceCondition1.equals(presenceCondition2)) {
-        pc = presenceCondition1;
+      else if (pc1.equals(pc2)) {
+        pc = pc1;
       }
       else {
-        var reasoner = productLine.getReasoner();
-        pc = reasoner.simplify(reasoner.and(presenceCondition1, presenceCondition2));
+        var reasoner = pl.getReasoner();
+        pc = reasoner.simplify(reasoner.and(pc1, pc2));
       }
     }
     catch (MMINTException e) {

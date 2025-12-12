@@ -15,10 +15,8 @@ package edu.toronto.cs.se.mmint.productline.design.tools;
 import java.util.Collection;
 import java.util.Map;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.annotation.Nullable;
@@ -26,13 +24,10 @@ import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.business.api.session.SessionManager;
 
 import edu.toronto.cs.se.mmint.productline.Class;
-import edu.toronto.cs.se.mmint.productline.PLElement;
-import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
+import edu.toronto.cs.se.mmint.productline.util.PLBuilder;
 
 public abstract class CreateNode extends AbstractExternalJavaAction {
-
-  protected abstract Command getCommand(TransactionalEditingDomain domain, EObject container, String classType);
 
   @Override
   public boolean canExecute(Collection<? extends EObject> arg0) {
@@ -48,40 +43,25 @@ public abstract class CreateNode extends AbstractExternalJavaAction {
     sDomain.getCommandStack().execute(getCommand(sDomain, container, classType));
   }
 
-  protected abstract class CreateNodeCommand extends RecordingCommand {
-    protected ProductLine productLine;
-    protected EObject container;
-    protected EClass classType;
+  protected abstract CreateNodeCommand getCommand(TransactionalEditingDomain domain, EObject container,
+                                                  String classType);
+
+  protected class CreateNodeCommand extends RecordingCommand {
+    protected ProductLine pl;
+    protected @Nullable Class container;
+    protected EClass type;
+    protected PLBuilder builder;
 
     public CreateNodeCommand(TransactionalEditingDomain domain, EObject container, String classType) {
       super(domain);
-      this.productLine = (container instanceof ProductLine pl) ? pl : ((PLElement) container).getProductLine();
-      this.container = container;
-      this.classType = (EClass) this.productLine.getMetamodel().getEClassifier(classType);
-    }
-
-    protected abstract Class getContainer();
-
-    protected abstract @Nullable EReference getContainmentType();
-
-    protected Class createClass() {
-      return PLFactory.eINSTANCE.createClass();
+      this.pl = (container instanceof ProductLine pl) ? pl : ((Class) container).getProductLine();
+      this.container = (container instanceof ProductLine) ? null : (Class) container;
+      this.type = (EClass) this.pl.getMetamodel().getEClassifier(classType);
     }
 
     @Override
     protected void doExecute() {
-      var clazz = createClass();
-      clazz.setType(this.classType);
-      this.productLine.getClasses().add(clazz);
-      var reference = PLFactory.eINSTANCE.createReference();
-      reference.setType(getContainmentType());
-      reference.setTarget(clazz);
-      getContainer().getReferences().add(reference);
-      for (var attrType : this.classType.getEAllAttributes()) {
-        var attribute = PLFactory.eINSTANCE.createAttribute();
-        attribute.setType(attrType);
-        clazz.getAttributes().add(attribute);
-      }
+      this.builder.create(this.type, this.container);
     }
   }
 }

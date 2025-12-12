@@ -491,9 +491,8 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
     if (attrs.size() == 1) {
       return attrs.get(0).getValue();
     }
-    return attrs.stream()
-      .map(a -> a.getPresenceConditionLabel(true) + " " + a.getValue())
-      .collect(Collectors.joining("\n"));
+    return attrs.stream().map(a -> a.getPresenceConditionLabel(true) + " " + a.getValue()).collect(Collectors.joining(
+                                                                                                                      "\n"));
   }
 
   /**

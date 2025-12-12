@@ -4,9 +4,7 @@
     nsPrefix="productline">
   <eClassifiers xsi:type="ecore:EClass" name="ProductLine">
     <eOperations name="getReasoner" lowerBound="1" eType="#//IPLFeaturesTrait" eExceptions="#//MMINTException"/>
-    <eOperations name="getRoot" lowerBound="1" eType="#//Class">
-      <eParameters name="rootType" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-    </eOperations>
+    <eOperations name="getRoot" lowerBound="1" eType="#//Class"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="featuresConstraint" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reasonerName" lowerBound="1"
