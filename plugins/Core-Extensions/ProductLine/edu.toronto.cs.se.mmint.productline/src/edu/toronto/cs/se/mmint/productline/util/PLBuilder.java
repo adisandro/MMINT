@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
@@ -40,20 +39,16 @@ public abstract class PLBuilder {
     if (container == null) {
       container = this.pl.getRoot();
     }
-    if (pc == null) {
-      try {
-        pc = this.pl.getReasoner().getTrueLiteral();
-      }
-      catch (MMINTException e) {
-        // leave null, will default to true when a reasoner is assigned
-      }
-    }
+    pc = this.pl.mergePresenceConditions(pc, container.getPresenceCondition());
     var clazz = createClass(type);
     clazz.setType(type);
     clazz.setPresenceCondition(pc);
     this.pl.getClasses().add(clazz);
-    container.addReference(getContainmentType(clazz), clazz);
+    container.addReference(getContainmentType(clazz), clazz, pc);
     for (var attrType : type.getEAllAttributes()) {
+      if (attrType.isDerived() || attrType.isTransient()) {
+        continue;
+      }
       clazz.addAttribute(attrType, null);
     }
 

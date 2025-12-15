@@ -27,7 +27,6 @@ import edu.toronto.cs.se.mmint.mid.relationship.impl.BinaryMappingImpl;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.impl.PLElementImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -217,8 +216,8 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
     if (baseClass == PLElement.class) {
       return switch (baseOperationID) {
       case PLPackage.PL_ELEMENT___GET_PRODUCT_LINE -> PLMIDPackage.PL_BINARY_MAPPING___GET_PRODUCT_LINE;
-      case PLPackage.PL_ELEMENT___IS_ALWAYS_PRESENT -> PLMIDPackage.PL_BINARY_MAPPING___IS_ALWAYS_PRESENT;
-      case PLPackage.PL_ELEMENT___GET_PRESENCE_CONDITION_LABEL__BOOLEAN -> PLMIDPackage.PL_BINARY_MAPPING___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
+      case PLPackage.PL_ELEMENT___IS_IN_ALL_PRODUCTS -> PLMIDPackage.PL_BINARY_MAPPING___IS_IN_ALL_PRODUCTS;
+      case PLPackage.PL_ELEMENT___GET_PRESENCE_CONDITION_LABEL -> PLMIDPackage.PL_BINARY_MAPPING___GET_PRESENCE_CONDITION_LABEL;
       default -> -1;
       };
     }
@@ -243,10 +242,10 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
     switch (operationID) {
     case PLMIDPackage.PL_BINARY_MAPPING___GET_PRODUCT_LINE:
       return getProductLine();
-    case PLMIDPackage.PL_BINARY_MAPPING___IS_ALWAYS_PRESENT:
-      return isAlwaysPresent();
-    case PLMIDPackage.PL_BINARY_MAPPING___GET_PRESENCE_CONDITION_LABEL__BOOLEAN:
-      return getPresenceConditionLabel((Boolean) arguments.get(0));
+    case PLMIDPackage.PL_BINARY_MAPPING___IS_IN_ALL_PRODUCTS:
+      return isInAllProducts();
+    case PLMIDPackage.PL_BINARY_MAPPING___GET_PRESENCE_CONDITION_LABEL:
+      return getPresenceConditionLabel();
     }
     return super.eInvoke(operationID, arguments);
   }
@@ -282,23 +281,23 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
    */
   @Override
   public String getPresenceCondition() {
-    return PLElementImpl.getPresenceCondition(getProductLine(), getPresenceConditionGen());
+    return getProductLine().getPresenceConditionOrDefault(getPresenceConditionGen());
   }
 
   /**
    * @generated NOT
    */
   @Override
-  public boolean isAlwaysPresent() {
-    return PLElementImpl.isAlwaysPresent(getProductLine(), getPresenceConditionGen());
+  public boolean isInAllProducts() {
+    return getProductLine().isInAllProducts(getPresenceConditionGen());
   }
 
   /**
    * @generated NOT
    */
   @Override
-  public String getPresenceConditionLabel(boolean withParenthesis) {
-    return PLElementImpl.getPresenceConditionLabel(this, withParenthesis);
+  public String getPresenceConditionLabel() {
+    return getProductLine().getPresenceConditionLabel(getPresenceConditionGen(), true);
   }
 
   /**
@@ -306,7 +305,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
    */
   @Override
   public String toMIDCustomPrintLabel() {
-    return PLElementImpl.getPresenceConditionLabel(this, true);
+    return getPresenceConditionLabel();
   }
 
   /**
@@ -314,7 +313,7 @@ public class PLBinaryMappingImpl extends BinaryMappingImpl implements PLBinaryMa
    */
   @Override
   public String toMIDCustomEditLabel() {
-    return PLElementImpl.getPresenceConditionLabel(this, false);
+    return getProductLine().getPresenceConditionLabel(getPresenceConditionGen(), false);
   }
 
   /**

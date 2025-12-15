@@ -24,7 +24,7 @@ public class PLGSNServices extends PLServices {
 
   // use different method names to allow full disabling of GSN layer
   public String getPLGSNElementLabel(EObject self) {
-    var pc = ((PLElement) self).getPresenceConditionLabel(true);
+    var pc = ((PLElement) self).getPresenceConditionLabel();
     var label = switch (self) {
       case PLGSNArgumentElement e -> {
         var id = e.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id());

@@ -133,4 +133,36 @@ public interface ProductLine extends EObject {
    */
   edu.toronto.cs.se.mmint.productline.Class getRoot();
 
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  String getPresenceConditionOrDefault(String presenceCondition);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model required="true"
+   * @generated
+   */
+  boolean isInAllProducts(String presenceCondition);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model required="true" withParenthesisRequired="true"
+   * @generated
+   */
+  String getPresenceConditionLabel(String presenceCondition, boolean withParenthesis);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  String mergePresenceConditions(String presenceCondition1, String presenceCondition2);
+
 } // ProductLine

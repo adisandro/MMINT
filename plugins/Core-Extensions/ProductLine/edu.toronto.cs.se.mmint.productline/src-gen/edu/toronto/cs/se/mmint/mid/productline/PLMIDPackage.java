@@ -1601,13 +1601,13 @@ public interface PLMIDPackage extends EPackage {
   int PL_MAPPING___GET_PRODUCT_LINE = RelationshipPackage.MAPPING_OPERATION_COUNT + 0;
 
   /**
-   * The operation id for the '<em>Is Always Present</em>' operation.
+   * The operation id for the '<em>Is In All Products</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PL_MAPPING___IS_ALWAYS_PRESENT = RelationshipPackage.MAPPING_OPERATION_COUNT + 1;
+  int PL_MAPPING___IS_IN_ALL_PRODUCTS = RelationshipPackage.MAPPING_OPERATION_COUNT + 1;
 
   /**
    * The operation id for the '<em>Get Presence Condition Label</em>' operation.
@@ -1616,7 +1616,7 @@ public interface PLMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PL_MAPPING___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = RelationshipPackage.MAPPING_OPERATION_COUNT + 2;
+  int PL_MAPPING___GET_PRESENCE_CONDITION_LABEL = RelationshipPackage.MAPPING_OPERATION_COUNT + 2;
 
   /**
    * The operation id for the '<em>To MID Custom Print Label</em>' operation.
@@ -1971,13 +1971,13 @@ public interface PLMIDPackage extends EPackage {
   int PL_BINARY_MAPPING___GET_PRODUCT_LINE = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT + 0;
 
   /**
-   * The operation id for the '<em>Is Always Present</em>' operation.
+   * The operation id for the '<em>Is In All Products</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PL_BINARY_MAPPING___IS_ALWAYS_PRESENT = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT + 1;
+  int PL_BINARY_MAPPING___IS_IN_ALL_PRODUCTS = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT + 1;
 
   /**
    * The operation id for the '<em>Get Presence Condition Label</em>' operation.
@@ -1986,8 +1986,7 @@ public interface PLMIDPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PL_BINARY_MAPPING___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT
-    + 2;
+  int PL_BINARY_MAPPING___GET_PRESENCE_CONDITION_LABEL = RelationshipPackage.BINARY_MAPPING_OPERATION_COUNT + 2;
 
   /**
    * The operation id for the '<em>To MID Custom Print Label</em>' operation.

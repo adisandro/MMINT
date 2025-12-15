@@ -248,6 +248,46 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
+  public EOperation getProductLine__GetPresenceConditionOrDefault__String() {
+    return this.productLineEClass.getEOperations().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getProductLine__IsInAllProducts__String() {
+    return this.productLineEClass.getEOperations().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getProductLine__GetPresenceConditionLabel__String_boolean() {
+    return this.productLineEClass.getEOperations().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EOperation getProductLine__MergePresenceConditions__String_String() {
+    return this.productLineEClass.getEOperations().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getPLElement() {
     return this.plElementEClass;
   }
@@ -278,7 +318,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getPLElement__IsAlwaysPresent() {
+  public EOperation getPLElement__IsInAllProducts() {
     return this.plElementEClass.getEOperations().get(1);
   }
 
@@ -288,7 +328,7 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
    * @generated
    */
   @Override
-  public EOperation getPLElement__GetPresenceConditionLabel__boolean() {
+  public EOperation getPLElement__GetPresenceConditionLabel() {
     return this.plElementEClass.getEOperations().get(2);
   }
 
@@ -630,12 +670,16 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     createEReference(this.productLineEClass, PLPackage.PRODUCT_LINE__METAMODEL);
     createEOperation(this.productLineEClass, PLPackage.PRODUCT_LINE___GET_REASONER);
     createEOperation(this.productLineEClass, PLPackage.PRODUCT_LINE___GET_ROOT);
+    createEOperation(this.productLineEClass, PLPackage.PRODUCT_LINE___GET_PRESENCE_CONDITION_OR_DEFAULT__STRING);
+    createEOperation(this.productLineEClass, PLPackage.PRODUCT_LINE___IS_IN_ALL_PRODUCTS__STRING);
+    createEOperation(this.productLineEClass, PLPackage.PRODUCT_LINE___GET_PRESENCE_CONDITION_LABEL__STRING_BOOLEAN);
+    createEOperation(this.productLineEClass, PLPackage.PRODUCT_LINE___MERGE_PRESENCE_CONDITIONS__STRING_STRING);
 
     this.plElementEClass = createEClass(PLPackage.PL_ELEMENT);
     createEAttribute(this.plElementEClass, PLPackage.PL_ELEMENT__PRESENCE_CONDITION);
     createEOperation(this.plElementEClass, PLPackage.PL_ELEMENT___GET_PRODUCT_LINE);
-    createEOperation(this.plElementEClass, PLPackage.PL_ELEMENT___IS_ALWAYS_PRESENT);
-    createEOperation(this.plElementEClass, PLPackage.PL_ELEMENT___GET_PRESENCE_CONDITION_LABEL__BOOLEAN);
+    createEOperation(this.plElementEClass, PLPackage.PL_ELEMENT___IS_IN_ALL_PRODUCTS);
+    createEOperation(this.plElementEClass, PLPackage.PL_ELEMENT___GET_PRESENCE_CONDITION_LABEL);
 
     this.classEClass = createEClass(PLPackage.CLASS);
     createEReference(this.classEClass, PLPackage.CLASS__ATTRIBUTES);
@@ -730,6 +774,24 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
 
     initEOperation(getProductLine__GetRoot(), this.getClass_(), "getRoot", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
+    op = initEOperation(getProductLine__GetPresenceConditionOrDefault__String(), this.ecorePackage.getEString(),
+                        "getPresenceConditionOrDefault", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEString(), "presenceCondition", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
+    op = initEOperation(getProductLine__IsInAllProducts__String(), this.ecorePackage.getEBoolean(), "isInAllProducts", 1, 1,
+                        EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEString(), "presenceCondition", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
+    op = initEOperation(getProductLine__GetPresenceConditionLabel__String_boolean(), this.ecorePackage.getEString(),
+                        "getPresenceConditionLabel", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEString(), "presenceCondition", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEBoolean(), "withParenthesis", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
+    op = initEOperation(getProductLine__MergePresenceConditions__String_String(), this.ecorePackage.getEString(),
+                        "mergePresenceConditions", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEString(), "presenceCondition1", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    addEParameter(op, this.ecorePackage.getEString(), "presenceCondition2", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+
     initEClass(this.plElementEClass, PLElement.class, "PLElement", EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPLElement_PresenceCondition(), this.ecorePackage.getEString(), "presenceCondition", null, 0, 1,
                    PLElement.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE,
@@ -738,12 +800,11 @@ public class PLPackageImpl extends EPackageImpl implements PLPackage {
     initEOperation(getPLElement__GetProductLine(), this.getProductLine(), "getProductLine", 1, 1, EPackageImpl.IS_UNIQUE,
                    EPackageImpl.IS_ORDERED);
 
-    initEOperation(getPLElement__IsAlwaysPresent(), this.ecorePackage.getEBoolean(), "isAlwaysPresent", 1, 1, EPackageImpl.IS_UNIQUE,
+    initEOperation(getPLElement__IsInAllProducts(), this.ecorePackage.getEBoolean(), "isInAllProducts", 1, 1, EPackageImpl.IS_UNIQUE,
                    EPackageImpl.IS_ORDERED);
 
-    op = initEOperation(getPLElement__GetPresenceConditionLabel__boolean(), this.ecorePackage.getEString(),
-                        "getPresenceConditionLabel", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEParameter(op, this.ecorePackage.getEBoolean(), "withParenthesis", 1, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
+    initEOperation(getPLElement__GetPresenceConditionLabel(), this.ecorePackage.getEString(), "getPresenceConditionLabel", 1,
+                   1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
 
     initEClass(this.classEClass, edu.toronto.cs.se.mmint.productline.Class.class, "Class", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE,
                EPackageImpl.IS_GENERATED_INSTANCE_CLASS);

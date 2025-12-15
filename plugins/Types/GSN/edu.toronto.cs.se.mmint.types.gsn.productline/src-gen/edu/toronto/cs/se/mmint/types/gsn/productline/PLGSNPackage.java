@@ -142,13 +142,13 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_ARGUMENT_ELEMENT___GET_PRODUCT_LINE = PLPackage.CLASS___GET_PRODUCT_LINE;
 
   /**
-   * The operation id for the '<em>Is Always Present</em>' operation.
+   * The operation id for the '<em>Is In All Products</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_ARGUMENT_ELEMENT___IS_ALWAYS_PRESENT = PLPackage.CLASS___IS_ALWAYS_PRESENT;
+  int PLGSN_ARGUMENT_ELEMENT___IS_IN_ALL_PRODUCTS = PLPackage.CLASS___IS_IN_ALL_PRODUCTS;
 
   /**
    * The operation id for the '<em>Get Presence Condition Label</em>' operation.
@@ -157,7 +157,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PLGSN_ARGUMENT_ELEMENT___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = PLPackage.CLASS___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
+  int PLGSN_ARGUMENT_ELEMENT___GET_PRESENCE_CONDITION_LABEL = PLPackage.CLASS___GET_PRESENCE_CONDITION_LABEL;
 
   /**
    * The operation id for the '<em>Get Stream Of Reference</em>' operation.
@@ -212,6 +212,15 @@ public interface PLGSNPackage extends EPackage {
    * @ordered
    */
   int PLGSN_ARGUMENT_ELEMENT___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = PLPackage.CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE;
+
+  /**
+   * The operation id for the '<em>Get List Of Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ARGUMENT_ELEMENT___GET_LIST_OF_ATTRIBUTE__EATTRIBUTE = PLPackage.CLASS___GET_LIST_OF_ATTRIBUTE__EATTRIBUTE;
 
   /**
    * The operation id for the '<em>Get Attribute</em>' operation.
@@ -422,13 +431,13 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_TEMPLATE___GET_PRODUCT_LINE = PLPackage.CLASS___GET_PRODUCT_LINE;
 
   /**
-   * The operation id for the '<em>Is Always Present</em>' operation.
+   * The operation id for the '<em>Is In All Products</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE___IS_ALWAYS_PRESENT = PLPackage.CLASS___IS_ALWAYS_PRESENT;
+  int PLGSN_TEMPLATE___IS_IN_ALL_PRODUCTS = PLPackage.CLASS___IS_IN_ALL_PRODUCTS;
 
   /**
    * The operation id for the '<em>Get Presence Condition Label</em>' operation.
@@ -437,7 +446,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PLGSN_TEMPLATE___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = PLPackage.CLASS___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
+  int PLGSN_TEMPLATE___GET_PRESENCE_CONDITION_LABEL = PLPackage.CLASS___GET_PRESENCE_CONDITION_LABEL;
 
   /**
    * The operation id for the '<em>Get Stream Of Reference</em>' operation.
@@ -492,6 +501,15 @@ public interface PLGSNPackage extends EPackage {
    * @ordered
    */
   int PLGSN_TEMPLATE___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = PLPackage.CLASS___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE;
+
+  /**
+   * The operation id for the '<em>Get List Of Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_TEMPLATE___GET_LIST_OF_ATTRIBUTE__EATTRIBUTE = PLPackage.CLASS___GET_LIST_OF_ATTRIBUTE__EATTRIBUTE;
 
   /**
    * The operation id for the '<em>Get Attribute</em>' operation.
@@ -729,13 +747,13 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_ANALYTIC_TEMPLATE___GET_PRODUCT_LINE = PLGSNPackage.PLGSN_TEMPLATE___GET_PRODUCT_LINE;
 
   /**
-   * The operation id for the '<em>Is Always Present</em>' operation.
+   * The operation id for the '<em>Is In All Products</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_ANALYTIC_TEMPLATE___IS_ALWAYS_PRESENT = PLGSNPackage.PLGSN_TEMPLATE___IS_ALWAYS_PRESENT;
+  int PLGSN_ANALYTIC_TEMPLATE___IS_IN_ALL_PRODUCTS = PLGSNPackage.PLGSN_TEMPLATE___IS_IN_ALL_PRODUCTS;
 
   /**
    * The operation id for the '<em>Get Presence Condition Label</em>' operation.
@@ -744,7 +762,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PLGSN_ANALYTIC_TEMPLATE___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = PLGSNPackage.PLGSN_TEMPLATE___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
+  int PLGSN_ANALYTIC_TEMPLATE___GET_PRESENCE_CONDITION_LABEL = PLGSNPackage.PLGSN_TEMPLATE___GET_PRESENCE_CONDITION_LABEL;
 
   /**
    * The operation id for the '<em>Get Stream Of Reference</em>' operation.
@@ -799,6 +817,15 @@ public interface PLGSNPackage extends EPackage {
    * @ordered
    */
   int PLGSN_ANALYTIC_TEMPLATE___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = PLGSNPackage.PLGSN_TEMPLATE___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE;
+
+  /**
+   * The operation id for the '<em>Get List Of Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ANALYTIC_TEMPLATE___GET_LIST_OF_ATTRIBUTE__EATTRIBUTE = PLGSNPackage.PLGSN_TEMPLATE___GET_LIST_OF_ATTRIBUTE__EATTRIBUTE;
 
   /**
    * The operation id for the '<em>Get Attribute</em>' operation.
@@ -1045,13 +1072,13 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_RELATIONSHIP_DECORATOR___GET_PRODUCT_LINE = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___GET_PRODUCT_LINE;
 
   /**
-   * The operation id for the '<em>Is Always Present</em>' operation.
+   * The operation id for the '<em>Is In All Products</em>' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_RELATIONSHIP_DECORATOR___IS_ALWAYS_PRESENT = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___IS_ALWAYS_PRESENT;
+  int PLGSN_RELATIONSHIP_DECORATOR___IS_IN_ALL_PRODUCTS = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___IS_IN_ALL_PRODUCTS;
 
   /**
    * The operation id for the '<em>Get Presence Condition Label</em>' operation.
@@ -1060,7 +1087,7 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PLGSN_RELATIONSHIP_DECORATOR___GET_PRESENCE_CONDITION_LABEL__BOOLEAN = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___GET_PRESENCE_CONDITION_LABEL__BOOLEAN;
+  int PLGSN_RELATIONSHIP_DECORATOR___GET_PRESENCE_CONDITION_LABEL = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___GET_PRESENCE_CONDITION_LABEL;
 
   /**
    * The operation id for the '<em>Get Stream Of Reference</em>' operation.
@@ -1115,6 +1142,15 @@ public interface PLGSNPackage extends EPackage {
    * @ordered
    */
   int PLGSN_RELATIONSHIP_DECORATOR___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___GET_STREAM_OF_ATTRIBUTE__EATTRIBUTE;
+
+  /**
+   * The operation id for the '<em>Get List Of Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___GET_LIST_OF_ATTRIBUTE__EATTRIBUTE = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___GET_LIST_OF_ATTRIBUTE__EATTRIBUTE;
 
   /**
    * The operation id for the '<em>Get Attribute</em>' operation.

@@ -38,14 +38,14 @@ public class PLGSNCreateEdge extends CreateEdge {
 
     @Override
     protected @Nullable RefSpec getContainerSpec(Class edgeClass) {
-      return switch (this.classType) {
+      return switch (this.type) {
         default -> null;
       };
     }
 
     @Override
     protected @Nullable RefSpec getSrcSpec(Class edgeClass) {
-      return switch (this.classType) {
+      return switch (this.type) {
         case EClass e when this.gsn.getSupportedBy().isSuperTypeOf(e) ->
           new RefSpec(this.srcClass, this.gsn.getSupportable_SupportedBy(), edgeClass);
         case EClass e when this.gsn.getInContextOf().isSuperTypeOf(e) ->
@@ -56,7 +56,7 @@ public class PLGSNCreateEdge extends CreateEdge {
 
     @Override
     protected @Nullable RefSpec getTgtSpec(Class edgeClass) {
-      return switch (this.classType) {
+      return switch (this.type) {
         case EClass e when this.gsn.getSupportedBy().isSuperTypeOf(e) ->
           new RefSpec(edgeClass, this.gsn.getSupportedBy_Target(), this.tgtClass);
         case EClass e when this.gsn.getInContextOf().isSuperTypeOf(e) ->

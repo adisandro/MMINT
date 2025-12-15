@@ -19,9 +19,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.jdt.annotation.Nullable;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
@@ -172,10 +170,10 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
     switch (operationID) {
     case PLPackage.PL_ELEMENT___GET_PRODUCT_LINE:
       return getProductLine();
-    case PLPackage.PL_ELEMENT___IS_ALWAYS_PRESENT:
-      return isAlwaysPresent();
-    case PLPackage.PL_ELEMENT___GET_PRESENCE_CONDITION_LABEL__BOOLEAN:
-      return getPresenceConditionLabel((Boolean) arguments.get(0));
+    case PLPackage.PL_ELEMENT___IS_IN_ALL_PRODUCTS:
+      return isInAllProducts();
+    case PLPackage.PL_ELEMENT___GET_PRESENCE_CONDITION_LABEL:
+      return getPresenceConditionLabel();
     }
     return super.eInvoke(operationID, arguments);
   }
@@ -209,96 +207,25 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
   /**
    * @generated NOT
    */
-  public static @Nullable String getPresenceCondition(ProductLine pl, @Nullable String pc) {
-    if (pc == null) {
-      try {
-        pc = pl.getReasoner().getTrueLiteral();
-      }
-      catch (MMINTException e) {
-        // fallback to null presence condition
-      }
-    }
-    return pc;
-  }
-
-  /**
-   * @generated NOT
-   */
   @Override
   public String getPresenceCondition() {
-    return getPresenceCondition(getProductLine(), getPresenceConditionGen());
-  }
-
-  /**
-   * @generated NOT
-   */
-  public static boolean isAlwaysPresent(ProductLine pl, @Nullable String pc) {
-    try {
-      if (pc == null || pc.strip().equals(pl.getReasoner().getTrueLiteral())) {
-        return true;
-      }
-      return false;
-    }
-    catch (MMINTException e) {
-      return false;
-    }
+    return getProductLine().getPresenceConditionOrDefault(getPresenceConditionGen());
   }
 
   /**
    * @generated NOT
    */
   @Override
-  public boolean isAlwaysPresent() {
-    return isAlwaysPresent(getProductLine(), getPresenceConditionGen());
-  }
-
-  /**
-   * @generated NOT
-   */
-  public static String getPresenceConditionLabel(PLElement plElem, boolean withParenthesis) {
-    if (plElem.isAlwaysPresent()) {
-      return "";
-    }
-    var pc = plElem.getPresenceCondition();
-    if (withParenthesis) {
-      return "(" + pc + ")";
-    }
-    return pc;
+  public boolean isInAllProducts() {
+    return getProductLine().isInAllProducts(getPresenceConditionGen());
   }
 
   /**
    * @generated NOT
    */
   @Override
-  public String getPresenceConditionLabel(boolean withParenthesis) {
-    return getPresenceConditionLabel(this, withParenthesis);
-  }
-
-  /**
-   * @generated NOT
-   */
-  public static String merge(ProductLine pl, @Nullable String pc1, @Nullable String pc2) {
-    String pc = null;
-    try {
-      if (isAlwaysPresent(pl, pc1)) {
-        pc = pc2;
-      }
-      else if (isAlwaysPresent(pl, pc2)) {
-        pc = pc1;
-      }
-      else if (pc1.equals(pc2)) {
-        pc = pc1;
-      }
-      else {
-        var reasoner = pl.getReasoner();
-        pc = reasoner.simplify(reasoner.and(pc1, pc2));
-      }
-    }
-    catch (MMINTException e) {
-      // fallback to null presence condition
-    }
-
-    return pc;
+  public String getPresenceConditionLabel() {
+    return getProductLine().getPresenceConditionLabel(getPresenceConditionGen(), true);
   }
 
 } //PLElementImpl

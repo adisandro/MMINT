@@ -124,8 +124,8 @@ public class PLMIDPackageImpl extends EPackageImpl implements PLMIDPackage {
 
     // Obtain or create and register package
     var registeredPLMIDPackage = EPackage.Registry.INSTANCE.get(PLMIDPackage.eNS_URI);
-    var thePLMIDPackage = registeredPLMIDPackage instanceof PLMIDPackageImpl
-      ? (PLMIDPackageImpl) registeredPLMIDPackage
+    var thePLMIDPackage = registeredPLMIDPackage instanceof PLMIDPackageImpl p
+      ? p
       : new PLMIDPackageImpl();
 
     PLMIDPackageImpl.isInited = true;

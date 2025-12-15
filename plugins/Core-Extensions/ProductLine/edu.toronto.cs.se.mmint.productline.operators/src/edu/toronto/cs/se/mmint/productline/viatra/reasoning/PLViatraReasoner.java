@@ -142,7 +142,7 @@ public class PLViatraReasoner extends ViatraReasoner {
 
   public Set<String> getPresenceConditions(Set<PLElement> plElements) {
     return plElements.stream()
-      .filter(e -> !e.isAlwaysPresent())
+      .filter(e -> !e.isInAllProducts())
       .map(e -> e.getPresenceCondition())
       .collect(Collectors.toSet());
   }

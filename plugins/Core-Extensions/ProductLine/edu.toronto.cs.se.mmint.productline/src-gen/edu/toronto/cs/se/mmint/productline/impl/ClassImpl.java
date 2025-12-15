@@ -382,7 +382,7 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
   public String toString() {
     var attributes = getAttributes().stream().map(a -> a.getType().getName() + ": " + a.getValue()).collect(Collectors
                                                                                                                       .joining(", "));
-    var pc = getPresenceConditionLabel(true);
+    var pc = getPresenceConditionLabel();
     return getType().getName() + (attributes.isEmpty() ? "" : "{" + attributes + "}") + (pc.isEmpty() ? "" : " " + pc);
   }
 
@@ -437,7 +437,7 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    */
   @Override
   public Reference addReference(EReference referenceType, edu.toronto.cs.se.mmint.productline.Class tgtClass) {
-    var pc = PLElementImpl.merge(getProductLine(), getPresenceCondition(), tgtClass.getPresenceCondition());
+    var pc = getProductLine().mergePresenceConditions(getPresenceCondition(), tgtClass.getPresenceCondition());
     return addReference(referenceType, tgtClass, pc);
   }
 
@@ -491,8 +491,7 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
     if (attrs.size() == 1) {
       return attrs.get(0).getValue();
     }
-    return attrs.stream().map(a -> a.getPresenceConditionLabel(true) + " " + a.getValue()).collect(Collectors.joining(
-                                                                                                                      "\n"));
+    return attrs.stream().map(a -> a.getPresenceConditionLabel() + " " + a.getValue()).collect(Collectors.joining("\n"));
   }
 
   /**

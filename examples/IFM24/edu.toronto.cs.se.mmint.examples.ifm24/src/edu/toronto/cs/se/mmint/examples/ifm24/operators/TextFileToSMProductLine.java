@@ -79,10 +79,10 @@ public class TextFileToSMProductLine extends ToProductLine {
         var fromState = plStates.get(tokens[1]);
         var toState = plStates.get(tokens[3]);
         var pc = "";
-        if (fromState.isAlwaysPresent()) {
+        if (fromState.isInAllProducts()) {
           pc = toState.getPresenceCondition();
         }
-        else if (toState.isAlwaysPresent()) {
+        else if (toState.isInAllProducts()) {
           pc = fromState.getPresenceCondition();
         }
         else {

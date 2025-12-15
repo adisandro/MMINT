@@ -28,7 +28,6 @@ import org.eclipse.sirius.business.api.session.SessionManager;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.impl.PLElementImpl;
 
 public abstract class CreateEdge extends AbstractExternalJavaAction {
 
@@ -52,17 +51,17 @@ public abstract class CreateEdge extends AbstractExternalJavaAction {
 
   protected abstract class CreateEdgeCommand extends RecordingCommand {
     public record RefSpec(Class owner, EReference type, Class target) {};
-    protected ProductLine productLine;
+    protected ProductLine pl;
     protected Class srcClass;
     protected Class tgtClass;
-    protected EClass classType;
+    protected EClass type;
 
     public CreateEdgeCommand(TransactionalEditingDomain domain, Class srcClass, Class tgtClass, String classType) {
       super(domain);
-      this.productLine = srcClass.getProductLine();
+      this.pl = srcClass.getProductLine();
       this.srcClass = srcClass;
       this.tgtClass = tgtClass;
-      this.classType = (EClass) this.productLine.getMetamodel().getEClassifier(classType);
+      this.type = (EClass) this.pl.getMetamodel().getEClassifier(classType);
     }
 
     protected abstract @Nullable RefSpec getContainerSpec(Class edgeClass);
@@ -81,12 +80,12 @@ public abstract class CreateEdge extends AbstractExternalJavaAction {
 
     @Override
     protected void doExecute() {
-      var pc = PLElementImpl.merge(this.productLine, this.srcClass.getPresenceCondition(),
-                                   this.tgtClass.getPresenceCondition());
+      var pc = this.pl.mergePresenceConditions(this.srcClass.getPresenceCondition(),
+                                               this.tgtClass.getPresenceCondition());
       var edgeClass = PLFactory.eINSTANCE.createClass();
-      edgeClass.setType(this.classType);
+      edgeClass.setType(this.type);
       edgeClass.setPresenceCondition(pc);
-      this.productLine.getClasses().add(edgeClass);
+      this.pl.getClasses().add(edgeClass);
       var containerSpec = getContainerSpec(edgeClass);
       if (containerSpec != null) {
         createReference(containerSpec, pc);

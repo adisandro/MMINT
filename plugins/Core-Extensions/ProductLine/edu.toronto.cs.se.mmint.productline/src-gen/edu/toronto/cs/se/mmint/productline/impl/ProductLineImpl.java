@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -374,6 +375,14 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
       }
     case PLPackage.PRODUCT_LINE___GET_ROOT:
       return getRoot();
+    case PLPackage.PRODUCT_LINE___GET_PRESENCE_CONDITION_OR_DEFAULT__STRING:
+      return getPresenceConditionOrDefault((String) arguments.get(0));
+    case PLPackage.PRODUCT_LINE___IS_IN_ALL_PRODUCTS__STRING:
+      return isInAllProducts((String) arguments.get(0));
+    case PLPackage.PRODUCT_LINE___GET_PRESENCE_CONDITION_LABEL__STRING_BOOLEAN:
+      return getPresenceConditionLabel((String) arguments.get(0), (Boolean) arguments.get(1));
+    case PLPackage.PRODUCT_LINE___MERGE_PRESENCE_CONDITIONS__STRING_STRING:
+      return mergePresenceConditions((String) arguments.get(0), (String) arguments.get(1));
     }
     return super.eInvoke(operationID, arguments);
   }
@@ -405,6 +414,84 @@ public class ProductLineImpl extends MinimalEObjectImpl.Container implements Pro
   public edu.toronto.cs.se.mmint.productline.Class getRoot() {
     var rootType = getMetamodel().getEClassifiers().get(0);
     return getClasses().stream().filter(c -> c.getType() == rootType).findFirst().get();
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public @Nullable String getPresenceConditionOrDefault(@Nullable String presenceCondition) {
+    if (presenceCondition == null) {
+      try {
+        presenceCondition = getReasoner().getTrueLiteral();
+      }
+      catch (MMINTException e) {
+        // fallback to null presence condition
+      }
+    }
+    return presenceCondition;
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public boolean isInAllProducts(@Nullable String presenceCondition) {
+    try {
+      if (presenceCondition == null || presenceCondition.strip().equals(getReasoner().getTrueLiteral())) {
+        return true;
+      }
+      return false;
+    }
+    catch (MMINTException e) {
+      return false;
+    }
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public String getPresenceConditionLabel(@Nullable String presenceCondition, boolean withParenthesis) {
+    if (isInAllProducts(presenceCondition)) {
+      return "";
+    }
+    var pc = getPresenceConditionOrDefault(presenceCondition);
+    if (withParenthesis) {
+      pc = "(" + pc + ")";
+    }
+    return pc;
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public @Nullable String mergePresenceConditions(@Nullable String presenceCondition1,
+                                                  @Nullable String presenceCondition2) {
+    String pc = null;
+    try {
+      if (isInAllProducts(presenceCondition1)) {
+        pc = presenceCondition2;
+      }
+      else if (isInAllProducts(presenceCondition2)) {
+        pc = presenceCondition1;
+      }
+      else if (presenceCondition1.equals(presenceCondition2)) {
+        pc = presenceCondition1;
+      }
+      else {
+        var reasoner = getReasoner();
+        pc = reasoner.simplify(reasoner.and(presenceCondition1, presenceCondition2));
+      }
+      if (pc == null) {
+        pc = getReasoner().getTrueLiteral();
+      }
+    }
+    catch (MMINTException e) {
+      // fallback to null presence condition
+    }
+    return pc;
   }
 
 } //ProductLineImpl

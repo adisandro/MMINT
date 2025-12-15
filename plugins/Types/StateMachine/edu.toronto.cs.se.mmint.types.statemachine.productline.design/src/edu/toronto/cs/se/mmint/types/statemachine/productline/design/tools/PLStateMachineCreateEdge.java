@@ -38,9 +38,9 @@ public class PLStateMachineCreateEdge extends CreateEdge {
 
     @Override
     protected @Nullable RefSpec getContainerSpec(Class edgeClass) {
-      return switch (this.classType) {
+      return switch (this.type) {
         case EClass e when this.sm.getTransition().isSuperTypeOf(e) ->
-          new RefSpec(this.productLine.getRoot(), this.sm.getStateMachine_Transitions(),
+          new RefSpec(this.pl.getRoot(), this.sm.getStateMachine_Transitions(),
                       edgeClass);
         default -> null;
       };
@@ -48,7 +48,7 @@ public class PLStateMachineCreateEdge extends CreateEdge {
 
     @Override
     protected @Nullable RefSpec getSrcSpec(Class edgeClass) {
-      return switch (this.classType) {
+      return switch (this.type) {
         case EClass e when this.sm.getTransition().isSuperTypeOf(e) ->
           new RefSpec(edgeClass, this.sm.getTransition_Source(), this.srcClass);
         default -> null;
@@ -57,7 +57,7 @@ public class PLStateMachineCreateEdge extends CreateEdge {
 
     @Override
     protected @Nullable RefSpec getTgtSpec(Class edgeClass) {
-      return switch (this.classType) {
+      return switch (this.type) {
         case EClass e when this.sm.getTransition().isSuperTypeOf(e) ->
           new RefSpec(edgeClass, this.sm.getTransition_Target(), this.tgtClass);
         default -> null;

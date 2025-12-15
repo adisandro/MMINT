@@ -23,7 +23,7 @@ public class PLStateMachineServices extends PLServices {
 
   // use different method names to allow full disabling of StateMachine layer
   public String getPLStateMachineElementLabel(EObject self) {
-    var pc = ((PLElement) self).getPresenceConditionLabel(true);
+    var pc = ((PLElement) self).getPresenceConditionLabel();
     var label = switch (self) {
       case Class c when c.instanceOf(StateMachinePackage.eINSTANCE.getState()) -> {
         var name = c.getAttribute(StateMachinePackage.eINSTANCE.getAbstractState_Name());

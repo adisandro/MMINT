@@ -85,8 +85,7 @@ public class PLFactoryImpl extends EFactoryImpl implements PLFactory {
   @Override
   public Object createFromString(EDataType eDataType, String initialValue) {
     switch (eDataType.getClassifierID()) {
-    default:
-      throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
@@ -98,8 +97,7 @@ public class PLFactoryImpl extends EFactoryImpl implements PLFactory {
   @Override
   public String convertToString(EDataType eDataType, Object instanceValue) {
     switch (eDataType.getClassifierID()) {
-    default:
-      throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    default -> throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 

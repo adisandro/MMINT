@@ -24,14 +24,26 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//ProductLine/metamodel"/>
       <genOperations ecoreOperation="productline.ecore#//ProductLine/getReasoner"/>
       <genOperations ecoreOperation="productline.ecore#//ProductLine/getRoot"/>
+      <genOperations ecoreOperation="productline.ecore#//ProductLine/getPresenceConditionOrDefault">
+        <genParameters ecoreParameter="productline.ecore#//ProductLine/getPresenceConditionOrDefault/presenceCondition"/>
+      </genOperations>
+      <genOperations ecoreOperation="productline.ecore#//ProductLine/isInAllProducts">
+        <genParameters ecoreParameter="productline.ecore#//ProductLine/isInAllProducts/presenceCondition"/>
+      </genOperations>
+      <genOperations ecoreOperation="productline.ecore#//ProductLine/getPresenceConditionLabel">
+        <genParameters ecoreParameter="productline.ecore#//ProductLine/getPresenceConditionLabel/presenceCondition"/>
+        <genParameters ecoreParameter="productline.ecore#//ProductLine/getPresenceConditionLabel/withParenthesis"/>
+      </genOperations>
+      <genOperations ecoreOperation="productline.ecore#//ProductLine/mergePresenceConditions">
+        <genParameters ecoreParameter="productline.ecore#//ProductLine/mergePresenceConditions/presenceCondition1"/>
+        <genParameters ecoreParameter="productline.ecore#//ProductLine/mergePresenceConditions/presenceCondition2"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="productline.ecore#//PLElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute productline.ecore#//PLElement/presenceCondition"/>
       <genOperations ecoreOperation="productline.ecore#//PLElement/getProductLine"/>
-      <genOperations ecoreOperation="productline.ecore#//PLElement/isAlwaysPresent"/>
-      <genOperations ecoreOperation="productline.ecore#//PLElement/getPresenceConditionLabel">
-        <genParameters ecoreParameter="productline.ecore#//PLElement/getPresenceConditionLabel/withParenthesis"/>
-      </genOperations>
+      <genOperations ecoreOperation="productline.ecore#//PLElement/isInAllProducts"/>
+      <genOperations ecoreOperation="productline.ecore#//PLElement/getPresenceConditionLabel"/>
     </genClasses>
     <genClasses ecoreClass="productline.ecore#//Class">
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference productline.ecore#//Class/attributes"/>

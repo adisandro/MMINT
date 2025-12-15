@@ -69,7 +69,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
     for (var eClassifier : ((EPackage) this.in0).getEClassifiers()) {
       var plEClass = createPLClass(eClassifier, ClassDiagramPackage.eINSTANCE.getClass_(), plClasses);
       var plEClassPC = plEClass.getPresenceCondition();
-      var classIsTrue = plEClass.isAlwaysPresent();
+      var classIsTrue = plEClass.isInAllProducts();
       plEClass.addReference(ClassDiagramPackage.eINSTANCE.getClassDiagram_Classes(), plEPackage, plEClassPC);
       plEClass.addAttribute(ClassDiagramPackage.eINSTANCE.getNamedElement_Name(), eClassifier.getName());
       if (!(eClassifier instanceof EClass eClass)) {
@@ -79,7 +79,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
         var plEAttribute = createPLClass(eAttribute, ClassDiagramPackage.eINSTANCE.getAttribute(), plClasses);
         var plEAttributePC = plEAttribute.getPresenceCondition();
         if (!classIsTrue) {
-          plEAttributePC = (plEAttribute.isAlwaysPresent()) ?
+          plEAttributePC = (plEAttribute.isInAllProducts()) ?
             plEClassPC :
             this.reasoner.simplify(this.reasoner.and(plEAttributePC, plEClassPC));
           plEAttribute.setPresenceCondition(plEAttributePC);
@@ -94,7 +94,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
         var plEOperation = createPLClass(eOperation, ClassDiagramPackage.eINSTANCE.getOperation(), plClasses);
         var plEOperationPC = plEOperation.getPresenceCondition();
         if (!classIsTrue) {
-          plEOperationPC = (plEOperation.isAlwaysPresent()) ?
+          plEOperationPC = (plEOperation.isInAllProducts()) ?
             plEClassPC :
             this.reasoner.simplify(this.reasoner.and(plEOperationPC, plEClassPC));
           plEOperation.setPresenceCondition(plEOperationPC);
@@ -111,12 +111,12 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
       }
       var plEClass = plClasses.get(MIDRegistry.getModelElementUri(eClass));
       var plEClassPC = plEClass.getPresenceCondition();
-      var classIsTrue = plEClass.isAlwaysPresent();
+      var classIsTrue = plEClass.isInAllProducts();
       for (var eSuperclass : eClass.getESuperTypes()) {
         var plESuperclass = plClasses.get(MIDRegistry.getModelElementUri(eSuperclass));
         var plESuperclassPC = plESuperclass.getPresenceCondition();
         if (!classIsTrue) {
-          plESuperclassPC = (plESuperclass.isAlwaysPresent()) ?
+          plESuperclassPC = (plESuperclass.isInAllProducts()) ?
             plEClassPC :
             this.reasoner.simplify(this.reasoner.and(plESuperclassPC, plEClassPC));
         }
@@ -149,8 +149,8 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
         var plEClassTgt = plClasses.get(MIDRegistry.getModelElementUri(eReference.getEType()));
         var plEClassTgtPC = plEClassTgt.getPresenceCondition();
         var plEReferencePC = plEReference.getPresenceCondition();
-        var tgtIsTrue = plEClassTgt.isAlwaysPresent();
-        var assocIsTrue = plEReference.isAlwaysPresent();
+        var tgtIsTrue = plEClassTgt.isInAllProducts();
+        var assocIsTrue = plEReference.isInAllProducts();
         if (classIsTrue) {
           // tgtIsTrue => plEReferencePC stays as-is
           if (!tgtIsTrue) {

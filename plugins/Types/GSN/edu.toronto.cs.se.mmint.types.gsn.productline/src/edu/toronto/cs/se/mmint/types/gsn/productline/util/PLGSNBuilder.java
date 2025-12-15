@@ -18,7 +18,6 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
-import edu.toronto.cs.se.mmint.productline.impl.PLElementImpl;
 import edu.toronto.cs.se.mmint.productline.util.PLBuilder;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
@@ -62,14 +61,16 @@ public class PLGSNBuilder extends PLBuilder {
   @Override
   public Class create(EClass type, @Nullable Class container, @Nullable String pc) {
     var clazz = super.create(type, container, pc);
-    clazz.setAttribute(this.gsn.getArgumentElement_Valid(), Boolean.TRUE.toString());
+    if (clazz.instanceOf(this.gsn.getArgumentElement())) {
+      clazz.setAttribute(this.gsn.getArgumentElement_Valid(), Boolean.TRUE.toString());
+    }
 
     return clazz;
   }
 
   public void addSupporter(PLGSNArgumentElement plSupportable, PLGSNArgumentElement plSupporter) {
-    var pc = PLElementImpl.merge(this.pl, plSupportable.getPresenceCondition(),
-                                 plSupporter.getPresenceCondition());
+    var pc = this.pl.mergePresenceConditions(plSupportable.getPresenceCondition(),
+                                             plSupporter.getPresenceCondition());
     var plSupportedBy = this.plF.createClass();
     plSupportedBy.setType(this.gsn.getSupportedBy());
     plSupportedBy.setPresenceCondition(pc);

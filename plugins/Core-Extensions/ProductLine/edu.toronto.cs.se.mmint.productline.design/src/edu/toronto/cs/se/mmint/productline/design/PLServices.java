@@ -25,7 +25,7 @@ import edu.toronto.cs.se.mmint.productline.Reference;
 public class PLServices {
 
   public String getPLElementLabel(EObject self) {
-    var pc = ((PLElement) self).getPresenceConditionLabel(true);
+    var pc = ((PLElement) self).getPresenceConditionLabel();
     var label = switch (self) {
       case Class c -> {
         var l = c.getType().getName();
