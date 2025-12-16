@@ -19,7 +19,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.util.PLBuilder;
-import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
@@ -43,6 +42,33 @@ public class PLGSNBuilder extends PLBuilder {
       case Class c when c.instanceOf(this.gsn.getJustification()) -> this.gsn.getSafetyCase_Justifications();
       case Class c when c.instanceOf(this.gsn.getAssumption()) -> this.gsn.getSafetyCase_Assumptions();
       case Class c when c.instanceOf(this.gsn.getRelationshipDecorator()) -> this.gsn.getDecoratable_Decorators();
+      case Class c when c.instanceOf(this.gsn.getSupportedBy()) -> this.gsn.getSupportable_SupportedBy();
+      case Class c when c.instanceOf(this.gsn.getInContextOf()) -> this.gsn.getContextualizable_InContextOf();
+      default -> null;
+    };
+  }
+
+  @Override
+  protected @Nullable Class getContainerFromSrcTgt(Class clazz, Class src, Class tgt) {
+    return switch (clazz) {
+      case Class c when c.instanceOf(this.gsn.getSupportedBy()) -> src;
+      case Class c when c.instanceOf(this.gsn.getInContextOf()) -> src;
+      default -> null;
+    };
+  }
+
+  @Override
+  protected @Nullable EReference getSrcReferenceType(Class clazz) {
+    return switch (clazz) {
+      default -> null;
+    };
+  }
+
+  @Override
+  protected @Nullable EReference getTgtReferenceType(Class clazz) {
+    return switch (clazz) {
+      case Class c when c.instanceOf(this.gsn.getSupportedBy()) -> this.gsn.getSupportedBy_Target();
+      case Class c when c.instanceOf(this.gsn.getInContextOf()) -> this.gsn.getInContextOf_Context();
       default -> null;
     };
   }
@@ -59,23 +85,12 @@ public class PLGSNBuilder extends PLBuilder {
   }
 
   @Override
-  public Class create(EClass type, @Nullable Class container, @Nullable String pc) {
+  public Class create(EClass type, Class container, @Nullable String pc) {
     var clazz = super.create(type, container, pc);
     if (clazz.instanceOf(this.gsn.getArgumentElement())) {
       clazz.setAttribute(this.gsn.getArgumentElement_Valid(), Boolean.TRUE.toString());
     }
 
     return clazz;
-  }
-
-  public void addSupporter(PLGSNArgumentElement plSupportable, PLGSNArgumentElement plSupporter) {
-    var pc = this.pl.mergePresenceConditions(plSupportable.getPresenceCondition(),
-                                             plSupporter.getPresenceCondition());
-    var plSupportedBy = this.plF.createClass();
-    plSupportedBy.setType(this.gsn.getSupportedBy());
-    plSupportedBy.setPresenceCondition(pc);
-    this.pl.getClasses().add(plSupportedBy);
-    plSupportedBy.addReference(this.gsn.getSupportedBy_Source(), plSupportable, pc);
-    plSupportedBy.addReference(this.gsn.getSupportedBy_Target(), plSupporter, pc);
   }
 }

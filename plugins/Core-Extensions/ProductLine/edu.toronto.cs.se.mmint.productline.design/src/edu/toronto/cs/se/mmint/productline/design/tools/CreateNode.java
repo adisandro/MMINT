@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.business.api.session.SessionManager;
 
@@ -48,14 +47,14 @@ public abstract class CreateNode extends AbstractExternalJavaAction {
 
   protected class CreateNodeCommand extends RecordingCommand {
     protected ProductLine pl;
-    protected @Nullable Class container;
+    protected Class container;
     protected EClass type;
     protected PLBuilder builder;
 
     public CreateNodeCommand(TransactionalEditingDomain domain, EObject container, String classType) {
       super(domain);
       this.pl = (container instanceof ProductLine pl) ? pl : ((Class) container).getProductLine();
-      this.container = (container instanceof ProductLine) ? null : (Class) container;
+      this.container = (container instanceof ProductLine) ? this.pl.getRoot() : (Class) container;
       this.type = (EClass) this.pl.getMetamodel().getEClassifier(classType);
     }
 

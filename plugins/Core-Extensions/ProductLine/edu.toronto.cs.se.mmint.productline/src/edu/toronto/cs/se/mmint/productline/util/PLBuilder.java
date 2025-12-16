@@ -27,20 +27,20 @@ public abstract class PLBuilder {
   public PLBuilder(ProductLine pl) {
     this.pl = pl;
     this.plF = PLFactory.eINSTANCE;
+    //TODO we should also convert all operators to use it, e.g. ToProductLine
   }
 
   protected abstract @Nullable EReference getContainmentType(Class clazz);
+  protected abstract @Nullable Class getContainerFromSrcTgt(Class clazz, Class src, Class tgt);
+  protected abstract @Nullable EReference getSrcReferenceType(Class clazz);
+  protected abstract @Nullable EReference getTgtReferenceType(Class clazz);
 
   protected Class createClass(EClass type) {
     return this.plF.createClass();
   }
 
-  public Class create(EClass type, @Nullable Class container, @Nullable String pc) {
-    if (container == null) {
-      container = this.pl.getRoot();
-    }
+  protected void create(Class clazz, EClass type, Class container, @Nullable String pc) {
     pc = this.pl.mergePresenceConditions(pc, container.getPresenceCondition());
-    var clazz = createClass(type);
     clazz.setType(type);
     clazz.setPresenceCondition(pc);
     this.pl.getClasses().add(clazz);
@@ -51,15 +51,38 @@ public abstract class PLBuilder {
       }
       clazz.addAttribute(attrType, null);
     }
+  }
+
+  public Class create(EClass type, Class container, @Nullable String pc) {
+    var clazz = createClass(type);
+    create(clazz, type, container, pc);
 
     return clazz;
   }
 
-  public Class create(EClass type, @Nullable Class container) {
+  public Class create(EClass type, Class container) {
     return create(type, container, null);
   }
 
-  public Class create(EClass type) {
-    return create(type, null, null);
+  public Class connect(EClass type, Class src, Class tgt, @Nullable String pc) {
+    var clazz = createClass(type);
+    var container = getContainerFromSrcTgt(clazz, src, tgt);
+    var pcEdge = this.pl.mergePresenceConditions(src.getPresenceCondition(), tgt.getPresenceCondition());
+    pc = this.pl.mergePresenceConditions(pc, pcEdge);
+    create(clazz, type, container, pc);
+    var srcRef = getSrcReferenceType(clazz);
+    if (srcRef != null) {
+      clazz.addReference(srcRef, src, clazz.getPresenceCondition());
+    }
+    var tgtRef = getTgtReferenceType(clazz);
+    if (tgtRef != null) {
+      clazz.addReference(tgtRef, tgt, clazz.getPresenceCondition());
+    }
+
+    return clazz;
+  }
+
+  public Class connect(EClass type, Class src, Class tgt) {
+    return connect(type, src, tgt, null);
   }
 }
