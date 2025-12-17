@@ -20,7 +20,6 @@ import java.util.Properties;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
@@ -42,6 +41,7 @@ import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
+import edu.toronto.cs.se.mmint.productline.util.PLBuilder;
 
 public class ToProductLine extends OperatorImpl {
   public final static OperatorParameter IN0 = new OperatorParameter("product", MMINTConstants.ROOT_MODEL_URI);
@@ -61,6 +61,7 @@ public class ToProductLine extends OperatorImpl {
   protected IPLFeaturesTrait reasoner;
   public final static String PROP_PRESENCECONDITION = "presenceCondition";
   protected String presenceCondition;
+  protected PLBuilder builder;
 
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
@@ -80,40 +81,19 @@ public class ToProductLine extends OperatorImpl {
     this.out0 = PLFactory.eINSTANCE.createProductLine();
     this.out0.setMetamodel(productModel.getMetatype().getEMFTypeRoot());
     this.out0.setReasonerName(this.reasoner.getName());
-  }
-
-  protected void addPLClass(Class plClass, String plClassesKey, String presenceCondition, EClass plType,
-                            Map<String, Class> plClasses) {
-    plClass.setPresenceCondition(presenceCondition);
-    plClass.setType(plType);
-    this.out0.getClasses().add(plClass);
-    plClasses.put(plClassesKey, plClass);
-  }
-
-  protected void addPLClass(Class plClass, EObject modelObj, EClass plType, Map<String, Class> plClasses) {
-    addPLClass(plClass, MIDRegistry.getModelElementUri(modelObj), this.presenceCondition, plType, plClasses);
-  }
-
-  protected Class createPLClass(EObject modelObj, EClass plType, Map<String, Class> plClasses) {
-    var plClass = PLFactory.eINSTANCE.createClass();
-    addPLClass(plClass, modelObj, plType, plClasses);
-
-    return plClass;
+    this.builder = new PLBuilder(this.out0);
   }
 
   private void createPLClassAndAttributes(EObject pModelObj, Map<String, Class> plClasses) {
-    var plType = pModelObj.eClass();
-    var plClass = createPLClass(pModelObj, plType, plClasses);
-    for (var pAttribute : plType.getEAllAttributes()) {
-      if (pAttribute.isDerived() || pAttribute.isTransient()) {
+    var plClass = this.builder.create(pModelObj.eClass(), this.presenceCondition);
+    for (var plAttr : plClass.getAttributes()) {
+      var pValue = pModelObj.eGet(plAttr.getType());
+      if (pValue == null) {
         continue;
       }
-      var plValue = pModelObj.eGet(pAttribute);
-      if (plValue == null) {
-        continue;
-      }
-      plClass.addAttribute(pAttribute, plValue.toString());
+      plAttr.setValue(pValue.toString());
     }
+    plClasses.put(MIDRegistry.getModelElementUri(pModelObj), plClass);
   }
 
   private void createPLReferences(EObject pModelObj, Map<String, Class> plClasses, Set<EReference> pOpposites) {
@@ -147,7 +127,6 @@ public class ToProductLine extends OperatorImpl {
   }
 
   protected void toProductLine(Map<String, Model> inputsByName) throws Exception {
-
     var plClasses = new HashMap<String, Class>();
     createPLClassAndAttributes(this.in0, plClasses);
     // pass 1: classes and attributes

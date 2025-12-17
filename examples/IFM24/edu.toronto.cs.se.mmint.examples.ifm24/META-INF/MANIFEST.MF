@@ -21,4 +21,5 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.mmint.types.gsn.templates,
  edu.toronto.cs.se.mmint.types.gsn.productline,
  edu.toronto.cs.se.modelepedia.gsn,
+ edu.toronto.cs.se.mmint.types.statemachine.productline.design,
  edu.toronto.cs.se.modelepedia.statemachine

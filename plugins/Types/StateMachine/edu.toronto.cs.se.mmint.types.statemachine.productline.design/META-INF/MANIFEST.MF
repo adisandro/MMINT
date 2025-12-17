@@ -3,6 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.types.statemachine.productline.design;singleton:=true
 Bundle-Version: 2.27.99.qualifier
+Export-Package: edu.toronto.cs.se.mmint.types.statemachine.productline.util
 Bundle-Activator: edu.toronto.cs.se.mmint.types.statemachine.productline.design.Activator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,

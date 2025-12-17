@@ -20,6 +20,7 @@ import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.util.PLBuilder;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
+import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 public class PLGSNBuilder extends PLBuilder {
@@ -33,7 +34,7 @@ public class PLGSNBuilder extends PLBuilder {
   }
 
   @Override
-  protected @Nullable EReference getContainmentType(Class clazz) {
+  public @Nullable EReference getContainmentType(Class clazz) {
     return switch (clazz) {
       case Class c when c.instanceOf(this.gsn.getGoal()) -> this.gsn.getSafetyCase_Goals();
       case Class c when c.instanceOf(this.gsn.getStrategy()) -> this.gsn.getSafetyCase_Strategies();
@@ -44,7 +45,7 @@ public class PLGSNBuilder extends PLBuilder {
       case Class c when c.instanceOf(this.gsn.getRelationshipDecorator()) -> this.gsn.getDecoratable_Decorators();
       case Class c when c.instanceOf(this.gsn.getSupportedBy()) -> this.gsn.getSupportable_SupportedBy();
       case Class c when c.instanceOf(this.gsn.getInContextOf()) -> this.gsn.getContextualizable_InContextOf();
-      default -> null;
+      default -> super.getContainmentType(clazz);
     };
   }
 
@@ -53,14 +54,14 @@ public class PLGSNBuilder extends PLBuilder {
     return switch (clazz) {
       case Class c when c.instanceOf(this.gsn.getSupportedBy()) -> src;
       case Class c when c.instanceOf(this.gsn.getInContextOf()) -> src;
-      default -> null;
+      default -> super.getContainerFromSrcTgt(clazz, src, tgt);
     };
   }
 
   @Override
   protected @Nullable EReference getSrcReferenceType(Class clazz) {
     return switch (clazz) {
-      default -> null;
+      default -> super.getSrcReferenceType(clazz);
     };
   }
 
@@ -69,23 +70,27 @@ public class PLGSNBuilder extends PLBuilder {
     return switch (clazz) {
       case Class c when c.instanceOf(this.gsn.getSupportedBy()) -> this.gsn.getSupportedBy_Target();
       case Class c when c.instanceOf(this.gsn.getInContextOf()) -> this.gsn.getInContextOf_Context();
-      default -> null;
+      default -> super.getTgtReferenceType(clazz);
     };
   }
 
   @Override
-  protected Class createClass(EClass type) {
+  protected Class _createClass(EClass type) {
     return switch (type) {
+      case EClass e when GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate().isSuperTypeOf(e) ->
+        this.gsnF.createPLGSNAnalyticTemplate();
+      case EClass e when GSNPackage.eINSTANCE.getTemplate().isSuperTypeOf(e) ->
+        this.gsnF.createPLGSNTemplate();
       case EClass e when this.gsn.getRelationshipDecorator().isSuperTypeOf(e) ->
         this.gsnF.createPLGSNRelationshipDecorator();
       case EClass e when this.gsn.getArgumentElement().isSuperTypeOf(e) ->
         this.gsnF.createPLGSNArgumentElement();
-      default -> super.createClass(type);
+      default -> super._createClass(type);
     };
   }
 
   @Override
-  public Class create(EClass type, Class container, @Nullable String pc) {
+  public Class create(EClass type, @Nullable Class container, @Nullable String pc) {
     var clazz = super.create(type, container, pc);
     if (clazz.instanceOf(this.gsn.getArgumentElement())) {
       clazz.setAttribute(this.gsn.getArgumentElement_Valid(), Boolean.TRUE.toString());

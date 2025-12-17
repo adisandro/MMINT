@@ -29,12 +29,12 @@ public class PLStateMachineBuilder extends PLBuilder {
   }
 
   @Override
-  protected @Nullable EReference getContainmentType(Class clazz) {
+  public @Nullable EReference getContainmentType(Class clazz) {
     return switch (clazz) {
       case Class c when c.instanceOf(this.sm.getAbstractState()) -> this.sm.getStateMachine_States();
       case Class c when c.instanceOf(this.sm.getStateAction()) -> this.sm.getState_InternalActions();
       case Class c when c.instanceOf(this.sm.getTransition()) -> this.sm.getStateMachine_Transitions();
-      default -> null;
+      default -> super.getContainmentType(clazz);
     };
   }
 
@@ -42,7 +42,7 @@ public class PLStateMachineBuilder extends PLBuilder {
   protected @Nullable Class getContainerFromSrcTgt(Class clazz, Class src, Class tgt) {
     return switch (clazz) {
       case Class c when c.instanceOf(this.sm.getTransition()) -> this.pl.getRoot();
-      default -> null;
+      default -> super.getContainerFromSrcTgt(clazz, src, tgt);
     };
   }
 
@@ -50,7 +50,7 @@ public class PLStateMachineBuilder extends PLBuilder {
   protected @Nullable EReference getSrcReferenceType(Class clazz) {
     return switch (clazz) {
       case Class c when c.instanceOf(this.sm.getTransition()) -> this.sm.getTransition_Source();
-      default -> null;
+      default -> super.getSrcReferenceType(clazz);
     };
   }
 
@@ -58,7 +58,7 @@ public class PLStateMachineBuilder extends PLBuilder {
   protected @Nullable EReference getTgtReferenceType(Class clazz) {
     return switch (clazz) {
       case Class c when c.instanceOf(this.sm.getTransition()) -> this.sm.getTransition_Target();
-      default -> null;
+      default -> super.getTgtReferenceType(clazz);
     };
   }
 }

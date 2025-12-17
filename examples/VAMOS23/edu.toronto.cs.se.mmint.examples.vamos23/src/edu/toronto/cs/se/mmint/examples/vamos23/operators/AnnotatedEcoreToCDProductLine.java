@@ -18,7 +18,6 @@ import java.util.Properties;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 
@@ -27,7 +26,6 @@ import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.productline.Class;
-import edu.toronto.cs.se.mmint.productline.PLElement;
 import edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine;
 import edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage;
 
@@ -41,9 +39,11 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
     this.out0.setMetamodel(edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE);
   }
 
-  private void addPresenceCondition(EModelElement eModelObj, PLElement plElem) {
+  protected Class createPLClass(EModelElement modelObj, EClass plType, Map<String, Class> plClasses) {
+    var plClass = this.builder.createClass(plType);
+    this.out0.getClasses().add(plClass);
     var presenceCondition = this.reasoner.getTrueLiteral();
-    var eAnnotation = eModelObj.getEAnnotation("presence");
+    var eAnnotation = modelObj.getEAnnotation("presence");
     if (eAnnotation != null) {
       var eDetail = eAnnotation.getDetails().get("condition");
       if (eDetail != null) {
@@ -51,13 +51,8 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
       }
     }
     //TODO handle multiple presence conditions
-    plElem.setPresenceCondition(presenceCondition);
-  }
-
-  @Override
-  protected Class createPLClass(EObject modelObj, EClass plType, Map<String, Class> plClasses) {
-    var plClass = super.createPLClass(modelObj, plType, plClasses);
-    addPresenceCondition((EModelElement) modelObj, plClass);
+    plClass.setPresenceCondition(presenceCondition);
+    plClasses.put(MIDRegistry.getModelElementUri(modelObj), plClass);
 
     return plClass;
   }
@@ -65,7 +60,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
   @Override
   protected void toProductLine(Map<String, Model> inputsByName) throws Exception {
     var plClasses = new HashMap<String, Class>();
-    var plEPackage = createPLClass(this.in0, ClassDiagramPackage.eINSTANCE.getClassDiagram(), plClasses);
+    var plEPackage = createPLClass((EModelElement) this.in0, ClassDiagramPackage.eINSTANCE.getClassDiagram(), plClasses);
     for (var eClassifier : ((EPackage) this.in0).getEClassifiers()) {
       var plEClass = createPLClass(eClassifier, ClassDiagramPackage.eINSTANCE.getClass_(), plClasses);
       var plEClassPC = plEClass.getPresenceCondition();

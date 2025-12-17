@@ -13,36 +13,21 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.operators;
 
 import java.util.Map;
+import java.util.Properties;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-
+import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.OperatorParameter;
-import edu.toronto.cs.se.mmint.productline.Class;
-import edu.toronto.cs.se.mmint.productline.PLFactory;
+import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine;
-import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
-import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
+import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 
 public class GSNToProductLine extends ToProductLine {
   public final static OperatorParameter IN0 = ToProductLine.IN0.specialize(GSNPackage.eNS_URI);
 
   @Override
-  protected Class createPLClass(EObject modelObj, EClass plType, Map<String, Class> plClasses) {
-    var plClass = switch (plType) {
-      case EClass e when GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate().isSuperTypeOf(e) ->
-        PLGSNFactory.eINSTANCE.createPLGSNAnalyticTemplate();
-      case EClass e when GSNPackage.eINSTANCE.getTemplate().isSuperTypeOf(e) ->
-        PLGSNFactory.eINSTANCE.createPLGSNTemplate();
-      case EClass e when GSNPackage.eINSTANCE.getRelationshipDecorator().isSuperTypeOf(e) ->
-        PLGSNFactory.eINSTANCE.createPLGSNRelationshipDecorator();
-      case EClass e when GSNPackage.eINSTANCE.getArgumentElement().isSuperTypeOf(e) ->
-        PLGSNFactory.eINSTANCE.createPLGSNArgumentElement();
-      default -> PLFactory.eINSTANCE.createClass();
-    };
-    addPLClass(plClass, modelObj, plType, plClasses);
-
-    return plClass;
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+    super.init(inputProperties, inputsByName);
+    this.builder = new PLGSNBuilder(this.out0);
   }
 }

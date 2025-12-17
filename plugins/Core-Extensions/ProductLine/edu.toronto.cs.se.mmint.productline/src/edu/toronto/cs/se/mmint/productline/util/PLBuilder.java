@@ -20,55 +20,92 @@ import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 
-public abstract class PLBuilder {
+public class PLBuilder {
   protected ProductLine pl;
   protected PLFactory plF;
 
   public PLBuilder(ProductLine pl) {
     this.pl = pl;
     this.plF = PLFactory.eINSTANCE;
-    //TODO we should also convert all operators to use it, e.g. ToProductLine
   }
 
-  protected abstract @Nullable EReference getContainmentType(Class clazz);
-  protected abstract @Nullable Class getContainerFromSrcTgt(Class clazz, Class src, Class tgt);
-  protected abstract @Nullable EReference getSrcReferenceType(Class clazz);
-  protected abstract @Nullable EReference getTgtReferenceType(Class clazz);
+  public @Nullable EReference getContainmentType(Class clazz) {
+    return null;
+  }
+  protected @Nullable Class getContainerFromSrcTgt(Class clazz, Class src, Class tgt) {
+    return null;
+  }
+  protected @Nullable EReference getSrcReferenceType(Class clazz) {
+    return null;
+  }
+  protected @Nullable EReference getTgtReferenceType(Class clazz) {
+    return null;
+  }
 
-  protected Class createClass(EClass type) {
+  protected Class _createClass(EClass type) {
     return this.plF.createClass();
   }
 
-  protected void create(Class clazz, EClass type, Class container, @Nullable String pc) {
-    pc = this.pl.mergePresenceConditions(pc, container.getPresenceCondition());
+  public Class createClass(EClass type) {
+    var clazz = _createClass(type);
     clazz.setType(type);
+
+    return clazz;
+  }
+
+  protected void create(Class clazz, EClass type, @Nullable Class container, @Nullable String pc) {
+    pc = (container == null) ?
+      this.pl.getPresenceConditionOrDefault(pc) :
+      this.pl.mergePresenceConditions(pc, container.getPresenceCondition());
     clazz.setPresenceCondition(pc);
     this.pl.getClasses().add(clazz);
-    container.addReference(getContainmentType(clazz), clazz, pc);
     for (var attrType : type.getEAllAttributes()) {
       if (attrType.isDerived() || attrType.isTransient()) {
         continue;
       }
       clazz.addAttribute(attrType, null);
     }
+    if (container != null) {
+      container.addReference(getContainmentType(clazz), clazz, pc);
+    }
   }
 
-  public Class create(EClass type, Class container, @Nullable String pc) {
+  /**
+   * Creates a PL class.
+   *
+   * @param type
+   *          The class type.
+   * @param container
+   *          The container of the class, can be null to create a dangling class.
+   * @param pc
+   *          The presence condition of the class, can be null to assign the presence condition of the container, or to
+   *          fallback to the True literal with no container.
+   * @return The PL class.
+   */
+  public Class create(EClass type, @Nullable Class container, @Nullable String pc) {
     var clazz = createClass(type);
     create(clazz, type, container, pc);
 
     return clazz;
   }
 
-  public Class create(EClass type, Class container) {
+  public Class create(EClass type, @Nullable Class container) {
     return create(type, container, null);
+  }
+
+  public Class create(EClass type, @Nullable String pc) {
+    return create(type, null, pc);
+  }
+
+  public Class create(EClass type) {
+    return create(type, null, null);
   }
 
   public Class connect(EClass type, Class src, Class tgt, @Nullable String pc) {
     var clazz = createClass(type);
     var container = getContainerFromSrcTgt(clazz, src, tgt);
-    var pcEdge = this.pl.mergePresenceConditions(src.getPresenceCondition(), tgt.getPresenceCondition());
-    pc = this.pl.mergePresenceConditions(pc, pcEdge);
+    var pcConn = this.pl.mergePresenceConditions(src.getPresenceCondition(), tgt.getPresenceCondition());
+    pc = this.pl.mergePresenceConditions(pc, pcConn);
     create(clazz, type, container, pc);
     var srcRef = getSrcReferenceType(clazz);
     if (srcRef != null) {

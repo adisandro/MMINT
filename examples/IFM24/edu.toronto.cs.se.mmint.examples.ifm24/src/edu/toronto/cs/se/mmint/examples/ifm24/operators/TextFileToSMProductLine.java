@@ -24,8 +24,8 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.primitive.file.FilePackage;
 import edu.toronto.cs.se.mmint.productline.Class;
-import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.operators.bridge.ToProductLine;
+import edu.toronto.cs.se.mmint.types.statemachine.productline.util.PLStateMachineBuilder;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
 
 public class TextFileToSMProductLine extends ToProductLine {
@@ -37,6 +37,7 @@ public class TextFileToSMProductLine extends ToProductLine {
     inputProperties.setProperty(ToProductLine.PROP_PRESENCECONDITION, "$true");
     super.init(inputProperties, inputsByName);
     this.out0.setMetamodel(StateMachinePackage.eINSTANCE);
+    this.builder = new PLStateMachineBuilder(this.out0);
   }
 
   @Override
@@ -46,9 +47,7 @@ public class TextFileToSMProductLine extends ToProductLine {
     var plStates = new HashMap<String, Class>();
     var parseStates = false;
     Class currTransition = null;
-    var plSM = PLFactory.eINSTANCE.createClass();
-    plSM.setType(StateMachinePackage.eINSTANCE.getStateMachine());
-    this.out0.getClasses().add(plSM);
+    var plSM = this.builder.create(StateMachinePackage.eINSTANCE.getStateMachine(), this.presenceCondition);
     for (var line : Files.readAllLines(filePath)) {
       line = line.strip();
       if (line.isEmpty() || line.startsWith("LocalVars") || line.startsWith("bint")) {
@@ -78,33 +77,16 @@ public class TextFileToSMProductLine extends ToProductLine {
         var tokens = line.split("\"");
         var fromState = plStates.get(tokens[1]);
         var toState = plStates.get(tokens[3]);
-        var pc = "";
-        if (fromState.isInAllProducts()) {
-          pc = toState.getPresenceCondition();
-        }
-        else if (toState.isInAllProducts()) {
-          pc = fromState.getPresenceCondition();
-        }
-        else {
-          pc = this.reasoner.simplify(
-            this.reasoner.and(fromState.getPresenceCondition(), toState.getPresenceCondition()));
-        }
-        var plTransition = PLFactory.eINSTANCE.createClass();
-        plTransition.setPresenceCondition(pc);
-        plTransition.setType(StateMachinePackage.eINSTANCE.getTransition());
-        this.out0.getClasses().add(plTransition);
-        plSM.addReference(StateMachinePackage.eINSTANCE.getStateMachine_Transitions(), plTransition);
-        plTransition.addReference(StateMachinePackage.eINSTANCE.getTransition_Source(), fromState);
-        plTransition.addReference(StateMachinePackage.eINSTANCE.getTransition_Target(), toState);
+        var plTransition = this.builder.connect(StateMachinePackage.eINSTANCE.getTransition(), fromState, toState);
         currTransition = plTransition;
         continue;
       }
       if (line.startsWith("when ")) {
         // current transition trigger and action
         var tokens = line.substring("when ".length()).split(" do ");
-        currTransition.addAttribute(StateMachinePackage.eINSTANCE.getFiringElement_Trigger(), tokens[0].strip());
+        currTransition.setAttribute(StateMachinePackage.eINSTANCE.getFiringElement_Trigger(), tokens[0].strip());
         if (tokens.length > 1) {
-          currTransition.addAttribute(StateMachinePackage.eINSTANCE.getFiringElement_Action(), tokens[1].strip());
+          currTransition.setAttribute(StateMachinePackage.eINSTANCE.getFiringElement_Action(), tokens[1].strip());
         }
         continue;
       }
@@ -113,14 +95,13 @@ public class TextFileToSMProductLine extends ToProductLine {
         var tokens = line.split(",");
         var stateName = tokens[0].substring(1, tokens[0].length()-1);
         var pc = this.presenceCondition;
-        var plState = PLFactory.eINSTANCE.createClass();
         if (tokens.length > 1) {
           tokens[1] = tokens[1].strip();
           pc = tokens[1].substring("<Features: ".length(), tokens[1].length()-1);
         }
-        addPLClass(plState, stateName, pc, StateMachinePackage.eINSTANCE.getState(), plStates);
-        plState.addAttribute(StateMachinePackage.eINSTANCE.getAbstractState_Name(), stateName);
-        plSM.addReference(StateMachinePackage.eINSTANCE.getStateMachine_States(), plState);
+        var plState = this.builder.create(StateMachinePackage.eINSTANCE.getState(), plSM, pc);
+        plState.setAttribute(StateMachinePackage.eINSTANCE.getAbstractState_Name(), stateName);
+        plStates.put(stateName, plState);
         continue;
       }
     }
