@@ -127,13 +127,15 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
   public void import_(PLGSNAnalyticTemplate plTemplate, ProductLine productLine) throws Exception {
     var plBuilder = new PLGSNBuilder(productLine);
     var queryStrategy = plTemplate.getElementsById().get("queryStrategy");
-    var desc = queryStrategy.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
+    var desc = queryStrategy.getAttribute(this.gsn.getArgumentElement_Description())
       .replace("model query", "lifted model query");
     queryStrategy.setAttribute(this.gsn.getArgumentElement_Description(), desc);
-    var liftedGoal = plBuilder.createGoal("G5", "The lifted query engine is correct", null);
-    liftedGoal.addAttribute(this.gsn.getArgumentElement_TemplateId(), "liftedGoal");
+    var liftedGoal = plBuilder.createGoal(Map.of(
+      this.gsn.getArgumentElement_Id(), "G5",
+      this.gsn.getArgumentElement_Description(), "The lifted query engine is correct",
+      this.gsn.getArgumentElement_TemplateId(), "liftedGoal"));
+    plBuilder.support(queryStrategy, liftedGoal);
     plTemplate.addReference(this.gsn.getTemplate_Elements(), liftedGoal);
-    plBuilder.addSupporter(queryStrategy, liftedGoal);
   }
 
   protected List<Map.Entry<String, String>> getPLResults(List<Object> queryResults) {
@@ -149,10 +151,13 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
   protected PLGSNArgumentElement createPLResultGoal(PLGSNAnalyticTemplate plTemplate, PLGSNBuilder plBuilder,
                                                     PLGSNArgumentElement resultStrategy, String resultId,
                                                     String resultDesc, String resultPC, String templateId) {
-    var resultGoal = plBuilder.createGoal(resultId, resultDesc, resultPC);
-    resultGoal.addAttribute(this.gsn.getArgumentElement_TemplateId(), templateId);
+    var resultGoal = plBuilder.createGoal(
+      Map.of(this.gsn.getArgumentElement_Id(), resultId,
+             this.gsn.getArgumentElement_Description(), resultDesc,
+             this.gsn.getArgumentElement_TemplateId(), templateId),
+      resultPC);
+    plBuilder.support(resultStrategy, resultGoal);
     plTemplate.addReference(this.gsn.getTemplate_Elements(), resultGoal);
-    plBuilder.addSupporter(resultStrategy, resultGoal);
 
     return resultGoal;
   }
@@ -170,11 +175,11 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var resultCtx = templateElems.get("resultCtx");
     var resultGoal = templateElems.get("resultGoal");
     safetyGoal.instantiate();
-    var safetyDesc = safetyGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0);
-    var resultId = resultGoal.getAttribute(this.gsn.getArgumentElement_Id()).get(0);
-    var resultDesc = resultGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
+    var safetyDesc = safetyGoal.getAttribute(this.gsn.getArgumentElement_Description());
+    var resultId = resultGoal.getAttribute(this.gsn.getArgumentElement_Id());
+    var resultDesc = resultGoal.getAttribute(this.gsn.getArgumentElement_Description())
       .replace("{safety goal}", safetyDesc);
-    var scenarioDesc = scenarioGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
+    var scenarioDesc = scenarioGoal.getAttribute(this.gsn.getArgumentElement_Description())
                                    .replace("{safety goal}", safetyDesc);
     scenarioGoal.setAttribute(this.gsn.getArgumentElement_Description(), scenarioDesc);
     // run query and process results
@@ -188,7 +193,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     for (var supportedBy : resultGoal.getReference(this.gsn.getSupporter_Supports())) {
       supportedBy.delete();
     }
-    var filesDesc = filesCtx.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
+    var filesDesc = filesCtx.getAttribute(this.gsn.getArgumentElement_Description())
                             .replace("{query}", querySpec.query().toString())
                             .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath));
     filesCtx.setAttribute(this.gsn.getArgumentElement_Description(), filesDesc);

@@ -64,7 +64,7 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     out += "\n  FM=\"" + fm + "\"";
     for (var s : productLine.getClasses()) {
       if (s.instanceOf(types.getInitialState())) {
-        out += "\n  " + s.getAttribute(types.getAbstractState_Name()).get(0) + "[initial=True]";
+        out += "\n  " + s.getAttribute(types.getAbstractState_Name()) + "[initial=True]";
         break;
       }
     }
@@ -73,9 +73,9 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
         continue;
       }
       for (var src : t.getReference(types.getTransition_Source())) {
-        var srcName = src.getAttribute(types.getAbstractState_Name()).get(0);
+        var srcName = src.getAttribute(types.getAbstractState_Name());
         for (var tgt : t.getReference(types.getTransition_Target())) {
-          var tgtName = tgt.getAttribute(types.getAbstractState_Name()).get(0);
+          var tgtName = tgt.getAttribute(types.getAbstractState_Name());
           out += "\n  " + srcName + " -> " + tgtName + "[label=\"" + tgtName + " | " +
                  presenceCondition2Dot(t.getPresenceCondition()) + "\"];";
         }
@@ -115,13 +115,15 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
   public void import_(PLGSNAnalyticTemplate plTemplate, ProductLine productLine) throws Exception {
     var builder = new PLGSNBuilder(productLine);
     var mcStrategy = plTemplate.getElementsById().get("mcStrategy");
-    var desc = mcStrategy.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
+    var desc = mcStrategy.getAttribute(this.gsn.getArgumentElement_Description())
       .replace("model checking", "lifted model checking");
     mcStrategy.setAttribute(this.gsn.getArgumentElement_Description(), desc);
-    var liftedGoal = builder.createGoal("G4", "The lifted model checker is correct", null);
-    liftedGoal.addAttribute(this.gsn.getArgumentElement_TemplateId(), "liftedGoal");
+    var liftedGoal = builder.createGoal(Map.of(
+      this.gsn.getArgumentElement_Id(), "G4",
+      this.gsn.getArgumentElement_Description(), "The lifted model checker is correct",
+      this.gsn.getArgumentElement_TemplateId(), "liftedGoal"));
+    builder.support(mcStrategy, liftedGoal);
     plTemplate.addReference(this.gsn.getTemplate_Elements(), liftedGoal);
-    builder.addSupporter(mcStrategy, liftedGoal);
   }
 
   private PLGSNArgumentElement getSafetyGoal(Map<String, PLGSNArgumentElement> templateElems) {
@@ -150,7 +152,7 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
         if (otherFilesCtx != null) { // connected with model-based template, extract model from it
           var paths = otherFilesCtx.getManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths()).get(0);
           modelPath = paths.get(1);
-          dialogInitial = safetyGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).split("'")[1];
+          dialogInitial = safetyGoal.getAttribute(this.gsn.getArgumentElement_Description()).split("'")[1];
         }
       }
     }
@@ -170,21 +172,21 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
       FileUtils.replaceLastSegmentInPath(modelPath, FTS4VMCAnalysis.SAT_FILE), false, false);
     Files.writeString(Paths.get(resultPath), result);
     var filesCtx = templateElems.get("filesCtx");
-    var filesDesc = filesCtx.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
+    var filesDesc = filesCtx.getAttribute(this.gsn.getArgumentElement_Description())
       .replace("{property}", FileUtils.getLastSegmentFromPath(propertyPath))
       .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath));
     filesCtx.setAttribute(this.gsn.getArgumentElement_Description(), filesDesc);
     filesCtx.setManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
                               ECollections.asEList(List.of(propertyPath, modelPath, resultPath)));
     var satGoal = templateElems.get("satGoal");
-    var satGoalDesc = satGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0);
+    var satGoalDesc = satGoal.getAttribute(this.gsn.getArgumentElement_Description());
     var holds = (result.contains("TRUE")) ? "holds" : "does not hold";
     satGoal.setAttribute(this.gsn.getArgumentElement_Description(), satGoalDesc.replace("{holds?}", holds));
     var satSolution = templateElems.get("satSolution");
-    var satSolDesc = satSolution.getAttribute(this.gsn.getArgumentElement_Description()).get(0)
+    var satSolDesc = satSolution.getAttribute(this.gsn.getArgumentElement_Description())
       .replace("{output}", FileUtils.getLastSegmentFromPath(resultPath));
     satSolution.setAttribute(this.gsn.getArgumentElement_Description(), satSolDesc);
-    if (!safetyGoal.isAlwaysPresent()) {
+    if (!safetyGoal.isInAllProducts()) {
       PLGSNChangeStep.changePCDownstream(safetyGoal, _ -> safetyGoal.getPresenceCondition());
     }
   }
@@ -220,7 +222,7 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
       var propsKey = getClass().getName() + "_" + modelPath + "_" + propertyPath + "_" + resultPath;
       ChangeStep.getData().put(propsKey, result);
       var holds = result.contains("TRUE");
-      var oldHolds = satGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).contains("holds");
+      var oldHolds = satGoal.getAttribute(this.gsn.getArgumentElement_Description()).contains("holds");
       var impactType = (holds == oldHolds) ? ImpactType.REUSE : ImpactType.REVISE;
       satSolution.setImpact(impactType);
       satGoal.setImpact(impactType);
@@ -275,7 +277,7 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
       result = runFTS4VMC(modelPath, propertyPath);
       ChangeStep.getData().put(propsKey, result);
       var holds = result.contains("TRUE");
-      var oldHolds = satGoal.getAttribute(this.gsn.getArgumentElement_Description()).get(0).contains("holds");
+      var oldHolds = satGoal.getAttribute(this.gsn.getArgumentElement_Description()).contains("holds");
       var impactType = (holds == oldHolds) ? ImpactType.REUSE : ImpactType.REVISE;
       var safetyGoal = getSafetyGoal(templateElems);
       satSolution.setImpact(impactType);
@@ -289,7 +291,7 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     Files.writeString(Paths.get(resultPath), result);
     paths.set(2, resultPath);
     filesCtx.setManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(), paths);
-    var oldSatDesc = satSolution.getAttribute(this.gsn.getArgumentElement_Description()).get(0);
+    var oldSatDesc = satSolution.getAttribute(this.gsn.getArgumentElement_Description());
     var satDesc = oldSatDesc.replace(FileUtils.getLastSegmentFromPath(oldResultPath),
                                      FileUtils.getLastSegmentFromPath(resultPath));
     satSolution.setAttribute(this.gsn.getArgumentElement_Description(), satDesc);

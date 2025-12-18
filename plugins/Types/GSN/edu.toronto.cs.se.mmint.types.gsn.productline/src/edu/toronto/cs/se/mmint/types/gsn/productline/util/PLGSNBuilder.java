@@ -12,6 +12,9 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.productline.util;
 
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.Nullable;
@@ -19,6 +22,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.util.PLBuilder;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNFactory;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
@@ -79,7 +83,7 @@ public class PLGSNBuilder extends PLBuilder {
     return switch (type) {
       case EClass e when GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate().isSuperTypeOf(e) ->
         this.gsnF.createPLGSNAnalyticTemplate();
-      case EClass e when GSNPackage.eINSTANCE.getTemplate().isSuperTypeOf(e) ->
+      case EClass e when this.gsn.getTemplate().isSuperTypeOf(e) ->
         this.gsnF.createPLGSNTemplate();
       case EClass e when this.gsn.getRelationshipDecorator().isSuperTypeOf(e) ->
         this.gsnF.createPLGSNRelationshipDecorator();
@@ -90,12 +94,29 @@ public class PLGSNBuilder extends PLBuilder {
   }
 
   @Override
-  public Class create(EClass type, @Nullable Class container, @Nullable String pc) {
-    var clazz = super.create(type, container, pc);
-    if (clazz.instanceOf(this.gsn.getArgumentElement())) {
+  public Class create(EClass type, Map<EAttribute, String> attrValues, @Nullable Class container, @Nullable String pc) {
+    var clazz = super.create(type, attrValues, container, pc);
+    if (!attrValues.containsKey(this.gsn.getArgumentElement_Valid()) &&
+        clazz.instanceOf(this.gsn.getArgumentElement())) {
       clazz.setAttribute(this.gsn.getArgumentElement_Valid(), Boolean.TRUE.toString());
     }
 
     return clazz;
+  }
+
+  public PLGSNArgumentElement createGoal(Map<EAttribute, String> attrValues, @Nullable String pc) {
+    return (PLGSNArgumentElement) create(GSNPackage.eINSTANCE.getGoal(), attrValues, this.pl.getRoot(), pc);
+  }
+
+  public PLGSNArgumentElement createGoal(Map<EAttribute, String> attrValues) {
+    return createGoal(attrValues, null);
+  }
+
+  public Class support(PLGSNArgumentElement src, PLGSNArgumentElement tgt, @Nullable String pc) {
+    return connect(GSNPackage.eINSTANCE.getSupportedBy(), src, tgt, pc);
+  }
+
+  public Class support(PLGSNArgumentElement src, PLGSNArgumentElement tgt) {
+    return support(src, tgt, null);
   }
 }

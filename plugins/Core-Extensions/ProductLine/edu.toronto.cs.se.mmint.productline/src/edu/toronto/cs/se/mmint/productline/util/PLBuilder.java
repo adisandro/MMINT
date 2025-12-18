@@ -12,6 +12,9 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.util;
 
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.Nullable;
@@ -53,7 +56,8 @@ public class PLBuilder {
     return clazz;
   }
 
-  protected void create(Class clazz, EClass type, @Nullable Class container, @Nullable String pc) {
+  protected void create(Class clazz, EClass type, Map<EAttribute, String> attrValues, @Nullable Class container,
+                        @Nullable String pc) {
     pc = (container == null) ?
       this.pl.getPresenceConditionOrDefault(pc) :
       this.pl.mergePresenceConditions(pc, container.getPresenceCondition());
@@ -63,7 +67,7 @@ public class PLBuilder {
       if (attrType.isDerived() || attrType.isTransient()) {
         continue;
       }
-      clazz.addAttribute(attrType, null);
+      clazz.addAttribute(attrType, attrValues.get(attrType)); // values default to null if not explicitly passed
     }
     if (container != null) {
       container.addReference(getContainmentType(clazz), clazz, pc);
@@ -75,6 +79,8 @@ public class PLBuilder {
    *
    * @param type
    *          The class type.
+   * @param attrValues
+   *          The values to initialize the class attributes, null is assigned for the missing ones.
    * @param container
    *          The container of the class, can be null to create a dangling class.
    * @param pc
@@ -82,23 +88,39 @@ public class PLBuilder {
    *          fallback to the True literal with no container.
    * @return The PL class.
    */
-  public Class create(EClass type, @Nullable Class container, @Nullable String pc) {
+  public Class create(EClass type, Map<EAttribute, String> attrValues, @Nullable Class container, @Nullable String pc) {
     var clazz = createClass(type);
-    create(clazz, type, container, pc);
+    create(clazz, type, attrValues, container, pc);
 
     return clazz;
   }
 
+  public Class create(EClass type, @Nullable Class container, @Nullable String pc) {
+    return create(type, Map.of(), container, pc);
+  }
+
+  public Class create(EClass type, Map<EAttribute, String> attrValues, @Nullable Class container) {
+    return create(type, attrValues, container, null);
+  }
+
   public Class create(EClass type, @Nullable Class container) {
-    return create(type, container, null);
+    return create(type, Map.of(), container, null);
+  }
+
+  public Class create(EClass type, Map<EAttribute, String> attrValues, @Nullable String pc) {
+    return create(type, attrValues, null, pc);
   }
 
   public Class create(EClass type, @Nullable String pc) {
-    return create(type, null, pc);
+    return create(type, Map.of(), null, pc);
+  }
+
+  public Class create(EClass type, Map<EAttribute, String> attrValues) {
+    return create(type, attrValues, null, null);
   }
 
   public Class create(EClass type) {
-    return create(type, null, null);
+    return create(type, Map.of(), null, null);
   }
 
   public Class connect(EClass type, Class src, Class tgt, @Nullable String pc) {
@@ -106,7 +128,7 @@ public class PLBuilder {
     var container = getContainerFromSrcTgt(clazz, src, tgt);
     var pcConn = this.pl.mergePresenceConditions(src.getPresenceCondition(), tgt.getPresenceCondition());
     pc = this.pl.mergePresenceConditions(pc, pcConn);
-    create(clazz, type, container, pc);
+    create(clazz, type, Map.of(), container, pc);
     var srcRef = getSrcReferenceType(clazz);
     if (srcRef != null) {
       clazz.addReference(srcRef, src, clazz.getPresenceCondition());
