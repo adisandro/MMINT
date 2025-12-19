@@ -73,7 +73,6 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
   @Override
   public void import_(ProductLine productLine) throws Exception {
     var templatePL = this.getProductLine();
-    var rootType = GSNPackage.eINSTANCE.getSafetyCase();
     var plSC = productLine.getRoot();
     var templatePLSC = templatePL.getRoot();
     plSC.getReferences().addAll(templatePLSC.getReferences());

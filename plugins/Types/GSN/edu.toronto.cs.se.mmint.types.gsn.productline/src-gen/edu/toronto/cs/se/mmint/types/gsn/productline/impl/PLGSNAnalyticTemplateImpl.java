@@ -104,7 +104,7 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
   public void import_(ProductLine productLine) throws Exception {
     var javaPath = MIDDialogs.selectFile("Import analysis template", "Select a Java class that implements the analysis",
                                          "There are no Java files in the workspace", Set.of("java"));
-    addAttribute(GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_AnalysisPath(), javaPath);
+    setAttribute(GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_AnalysisPath(), javaPath);
     super.import_(productLine);
     getAnalysis().import_(this, productLine);
   }
