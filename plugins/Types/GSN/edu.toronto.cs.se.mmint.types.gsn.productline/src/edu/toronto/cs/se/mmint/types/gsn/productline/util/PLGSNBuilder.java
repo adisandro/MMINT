@@ -119,4 +119,12 @@ public class PLGSNBuilder extends PLBuilder {
   public Class support(PLGSNArgumentElement src, PLGSNArgumentElement tgt) {
     return support(src, tgt, null);
   }
+
+  public Class contextualize(PLGSNArgumentElement src, PLGSNArgumentElement tgt, @Nullable String pc) {
+    return connect(GSNPackage.eINSTANCE.getInContextOf(), src, tgt, pc);
+  }
+
+  public Class contextualize(PLGSNArgumentElement src, PLGSNArgumentElement tgt) {
+    return contextualize(src, tgt, null);
+  }
 }

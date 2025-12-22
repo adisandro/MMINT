@@ -14,6 +14,8 @@ package edu.toronto.cs.se.modelepedia.gsn.util;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -67,6 +69,15 @@ public class GSNBuilder {
     }
 
     return Optional.of(text.substring(i+GSNBuilder.PATTERN1.length(), j));
+  }
+
+  public static String addSuffixToPlaceholders(String text, String suffix) {
+    var find = Pattern.quote(GSNBuilder.PATTERN1) + "([^" + Pattern.quote(GSNBuilder.PATTERN2) + "]+)" +
+               Pattern.quote(GSNBuilder.PATTERN2);
+    var replace = Matcher.quoteReplacement(GSNBuilder.PATTERN1) + "$1" +
+                  Matcher.quoteReplacement(suffix + GSNBuilder.PATTERN2);
+
+    return text.replaceAll(find, replace);
   }
 
   public static String askForPath(String title, String message) throws MIDDialogCancellation {

@@ -3,13 +3,16 @@
 package edu.toronto.cs.se.mmint.types.gsn.productline.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.productline.Class;
+import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNRelationshipDecorator;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNTemplate;
+import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
@@ -57,45 +60,135 @@ public class PLGSNRelationshipDecoratorImpl extends PLGSNArgumentElementImpl imp
   /**
    * @generated NOT
    */
-  private void instantiateMultiple(Class decorated, boolean isSupported, int cardinality, @Nullable String hint,
-                                   PLGSNTemplate template) throws MMINTException {
+  private void _dropSubtree(PLGSNArgumentElement elem, Class safetyCase) {
+    var gsn = GSNPackage.eINSTANCE;
+    if (elem.instanceOf(gsn.getSupportable())) {
+      elem.getReference(gsn.getSupportable_SupportedBy()).forEach(sb ->
+        dropSubtree((PLGSNArgumentElement) sb.getReference(gsn.getSupportedBy_Target()).get(0), safetyCase));
+    }
+    if (elem.instanceOf(gsn.getContextualizable())) {
+      elem.getReference(gsn.getContextualizable_InContextOf()).forEach(ico ->
+        dropSubtree((PLGSNArgumentElement) ico.getReference(gsn.getInContextOf_Context()).get(0), safetyCase));
+    }
+    if (elem.instanceOf(gsn.getDecoratable())) {
+      elem.getReference(gsn.getDecoratable_Decorators()).forEach(d ->
+        _dropSubtree((PLGSNArgumentElement) d, safetyCase));
+    }
+  }
+
+  /**
+   * @generated NOT
+   */
+  private void dropSubtree(PLGSNArgumentElement elem, Class safetyCase) {
+    elem.delete();
+    _dropSubtree(elem, safetyCase);
+  }
+
+  /**
+   * @generated NOT
+   */
+  private void _copySubtree(PLGSNArgumentElement elem, PLGSNArgumentElement copyElem, String idSuffix, Class safetyCase,
+                            PLGSNTemplate template, PLGSNBuilder builder) {
+    var gsn = GSNPackage.eINSTANCE;
+    if (elem.instanceOf(gsn.getSupportable())) {
+      for (var supportedBy : elem.getReference(gsn.getSupportable_SupportedBy())) {
+        var copySupporter = copySubtree(
+          (PLGSNArgumentElement) supportedBy.getReference(gsn.getSupportedBy_Target()).get(0), idSuffix, safetyCase,
+          template, builder);
+        builder.support(copyElem, copySupporter, supportedBy.getPresenceCondition());
+      }
+    }
+    if (elem.instanceOf(gsn.getContextualizable())) {
+      for (var inContextOf : elem.getReference(gsn.getContextualizable_InContextOf())) {
+        var copyContextual = copySubtree(
+          (PLGSNArgumentElement) inContextOf.getReference(gsn.getInContextOf_Context()).get(0), idSuffix, safetyCase,
+          template, builder);
+        builder.contextualize(copyElem, copyContextual, inContextOf.getPresenceCondition());
+      }
+    }
+    if (elem.instanceOf(gsn.getDecoratable())) {
+      //TODO must be handled differently
+      var decorators = elem.getReference(gsn.getDecoratable_Decorators());
+      for (var i = 0; i < decorators.size(); i++) {
+        _copySubtree((PLGSNArgumentElement) decorators.get(i),
+                     (PLGSNArgumentElement) copyElem.getReference(gsn.getDecoratable_Decorators()).get(i), idSuffix,
+                     safetyCase, template, builder);
+      }
+    }
+  }
+
+  /**
+   * @generated NOT
+   */
+  private PLGSNArgumentElement copySubtree(PLGSNArgumentElement elem, String idSuffix, Class safetyCase,
+                                           PLGSNTemplate template, PLGSNBuilder builder) {
+    var gsn = GSNPackage.eINSTANCE;
+    var copyElem = EcoreUtil.copy(elem); // use it to copy attributes
+    copyElem.getReferences().clear();
+    getProductLine().getClasses().add(copyElem);
+    copyElem.setAttribute(gsn.getArgumentElement_Id(),
+                          elem.getAttribute(gsn.getArgumentElement_Id()) + idSuffix);
+    copyElem.setAttribute(gsn.getArgumentElement_TemplateId(),
+                          elem.getAttribute(gsn.getArgumentElement_TemplateId()) + idSuffix);
+    // append idSuffix to all placeholders
+    copyElem.setAttribute(gsn.getArgumentElement_Description(),
+                          GSNBuilder.addSuffixToPlaceholders(
+                            elem.getAttribute(gsn.getArgumentElement_Description()), idSuffix));
+    safetyCase.addReference(builder.getContainmentType(copyElem), copyElem, copyElem.getPresenceCondition());
+    template.addReference(gsn.getTemplate_Elements(), copyElem);
+    if (copyElem.instanceOf(gsn.getDecoratable())) {
+      copyElem.getReference(gsn.getDecoratable_Decorators())
+        .forEach(d -> template.addReference(gsn.getTemplate_Elements(), d));
+    }
+    _copySubtree(elem, copyElem, idSuffix, safetyCase, template, builder);
+
+    return copyElem;
+  }
+
+  /**
+   * @generated NOT
+   */
+  private void instantiateMultiple(PLGSNArgumentElement decorated, boolean isSupported, int cardinality,
+                                   @Nullable String hint, PLGSNTemplate template) throws MMINTException {
+    var gsn = GSNPackage.eINSTANCE;
     var n = GSNBuilder.askForMultiple(decorated.getType().getName() + " " +
-                                      decorated.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Id()), cardinality,
+                                      decorated.getAttribute(gsn.getArgumentElement_Id()), cardinality,
                                       hint);
     if (n == 1) { // fast path, equivalent to optional
       decorated.getReferences().addAll(
         getReferences().stream()
-          .filter(r -> r.getType() != GSNPackage.eINSTANCE.getArgumentElement_Template())
+          .filter(r -> r.getType() != gsn.getArgumentElement_Template())
           .toList());
     }
     else {
+      var pl = getProductLine();
+      var builder = new PLGSNBuilder(pl);
+      var safetyCase = pl.getRoot();
       for (var i = 0; i < n; i++) {
         var idSuffix = "." + (i+1);
-        getReference(GSNPackage.eINSTANCE.getSupportable_SupportedBy());
+        if (isSupported) {
+          getReference(gsn.getSupportable_SupportedBy()).forEach(sb -> {
+            var sub = copySubtree((PLGSNArgumentElement) sb.getReference(gsn.getSupportedBy_Target()).get(0), idSuffix,
+                                  safetyCase, template, builder);
+            builder.support(decorated, sub, sb.getPresenceCondition());
+          });
+        }
+        else {
+          getReference(gsn.getContextualizable_InContextOf()).forEach(ico -> {
+            var sub = copySubtree((PLGSNArgumentElement) ico.getReference(gsn.getInContextOf_Context()).get(0),
+                                  idSuffix, safetyCase, template, builder);
+            builder.contextualize(decorated, sub, ico.getPresenceCondition());
+          });
+        }
       }
-//    var safetyCase = decorated.getProductLine().getRoot(GSNPackage.eINSTANCE.getSafetyCase());
-//    if (isSupported) {
-//      for (var i = 0; i < n; i++) {
-//        var idSuffix = "." + (i+1);
-//        getSupportedBy().forEach(sb -> {
-//          var copySupportedBy = GSNFactory.eINSTANCE.createSupportedBy();
-//          copySupportedBy.setTarget(copySubtree(sb.getTarget(), idSuffix, safetyCase, template));
-//          ((Supportable) decorated).getSupportedBy().add(copySupportedBy);
-//        });
-//      }
-//      getSupportedBy().forEach(sb -> dropSubtree(sb.getTarget(), safetyCase));
-//    }
-//    else {
-//      for (var i = 0; i < n; i++) {
-//        var idSuffix = "." + (i+1);
-//        getInContextOf().forEach(ico -> {
-//          var copyInContextOf = GSNFactory.eINSTANCE.createInContextOf();
-//          copyInContextOf.setContext(copySubtree(ico.getContext(), idSuffix, safetyCase, template));
-//          ((Contextualizable) decorated).getInContextOf().add(copyInContextOf);
-//        });
-//      }
-//      getInContextOf().forEach(ico -> dropSubtree(ico.getContext(), safetyCase));
-//    }
+      if (isSupported) {
+        getReference(gsn.getSupportable_SupportedBy()).forEach(sb ->
+          dropSubtree((PLGSNArgumentElement) sb.getReference(gsn.getSupportedBy_Target()).get(0), safetyCase));
+      }
+      else {
+        getReference(gsn.getContextualizable_InContextOf()).forEach(ico ->
+          dropSubtree((PLGSNArgumentElement) ico.getReference(gsn.getInContextOf_Context()).get(0), safetyCase));
+      }
     }
   }
 
@@ -104,14 +197,16 @@ public class PLGSNRelationshipDecoratorImpl extends PLGSNArgumentElementImpl imp
    */
   @Override
   public void instantiate() throws Exception {
-    var decorated = getEContainer();
-    var cardinality = Integer.valueOf(getAttribute(GSNPackage.eINSTANCE.getRelationshipDecorator_Cardinality()));
-    var isSupported = !getReference(GSNPackage.eINSTANCE.getSupportable_SupportedBy()).isEmpty();
-    var hint = getAttribute(GSNPackage.eINSTANCE.getArgumentElement_Description());
-    switch(getAttribute(GSNPackage.eINSTANCE.getRelationshipDecorator_Type())) {
+    var gsn = GSNPackage.eINSTANCE;
+    var decorated = (PLGSNArgumentElement) getEContainer();
+    var isSupported = !getReference(gsn.getSupportable_SupportedBy()).isEmpty();
+    var cardinality = Integer.valueOf(getAttribute(gsn.getRelationshipDecorator_Cardinality()));
+    var hint = getAttribute(gsn.getArgumentElement_Description());
+    var template = (PLGSNTemplate) getReference(gsn.getArgumentElement_Template()).get(0);
+    switch(getAttribute(gsn.getRelationshipDecorator_Type())) {
       case "OPTIONAL" -> instantiateOptional(decorated, isSupported, hint);
       case "CHOICE" -> instantiateChoice(decorated, isSupported, cardinality, hint);
-      case "MULTIPLE" -> instantiateMultiple(decorated, isSupported, cardinality, hint, null);
+      case "MULTIPLE" -> instantiateMultiple(decorated, isSupported, cardinality, hint, template);
     }
     delete();
   }

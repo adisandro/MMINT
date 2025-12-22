@@ -144,4 +144,17 @@ public class PLBuilder {
   public Class connect(EClass type, Class src, Class tgt) {
     return connect(type, src, tgt, null);
   }
+
+//  public Class copy(Class clazz) {
+//    var copyClazz = createClass(clazz.getType());
+//    copyClazz.setPresenceCondition(clazz.getPresenceCondition());
+//    for (var attr : clazz.getAttributes()) {
+//      var copyAttr = clazz.addAttribute(attr.getType(), attr.getValue());
+//    }
+//    for (var i = 0; i < clazz.getAttributes().size(); i++) {
+//      copyClazz.getAttributes().get(i).setValue(clazz.getAttributes().get(i));
+//    }
+//
+//    return copyClazz;
+//  }
 }

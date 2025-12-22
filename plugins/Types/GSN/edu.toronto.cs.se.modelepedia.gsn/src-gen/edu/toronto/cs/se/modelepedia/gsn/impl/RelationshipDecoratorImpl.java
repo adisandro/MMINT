@@ -13,8 +13,6 @@
 package edu.toronto.cs.se.modelepedia.gsn.impl;
 
 import java.util.Collection;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -409,15 +407,11 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
    * @generated NOT
    */
   private <T extends ArgumentElement> T copySubtree(T elem, String idSuffix, SafetyCase safetyCase, Template template) {
-    var copyElem = EcoreUtil.copy(elem);
-    copyElem.setId(copyElem.getId() + idSuffix);
-    copyElem.setTemplateId(copyElem.getTemplateId() + idSuffix);
+    var copyElem = EcoreUtil.copy(elem); // use it to copy attributes, decorators and supported-by/in-context-of links
+    copyElem.setId(elem.getId() + idSuffix);
+    copyElem.setTemplateId(elem.getTemplateId() + idSuffix);
     // append idSuffix to all placeholders
-    var find = Pattern.quote(GSNBuilder.PATTERN1) + "([^" + Pattern.quote(GSNBuilder.PATTERN2) + "]+)" +
-               Pattern.quote(GSNBuilder.PATTERN2);
-    var replace = Matcher.quoteReplacement(GSNBuilder.PATTERN1) + "$1" +
-                  Matcher.quoteReplacement(idSuffix + GSNBuilder.PATTERN2);
-    copyElem.setDescription(copyElem.getDescription().replaceAll(find, replace));
+    copyElem.setDescription(GSNBuilder.addSuffixToPlaceholders(elem.getDescription(), idSuffix));
     switch (copyElem) {
       case Goal g -> safetyCase.getGoals().add(g);
       case Strategy s -> safetyCase.getStrategies().add(s);
@@ -543,26 +537,27 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
     }
     else {
       var safetyCase = (SafetyCase) decorated.eContainer();
-      if (isSupported) {
-        for (var i = 0; i < n; i++) {
-          var idSuffix = "." + (i+1);
+      for (var i = 0; i < n; i++) {
+        var idSuffix = "." + (i+1);
+        if (isSupported) {
           getSupportedBy().forEach(sb -> {
             var copySupportedBy = GSNFactory.eINSTANCE.createSupportedBy();
             copySupportedBy.setTarget(copySubtree(sb.getTarget(), idSuffix, safetyCase, template));
             ((Supportable) decorated).getSupportedBy().add(copySupportedBy);
           });
         }
-        getSupportedBy().forEach(sb -> dropSubtree(sb.getTarget(), safetyCase));
-      }
-      else {
-        for (var i = 0; i < n; i++) {
-          var idSuffix = "." + (i+1);
+        else {
           getInContextOf().forEach(ico -> {
             var copyInContextOf = GSNFactory.eINSTANCE.createInContextOf();
             copyInContextOf.setContext(copySubtree(ico.getContext(), idSuffix, safetyCase, template));
             ((Contextualizable) decorated).getInContextOf().add(copyInContextOf);
           });
         }
+      }
+      if (isSupported) {
+        getSupportedBy().forEach(sb -> dropSubtree(sb.getTarget(), safetyCase));
+      }
+      else {
         getInContextOf().forEach(ico -> dropSubtree(ico.getContext(), safetyCase));
       }
     }
@@ -580,7 +575,7 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
     switch (this.getType()) {
       case OPTIONAL -> instantiateOptional(decorated, isSupported, hint);
       case CHOICE -> instantiateChoice(decorated, isSupported, cardinality, hint);
-      case MULTIPLE -> instantiateMultiple(decorated, isSupported, cardinality, hint, this.template);
+      case MULTIPLE -> instantiateMultiple(decorated, isSupported, cardinality, hint, getTemplate());
     };
     decorated.getDecorators().remove(this);
   }
