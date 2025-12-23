@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.modelepedia.models15.feature"
       label="MODELS15 Example"
-      version="2.27.99.qualifier"
+      version="2.28.0.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="https://github.com/adisandro/MMINT">

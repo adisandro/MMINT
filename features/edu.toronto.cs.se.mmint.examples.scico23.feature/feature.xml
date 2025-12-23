@@ -14,7 +14,7 @@
 <feature
       id="edu.toronto.cs.se.mmint.examples.scico23.feature"
       label="MMINT - SCICO23 paper"
-      version="2.27.99.qualifier"
+      version="2.28.0.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="">
