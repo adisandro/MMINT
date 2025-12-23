@@ -2,7 +2,7 @@
 <feature
       id="edu.toronto.cs.se.modelepedia.sosym18.feature"
       label="SoSyM18"
-      version="2.28.0.qualifier"
+      version="2.28.99.qualifier"
       provider-name="Software Engineering Group, University of Toronto">
 
    <description url="https://github.com/adisandro/MMINT">
