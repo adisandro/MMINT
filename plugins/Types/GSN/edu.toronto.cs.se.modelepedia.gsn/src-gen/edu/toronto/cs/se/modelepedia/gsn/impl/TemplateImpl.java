@@ -172,6 +172,7 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
   public void instantiate() throws Exception {
     // copy to avoid concurrent modifications: template instantiation may modify the list of template elements
     var copyElements = List.copyOf(getElements());
+    var numElements = copyElements.size();
     // instantiate relationship decorators first to fix the structure
     for (var element : copyElements) {
       if (element.isValid() || !(element instanceof RelationshipDecorator) || element.eContainer() == null ||
@@ -179,6 +180,9 @@ public class TemplateImpl extends MinimalEObjectImpl.Container implements Templa
         continue;
       }
       element.instantiate();
+    }
+    if (numElements != getElements().size()) { // copy again after relationship decorators added new template elements
+      copyElements = List.copyOf(getElements());
     }
     for (var element : copyElements) {
       if (element.isValid() || element instanceof RelationshipDecorator || element.eContainer() == null) {

@@ -356,24 +356,24 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
   /**
    * @generated NOT
    */
-  private void _dropSubtree(ArgumentElement elem, SafetyCase safetyCase) {
+  private void _dropSubtree(ArgumentElement elem) {
     if (elem instanceof Supportable supportable) {
-      supportable.getSupportedBy().forEach(sb -> dropSubtree(sb.getTarget(), safetyCase));
+      supportable.getSupportedBy().forEach(sb -> dropSubtree(sb.getTarget()));
     }
     if (elem instanceof Contextualizable contextualizable) {
-      contextualizable.getInContextOf().forEach(ico -> dropSubtree(ico.getContext(), safetyCase));
+      contextualizable.getInContextOf().forEach(ico -> dropSubtree(ico.getContext()));
     }
     if (elem instanceof Decoratable decoratable) {
-      decoratable.getDecorators().forEach(d -> _dropSubtree(d, safetyCase));
+      decoratable.getDecorators().forEach(this::_dropSubtree);
     }
   }
 
   /**
    * @generated NOT
    */
-  private void dropSubtree(ArgumentElement elem, SafetyCase safetyCase) {
+  private void dropSubtree(ArgumentElement elem) {
     EcoreUtil.remove(elem);
-    _dropSubtree(elem, safetyCase);
+    _dropSubtree(elem);
   }
 
   /**
@@ -395,10 +395,15 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
         ((Contextualizable) copyElem).getInContextOf().get(i).setContext(copyContextual);
       }
     }
-    if (elem instanceof Decoratable decoratable) {
+    if (elem instanceof Decoratable decoratable) { // decorators have already been copied
       for (var i = 0; i < decoratable.getDecorators().size(); i++) {
-        _copySubtree(decoratable.getDecorators().get(i), ((Decoratable) copyElem).getDecorators().get(i), idSuffix,
-                     safetyCase, template);
+        var decorator = decoratable.getDecorators().get(i);
+        var copyDecorator = ((Decoratable) copyElem).getDecorators().get(i);
+        copyDecorator.setId(decorator.getId() + idSuffix);
+        copyDecorator.setTemplateId(decorator.getTemplateId() + idSuffix);
+        copyDecorator.setDescription(GSNBuilder.addSuffixToPlaceholders(decorator.getDescription(), idSuffix));
+        template.getElements().add(copyDecorator);
+        _copySubtree(decorator, copyDecorator, idSuffix, safetyCase, template);
       }
     }
   }
@@ -410,7 +415,6 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
     var copyElem = EcoreUtil.copy(elem); // use it to copy attributes, decorators and supported-by/in-context-of links
     copyElem.setId(elem.getId() + idSuffix);
     copyElem.setTemplateId(elem.getTemplateId() + idSuffix);
-    // append idSuffix to all placeholders
     copyElem.setDescription(GSNBuilder.addSuffixToPlaceholders(elem.getDescription(), idSuffix));
     switch (copyElem) {
       case Goal g -> safetyCase.getGoals().add(g);
@@ -422,9 +426,6 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
       default -> {}
     }
     template.getElements().add(copyElem);
-    if (copyElem instanceof Decoratable decoratable) {
-      template.getElements().addAll(decoratable.getDecorators());
-    }
     _copySubtree(elem, copyElem, idSuffix, safetyCase, template);
 
     return copyElem;
@@ -449,12 +450,11 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
       }
     }
     else {
-      var safetyCase = (SafetyCase) decorated.eContainer();
       if (isSupported) {
-        getSupportedBy().forEach(sb -> dropSubtree(sb.getTarget(), safetyCase));
+        getSupportedBy().forEach(sb -> dropSubtree(sb.getTarget()));
       }
       else {
-        getInContextOf().forEach(ico -> dropSubtree(ico.getContext(), safetyCase));
+        getInContextOf().forEach(ico -> dropSubtree(ico.getContext()));
       }
     }
   }
@@ -488,7 +488,7 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
           }
         }
         else {
-          dropSubtree(elem, (SafetyCase) decorated.eContainer());
+          dropSubtree(elem);
         }
       }
     }
@@ -511,7 +511,7 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
           }
         }
         else {
-          dropSubtree(elem, (SafetyCase) decorated.eContainer());
+          dropSubtree(elem);
         }
       }
     }
@@ -555,10 +555,10 @@ public class RelationshipDecoratorImpl extends SupportableImpl implements Relati
         }
       }
       if (isSupported) {
-        getSupportedBy().forEach(sb -> dropSubtree(sb.getTarget(), safetyCase));
+        getSupportedBy().forEach(sb -> dropSubtree(sb.getTarget()));
       }
       else {
-        getInContextOf().forEach(ico -> dropSubtree(ico.getContext(), safetyCase));
+        getInContextOf().forEach(ico -> dropSubtree(ico.getContext()));
       }
     }
   }

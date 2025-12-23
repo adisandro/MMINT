@@ -60,28 +60,28 @@ public class PLGSNRelationshipDecoratorImpl extends PLGSNArgumentElementImpl imp
   /**
    * @generated NOT
    */
-  private void _dropSubtree(PLGSNArgumentElement elem, Class safetyCase) {
+  private void _dropSubtree(PLGSNArgumentElement elem) {
     var gsn = GSNPackage.eINSTANCE;
     if (elem.instanceOf(gsn.getSupportable())) {
       elem.getReference(gsn.getSupportable_SupportedBy()).forEach(sb ->
-        dropSubtree((PLGSNArgumentElement) sb.getReference(gsn.getSupportedBy_Target()).get(0), safetyCase));
+        dropSubtree((PLGSNArgumentElement) sb.getReference(gsn.getSupportedBy_Target()).get(0)));
     }
     if (elem.instanceOf(gsn.getContextualizable())) {
       elem.getReference(gsn.getContextualizable_InContextOf()).forEach(ico ->
-        dropSubtree((PLGSNArgumentElement) ico.getReference(gsn.getInContextOf_Context()).get(0), safetyCase));
+        dropSubtree((PLGSNArgumentElement) ico.getReference(gsn.getInContextOf_Context()).get(0)));
     }
     if (elem.instanceOf(gsn.getDecoratable())) {
       elem.getReference(gsn.getDecoratable_Decorators()).forEach(d ->
-        _dropSubtree((PLGSNArgumentElement) d, safetyCase));
+        _dropSubtree((PLGSNArgumentElement) d));
     }
   }
 
   /**
    * @generated NOT
    */
-  private void dropSubtree(PLGSNArgumentElement elem, Class safetyCase) {
+  private void dropSubtree(PLGSNArgumentElement elem) {
     elem.delete();
-    _dropSubtree(elem, safetyCase);
+    _dropSubtree(elem);
   }
 
   /**
@@ -107,12 +107,10 @@ public class PLGSNRelationshipDecoratorImpl extends PLGSNArgumentElementImpl imp
       }
     }
     if (elem.instanceOf(gsn.getDecoratable())) {
-      //TODO must be handled differently
-      var decorators = elem.getReference(gsn.getDecoratable_Decorators());
-      for (var i = 0; i < decorators.size(); i++) {
-        _copySubtree((PLGSNArgumentElement) decorators.get(i),
-                     (PLGSNArgumentElement) copyElem.getReference(gsn.getDecoratable_Decorators()).get(i), idSuffix,
-                     safetyCase, template, builder);
+      for (var decorator : elem.getReference(gsn.getDecoratable_Decorators())) {
+        var copyDecorator = copySubtree((PLGSNArgumentElement) decorator, idSuffix, safetyCase, template, builder);
+        copyElem.addReference(builder.getContainmentType(copyDecorator), copyDecorator,
+                              decorator.getPresenceCondition());
       }
     }
   }
@@ -123,23 +121,20 @@ public class PLGSNRelationshipDecoratorImpl extends PLGSNArgumentElementImpl imp
   private PLGSNArgumentElement copySubtree(PLGSNArgumentElement elem, String idSuffix, Class safetyCase,
                                            PLGSNTemplate template, PLGSNBuilder builder) {
     var gsn = GSNPackage.eINSTANCE;
-    var copyElem = EcoreUtil.copy(elem); // use it to copy attributes
+    var copyElem = EcoreUtil.copy(elem); // use it to copy attributes only
     copyElem.getReferences().clear();
     getProductLine().getClasses().add(copyElem);
     copyElem.setAttribute(gsn.getArgumentElement_Id(),
                           elem.getAttribute(gsn.getArgumentElement_Id()) + idSuffix);
     copyElem.setAttribute(gsn.getArgumentElement_TemplateId(),
                           elem.getAttribute(gsn.getArgumentElement_TemplateId()) + idSuffix);
-    // append idSuffix to all placeholders
     copyElem.setAttribute(gsn.getArgumentElement_Description(),
                           GSNBuilder.addSuffixToPlaceholders(
                             elem.getAttribute(gsn.getArgumentElement_Description()), idSuffix));
-    safetyCase.addReference(builder.getContainmentType(copyElem), copyElem, copyElem.getPresenceCondition());
-    template.addReference(gsn.getTemplate_Elements(), copyElem);
-    if (copyElem.instanceOf(gsn.getDecoratable())) {
-      copyElem.getReference(gsn.getDecoratable_Decorators())
-        .forEach(d -> template.addReference(gsn.getTemplate_Elements(), d));
+    if (!elem.instanceOf(gsn.getRelationshipDecorator())) {
+      safetyCase.addReference(builder.getContainmentType(copyElem), copyElem);
     }
+    template.addReference(gsn.getTemplate_Elements(), copyElem);
     _copySubtree(elem, copyElem, idSuffix, safetyCase, template, builder);
 
     return copyElem;
@@ -168,8 +163,8 @@ public class PLGSNRelationshipDecoratorImpl extends PLGSNArgumentElementImpl imp
         var idSuffix = "." + (i+1);
         if (isSupported) {
           getReference(gsn.getSupportable_SupportedBy()).forEach(sb -> {
-            var sub = copySubtree((PLGSNArgumentElement) sb.getReference(gsn.getSupportedBy_Target()).get(0), idSuffix,
-                                  safetyCase, template, builder);
+            var sub = copySubtree((PLGSNArgumentElement) sb.getReference(gsn.getSupportedBy_Target()).get(0),
+                                  idSuffix, safetyCase, template, builder);
             builder.support(decorated, sub, sb.getPresenceCondition());
           });
         }
@@ -183,11 +178,11 @@ public class PLGSNRelationshipDecoratorImpl extends PLGSNArgumentElementImpl imp
       }
       if (isSupported) {
         getReference(gsn.getSupportable_SupportedBy()).forEach(sb ->
-          dropSubtree((PLGSNArgumentElement) sb.getReference(gsn.getSupportedBy_Target()).get(0), safetyCase));
+          dropSubtree((PLGSNArgumentElement) sb.getReference(gsn.getSupportedBy_Target()).get(0)));
       }
       else {
         getReference(gsn.getContextualizable_InContextOf()).forEach(ico ->
-          dropSubtree((PLGSNArgumentElement) ico.getReference(gsn.getInContextOf_Context()).get(0), safetyCase));
+          dropSubtree((PLGSNArgumentElement) ico.getReference(gsn.getInContextOf_Context()).get(0)));
       }
     }
   }

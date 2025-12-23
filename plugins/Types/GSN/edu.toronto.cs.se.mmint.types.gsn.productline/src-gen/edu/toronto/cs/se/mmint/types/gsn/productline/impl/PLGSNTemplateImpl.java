@@ -85,24 +85,35 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
    */
   @Override
   public void instantiate() throws Exception {
-    var plElements = getStreamOfReference(GSNPackage.eINSTANCE.getTemplate_Elements())
+    var gsn = GSNPackage.eINSTANCE;
+    var plElements = getStreamOfReference(gsn.getTemplate_Elements())
       .filter(PLGSNArgumentElement.class::isInstance)
       .map(e -> (PLGSNArgumentElement) e)
       .toList();
+    var decoratorInstantiated = false;
     // instantiate relationship decorators first to fix the structure
     for (var plElement : plElements) {
-      if (plElement.getListOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_Valid()).stream()
+      if (plElement.getListOfAttribute(gsn.getArgumentElement_Valid()).stream()
             .allMatch(Boolean::valueOf) ||
-          !plElement.instanceOf(GSNPackage.eINSTANCE.getRelationshipDecorator()) ||
+          !plElement.instanceOf(gsn.getRelationshipDecorator()) ||
           plElement.eContainer() == null) {
         continue;
       }
       plElement.instantiate();
+      decoratorInstantiated = true;
+    }
+    if (decoratorInstantiated) {
+      // be pessimistic and get elements again after relationship decorators possibly added new template elements
+      // counting the number of template elements like non-lifted would mean getting elements again anyway
+      plElements = getStreamOfReference(gsn.getTemplate_Elements())
+        .filter(PLGSNArgumentElement.class::isInstance)
+        .map(e -> (PLGSNArgumentElement) e)
+        .toList();
     }
     for (var plElement : plElements) {
-      if (plElement.getListOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_Valid()).stream()
+      if (plElement.getListOfAttribute(gsn.getArgumentElement_Valid()).stream()
             .allMatch(Boolean::valueOf) ||
-          plElement.instanceOf(GSNPackage.eINSTANCE.getRelationshipDecorator()) ||
+          plElement.instanceOf(gsn.getRelationshipDecorator()) ||
           plElement.eContainer() == null) {
         continue;
       }
