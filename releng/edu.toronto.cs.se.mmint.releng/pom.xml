@@ -152,6 +152,7 @@
     <module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram.edit</module>
     <module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram.editor</module>
     <module>../../plugins/Types/ClassDiagram/edu.toronto.cs.se.modelepedia.classdiagram.operator</module>
+    <module>../../plugins/Types/FTA/edu.toronto.cs.se.mmint.types.fta</module>
     <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.gsn</module>
     <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.gsn.design</module>
     <module>../../plugins/Types/GSN/edu.toronto.cs.se.modelepedia.gsn.edit</module>
