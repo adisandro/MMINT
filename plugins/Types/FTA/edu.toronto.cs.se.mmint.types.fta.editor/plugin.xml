@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<!--
+    Copyright (c) 2026, 2026 Alessio Di Sandro.
+   
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License 2.0 which is available at
+    https://www.eclipse.org/legal/epl-2.0/
+   
+    SPDX-License-Identifier: EPL-2.0
+   
+    Contributors:
+        Alessio Di Sandro - Implementation
+-->
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated fta -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="edu.toronto.cs.se.mmint.types.fta.presentation.FTAModelWizardID"
+            name="%_UI_FTAModelWizard_label"
+            class="edu.toronto.cs.se.mmint.types.fta.presentation.FTAModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/FTAModelFile.gif">
+         <description>%_UI_FTAModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated fta -->
+      <editor
+            id="edu.toronto.cs.se.mmint.types.fta.presentation.FTAEditorID"
+            name="%_UI_FTAEditor_label"
+            icon="icons/full/obj16/FTAModelFile.gif"
+            extensions="fta"
+            class="edu.toronto.cs.se.mmint.types.fta.presentation.FTAEditor"
+            contributorClass="edu.toronto.cs.se.mmint.types.fta.presentation.FTAActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension
+         point="edu.toronto.cs.se.mmint.editors">
+      <editorType
+            id="edu.toronto.cs.se.mmint.types.fta.presentation.FTAEditorID"
+            modelTypeUri="model://edu.toronto.cs.se.mmint.types.fta"
+            wizardId="edu.toronto.cs.se.mmint.types.fta.presentation.FTAModelWizardID">
+         <type
+               name="FTA EMF Editor"
+               uri="edu.toronto.cs.se.mmint.types.fta.editor">
+         </type>
+      </editorType>
+   </extension>
+
+</plugin>
