@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="fta" version="12.0.0.2017041100">
+  <ownedViewpoints name="FTAViewpoint" modelFileExtension="fta">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="FTADiagram" label="FTA Diagram" domainClass="fta.FaultTree">
+      <metamodel href="../../edu.toronto.cs.se.mmint.types.fta/model/fta.ecore#/"/>
+      <defaultLayer name="Default" label="FTA">
+        <nodeMappings name="EventNode" semanticCandidatesExpression="feature:events" domainClass="fta.Event">
+          <borderedNodeMappings name="GateNode" semanticCandidatesExpression="feature:gate" domainClass="fta.Gate">
+            <style xsi:type="style:DotDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:self.logic" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <forbiddenSides>WEST</forbiddenSides>
+              <forbiddenSides>EAST</forbiddenSides>
+              <forbiddenSides>NORTH</forbiddenSides>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+            </style>
+          </borderedNodeMappings>
+          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql:self.name + '\n' + self.probability" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" width="10" height="10">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="SubEventEdge" sourceMapping="//@ownedViewpoints[name='FTAViewpoint']/@ownedRepresentations[name='FTADiagram']/@defaultLayer/@nodeMappings[name='EventNode']/@borderedNodeMappings[name='GateNode']" targetMapping="//@ownedViewpoints[name='FTAViewpoint']/@ownedRepresentations[name='FTADiagram']/@defaultLayer/@nodeMappings[name='EventNode']" targetFinderExpression="feature:subEvents">
+          <style targetArrow="NoDecoration">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription labelSize="10" showIcon="false">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <toolSections name="Create">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateEvent" label="Event" nodeMappings="//@ownedViewpoints[name='FTAViewpoint']/@ownedRepresentations[name='FTADiagram']/@defaultLayer/@nodeMappings[name='EventNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="fta.Event" referenceName="events"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateGate" label="Gate" nodeMappings="//@ownedViewpoints[name='FTAViewpoint']/@ownedRepresentations[name='FTADiagram']/@defaultLayer/@nodeMappings[name='EventNode']/@borderedNodeMappings[name='GateNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="fta.Gate" referenceName="gate"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreateSubEvent" label="Sub-event Link" edgeMappings="//@ownedViewpoints[name='FTAViewpoint']/@ownedRepresentations[name='FTADiagram']/@defaultLayer/@edgeMappings[name='SubEventEdge']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="subEvents" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+  </ownedViewpoints>
+</description:Group>
