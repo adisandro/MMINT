@@ -15,7 +15,7 @@
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
             </style>
           </borderedNodeMappings>
-          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql:self.name + '\n' + self.probability" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" width="10" height="10">
+          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql:self.name + '\n' + self.probability" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" width="10" height="6">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>

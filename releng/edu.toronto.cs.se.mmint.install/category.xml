@@ -42,6 +42,9 @@
    <feature url="features/edu.toronto.cs.se.modelepedia.istar.feature_2.28.99.qualifier.jar" id="edu.toronto.cs.se.modelepedia.istar.feature" version="2.28.99.qualifier">
       <category name="Modelepedia"/>
    </feature>
+   <feature url="features/edu.toronto.cs.se.mmint.types.fta.feature_2.28.99.qualifier.jar" id="edu.toronto.cs.se.mmint.types.fta.feature" version="2.28.99.qualifier">
+      <category name="Modelepedia"/>
+   </feature>
    <feature url="features/edu.toronto.cs.se.mmint.types.lts.feature_2.28.99.qualifier.jar" id="edu.toronto.cs.se.mmint.types.lts.feature" version="2.28.99.qualifier">
       <category name="Modelepedia"/>
    </feature>

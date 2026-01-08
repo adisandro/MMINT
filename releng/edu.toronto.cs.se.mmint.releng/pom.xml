@@ -216,6 +216,7 @@
     <module>../../features/edu.toronto.cs.se.mmint.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.sdk.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.productline.feature</module>
+    <module>../../features/edu.toronto.cs.se.mmint.types.fta.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.types.lts.feature</module>
     <module>../../features/edu.toronto.cs.se.mminta.feature</module>
     <module>../../features/edu.toronto.cs.se.mmintpl.feature</module>
