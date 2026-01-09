@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<!--
+    Copyright (c) 2026, 2026 Alessio Di Sandro.
+   
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License 2.0 which is available at
+    https://www.eclipse.org/legal/epl-2.0/
+   
+    SPDX-License-Identifier: EPL-2.0
+   
+    Contributors:
+        Alessio Di Sandro - Implementation
+-->
+<plugin>
+  <extension point="org.eclipse.sirius.componentization">
+    <component class="edu.toronto.cs.se.mmint.types.fta.productline.design.Activator"
+               id="edu.toronto.cs.se.mmint.types.fta.productline.design"
+	       name="fta.productline">
+    </component>
+  </extension>
+
+   <extension
+         point="org.eclipse.sirius.externalJavaAction">
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.types.fta.productline.design.tools.PLFTACreateNode"
+            id="edu.toronto.cs.se.mmint.types.fta.productline.design.tools.PLFTACreateNode">
+      </javaActions>
+      <javaActions
+            actionClass="edu.toronto.cs.se.mmint.types.fta.productline.design.tools.PLFTACreateNode"
+            id="edu.toronto.cs.se.mmint.types.fta.productline.design.tools.PLFTACreateNode">
+      </javaActions>
+   </extension>
+</plugin>

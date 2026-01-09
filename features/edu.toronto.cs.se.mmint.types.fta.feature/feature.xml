@@ -35,30 +35,22 @@
 
    <plugin
          id="edu.toronto.cs.se.mmint.types.fta"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="edu.toronto.cs.se.mmint.types.fta.design"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="edu.toronto.cs.se.mmint.types.fta.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="edu.toronto.cs.se.mmint.types.fta.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
+
+   <plugin
+         id="edu.toronto.cs.se.mmint.types.fta.productline.design"
+         version="0.0.0"/>
 
 </feature>
