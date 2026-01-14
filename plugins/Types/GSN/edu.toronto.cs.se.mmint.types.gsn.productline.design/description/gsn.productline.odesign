@@ -6,7 +6,7 @@
       <layers name="GSNDefault" label="PL GSN">
         <nodeMappings name="PLGoalNode" preconditionExpression="aql: self.type.name = 'Goal' or self.type.eAllSuperTypes->exists(s | s.name = 'Goal')" deletionDescription="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@toolSections.0/@ownedTools[name='PLDeleteClass']" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
           <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
-          <borderedNodeMappings name="PLRelationshipDecoratorNode" preconditionExpression="aql: self.type.name = 'RelationshipDecorator'" deletionDescription="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@toolSections.0/@ownedTools[name='PLDeleteClass']" semanticCandidatesExpression="aql: self.references->select(r | r.type.name = 'decorators')->collect(r | r.target)" domainClass="productline.Class">
+          <borderedNodeMappings name="PLRelationshipDecoratorNode" preconditionExpression="aql: self.type.name = 'RelationshipDecorator' or self.type.eAllSuperTypes->exists(s | s.name = 'RelationshipDecorator')" deletionDescription="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@toolSections.0/@ownedTools[name='PLDeleteClass']" semanticCandidatesExpression="aql: self.references->select(r | r.type.name = 'decorators')->collect(r | r.target)" domainClass="productline.Class">
             <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
             <conditionnalStyles predicateExpression="aql: self.attributes->select(a | a.type.name = 'type')->first().value = 'MULTIPLE'">
               <style xsi:type="style:DotDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql: let cardinality = self.attributes->select(a | a.type.name = 'cardinality')->first().value in if cardinality = '-1' then '' else cardinality endif" labelPosition="node" resizeKind="NSEW">
@@ -30,7 +30,7 @@
               </style>
             </conditionnalStyles>
           </borderedNodeMappings>
-          <borderedNodeMappings name="PLImpactNode" preconditionExpression="aql: self.type.name = 'ImpactAnnotation'" deletionDescription="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@toolSections.0/@ownedTools[name='PLDeleteClass']" semanticCandidatesExpression="aql: self.references->select(r | r.type.name = 'status')->collect(r | r.target)" domainClass="productline.Class">
+          <borderedNodeMappings name="PLImpactNode" preconditionExpression="aql: self.type.name = 'ImpactAnnotation' or self.type.eAllSuperTypes->exists(s | s.name = 'ImpactAnnotation')" deletionDescription="//@ownedViewpoints[name='PLGSNViewpoint']/@ownedRepresentationExtensions[name='PL%20GSN%20Diagram']/@layers[name='GSNDefault']/@toolSections.0/@ownedTools[name='PLDeleteClass']" semanticCandidatesExpression="aql: self.references->select(r | r.type.name = 'status')->collect(r | r.target)" domainClass="productline.Class">
             <labelDirectEdit href="../../edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
             <conditionnalStyles predicateExpression="aql: self.attributes->select(a | a.type.name = 'type')->first().value = 'REUSE'">
               <style xsi:type="style:WorkspaceImageDescription" labelSize="10" showIcon="false" labelExpression="service: getPLGSNElementLabel" labelAlignment="LEFT" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="/edu.toronto.cs.se.modelepedia.gsn.design/icons/Reuse.png">
@@ -194,7 +194,7 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
                 <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateSupportedBy" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLGSNCreateEdge">
-                  <parameters name="classType" value="SupportedBy"/>
+                  <parameters name="type" value="SupportedBy"/>
                   <parameters name="source" value="var:source"/>
                   <parameters name="target" value="var:target"/>
                 </subModelOperations>
@@ -209,7 +209,7 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
                 <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateInContextOf" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLGSNCreateEdge">
-                  <parameters name="classType" value="InContextOf"/>
+                  <parameters name="type" value="InContextOf"/>
                   <parameters name="source" value="var:source"/>
                   <parameters name="target" value="var:target"/>
                 </subModelOperations>

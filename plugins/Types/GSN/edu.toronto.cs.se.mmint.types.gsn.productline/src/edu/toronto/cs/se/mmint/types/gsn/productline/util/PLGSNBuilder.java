@@ -63,13 +63,6 @@ public class PLGSNBuilder extends PLBuilder {
   }
 
   @Override
-  protected @Nullable EReference getSrcReferenceType(Class clazz) {
-    return switch (clazz) {
-      default -> super.getSrcReferenceType(clazz);
-    };
-  }
-
-  @Override
   protected @Nullable EReference getTgtReferenceType(Class clazz) {
     return switch (clazz) {
       case Class c when c.instanceOf(this.gsn.getSupportedBy()) -> this.gsn.getSupportedBy_Target();

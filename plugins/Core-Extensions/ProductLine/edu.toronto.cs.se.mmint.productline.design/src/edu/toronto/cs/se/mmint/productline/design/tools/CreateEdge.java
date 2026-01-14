@@ -18,8 +18,10 @@ import java.util.Map;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.sirius.business.api.action.AbstractExternalJavaAction;
 import org.eclipse.sirius.business.api.session.SessionManager;
 
@@ -36,34 +38,48 @@ public abstract class CreateEdge extends AbstractExternalJavaAction {
 
   @Override
   public void execute(Collection<? extends EObject> arg0, Map<String, Object> arg1) {
-    var classType = (String) arg1.get("classType");
+    var type = (String) arg1.get("type");
     var src = (Class) arg1.get("source");
     var tgt = (Class) arg1.get("target");
     var sSession = SessionManager.INSTANCE.getSession(src);
     var sDomain = sSession.getTransactionalEditingDomain();
-    sDomain.getCommandStack().execute(getCommand(sDomain, src, tgt, classType));
+    sDomain.getCommandStack().execute(getCommand(sDomain, src, tgt, type));
   }
 
-  protected abstract Command getCommand(TransactionalEditingDomain domain, Class src, Class tgt, String classType);
+  protected abstract Command getCommand(TransactionalEditingDomain domain, Class src, Class tgt, String type);
 
   protected abstract class CreateEdgeCommand extends RecordingCommand {
     protected ProductLine pl;
     protected Class src;
     protected Class tgt;
-    protected EClass type;
+    protected EClass classType;
+    protected @Nullable EReference relType;
     protected PLBuilder builder;
 
-    public CreateEdgeCommand(TransactionalEditingDomain domain, Class src, Class tgt, String classType) {
+    public CreateEdgeCommand(TransactionalEditingDomain domain, Class src, Class tgt, String type) {
       super(domain);
       this.pl = src.getProductLine();
       this.src = src;
       this.tgt = tgt;
-      this.type = (EClass) this.pl.getMetamodel().getEClassifier(classType);
+      var i = type.indexOf(".");
+      if (i < 0) {
+        this.classType = (EClass) this.pl.getMetamodel().getEClassifier(type);
+        this.relType = null;
+      }
+      else {
+        this.classType = (EClass) this.pl.getMetamodel().getEClassifier(type.substring(0, i));
+        this.relType = (EReference) this.classType.getEStructuralFeature(type.substring(i+1));
+      }
     }
 
     @Override
     protected void doExecute() {
-      this.builder.connect(this.type, this.src, this.tgt);
+      if (this.relType == null) {
+        this.builder.connect(this.classType, this.src, this.tgt);
+      }
+      else {
+        this.builder.connect(this.relType, this.src, this.tgt);
+      }
     }
   }
 }

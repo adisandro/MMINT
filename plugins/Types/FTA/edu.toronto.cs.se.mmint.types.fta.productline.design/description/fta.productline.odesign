@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="fta" version="12.0.0.2017041100">
-  <ownedViewpoints name="FTAViewpoint" modelFileExtension="fta">
-    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="FTADiagram" label="FTA Diagram" domainClass="fta.FaultTree">
-      <metamodel href="platform:/plugin/edu.toronto.cs.se.mmint.types.fta/model/fta.ecore#/"/>
-      <defaultLayer name="Default" label="FTA">
-        <nodeMappings name="EventNode" semanticCandidatesExpression="feature:events" domainClass="fta.Event">
-          <borderedNodeMappings name="GateNode" semanticCandidatesExpression="feature:gate" domainClass="fta.Gate">
-            <style xsi:type="style:DotDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:self.logic" labelPosition="node" resizeKind="NSEW">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="fta.productline" version="12.0.0.2017041100">
+  <ownedViewpoints name="PLFTAViewpoint" modelFileExtension="productline">
+    <ownedRepresentationExtensions xsi:type="description_1:DiagramExtensionDescription" name="PL FTA Diagram" viewpointURI="viewpoint:/edu.toronto.cs.se.mmint.productline.design/ProductLineViewpoint" representationName="ProductLineDiagram">
+      <layers name="PLDefault" label="PL FTA">
+        <nodeMappings name="PLEventNode" preconditionExpression="aql: self.type.name = 'Event' or self.type.eAllSuperTypes->exists(s | s.name = 'Event')" semanticCandidatesExpression="feature:classes" domainClass="productline.Class">
+          <deletionDescription href="file:/media/data/disa/Lavoro/UofT/Software/MMINT/plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DeleteClass']"/>
+          <labelDirectEdit href="file:/media/data/disa/Lavoro/UofT/Software/MMINT/plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
+          <borderedNodeMappings name="PLGateNode" preconditionExpression="aql: self.type.name = 'Gate' or self.type.eAllSuperTypes->exists(s | s.name = 'Gate')" semanticCandidatesExpression="aql: self.references->select(r | r.type.name = 'gate')->collect(r | r.target)" domainClass="productline.Class">
+            <deletionDescription href="file:/media/data/disa/Lavoro/UofT/Software/MMINT/plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DeleteClass']"/>
+            <labelDirectEdit href="file:/media/data/disa/Lavoro/UofT/Software/MMINT/plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
+            <style xsi:type="style:DotDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="service: getPLFTAElementLabel" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <forbiddenSides>WEST</forbiddenSides>
@@ -15,52 +18,62 @@
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
             </style>
           </borderedNodeMappings>
-          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql:self.name + '\n' + self.probability" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" width="10" height="6">
+          <style xsi:type="style:SquareDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="service: getPLFTAElementLabel" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW" width="10" height="6">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
           </style>
         </nodeMappings>
-        <edgeMappings name="SubEventEdge" sourceMapping="//@ownedViewpoints[name='FTAViewpoint']/@ownedRepresentations[name='FTADiagram']/@defaultLayer/@nodeMappings[name='EventNode']/@borderedNodeMappings[name='GateNode']" targetMapping="//@ownedViewpoints[name='FTAViewpoint']/@ownedRepresentations[name='FTADiagram']/@defaultLayer/@nodeMappings[name='EventNode']" targetFinderExpression="feature:subEvents">
+        <edgeMappings name="PLSubEventEdge" preconditionExpression="aql: self.type.name = 'subEvents' or self.type.name = 'superGate'" semanticCandidatesExpression="aql: self.eAllContents(productline::Reference)" sourceMapping="//@ownedViewpoints[name='PLFTAViewpoint']/@ownedRepresentationExtensions[name='PL%20FTA%20Diagram']/@layers[name='PLDefault']/@nodeMappings[name='PLEventNode']/@borderedNodeMappings[name='PLGateNode']" targetMapping="//@ownedViewpoints[name='PLFTAViewpoint']/@ownedRepresentationExtensions[name='PL%20FTA%20Diagram']/@layers[name='PLDefault']/@nodeMappings[name='PLEventNode']" targetFinderExpression="aql: if self.type.name = 'subEvents' then self.target else self.eContainer() endif" sourceFinderExpression="aql: if self.type.name = 'subEvents' then self.eContainer() else self.target endif" domainClass="productline.Reference" useDomainElement="true">
+          <labelDirectEdit href="file:/media/data/disa/Lavoro/UofT/Software/MMINT/plugins/Core-Extensions/ProductLine/edu.toronto.cs.se.mmint.productline.design/description/productline.odesign#//@ownedViewpoints[name='ProductLineViewpoint']/@ownedRepresentations[name='ProductLineDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='EditPresenceCondition']"/>
           <style targetArrow="NoDecoration">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <centerLabelStyleDescription labelSize="10" showIcon="false">
+            <centerLabelStyleDescription labelSize="10" showIcon="false" labelExpression="service: getPLFTAElementLabel">
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <toolSections name="Create">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateEvent" label="Event" nodeMappings="//@ownedViewpoints[name='FTAViewpoint']/@ownedRepresentations[name='FTADiagram']/@defaultLayer/@nodeMappings[name='EventNode']">
+        <toolSections name="PLCreate">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateEvent" label="Event" nodeMappings="//@ownedViewpoints[name='PLFTAViewpoint']/@ownedRepresentationExtensions[name='PL%20FTA%20Diagram']/@layers[name='PLDefault']/@nodeMappings[name='PLEventNode']" iconPath="/edu.toronto.cs.se.mmint.types.fta.edit/icons/full/obj16/Event.gif">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="fta.Event" referenceName="events"/>
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateEvent" id="edu.toronto.cs.se.mmint.types.fta.productline.design.tools.PLFTACreateNode">
+                  <parameters name="type" value="Event"/>
+                </subModelOperations>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateGate" label="Gate" nodeMappings="//@ownedViewpoints[name='FTAViewpoint']/@ownedRepresentations[name='FTADiagram']/@defaultLayer/@nodeMappings[name='EventNode']/@borderedNodeMappings[name='GateNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PLCreateGate" label="Gate" nodeMappings="//@ownedViewpoints[name='PLFTAViewpoint']/@ownedRepresentationExtensions[name='PL%20FTA%20Diagram']/@layers[name='PLDefault']/@nodeMappings[name='PLEventNode']/@borderedNodeMappings[name='PLGateNode']" iconPath="/edu.toronto.cs.se.mmint.types.fta.edit/icons/full/obj16/Gate.gif">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="fta.Gate" referenceName="gate"/>
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateGate" id="edu.toronto.cs.se.mmint.types.fta.productline.design.tools.PLFTACreateNode">
+                  <parameters name="type" value="Gate"/>
+                </subModelOperations>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreateSubEvent" label="Sub-event Link" edgeMappings="//@ownedViewpoints[name='FTAViewpoint']/@ownedRepresentations[name='FTADiagram']/@defaultLayer/@edgeMappings[name='SubEventEdge']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="PLCreateSubEvent" label="Sub-event Link" edgeMappings="//@ownedViewpoints[name='PLFTAViewpoint']/@ownedRepresentationExtensions[name='PL%20FTA%20Diagram']/@layers[name='PLDefault']/@edgeMappings[name='PLSubEventEdge']" iconPath="/edu.toronto.cs.se.mmint.types.fta.edit/icons/full/obj16/subEvents.gif">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
             <targetViewVariable name="targetView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
-                <subModelOperations xsi:type="tool_1:SetValue" featureName="subEvents" valueExpression="var:target"/>
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateSubEvents" id="edu.toronto.cs.se.mmint.types.gsn.productline.design.tools.PLGSNCreateEdge">
+                  <parameters name="type" value="Gate.subEvents"/>
+                  <parameters name="source" value="var:source"/>
+                  <parameters name="target" value="var:target"/>
+                </subModelOperations>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
         </toolSections>
-      </defaultLayer>
-    </ownedRepresentations>
+      </layers>
+    </ownedRepresentationExtensions>
+    <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint.types.fta.productline.design.PLFTAServices"/>
   </ownedViewpoints>
 </description:Group>

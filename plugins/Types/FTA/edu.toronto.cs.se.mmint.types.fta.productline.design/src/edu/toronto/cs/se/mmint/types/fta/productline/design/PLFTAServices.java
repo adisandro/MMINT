@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLElement;
+import edu.toronto.cs.se.mmint.productline.Reference;
 import edu.toronto.cs.se.mmint.productline.design.PLServices;
 import edu.toronto.cs.se.mmint.types.fta.FTAPackage;
 
@@ -35,13 +36,13 @@ public class PLFTAServices extends PLServices {
           prob = "";
         }
         var text = (name + "\n" + prob).strip();
-        yield (pc.isBlank()) ? text : pc + " " + text;
+        yield (pc.isBlank()) ? text : pc + "\n" + text;
       }
       case Class c when c.instanceOf(FTAPackage.eINSTANCE.getGate()) -> {
         var logic = c.getAttribute(FTAPackage.eINSTANCE.getGate_Logic());
-        yield (c.getPresenceCondition().equals(c.getEContainer().getPresenceCondition())) ? logic : pc + " " + logic;
+        yield (c.getPresenceCondition().equals(c.getEContainer().getPresenceCondition())) ? logic : pc + "\n" + logic;
       }
-      case Class c -> pc;
+      case Reference r -> pc;
       default -> getPLElementLabel(self);
     };
 

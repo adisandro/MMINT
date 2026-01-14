@@ -22,8 +22,8 @@ import edu.toronto.cs.se.mmint.types.statemachine.productline.util.PLStateMachin
 public class PLStateMachineCreateEdge extends CreateEdge {
 
   @Override
-  protected Command getCommand(TransactionalEditingDomain domain, Class src, Class tgt, String classType) {
-    return new CreateEdgeCommand(domain, src, tgt, classType) {
+  protected Command getCommand(TransactionalEditingDomain domain, Class src, Class tgt, String type) {
+    return new CreateEdgeCommand(domain, src, tgt, type) {
       {
         this.builder = new PLStateMachineBuilder(this.pl);
       }

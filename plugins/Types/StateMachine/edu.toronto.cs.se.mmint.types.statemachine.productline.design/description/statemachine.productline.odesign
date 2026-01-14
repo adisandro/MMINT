@@ -98,7 +98,7 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
                 <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateTransition" id="edu.toronto.cs.se.mmint.types.statemachine.productline.design.tools.PLStateMachineCreateEdge">
-                  <parameters name="classType" value="Transition"/>
+                  <parameters name="type" value="Transition"/>
                   <parameters name="source" value="var:source"/>
                   <parameters name="target" value="var:target"/>
                 </subModelOperations>

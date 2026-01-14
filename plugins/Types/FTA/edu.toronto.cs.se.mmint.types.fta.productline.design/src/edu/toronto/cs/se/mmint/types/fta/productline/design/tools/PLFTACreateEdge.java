@@ -20,7 +20,6 @@ import edu.toronto.cs.se.mmint.productline.design.tools.CreateEdge;
 import edu.toronto.cs.se.mmint.types.fta.productline.util.PLFTABuilder;
 
 public class PLFTACreateEdge extends CreateEdge {
-
   @Override
   protected Command getCommand(TransactionalEditingDomain domain, Class src, Class tgt, String classType) {
     return new CreateEdgeCommand(domain, src, tgt, classType) {

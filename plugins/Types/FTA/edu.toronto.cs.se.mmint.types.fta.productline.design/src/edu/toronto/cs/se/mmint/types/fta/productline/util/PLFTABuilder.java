@@ -12,6 +12,10 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.fta.productline.util;
 
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -19,6 +23,7 @@ import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.util.PLBuilder;
 import edu.toronto.cs.se.mmint.types.fta.FTAPackage;
+import edu.toronto.cs.se.mmint.types.fta.GateLogic;
 
 public class PLFTABuilder extends PLBuilder {
   protected FTAPackage fta;
@@ -38,23 +43,12 @@ public class PLFTABuilder extends PLBuilder {
   }
 
   @Override
-  protected @Nullable Class getContainerFromSrcTgt(Class clazz, Class src, Class tgt) {
-    return switch (clazz) {
-      default -> super.getContainerFromSrcTgt(clazz, src, tgt);
-    };
-  }
+  public Class create(EClass type, Map<EAttribute, String> attrValues, @Nullable Class container, @Nullable String pc) {
+    var clazz = super.create(type, attrValues, container, pc);
+    if (!attrValues.containsKey(this.fta.getGate_Logic()) && clazz.instanceOf(this.fta.getGate())) {
+      clazz.setAttribute(this.fta.getGate_Logic(), GateLogic.AND.toString());
+    }
 
-  @Override
-  protected @Nullable EReference getSrcReferenceType(Class clazz) {
-    return switch (clazz) {
-      default -> super.getSrcReferenceType(clazz);
-    };
-  }
-
-  @Override
-  protected @Nullable EReference getTgtReferenceType(Class clazz) {
-    return switch (clazz) {
-      default -> super.getTgtReferenceType(clazz);
-    };
+    return clazz;
   }
 }

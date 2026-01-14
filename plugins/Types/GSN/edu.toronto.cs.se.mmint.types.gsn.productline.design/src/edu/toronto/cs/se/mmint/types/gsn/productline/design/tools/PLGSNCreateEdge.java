@@ -22,8 +22,8 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNBuilder;
 public class PLGSNCreateEdge extends CreateEdge {
 
   @Override
-  protected Command getCommand(TransactionalEditingDomain domain, Class src, Class tgt, String classType) {
-    return new CreateEdgeCommand(domain, src, tgt, classType) {
+  protected Command getCommand(TransactionalEditingDomain domain, Class src, Class tgt, String type) {
+    return new CreateEdgeCommand(domain, src, tgt, type) {
       {
         this.builder = new PLGSNBuilder(this.pl);
       }

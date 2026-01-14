@@ -22,6 +22,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
+import edu.toronto.cs.se.mmint.productline.Reference;
 
 public class PLBuilder {
   protected ProductLine pl;
@@ -123,19 +124,23 @@ public class PLBuilder {
     return create(type, Map.of(), null, null);
   }
 
+  protected String pcConnect(Class src, Class tgt, @Nullable String pc) {
+    return this.pl.mergePresenceConditions(
+      pc,
+      this.pl.mergePresenceConditions(src.getPresenceCondition(), tgt.getPresenceCondition()));
+  }
+
   public Class connect(EClass type, Class src, Class tgt, @Nullable String pc) {
     var clazz = createClass(type);
     var container = getContainerFromSrcTgt(clazz, src, tgt);
-    var pcConn = this.pl.mergePresenceConditions(src.getPresenceCondition(), tgt.getPresenceCondition());
-    pc = this.pl.mergePresenceConditions(pc, pcConn);
-    create(clazz, type, Map.of(), container, pc);
+    create(clazz, type, Map.of(), container, pcConnect(src, tgt, pc));
     var srcRef = getSrcReferenceType(clazz);
     if (srcRef != null) {
-      clazz.addReference(srcRef, src, clazz.getPresenceCondition());
+      clazz.addReference(srcRef, src, clazz.getPresenceCondition()); // the pc of the container is potentially included
     }
     var tgtRef = getTgtReferenceType(clazz);
     if (tgtRef != null) {
-      clazz.addReference(tgtRef, tgt, clazz.getPresenceCondition());
+      clazz.addReference(tgtRef, tgt, clazz.getPresenceCondition()); // the pc of the container is potentially included
     }
 
     return clazz;
@@ -145,16 +150,11 @@ public class PLBuilder {
     return connect(type, src, tgt, null);
   }
 
-//  public Class copy(Class clazz) {
-//    var copyClazz = createClass(clazz.getType());
-//    copyClazz.setPresenceCondition(clazz.getPresenceCondition());
-//    for (var attr : clazz.getAttributes()) {
-//      var copyAttr = clazz.addAttribute(attr.getType(), attr.getValue());
-//    }
-//    for (var i = 0; i < clazz.getAttributes().size(); i++) {
-//      copyClazz.getAttributes().get(i).setValue(clazz.getAttributes().get(i));
-//    }
-//
-//    return copyClazz;
-//  }
+  public Reference connect(EReference type, Class src, Class tgt, @Nullable String pc) {
+    return src.addReference(type, tgt, pcConnect(src, tgt, pc));
+  }
+
+  public Reference connect(EReference type, Class src, Class tgt) {
+    return connect(type, src, tgt, null);
+  }
 }
