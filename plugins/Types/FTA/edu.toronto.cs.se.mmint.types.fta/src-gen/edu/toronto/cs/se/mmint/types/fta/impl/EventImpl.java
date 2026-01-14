@@ -211,10 +211,12 @@ public class EventImpl extends MinimalEObjectImpl.Container implements Event {
     if (newGate != this.gate) {
       NotificationChain msgs = null;
       if (this.gate != null) {
-        msgs = ((InternalEObject) this.gate).eInverseRemove(this, FTAPackage.GATE__EVENT, Gate.class, msgs);
+        msgs = ((InternalEObject) this.gate).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - FTAPackage.EVENT__GATE, null,
+                                                       msgs);
       }
       if (newGate != null) {
-        msgs = ((InternalEObject) newGate).eInverseAdd(this, FTAPackage.GATE__EVENT, Gate.class, msgs);
+        msgs = ((InternalEObject) newGate).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE - FTAPackage.EVENT__GATE, null,
+                                                       msgs);
       }
       msgs = basicSetGate(newGate, msgs);
       if (msgs != null) {
@@ -309,12 +311,6 @@ public class EventImpl extends MinimalEObjectImpl.Container implements Event {
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-    case FTAPackage.EVENT__GATE:
-      if (this.gate != null) {
-        msgs = ((InternalEObject) this.gate).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE - FTAPackage.EVENT__GATE, null,
-                                                       msgs);
-      }
-      return basicSetGate((Gate) otherEnd, msgs);
     case FTAPackage.EVENT__SUPER_GATE:
       if (this.superGate != null) {
         msgs = ((InternalEObject) this.superGate).eInverseRemove(this, FTAPackage.GATE__SUB_EVENTS, Gate.class, msgs);

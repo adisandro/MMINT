@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.types.fta.Gate#getSubEvents <em>Sub Events</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.types.fta.Gate#getLogic <em>Logic</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.types.fta.Gate#getEvent <em>Event</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.types.fta.FTAPackage#getGate()
@@ -72,29 +71,5 @@ public interface Gate extends EObject {
    * @generated
    */
   void setLogic(GateLogic value);
-
-  /**
-   * Returns the value of the '<em><b>Event</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mmint.types.fta.Event#getGate <em>Gate</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Event</em>' container reference.
-   * @see #setEvent(Event)
-   * @see edu.toronto.cs.se.mmint.types.fta.FTAPackage#getGate_Event()
-   * @see edu.toronto.cs.se.mmint.types.fta.Event#getGate
-   * @model opposite="gate" required="true" transient="false"
-   * @generated
-   */
-  Event getEvent();
-
-  /**
-   * Sets the value of the '{@link edu.toronto.cs.se.mmint.types.fta.Gate#getEvent <em>Event</em>}' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Event</em>' container reference.
-   * @see #getEvent()
-   * @generated
-   */
-  void setEvent(Event value);
 
 } // Gate

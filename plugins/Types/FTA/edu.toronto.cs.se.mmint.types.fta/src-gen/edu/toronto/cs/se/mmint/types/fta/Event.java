@@ -82,14 +82,12 @@ public interface Event extends EObject {
 
   /**
    * Returns the value of the '<em><b>Gate</b></em>' containment reference.
-   * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.mmint.types.fta.Gate#getEvent <em>Event</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Gate</em>' containment reference.
    * @see #setGate(Gate)
    * @see edu.toronto.cs.se.mmint.types.fta.FTAPackage#getEvent_Gate()
-   * @see edu.toronto.cs.se.mmint.types.fta.Gate#getEvent
-   * @model opposite="event" containment="true"
+   * @model containment="true"
    * @generated
    */
   Gate getGate();

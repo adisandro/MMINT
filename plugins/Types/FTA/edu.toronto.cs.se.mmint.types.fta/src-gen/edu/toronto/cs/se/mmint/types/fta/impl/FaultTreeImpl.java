@@ -35,7 +35,7 @@ import edu.toronto.cs.se.mmint.types.fta.FaultTree;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.types.fta.impl.FaultTreeImpl#getEvents <em>Events</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.types.fta.impl.FaultTreeImpl#getRoot <em>Root</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.types.fta.impl.FaultTreeImpl#getTopEvent <em>Top Event</em>}</li>
  * </ul>
  *
  * @generated
@@ -89,15 +89,15 @@ public class FaultTreeImpl extends MinimalEObjectImpl.Container implements Fault
    * @generated
    */
   @Override
-  public Event getRoot() {
-    var root = basicGetRoot();
-    return root != null && root.eIsProxy() ? (Event) eResolveProxy((InternalEObject) root) : root;
+  public Event getTopEvent() {
+    var topEvent = basicGetTopEvent();
+    return topEvent != null && topEvent.eIsProxy() ? (Event) eResolveProxy((InternalEObject) topEvent) : topEvent;
   }
 
   /**
    * @generated NOT
    */
-  public Event basicGetRoot() {
+  public Event basicGetTopEvent() {
     return getEvents().stream().filter(e -> e.getSuperGate() == null).findFirst().get();
   }
 
@@ -125,11 +125,11 @@ public class FaultTreeImpl extends MinimalEObjectImpl.Container implements Fault
     switch (featureID) {
     case FTAPackage.FAULT_TREE__EVENTS:
       return getEvents();
-    case FTAPackage.FAULT_TREE__ROOT:
+    case FTAPackage.FAULT_TREE__TOP_EVENT:
       if (resolve) {
-        return getRoot();
+        return getTopEvent();
       }
-      return basicGetRoot();
+      return basicGetTopEvent();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -176,8 +176,8 @@ public class FaultTreeImpl extends MinimalEObjectImpl.Container implements Fault
     switch (featureID) {
     case FTAPackage.FAULT_TREE__EVENTS:
       return this.events != null && !this.events.isEmpty();
-    case FTAPackage.FAULT_TREE__ROOT:
-      return basicGetRoot() != null;
+    case FTAPackage.FAULT_TREE__TOP_EVENT:
+      return basicGetTopEvent() != null;
     }
     return super.eIsSet(featureID);
   }

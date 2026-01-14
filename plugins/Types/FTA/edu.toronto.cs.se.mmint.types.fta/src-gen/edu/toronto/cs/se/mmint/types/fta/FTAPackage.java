@@ -87,13 +87,13 @@ public interface FTAPackage extends EPackage {
   int FAULT_TREE__EVENTS = 0;
 
   /**
-   * The feature id for the '<em><b>Root</b></em>' reference.
+   * The feature id for the '<em><b>Top Event</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FAULT_TREE__ROOT = 1;
+  int FAULT_TREE__TOP_EVENT = 1;
 
   /**
    * The number of structural features of the '<em>Fault Tree</em>' class.
@@ -206,22 +206,13 @@ public interface FTAPackage extends EPackage {
   int GATE__LOGIC = 1;
 
   /**
-   * The feature id for the '<em><b>Event</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int GATE__EVENT = 2;
-
-  /**
    * The number of structural features of the '<em>Gate</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GATE_FEATURE_COUNT = 3;
+  int GATE_FEATURE_COUNT = 2;
 
   /**
    * The number of operations of the '<em>Gate</em>' class.
@@ -264,15 +255,15 @@ public interface FTAPackage extends EPackage {
   EReference getFaultTree_Events();
 
   /**
-   * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmint.types.fta.FaultTree#getRoot <em>Root</em>}'.
+   * Returns the meta object for the reference '{@link edu.toronto.cs.se.mmint.types.fta.FaultTree#getTopEvent <em>Top Event</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Root</em>'.
-   * @see edu.toronto.cs.se.mmint.types.fta.FaultTree#getRoot()
+   * @return the meta object for the reference '<em>Top Event</em>'.
+   * @see edu.toronto.cs.se.mmint.types.fta.FaultTree#getTopEvent()
    * @see #getFaultTree()
    * @generated
    */
-  EReference getFaultTree_Root();
+  EReference getFaultTree_TopEvent();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.fta.Event <em>Event</em>}'.
@@ -361,17 +352,6 @@ public interface FTAPackage extends EPackage {
   EAttribute getGate_Logic();
 
   /**
-   * Returns the meta object for the container reference '{@link edu.toronto.cs.se.mmint.types.fta.Gate#getEvent <em>Event</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Event</em>'.
-   * @see edu.toronto.cs.se.mmint.types.fta.Gate#getEvent()
-   * @see #getGate()
-   * @generated
-   */
-  EReference getGate_Event();
-
-  /**
    * Returns the meta object for enum '{@link edu.toronto.cs.se.mmint.types.fta.GateLogic <em>Gate Logic</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -423,12 +403,12 @@ public interface FTAPackage extends EPackage {
     EReference FAULT_TREE__EVENTS = FTAPackage.eINSTANCE.getFaultTree_Events();
 
     /**
-     * The meta object literal for the '<em><b>Root</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Top Event</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference FAULT_TREE__ROOT = FTAPackage.eINSTANCE.getFaultTree_Root();
+    EReference FAULT_TREE__TOP_EVENT = FTAPackage.eINSTANCE.getFaultTree_TopEvent();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.fta.impl.EventImpl <em>Event</em>}' class.
@@ -497,14 +477,6 @@ public interface FTAPackage extends EPackage {
      * @generated
      */
     EAttribute GATE__LOGIC = FTAPackage.eINSTANCE.getGate_Logic();
-
-    /**
-     * The meta object literal for the '<em><b>Event</b></em>' container reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference GATE__EVENT = FTAPackage.eINSTANCE.getGate_Event();
 
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.fta.GateLogic <em>Gate Logic</em>}' enum.

@@ -4,14 +4,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="FaultTree">
     <eStructuralFeatures xsi:type="ecore:EReference" name="events" lowerBound="1"
         upperBound="-1" eType="#//Event" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="root" lowerBound="1" eType="#//Event"
-        changeable="false" volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topEvent" lowerBound="1"
+        eType="#//Event" changeable="false" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Event">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="probability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="gate" eType="#//Gate" containment="true"
-        eOpposite="#//Gate/event"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gate" eType="#//Gate" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="superGate" eType="#//Gate"
         eOpposite="#//Gate/subEvents"/>
   </eClassifiers>
@@ -19,8 +18,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="subEvents" lowerBound="1"
         upperBound="-1" eType="#//Event" eOpposite="#//Event/superGate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="logic" lowerBound="1" eType="#//GateLogic"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="event" lowerBound="1" eType="#//Event"
-        eOpposite="#//Event/gate"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="GateLogic">
     <eLiterals name="AND"/>

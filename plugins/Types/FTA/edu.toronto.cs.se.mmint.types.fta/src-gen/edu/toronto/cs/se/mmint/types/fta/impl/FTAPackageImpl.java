@@ -152,7 +152,7 @@ public class FTAPackageImpl extends EPackageImpl implements FTAPackage {
    * @generated
    */
   @Override
-  public EReference getFaultTree_Root() {
+  public EReference getFaultTree_TopEvent() {
     return (EReference) this.faultTreeEClass.getEStructuralFeatures().get(1);
   }
 
@@ -242,16 +242,6 @@ public class FTAPackageImpl extends EPackageImpl implements FTAPackage {
    * @generated
    */
   @Override
-  public EReference getGate_Event() {
-    return (EReference) this.gateEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EEnum getGateLogic() {
     return this.gateLogicEEnum;
   }
@@ -289,7 +279,7 @@ public class FTAPackageImpl extends EPackageImpl implements FTAPackage {
     // Create classes and their features
     this.faultTreeEClass = createEClass(FTAPackage.FAULT_TREE);
     createEReference(this.faultTreeEClass, FTAPackage.FAULT_TREE__EVENTS);
-    createEReference(this.faultTreeEClass, FTAPackage.FAULT_TREE__ROOT);
+    createEReference(this.faultTreeEClass, FTAPackage.FAULT_TREE__TOP_EVENT);
 
     this.eventEClass = createEClass(FTAPackage.EVENT);
     createEAttribute(this.eventEClass, FTAPackage.EVENT__PROBABILITY);
@@ -300,7 +290,6 @@ public class FTAPackageImpl extends EPackageImpl implements FTAPackage {
     this.gateEClass = createEClass(FTAPackage.GATE);
     createEReference(this.gateEClass, FTAPackage.GATE__SUB_EVENTS);
     createEAttribute(this.gateEClass, FTAPackage.GATE__LOGIC);
-    createEReference(this.gateEClass, FTAPackage.GATE__EVENT);
 
     // Create enums
     this.gateLogicEEnum = createEEnum(FTAPackage.GATE_LOGIC);
@@ -342,9 +331,9 @@ public class FTAPackageImpl extends EPackageImpl implements FTAPackage {
     initEReference(getFaultTree_Events(), this.getEvent(), null, "events", null, 1, -1, FaultTree.class, !EPackageImpl.IS_TRANSIENT,
                    !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE,
                    !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getFaultTree_Root(), this.getEvent(), null, "root", null, 1, 1, FaultTree.class, EPackageImpl.IS_TRANSIENT,
-                   EPackageImpl.IS_VOLATILE, !EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE,
-                   EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEReference(getFaultTree_TopEvent(), this.getEvent(), null, "topEvent", null, 1, 1, FaultTree.class,
+                   EPackageImpl.IS_TRANSIENT, EPackageImpl.IS_VOLATILE, !EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,
+                   EPackageImpl.IS_UNIQUE, EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.eventEClass, Event.class, "Event", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEvent_Probability(), this.ecorePackage.getEBigDecimal(), "probability", null, 0, 1, Event.class,
@@ -352,9 +341,9 @@ public class FTAPackageImpl extends EPackageImpl implements FTAPackage {
                    EPackageImpl.IS_ORDERED);
     initEAttribute(getEvent_Name(), this.ecorePackage.getEString(), "name", null, 1, 1, Event.class, !EPackageImpl.IS_TRANSIENT,
                    !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getEvent_Gate(), this.getGate(), this.getGate_Event(), "gate", null, 0, 1, Event.class,
-                   !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,
-                   EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEReference(getEvent_Gate(), this.getGate(), null, "gate", null, 0, 1, Event.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE,
+                   EPackageImpl.IS_CHANGEABLE, EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED,
+                   EPackageImpl.IS_ORDERED);
     initEReference(getEvent_SuperGate(), this.getGate(), this.getGate_SubEvents(), "superGate", null, 0, 1, Event.class,
                    !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,
                    EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
@@ -365,9 +354,6 @@ public class FTAPackageImpl extends EPackageImpl implements FTAPackage {
                    !EPackageImpl.IS_UNSETTABLE, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getGate_Logic(), this.getGateLogic(), "logic", null, 1, 1, Gate.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE,
                    EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-    initEReference(getGate_Event(), this.getEvent(), this.getEvent_Gate(), "event", null, 1, 1, Gate.class,
-                   !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_COMPOSITE, !EPackageImpl.IS_RESOLVE_PROXIES, !EPackageImpl.IS_UNSETTABLE,
-                   EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(this.gateLogicEEnum, GateLogic.class, "GateLogic");

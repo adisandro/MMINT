@@ -60,7 +60,7 @@ public class ProbabilityPropagation extends OperatorImpl {
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
-    propagate(this.out0.getRoot());
+    propagate(this.out0.getTopEvent());
 
     return outputFromInput(0, 0, inputsByName, outputMIDsByName);
   }

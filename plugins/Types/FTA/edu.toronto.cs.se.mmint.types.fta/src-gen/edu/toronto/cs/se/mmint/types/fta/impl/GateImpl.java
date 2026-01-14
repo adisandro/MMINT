@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import edu.toronto.cs.se.mmint.types.fta.Event;
@@ -40,7 +39,6 @@ import edu.toronto.cs.se.mmint.types.fta.GateLogic;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.types.fta.impl.GateImpl#getSubEvents <em>Sub Events</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.types.fta.impl.GateImpl#getLogic <em>Logic</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.types.fta.impl.GateImpl#getEvent <em>Event</em>}</li>
  * </ul>
  *
  * @generated
@@ -138,68 +136,12 @@ public class GateImpl extends MinimalEObjectImpl.Container implements Gate {
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public Event getEvent() {
-    if (eContainerFeatureID() != FTAPackage.GATE__EVENT) {
-      return null;
-    }
-    return (Event) eInternalContainer();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetEvent(Event newEvent, NotificationChain msgs) {
-    msgs = eBasicSetContainer((InternalEObject) newEvent, FTAPackage.GATE__EVENT, msgs);
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setEvent(Event newEvent) {
-    if (newEvent != eInternalContainer() || (eContainerFeatureID() != FTAPackage.GATE__EVENT && newEvent != null)) {
-      if (EcoreUtil.isAncestor(this, newEvent)) {
-        throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-      }
-      NotificationChain msgs = null;
-      if (eInternalContainer() != null) {
-        msgs = eBasicRemoveFromContainer(msgs);
-      }
-      if (newEvent != null) {
-        msgs = ((InternalEObject) newEvent).eInverseAdd(this, FTAPackage.EVENT__GATE, Event.class, msgs);
-      }
-      msgs = basicSetEvent(newEvent, msgs);
-      if (msgs != null) {
-        msgs.dispatch();
-      }
-    }
-    else if (eNotificationRequired()) {
-      eNotify(new ENotificationImpl(this, Notification.SET, FTAPackage.GATE__EVENT, newEvent, newEvent));
-    }
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
     case FTAPackage.GATE__SUB_EVENTS:
       return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubEvents()).basicAdd(otherEnd, msgs);
-    case FTAPackage.GATE__EVENT:
-      if (eInternalContainer() != null) {
-        msgs = eBasicRemoveFromContainer(msgs);
-      }
-      return basicSetEvent((Event) otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -214,24 +156,8 @@ public class GateImpl extends MinimalEObjectImpl.Container implements Gate {
     switch (featureID) {
     case FTAPackage.GATE__SUB_EVENTS:
       return ((InternalEList<?>) getSubEvents()).basicRemove(otherEnd, msgs);
-    case FTAPackage.GATE__EVENT:
-      return basicSetEvent(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-    switch (eContainerFeatureID()) {
-    case FTAPackage.GATE__EVENT:
-      return eInternalContainer().eInverseRemove(this, FTAPackage.EVENT__GATE, Event.class, msgs);
-    }
-    return super.eBasicRemoveFromContainerFeature(msgs);
   }
 
   /**
@@ -246,8 +172,6 @@ public class GateImpl extends MinimalEObjectImpl.Container implements Gate {
       return getSubEvents();
     case FTAPackage.GATE__LOGIC:
       return getLogic();
-    case FTAPackage.GATE__EVENT:
-      return getEvent();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -268,9 +192,6 @@ public class GateImpl extends MinimalEObjectImpl.Container implements Gate {
     case FTAPackage.GATE__LOGIC:
       setLogic((GateLogic) newValue);
       return;
-    case FTAPackage.GATE__EVENT:
-      setEvent((Event) newValue);
-      return;
     }
     super.eSet(featureID, newValue);
   }
@@ -289,9 +210,6 @@ public class GateImpl extends MinimalEObjectImpl.Container implements Gate {
     case FTAPackage.GATE__LOGIC:
       setLogic(GateImpl.LOGIC_EDEFAULT);
       return;
-    case FTAPackage.GATE__EVENT:
-      setEvent((Event) null);
-      return;
     }
     super.eUnset(featureID);
   }
@@ -308,8 +226,6 @@ public class GateImpl extends MinimalEObjectImpl.Container implements Gate {
       return this.subEvents != null && !this.subEvents.isEmpty();
     case FTAPackage.GATE__LOGIC:
       return this.logic != GateImpl.LOGIC_EDEFAULT;
-    case FTAPackage.GATE__EVENT:
-      return getEvent() != null;
     }
     return super.eIsSet(featureID);
   }

@@ -63,7 +63,7 @@ public class FaultTreeItemProvider extends ItemProviderAdapter implements IEditi
       super.getPropertyDescriptors(object);
 
       addEventsPropertyDescriptor(object);
-      addRootPropertyDescriptor(object);
+      addTopEventPropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
   }
@@ -86,20 +86,20 @@ public class FaultTreeItemProvider extends ItemProviderAdapter implements IEditi
   }
 
   /**
-   * This adds a property descriptor for the Root feature.
+   * This adds a property descriptor for the Top Event feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addRootPropertyDescriptor(Object object) {
+  protected void addTopEventPropertyDescriptor(Object object) {
     this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
                                                              getResourceLocator(), getString(
-                                                                                             "_UI_FaultTree_root_feature"),
+                                                                                             "_UI_FaultTree_topEvent_feature"),
                                                              getString("_UI_PropertyDescriptor_description",
-                                                                       "_UI_FaultTree_root_feature",
+                                                                       "_UI_FaultTree_topEvent_feature",
                                                                        "_UI_FaultTree_type"),
-                                                             FTAPackage.Literals.FAULT_TREE__ROOT, false, false, true,
-                                                             null, null, null));
+                                                             FTAPackage.Literals.FAULT_TREE__TOP_EVENT, false, false,
+                                                             false, null, null, null));
   }
 
   /**

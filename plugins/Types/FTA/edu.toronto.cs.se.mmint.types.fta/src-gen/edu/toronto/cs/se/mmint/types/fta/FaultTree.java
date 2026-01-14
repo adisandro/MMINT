@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.types.fta.FaultTree#getEvents <em>Events</em>}</li>
- *   <li>{@link edu.toronto.cs.se.mmint.types.fta.FaultTree#getRoot <em>Root</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.types.fta.FaultTree#getTopEvent <em>Top Event</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.types.fta.FTAPackage#getFaultTree()
@@ -46,14 +46,14 @@ public interface FaultTree extends EObject {
   EList<Event> getEvents();
 
   /**
-   * Returns the value of the '<em><b>Root</b></em>' reference.
+   * Returns the value of the '<em><b>Top Event</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Root</em>' reference.
-   * @see edu.toronto.cs.se.mmint.types.fta.FTAPackage#getFaultTree_Root()
+   * @return the value of the '<em>Top Event</em>' reference.
+   * @see edu.toronto.cs.se.mmint.types.fta.FTAPackage#getFaultTree_TopEvent()
    * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
    * @generated
    */
-  Event getRoot();
+  Event getTopEvent();
 
 } // FaultTree

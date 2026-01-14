@@ -16,8 +16,7 @@
     </genEnums>
     <genClasses ecoreClass="fta.ecore#//FaultTree">
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference fta.ecore#//FaultTree/events"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" propertySortChoices="true"
-          ecoreFeature="ecore:EReference fta.ecore#//FaultTree/root"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference fta.ecore#//FaultTree/topEvent"/>
     </genClasses>
     <genClasses ecoreClass="fta.ecore#//Event">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fta.ecore#//Event/probability"/>
@@ -28,7 +27,6 @@
     <genClasses ecoreClass="fta.ecore#//Gate">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference fta.ecore#//Gate/subEvents"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fta.ecore#//Gate/logic"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference fta.ecore#//Gate/event"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

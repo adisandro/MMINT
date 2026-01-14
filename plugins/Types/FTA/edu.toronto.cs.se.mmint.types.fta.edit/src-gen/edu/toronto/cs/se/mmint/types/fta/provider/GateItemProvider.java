@@ -63,7 +63,6 @@ public class GateItemProvider extends ItemProviderAdapter implements IEditingDom
 
       addSubEventsPropertyDescriptor(object);
       addLogicPropertyDescriptor(object);
-      addEventPropertyDescriptor(object);
     }
     return this.itemPropertyDescriptors;
   }
@@ -97,21 +96,6 @@ public class GateItemProvider extends ItemProviderAdapter implements IEditingDom
                                                                        "_UI_Gate_logic_feature", "_UI_Gate_type"),
                                                              FTAPackage.Literals.GATE__LOGIC, true, false, false,
                                                              ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-  }
-
-  /**
-   * This adds a property descriptor for the Event feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addEventPropertyDescriptor(Object object) {
-    this.itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
-                                                             getResourceLocator(), getString("_UI_Gate_event_feature"),
-                                                             getString("_UI_PropertyDescriptor_description",
-                                                                       "_UI_Gate_event_feature", "_UI_Gate_type"),
-                                                             FTAPackage.Literals.GATE__EVENT, true, false, true, null,
-                                                             null, null));
   }
 
   /**
