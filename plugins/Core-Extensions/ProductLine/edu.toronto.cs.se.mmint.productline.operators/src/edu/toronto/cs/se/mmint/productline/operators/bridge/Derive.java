@@ -147,7 +147,7 @@ public class Derive extends RandomOperatorImpl {
     }
 
     boolean canInstantiate;
-    if (this.userAssigned.isPresent()) {
+    if (this.userAssigned.get()) {
       var featureValues = new HashMap<String, Boolean>();
       features.forEach(feature -> {
         var value = this.allFeatureValues.computeIfAbsent(
