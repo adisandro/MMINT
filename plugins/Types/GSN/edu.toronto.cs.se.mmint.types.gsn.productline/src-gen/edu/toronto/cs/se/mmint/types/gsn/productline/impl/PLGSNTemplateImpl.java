@@ -62,8 +62,11 @@ public class PLGSNTemplateImpl extends ClassImpl implements PLGSNTemplate {
   public Map<String, PLGSNArgumentElement> getElementsById() {
     return getStreamOfReference(GSNPackage.eINSTANCE.getTemplate_Elements())
              .filter(e -> e instanceof PLGSNArgumentElement &&
-                          !e.getListOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_TemplateId()).isEmpty())
-             .collect(Collectors.toMap(e -> e.getListOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_TemplateId()).get(0),
+                          e.getStreamOfAttribute(GSNPackage.eINSTANCE.getArgumentElement_TemplateId())
+                           .filter(id -> id != null)
+                           .findAny()
+                           .isPresent())
+             .collect(Collectors.toMap(e -> e.getAttribute(GSNPackage.eINSTANCE.getArgumentElement_TemplateId()),
                                        e -> (PLGSNArgumentElement) e));
   }
 
