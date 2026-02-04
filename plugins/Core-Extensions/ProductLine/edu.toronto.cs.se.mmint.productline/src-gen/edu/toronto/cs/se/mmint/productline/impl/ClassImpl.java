@@ -354,8 +354,13 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
       return getAttribute((EAttribute) arguments.get(0));
     case PLPackage.CLASS___GET_MANY_ATTRIBUTE__EATTRIBUTE:
       return getManyAttribute((EAttribute) arguments.get(0));
+    case PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING_STRING:
+      return addAttribute((EAttribute) arguments.get(0), (String) arguments.get(1), (String) arguments.get(2));
     case PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING:
       return addAttribute((EAttribute) arguments.get(0), (String) arguments.get(1));
+    case PLPackage.CLASS___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST_STRING:
+      return addManyAttribute((EAttribute) arguments.get(0), (EList<String>) arguments.get(1), (String) arguments.get(
+                                                                                                                      2));
     case PLPackage.CLASS___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST:
       return addManyAttribute((EAttribute) arguments.get(0), (EList<String>) arguments.get(1));
     case PLPackage.CLASS___SET_ATTRIBUTE__EATTRIBUTE_STRING:
@@ -511,11 +516,11 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    * @generated NOT
    */
   @Override
-  public Attribute addAttribute(EAttribute attributeType, String value) {
+  public Attribute addAttribute(EAttribute attributeType, String value, String presenceCondition) {
     var attribute = PLFactory.eINSTANCE.createAttribute();
     attribute.setType(attributeType);
     attribute.setValue(value);
-    attribute.setPresenceCondition(getPresenceCondition());
+    attribute.setPresenceCondition(presenceCondition);
     getAttributes().add(attribute);
 
     return attribute;
@@ -525,11 +530,27 @@ public class ClassImpl extends PLElementImpl implements edu.toronto.cs.se.mmint.
    * @generated NOT
    */
   @Override
-  public Attribute addManyAttribute(EAttribute attributeType, EList<String> values) {
+  public Attribute addAttribute(EAttribute attributeType, String value) {
+    return addAttribute(attributeType, value, getPresenceCondition());
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public Attribute addManyAttribute(EAttribute attributeType, EList<String> values, String presenceCondition) {
     if (!attributeType.isMany()) {
       return null;
     }
-    return addAttribute(attributeType, values.toString());
+    return addAttribute(attributeType, values.toString(), presenceCondition);
+  }
+
+  /**
+   * @generated NOT
+   */
+  @Override
+  public Attribute addManyAttribute(EAttribute attributeType, EList<String> values) {
+    return addManyAttribute(attributeType, values, getPresenceCondition());
   }
 
   /**

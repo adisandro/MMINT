@@ -177,7 +177,23 @@ public interface Class extends PLElement {
    * @model required="true" attributeTypeRequired="true"
    * @generated
    */
+  Attribute addAttribute(EAttribute attributeType, String value, String presenceCondition);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model required="true" attributeTypeRequired="true"
+   * @generated
+   */
   Attribute addAttribute(EAttribute attributeType, String value);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model required="true" attributeTypeRequired="true" valuesMany="true"
+   * @generated
+   */
+  Attribute addManyAttribute(EAttribute attributeType, EList<String> values, String presenceCondition);
 
   /**
    * <!-- begin-user-doc -->

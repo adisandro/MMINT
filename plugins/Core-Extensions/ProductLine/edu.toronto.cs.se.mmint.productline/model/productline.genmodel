@@ -84,10 +84,20 @@
       <genOperations ecoreOperation="productline.ecore#//Class/addAttribute">
         <genParameters ecoreParameter="productline.ecore#//Class/addAttribute/attributeType"/>
         <genParameters ecoreParameter="productline.ecore#//Class/addAttribute/value"/>
+        <genParameters ecoreParameter="productline.ecore#//Class/addAttribute/presenceCondition"/>
+      </genOperations>
+      <genOperations ecoreOperation="productline.ecore#//Class/addAttribute.1">
+        <genParameters ecoreParameter="productline.ecore#//Class/addAttribute.1/attributeType"/>
+        <genParameters ecoreParameter="productline.ecore#//Class/addAttribute.1/value"/>
       </genOperations>
       <genOperations ecoreOperation="productline.ecore#//Class/addManyAttribute">
         <genParameters ecoreParameter="productline.ecore#//Class/addManyAttribute/attributeType"/>
         <genParameters ecoreParameter="productline.ecore#//Class/addManyAttribute/values"/>
+        <genParameters ecoreParameter="productline.ecore#//Class/addManyAttribute/presenceCondition"/>
+      </genOperations>
+      <genOperations ecoreOperation="productline.ecore#//Class/addManyAttribute.1">
+        <genParameters ecoreParameter="productline.ecore#//Class/addManyAttribute.1/attributeType"/>
+        <genParameters ecoreParameter="productline.ecore#//Class/addManyAttribute.1/values"/>
       </genOperations>
       <genOperations ecoreOperation="productline.ecore#//Class/setAttribute">
         <genParameters ecoreParameter="productline.ecore#//Class/setAttribute/attributeType"/>
