@@ -13,6 +13,9 @@
 package edu.toronto.cs.se.mmint.types.fta.productline.operators;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -28,6 +31,7 @@ import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
+import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 import edu.toronto.cs.se.mmint.types.fta.FTAPackage;
 import edu.toronto.cs.se.mmint.types.fta.GateLogic;
 
@@ -48,6 +52,7 @@ public class PLProbabilityPropagation extends OperatorImpl {
     }
   };
   protected FTAPackage fta;
+  protected IPLFeaturesTrait reasoner;
 
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
@@ -55,21 +60,52 @@ public class PLProbabilityPropagation extends OperatorImpl {
     this.in0 = (ProductLine) plFTAModel.getEMFInstanceRoot();
     this.out0 = EcoreUtil.copy(this.in0);
     this.fta = FTAPackage.eINSTANCE;
+    this.reasoner = this.out0.getReasoner();
   }
 
-  private BigDecimal propagate(Class plEvent) {
+  private Map<String, BigDecimal> propagate(Class plEvent) {
     var gates = plEvent.getReference(this.fta.getEvent_Gate());
     if (gates.isEmpty()) { // basic event
-      return new BigDecimal(plEvent.getAttribute(this.fta.getEvent_Probability()));
+      var prob = new BigDecimal(plEvent.getAttribute(this.fta.getEvent_Probability()));
+      return Map.of(plEvent.getPresenceCondition(), prob);
     }
+    var gateLogic = GateLogic.valueOf(gates.get(0).getAttribute(this.fta.getGate_Logic()));
+    var probMap = new HashMap<String, BigDecimal>();
+    plEvent.getAttributes().removeIf(a -> a.getType() == this.fta.getEvent_Probability());
+    // group sub probabilities by presence condition
+    var subProbsByPC = new HashMap<String, List<BigDecimal>>();
     var subProbs = gates.get(0).getStreamOfReference(this.fta.getGate_SubEvents()).map(this::propagate);
-    var prob = switch (GateLogic.valueOf(gates.get(0).getAttribute(this.fta.getGate_Logic()))) {
-      case AND -> subProbs.reduce(BigDecimal.ONE, BigDecimal::multiply);
-      case OR  -> subProbs.reduce(BigDecimal.ZERO, BigDecimal::add);
+    subProbs.forEach(subProb ->
+      subProb.forEach((pc, prob) -> subProbsByPC.computeIfAbsent(pc, _ -> new ArrayList<BigDecimal>()).add(prob)));
+    // apply gate logic to same presence conditions
+    for (var subProbByPC : subProbsByPC.entrySet()) {
+      var probs = subProbByPC.getValue().stream();
+      var prob = switch (gateLogic) {
+        case AND -> probs.reduce(BigDecimal.ONE, BigDecimal::multiply);
+        case OR  -> probs.reduce(BigDecimal.ZERO, BigDecimal::add);
+      };
+      var probPC = this.out0.mergePresenceConditions(plEvent.getPresenceCondition(), subProbByPC.getKey());
+      plEvent.addAttribute(this.fta.getEvent_Probability(), prob.toString(), probPC);
+      probMap.put(probPC, prob);
+    }
+    // combine different presence conditions
+    var prob = switch (gateLogic) {
+      case AND -> BigDecimal.ONE;
+      case OR  -> BigDecimal.ZERO;
     };
-    plEvent.setAttribute(this.fta.getEvent_Probability(), prob.toString());
+    for (var subProbByPC : subProbsByPC.entrySet()) {
+      var probs = subProbByPC.getValue().stream();
+      prob = switch (gateLogic) {
+        case AND -> prob.multiply(probs.reduce(BigDecimal.ONE, BigDecimal::multiply));
+        case OR  -> prob.add(probs.reduce(BigDecimal.ZERO, BigDecimal::add));
+      };
+    }
+    var probPC = this.reasoner.simplify(this.reasoner.and(subProbsByPC.keySet().toArray(new String[0])));
+    probPC = this.out0.mergePresenceConditions(plEvent.getPresenceCondition(), probPC);
+    plEvent.addAttribute(this.fta.getEvent_Probability(), prob.toString(), probPC);
+    probMap.put(probPC, prob);
 
-    return prob;
+    return probMap;
   }
 
   @Override
