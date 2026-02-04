@@ -50,7 +50,7 @@ public class ProbabilityPropagation extends OperatorImpl {
     var subProbs = gate.getSubEvents().stream().map(this::propagate);
     var prob = switch (gate.getLogic()) {
       case AND -> subProbs.reduce(BigDecimal.ONE, BigDecimal::multiply);
-      case OR -> subProbs.reduce(BigDecimal.ZERO, BigDecimal::add);
+      case OR  -> subProbs.reduce(BigDecimal.ZERO, BigDecimal::add);
     };
     event.setProbability(prob);
 
