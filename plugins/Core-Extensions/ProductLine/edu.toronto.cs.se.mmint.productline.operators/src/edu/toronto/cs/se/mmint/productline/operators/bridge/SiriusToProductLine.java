@@ -12,7 +12,6 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.operators.bridge;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -49,6 +48,7 @@ import org.eclipse.sirius.viewpoint.description.tool.SetValue;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -58,101 +58,68 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class SiriusToProductLine extends OperatorImpl {
-  private In in;
-  private Out out;
-  private String servicesJava;
-  private String nodesJava;
-  private String edgesJava;
-
-  private static class In {
-    public final static String PROP_SERVICESJAVA = "servicesJava";
-    public final static String PROP_SERVICESJAVA_DEFAULT = "edu.toronto.cs.se.mmint.productline.design.PLServices";
-    public final static String PROP_NODESJAVA = "nodesJava";
-    public final static String PROP_NODESJAVA_DEFAULT = "edu.toronto.cs.se.mmint.productline.design.tools.CreateNode";
-    public final static String PROP_EDGESJAVA = "edgesJava";
-    public final static String PROP_EDGESJAVA_DEFAULT = "edu.toronto.cs.se.mmint.productline.design.tools.CreateEdge";
-    public final static String MODEL = "siriusSpec";
-    public Model specModel;
-
-    public In(Map<String, Model> inputsByName) {
-      this.specModel = inputsByName.get(In.MODEL);
-    }
-  }
-
-  private static class Out {
-    public final static String MODEL = "plSiriusSpec";
-    public static final String ID_PREFIX = "PL";
-    public static final String LABEL_PREFIX = "Product Line ";
-    public static final String SUFFIX = ".productline";
-    public Model modelType;
-    public Group plBaseSpec;
-    public DeleteElementDescription plDelete;
-    public DirectEditLabel plLabel;
-    public Group plSpec;
-    public DescriptionFactory dDescFactory;
-    public ToolFactory dToolFactory;
-    public StyleFactory dStyleFactory;
-    public org.eclipse.sirius.viewpoint.description.DescriptionFactory vDescFactory;
-    public org.eclipse.sirius.viewpoint.description.tool.ToolFactory vToolFactory;
-    public String path;
-    public MID mid;
-
-    public Out(Map<String, MID> outputMIDsByName, String workingPath, In in) throws Exception {
-      this.modelType = in.specModel.getMetatype();
-      this.dDescFactory = DescriptionFactory.eINSTANCE;
-      this.dToolFactory = ToolFactory.eINSTANCE;
-      this.dStyleFactory = StyleFactory.eINSTANCE;
-      this.vDescFactory = org.eclipse.sirius.viewpoint.description.DescriptionFactory.eINSTANCE;
-      this.vToolFactory = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE;
-      var plBaseDiagram = MIDTypeRegistry.<Diagram>getType("edu.toronto.cs.se.mmint.productline.design");
-      var plBaseSpecPath = MIDTypeRegistry.getBundlePath(plBaseDiagram, "description" + IPath.SEPARATOR +
-                                                                        "productline.odesign");
-      this.plBaseSpec = (Group) FileUtils.readModelFile(plBaseSpecPath, null, false);
-      var plTools = ((DiagramDescription) this.plBaseSpec.getOwnedViewpoints().get(0).getOwnedRepresentations().get(0))
-        .getDefaultLayer().getToolSections().get(0).getOwnedTools();
-      this.plLabel = (DirectEditLabel) plTools.get(3);
-      this.plDelete = (DeleteElementDescription) plTools.get(4);
-      this.plSpec = this.vDescFactory.createGroup();
-      this.path = workingPath + IPath.SEPARATOR + in.specModel.getName() + Out.SUFFIX + "." +
-                  in.specModel.getFileExtension();
-      this.mid = outputMIDsByName.get(Out.MODEL);
-    }
-
-    public Map<String, Model> packed() throws MMINTException, IOException {
-      var plSpecModel = this.modelType.createInstanceAndEditor(this.plSpec,
-                                                               FileUtils.getUniquePath(this.path, true, false),
-                                                               this.mid);
-      return Map.of(Out.MODEL, plSpecModel);
-    }
-  }
-
-  private void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
-    this.in = new In(inputsByName);
-    this.out = new Out(outputMIDsByName, getWorkingPath(), this.in);
-  }
+  public final static OperatorParameter IN0 = new OperatorParameter("siriusSpec",
+                                                                    "http://www.eclipse.org/sirius/description/1.1.0");
+  public Group in0;
+  public final static OperatorParameter OUT0 = new OperatorParameter("plSiriusSpec",
+                                                                     "http://www.eclipse.org/sirius/description/1.1.0",
+                                                                     "odesign", ".productline");
+  public Group out0;
+  public final static String PROP_SERVICESJAVA = "servicesJava";
+  public final static String PROP_SERVICESJAVA_DEFAULT = "edu.toronto.cs.se.mmint.productline.design.PLServices";
+  protected String servicesJava;
+  public final static String PROP_NODESJAVA = "nodesJava";
+  public final static String PROP_NODESJAVA_DEFAULT = "edu.toronto.cs.se.mmint.productline.design.tools.CreateNode";
+  protected String nodesJava;
+  public final static String PROP_EDGESJAVA = "edgesJava";
+  public final static String PROP_EDGESJAVA_DEFAULT = "edu.toronto.cs.se.mmint.productline.design.tools.CreateEdge";
+  protected String edgesJava;
+  public final static String ID_PREFIX = "PL";
+  public final static String LABEL_PREFIX = "Product Line ";
+  protected DeleteElementDescription plDelete;
+  protected DirectEditLabel plLabel;
+  protected DescriptionFactory dDescFactory;
+  protected ToolFactory dToolFactory;
+  protected StyleFactory dStyleFactory;
+  protected org.eclipse.sirius.viewpoint.description.DescriptionFactory vDescFactory;
+  protected org.eclipse.sirius.viewpoint.description.tool.ToolFactory vToolFactory;
 
   @Override
-  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
-    this.servicesJava = MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_SERVICESJAVA,
-                                                         Optional.of(In.PROP_SERVICESJAVA_DEFAULT));
-    this.nodesJava = MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_NODESJAVA,
-                                                      Optional.of(In.PROP_NODESJAVA_DEFAULT));
-    this.edgesJava = MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_EDGESJAVA,
-                                                      Optional.of(In.PROP_EDGESJAVA_DEFAULT));
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
+    this.servicesJava = MIDOperatorIOUtils.getStringProp(inputProperties, SiriusToProductLine.PROP_SERVICESJAVA,
+                                                         Optional.of(SiriusToProductLine.PROP_SERVICESJAVA_DEFAULT));
+    this.nodesJava = MIDOperatorIOUtils.getStringProp(inputProperties, SiriusToProductLine.PROP_NODESJAVA,
+                                                      Optional.of(SiriusToProductLine.PROP_NODESJAVA_DEFAULT));
+    this.edgesJava = MIDOperatorIOUtils.getStringProp(inputProperties, SiriusToProductLine.PROP_EDGESJAVA,
+                                                      Optional.of(SiriusToProductLine.PROP_EDGESJAVA_DEFAULT));
+    var specModel = inputsByName.get(SiriusToProductLine.IN0.name());
+    this.in0 = (Group) specModel.getEMFInstanceRoot();
+    var plBaseDiagram = MIDTypeRegistry.<Diagram>getType("edu.toronto.cs.se.mmint.productline.design");
+    var plBaseSpecPath = MIDTypeRegistry.getBundlePath(plBaseDiagram, "description" + IPath.SEPARATOR +
+                                                                      "productline.odesign");
+    var plBaseSpec = (Group) FileUtils.readModelFile(plBaseSpecPath, null, false);
+    var plTools = ((DiagramDescription) plBaseSpec.getOwnedViewpoints().get(0).getOwnedRepresentations().get(0))
+      .getDefaultLayer().getToolSections().get(0).getOwnedTools();
+    this.plLabel = (DirectEditLabel) plTools.get(3);
+    this.plDelete = (DeleteElementDescription) plTools.get(4);
+    this.dDescFactory = DescriptionFactory.eINSTANCE;
+    this.dToolFactory = ToolFactory.eINSTANCE;
+    this.dStyleFactory = StyleFactory.eINSTANCE;
+    this.vDescFactory = org.eclipse.sirius.viewpoint.description.DescriptionFactory.eINSTANCE;
+    this.vToolFactory = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE;
+    this.out0 = this.vDescFactory.createGroup();
   }
 
   private void toProductLine() throws Exception {
     var plMappings = new HashMap<String, DiagramElementMapping>();
-    // .odesign root
-    var spec = (Group) this.in.specModel.getEMFInstanceRoot();
-    this.out.plSpec.setName(spec.getName() + ".productline");
+    this.out0.setName(this.in0.getName() + ".productline");
     // viewpoints
-    for (var viewpoint : spec.getOwnedViewpoints()) {
-      var plViewpoint = this.out.vDescFactory.createViewpoint();
-      addPLIdentifiedElement(viewpoint, plViewpoint, Out.LABEL_PREFIX);
+    for (var viewpoint : this.in0.getOwnedViewpoints()) {
+      var plViewpoint = this.vDescFactory.createViewpoint();
+      addPLIdentifiedElement(viewpoint, plViewpoint, SiriusToProductLine.LABEL_PREFIX);
       plViewpoint.setModelFileExtension("productline");
-      this.out.plSpec.getOwnedViewpoints().add(plViewpoint);
-      var plJavaExt = this.out.vDescFactory.createJavaExtension();
+      this.out0.getOwnedViewpoints().add(plViewpoint);
+      var plJavaExt = this.vDescFactory.createJavaExtension();
       plJavaExt.setQualifiedClassName(this.servicesJava);
       plViewpoint.getOwnedJavaExtensions().add(plJavaExt);
       // representations
@@ -164,16 +131,16 @@ public class SiriusToProductLine extends OperatorImpl {
         var modelTypeName = modelType.getName();
         var bundleName = IPath.SEPARATOR + MIDTypeRegistry.getTypeBundle(modelType.getUri()).getSymbolicName();
         // diagram extension
-        var plDiagramExt = this.out.dDescFactory.createDiagramExtensionDescription();
-        plDiagramExt.setName(Out.ID_PREFIX +
+        var plDiagramExt = this.dDescFactory.createDiagramExtensionDescription();
+        plDiagramExt.setName(SiriusToProductLine.ID_PREFIX +
           ((representation.getLabel() == null) ? representation.getName() : " " + representation.getLabel()));
         plDiagramExt.setViewpointURI("viewpoint:/edu.toronto.cs.se.mmint.productline.design/ProductLineViewpoint");
         plDiagramExt.setRepresentationName("ProductLineDiagram");
         plViewpoint.getOwnedRepresentationExtensions().add(plDiagramExt);
         // default layer
         var layer = diagram.getDefaultLayer();
-        var plLayer = this.out.dDescFactory.createAdditionalLayer();
-        addPLIdentifiedElement(layer, plLayer, Out.ID_PREFIX + " ");
+        var plLayer = this.dDescFactory.createAdditionalLayer();
+        addPLIdentifiedElement(layer, plLayer, SiriusToProductLine.ID_PREFIX + " ");
         plDiagramExt.getLayers().add(plLayer);
         // node mappings
         for (var nodeMapping : layer.getNodeMappings()) {
@@ -207,7 +174,7 @@ public class SiriusToProductLine extends OperatorImpl {
         }
         // tool sections
         for (var section : layer.getToolSections()) {
-          var plSection = this.out.dToolFactory.createToolSection();
+          var plSection = this.dToolFactory.createToolSection();
           addPLIdentifiedElement(section, plSection, null);
           plLayer.getToolSections().add(plSection);
           for (var tool : section.getOwnedTools()) {
@@ -233,13 +200,13 @@ public class SiriusToProductLine extends OperatorImpl {
   }
 
   private String getType(String expression) {
-    var separator = (expression.startsWith("feature:")) ? ":" : ".";
+    var separator = (expression.contains(":")) ? ":" : ".";
     var i = expression.lastIndexOf(separator);
     return (i < 0) ? expression : expression.substring(i+1);
   }
 
   private void addPLIdentifiedElement(IdentifiedElement elem, IdentifiedElement plElem, @Nullable String labelPrefix) {
-    plElem.setName(Out.ID_PREFIX + elem.getName());
+    plElem.setName(SiriusToProductLine.ID_PREFIX + elem.getName());
     if (elem.getLabel() != null) {
       var plLabel = elem.getLabel();
       if (labelPrefix != null) {
@@ -257,7 +224,7 @@ public class SiriusToProductLine extends OperatorImpl {
                                    String semanticExpr, String precondition) {
     addPLIdentifiedElement(diagMapping, plDiagMapping, null);
     plDiagMapping.setSemanticCandidatesExpression(semanticExpr);
-    plDiagMapping.setLabelDirectEdit(this.out.plLabel);
+    plDiagMapping.setLabelDirectEdit(this.plLabel);
     plDiagMapping.setPreconditionExpression(precondition);
   }
 
@@ -268,11 +235,11 @@ public class SiriusToProductLine extends OperatorImpl {
     var precondition = "aql: self.type.name = '" + type + "' or self.type.eAllSuperTypes->exists(s | s.name = '" +
                        type + "')";
     addPLDiagramMapping(nodeMapping, plNodeMapping, semanticExpr, precondition);
-    plNodeMapping.setDeletionDescription(this.out.plDelete);
+    plNodeMapping.setDeletionDescription(this.plDelete);
   }
 
   private NodeMapping createPLNodeMapping(NodeMapping nodeMapping, String modelTypeName) {
-    var plNodeMapping = this.out.dDescFactory.createNodeMapping();
+    var plNodeMapping = this.dDescFactory.createNodeMapping();
     addPLNodeMapping(nodeMapping, plNodeMapping);
     var plStyle = EcoreUtil.copy(nodeMapping.getStyle());
     addPLStyleExpression(plStyle, modelTypeName);
@@ -282,7 +249,7 @@ public class SiriusToProductLine extends OperatorImpl {
   }
 
   private ContainerMapping createPLContainerMapping(ContainerMapping containerMapping, String modelTypeName) {
-    var plContainerMapping = this.out.dDescFactory.createContainerMapping();
+    var plContainerMapping = this.dDescFactory.createContainerMapping();
     addPLNodeMapping(containerMapping, plContainerMapping);
     plContainerMapping.setChildrenPresentation(containerMapping.getChildrenPresentation());
     var plStyle = EcoreUtil.copy(containerMapping.getStyle());
@@ -348,7 +315,7 @@ public class SiriusToProductLine extends OperatorImpl {
     var semanticExpr = "feature:classes";
     var precondition = "aql: self.type.name = '" + classType + "'";
     addPLEdgeMapping(edgeMapping, plEdgeMapping, domainClass, srcFinder, tgtFinder, semanticExpr, precondition);
-    plEdgeMapping.setDeletionDescription(this.out.plDelete);
+    plEdgeMapping.setDeletionDescription(this.plDelete);
   }
 
   private EdgeMapping createPLEdgeMapping(EdgeMapping edgeMapping, Map<String, DiagramElementMapping> plMappings,
@@ -359,7 +326,7 @@ public class SiriusToProductLine extends OperatorImpl {
     //TODO there should be a way to obtain clazz in CreateEdge, when not creating it, is it a different api or a variation of getContainerFromSrcTgt?
     var modelTypeName = modelType.getName();
     var metamodel = modelType.getEMFTypeRoot();
-    var plEdgeMapping = this.out.dDescFactory.createEdgeMapping();
+    var plEdgeMapping = this.dDescFactory.createEdgeMapping();
     if (edgeMapping.isUseDomainElement()) { // elem-based edge
       addPLClassEdgeMapping(edgeMapping, plEdgeMapping, metamodel);
     }
@@ -392,7 +359,7 @@ public class SiriusToProductLine extends OperatorImpl {
 
   private record PLCreateOp(ChangeContext op, @Nullable String classType) {};
   private PLCreateOp addPLCreateOp(ModelOperation firstOp, String javaClass) {
-    var plChangeOp = this.out.vToolFactory.createChangeContext();
+    var plChangeOp = this.vToolFactory.createChangeContext();
     plChangeOp.setBrowseExpression("var:container");
     String type = null;
     if (firstOp instanceof CreateInstance creationOp) {
@@ -410,10 +377,10 @@ public class SiriusToProductLine extends OperatorImpl {
       }
     }
     if (type != null) {
-      var plJavaOp = this.out.vToolFactory.createExternalJavaAction();
-      plJavaOp.setName(Out.ID_PREFIX + "Create" + type);
+      var plJavaOp = this.vToolFactory.createExternalJavaAction();
+      plJavaOp.setName(SiriusToProductLine.ID_PREFIX + "Create" + type);
       plJavaOp.setId(javaClass);
-      var plParam = this.out.vToolFactory.createExternalJavaActionParameter();
+      var plParam = this.vToolFactory.createExternalJavaActionParameter();
       plParam.setName("type");
       plParam.setValue(type);
       plJavaOp.getParameters().add(plParam);
@@ -426,7 +393,7 @@ public class SiriusToProductLine extends OperatorImpl {
   private NodeCreationDescription createPLNodeCreationTool(NodeCreationDescription nodeTool,
                                                            Map<String, DiagramElementMapping> plMappings,
                                                            String bundleName) {
-    var plNodeTool = this.out.dToolFactory.createNodeCreationDescription();
+    var plNodeTool = this.dToolFactory.createNodeCreationDescription();
     addPLIdentifiedElement(nodeTool, plNodeTool, null);
     if (nodeTool.getIconPath() != null) {
       plNodeTool.setIconPath(nodeTool.getIconPath());
@@ -437,18 +404,18 @@ public class SiriusToProductLine extends OperatorImpl {
     // tool vars
     var toolVar = nodeTool.getVariable();
     if (toolVar != null) {
-      var plToolVar = this.out.dToolFactory.createNodeCreationVariable();
+      var plToolVar = this.dToolFactory.createNodeCreationVariable();
       plToolVar.setName(toolVar.getName());
       plNodeTool.setVariable(plToolVar);
     }
     var toolViewVar = nodeTool.getViewVariable();
     if (toolViewVar != null) {
-      var plToolViewVar = this.out.vToolFactory.createContainerViewVariable();
+      var plToolViewVar = this.vToolFactory.createContainerViewVariable();
       plToolViewVar.setName(toolViewVar.getName());
       plNodeTool.setViewVariable(plToolViewVar);
     }
     // tool ops
-    var plInitialOp = this.out.vToolFactory.createInitialNodeCreationOperation();
+    var plInitialOp = this.vToolFactory.createInitialNodeCreationOperation();
     plNodeTool.setInitialOperation(plInitialOp);
     var plCreateOp = addPLCreateOp(nodeTool.getInitialOperation().getFirstModelOperations(), this.nodesJava);
     plInitialOp.setFirstModelOperations(plCreateOp.op());
@@ -466,7 +433,7 @@ public class SiriusToProductLine extends OperatorImpl {
   private ContainerCreationDescription createPLContainerCreationTool(ContainerCreationDescription containerTool,
                                                                      Map<String, DiagramElementMapping> plMappings,
                                                                      String bundleName) {
-    var plContainerTool = this.out.dToolFactory.createContainerCreationDescription();
+    var plContainerTool = this.dToolFactory.createContainerCreationDescription();
     addPLIdentifiedElement(containerTool, plContainerTool, null);
     for (var containerMapping : containerTool.getContainerMappings()) {
       plContainerTool.getContainerMappings().add((ContainerMapping) plMappings.get(containerMapping.getName()));
@@ -474,18 +441,18 @@ public class SiriusToProductLine extends OperatorImpl {
     // tool vars
     var toolVar = containerTool.getVariable();
     if (toolVar != null) {
-      var plToolVar = this.out.dToolFactory.createNodeCreationVariable();
+      var plToolVar = this.dToolFactory.createNodeCreationVariable();
       plToolVar.setName(toolVar.getName());
       plContainerTool.setVariable(plToolVar);
     }
     var toolViewVar = containerTool.getViewVariable();
     if (toolViewVar != null) {
-      var plToolViewVar = this.out.vToolFactory.createContainerViewVariable();
+      var plToolViewVar = this.vToolFactory.createContainerViewVariable();
       plToolViewVar.setName(toolViewVar.getName());
       plContainerTool.setViewVariable(plToolViewVar);
     }
     // tool ops
-    var plInitialOp = this.out.vToolFactory.createInitialNodeCreationOperation();
+    var plInitialOp = this.vToolFactory.createInitialNodeCreationOperation();
     plContainerTool.setInitialOperation(plInitialOp);
     var plCreateOp = addPLCreateOp(containerTool.getInitialOperation().getFirstModelOperations(), this.nodesJava);
     plInitialOp.setFirstModelOperations(plCreateOp.op());
@@ -503,7 +470,7 @@ public class SiriusToProductLine extends OperatorImpl {
   private EdgeCreationDescription createPLEdgeCreationTool(EdgeCreationDescription edgeTool,
                                                            Map<String, DiagramElementMapping> plMappings,
                                                            String bundleName) {
-    var plEdgeTool = this.out.dToolFactory.createEdgeCreationDescription();
+    var plEdgeTool = this.dToolFactory.createEdgeCreationDescription();
     addPLIdentifiedElement(edgeTool, plEdgeTool, null);
     for (var edgeMapping : edgeTool.getEdgeMappings()) {
       plEdgeTool.getEdgeMappings().add((EdgeMapping) plMappings.get(edgeMapping.getName()));
@@ -511,40 +478,40 @@ public class SiriusToProductLine extends OperatorImpl {
     // tool vars
     var srcVar = edgeTool.getSourceVariable();
     if (srcVar != null) {
-      var plSrcVar = this.out.dToolFactory.createSourceEdgeCreationVariable();
+      var plSrcVar = this.dToolFactory.createSourceEdgeCreationVariable();
       plSrcVar.setName(srcVar.getName());
       plEdgeTool.setSourceVariable(plSrcVar);
     }
     var tgtVar = edgeTool.getTargetVariable();
     if (tgtVar != null) {
-      var plTgtVar = this.out.dToolFactory.createTargetEdgeCreationVariable();
+      var plTgtVar = this.dToolFactory.createTargetEdgeCreationVariable();
       plTgtVar.setName(tgtVar.getName());
       plEdgeTool.setTargetVariable(plTgtVar);
     }
     var srcViewVar = edgeTool.getSourceViewVariable();
     if (srcViewVar != null) {
-      var plSrcViewVar = this.out.dToolFactory.createSourceEdgeViewCreationVariable();
+      var plSrcViewVar = this.dToolFactory.createSourceEdgeViewCreationVariable();
       plSrcViewVar.setName(srcViewVar.getName());
       plEdgeTool.setSourceViewVariable(plSrcViewVar);
     }
     var tgtViewVar = edgeTool.getTargetViewVariable();
     if (tgtViewVar != null) {
-      var plTgtViewVar = this.out.dToolFactory.createTargetEdgeViewCreationVariable();
+      var plTgtViewVar = this.dToolFactory.createTargetEdgeViewCreationVariable();
       plTgtViewVar.setName(tgtViewVar.getName());
       plEdgeTool.setTargetViewVariable(plTgtViewVar);
     }
     // tool ops
-    var plInitialOp = this.out.vToolFactory.createInitEdgeCreationOperation();
+    var plInitialOp = this.vToolFactory.createInitEdgeCreationOperation();
     plEdgeTool.setInitialOperation(plInitialOp);
     var plCreateOp = addPLCreateOp(edgeTool.getInitialOperation().getFirstModelOperations(), this.edgesJava);
     var plChangeOp = plCreateOp.op();
     plInitialOp.setFirstModelOperations(plChangeOp);
     var plJavaOp = (ExternalJavaAction) plChangeOp.getSubModelOperations().get(0);
-    var plParam = this.out.vToolFactory.createExternalJavaActionParameter();
+    var plParam = this.vToolFactory.createExternalJavaActionParameter();
     plParam.setName("source");
     plParam.setValue("var:source");
     plJavaOp.getParameters().add(plParam);
-    plParam = this.out.vToolFactory.createExternalJavaActionParameter();
+    plParam = this.vToolFactory.createExternalJavaActionParameter();
     plParam.setName("target");
     plParam.setValue("var:target");
     plJavaOp.getParameters().add(plParam);
@@ -562,8 +529,8 @@ public class SiriusToProductLine extends OperatorImpl {
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
-    init(inputsByName, outputMIDsByName);
     toProductLine();
-    return this.out.packed();
+
+    return outputFromInput(0, 0, inputsByName, outputMIDsByName);
   }
 }

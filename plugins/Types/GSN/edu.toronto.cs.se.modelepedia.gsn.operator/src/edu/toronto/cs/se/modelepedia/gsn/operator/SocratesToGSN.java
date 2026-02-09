@@ -66,7 +66,7 @@ public class SocratesToGSN extends OperatorImpl {
   public final static String NODE_CHILDREN = "children";
 
   @Override
-  public void init(Properties inProps, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inProps, Map<String, Model> inputsByName) throws Exception {
     this.out0 = GSNFactory.eINSTANCE.createSafetyCase();
   }
 

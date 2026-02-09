@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
@@ -33,7 +32,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
   public final static OperatorParameter IN0 = ToProductLine.IN0.specialize(EcorePackage.eNS_URI);
 
   @Override
-  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
     inputProperties.setProperty(ToProductLine.PROP_REASONERNAME, "LogicNG");
     super.init(inputProperties, inputsByName);
     this.out0.setMetamodel(edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE);

@@ -154,7 +154,7 @@ public class Merge extends OperatorImpl {
   }
 
   @Override
-  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
     this.engine = MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_ENGINE,
                                                    Optional.of(In.PROP_ENGINE_DEFAULT));
   }

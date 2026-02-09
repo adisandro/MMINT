@@ -28,7 +28,6 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.OperatorInput;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -127,7 +126,7 @@ public class Filter extends OperatorImpl {
   }
 
   @Override
-  public void init(Properties inputProps, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProps, Map<String, Model> inputsByName) throws Exception {
     this.timeOverheadEnabled = MIDOperatorIOUtils.getBoolProp(
                                  inputProps, Filter.PROP_OUT_TIMEOVERHEAD+MIDOperatorIOUtils.PROP_OUTENABLED_SUFFIX,
                                  Optional.of(false));

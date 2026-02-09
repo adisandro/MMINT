@@ -69,7 +69,7 @@ public class ICMT15 extends RandomOperatorImpl {
 	private String outputConstraint;
 
 	@Override
-	public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+	public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
 
 		super.init(inputProperties, inputsByName);
 		this.modelMultiplier = MIDOperatorIOUtils.getIntProp(inputProperties, ICMT15.PROPERTY_IN_MODELMULTIPLIER, Optional.empty());

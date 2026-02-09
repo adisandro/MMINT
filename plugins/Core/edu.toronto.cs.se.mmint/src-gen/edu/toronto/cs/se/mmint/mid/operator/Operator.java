@@ -374,19 +374,21 @@ public interface Operator extends GenericElement {
     Properties getInputProperties();
 
     /**
-   * <!-- begin-user-doc --> Reads the input properties of this operator instance. Used by
-     * {@link #startInstance}, may be overridden.
+     * <!-- begin-user-doc --> Initializes input, outputs and properties of this operator instance. Used by
+     * {@link #startInstance}, should be overridden.
      *
      * @param inProps
-     *            The input properties of this operator.
-     * @param inputsByName TODO
-     * @throws MMINTException
-     *             If any required property is not available, or if a property is not in its intended format.
-     *             <!-- end-user-doc -->
-   * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException" inputPropertiesDataType="edu.toronto.cs.se.mmint.mid.operator.Properties" inputPropertiesRequired="true" inputsByNameRequired="true"
-   * @generated
-   */
-    void init(Properties inProps, Map<String, Model> inputsByName) throws MMINTException;
+     *          The input properties of this operator.
+     * @param inputsByName
+     *          The input model instances, identified by their formal parameter name.
+     * @throws Exception
+     *           If any of the required data for this operator is not available. <!-- end-user-doc -->
+     * @model exceptions="edu.toronto.cs.se.mmint.mid.MMINTException"
+     *        inputPropertiesDataType="edu.toronto.cs.se.mmint.mid.operator.Properties" inputPropertiesRequired="true"
+     *        inputsByNameRequired="true"
+     * @generated
+     */
+    void init(Properties inProps, Map<String, Model> inputsByName) throws Exception;
 
     /**
    * <!-- begin-user-doc --> Runs this operator instance. This function contains the logic of the operator and must be

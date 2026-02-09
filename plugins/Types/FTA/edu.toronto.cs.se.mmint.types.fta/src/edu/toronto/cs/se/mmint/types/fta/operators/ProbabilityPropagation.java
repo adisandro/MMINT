@@ -18,7 +18,6 @@ import java.util.Properties;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -36,7 +35,7 @@ public class ProbabilityPropagation extends OperatorImpl {
   public FaultTree out0;
 
   @Override
-  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
     var ftaModel = inputsByName.get(ProbabilityPropagation.IN0.name());
     this.in0 = (FaultTree) ftaModel.getEMFInstanceRoot();
     this.out0 = EcoreUtil.copy(this.in0);

@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
@@ -32,7 +31,7 @@ public class TextFileToSMProductLine extends ToProductLine {
   public final static OperatorParameter IN0 = ToProductLine.IN0.specialize(FilePackage.eNS_URI);
 
   @Override
-  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
     inputProperties.setProperty(ToProductLine.PROP_REASONERNAME, "LogicNG");
     inputProperties.setProperty(ToProductLine.PROP_PRESENCECONDITION, "$true");
     super.init(inputProperties, inputsByName);

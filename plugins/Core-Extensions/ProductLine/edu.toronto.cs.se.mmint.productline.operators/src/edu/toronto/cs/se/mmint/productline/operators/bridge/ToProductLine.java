@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EReference;
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MMINT;
 import edu.toronto.cs.se.mmint.MMINTConstants;
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -64,7 +63,7 @@ public class ToProductLine extends OperatorImpl {
   protected PLBuilder builder;
 
   @Override
-  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
     var reasonerName = MIDOperatorIOUtils.getOptStringProp(inputProperties, ToProductLine.PROP_REASONERNAME);
     this.reasoner = (reasonerName.isPresent()) ?
       (IPLFeaturesTrait) MMINT.getReasoner(reasonerName.get()) :

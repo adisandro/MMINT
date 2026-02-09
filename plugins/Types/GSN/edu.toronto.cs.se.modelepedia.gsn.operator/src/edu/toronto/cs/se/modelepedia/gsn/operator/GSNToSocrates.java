@@ -24,7 +24,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -49,7 +48,7 @@ public class GSNToSocrates extends OperatorImpl {
   protected String owner;
 
   @Override
-  public void init(Properties inProps, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inProps, Map<String, Model> inputsByName) throws Exception {
     this.owner = MIDOperatorIOUtils.getStringProp(inProps, GSNToSocrates.PROP_OWNER, Optional.empty());
     this.in0 = (SafetyCase) inputsByName.get(GSNToSocrates.IN0.name()).getEMFInstanceRoot();
     this.out0 = null; // do not create output model file

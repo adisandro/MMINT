@@ -39,7 +39,6 @@ import org.eclipse.emf.henshin.model.Node;
 import org.eclipse.emf.henshin.model.Rule;
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -175,7 +174,7 @@ public abstract class LiftingHenshinTransformation extends RandomOperatorImpl {
 	protected Map<PLElement, Integer> modelObjsLiterals;
 
 	@Override
-	public void init(Properties inProps, Map<String, Model> inputsByName) throws MMINTException {
+	public void init(Properties inProps, Map<String, Model> inputsByName) throws Exception {
 		super.init(inProps, inputsByName);
 		this.constraint = MIDOperatorIOUtils.getStringProp(inProps, LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINT, Optional.of(LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINT_DEFAULT));
 		this.constraintVariables = MIDOperatorIOUtils.getStringPropList(inProps, LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINTVARIABLES, Optional.of(LiftingHenshinTransformation.PROPERTY_IN_CONSTRAINTVARIABLES_DEFAULT));

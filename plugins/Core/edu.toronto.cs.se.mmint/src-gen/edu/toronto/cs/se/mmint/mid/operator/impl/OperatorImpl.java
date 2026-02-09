@@ -1245,7 +1245,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      * @generated NOT
      */
     @Override
-    public void init(Properties inProps, Map<String, Model> inputsByName) throws MMINTException {
+    public void init(Properties inProps, Map<String, Model> inputsByName) throws Exception {
       // do nothing
     }
 

@@ -33,28 +33,6 @@
                uri="edu.toronto.cs.se.mmint.productline.operators.bridge.SiriusToProductLine"
                class="edu.toronto.cs.se.mmint.productline.operators.bridge.SiriusToProductLine">
          </type>
-         <inputs>
-            <parameter>
-               <type
-                     name="siriusSpec"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.SiriusToProductLine/siriusSpec">
-               </type>
-               <typeEndpoint
-                     targetTypeUri="http://www.eclipse.org/sirius/description/1.1.0">
-               </typeEndpoint>
-            </parameter>
-         </inputs>
-         <outputs>
-            <parameter>
-               <type
-                     name="plSiriusSpec"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.SiriusToProductLine/plSiriusSpec">
-               </type>
-               <typeEndpoint
-                     targetTypeUri="http://www.eclipse.org/sirius/description/1.1.0">
-               </typeEndpoint>
-            </parameter>
-         </outputs>
       </operatorType>
    </extension>
 

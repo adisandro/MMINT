@@ -597,7 +597,7 @@
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/getInputProperties"/>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/init">
-          <genParameters ecoreParameter="mid.ecore#//operator/Operator/init/inputProperties"/>
+          <genParameters ecoreParameter="mid.ecore#//operator/Operator/init/inProps"/>
           <genParameters ecoreParameter="mid.ecore#//operator/Operator/init/inputsByName"/>
         </genOperations>
         <genOperations ecoreOperation="mid.ecore#//operator/Operator/run">

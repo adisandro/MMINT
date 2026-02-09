@@ -18,7 +18,6 @@ import java.util.Optional;
 import java.util.Properties;
 
 import edu.toronto.cs.se.mmint.MMINT;
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -80,7 +79,7 @@ public class VAMOS23 extends OperatorImpl {
   }
 
   @Override
-  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
     this.queryName = MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_IN_QUERYNAME, Optional.empty());
   }
 

@@ -18,7 +18,6 @@ import java.util.Properties;
 
 import org.eclipse.jdt.annotation.NonNull;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -32,7 +31,7 @@ public class Sleep extends OperatorImpl {
   private long ms;
 
   @Override
-  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
 
     this.ms = MIDOperatorIOUtils.getIntProp(inputProperties, Sleep.PROP_IN_MILLISECONDS,
                                             Optional.of(Sleep.PROP_IN_MILLISECONDS_DEFAULT));

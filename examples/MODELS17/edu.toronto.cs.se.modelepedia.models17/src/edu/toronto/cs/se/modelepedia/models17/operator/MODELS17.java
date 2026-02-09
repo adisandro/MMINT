@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MMINTConstants;
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.MIDFactory;
@@ -55,7 +54,7 @@ public class MODELS17 extends OperatorImpl {
     private int multiplier;
 
     @Override
-    public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+    public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
         this.multiplier = MIDOperatorIOUtils.getIntProp(inputProperties, MODELS17.PROPERTY_IN_MULTIPLIER, Optional.empty());
     }
 

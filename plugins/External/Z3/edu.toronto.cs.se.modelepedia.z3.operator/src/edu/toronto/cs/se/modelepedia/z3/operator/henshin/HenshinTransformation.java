@@ -89,7 +89,7 @@ public class HenshinTransformation extends OperatorImpl {
     }
 
 	@Override
-	public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+	public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
 		this.henshinFileName = MIDOperatorIOUtils.getStringProp(inputProperties, HenshinTransformation.PROPERTY_IN_HENSHINFILENAME, Optional.empty());
 	}
 

@@ -18,7 +18,6 @@ import java.util.Optional;
 import java.util.Properties;
 
 import edu.toronto.cs.se.mmint.MMINT;
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -77,7 +76,7 @@ public class Query extends OperatorImpl {
   }
 
   @Override
-  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
     this.queryPath = FileUtils.prependWorkspacePath(
       MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_QUERYPATH, Optional.empty()));
     this.queryName = MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_QUERYNAME, Optional.empty());
