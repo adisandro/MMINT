@@ -320,10 +320,6 @@ public class SiriusToProductLine extends OperatorImpl {
 
   private EdgeMapping createPLEdgeMapping(EdgeMapping edgeMapping, Map<String, DiagramElementMapping> plMappings,
                                           Model modelType) throws MMINTException {
-    //TODO add code to handle: label, createEdge, deletion from pl or custom?
-    //TODO edge tool bug var:container instead of var:source?
-    //TODO review EditPresenceCondition, it's probably wrong
-    //TODO there should be a way to obtain clazz in CreateEdge, when not creating it, is it a different api or a variation of getContainerFromSrcTgt?
     var modelTypeName = modelType.getName();
     var metamodel = modelType.getEMFTypeRoot();
     var plEdgeMapping = this.dDescFactory.createEdgeMapping();
@@ -357,15 +353,16 @@ public class SiriusToProductLine extends OperatorImpl {
     return plEdgeMapping;
   }
 
-  private record PLCreateOp(ChangeContext op, @Nullable String classType) {};
+  private record PLCreateOp(ChangeContext op, @Nullable String type) {};
   private PLCreateOp addPLCreateOp(ModelOperation firstOp, String javaClass) {
     var plChangeOp = this.vToolFactory.createChangeContext();
-    plChangeOp.setBrowseExpression("var:container");
+    var changeExpr = "var:container";
     String type = null;
     if (firstOp instanceof CreateInstance creationOp) {
       type = getType(creationOp.getTypeName());
     }
     else if (firstOp instanceof ChangeContext changeOp) {
+      changeExpr = changeOp.getBrowseExpression();
       for (var subOp : changeOp.getSubModelOperations()) {
         if (subOp instanceof CreateInstance creationOp) {
           type = getType(creationOp.getTypeName());
@@ -376,9 +373,11 @@ public class SiriusToProductLine extends OperatorImpl {
         }
       }
     }
+    plChangeOp.setBrowseExpression(changeExpr);
     if (type != null) {
       var plJavaOp = this.vToolFactory.createExternalJavaAction();
-      plJavaOp.setName(SiriusToProductLine.ID_PREFIX + "Create" + type);
+      plJavaOp.setName(SiriusToProductLine.ID_PREFIX + "Create" + type.substring(0, 1).toUpperCase() +
+                       type.substring(1));
       plJavaOp.setId(javaClass);
       var plParam = this.vToolFactory.createExternalJavaActionParameter();
       plParam.setName("type");
@@ -395,9 +394,6 @@ public class SiriusToProductLine extends OperatorImpl {
                                                            String bundleName) {
     var plNodeTool = this.dToolFactory.createNodeCreationDescription();
     addPLIdentifiedElement(nodeTool, plNodeTool, null);
-    if (nodeTool.getIconPath() != null) {
-      plNodeTool.setIconPath(nodeTool.getIconPath());
-    }
     for (var nodeMapping : nodeTool.getNodeMappings()) {
       plNodeTool.getNodeMappings().add((NodeMapping) plMappings.get(nodeMapping.getName()));
     }
@@ -423,8 +419,8 @@ public class SiriusToProductLine extends OperatorImpl {
     if (!nodeTool.getIconPath().isBlank()) {
       plNodeTool.setIconPath(nodeTool.getIconPath());
     }
-    else if (plCreateOp.classType() != null) {
-      plNodeTool.setIconPath(bundleName + ".edit/icons/full/obj16/" + plCreateOp.classType() + ".gif");
+    else if (plCreateOp.type() != null) {
+      plNodeTool.setIconPath(bundleName + ".edit/icons/full/obj16/" + plCreateOp.type() + ".gif");
     }
 
     return plNodeTool;
@@ -460,8 +456,8 @@ public class SiriusToProductLine extends OperatorImpl {
     if (!containerTool.getIconPath().isBlank()) {
       plContainerTool.setIconPath(containerTool.getIconPath());
     }
-    else if (plCreateOp.classType() != null) {
-      plContainerTool.setIconPath(bundleName + ".edit/icons/full/obj16/" + plCreateOp.classType() + ".gif");
+    else if (plCreateOp.type() != null) {
+      plContainerTool.setIconPath(bundleName + ".edit/icons/full/obj16/" + plCreateOp.type() + ".gif");
     }
 
     return plContainerTool;
@@ -507,6 +503,11 @@ public class SiriusToProductLine extends OperatorImpl {
     var plChangeOp = plCreateOp.op();
     plInitialOp.setFirstModelOperations(plChangeOp);
     var plJavaOp = (ExternalJavaAction) plChangeOp.getSubModelOperations().get(0);
+    var edgeMapping = edgeTool.getEdgeMappings().get(0);
+    if (!edgeMapping.isUseDomainElement()) { // rel-based edge
+      var classType = getType(((NodeMapping) edgeMapping.getSourceMapping().get(0)).getDomainClass());
+      plJavaOp.getParameters().get(0).setValue(classType + "." + plJavaOp.getParameters().get(0).getValue());
+    }
     var plParam = this.vToolFactory.createExternalJavaActionParameter();
     plParam.setName("source");
     plParam.setValue("var:source");
@@ -519,8 +520,8 @@ public class SiriusToProductLine extends OperatorImpl {
     if (!edgeTool.getIconPath().isBlank()) {
       plEdgeTool.setIconPath(edgeTool.getIconPath());
     }
-    else if (plCreateOp.classType() != null) {
-      plEdgeTool.setIconPath(bundleName + ".edit/icons/full/obj16/" + plCreateOp.classType() + ".gif");
+    else if (plCreateOp.type() != null) {
+      plEdgeTool.setIconPath(bundleName + ".edit/icons/full/obj16/" + plCreateOp.type() + ".gif");
     }
 
     return plEdgeTool;
