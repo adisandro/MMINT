@@ -15,13 +15,13 @@ package edu.toronto.cs.se.mmint.types.fta.productline.operators;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -55,7 +55,7 @@ public class PLProbabilityPropagation extends OperatorImpl {
   protected IPLFeaturesTrait reasoner;
 
   @Override
-  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
     var plFTAModel = inputsByName.get(PLProbabilityPropagation.IN0.name());
     this.in0 = (ProductLine) plFTAModel.getEMFInstanceRoot();
     this.out0 = EcoreUtil.copy(this.in0);
@@ -64,46 +64,67 @@ public class PLProbabilityPropagation extends OperatorImpl {
   }
 
   private Map<String, BigDecimal> propagate(Class plEvent) {
+    var pcsByProb = new HashMap<BigDecimal, List<String>>();
     var gates = plEvent.getReference(this.fta.getEvent_Gate());
     if (gates.isEmpty()) { // basic event
       var prob = new BigDecimal(plEvent.getAttribute(this.fta.getEvent_Probability()));
       return Map.of(plEvent.getPresenceCondition(), prob);
     }
     var gateLogic = GateLogic.valueOf(gates.get(0).getAttribute(this.fta.getGate_Logic()));
-    var probMap = new HashMap<String, BigDecimal>();
     plEvent.getAttributes().removeIf(a -> a.getType() == this.fta.getEvent_Probability());
     // group sub probabilities by presence condition
     var subProbsByPC = new HashMap<String, List<BigDecimal>>();
-    var subProbs = gates.get(0).getStreamOfReference(this.fta.getGate_SubEvents()).map(this::propagate);
-    subProbs.forEach(subProb ->
-      subProb.forEach((pc, prob) -> subProbsByPC.computeIfAbsent(pc, _ -> new ArrayList<BigDecimal>()).add(prob)));
-    // apply gate logic to same presence conditions
+    gates.get(0).getStreamOfReference(this.fta.getGate_SubEvents())
+      .map(this::propagate)
+      .forEach(subProb ->
+        subProb.forEach(
+          (pc, prob) -> subProbsByPC.computeIfAbsent(pc, _ -> new ArrayList<BigDecimal>()).add(prob)));
+    // pc & (!other pcs)
     for (var subProbByPC : subProbsByPC.entrySet()) {
-      var probs = subProbByPC.getValue().stream();
+      var probPCs = new HashSet<String>();
+      probPCs.add(plEvent.getPresenceCondition());
+      var pc = subProbByPC.getKey();
+      probPCs.add(pc);
       var prob = switch (gateLogic) {
-        case AND -> probs.reduce(BigDecimal.ONE, BigDecimal::multiply);
-        case OR  -> probs.reduce(BigDecimal.ZERO, BigDecimal::add);
+        case AND -> subProbByPC.getValue().stream().reduce(BigDecimal.ONE, BigDecimal::multiply);
+        case OR  -> subProbByPC.getValue().stream().reduce(BigDecimal.ZERO, BigDecimal::add);
       };
-      var probPC = this.out0.mergePresenceConditions(plEvent.getPresenceCondition(), subProbByPC.getKey());
-      plEvent.addAttribute(this.fta.getEvent_Probability(), prob.toString(), probPC);
-      probMap.put(probPC, prob);
+      probPCs.addAll(subProbsByPC.keySet().stream().filter(pc2 -> !pc.equals(pc2)).map(this.reasoner::not).toList());
+      if (this.reasoner.checkConsistency(this.out0.getFeaturesConstraint(), probPCs)) {
+        var probPC = this.reasoner.simplify(this.reasoner.and(probPCs.toArray(new String[0])));
+        pcsByProb.computeIfAbsent(prob, _ -> new ArrayList<String>()).add(probPC);
+      }
     }
-    // combine different presence conditions
-    var prob = switch (gateLogic) {
+    // pc & (other pcs)
+    var probPCs = new HashSet<String>();
+    probPCs.add(plEvent.getPresenceCondition());
+    var allProb = switch (gateLogic) {
       case AND -> BigDecimal.ONE;
       case OR  -> BigDecimal.ZERO;
     };
     for (var subProbByPC : subProbsByPC.entrySet()) {
-      var probs = subProbByPC.getValue().stream();
-      prob = switch (gateLogic) {
-        case AND -> prob.multiply(probs.reduce(BigDecimal.ONE, BigDecimal::multiply));
-        case OR  -> prob.add(probs.reduce(BigDecimal.ZERO, BigDecimal::add));
+      var pc = subProbByPC.getKey();
+      probPCs.add(pc);
+      allProb = switch (gateLogic) {
+        case AND -> allProb.multiply(subProbByPC.getValue().stream().reduce(BigDecimal.ONE, BigDecimal::multiply));
+        case OR  -> allProb.add(subProbByPC.getValue().stream().reduce(BigDecimal.ZERO, BigDecimal::add));
       };
     }
-    var probPC = this.reasoner.simplify(this.reasoner.and(subProbsByPC.keySet().toArray(new String[0])));
-    probPC = this.out0.mergePresenceConditions(plEvent.getPresenceCondition(), probPC);
-    plEvent.addAttribute(this.fta.getEvent_Probability(), prob.toString(), probPC);
-    probMap.put(probPC, prob);
+    if (this.reasoner.checkConsistency(this.out0.getFeaturesConstraint(), probPCs)) {
+      var probPC = this.reasoner.simplify(this.reasoner.and(probPCs.toArray(new String[0])));
+      pcsByProb.computeIfAbsent(allProb, _ -> new ArrayList<String>()).add(probPC);
+    }
+    // compact the same probabilities
+    var probMap = new HashMap<String, BigDecimal>();
+    for (var pcByProb : pcsByProb.entrySet()) {
+      var prob = pcByProb.getKey();
+      var pcs = pcByProb.getValue();
+      var probPC = (pcs.size() == 1) ?
+        pcs.get(0) :
+        this.reasoner.simplify(this.reasoner.or(pcs.toArray(new String[0]))); // no need to check for consistency
+      plEvent.addAttribute(this.fta.getEvent_Probability(), prob.toString(), probPC);
+      probMap.put(probPC, prob);
+    }
 
     return probMap;
   }
