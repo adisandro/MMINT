@@ -113,8 +113,8 @@ MODELS 15
 
 ### Using MMINT
 
-* <a name="paper-fac25"></a>Assurance Case Development for Evolving Software Product Lines: A Formal Approach  
-FAC 25 (Submitted) | Install: `Examples > MMINT - FAC25` | [Readme](examples/FAC25/edu.toronto.cs.se.mmint.examples.fac25/FAC25/README.md)
+* <a name="paper-fac26"></a>Assurance Case Development for Evolving Software Product Lines: A Formal Approach  
+FAC 26 (Accepted) | Install: `Examples > MMINT - FAC26` | [Readme](examples/FAC26/edu.toronto.cs.se.mmint.examples.fac26/FAC26/README.md)
 * <a name="paper-eras25"></a>[Arguing Reliability of Machine Learning-based Components](https://doi.org/10.1109/ERAS63351.2025.11135634)  
 ERAS 25 | Install: `Examples > MMINT - ERAS25` | [Readme](examples/ERAS25/edu.toronto.cs.se.mmint.examples.eras25/ERAS25/README.md)
 * <a name="paper-ifm24"></a> [PLACIDUS: Engineering Product Lines of Rigorous Assurance Cases](https://doi.org/10.1007/978-3-031-76554-4_6)  
