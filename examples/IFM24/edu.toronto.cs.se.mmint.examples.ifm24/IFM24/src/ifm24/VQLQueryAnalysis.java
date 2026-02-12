@@ -41,6 +41,7 @@ import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.Goal;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.Strategy;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 
 /**
  * This template is a decomposition strategy based on identifying certain patterns in the underlying model with a VQL
@@ -92,8 +93,9 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     safetyGoal.instantiate();
     var safetyDesc = safetyGoal.getDescription();
     var resultId = resultGoal.getId();
-    var resultDesc = resultGoal.getDescription().replace("{safety goal}", safetyDesc);
-    scenarioGoal.setDescription(scenarioGoal.getDescription().replace("{safety goal}", safetyDesc));
+    var resultDesc = resultGoal.getDescription().replace(GSNBuilder.placeholder("safety goal"), safetyDesc);
+    scenarioGoal.setDescription(
+      scenarioGoal.getDescription().replace(GSNBuilder.placeholder("safety goal"), safetyDesc));
     // run query and process results
     var modelPath = FileUtils.prependWorkspacePath(MIDDialogs.selectModelToImport(false));
     var rootModelObj = FileUtils.readModelFile(modelPath, null, false);
@@ -104,8 +106,8 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     resultStrategy.getSupportedBy().remove(0);
     filesCtx.setDescription(
       filesCtx.getDescription()
-              .replace("{query}", querySpec.query().toString())
-              .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath)));
+              .replace(GSNBuilder.placeholder("query"), querySpec.query().toString())
+              .replace(GSNBuilder.placeholder("model"), FileUtils.getLastSegmentFromPath(modelPath)));
     filesCtx.getPaths().add(querySpec.filePath());
     filesCtx.getPaths().add(modelPath);
     var results = getResults(queryResults);
@@ -114,7 +116,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     for (var result : results) {
       resultCtxDesc += "\n'" + result + "'";
       resultGoal = builder.createGoal(resultId.replace("X", String.valueOf(i)),
-                                      resultDesc.replace("{X}", "'" + result + "'"));
+                                      resultDesc.replace(GSNBuilder.placeholder("X"), "'" + result + "'"));
       resultGoal.setTemplateId("resultGoal" + i);
       template.getElements().add(resultGoal);
       builder.addSupporter(resultStrategy, resultGoal);
@@ -144,7 +146,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
         SiriusEvaluateQuery.queryResultToString(r, VQLQueryAnalysis.PL_NAME_PRINTER, null, null),
         (r instanceof PLElement plResult) ? plResult.getPresenceCondition() : null))
       .filter(r -> r.getKey().startsWith("Alrm_"))
-      .sorted(Map.Entry.comparingByKey()) // for reproducibility
+      .sorted(Map.Entry.comparingByKey()) // for impact analysis
       .collect(Collectors.toList());
   }
 
@@ -178,9 +180,9 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var safetyDesc = safetyGoal.getAttribute(this.gsn.getArgumentElement_Description());
     var resultId = resultGoal.getAttribute(this.gsn.getArgumentElement_Id());
     var resultDesc = resultGoal.getAttribute(this.gsn.getArgumentElement_Description())
-      .replace("{safety goal}", safetyDesc);
+      .replace(GSNBuilder.placeholder("safety goal"), safetyDesc);
     var scenarioDesc = scenarioGoal.getAttribute(this.gsn.getArgumentElement_Description())
-                                   .replace("{safety goal}", safetyDesc);
+                                   .replace(GSNBuilder.placeholder("safety goal"), safetyDesc);
     scenarioGoal.setAttribute(this.gsn.getArgumentElement_Description(), scenarioDesc);
     // run query and process results
     var modelPath = FileUtils.prependWorkspacePath(
@@ -194,18 +196,19 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
       supportedBy.delete();
     }
     var filesDesc = filesCtx.getAttribute(this.gsn.getArgumentElement_Description())
-                            .replace("{query}", querySpec.query().toString())
-                            .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath));
+                            .replace(GSNBuilder.placeholder("query"), querySpec.query().toString())
+                            .replace(GSNBuilder.placeholder("model"), FileUtils.getLastSegmentFromPath(modelPath));
     filesCtx.setAttribute(this.gsn.getArgumentElement_Description(), filesDesc);
     filesCtx.setManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
-                              ECollections.asEList(List.of(querySpec.filePath(), modelPath)));
+                              ECollections.asEList(querySpec.filePath(), modelPath));
     var results = getPLResults(queryResults);
     var resultCtxDesc = (results.isEmpty()) ? "No results" : "Query results:";
     var i = 0;
     for (var result : results) {
       resultCtxDesc += "\n'" + result.getKey() + "'";
       createPLResultGoal(plTemplate, plBuilder, resultStrategy, resultId.replace("X", String.valueOf(i)),
-                         resultDesc.replace("{X}", "'" + result.getKey() + "'"), result.getValue(), "resultGoal" + i);
+                         resultDesc.replace(GSNBuilder.placeholder("X"), "'" + result.getKey() + "'"),
+                         result.getValue(), "resultGoal" + i);
       i++;
     }
     resultCtx.setAttribute(this.gsn.getArgumentElement_Description(), resultCtxDesc);

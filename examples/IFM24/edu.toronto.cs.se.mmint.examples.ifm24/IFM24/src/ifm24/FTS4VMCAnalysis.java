@@ -14,7 +14,6 @@ package ifm24;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -33,6 +32,7 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNBuilder;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 import edu.toronto.cs.se.modelepedia.statemachine.StateMachinePackage;
 
 /**
@@ -171,18 +171,19 @@ public class FTS4VMCAnalysis implements IPLGSNAnalysis {
     Files.writeString(Paths.get(resultPath), result);
     var filesCtx = templateElems.get("filesCtx");
     var filesDesc = filesCtx.getAttribute(this.gsn.getArgumentElement_Description())
-      .replace("{property}", FileUtils.getLastSegmentFromPath(propertyPath))
-      .replace("{model}", FileUtils.getLastSegmentFromPath(modelPath));
+      .replace(GSNBuilder.placeholder("property"), FileUtils.getLastSegmentFromPath(propertyPath))
+      .replace(GSNBuilder.placeholder("model"), FileUtils.getLastSegmentFromPath(modelPath));
     filesCtx.setAttribute(this.gsn.getArgumentElement_Description(), filesDesc);
     filesCtx.setManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
-                              ECollections.asEList(List.of(propertyPath, modelPath, resultPath)));
+                              ECollections.asEList(propertyPath, modelPath, resultPath));
     var satGoal = templateElems.get("satGoal");
     var satGoalDesc = satGoal.getAttribute(this.gsn.getArgumentElement_Description());
     var holds = (result.contains("TRUE")) ? "holds" : "does not hold";
-    satGoal.setAttribute(this.gsn.getArgumentElement_Description(), satGoalDesc.replace("{holds?}", holds));
+    satGoal.setAttribute(this.gsn.getArgumentElement_Description(),
+                         satGoalDesc.replace(GSNBuilder.placeholder("holds?"), holds));
     var satSolution = templateElems.get("satSolution");
     var satSolDesc = satSolution.getAttribute(this.gsn.getArgumentElement_Description())
-      .replace("{output}", FileUtils.getLastSegmentFromPath(resultPath));
+      .replace(GSNBuilder.placeholder("output"), FileUtils.getLastSegmentFromPath(resultPath));
     satSolution.setAttribute(this.gsn.getArgumentElement_Description(), satSolDesc);
     if (!safetyGoal.isInAllProducts()) {
       PLGSNChangeStep.changePCDownstream(safetyGoal, _ -> safetyGoal.getPresenceCondition());
