@@ -28,6 +28,7 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.modelepedia.gsn.ArgumentElement;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
+import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep;
 
 public class RepairChange extends AbstractExternalJavaAction {
@@ -70,6 +71,7 @@ public class RepairChange extends AbstractExternalJavaAction {
           var startStep = new GSNChangeStep(modelObj);
           startStep.repair();
         }
+        ChangeStep.resetData();
       }
       catch (Exception e) {
         MMINTException.print(IStatus.ERROR, "Error repairing change", e);

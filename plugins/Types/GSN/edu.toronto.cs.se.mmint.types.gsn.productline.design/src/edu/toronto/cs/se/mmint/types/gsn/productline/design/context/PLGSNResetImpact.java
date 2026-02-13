@@ -26,8 +26,8 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
-import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
+import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep;
 
 public class PLGSNResetImpact extends AbstractExternalJavaAction {
 
@@ -47,7 +47,7 @@ public class PLGSNResetImpact extends AbstractExternalJavaAction {
     var plMmodelObj = arg0.stream()
       .map(DSemanticDecorator.class::cast)
       .map(DSemanticDecorator::getTarget)
-      .filter(o -> o instanceof PLGSNArgumentElement)
+      .filter(PLGSNArgumentElement.class::isInstance)
       .map(PLGSNArgumentElement.class::cast)
       .findFirst().get();
     var productLine = plMmodelObj.getProductLine();
@@ -67,9 +67,9 @@ public class PLGSNResetImpact extends AbstractExternalJavaAction {
     @Override
     protected void doExecute() {
       List.copyOf(this.productLine.getClasses()).stream()
-        .filter(c -> c instanceof PLGSNArgumentElement)
+        .filter(PLGSNArgumentElement.class::isInstance)
         .forEach(e -> e.getReference(GSNPackage.eINSTANCE.getArgumentElement_Status()).forEach(Class::delete));
-      PLGSNChangeStep.resetData();
+      ChangeStep.resetData();
     }
   }
 }

@@ -30,6 +30,7 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.ImpactType;
+import edu.toronto.cs.se.modelepedia.gsn.util.ChangeStep;
 
 public class PLGSNRepairChange extends AbstractExternalJavaAction {
 
@@ -74,6 +75,7 @@ public class PLGSNRepairChange extends AbstractExternalJavaAction {
           var startStep = new PLGSNChangeStep(plModelObj);
           startStep.repair();
         }
+        ChangeStep.resetData();
       }
       catch (Exception e) {
         MMINTException.print(IStatus.ERROR, "Error repairing PL change", e);
