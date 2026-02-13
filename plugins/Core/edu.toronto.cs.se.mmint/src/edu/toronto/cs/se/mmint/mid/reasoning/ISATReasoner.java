@@ -104,6 +104,9 @@ public interface ISATReasoner extends IReasoner {
    * @return The formula joined using the specified syntax.
    */
   private String join(String syntax, String... formulas) {
+    if (formulas.length == 0) {
+      return "";
+    }
     var joined = formulas[0];
     if (formulas.length == 1) {
       return joined;
