@@ -12,6 +12,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates;
 
+import java.util.Optional;
+
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 
@@ -28,6 +30,7 @@ import edu.toronto.cs.se.modelepedia.gsn.Template;
  * <ul>
  *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getAnalysisPath <em>Analysis Path</em>}</li>
  *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getLoaderBundleName <em>Loader Bundle Name</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getAnalysis <em>Analysis</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getAnalyticTemplate()
@@ -80,11 +83,25 @@ public interface AnalyticTemplate extends Template {
   void setLoaderBundleName(String value);
 
   /**
+   * Returns the value of the '<em><b>Analysis</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model kind="operation" dataType="edu.toronto.cs.se.mmint.types.gsn.templates.IAnalysis" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
+   * @return the value of the '<em>Analysis</em>' attribute.
+   * @see #setAnalysis(Optional)
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getAnalyticTemplate_Analysis()
+   * @model dataType="edu.toronto.cs.se.mmint.types.gsn.templates.Optional&lt;edu.toronto.cs.se.mmint.types.gsn.templates.IAnalysis&gt;" transient="true"
    * @generated
    */
-  IAnalysis getAnalysis() throws Exception;
+  Optional<IAnalysis> getAnalysis() throws Exception;
+
+  /**
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getAnalysis <em>Analysis</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Analysis</em>' attribute.
+   * @see #getAnalysis()
+   * @generated
+   */
+  void setAnalysis(Optional<IAnalysis> value);
 
 } // AnalysisTemplate

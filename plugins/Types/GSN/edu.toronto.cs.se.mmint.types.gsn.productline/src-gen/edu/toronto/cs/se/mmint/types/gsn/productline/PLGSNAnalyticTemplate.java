@@ -12,6 +12,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.productline;
 
+import java.util.Optional;
+
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
 
 
@@ -20,6 +22,12 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
  * A representation of the model object '<em><b>Analysis Template</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate#getAnalysis <em>Analysis</em>}</li>
+ * </ul>
  *
  * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage#getPLGSNAnalyticTemplate()
  * @model
@@ -27,11 +35,25 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
  */
 public interface PLGSNAnalyticTemplate extends PLGSNTemplate {
   /**
+   * Returns the value of the '<em><b>Analysis</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model kind="operation" dataType="edu.toronto.cs.se.mmint.types.gsn.productline.IPLGSNAnalysis" exceptions="edu.toronto.cs.se.modelepedia.gsn.Exception"
+   * @return the value of the '<em>Analysis</em>' attribute.
+   * @see #setAnalysis(Optional)
+   * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage#getPLGSNAnalyticTemplate_Analysis()
+   * @model dataType="edu.toronto.cs.se.mmint.types.gsn.productline.Optional&lt;edu.toronto.cs.se.mmint.types.gsn.productline.IPLGSNAnalysis&gt;" transient="true"
    * @generated
    */
-  IPLGSNAnalysis getAnalysis() throws Exception;
+  Optional<IPLGSNAnalysis> getAnalysis() throws Exception;
+
+  /**
+   * Sets the value of the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate#getAnalysis <em>Analysis</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Analysis</em>' attribute.
+   * @see #getAnalysis()
+   * @generated
+   */
+  void setAnalysis(Optional<IPLGSNAnalysis> value);
 
 } // GSNPLAnalysisTemplate

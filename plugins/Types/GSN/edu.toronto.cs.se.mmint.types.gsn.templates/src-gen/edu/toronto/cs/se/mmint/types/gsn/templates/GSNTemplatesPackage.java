@@ -1628,13 +1628,22 @@ public interface GSNTemplatesPackage extends EPackage {
   int ANALYTIC_TEMPLATE__LOADER_BUNDLE_NAME = GSNPackage.TEMPLATE_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Analysis</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ANALYTIC_TEMPLATE__ANALYSIS = GSNPackage.TEMPLATE_FEATURE_COUNT + 2;
+
+  /**
    * The number of structural features of the '<em>Analytic Template</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANALYTIC_TEMPLATE_FEATURE_COUNT = GSNPackage.TEMPLATE_FEATURE_COUNT + 2;
+  int ANALYTIC_TEMPLATE_FEATURE_COUNT = GSNPackage.TEMPLATE_FEATURE_COUNT + 3;
 
   /**
    * The operation id for the '<em>Get Elements By Id</em>' operation.
@@ -1709,22 +1718,13 @@ public interface GSNTemplatesPackage extends EPackage {
   int ANALYTIC_TEMPLATE___REPAIR__GSNCHANGESTEP = GSNPackage.TEMPLATE___REPAIR__GSNCHANGESTEP;
 
   /**
-   * The operation id for the '<em>Get Analysis</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ANALYTIC_TEMPLATE___GET_ANALYSIS = GSNPackage.TEMPLATE_OPERATION_COUNT + 0;
-
-  /**
    * The number of operations of the '<em>Analytic Template</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ANALYTIC_TEMPLATE_OPERATION_COUNT = GSNPackage.TEMPLATE_OPERATION_COUNT + 1;
+  int ANALYTIC_TEMPLATE_OPERATION_COUNT = GSNPackage.TEMPLATE_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '<em>Builder</em>' data type.
@@ -1745,6 +1745,16 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    */
   int IANALYSIS = 18;
+
+  /**
+   * The meta object id for the '<em>Optional</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see java.util.Optional
+   * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getOptional()
+   * @generated
+   */
+  int OPTIONAL = 19;
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate <em>Decomposition Template</em>}'.
@@ -2102,14 +2112,15 @@ public interface GSNTemplatesPackage extends EPackage {
   EAttribute getAnalyticTemplate_LoaderBundleName();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getAnalysis() <em>Get Analysis</em>}' operation.
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getAnalysis <em>Analysis</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Get Analysis</em>' operation.
+   * @return the meta object for the attribute '<em>Analysis</em>'.
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getAnalysis()
+   * @see #getAnalyticTemplate()
    * @generated
    */
-  EOperation getAnalyticTemplate__GetAnalysis();
+  EAttribute getAnalyticTemplate_Analysis();
 
   /**
    * Returns the meta object for data type '{@link edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder <em>Builder</em>}'.
@@ -2132,6 +2143,17 @@ public interface GSNTemplatesPackage extends EPackage {
    * @generated
    */
   EDataType getIAnalysis();
+
+  /**
+   * Returns the meta object for data type '{@link java.util.Optional <em>Optional</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>Optional</em>'.
+   * @see java.util.Optional
+   * @model instanceClass="java.util.Optional" typeParameters="T"
+   * @generated
+   */
+  EDataType getOptional();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -2463,12 +2485,12 @@ public interface GSNTemplatesPackage extends EPackage {
     EAttribute ANALYTIC_TEMPLATE__LOADER_BUNDLE_NAME = GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_LoaderBundleName();
 
     /**
-     * The meta object literal for the '<em><b>Get Analysis</b></em>' operation.
+     * The meta object literal for the '<em><b>Analysis</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation ANALYTIC_TEMPLATE___GET_ANALYSIS = GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate__GetAnalysis();
+    EAttribute ANALYTIC_TEMPLATE__ANALYSIS = GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_Analysis();
 
     /**
      * The meta object literal for the '<em>Builder</em>' data type.
@@ -2489,6 +2511,16 @@ public interface GSNTemplatesPackage extends EPackage {
      * @generated
      */
     EDataType IANALYSIS = GSNTemplatesPackage.eINSTANCE.getIAnalysis();
+
+    /**
+     * The meta object literal for the '<em>Optional</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see java.util.Optional
+     * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getOptional()
+     * @generated
+     */
+    EDataType OPTIONAL = GSNTemplatesPackage.eINSTANCE.getOptional();
 
   }
 

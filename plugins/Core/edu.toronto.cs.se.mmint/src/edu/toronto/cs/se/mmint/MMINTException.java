@@ -42,9 +42,7 @@ public class MMINTException extends Exception {
 	 *            The exception or error.
 	 */
 	public static void print(int severity, @NonNull String message, @Nullable Throwable e) {
-		var status = (e == null) ?
-			new Status(severity, MMINTActivator.PLUGIN_ID, message) :
-			new Status(severity, MMINTActivator.PLUGIN_ID, message, e);
+		var status = new Status(severity, MMINTActivator.PLUGIN_ID, message, e);
 		var style = switch (severity) {
 		  case IStatus.INFO -> StatusManager.LOG;
       case IStatus.WARNING -> StatusManager.SHOW | StatusManager.LOG;

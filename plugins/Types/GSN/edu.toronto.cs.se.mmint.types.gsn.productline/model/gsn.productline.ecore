@@ -55,7 +55,11 @@
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PLGSNAnalyticTemplate" eSuperTypes="#//PLGSNTemplate">
-    <eOperations name="getAnalysis" eType="#//IPLGSNAnalysis" eExceptions="ecore:EDataType ../../edu.toronto.cs.se.modelepedia.gsn/model/gsn.ecore#//Exception"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="analysis" transient="true">
+      <eGenericType eClassifier="#//Optional">
+        <eTypeArguments eClassifier="#//IPLGSNAnalysis"/>
+      </eGenericType>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="IPLGSNAnalysis" instanceClassName="edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis"/>
   <eClassifiers xsi:type="ecore:EDataType" name="PLGSNChangeStep" instanceClassName="edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep"/>

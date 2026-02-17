@@ -12,6 +12,7 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.productline;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
@@ -247,7 +248,25 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
+  int PLGSN_ARGUMENT_ELEMENT___ADD_ATTRIBUTE__EATTRIBUTE_STRING_STRING = PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING_STRING;
+
+  /**
+   * The operation id for the '<em>Add Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
   int PLGSN_ARGUMENT_ELEMENT___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING;
+
+  /**
+   * The operation id for the '<em>Add Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ARGUMENT_ELEMENT___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST_STRING = PLPackage.CLASS___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST_STRING;
 
   /**
    * The operation id for the '<em>Add Many Attribute</em>' operation.
@@ -536,7 +555,25 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
+  int PLGSN_TEMPLATE___ADD_ATTRIBUTE__EATTRIBUTE_STRING_STRING = PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING_STRING;
+
+  /**
+   * The operation id for the '<em>Add Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
   int PLGSN_TEMPLATE___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLPackage.CLASS___ADD_ATTRIBUTE__EATTRIBUTE_STRING;
+
+  /**
+   * The operation id for the '<em>Add Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_TEMPLATE___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST_STRING = PLPackage.CLASS___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST_STRING;
 
   /**
    * The operation id for the '<em>Add Many Attribute</em>' operation.
@@ -729,13 +766,22 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_ANALYTIC_TEMPLATE__TYPE = PLGSNPackage.PLGSN_TEMPLATE__TYPE;
 
   /**
+   * The feature id for the '<em><b>Analysis</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ANALYTIC_TEMPLATE__ANALYSIS = PLGSNPackage.PLGSN_TEMPLATE_FEATURE_COUNT + 0;
+
+  /**
    * The number of structural features of the '<em>Analytic Template</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_ANALYTIC_TEMPLATE_FEATURE_COUNT = PLGSNPackage.PLGSN_TEMPLATE_FEATURE_COUNT + 0;
+  int PLGSN_ANALYTIC_TEMPLATE_FEATURE_COUNT = PLGSNPackage.PLGSN_TEMPLATE_FEATURE_COUNT + 1;
 
   /**
    * The operation id for the '<em>Get Product Line</em>' operation.
@@ -852,7 +898,25 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
+  int PLGSN_ANALYTIC_TEMPLATE___ADD_ATTRIBUTE__EATTRIBUTE_STRING_STRING = PLGSNPackage.PLGSN_TEMPLATE___ADD_ATTRIBUTE__EATTRIBUTE_STRING_STRING;
+
+  /**
+   * The operation id for the '<em>Add Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
   int PLGSN_ANALYTIC_TEMPLATE___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLGSNPackage.PLGSN_TEMPLATE___ADD_ATTRIBUTE__EATTRIBUTE_STRING;
+
+  /**
+   * The operation id for the '<em>Add Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_ANALYTIC_TEMPLATE___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST_STRING = PLGSNPackage.PLGSN_TEMPLATE___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST_STRING;
 
   /**
    * The operation id for the '<em>Add Many Attribute</em>' operation.
@@ -981,22 +1045,13 @@ public interface PLGSNPackage extends EPackage {
   int PLGSN_ANALYTIC_TEMPLATE___REPAIR__PLGSNCHANGESTEP = PLGSNPackage.PLGSN_TEMPLATE___REPAIR__PLGSNCHANGESTEP;
 
   /**
-   * The operation id for the '<em>Get Analysis</em>' operation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PLGSN_ANALYTIC_TEMPLATE___GET_ANALYSIS = PLGSNPackage.PLGSN_TEMPLATE_OPERATION_COUNT + 0;
-
-  /**
    * The number of operations of the '<em>Analytic Template</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PLGSN_ANALYTIC_TEMPLATE_OPERATION_COUNT = PLGSNPackage.PLGSN_TEMPLATE_OPERATION_COUNT + 1;
+  int PLGSN_ANALYTIC_TEMPLATE_OPERATION_COUNT = PLGSNPackage.PLGSN_TEMPLATE_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNRelationshipDecoratorImpl <em>Relationship Decorator</em>}' class.
@@ -1177,7 +1232,25 @@ public interface PLGSNPackage extends EPackage {
    * @generated
    * @ordered
    */
+  int PLGSN_RELATIONSHIP_DECORATOR___ADD_ATTRIBUTE__EATTRIBUTE_STRING_STRING = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___ADD_ATTRIBUTE__EATTRIBUTE_STRING_STRING;
+
+  /**
+   * The operation id for the '<em>Add Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
   int PLGSN_RELATIONSHIP_DECORATOR___ADD_ATTRIBUTE__EATTRIBUTE_STRING = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___ADD_ATTRIBUTE__EATTRIBUTE_STRING;
+
+  /**
+   * The operation id for the '<em>Add Many Attribute</em>' operation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLGSN_RELATIONSHIP_DECORATOR___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST_STRING = PLGSNPackage.PLGSN_ARGUMENT_ELEMENT___ADD_MANY_ATTRIBUTE__EATTRIBUTE_ELIST_STRING;
 
   /**
    * The operation id for the '<em>Add Many Attribute</em>' operation.
@@ -1478,14 +1551,15 @@ public interface PLGSNPackage extends EPackage {
   EClass getPLGSNAnalyticTemplate();
 
   /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate#getAnalysis() <em>Get Analysis</em>}' operation.
+   * Returns the meta object for the attribute '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate#getAnalysis <em>Analysis</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the '<em>Get Analysis</em>' operation.
+   * @return the meta object for the attribute '<em>Analysis</em>'.
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate#getAnalysis()
+   * @see #getPLGSNAnalyticTemplate()
    * @generated
    */
-  EOperation getPLGSNAnalyticTemplate__GetAnalysis();
+  EAttribute getPLGSNAnalyticTemplate_Analysis();
 
   /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNRelationshipDecorator <em>Relationship Decorator</em>}'.
@@ -1672,12 +1746,12 @@ public interface PLGSNPackage extends EPackage {
      */
     EClass PLGSN_ANALYTIC_TEMPLATE = PLGSNPackage.eINSTANCE.getPLGSNAnalyticTemplate();
     /**
-     * The meta object literal for the '<em><b>Get Analysis</b></em>' operation.
+     * The meta object literal for the '<em><b>Analysis</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EOperation PLGSN_ANALYTIC_TEMPLATE___GET_ANALYSIS = PLGSNPackage.eINSTANCE.getPLGSNAnalyticTemplate__GetAnalysis();
+    EAttribute PLGSN_ANALYTIC_TEMPLATE__ANALYSIS = PLGSNPackage.eINSTANCE.getPLGSNAnalyticTemplate_Analysis();
     /**
      * The meta object literal for the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.impl.PLGSNRelationshipDecoratorImpl <em>Relationship Decorator</em>}' class.
      * <!-- begin-user-doc -->

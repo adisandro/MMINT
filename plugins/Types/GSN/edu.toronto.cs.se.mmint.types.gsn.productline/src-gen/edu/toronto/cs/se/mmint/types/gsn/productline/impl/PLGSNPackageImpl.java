@@ -14,6 +14,7 @@ package edu.toronto.cs.se.mmint.types.gsn.productline.impl;
 
 import java.util.Optional;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
@@ -314,8 +315,8 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
    * @generated
    */
   @Override
-  public EOperation getPLGSNAnalyticTemplate__GetAnalysis() {
-    return this.plgsnAnalyticTemplateEClass.getEOperations().get(0);
+  public EAttribute getPLGSNAnalyticTemplate_Analysis() {
+    return (EAttribute)this.plgsnAnalyticTemplateEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -407,7 +408,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     createEOperation(this.plgsnTemplateEClass, PLGSNPackage.PLGSN_TEMPLATE___REPAIR__PLGSNCHANGESTEP);
 
     this.plgsnAnalyticTemplateEClass = createEClass(PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE);
-    createEOperation(this.plgsnAnalyticTemplateEClass, PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE___GET_ANALYSIS);
+    createEAttribute(this.plgsnAnalyticTemplateEClass, PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE__ANALYSIS);
 
     this.plgsnRelationshipDecoratorEClass = createEClass(PLGSNPackage.PLGSN_RELATIONSHIP_DECORATOR);
 
@@ -526,9 +527,10 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     addEException(op, theGSNPackage.getException());
 
     initEClass(this.plgsnAnalyticTemplateEClass, PLGSNAnalyticTemplate.class, "PLGSNAnalyticTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-
-    op = initEOperation(getPLGSNAnalyticTemplate__GetAnalysis(), this.getIPLGSNAnalysis(), "getAnalysis", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEException(op, theGSNPackage.getException());
+    g1 = createEGenericType(this.getOptional());
+    g2 = createEGenericType(this.getIPLGSNAnalysis());
+    g1.getETypeArguments().add(g2);
+    initEAttribute(getPLGSNAnalyticTemplate_Analysis(), g1, "analysis", null, 0, 1, PLGSNAnalyticTemplate.class, EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.plgsnRelationshipDecoratorEClass, PLGSNRelationshipDecorator.class, "PLGSNRelationshipDecorator", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 

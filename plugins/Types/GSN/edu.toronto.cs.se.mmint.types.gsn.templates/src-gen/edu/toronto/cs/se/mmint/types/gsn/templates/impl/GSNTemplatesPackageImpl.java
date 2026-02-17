@@ -12,6 +12,8 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 
+import java.util.Optional;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -184,6 +186,13 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
   private EDataType iAnalysisEDataType = null;
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType optionalEDataType = null;
+
+  /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
    * package URI value.
@@ -227,7 +236,7 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
 
     // Obtain or create and register package
     var registeredGSNTemplatesPackage = EPackage.Registry.INSTANCE.get(GSNTemplatesPackage.eNS_URI);
-    var theGSNTemplatesPackage = registeredGSNTemplatesPackage instanceof GSNTemplatesPackageImpl ? (GSNTemplatesPackageImpl)registeredGSNTemplatesPackage : new GSNTemplatesPackageImpl();
+    var theGSNTemplatesPackage = registeredGSNTemplatesPackage instanceof GSNTemplatesPackageImpl g ? g : new GSNTemplatesPackageImpl();
 
     GSNTemplatesPackageImpl.isInited = true;
 
@@ -594,8 +603,8 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
    * @generated
    */
   @Override
-  public EOperation getAnalyticTemplate__GetAnalysis() {
-    return this.analyticTemplateEClass.getEOperations().get(0);
+  public EAttribute getAnalyticTemplate_Analysis() {
+    return (EAttribute)this.analyticTemplateEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -616,6 +625,16 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
   @Override
   public EDataType getIAnalysis() {
     return this.iAnalysisEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EDataType getOptional() {
+    return this.optionalEDataType;
   }
 
   /**
@@ -699,11 +718,12 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
     this.analyticTemplateEClass = createEClass(GSNTemplatesPackage.ANALYTIC_TEMPLATE);
     createEAttribute(this.analyticTemplateEClass, GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS_PATH);
     createEAttribute(this.analyticTemplateEClass, GSNTemplatesPackage.ANALYTIC_TEMPLATE__LOADER_BUNDLE_NAME);
-    createEOperation(this.analyticTemplateEClass, GSNTemplatesPackage.ANALYTIC_TEMPLATE___GET_ANALYSIS);
+    createEAttribute(this.analyticTemplateEClass, GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS);
 
     // Create data types
     this.gsnTemplatesBuilderEDataType = createEDataType(GSNTemplatesPackage.GSN_TEMPLATES_BUILDER);
     this.iAnalysisEDataType = createEDataType(GSNTemplatesPackage.IANALYSIS);
+    this.optionalEDataType = createEDataType(GSNTemplatesPackage.OPTIONAL);
   }
 
   /**
@@ -735,6 +755,7 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
     var theGSNPackage = (GSNPackage)EPackage.Registry.INSTANCE.getEPackage(GSNPackage.eNS_URI);
 
     // Create type parameters
+    addETypeParameter(this.optionalEDataType, "T");
 
     // Set bounds for type parameters
 
@@ -815,13 +836,15 @@ public class GSNTemplatesPackageImpl extends EPackageImpl implements GSNTemplate
     initEClass(this.analyticTemplateEClass, AnalyticTemplate.class, "AnalyticTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAnalyticTemplate_AnalysisPath(), this.ecorePackage.getEString(), "analysisPath", null, 0, 1, AnalyticTemplate.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
     initEAttribute(getAnalyticTemplate_LoaderBundleName(), this.ecorePackage.getEString(), "loaderBundleName", null, 0, 1, AnalyticTemplate.class, !EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
-
-    op = initEOperation(getAnalyticTemplate__GetAnalysis(), this.getIAnalysis(), "getAnalysis", 0, 1, EPackageImpl.IS_UNIQUE, EPackageImpl.IS_ORDERED);
-    addEException(op, theGSNPackage.getException());
+    var g1 = createEGenericType(this.getOptional());
+    var g2 = createEGenericType(this.getIAnalysis());
+    g1.getETypeArguments().add(g2);
+    initEAttribute(getAnalyticTemplate_Analysis(), g1, "analysis", null, 0, 1, AnalyticTemplate.class, EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     // Initialize data types
     initEDataType(this.gsnTemplatesBuilderEDataType, GSNTemplatesBuilder.class, "GSNTemplatesBuilder", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
     initEDataType(this.iAnalysisEDataType, IAnalysis.class, "IAnalysis", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(this.optionalEDataType, Optional.class, "Optional", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(GSNTemplatesPackage.eNS_URI);

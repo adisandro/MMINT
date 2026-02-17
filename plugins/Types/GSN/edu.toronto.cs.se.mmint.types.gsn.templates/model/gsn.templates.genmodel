@@ -11,6 +11,9 @@
       disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="gsn.templates.ecore#/">
     <genDataTypes ecoreDataType="gsn.templates.ecore#//GSNTemplatesBuilder"/>
     <genDataTypes ecoreDataType="gsn.templates.ecore#//IAnalysis"/>
+    <genDataTypes ecoreDataType="gsn.templates.ecore#//Optional">
+      <genTypeParameters ecoreTypeParameter="gsn.templates.ecore#//Optional/T"/>
+    </genDataTypes>
     <genClasses image="false" ecoreClass="gsn.templates.ecore#//DecompositionTemplate">
       <genOperations ecoreOperation="gsn.templates.ecore#//DecompositionTemplate/decompose">
         <genParameters ecoreParameter="gsn.templates.ecore#//DecompositionTemplate/decompose/decomposed"/>
@@ -62,7 +65,7 @@
     <genClasses ecoreClass="gsn.templates.ecore#//AnalyticTemplate">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.templates.ecore#//AnalyticTemplate/analysisPath"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gsn.templates.ecore#//AnalyticTemplate/loaderBundleName"/>
-      <genOperations ecoreOperation="gsn.templates.ecore#//AnalyticTemplate/getAnalysis"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute gsn.templates.ecore#//AnalyticTemplate/analysis"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
