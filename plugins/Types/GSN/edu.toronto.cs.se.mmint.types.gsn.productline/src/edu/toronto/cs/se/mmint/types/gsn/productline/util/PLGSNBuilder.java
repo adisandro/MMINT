@@ -98,7 +98,7 @@ public class PLGSNBuilder extends PLBuilder {
   }
 
   public PLGSNArgumentElement createGoal(Map<EAttribute, String> attrValues, @Nullable String pc) {
-    return (PLGSNArgumentElement) create(GSNPackage.eINSTANCE.getGoal(), attrValues, this.pl.getRoot(), pc);
+    return (PLGSNArgumentElement) create(this.gsn.getGoal(), attrValues, this.pl.getRoot(), pc);
   }
 
   public PLGSNArgumentElement createGoal(Map<EAttribute, String> attrValues) {
@@ -106,7 +106,7 @@ public class PLGSNBuilder extends PLBuilder {
   }
 
   public Class support(PLGSNArgumentElement src, PLGSNArgumentElement tgt, @Nullable String pc) {
-    return connect(GSNPackage.eINSTANCE.getSupportedBy(), src, tgt, pc);
+    return connect(this.gsn.getSupportedBy(), src, tgt, pc);
   }
 
   public Class support(PLGSNArgumentElement src, PLGSNArgumentElement tgt) {
@@ -114,7 +114,7 @@ public class PLGSNBuilder extends PLBuilder {
   }
 
   public Class contextualize(PLGSNArgumentElement src, PLGSNArgumentElement tgt, @Nullable String pc) {
-    return connect(GSNPackage.eINSTANCE.getInContextOf(), src, tgt, pc);
+    return connect(this.gsn.getInContextOf(), src, tgt, pc);
   }
 
   public Class contextualize(PLGSNArgumentElement src, PLGSNArgumentElement tgt) {
