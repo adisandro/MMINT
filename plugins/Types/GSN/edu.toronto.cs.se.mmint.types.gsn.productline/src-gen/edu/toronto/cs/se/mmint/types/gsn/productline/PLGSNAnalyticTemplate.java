@@ -12,8 +12,6 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.productline;
 
-import java.util.Optional;
-
 import edu.toronto.cs.se.mmint.types.gsn.productline.reasoning.IPLGSNAnalysis;
 
 
@@ -39,12 +37,12 @@ public interface PLGSNAnalyticTemplate extends PLGSNTemplate {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Analysis</em>' attribute.
-   * @see #setAnalysis(Optional)
+   * @see #setAnalysis(IPLGSNAnalysis)
    * @see edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage#getPLGSNAnalyticTemplate_Analysis()
-   * @model dataType="edu.toronto.cs.se.mmint.types.gsn.productline.Optional&lt;edu.toronto.cs.se.mmint.types.gsn.productline.IPLGSNAnalysis&gt;" transient="true"
+   * @model dataType="edu.toronto.cs.se.mmint.types.gsn.productline.IPLGSNAnalysis" transient="true"
    * @generated
    */
-  Optional<IPLGSNAnalysis> getAnalysis() throws Exception;
+  IPLGSNAnalysis getAnalysis() throws Exception;
 
   /**
    * Sets the value of the '{@link edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNAnalyticTemplate#getAnalysis <em>Analysis</em>}' attribute.
@@ -54,6 +52,6 @@ public interface PLGSNAnalyticTemplate extends PLGSNTemplate {
    * @see #getAnalysis()
    * @generated
    */
-  void setAnalysis(Optional<IPLGSNAnalysis> value);
+  void setAnalysis(IPLGSNAnalysis value);
 
 } // GSNPLAnalysisTemplate

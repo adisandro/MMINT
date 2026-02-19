@@ -12,10 +12,9 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.productline.impl;
 
-import java.util.Optional;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ECollections;
@@ -24,7 +23,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.osgi.framework.wiring.BundleWiring;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
@@ -49,6 +47,15 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
  */
 public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGSNAnalyticTemplate {
   /**
+   * The default value of the '{@link #getAnalysis() <em>Analysis</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAnalysis()
+   * @generated
+   * @ordered
+   */
+  protected static final IPLGSNAnalysis ANALYSIS_EDEFAULT = null;
+  /**
    * The cached value of the '{@link #getAnalysis() <em>Analysis</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -56,7 +63,7 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
    * @generated
    * @ordered
    */
-  protected Optional<IPLGSNAnalysis> analysis;
+  protected IPLGSNAnalysis analysis = PLGSNAnalyticTemplateImpl.ANALYSIS_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -82,7 +89,7 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
    * <!-- end-user-doc -->
    * @generated
    */
-  public Optional<IPLGSNAnalysis> getAnalysisGen() {
+  public IPLGSNAnalysis getAnalysisGen() {
     return this.analysis;
   }
 
@@ -90,37 +97,32 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
    * @generated NOT
    */
   @Override
-  public Optional<IPLGSNAnalysis> getAnalysis() {
-    var optAnalysis = getAnalysisGen();
-    if (optAnalysis == null || optAnalysis.isEmpty()) {
+  public IPLGSNAnalysis getAnalysis() {
+    var loadedAnalysis = getAnalysisGen();
+    if (loadedAnalysis == null) {
       var javaPath = getAttribute(GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_AnalysisPath());
       if (javaPath == null) {
-        MMINTException.print(IStatus.WARNING, "Missing analysis Java path", null);
-        optAnalysis = Optional.empty();
+        throw new NoSuchElementException("Missing analysis Java path");
       }
-      else {
-        var bundleName = getAttribute(GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_LoaderBundleName());
-        var classLoader = getClass().getClassLoader();
-        if (bundleName != null) {
-          var bundle = Platform.getBundle(bundleName);
-          if (bundle != null) {
-            classLoader = bundle.adapt(BundleWiring.class).getClassLoader();
-          }
+      var bundleName = getAttribute(GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_LoaderBundleName());
+      var classLoader = getClass().getClassLoader();
+      if (bundleName != null) {
+        var bundle = Platform.getBundle(bundleName);
+        if (bundle != null) {
+          classLoader = bundle.adapt(BundleWiring.class).getClassLoader();
         }
-        IPLGSNAnalysis loadedAnalysis = null;
-        try {
-          loadedAnalysis = (IPLGSNAnalysis) FileUtils.loadClassFromWorkspace(javaPath, classLoader);
-        }
-        catch (Exception e) {
-          MMINTException.print(IStatus.WARNING, "Unable to load analysis Java class", e);
-        }
-        optAnalysis = Optional.ofNullable(loadedAnalysis);
+      }
+      try {
+        loadedAnalysis = (IPLGSNAnalysis) FileUtils.loadClassFromWorkspace(javaPath, classLoader);
+      }
+      catch (Exception e) {
+        throw new NoSuchElementException("Unable to load analysis Java class", e);
       }
       // bypass EMF notifications and the need for a write transaction
-      this.analysis = optAnalysis;
+      this.analysis = loadedAnalysis;
     }
 
-    return optAnalysis;
+    return loadedAnalysis;
   }
 
   /**
@@ -129,7 +131,7 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
    * @generated
    */
   @Override
-  public void setAnalysis(Optional<IPLGSNAnalysis> newAnalysis) {
+  public void setAnalysis(IPLGSNAnalysis newAnalysis) {
     var oldAnalysis = this.analysis;
     this.analysis = newAnalysis;
     if (eNotificationRequired()) {
@@ -161,7 +163,7 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
       case PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE__ANALYSIS:
-        setAnalysis((Optional<IPLGSNAnalysis>)newValue);
+        setAnalysis((IPLGSNAnalysis)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -176,7 +178,7 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
   public void eUnset(int featureID) {
     switch (featureID) {
       case PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE__ANALYSIS:
-        setAnalysis((Optional<IPLGSNAnalysis>)null);
+        setAnalysis(PLGSNAnalyticTemplateImpl.ANALYSIS_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -191,7 +193,7 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case PLGSNPackage.PLGSN_ANALYTIC_TEMPLATE__ANALYSIS:
-        return this.analysis != null;
+        return PLGSNAnalyticTemplateImpl.ANALYSIS_EDEFAULT == null ? this.analysis != null : !PLGSNAnalyticTemplateImpl.ANALYSIS_EDEFAULT.equals(this.analysis);
     }
     return super.eIsSet(featureID);
   }
@@ -223,7 +225,7 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
                                          "There are no Java files in the workspace", Set.of("java"));
     setAttribute(GSNTemplatesPackage.eINSTANCE.getAnalyticTemplate_AnalysisPath(), javaPath);
     super.import_(productLine);
-    getAnalysis().orElseThrow().import_(this, productLine);
+    getAnalysis().import_(this, productLine);
   }
 
   /**
@@ -231,7 +233,7 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
    */
   @Override
   public void instantiate() throws Exception {
-    var analysis = getAnalysis().orElseThrow();
+    var analysis = getAnalysis();
     if (analysis.runsFirst()) {
       analysis.instantiate(this);
       super.instantiate();
@@ -247,7 +249,7 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
    */
   @Override
   public void validate() throws Exception {
-    var analysis = getAnalysis().orElseThrow();
+    var analysis = getAnalysis();
     if (analysis.runsFirst()) {
       analysis.validate(this);
       super.validate();
@@ -263,7 +265,7 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
    */
   @Override
   public EList<PLGSNChangeStep> nextImpactSteps(PLGSNChangeStep step) throws Exception {
-    return ECollections.asEList(getAnalysis().orElseThrow().nextImpactSteps(this, step));
+    return ECollections.asEList(getAnalysis().nextImpactSteps(this, step));
   }
 
   /**
@@ -271,7 +273,7 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
    */
   @Override
   public void impact(PLGSNChangeStep step) throws Exception {
-    getAnalysis().orElseThrow().impact(this, step);
+    getAnalysis().impact(this, step);
   }
 
   /**
@@ -279,7 +281,7 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
    */
   @Override
   public EList<PLGSNChangeStep> nextRepairSteps(PLGSNChangeStep step) throws Exception {
-    return ECollections.asEList(getAnalysis().orElseThrow().nextRepairSteps(this, step));
+    return ECollections.asEList(getAnalysis().nextRepairSteps(this, step));
   }
 
   /**
@@ -287,7 +289,7 @@ public class PLGSNAnalyticTemplateImpl extends PLGSNTemplateImpl implements PLGS
    */
   @Override
   public void repair(PLGSNChangeStep step) throws Exception {
-    getAnalysis().orElseThrow().repair(this, step);
+    getAnalysis().repair(this, step);
   }
 
 } //GSNPLAnalysisTemplateImpl

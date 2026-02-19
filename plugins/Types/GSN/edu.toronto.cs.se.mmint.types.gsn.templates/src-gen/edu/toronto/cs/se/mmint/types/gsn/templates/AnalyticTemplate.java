@@ -12,8 +12,6 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates;
 
-import java.util.Optional;
-
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysis;
 import edu.toronto.cs.se.modelepedia.gsn.Template;
 
@@ -87,12 +85,12 @@ public interface AnalyticTemplate extends Template {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Analysis</em>' attribute.
-   * @see #setAnalysis(Optional)
+   * @see #setAnalysis(IAnalysis)
    * @see edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage#getAnalyticTemplate_Analysis()
-   * @model dataType="edu.toronto.cs.se.mmint.types.gsn.templates.Optional&lt;edu.toronto.cs.se.mmint.types.gsn.templates.IAnalysis&gt;" transient="true"
+   * @model dataType="edu.toronto.cs.se.mmint.types.gsn.templates.IAnalysis" transient="true"
    * @generated
    */
-  Optional<IAnalysis> getAnalysis() throws Exception;
+  IAnalysis getAnalysis() throws Exception;
 
   /**
    * Sets the value of the '{@link edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate#getAnalysis <em>Analysis</em>}' attribute.
@@ -102,6 +100,6 @@ public interface AnalyticTemplate extends Template {
    * @see #getAnalysis()
    * @generated
    */
-  void setAnalysis(Optional<IAnalysis> value);
+  void setAnalysis(IAnalysis value);
 
 } // AnalysisTemplate

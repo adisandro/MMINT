@@ -105,6 +105,14 @@ public class PLGSNBuilder extends PLBuilder {
     return createGoal(attrValues, null);
   }
 
+  public PLGSNArgumentElement createSolution(Map<EAttribute, String> attrValues, @Nullable String pc) {
+    return (PLGSNArgumentElement) create(this.gsn.getSolution(), attrValues, this.pl.getRoot(), pc);
+  }
+
+  public PLGSNArgumentElement createSolution(Map<EAttribute, String> attrValues) {
+    return createSolution(attrValues, null);
+  }
+
   public Class support(PLGSNArgumentElement src, PLGSNArgumentElement tgt, @Nullable String pc) {
     return connect(this.gsn.getSupportedBy(), src, tgt, pc);
   }

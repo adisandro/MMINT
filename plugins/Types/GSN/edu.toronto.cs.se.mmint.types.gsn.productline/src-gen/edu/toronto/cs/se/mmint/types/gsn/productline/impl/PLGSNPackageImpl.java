@@ -527,10 +527,7 @@ public class PLGSNPackageImpl extends EPackageImpl implements PLGSNPackage {
     addEException(op, theGSNPackage.getException());
 
     initEClass(this.plgsnAnalyticTemplateEClass, PLGSNAnalyticTemplate.class, "PLGSNAnalyticTemplate", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
-    g1 = createEGenericType(this.getOptional());
-    g2 = createEGenericType(this.getIPLGSNAnalysis());
-    g1.getETypeArguments().add(g2);
-    initEAttribute(getPLGSNAnalyticTemplate_Analysis(), g1, "analysis", null, 0, 1, PLGSNAnalyticTemplate.class, EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
+    initEAttribute(getPLGSNAnalyticTemplate_Analysis(), this.getIPLGSNAnalysis(), "analysis", null, 0, 1, PLGSNAnalyticTemplate.class, EPackageImpl.IS_TRANSIENT, !EPackageImpl.IS_VOLATILE, EPackageImpl.IS_CHANGEABLE, !EPackageImpl.IS_UNSETTABLE, !EPackageImpl.IS_ID, EPackageImpl.IS_UNIQUE, !EPackageImpl.IS_DERIVED, EPackageImpl.IS_ORDERED);
 
     initEClass(this.plgsnRelationshipDecoratorEClass, PLGSNRelationshipDecorator.class, "PLGSNRelationshipDecorator", !EPackageImpl.IS_ABSTRACT, !EPackageImpl.IS_INTERFACE, EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 

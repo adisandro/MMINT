@@ -1747,16 +1747,6 @@ public interface GSNTemplatesPackage extends EPackage {
   int IANALYSIS = 18;
 
   /**
-   * The meta object id for the '<em>Optional</em>' data type.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see java.util.Optional
-   * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getOptional()
-   * @generated
-   */
-  int OPTIONAL = 19;
-
-  /**
    * Returns the meta object for class '{@link edu.toronto.cs.se.mmint.types.gsn.templates.DecompositionTemplate <em>Decomposition Template</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2145,17 +2135,6 @@ public interface GSNTemplatesPackage extends EPackage {
   EDataType getIAnalysis();
 
   /**
-   * Returns the meta object for data type '{@link java.util.Optional <em>Optional</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>Optional</em>'.
-   * @see java.util.Optional
-   * @model instanceClass="java.util.Optional" typeParameters="T"
-   * @generated
-   */
-  EDataType getOptional();
-
-  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2511,16 +2490,6 @@ public interface GSNTemplatesPackage extends EPackage {
      * @generated
      */
     EDataType IANALYSIS = GSNTemplatesPackage.eINSTANCE.getIAnalysis();
-
-    /**
-     * The meta object literal for the '<em>Optional</em>' data type.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see java.util.Optional
-     * @see edu.toronto.cs.se.mmint.types.gsn.templates.impl.GSNTemplatesPackageImpl#getOptional()
-     * @generated
-     */
-    EDataType OPTIONAL = GSNTemplatesPackage.eINSTANCE.getOptional();
 
   }
 

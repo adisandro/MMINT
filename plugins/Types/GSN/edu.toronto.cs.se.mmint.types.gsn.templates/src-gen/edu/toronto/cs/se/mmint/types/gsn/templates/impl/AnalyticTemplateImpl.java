@@ -12,10 +12,9 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.types.gsn.templates.impl;
 
-import java.util.Optional;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ECollections;
@@ -24,7 +23,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.osgi.framework.wiring.BundleWiring;
 
-import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate;
@@ -87,6 +85,15 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
    */
   protected String loaderBundleName = AnalyticTemplateImpl.LOADER_BUNDLE_NAME_EDEFAULT;
   /**
+   * The default value of the '{@link #getAnalysis() <em>Analysis</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAnalysis()
+   * @generated
+   * @ordered
+   */
+  protected static final IAnalysis ANALYSIS_EDEFAULT = null;
+  /**
    * The cached value of the '{@link #getAnalysis() <em>Analysis</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -94,7 +101,7 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
    * @generated
    * @ordered
    */
-  protected Optional<IAnalysis> analysis;
+  protected IAnalysis analysis = AnalyticTemplateImpl.ANALYSIS_EDEFAULT;
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -167,7 +174,7 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
    * <!-- end-user-doc -->
    * @generated
    */
-  public Optional<IAnalysis> getAnalysisGen() {
+  public IAnalysis getAnalysisGen() {
     return this.analysis;
   }
 
@@ -175,37 +182,46 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
    * @generated NOT
    */
   @Override
-  public Optional<IAnalysis> getAnalysis() {
-    var optAnalysis = getAnalysisGen();
-    if (optAnalysis == null || optAnalysis.isEmpty()) {
+  public IAnalysis getAnalysis() {
+    var loadedAnalysis = getAnalysisGen();
+    if (loadedAnalysis == null) {
       var javaPath = getAnalysisPath();
       if (javaPath == null) {
-        MMINTException.print(IStatus.WARNING, "Missing analysis Java path", null);
-        optAnalysis = Optional.empty();
+        throw new NoSuchElementException("Missing analysis Java path");
       }
-      else {
-        var bundleName = getLoaderBundleName();
-        if (bundleName == null) {
-          bundleName = "edu.toronto.cs.se.modelepedia.gsn.operator";
-        }
-        var bundle = Platform.getBundle(bundleName);
-        var classLoader = (bundle == null) ?
-          getClass().getClassLoader() :
-          bundle.adapt(BundleWiring.class).getClassLoader();
-        IAnalysis loadedAnalysis = null;
-        try {
-          loadedAnalysis = (IAnalysis) FileUtils.loadClassFromWorkspace(javaPath, classLoader);
-        }
-        catch (Exception e) {
-          MMINTException.print(IStatus.WARNING, "Unable to load analysis Java class", e);
-        }
-        optAnalysis = Optional.ofNullable(loadedAnalysis);
+      var bundleName = getLoaderBundleName();
+      if (bundleName == null) {
+        bundleName = "edu.toronto.cs.se.modelepedia.gsn.operator";
+      }
+      var bundle = Platform.getBundle(bundleName);
+      var classLoader = (bundle == null) ?
+        getClass().getClassLoader() :
+        bundle.adapt(BundleWiring.class).getClassLoader();
+      try {
+        loadedAnalysis = (IAnalysis) FileUtils.loadClassFromWorkspace(javaPath, classLoader);
+      }
+      catch (Exception e) {
+        throw new NoSuchElementException("Unable to load analysis Java class", e);
       }
       // bypass EMF notifications and the need for a write transaction
-      this.analysis = optAnalysis;
+      this.analysis = loadedAnalysis;
     }
 
-    return optAnalysis;
+    return loadedAnalysis;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setAnalysis(IAnalysis newAnalysis) {
+    var oldAnalysis = this.analysis;
+    this.analysis = newAnalysis;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS, oldAnalysis, this.analysis));
+    }
   }
 
   /**
@@ -242,7 +258,7 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
         setLoaderBundleName((String)newValue);
         return;
       case GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS:
-        setAnalysis((Optional<IAnalysis>)newValue);
+        setAnalysis((IAnalysis)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -263,7 +279,7 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
         setLoaderBundleName(AnalyticTemplateImpl.LOADER_BUNDLE_NAME_EDEFAULT);
         return;
       case GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS:
-        setAnalysis((Optional<IAnalysis>)null);
+        setAnalysis(AnalyticTemplateImpl.ANALYSIS_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -282,7 +298,7 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
       case GSNTemplatesPackage.ANALYTIC_TEMPLATE__LOADER_BUNDLE_NAME:
         return AnalyticTemplateImpl.LOADER_BUNDLE_NAME_EDEFAULT == null ? this.loaderBundleName != null : !AnalyticTemplateImpl.LOADER_BUNDLE_NAME_EDEFAULT.equals(this.loaderBundleName);
       case GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS:
-        return this.analysis != null;
+        return AnalyticTemplateImpl.ANALYSIS_EDEFAULT == null ? this.analysis != null : !AnalyticTemplateImpl.ANALYSIS_EDEFAULT.equals(this.analysis);
     }
     return super.eIsSet(featureID);
   }
@@ -310,20 +326,6 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setAnalysis(Optional<IAnalysis> newAnalysis) {
-    var oldAnalysis = this.analysis;
-    this.analysis = newAnalysis;
-    if (eNotificationRequired()) {
-      eNotify(new ENotificationImpl(this, Notification.SET, GSNTemplatesPackage.ANALYTIC_TEMPLATE__ANALYSIS, oldAnalysis, this.analysis));
-    }
-  }
-
-  /**
    * @generated NOT
    */
   @Override
@@ -332,7 +334,7 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
                                          "There are no Java files in the workspace", Set.of("java"));
     setAnalysisPath(javaPath);
     super.import_(safetyCase);
-    getAnalysis().orElseThrow().import_(this, safetyCase);
+    getAnalysis().import_(this, safetyCase);
   }
 
   /**
@@ -340,7 +342,7 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
    */
   @Override
   public void instantiate() throws Exception {
-    var analysis = getAnalysis().orElseThrow();
+    var analysis = getAnalysis();
     if (analysis.runsFirst()) {
       analysis.instantiate(this);
       super.instantiate();
@@ -356,7 +358,7 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
    */
   @Override
   public void validate() throws Exception {
-    var analysis = getAnalysis().orElseThrow();
+    var analysis = getAnalysis();
     if (analysis.runsFirst()) {
       analysis.validate(this);
       super.validate();
@@ -372,7 +374,7 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
    */
   @Override
   public EList<GSNChangeStep> nextImpactSteps(GSNChangeStep step) throws Exception {
-    return ECollections.asEList(getAnalysis().orElseThrow().nextImpactSteps(this, step));
+    return ECollections.asEList(getAnalysis().nextImpactSteps(this, step));
   }
 
   /**
@@ -380,7 +382,7 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
    */
   @Override
   public void impact(GSNChangeStep step) throws Exception {
-    getAnalysis().orElseThrow().impact(this, step);
+    getAnalysis().impact(this, step);
   }
 
   /**
@@ -388,7 +390,7 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
    */
   @Override
   public EList<GSNChangeStep> nextRepairSteps(GSNChangeStep step) throws Exception {
-    return ECollections.asEList(getAnalysis().orElseThrow().nextRepairSteps(this, step));
+    return ECollections.asEList(getAnalysis().nextRepairSteps(this, step));
   }
 
   /**
@@ -396,7 +398,7 @@ public class AnalyticTemplateImpl extends TemplateImpl implements AnalyticTempla
    */
   @Override
   public void repair(GSNChangeStep step) throws Exception {
-    getAnalysis().orElseThrow().repair(this, step);
+    getAnalysis().repair(this, step);
   }
 
 } //AnalysisTemplateImpl

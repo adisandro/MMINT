@@ -15,6 +15,7 @@ package edu.toronto.cs.se.mmint.types.gsn.productline.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -25,6 +26,7 @@ import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.productline.PLFactory;
 import edu.toronto.cs.se.mmint.productline.impl.ClassImpl;
+import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNArgumentElement;
 import edu.toronto.cs.se.mmint.types.gsn.productline.PLGSNPackage;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
@@ -142,7 +144,14 @@ public class PLGSNArgumentElementImpl extends ClassImpl implements PLGSNArgument
    */
   @Override
   public void setImpact(ImpactType impactType) {
-    var pc = "$true"; //TODO reasoner.getTrueLiteral()
+    IPLFeaturesTrait reasoner;
+    try {
+      reasoner = getProductLine().getReasoner();
+    }
+    catch (MMINTException e) {
+      throw new NoSuchElementException(e);
+    }
+    var pc = reasoner.getTrueLiteral();
     var impactTypes = switch (impactType) {
       case REUSE   -> Map.of(ImpactType.REUSE,   Optional.of(pc),
                              ImpactType.RECHECK, Optional.<String>empty(),
