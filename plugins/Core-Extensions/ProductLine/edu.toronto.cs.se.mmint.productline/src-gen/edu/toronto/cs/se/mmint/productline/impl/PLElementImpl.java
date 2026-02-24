@@ -209,7 +209,8 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
    */
   @Override
   public String getPresenceCondition() {
-    return getProductLine().getPresenceConditionOrDefault(getPresenceConditionGen());
+    var pl = getProductLine();
+    return (pl == null) ? getPresenceConditionGen() : pl.getPresenceConditionOrDefault(getPresenceConditionGen());
   }
 
   /**
@@ -217,7 +218,8 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
    */
   @Override
   public boolean isInAllProducts() {
-    return getProductLine().isInAllProducts(getPresenceConditionGen());
+    var pl = getProductLine();
+    return (pl == null) ? true : pl.isInAllProducts(getPresenceConditionGen());
   }
 
   /**
@@ -225,7 +227,8 @@ public abstract class PLElementImpl extends MinimalEObjectImpl.Container impleme
    */
   @Override
   public String getPresenceConditionLabel() {
-    return getProductLine().getPresenceConditionLabel(getPresenceConditionGen(), true);
+    var pl = getProductLine();
+    return (pl == null) ? "" : pl.getPresenceConditionLabel(getPresenceConditionGen(), true);
   }
 
 } //PLElementImpl
