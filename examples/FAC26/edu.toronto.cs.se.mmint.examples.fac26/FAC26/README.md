@@ -1,6 +1,8 @@
 ## FAC 2026 paper
 
-Assurance Case Development for Evolving Software Product Lines: A Formal Approach
+[Assurance Case Development for Evolving Software Product Lines: A Formal Approach](https://doi.org/10.1145/3796233)
+
+In critical software engineering, structured assurance cases (ACs) are used to demonstrate how key system properties are supported by evidence (e.g., test results, proofs). Creating rigorous ACs is particularly challenging in the context of software product lines (SPLs), i.e, sets of software products with overlapping but distinct features and behaviours. Since SPLs can encompass very large numbers of products, developing a rigorous AC for each product individually is infeasible. Moreover, if the SPL evolves, e.g., by the modification or introduction of features, it can be infeasible to assess the impact of this change. Instead, the development and maintenance of ACs ought to be *lifted* such that a single AC can be developed for the entire SPL simultaneously, and be analyzed for regression in a variability-aware fashion. In this article, we describe a formal approach to lifted AC development and regression analysis. We formalize a language of variability-aware ACs for SPLs and study the lifting of template-based AC development. We also define a regression analysis to determine the effects of SPL evolutions on variability-aware ACs. We describe a model-based assurance management tool which implements these techniques, and illustrate our contributions by developing an AC for a product line of medical devices.
 
 ### Instructions to reproduce the examples
 
