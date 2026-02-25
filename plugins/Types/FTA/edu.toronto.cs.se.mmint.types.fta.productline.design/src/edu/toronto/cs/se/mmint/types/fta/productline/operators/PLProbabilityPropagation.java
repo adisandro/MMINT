@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -28,6 +29,7 @@ import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.productline.Attribute;
 import edu.toronto.cs.se.mmint.productline.Class;
 import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
@@ -67,8 +69,9 @@ public class PLProbabilityPropagation extends OperatorImpl {
     var pcsByProb = new HashMap<BigDecimal, List<String>>();
     var gates = plEvent.getReference(this.fta.getEvent_Gate());
     if (gates.isEmpty()) { // basic event
-      var prob = new BigDecimal(plEvent.getAttribute(this.fta.getEvent_Probability()));
-      return Map.of(plEvent.getPresenceCondition(), prob);
+      return plEvent.getAttributes().stream()
+        .filter(a -> a.getType() == this.fta.getEvent_Probability())
+        .collect(Collectors.toMap(Attribute::getPresenceCondition, a -> new BigDecimal(a.getValue())));
     }
     var gateLogic = GateLogic.valueOf(gates.get(0).getAttribute(this.fta.getGate_Logic()));
     plEvent.getAttributes().removeIf(a -> a.getType() == this.fta.getEvent_Probability());
@@ -89,7 +92,18 @@ public class PLProbabilityPropagation extends OperatorImpl {
         case AND -> subProbByPC.getValue().stream().reduce(BigDecimal.ONE, BigDecimal::multiply);
         case OR  -> subProbByPC.getValue().stream().reduce(BigDecimal.ZERO, BigDecimal::add);
       };
-      probPCs.addAll(subProbsByPC.keySet().stream().filter(pc2 -> !pc.equals(pc2)).map(this.reasoner::not).toList());
+      for (var subProbByPC2 : subProbsByPC.entrySet()) {
+        var pc2 = subProbByPC2.getKey();
+        if (this.out0.isInAllProducts(pc2)) {
+          prob = switch (gateLogic) {
+            case AND -> prob.multiply(subProbByPC2.getValue().stream().reduce(BigDecimal.ONE, BigDecimal::multiply));
+            case OR  -> prob.add(subProbByPC2.getValue().stream().reduce(BigDecimal.ZERO, BigDecimal::add));
+          };
+        }
+        else if (!pc.equals(pc2)) {
+          probPCs.add(this.reasoner.not(pc2));
+        }
+      }
       if (this.reasoner.checkConsistency(this.out0.getFeaturesConstraint(), probPCs)) {
         var probPC = this.reasoner.simplify(this.reasoner.and(probPCs.toArray(new String[0])));
         pcsByProb.computeIfAbsent(prob, _ -> new ArrayList<String>()).add(probPC);
