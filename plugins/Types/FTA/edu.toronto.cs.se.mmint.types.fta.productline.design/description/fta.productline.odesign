@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="fta.productline" version="12.0.0.2017041100">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:properties="http://www.eclipse.org/sirius/properties/1.0.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="fta.productline" version="12.0.0.2017041100">
   <ownedViewpoints name="PLFTAViewpoint" modelFileExtension="productline">
     <ownedRepresentationExtensions xsi:type="description_1:DiagramExtensionDescription" name="PL FTA Diagram" viewpointURI="viewpoint:/edu.toronto.cs.se.mmint.productline.design/ProductLineViewpoint" representationName="ProductLineDiagram">
       <layers name="PLDefault" label="PL FTA">
@@ -76,4 +76,21 @@
     </ownedRepresentationExtensions>
     <ownedJavaExtensions qualifiedClassName="edu.toronto.cs.se.mmint.types.fta.productline.design.PLFTAServices"/>
   </ownedViewpoints>
+  <extensions xsi:type="properties:ViewExtensionDescription" name="PLProperties">
+    <categories name="PLCategory">
+      <pages name="FTAPage" groups="//@extensions.0/@categories.0/@groups.0">
+        <extends href="platform:/plugin/org.eclipse.sirius.properties.defaultrules/model/properties.odesign#//@extensions.0/@categories.0/@pages.0"/>
+      </pages>
+      <groups name="PLEventGroup" labelExpression="FTA Properties" domainClass="productline.Class" semanticCandidateExpression="var:self" preconditionExpression="aql: self.type.name = 'Event' or self.type.eAllSuperTypes->exists(s | s.name = 'Event')">
+        <controls xsi:type="properties:TextAreaDescription" name="PLEventName" labelExpression="Name:" isEnabledExpression="aql: self.attributes->exists(a | a.type.name = 'name')" lineCount="3" valueExpression="aql: self.attributes->select(a | a.type.name = 'name')->first().value">
+          <initialOperation>
+            <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql: self.attributes->select(a | a.type.name = 'name')->first()">
+              <subModelOperations xsi:type="tool_1:SetValue" featureName="value" valueExpression="var:newValue"/>
+            </firstModelOperations>
+          </initialOperation>
+        </controls>
+        <controls xsi:type="properties:TextAreaDescription" name="PLEventProbability" labelExpression="Probability:" isEnabledExpression="aql: self.attributes->exists(a | a.type.name = 'probability')" lineCount="3" valueExpression="aql: self.attributes->select(a | a.type.name = 'probability')->collect(a | a.value)"/>
+      </groups>
+    </categories>
+  </extensions>
 </description:Group>
