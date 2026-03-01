@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module LTSToLeanAcceleo('model://edu.toronto.cs.se.mmint.types.lts')/]
+[module LTSToLean('model://edu.toronto.cs.se.mmint.types.lts')/]
 [import edu::toronto::cs::se::mmint::types::lts::operators::LTSToLean/]
 
 [query private sanitize(name : String, regexp : String) : String =
@@ -142,12 +142,14 @@
   @['['/]instance[']'/] def Act_to_form : has_coe A (formula [modelName/]) := ⟨λ a, formula.acts {a}⟩
 [/template]
 
-[template public LTSToLean(lts : lts::LTS, modelName : String, sanitizeRegexp : String, groupThreshold : Integer)]
-  [comment @main /]
-  [file ('main.lean', overwrite, 'UTF-8')]
-    [modelName.sanitize(sanitizeRegexp).encodeMain()/]
-  [/file]
-  [file (modelName.sanitize(sanitizeRegexp) + '.lean', overwrite, 'UTF-8')]
-    [lts.encodeModel(modelName.sanitize(sanitizeRegexp), sanitizeRegexp, groupThreshold)/]
-  [/file]
+[comment @main /]
+[template public LTSToLean(lts : lts::LTS, modelName : String)]
+  [let sanitizeRegexp = getSanitizeRegexp(), groupThreshold = getGroupThreshold()]
+    [file ('main.lean', overwrite, 'UTF-8')]
+      [modelName.sanitize(sanitizeRegexp).encodeMain()/]
+    [/file]
+    [file (modelName.sanitize(sanitizeRegexp) + '.lean', overwrite, 'UTF-8')]
+      [lts.encodeModel(modelName.sanitize(sanitizeRegexp), sanitizeRegexp, groupThreshold)/]
+    [/file]
+  [/let]
 [/template]

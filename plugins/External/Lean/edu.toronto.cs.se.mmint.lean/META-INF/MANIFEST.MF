@@ -12,7 +12,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.emf.validation,
  org.eclipse.jdt.annotation;resolution:=optional,
- edu.toronto.cs.se.mmint,
- org.eclipse.acceleo.engine
+ edu.toronto.cs.se.mmint
 Export-Package: edu.toronto.cs.se.mmint.lean.operators,
  edu.toronto.cs.se.mmint.lean.reasoning

@@ -1,9 +1,9 @@
 [comment encoding = UTF-8 /]
-[module Java2FileAcceleo('http://se.cs.toronto.edu/modelepedia/MODELS15_Java')/]
+[module Java2File('http://se.cs.toronto.edu/modelepedia/MODELS15_Java')/]
 
+[comment @main /]
 [template public Java2File(javaPackage : models15_java::Package, javaFileName : String)]
-	[comment @main /]
-	[file (javaFileName + '.java', overwrite, 'UTF-8')]
+	[file (javaPackage.name + '.java', overwrite, 'UTF-8')]
     package edu.toronto.cs.se.modelepedia;
 
 		[for (javaClass | javaPackage.classes)]

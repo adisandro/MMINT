@@ -12,14 +12,12 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.lean.operators;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.eclipse.acceleo.engine.service.AbstractAcceleoGenerator;
 import org.eclipse.core.runtime.IPath;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
@@ -30,7 +28,6 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
-import edu.toronto.cs.se.mmint.mid.utils.AcceleoUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
@@ -42,7 +39,6 @@ public class ToLean extends OperatorImpl {
   protected final static String LEAN_BUNDLE_DIR = "lean/";
   protected Input input;
   protected Output output;
-  protected AbstractAcceleoGenerator leanGenerator;
 
   protected static class Input {
     public final static String MODEL = "model";
@@ -58,13 +54,13 @@ public class ToLean extends OperatorImpl {
     public final static String MODELS = "encoding";
     public final static String EVIDENCE_FILE = "evidence" + ToLean.LEAN_EXT;
     public final static String MAIN_FILE = "main" + ToLean.LEAN_EXT;
-    public File leanFolder;
+    public String leanFolder;
     public List<String> leanPaths;
     public List<Model> leanModels;
     public MID mid;
 
     public Output(Input input, Map<String, MID> outputMIDsByName, String workingPath) {
-      this.leanFolder = new File(FileUtils.prependWorkspacePath(workingPath));
+      this.leanFolder = FileUtils.prependWorkspacePath(workingPath);
       this.leanPaths = new ArrayList<>();
       this.leanPaths.add(workingPath + IPath.SEPARATOR + Output.MAIN_FILE);
       this.leanPaths.add(workingPath + IPath.SEPARATOR + input.model.getName() + ToLean.LEAN_EXT);
@@ -109,6 +105,8 @@ public class ToLean extends OperatorImpl {
     return Optional.of(Output.EVIDENCE_FILE);
   }
 
+  public void runAcceleo() {}
+
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     var workingPath = getWorkingPath();
     this.input = new Input(inputsByName);
@@ -118,13 +116,15 @@ public class ToLean extends OperatorImpl {
     FileUtils.copyDirectory(bundlePath, false, workingPath + IPath.SEPARATOR, true);
   }
 
+  public static String getSanitizeRegexp() {
+    return ToLean.LEAN_SANITIZE_REGEXP;
+  }
+
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
     init(inputsByName, outputMIDsByName);
-    if (this.leanGenerator != null) {
-      AcceleoUtils.runAcceleo(this.leanGenerator);
-    }
+    runAcceleo();
 
     return this.output.packed();
   }

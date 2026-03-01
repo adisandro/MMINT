@@ -15,7 +15,9 @@ package edu.toronto.cs.se.mmint.types.uml.operators;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.Property;
 
 import edu.toronto.cs.se.mmint.lean.operators.ToLean;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -23,6 +25,8 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder;
 
 public class UMLToLean extends ToLean implements IGSNLeanEncoder {
+
+  private UMLToLeanGenerator acceleo;
 
   @Override
   public List<String> getImportPaths() {
@@ -32,8 +36,12 @@ public class UMLToLean extends ToLean implements IGSNLeanEncoder {
   @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     super.init(inputsByName, outputMIDsByName);
-    this.leanGenerator = new UMLToLeanAcceleo(this.input.model.getEMFInstanceRoot(), this.output.leanFolder,
-                                              List.of(this.input.model.getName(), ToLean.LEAN_SANITIZE_REGEXP));
+    this.acceleo = new UMLToLeanGenerator(List.of(this.input.model.getUri()), this.output.leanFolder);
+  }
+
+  @Override
+  public void runAcceleo() {
+    this.acceleo.generate(new BasicMonitor());
   }
 
   @Override
@@ -41,7 +49,7 @@ public class UMLToLean extends ToLean implements IGSNLeanEncoder {
     var mainClassName = ((org.eclipse.uml2.uml.Model) model.getEMFInstanceRoot()).getPackagedElements().stream()
       .filter(pe -> pe instanceof org.eclipse.uml2.uml.Class clazz &&
                     clazz.getOwnedAttributes().stream()
-                      .filter(a -> a instanceof org.eclipse.uml2.uml.Property)
+                      .filter(Property.class::isInstance)
                       .count() > 0)
       .map(PackageableElement::getName)
       .findFirst()

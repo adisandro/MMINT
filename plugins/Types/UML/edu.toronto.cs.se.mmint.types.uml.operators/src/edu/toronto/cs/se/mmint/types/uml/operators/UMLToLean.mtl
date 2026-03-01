@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module UMLToLeanAcceleo('http://www.eclipse.org/uml2/5.0.0/UML', 'http://www.eclipse.org/uml2/5.0.0/Types')/]
+[module UMLToLean('http://www.eclipse.org/uml2/5.0.0/UML', 'http://www.eclipse.org/uml2/5.0.0/Types')/]
 
 [query private sanitize(name : String, regexp : String) : String =
   name.replaceAll(regexp, '_')
@@ -150,8 +150,8 @@
   [']'/]}
 [/template]
 
+[comment @main /]
 [template public UMLToLean(umlRoot : uml::Model, modelName : String, sanitizeRegexp : String)]
-  [comment @main /]
   [let mainClass = umlRoot.packagedElement->filter(uml::Class)->any(c | c.ownedAttribute->filter(uml::Property)->size() > 0)]
   [file ('main.lean', overwrite, 'UTF-8')]
     [modelName.sanitize(sanitizeRegexp).encodeMain(mainClass.name.sanitize(sanitizeRegexp))/]

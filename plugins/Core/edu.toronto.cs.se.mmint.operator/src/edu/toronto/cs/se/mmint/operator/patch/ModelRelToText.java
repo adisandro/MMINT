@@ -11,10 +11,10 @@
  */
 package edu.toronto.cs.se.mmint.operator.patch;
 
-import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
@@ -23,14 +23,13 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
-import edu.toronto.cs.se.mmint.mid.utils.AcceleoUtils;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class ModelRelToText extends OperatorImpl {
 
     private Input input;
     private Output output;
-    private ModelRelToText_M2T textGenerator;
+    private ModelRelToTextGenerator acceleo;
 
     private static class Input {
 
@@ -78,8 +77,9 @@ public class ModelRelToText extends OperatorImpl {
 
         this.input = new Input(inputsByName);
         this.output = new Output(outputMIDsByName);
-        var folder = (new File(FileUtils.prependWorkspacePath(this.input.firstModel.getUri()))).getParentFile();
-        this.textGenerator = new ModelRelToText_M2T(this.input.rel, folder, List.of());
+        var folder = FileUtils.prependWorkspacePath(
+          FileUtils.getAllButLastSegmentFromPath(this.input.firstModel.getUri()));
+        this.acceleo = new ModelRelToTextGenerator(List.of(this.input.rel.getUri()), folder);
     }
 
     @Override
@@ -87,7 +87,7 @@ public class ModelRelToText extends OperatorImpl {
                                   Map<String, MID> outputMIDsByName) throws Exception {
 
         init(inputsByName, outputMIDsByName);
-        AcceleoUtils.runAcceleo(this.textGenerator);
+        this.acceleo.generate(new BasicMonitor());
 
         return this.output.packed();
     }

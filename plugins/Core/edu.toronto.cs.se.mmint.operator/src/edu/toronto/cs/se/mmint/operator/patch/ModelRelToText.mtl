@@ -1,8 +1,8 @@
 [comment encoding = UTF-8 /]
-[module ModelRelToTextAcceleo('http://se.cs.toronto.edu/mmint/MID', 'http://se.cs.toronto.edu/mmint/MID/Relationship')/]
+[module ModelRelToText('http://se.cs.toronto.edu/mmint/MID', 'http://se.cs.toronto.edu/mmint/MID/Relationship')/]
 
+[comment @main /]
 [template public encodeModelRel(rel : relationship::ModelRel)]
-  [comment @main /]
   [file (rel.name + '.txt', overwrite, 'UTF-8')]
     [for (modelEndpointRef | rel.modelEndpointRefs)]
       [modelEndpointRef.getObject().name/]:

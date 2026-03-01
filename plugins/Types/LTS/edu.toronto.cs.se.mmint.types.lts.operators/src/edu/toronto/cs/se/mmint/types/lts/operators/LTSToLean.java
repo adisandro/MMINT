@@ -24,6 +24,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -43,6 +44,7 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 
   private final static String LEAN_AUX_FILE = "auxi" + ToLean.LEAN_EXT;
   private final static int GROUP_THRESHOLD = 100;
+  private LTSToLeanGenerator acceleo;
 
   @Override
   public List<String> getImportPaths() {
@@ -52,9 +54,7 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
   @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     super.init(inputsByName, outputMIDsByName);
-    this.leanGenerator = new LTSToLeanAcceleo(this.input.model.getEMFInstanceRoot(), this.output.leanFolder,
-                                              List.of(this.input.model.getName(), ToLean.LEAN_SANITIZE_REGEXP,
-                                                      LTSToLean.GROUP_THRESHOLD));
+    this.acceleo = new LTSToLeanGenerator(List.of(this.input.model.getUri()), this.output.leanFolder);
     // auxiliary declarations
     //TODO MMINT[LEAN] Split model+property into model+libs+property, where libs is gsn stuff and aux belongs there
     var auxPath = FileUtils.replaceLastSegmentInPath(this.input.model.getUri(), LTSToLean.LEAN_AUX_FILE);
@@ -70,9 +70,18 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
     return Integer.valueOf(emfUri.substring(emfUri.lastIndexOf('.') + 1));
   }
 
+  public static int getGroupThreshold() {
+    return LTSToLean.GROUP_THRESHOLD;
+  }
+
+  @Override
+  public void runAcceleo() {
+    this.acceleo.generate(new BasicMonitor());
+  }
+
   @Override
   public List<PropertyTemplate> getPropertyTemplates(Model model) {
-    final VariableEncoder encoder = (modelObjs) -> {
+    final VariableEncoder encoder = modelObjs -> {
       var formals = new ArrayList<List<String>>();
       var informals = new ArrayList<String>();
       List<String> currFormals = null;
@@ -234,7 +243,7 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
       ")\n" +
       "([\n";
     encoding += subProperties.stream()
-      .map(p -> encodeProperty(p))
+      .map(this::encodeProperty)
       .collect(Collectors.joining(",\n"));
     encoding += "\n])\n";
 

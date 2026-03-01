@@ -5,21 +5,17 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *    Alessio Di Sandro - Implementation.
  */
 package edu.toronto.cs.se.modelepedia.models15.operator;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.acceleo.common.preference.AcceleoPreferences;
 import org.eclipse.emf.common.util.BasicMonitor;
-import org.eclipse.jdt.annotation.NonNull;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
@@ -32,29 +28,25 @@ import edu.toronto.cs.se.mmint.primitive.file.FilePackage;
 public class Java2File extends OperatorImpl {
 
 	// input-output
-	private final static @NonNull String IN_MODEL = "java";
-	private final static @NonNull String OUT_FILE = "file";
+	private final static String IN_MODEL = "java";
+	private final static String OUT_FILE = "file";
 	// constants
-	private final static @NonNull String JAVA_FILE_SUFFIX = "java";
+	private final static String JAVA_FILE_SUFFIX = "java";
 
-	private @NonNull Model print(@NonNull Model javaModel, @NonNull MID instanceMID) throws Exception {
+	private Model print(Model javaModel, MID instanceMID) throws Exception {
 
 		// run acceleo
 		String fileModelPath = FileUtils.getUniquePath(
-			FileUtils.replaceFileExtensionInPath(javaModel.getUri(), JAVA_FILE_SUFFIX),
+			FileUtils.replaceFileExtensionInPath(javaModel.getUri(), Java2File.JAVA_FILE_SUFFIX),
 			true,
 			false);
-		List<Object> m2tArgs = new ArrayList<>();
-		m2tArgs.add(FileUtils.getFileNameFromPath(fileModelPath));
-		File folder = (new File(FileUtils.prependWorkspacePath(javaModel.getUri()))).getParentFile();
-		AcceleoPreferences.switchForceDeactivationNotifications(true);
-		AcceleoPreferences.switchNotifications(false);
-		Java2File_M2T m2t = new Java2File_M2T(javaModel.getEMFInstanceRoot(), folder, m2tArgs);
-		m2t.doGenerate(new BasicMonitor());
+		var folder = FileUtils.prependWorkspacePath(FileUtils.getAllButLastSegmentFromPath(javaModel.getUri()));
+		var acceleo = new Java2FileGenerator(List.of(javaModel.getUri()), folder);
+		acceleo.generate(new BasicMonitor());
 
 		// create file model
 		Model fileModelType = MIDTypeRegistry.getType(FilePackage.eNS_URI);
-		Model fileModel = fileModelType.createInstance(null, fileModelPath, instanceMID);
+		var fileModel = fileModelType.createInstance(null, fileModelPath, instanceMID);
 
 		return fileModel;
 	}
@@ -65,15 +57,15 @@ public class Java2File extends OperatorImpl {
 			Map<String, MID> outputMIDsByName) throws Exception {
 
 		// input
-		Model javaModel = inputsByName.get(IN_MODEL);
-		MID instanceMID = outputMIDsByName.get(OUT_FILE);
+		Model javaModel = inputsByName.get(Java2File.IN_MODEL);
+		MID instanceMID = outputMIDsByName.get(Java2File.OUT_FILE);
 
 		// print to file
 		Model fileModel = print(javaModel, instanceMID);
 
 		// output
 		Map<String, Model> outputsByName = new HashMap<>();
-		outputsByName.put(OUT_FILE, fileModel);
+		outputsByName.put(Java2File.OUT_FILE, fileModel);
 
 		return outputsByName;
 	}
