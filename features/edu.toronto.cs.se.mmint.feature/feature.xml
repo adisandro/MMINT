@@ -49,7 +49,6 @@ sets of related models.
       <import plugin="org.eclipse.emf.ecore.editor"/>
       <import plugin="org.eclipse.uml2.uml"/>
       <import plugin="org.eclipse.sirius.ui"/>
-      <import plugin="org.eclipse.acceleo.engine"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.core.expressions"/>
       <import plugin="org.eclipse.jface"/>
@@ -85,7 +84,7 @@ sets of related models.
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.sirius.diagram"/>
       <import plugin="org.eclipse.gmf.runtime.notation"/>
-      <import feature="org.eclipse.acceleo"/>
+      <import feature="org.eclipse.acceleo.aql.feature"/>
       <import feature="org.eclipse.emf.sdk"/>
       <import feature="org.eclipse.emf.validation.sdk"/>
       <import feature="org.eclipse.ocl.all.sdk"/>

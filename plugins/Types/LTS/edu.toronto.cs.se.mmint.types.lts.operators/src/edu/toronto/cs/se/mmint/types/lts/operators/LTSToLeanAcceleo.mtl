@@ -1,161 +1,153 @@
 [comment encoding = UTF-8 /]
 [module LTSToLeanAcceleo('model://edu.toronto.cs.se.mmint.types.lts')/]
+[import edu::toronto::cs::se::mmint::types::lts::operators::LTSToLean/]
 
 [query private sanitize(name : String, regexp : String) : String =
   name.replaceAll(regexp, '_')
 /]
 
-[query private getIndex(state : State) : Integer =
-  invoke('edu.toronto.cs.se.mmint.types.lts.operators.LTSToLean',
-         'getIndex(edu.toronto.cs.se.mmint.types.lts.LabeledElement)', Sequence{state})
-/]
-
-[query private div(number : Integer, threshold : Integer) : Integer =
-  number.div(threshold)
-/]
-
-[query private mod(number : Integer, threshold : Integer) : Integer =
-  number.mod(threshold)
-/]
-
 [template private encodeMain(modelName : String)]
-import justification common_meta auxi property_catalogue.LTL
-import [modelName/]
-open interactive S A
+  import justification common_meta auxi property_catalogue.LTL
+  import [modelName/]
+  open interactive S A
 
-variable {α : Type}
+  variable {α : Type}
 
-set_option pp.structure_instances_qualifier true
+  set_option pp.structure_instances_qualifier true
 
-def local_input_name : string := "[modelName/]_input_1"
-def local_strat_name : string := "[modelName/]_strat_1"
-def local_prf_name : string := "[modelName/]_prf_1"
+  def local_input_name : string := "[modelName/]_input_1"
+  def local_strat_name : string := "[modelName/]_strat_1"
+  def local_prf_name : string := "[modelName/]_prf_1"
 
-def preamble : string := "import justification [modelName/] common_meta auxi property_catalogue.LTL \n open S A"
+  def preamble : string := "import justification [modelName/] common_meta auxi property_catalogue.LTL \n open S A"
 
-meta def proof_template (p₁ p₂ : string) : string :=
-"\n\n
-theorem " ++ local_prf_name ++ " : " ++ p₁ ++ " := \nbegin \n" ++ p₂ ++ "\nend" ++ "\n\n\n"
+  meta def proof_template (p₁ p₂ : string) : string :=
+  "\n\n
+  theorem " ++ local_prf_name ++ " : " ++ p₁ ++ " := \nbegin \n" ++ p₂ ++ "\nend" ++ "\n\n\n"
 
-meta def hint_string_fmt (s : list string) : string :=
-if s = ['['/][']'/] then "" else hints_string s
+  meta def hint_string_fmt (s : list string) : string :=
+  if s = ['['/][']'/] then "" else hints_string s
 
-meta def evidence_file_template (ps : property_proof_data α) : string :=
-preamble
-++ "\n\n @['['/]reducible[']'/] def " ++ local_input_name
-++ " : property.input (path [modelName/]) := "++ ps.input_string
-++ "\n\n @['['/]reducible[']'/] def "++ local_strat_name
-++ " : Strategy (path [modelName/]) := property.strategy " ++ local_input_name
-++ proof_template ("deductive (path [modelName/]) " ++ local_strat_name) (tscript_string ps.tscript)
-++ ps.unused ++ hint_string_fmt ps.hints
+  meta def evidence_file_template (ps : property_proof_data α) : string :=
+  preamble
+  ++ "\n\n @['['/]reducible[']'/] def " ++ local_input_name
+  ++ " : property.input (path [modelName/]) := "++ ps.input_string
+  ++ "\n\n @['['/]reducible[']'/] def "++ local_strat_name
+  ++ " : Strategy (path [modelName/]) := property.strategy " ++ local_input_name
+  ++ proof_template ("deductive (path [modelName/]) " ++ local_strat_name) (tscript_string ps.tscript)
+  ++ ps.unused ++ hint_string_fmt ps.hints
 
-meta def output (s : string) : io unit := do
-  of ← io.mk_file_handle "evidence.lean" io.mode.write,
-  io.fs.write of s.to_char_buffer
+  meta def output (s : string) : io unit := do
+    of ← io.mk_file_handle "evidence.lean" io.mode.write,
+    io.fs.write of s.to_char_buffer
 
-meta def driver (input : pexpr) : tactic unit :=
-let α := path [modelName/] in
-do
-  STRAT ← tactic.to_expr input,
-  match STRAT with
-  | `(property.input.mk %%CLAIM %%PROPS) :=
+  meta def driver (input : pexpr) : tactic unit :=
+  let α := path [modelName/] in
   do
-  inpt ← tactic.eval_expr (property.input α) STRAT,
-  input_fmt ← tactic_format_expr STRAT,
-  let input_s := input_fmt.to_string,
-  let ps : property_proof_data α :=
-            { input := inpt,
-              input_string := input_s,
-              strat_expr := STRAT,
-              PROPS := PROPS,
-              init_goal := `(deductive (path [modelName/]) (property.strategy %%STRAT)),
-              cur_goal := `(deductive (path [modelName/]) (property.strategy %%STRAT)),
-              },
-  let ps := property_proof_data.get_originals ps,
-  let goal_str := "deductive (path pump1) " ++ local_strat_name,
-  set_goal ps.init_goal,
-  ps ← SOLVE (ps),
-  str ← get_unused ps,
-    match ps.solved with
-    | tt := do tactic.trace "True", tactic.unsafe_run_io $ output $ evidence_file_template ps
-    | ff := do tactic.trace "False", tactic.unsafe_run_io $ output $ evidence_file_template {unused := str ..ps}
-    end
-| _ := return ()
-end
+    STRAT ← tactic.to_expr input,
+    match STRAT with
+    | `(property.input.mk %%CLAIM %%PROPS) :=
+    do
+    inpt ← tactic.eval_expr (property.input α) STRAT,
+    input_fmt ← tactic_format_expr STRAT,
+    let input_s := input_fmt.to_string,
+    let ps : property_proof_data α :=
+              { input := inpt,
+                input_string := input_s,
+                strat_expr := STRAT,
+                PROPS := PROPS,
+                init_goal := `(deductive (path [modelName/]) (property.strategy %%STRAT)),
+                cur_goal := `(deductive (path [modelName/]) (property.strategy %%STRAT)),
+                },
+    let ps := property_proof_data.get_originals ps,
+    let goal_str := "deductive (path pump1) " ++ local_strat_name,
+    set_goal ps.init_goal,
+    ps ← SOLVE (ps),
+    str ← get_unused ps,
+      match ps.solved with
+      | tt := do tactic.trace "True", tactic.unsafe_run_io $ output $ evidence_file_template ps
+      | ff := do tactic.trace "False", tactic.unsafe_run_io $ output $ evidence_file_template {unused := str ..ps}
+      end
+  | _ := return ()
+  end
 
-@['['/]user_command[']'/]
-meta def main
-(meta_info : decl_meta_info)
-(_ : parse (lean.parser.tk "main")) : lean.parser unit :=
-do
-   F ← read "property.lean" types.texpr,
-   lean.parser.of_tactic $ driver F
-.
-main
+  @['['/]user_command[']'/]
+  meta def main
+  (meta_info : decl_meta_info)
+  (_ : parse (lean.parser.tk "main")) : lean.parser unit :=
+  do
+     F ← read "property.lean" types.texpr,
+     lean.parser.of_tactic $ driver F
+  .
+  main
 [/template]
 
-[template private encodeModel(lts : LTS, modelName : String, sanitizeRegexp : String, groupThreshold : Integer)]
-import LTS
+[template private encodeModel(lts : lts::LTS, modelName : String, sanitizeRegexp : String, groupThreshold : Integer)]
+  import LTS
 
-  [for (state : State | lts.states)]
-    [if (mod(i-1, groupThreshold) = 0)]
-
-inductive state[div(i-1, groupThreshold)/]
-    [/if]
-| [sanitize(state.label, sanitizeRegexp)/]
-  [/for]
-
-  [for (transition : Transition | lts.transitions)]
-    [if (mod(i-1, groupThreshold) = 0)]
-
-inductive action[div(i-1, groupThreshold)/]
-    [/if]
-| [sanitize(transition.label, sanitizeRegexp)/]
-  [/for]
-
-inductive S
-  [for (state : State | lts.states)]
-    [if (mod(i-1, groupThreshold) = 0)]
-| cons[div(i-1, groupThreshold)/] : state[div(i-1, groupThreshold)/] → S
-    [/if]
-  [/for]
-
-inductive A
-  [for (transition : Transition | lts.transitions)]
-    [if (mod(i-1, groupThreshold) = 0)]
-| cons[div(i-1, groupThreshold)/] : action[div(i-1, groupThreshold)/] → A
-    [/if]
-  [/for]
-
-  [for (transition : Transition | lts.transitions)]
-    [let a : Integer = div(i-1, groupThreshold)]
-    [let s1 : Integer = div(getIndex(transition.from), groupThreshold)]
-    [let s2 : Integer = div(getIndex(transition.to), groupThreshold)]
-    [if (mod(i-1, groupThreshold) = 0)]
-
-def TR[div(i-1, groupThreshold)/] : set (S × A × S) := {
-    [/if]
-  (S.cons[s1/] state[s1/].[sanitize(transition.from.label, sanitizeRegexp)/], A.cons[a/] action[a/].[sanitize(transition.label, sanitizeRegexp)/], S.cons[s2/] state[s2/].[sanitize(transition.to.label, sanitizeRegexp)/])[if (mod(i-1, groupThreshold) = (groupThreshold-1) or i = lts.transitions->size())]}[else],[/if]
+  [for (state | lts.states)]
+    [let i = stateIndex - 1]
+      [if ((i % groupThreshold) = 0)]
+  
+        inductive state[i / groupThreshold/]
+      [/if]
     [/let]
+    | [state.label.sanitize(sanitizeRegexp)/]
+  [/for]
+
+  [for (transition | lts.transitions)]
+    [let i = transitionIndex - 1]
+      [if ((i % groupThreshold) = 0)]
+  
+        inductive action[i / groupThreshold/]
+      [/if]
     [/let]
+    | [transition.label.sanitize(sanitizeRegexp)/]
+  [/for]
+
+  inductive S
+  [for (state | lts.states)]
+    [let i = stateIndex - 1]
+      [if ((i % groupThreshold) = 0)]
+        | cons[i / groupThreshold/] : state[i / groupThreshold/] → S
+      [/if]
     [/let]
   [/for]
 
-def TR : set (S × A × S) := [for (j : Integer | Sequence{0..div(lts.transitions->size()-1, groupThreshold)}) separator(' ∪ ')]TR[j/][/for]
+  inductive A
+  [for (transition | lts.transitions)]
+    [let i = transitionIndex - 1]
+      [if ((i % groupThreshold) = 0)]
+        | cons[i / groupThreshold/] : action[i / groupThreshold/] → A
+      [/if]
+    [/let]
+  [/for]
 
-def [modelName/] : LTS := LTS.mk S A TR 
-@['['/]instance[']'/] def S_to_[modelName/]S : has_coe S ([modelName/].S) := ⟨id⟩
-@['['/]instance[']'/] def S_to_form : has_coe [modelName/].S (formula [modelName/]) := ⟨λ s, formula.states {s}⟩
-@['['/]instance[']'/] def S_to_form' : has_coe S (formula [modelName/]) := ⟨λ s, s⟩
-@['['/]instance[']'/] def Act_to_form : has_coe A (formula [modelName/]) := ⟨λ a, formula.acts {a}⟩
+  [for (transition | lts.transitions)]
+    [let i = transitionIndex - 1, a = i / groupThreshold, s1 = transition.from.getIndex() / groupThreshold, s2 = transition.to.getIndex() / groupThreshold]
+      [if ((i / groupThreshold) = 0)]
+  
+        def TR[i / groupThreshold/] : set (S × A × S) := {
+      [/if]
+      (S.cons[s1/] state[s1/].[transition.from.label.sanitize(sanitizeRegexp)/], A.cons[a/] action[a/].[transition.label.sanitize(sanitizeRegexp)/], S.cons[s2/] state[s2/].[transition.to.label.sanitize(sanitizeRegexp)/])[if ((i / groupThreshold) = (groupThreshold-1) or (i+1) = lts.transitions->size())]}[else],[/if]
+    [/let]
+  [/for]
+
+  def TR : set (S × A × S) := [for (t | lts.transitions) separator(' ∪ ')][let i = tIndex-  1][if ((i % groupThreshold) = 0)]TR[i / groupThreshold/][/if][/let][/for]
+
+  def [modelName/] : LTS := LTS.mk S A TR 
+  @['['/]instance[']'/] def S_to_[modelName/]S : has_coe S ([modelName/].S) := ⟨id⟩
+  @['['/]instance[']'/] def S_to_form : has_coe [modelName/].S (formula [modelName/]) := ⟨λ s, formula.states {s}⟩
+  @['['/]instance[']'/] def S_to_form' : has_coe S (formula [modelName/]) := ⟨λ s, s⟩
+  @['['/]instance[']'/] def Act_to_form : has_coe A (formula [modelName/]) := ⟨λ a, formula.acts {a}⟩
 [/template]
 
-[template public LTSToLean(lts : LTS, modelName : String, sanitizeRegexp : String, groupThreshold : Integer)]
+[template public LTSToLean(lts : lts::LTS, modelName : String, sanitizeRegexp : String, groupThreshold : Integer)]
   [comment @main /]
-  [file ('main.lean', false, 'UTF-8')]
-[encodeMain(sanitize(modelName, sanitizeRegexp))/]
+  [file ('main.lean', overwrite, 'UTF-8')]
+    [modelName.sanitize(sanitizeRegexp).encodeMain()/]
   [/file]
-  [file (sanitize(modelName, sanitizeRegexp) + '.lean', false, 'UTF-8')]
-[encodeModel(lts, sanitize(modelName, sanitizeRegexp), sanitizeRegexp, groupThreshold)/]
+  [file (modelName.sanitize(sanitizeRegexp) + '.lean', overwrite, 'UTF-8')]
+    [lts.encodeModel(modelName.sanitize(sanitizeRegexp), sanitizeRegexp, groupThreshold)/]
   [/file]
 [/template]
