@@ -1,165 +1,163 @@
 [comment encoding = UTF-8 /]
-[module UMLToLeanAcceleo('http://www.eclipse.org/uml2/5.0.0/UML')/]
+[module UMLToLeanAcceleo('http://www.eclipse.org/uml2/5.0.0/UML', 'http://www.eclipse.org/uml2/5.0.0/Types')/]
 
 [query private sanitize(name : String, regexp : String) : String =
   name.replaceAll(regexp, '_')
 /]
 
-[query private portName(port : Port, regexp : String) : String =
-  sanitize(port.name, regexp) + '_' + sanitize(port.eContainer(PackageableElement).name, regexp)
+[query private portName(port : uml::Port, regexp : String) : String =
+  port.name.sanitize(regexp) + '_' + port.eContainer(uml::PackageableElement).name.sanitize(regexp)
 /]
 
 
 [template private encodeMain(modelName : String, mainClassName : String)]
-import justification
-import [modelName/]
-import Architectural.lang Architectural.proofObligations Architectural.automation.util Architectural.automation.rpo_fst_tactic
-open interactive LANG PORTS
+  import justification
+  import [modelName/]
+  import Architectural.lang Architectural.proofObligations Architectural.automation.util Architectural.automation.rpo_fst_tactic
+  open interactive LANG PORTS
 
-variable {α : Type}
+  variable {α : Type}
 
-local infix `OR`:50 := LANG.disj
-local infix `&`:50 := LANG.conj
+  local infix `OR`:50 := LANG.disj
+  local infix `&`:50 := LANG.conj
 
-set_option pp.structure_instances_qualifier true
+  set_option pp.structure_instances_qualifier true
 
-def local_input_name : string := "[modelName/]_input"
-def local_strat_name : string := "[modelName/]_strat"
-def local_prf_name : string := "[modelName/]_strat_valid"
-def local_model_info_name : string := "[modelName/]_model_info"
+  def local_input_name : string := "[modelName/]_input"
+  def local_strat_name : string := "[modelName/]_strat"
+  def local_prf_name : string := "[modelName/]_strat_valid"
+  def local_model_info_name : string := "[modelName/]_model_info"
 
-def preamble : string := "import justification [modelName/] Architectural.automation.rpo_fst_tactic \n open LANG PORTS \n\n
-local infix `OR`:50 := LANG.disj
-local infix `&`:50 := LANG.conj
-\n\n
-variables Is : Implementations [mainClassName/]_ARCH_MODEL
-variables Env : Env PORTS"
+  def preamble : string := "import justification [modelName/] Architectural.automation.rpo_fst_tactic \n open LANG PORTS \n\n
+  local infix `OR`:50 := LANG.disj
+  local infix `&`:50 := LANG.conj
+  \n\n
+  variables Is : Implementations [mainClassName/]_ARCH_MODEL
+  variables Env : Env PORTS"
 
-meta def proof_template (p₁ p₂ : string) : string :=
-"\n\n
-theorem " ++ local_prf_name ++ " : " ++ p₁ ++ " := \nbegin \n" ++ p₂ ++ "\nend" ++ "\n\n\n"
+  meta def proof_template (p₁ p₂ : string) : string :=
+  "\n\n
+  theorem " ++ local_prf_name ++ " : " ++ p₁ ++ " := \nbegin \n" ++ p₂ ++ "\nend" ++ "\n\n\n"
 
-meta def evidence_file_template (input_string tscript : string) : string :=
-preamble
-++ "\n\n @['['/]reducible[']'/] def " ++ local_input_name
-++ " : ArchitectureWithContracts LANG [mainClassName/] := "++ input_string
-++ "\n\n @['['/]reducible[']'/] def "++ local_strat_name
-++ " : Strategy (Trace PORTS) := Contract.strategy " ++ local_input_name ++ " Is Env "
-++ proof_template ("deductive (Trace PORTS) " ++ " (" ++ local_strat_name ++ " Is Env)" ) (tscript)
+  meta def evidence_file_template (input_string tscript : string) : string :=
+  preamble
+  ++ "\n\n @['['/]reducible[']'/] def " ++ local_input_name
+  ++ " : ArchitectureWithContracts LANG [mainClassName/] := "++ input_string
+  ++ "\n\n @['['/]reducible[']'/] def "++ local_strat_name
+  ++ " : Strategy (Trace PORTS) := Contract.strategy " ++ local_input_name ++ " Is Env "
+  ++ proof_template ("deductive (Trace PORTS) " ++ " (" ++ local_strat_name ++ " Is Env)" ) (tscript)
 
-meta def output (s : string) : io unit := do
-  of ← io.mk_file_handle "evidence.lean" io.mode.write,
-  io.fs.write of s.to_char_buffer
+  meta def output (s : string) : io unit := do
+    of ← io.mk_file_handle "evidence.lean" io.mode.write,
+    io.fs.write of s.to_char_buffer
 
-def archMap
-{Var Φ : Type} ['['/]fintype Var[']'/] ['['/]decidable_eq Var[']'/] ['['/]AssertionLang Φ Var[']'/]
-{S : Component Var}
-{A : Architecture S}
-(Is :
- Π (S' : Component Var), S' ∈ A.subs → Impl Var)
-(inpt : ArchitectureWithContracts Φ S)
-(h : A = inpt.to_Architecture)
-: Implementations (inpt.to_Architecture) :=
-by {rw ← h, exact Is,}
+  def archMap
+  {Var Φ : Type} ['['/]fintype Var[']'/] ['['/]decidable_eq Var[']'/] ['['/]AssertionLang Φ Var[']'/]
+  {S : Component Var}
+  {A : Architecture S}
+  (Is :
+   Π (S' : Component Var), S' ∈ A.subs → Impl Var)
+  (inpt : ArchitectureWithContracts Φ S)
+  (h : A = inpt.to_Architecture)
+  : Implementations (inpt.to_Architecture) :=
+  by {rw ← h, exact Is,}
 
-meta def Output (s : string) : io unit := do
-  of ← io.mk_file_handle "evidence.lean" io.mode.write,
-  io.fs.write of s.to_char_buffer
+  meta def Output (s : string) : io unit := do
+    of ← io.mk_file_handle "evidence.lean" io.mode.write,
+    io.fs.write of s.to_char_buffer
 
 
-def split : list string → string
-| ['['/][']'/] := string.empty
-| (x::t) := "{" ++ x ++ " " ++ local_model_info_name ++" " ++ "},\n" ++ split t
+  def split : list string → string
+  | ['['/][']'/] := string.empty
+  | (x::t) := "{" ++ x ++ " " ++ local_model_info_name ++" " ++ "},\n" ++ split t
 
-meta def driver (input : pexpr) : tactic unit :=
-do
-  STRAT ← tactic.to_expr input,
-  if STRAT.contains_sorry then tactic.trace "ff" else do
-  match STRAT with
-  | `(ArchitectureWithContracts.mk %%A %%prnt %%map _) := do
-      inpt ← tactic.eval_expr (ArchitectureWithContracts LANG [mainClassName/]) STRAT,
-      let inpt := {all_components := by {cases inpt,assumption,}, ..inpt},
-      input_fmt ← tactic_format_expr STRAT,
-      let envc : expr := `(@set.univ (Trace PORTS)),
-      let goal := `(deductive (Trace PORTS) (@Contract.mk_strategy LANG _ _ _ _ [mainClassName/] (%%STRAT))),
-      set_goal goal,
-      `['['/]apply via_rpo[']'/],
-      tactic.split,
-      l ← tactic.all_goals (solve_rpos [modelName/]_model_info),
-      b ← is_solved,
-      match b with
-      | tt := do tactic.trace "True",
-         input_string ← stringOfFormatExpr STRAT,
-          tactic.unsafe_run_io $ Output $ evidence_file_template input_string ("apply via_rpo,\nsplit,\n" ++ (split l))
-      | ff := do tactic.trace "False"
-      end
-  | _ := return ()
-end
+  meta def driver (input : pexpr) : tactic unit :=
+  do
+    STRAT ← tactic.to_expr input,
+    if STRAT.contains_sorry then tactic.trace "ff" else do
+    match STRAT with
+    | `(ArchitectureWithContracts.mk %%A %%prnt %%map _) := do
+        inpt ← tactic.eval_expr (ArchitectureWithContracts LANG [mainClassName/]) STRAT,
+        let inpt := {all_components := by {cases inpt,assumption,}, ..inpt},
+        input_fmt ← tactic_format_expr STRAT,
+        let envc : expr := `(@set.univ (Trace PORTS)),
+        let goal := `(deductive (Trace PORTS) (@Contract.mk_strategy LANG _ _ _ _ [mainClassName/] (%%STRAT))),
+        set_goal goal,
+        `['['/]apply via_rpo[']'/],
+        tactic.split,
+        l ← tactic.all_goals (solve_rpos [modelName/]_model_info),
+        b ← is_solved,
+        match b with
+        | tt := do tactic.trace "True",
+           input_string ← stringOfFormatExpr STRAT,
+            tactic.unsafe_run_io $ Output $ evidence_file_template input_string ("apply via_rpo,\nsplit,\n" ++ (split l))
+        | ff := do tactic.trace "False"
+        end
+    | _ := return ()
+  end
 
-@['['/]user_command[']'/]
-meta def main
-(meta_info : decl_meta_info)
-(_ : parse (lean.parser.tk "main")) : lean.parser unit :=
-do
-   F ← read "property.lean" types.texpr,
-   lean.parser.of_tactic $ driver F
-.
-main
+  @['['/]user_command[']'/]
+  meta def main
+  (meta_info : decl_meta_info)
+  (_ : parse (lean.parser.tk "main")) : lean.parser unit :=
+  do
+     F ← read "property.lean" types.texpr,
+     lean.parser.of_tactic $ driver F
+  .
+  main
 [/template]
 
-[template private encodeModel(umlRoot : Model, mainClass : Class, modelName : String, sanitizeRegexp : String)]
-import Architectural.ArchWithContracts
-import Architectural.proofObligations
+[template private encodeModel(umlRoot : uml::Model, mainClass : uml::Class, modelName : String, sanitizeRegexp : String)]
+  import Architectural.ArchWithContracts
+  import Architectural.proofObligations
 
-@['['/]derive ['['/]fintype, decidable_eq[']'/][']'/]
-inductive PORTS
-  [for (port : Port | Port.allInstances())]
-| [portName(port, sanitizeRegexp)/]
+  @['['/]derive ['['/]fintype, decidable_eq[']'/][']'/]
+  inductive PORTS
+  [for (port | uml::Port.allInstances())]
+    | [port.portName(sanitizeRegexp)/]
   [/for]
-open PORTS
+  open PORTS
 
-  [for (class : Class | umlRoot.packagedElement->selectByType(Class))]
-@['['/]reducible[']'/]
-def [sanitize(class.name, sanitizeRegexp)/] : Component PORTS := {
-  ports := {
-    val := ['['/]
-    [for (port : Port | class.ownedAttribute->selectByType(Port)) separator(',\n')]      [portName(port, sanitizeRegexp)/][/for]
+  [for (class | umlRoot.packagedElement->filter(uml::Class))]
+    @['['/]reducible[']'/]
+    def [class.name.sanitize(sanitizeRegexp)/] : Component PORTS := {
+      ports := {
+        val := ['['/]
+        [for (port | class.ownedAttribute->filter(uml::Port)) separator(',\n')]      [port.portName(sanitizeRegexp)/][/for]
+        [']'/],
+        nodup := by {dec_trivial}
+      }
+    }
+
+  [/for]
+
+  @['['/]reducible[']'/]
+  def [mainClass.name.sanitize(sanitizeRegexp)/]_ARCH_MODEL : Architecture [mainClass.name.sanitize(sanitizeRegexp)/] := {
+    subs := ['['/]
+  [for (property | mainClass.ownedAttribute->filter(uml::Property)) separator(',\n')]    [property.type.name.sanitize(sanitizeRegexp)/][/for]
     [']'/],
-    nodup := by {dec_trivial}
+    delegation := ['['/]
+  [for (flow | umlRoot.packagedElement->filter(uml::InformationFlow)) separator(',\n')][for (inPort | flow.informationSource->filter(uml::Port))][for (outPort | flow.informationTarget->filter(uml::Port))]    ([inPort.portName(sanitizeRegexp)/], [outPort.portName(sanitizeRegexp)/])[/for][/for][/for]
+    [']'/]
   }
-}
 
-  [/for]
-
-@['['/]reducible[']'/]
-def [sanitize(mainClass.name, sanitizeRegexp)/]_ARCH_MODEL : Architecture [sanitize(mainClass.name, sanitizeRegexp)/] := {
-  subs := ['['/]
-  [for (property : Property | mainClass.ownedAttribute->selectByType(Property)) separator(',\n')]    [sanitize(property.type.name, sanitizeRegexp)/][/for]
-  [']'/],
-  delegation := ['['/]
-  [for (flow : InformationFlow | umlRoot.packagedElement->selectByType(InformationFlow)) separator(',\n')][for (inPort : Port | flow.informationSource->filter(Port))][for (outPort : Port | flow.informationTarget->filter(Port))]    ([portName(inPort, sanitizeRegexp)/], [portName(outPort, sanitizeRegexp)/])[/for][/for][/for]
+  meta def delegation_exprs : list (expr × expr) := ['['/]
+  [for (flow | umlRoot.packagedElement->filter(uml::InformationFlow)) separator(',\n')][for (inPort | flow.informationSource->filter(uml::Port))][for (outPort | flow.informationTarget->filter(uml::Port))]  (`([inPort.portName(sanitizeRegexp)/]), `([outPort.portName(sanitizeRegexp)/]))[/for][/for][/for]
   [']'/]
-}
 
-meta def delegation_exprs : list (expr × expr) := ['['/]
-  [for (flow : InformationFlow | umlRoot.packagedElement->selectByType(InformationFlow)) separator(',\n')][for (inPort : Port | flow.informationSource->filter(Port))][for (outPort : Port | flow.informationTarget->filter(Port))]  (`([portName(inPort, sanitizeRegexp)/]), `([portName(outPort, sanitizeRegexp)/]))[/for][/for][/for]
-[']'/]
-
-meta def [modelName/]_model_info : model_info := { del := delegation_exprs, comps := ['['/]
-  [for (property : Property | mainClass.ownedAttribute->selectByType(Property)) separator(',\n')]  `([sanitize(property.type.name, sanitizeRegexp)/])[/for]
-[']'/]}
+  meta def [modelName/]_model_info : model_info := { del := delegation_exprs, comps := ['['/]
+  [for (property | mainClass.ownedAttribute->filter(uml::Property)) separator(',\n')]  `([property.type.name.sanitize(sanitizeRegexp)/])[/for]
+  [']'/]}
 [/template]
 
-[template public UMLToLean(umlRoot : Model, modelName : String, sanitizeRegexp : String)]
+[template public UMLToLean(umlRoot : uml::Model, modelName : String, sanitizeRegexp : String)]
   [comment @main /]
-  [let mainClass : Class = umlRoot.packagedElement
-                             ->selectByType(Class)
-                             ->any(ownedAttribute->selectByType(Property)->size() > 0)]
-  [file ('main.lean', false, 'UTF-8')]
-[encodeMain(sanitize(modelName, sanitizeRegexp), sanitize(mainClass.name, sanitizeRegexp))/]
+  [let mainClass = umlRoot.packagedElement->filter(uml::Class)->any(c | c.ownedAttribute->filter(uml::Property)->size() > 0)]
+  [file ('main.lean', overwrite, 'UTF-8')]
+    [modelName.sanitize(sanitizeRegexp).encodeMain(mainClass.name.sanitize(sanitizeRegexp))/]
   [/file]
-  [file (sanitize(modelName, sanitizeRegexp) + '.lean', false, 'UTF-8')]
-[encodeModel(umlRoot, mainClass, sanitize(modelName, sanitizeRegexp), sanitizeRegexp)/]
+  [file (modelName.sanitize(sanitizeRegexp) + '.lean', overwrite, 'UTF-8')]
+    [umlRoot.encodeModel(mainClass, modelName.sanitize(sanitizeRegexp), sanitizeRegexp)/]
   [/file]
   [/let]
 [/template]

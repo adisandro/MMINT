@@ -10,7 +10,6 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.validation,
  org.eclipse.uml2.uml,
- org.eclipse.acceleo.engine,
  org.eclipse.jdt.annotation;resolution:=optional,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.primitive,
