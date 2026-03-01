@@ -20,7 +20,6 @@ Famelis, Rick Salay. All rights reserved.
 
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.acceleo.engine"/>
       <import plugin="org.eclipse.gmf.runtime.notation"/>
       <import plugin="org.eclipse.osgi"/>
       <import plugin="org.eclipse.emf.validation"/>

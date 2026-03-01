@@ -35,7 +35,6 @@
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.emf.validation"/>
       <import plugin="edu.toronto.cs.se.mmint"/>
-      <import plugin="org.eclipse.acceleo.engine"/>
       <import feature="edu.toronto.cs.se.mmint.feature"/>
    </requires>
 
