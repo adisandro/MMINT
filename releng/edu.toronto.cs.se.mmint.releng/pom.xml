@@ -6,7 +6,6 @@
   <packaging>pom</packaging>
   <properties>
     <tycho-version>6.0.0-SNAPSHOT</tycho-version>
-    <acceleo-version>3.6.4</acceleo-version>
     <mavendeps-version>3.10.0</mavendeps-version>
     <ecj-version>3.45.0-SNAPSHOT</ecj-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -44,35 +43,11 @@
       <url>https://repo.eclipse.org/content/repositories/tycho-snapshots</url>
     </pluginRepository>
     <pluginRepository>
-      <id>Acceleo</id>
-      <url>https://repo.eclipse.org/content/groups/releases</url>
-    </pluginRepository>
-    <pluginRepository>
       <id>Ecj</id>
       <url>https://repo.eclipse.org/content/repositories/eclipse-snapshots</url>
     </pluginRepository>
   </pluginRepositories>
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <!-- Compile Acceleo .emtl files -->
-          <?m2e ignore?>
-          <groupId>org.eclipse.acceleo</groupId>
-          <artifactId>org.eclipse.acceleo.maven</artifactId>
-          <version>${acceleo-version}</version>
-          <executions>
-            <execution>
-              <id>acceleo-compile</id>
-              <phase>compile</phase>
-              <goals>
-                <goal>acceleo-compile</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.eclipse.tycho</groupId>
