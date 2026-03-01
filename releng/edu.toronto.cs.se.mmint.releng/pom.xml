@@ -240,7 +240,7 @@
     <module>../../features/edu.toronto.cs.se.mmint.example.mase19.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.example.models20.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.eras25.feature</module>
-    <module>../../features/edu.toronto.cs.se.mmint.examples.fac25.feature</module>
+    <module>../../features/edu.toronto.cs.se.mmint.examples.fac26.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.formalise24.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.ifm24.feature</module>
     <module>../../features/edu.toronto.cs.se.mmint.examples.models21.feature</module>
