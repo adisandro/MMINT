@@ -60,9 +60,8 @@ import edu.toronto.cs.se.mmint.types.lts.LTSPackage;
 //End of user code
 
 /**
- * Standalone launcher for edu::toronto::cs::se::mmint::types::lts::operators::LTSToLean.
+ * Standalone launcher for edu::toronto::cs::se::mmint::types::lts::operators::LTSToLeanAcceleo.
  *
- * @author disa
  * @generated
  */
 public class LTSToLeanAcceleo {
@@ -271,7 +270,7 @@ public class LTSToLeanAcceleo {
    * @generated
    */
   protected String getModuleQualifiedName() {
-    return "edu::toronto::cs::se::mmint::types::lts::operators::LTSToLean";
+    return "edu::toronto::cs::se::mmint::types::lts::operators::LTSToLeanAcceleo";
   }
 
   /**

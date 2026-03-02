@@ -60,7 +60,7 @@ import edu.toronto.cs.se.modelepedia.models15_java.MODELS15_JavaPackage;
 //End of user code
 
 /**
- * Standalone launcher for edu::toronto::cs::se::modelepedia::models15::operator::Java2File.
+ * Standalone launcher for edu::toronto::cs::se::modelepedia::models15::operator::Java2FileAcceleo.
  *
  * @author disa
  * @generated
@@ -271,7 +271,7 @@ public class Java2FileAcceleo {
    * @generated
    */
   protected String getModuleQualifiedName() {
-    return "edu::toronto::cs::se::modelepedia::models15::operator::Java2File";
+    return "edu::toronto::cs::se::modelepedia::models15::operator::Java2FileAcceleo";
   }
 
   /**

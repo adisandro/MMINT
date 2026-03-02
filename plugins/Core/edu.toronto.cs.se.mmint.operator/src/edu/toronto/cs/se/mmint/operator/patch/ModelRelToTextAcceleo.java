@@ -60,7 +60,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
 //End of user code
 
 /**
- * Standalone launcher for edu::toronto::cs::se::mmint::operator::patch::ModelRelToText.
+ * Standalone launcher for edu::toronto::cs::se::mmint::operator::patch::ModelRelToTextAcceleo.
  *
  * @author disa
  * @generated
@@ -271,7 +271,7 @@ public class ModelRelToTextAcceleo {
    * @generated
    */
   protected String getModuleQualifiedName() {
-    return "edu::toronto::cs::se::mmint::operator::patch::ModelRelToText";
+    return "edu::toronto::cs::se::mmint::operator::patch::ModelRelToTextAcceleo";
   }
 
   /**

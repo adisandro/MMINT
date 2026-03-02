@@ -61,9 +61,8 @@ import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 //End of user code
 
 /**
- * Standalone launcher for edu::toronto::cs::se::mmint::types::uml::operators::UMLToLean.
+ * Standalone launcher for edu::toronto::cs::se::mmint::types::uml::operators::UMLToLeanAcceleo.
  *
- * @author disa
  * @generated
  */
 public class UMLToLeanAcceleo {
@@ -272,7 +271,7 @@ public class UMLToLeanAcceleo {
    * @generated
    */
   protected String getModuleQualifiedName() {
-    return "edu::toronto::cs::se::mmint::types::uml::operators::UMLToLean";
+    return "edu::toronto::cs::se::mmint::types::uml::operators::UMLToLeanAcceleo";
   }
 
   /**
