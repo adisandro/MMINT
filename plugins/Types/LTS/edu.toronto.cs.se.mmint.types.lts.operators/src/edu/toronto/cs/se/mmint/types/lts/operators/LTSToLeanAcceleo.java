@@ -1,6 +1,16 @@
-//Start of user code copyright
-//End of user code
-package edu.toronto.cs.se.modelepedia.models15.operator;
+/*******************************************************************************
+ * Copyright (c) 2026, 2026 Alessio Di Sandro.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     Alessio Di Sandro - Implementation
+ *******************************************************************************/
+package edu.toronto.cs.se.mmint.types.lts.operators;
 
 //Start of user code imports
 
@@ -24,8 +34,6 @@ import org.eclipse.acceleo.aql.evaluation.strategy.DefaultWriterFactory;
 import org.eclipse.acceleo.aql.evaluation.strategy.IAcceleoGenerationStrategy;
 import org.eclipse.acceleo.aql.parser.AcceleoParser;
 import org.eclipse.acceleo.aql.parser.ModuleLoader;
-import org.eclipse.acceleo.aql.profiler.IProfiler;
-import org.eclipse.acceleo.aql.profiler.ProfileResource;
 import org.eclipse.acceleo.query.AQLUtils;
 import org.eclipse.acceleo.query.ast.ASTNode;
 import org.eclipse.acceleo.query.ast.EClassifierTypeLiteral;
@@ -47,49 +55,49 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import edu.toronto.cs.se.modelepedia.models15_java.MODELS15_JavaPackage;
+import edu.toronto.cs.se.mmint.types.lts.LTSPackage;
 
 //End of user code
 
 /**
- * Standalone launcher for edu::toronto::cs::se::modelepedia::models15::operator::Java2File.
- * 
+ * Standalone launcher for edu::toronto::cs::se::mmint::types::lts::operators::LTSToLean.
+ *
  * @author disa
  * @generated
  */
-public class Java2FileGenerator {
+public class LTSToLeanAcceleo {
 
   /**
    * The {@link List} of resources to load.
-   * 
+   *
    * @generated
    */
   protected final List<String> resources;
 
   /**
    * The target folder for the generation.
-   * 
+   *
    * @generated
    */
   protected final String target;
 
   /**
    * Constructor.
-   * 
+   *
    * @param resources
    *          the {@link List} of model resources to load
    * @param target
    *          the target folder for the generation
    * @generated
    */
-  public Java2FileGenerator(List<String> resources, String target) {
+  public LTSToLeanAcceleo(List<String> resources, String target) {
     this.resources = resources;
     this.target = target;
   }
 
   /**
    * Main entry point.
-   * 
+   *
    * @param args
    *          resources separated by a comma, target folder
    * @generated
@@ -100,8 +108,8 @@ public class Java2FileGenerator {
       for (String resource : args[0].split(",")) {
         resources.add(resource.trim());
       }
-      final String target = args[1];
-      final Java2FileGenerator generator = new Java2FileGenerator(resources, target);
+      final var target = args[1];
+      final LTSToLeanAcceleo generator = new LTSToLeanAcceleo(resources, target);
       generator.generate(getMonitor());
     }
     else {
@@ -112,7 +120,7 @@ public class Java2FileGenerator {
 
   /**
    * Print the usage.
-   * 
+   *
    * @generated
    */
   private static void printUsage() {
@@ -122,7 +130,7 @@ public class Java2FileGenerator {
 
   /**
    * Gets the progress {@link Monitor}.
-   * 
+   *
    * @return the progress {@link Monitor}
    * @generated
    */
@@ -132,7 +140,7 @@ public class Java2FileGenerator {
 
   /**
    * Generates.
-   * 
+   *
    * @param monitor
    *          the progress {@link Monitor}
    * @generated
@@ -140,7 +148,7 @@ public class Java2FileGenerator {
   public void generate(Monitor monitor) {
     // inputs
     final String moduleQualifiedName = getModuleQualifiedName();
-    final URI targetURI = getTargetURI(target);
+    final URI targetURI = getTargetURI(this.target);
     final Map<String, String> options = getOptions();
 
     // create the resource set used to load models
@@ -158,15 +166,15 @@ public class Java2FileGenerator {
     final AcceleoEvaluator evaluator = createAcceleoEvaluator(targetURI, resolver, queryEnvironment);
     final IAcceleoGenerationStrategy strategy = createGenerationStrategy(resourceSetForModels);
 
-    final Module module = (Module) resolver.resolve(moduleQualifiedName);
+    final var module = (Module) resolver.resolve(moduleQualifiedName);
     final Set<String> nsURIs = AQLUtils.getAllNeededEPackages(resolver, moduleQualifiedName);
     AQLUtils.registerEPackages(queryEnvironment, EPackage.Registry.INSTANCE, nsURIs);
-    final URI logURI = AcceleoUtil.getlogURI(targetURI, options.get(AcceleoUtil.LOG_URI_OPTION));
+    final var logURI = AcceleoUtil.getlogURI(targetURI, options.get(AcceleoUtil.LOG_URI_OPTION));
     final List<Template> mainTemplates = getTemplates(module);
 
-    monitor.beginTask("Generating", resources.size() + 1 + mainTemplates.size() * resources.size() + 1);
+    monitor.beginTask("Generating", this.resources.size() + 1 + mainTemplates.size() * this.resources.size() + 1);
     // load models
-    final List<Resource> modelResources = loadResources(resourceSetForModels, resources, monitor);
+    final List<Resource> modelResources = loadResources(resourceSetForModels, this.resources, monitor);
 
     monitor.subTask("Before generation");
     beforeGeneration(evaluator, queryEnvironment, module, resourceSetForModels, strategy, targetURI, logURI);
@@ -174,12 +182,12 @@ public class Java2FileGenerator {
     try {
       final Map<EClass, List<EObject>> valuesCache = new LinkedHashMap<>();
       for (Template template : mainTemplates) {
-        final EClassifierTypeLiteral eClassifierTypeLiteral = (EClassifierTypeLiteral) template.getParameters().get(0)
+        final var eClassifierTypeLiteral = (EClassifierTypeLiteral) template.getParameters().get(0)
                                                                                                .getType().getAst();
         final List<EObject> values = getValues(queryEnvironment, valuesCache, eClassifierTypeLiteral,
                                                resourceSetForModels, modelResources, monitor);
 
-        final String parameterName = template.getParameters().get(0).getName();
+        final var parameterName = template.getParameters().get(0).getName();
         Map<String, Object> variables = new LinkedHashMap<>();
         for (EObject value : values) {
           variables.put(parameterName, value);
@@ -196,8 +204,8 @@ public class Java2FileGenerator {
     }
     finally {
       if (evaluator instanceof AcceleoProfilerEvaluator) {
-        IProfiler profiler = ((AcceleoProfilerEvaluator) evaluator).getProfiler();
-        ProfileResource profileResource = profiler.getResource();
+        var profiler = ((AcceleoProfilerEvaluator) evaluator).getProfiler();
+        var profileResource = profiler.getResource();
         profileResource.setStartResource(resolver.getSourceURI(moduleQualifiedName).toString());
         try {
           profiler.save(URI.createURI(targetURI.toString() + "/" + module.getName() + ".mtlp"));
@@ -221,7 +229,7 @@ public class Java2FileGenerator {
 
   /**
    * Gets the {@link List} of {@link Template} to generate for the given {@link Module}.
-   * 
+   *
    * @param module
    *          the {@link Module}
    * @return the {@link List} of {@link Template} to generate for the given {@link Module}
@@ -233,7 +241,7 @@ public class Java2FileGenerator {
 
   /**
    * Gets the {@link List} of {@link EObject} values to use.
-   * 
+   *
    * @param queryEnvironment
    *          the {@link IQualifiedNameQueryEnvironment}
    * @param valuesCache
@@ -258,17 +266,17 @@ public class Java2FileGenerator {
 
   /**
    * Gets the module qualified name.
-   * 
+   *
    * @return the module qualified name
    * @generated
    */
   protected String getModuleQualifiedName() {
-    return "edu::toronto::cs::se::modelepedia::models15::operator::Java2File";
+    return "edu::toronto::cs::se::mmint::types::lts::operators::LTSToLean";
   }
 
   /**
    * Gets the target folder {@link URI}.
-   * 
+   *
    * @param target
    *          the target folder {@link String}.
    * @return the target folder {@link URI}
@@ -280,7 +288,7 @@ public class Java2FileGenerator {
 
   /**
    * Gets the {@link Map} of options for the generation.
-   * 
+   *
    * @return the {@link Map} of options for the generation
    * @generated
    */
@@ -297,7 +305,7 @@ public class Java2FileGenerator {
 
   /**
    * Creates the default {@link ResourceSet}.
-   * 
+   *
    * @return the created default {@link ResourceSet}
    * @generated
    */
@@ -307,7 +315,7 @@ public class Java2FileGenerator {
 
   /**
    * Creates the {@link ResourceSet} for models.
-   * 
+   *
    * @param generationKey
    *          the generation key
    * @param options
@@ -321,7 +329,7 @@ public class Java2FileGenerator {
    */
   protected ResourceSet createResourceSetForModel(Object generationKey, Map<String, String> options,
                                                   List<Exception> exceptions, ResourceSet resourceSet) {
-    final ResourceSet resourceSetForModels = AQLUtils.createResourceSetForModels(exceptions, generationKey, resourceSet,
+    final var resourceSetForModels = AQLUtils.createResourceSetForModels(exceptions, generationKey, resourceSet,
                                                                                  options);
 
     return resourceSetForModels;
@@ -329,14 +337,14 @@ public class Java2FileGenerator {
 
   /**
    * Initializes the {@link ResourceSet} for models for standalone use.
-   * 
+   *
    * @param resourceSetForModels
    *          the {@link ResourceSet} for models
    * @generated
    */
   protected void standaloneInitialization(ResourceSet resourceSetForModels) {
     // initialize EPackages
-    MODELS15_JavaPackage.eINSTANCE.getName();
+    LTSPackage.eINSTANCE.getName();
 
     // register default XMI resource factory
     resourceSetForModels.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
@@ -346,7 +354,7 @@ public class Java2FileGenerator {
 
   /**
    * Loads {@link Resource} in the given {@link ResourceSet} for models.
-   * 
+   *
    * @param resourceSetForModels
    *          the {@link ResourceSet} for models
    * @param resources
@@ -361,7 +369,7 @@ public class Java2FileGenerator {
 
     for (String resource : resources) {
       monitor.subTask("Loading " + resource);
-      final Resource loaded = resourceSetForModels.getResource(URI.createURI(resource, true), true);
+      final var loaded = resourceSetForModels.getResource(URI.createURI(resource, true), true);
       if (loaded != null) {
         res.add(loaded);
       }
@@ -376,7 +384,7 @@ public class Java2FileGenerator {
 
   /**
    * Creates the {@link IQualifiedNameResolver}.
-   * 
+   *
    * @return the created {@link IQualifiedNameResolver}
    * @generated
    */
@@ -390,7 +398,7 @@ public class Java2FileGenerator {
 
   /**
    * Creates the {@link IQualifiedNameQueryEnvironment}.
-   * 
+   *
    * @param options
    *          the {@link Map} of options
    * @param resolver
@@ -403,7 +411,7 @@ public class Java2FileGenerator {
   protected IQualifiedNameQueryEnvironment createAcceleoQueryEnvironment(Map<String, String> options,
                                                                          IQualifiedNameResolver resolver,
                                                                          ResourceSet resourceSetForModels) {
-    final IQualifiedNameQueryEnvironment queryEnvironment = AcceleoUtil.newAcceleoQueryEnvironment(options, resolver,
+    final var queryEnvironment = AcceleoUtil.newAcceleoQueryEnvironment(options, resolver,
                                                                                                    resourceSetForModels,
                                                                                                    false);
 
@@ -412,7 +420,7 @@ public class Java2FileGenerator {
 
   /**
    * Creates the {@link AcceleoEvaluator}
-   * 
+   *
    * @param targetURI
    *          the target {@link URI}
    * @param resolver
@@ -441,7 +449,7 @@ public class Java2FileGenerator {
 
   /**
    * Creates the {@link IAcceleoGenerationStrategy}
-   * 
+   *
    * @param resourceSetForModels
    *          the {@link ResourceSet} containing loaded models
    * @return the created {@link IAcceleoGenerationStrategy}
@@ -456,7 +464,7 @@ public class Java2FileGenerator {
 
   /**
    * Before the generation starts.
-   * 
+   *
    * @param evaluator
    *          the {@link AcceleoEvaluator}
    * @param queryEnvironment
@@ -481,7 +489,7 @@ public class Java2FileGenerator {
 
   /**
    * Prints the diagnostics for the given {@link GenerationResult}.
-   * 
+   *
    * @param generationResult
    *          the {@link GenerationResult}
    * @generated
@@ -490,17 +498,20 @@ public class Java2FileGenerator {
     if (generationResult.getDiagnostic().getSeverity() > Diagnostic.INFO) {
       PrintStream stream;
       switch (generationResult.getDiagnostic().getSeverity()) {
-      case Diagnostic.WARNING:
+      case Diagnostic.WARNING -> {
         stream = System.out;
         stream.println("WARNING");
-        break;
-      case Diagnostic.ERROR:
-        // Fall-through
-      default:
+      }
+      case Diagnostic.ERROR -> {
         // Shouldn't happen as we only show warnings and errors
         stream = System.err;
         stream.println("ERROR");
-        break;
+      }
+      default -> {
+        // Shouldn't happen as we only show warnings and errors
+        stream = System.err;
+        stream.println("ERROR");
+      }
       }
       printDiagnostic(stream, generationResult.getDiagnostic(), "");
     }
@@ -509,7 +520,7 @@ public class Java2FileGenerator {
 
   /**
    * Prints the generation summary.
-   * 
+   *
    * @param stream
    *          the {@link PrintStream}
    * @param result
@@ -517,9 +528,9 @@ public class Java2FileGenerator {
    * @generated
    */
   private void printSummary(PrintStream stream, GenerationResult result) {
-    int nbErrors = 0;
-    int nbWarnings = 0;
-    int nbInfos = 0;
+    var nbErrors = 0;
+    var nbWarnings = 0;
+    var nbInfos = 0;
     for (Diagnostic diagnostic : result.getDiagnostic().getChildren()) {
       switch (diagnostic.getSeverity()) {
       case Diagnostic.ERROR:
@@ -549,7 +560,7 @@ public class Java2FileGenerator {
 
   /**
    * Prints the given {@link Diagnostic} for the given {@link PrintStream}.
-   * 
+   *
    * @param stream
    *          the {@link PrintStream}
    * @param diagnostic
@@ -588,7 +599,7 @@ public class Java2FileGenerator {
 
   /**
    * After the generation finished.
-   * 
+   *
    * @param generationResult
    *          the {@link GenerationResult}
    * @generated

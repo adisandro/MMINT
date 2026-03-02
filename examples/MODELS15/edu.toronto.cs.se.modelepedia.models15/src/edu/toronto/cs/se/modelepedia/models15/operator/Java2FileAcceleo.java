@@ -10,7 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package edu.toronto.cs.se.mmint.types.lts.operators;
+package edu.toronto.cs.se.modelepedia.models15.operator;
 
 //Start of user code imports
 
@@ -55,17 +55,17 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import edu.toronto.cs.se.mmint.types.lts.LTSPackage;
+import edu.toronto.cs.se.modelepedia.models15_java.MODELS15_JavaPackage;
 
 //End of user code
 
 /**
- * Standalone launcher for edu::toronto::cs::se::mmint::types::lts::operators::LTSToLean.
+ * Standalone launcher for edu::toronto::cs::se::modelepedia::models15::operator::Java2File.
  *
  * @author disa
  * @generated
  */
-public class LTSToLeanGenerator {
+public class Java2FileAcceleo {
 
   /**
    * The {@link List} of resources to load.
@@ -90,7 +90,7 @@ public class LTSToLeanGenerator {
    *          the target folder for the generation
    * @generated
    */
-  public LTSToLeanGenerator(List<String> resources, String target) {
+  public Java2FileAcceleo(List<String> resources, String target) {
     this.resources = resources;
     this.target = target;
   }
@@ -109,7 +109,7 @@ public class LTSToLeanGenerator {
         resources.add(resource.trim());
       }
       final var target = args[1];
-      final LTSToLeanGenerator generator = new LTSToLeanGenerator(resources, target);
+      final Java2FileAcceleo generator = new Java2FileAcceleo(resources, target);
       generator.generate(getMonitor());
     }
     else {
@@ -271,7 +271,7 @@ public class LTSToLeanGenerator {
    * @generated
    */
   protected String getModuleQualifiedName() {
-    return "edu::toronto::cs::se::mmint::types::lts::operators::LTSToLean";
+    return "edu::toronto::cs::se::modelepedia::models15::operator::Java2File";
   }
 
   /**
@@ -344,7 +344,7 @@ public class LTSToLeanGenerator {
    */
   protected void standaloneInitialization(ResourceSet resourceSetForModels) {
     // initialize EPackages
-    LTSPackage.eINSTANCE.getName();
+    MODELS15_JavaPackage.eINSTANCE.getName();
 
     // register default XMI resource factory
     resourceSetForModels.getResourceFactoryRegistry().getExtensionToFactoryMap().put(

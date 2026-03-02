@@ -1,5 +1,6 @@
 [comment encoding = UTF-8 /]
-[module LTSToLean('model://edu.toronto.cs.se.mmint.types.lts')/]
+[module LTSToLeanAcceleo('model://edu.toronto.cs.se.mmint.types.lts')/]
+[import edu::toronto::cs::se::mmint::lean::operators::ToLean/]
 [import edu::toronto::cs::se::mmint::types::lts::operators::LTSToLean/]
 
 [query private sanitize(name : String, regexp : String) : String =
@@ -144,7 +145,7 @@
 
 [comment @main /]
 [template public LTSToLean(lts : lts::LTS, modelName : String)]
-  [let sanitizeRegexp = getSanitizeRegexp(), groupThreshold = getGroupThreshold()]
+  [let sanitizeRegexp = lts.getSanitizeRegexp(), groupThreshold = lts.getGroupThreshold()]
     [file ('main.lean', overwrite, 'UTF-8')]
       [modelName.sanitize(sanitizeRegexp).encodeMain()/]
     [/file]

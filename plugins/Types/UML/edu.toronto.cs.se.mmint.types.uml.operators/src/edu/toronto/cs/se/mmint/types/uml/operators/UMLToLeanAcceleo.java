@@ -66,7 +66,7 @@ import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
  * @author disa
  * @generated
  */
-public class UMLToLeanGenerator {
+public class UMLToLeanAcceleo {
 
   /**
    * The {@link List} of resources to load.
@@ -91,7 +91,7 @@ public class UMLToLeanGenerator {
    *          the target folder for the generation
    * @generated
    */
-  public UMLToLeanGenerator(List<String> resources, String target) {
+  public UMLToLeanAcceleo(List<String> resources, String target) {
     this.resources = resources;
     this.target = target;
   }
@@ -110,7 +110,7 @@ public class UMLToLeanGenerator {
         resources.add(resource.trim());
       }
       final var target = args[1];
-      final UMLToLeanGenerator generator = new UMLToLeanGenerator(resources, target);
+      final UMLToLeanAcceleo generator = new UMLToLeanAcceleo(resources, target);
       generator.generate(getMonitor());
     }
     else {

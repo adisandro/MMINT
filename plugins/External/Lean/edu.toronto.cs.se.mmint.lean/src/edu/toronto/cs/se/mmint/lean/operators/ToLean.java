@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.ecore.EObject;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -116,7 +117,7 @@ public class ToLean extends OperatorImpl {
     FileUtils.copyDirectory(bundlePath, false, workingPath + IPath.SEPARATOR, true);
   }
 
-  public static String getSanitizeRegexp() {
+  public static String getSanitizeRegexp(EObject acceleoWorkaround) {
     return ToLean.LEAN_SANITIZE_REGEXP;
   }
 

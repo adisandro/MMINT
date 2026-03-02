@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module ModelRelToText('http://se.cs.toronto.edu/mmint/MID', 'http://se.cs.toronto.edu/mmint/MID/Relationship')/]
+[module ModelRelToTextAcceleo('http://se.cs.toronto.edu/mmint/MID', 'http://se.cs.toronto.edu/mmint/MID/Relationship')/]
 
 [comment @main /]
 [template public encodeModelRel(rel : relationship::ModelRel)]

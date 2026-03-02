@@ -65,7 +65,7 @@ import edu.toronto.cs.se.mmint.mid.relationship.RelationshipPackage;
  * @author disa
  * @generated
  */
-public class ModelRelToTextGenerator {
+public class ModelRelToTextAcceleo {
 
   /**
    * The {@link List} of resources to load.
@@ -90,7 +90,7 @@ public class ModelRelToTextGenerator {
    *          the target folder for the generation
    * @generated
    */
-  public ModelRelToTextGenerator(List<String> resources, String target) {
+  public ModelRelToTextAcceleo(List<String> resources, String target) {
     this.resources = resources;
     this.target = target;
   }
@@ -109,7 +109,7 @@ public class ModelRelToTextGenerator {
         resources.add(resource.trim());
       }
       final var target = args[1];
-      final ModelRelToTextGenerator generator = new ModelRelToTextGenerator(resources, target);
+      final ModelRelToTextAcceleo generator = new ModelRelToTextAcceleo(resources, target);
       generator.generate(getMonitor());
     }
     else {

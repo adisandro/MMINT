@@ -29,7 +29,7 @@ public class ModelRelToText extends OperatorImpl {
 
     private Input input;
     private Output output;
-    private ModelRelToTextGenerator acceleo;
+    private ModelRelToTextAcceleo acceleo;
 
     private static class Input {
 
@@ -79,7 +79,7 @@ public class ModelRelToText extends OperatorImpl {
         this.output = new Output(outputMIDsByName);
         var folder = FileUtils.prependWorkspacePath(
           FileUtils.getAllButLastSegmentFromPath(this.input.firstModel.getUri()));
-        this.acceleo = new ModelRelToTextGenerator(List.of(this.input.rel.getUri()), folder);
+        this.acceleo = new ModelRelToTextAcceleo(List.of(this.input.rel.getUri()), folder);
     }
 
     @Override

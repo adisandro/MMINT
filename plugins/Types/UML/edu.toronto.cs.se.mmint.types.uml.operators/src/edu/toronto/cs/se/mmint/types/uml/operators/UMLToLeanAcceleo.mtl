@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module UMLToLean('http://www.eclipse.org/uml2/5.0.0/UML', 'http://www.eclipse.org/uml2/5.0.0/Types')/]
+[module UMLToLeanAcceleo('http://www.eclipse.org/uml2/5.0.0/UML', 'http://www.eclipse.org/uml2/5.0.0/Types')/]
 
 [query private sanitize(name : String, regexp : String) : String =
   name.replaceAll(regexp, '_')

@@ -26,7 +26,7 @@ import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder;
 
 public class UMLToLean extends ToLean implements IGSNLeanEncoder {
 
-  private UMLToLeanGenerator acceleo;
+  private UMLToLeanAcceleo acceleo;
 
   @Override
   public List<String> getImportPaths() {
@@ -36,7 +36,7 @@ public class UMLToLean extends ToLean implements IGSNLeanEncoder {
   @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     super.init(inputsByName, outputMIDsByName);
-    this.acceleo = new UMLToLeanGenerator(List.of(this.input.model.getUri()), this.output.leanFolder);
+    this.acceleo = new UMLToLeanAcceleo(List.of(this.input.model.getUri()), this.output.leanFolder);
   }
 
   @Override

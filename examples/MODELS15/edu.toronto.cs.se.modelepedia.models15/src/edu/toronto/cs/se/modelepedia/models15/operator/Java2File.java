@@ -41,7 +41,7 @@ public class Java2File extends OperatorImpl {
 			true,
 			false);
 		var folder = FileUtils.prependWorkspacePath(FileUtils.getAllButLastSegmentFromPath(javaModel.getUri()));
-		var acceleo = new Java2FileGenerator(List.of(javaModel.getUri()), folder);
+		var acceleo = new Java2FileAcceleo(List.of(javaModel.getUri()), folder);
 		acceleo.generate(new BasicMonitor());
 
 		// create file model
