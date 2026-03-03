@@ -14,12 +14,13 @@ package edu.toronto.cs.se.mmint.lean.operators;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.util.BasicMonitor;
 
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTException;
@@ -29,6 +30,7 @@ import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.Operator;
 import edu.toronto.cs.se.mmint.mid.operator.OperatorPackage;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
+import edu.toronto.cs.se.mmint.mid.utils.AcceleoLauncher;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
@@ -40,6 +42,8 @@ public class ToLean extends OperatorImpl {
   protected final static String LEAN_BUNDLE_DIR = "lean/";
   protected Input input;
   protected Output output;
+  protected AcceleoLauncher acceleo;
+  protected LinkedHashMap<String, Object> acceleoParams;
 
   protected static class Input {
     public final static String MODEL = "model";
@@ -106,26 +110,23 @@ public class ToLean extends OperatorImpl {
     return Optional.of(Output.EVIDENCE_FILE);
   }
 
-  public void runAcceleo() {}
-
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     var workingPath = getWorkingPath();
     this.input = new Input(inputsByName);
     this.output = new Output(this.input, outputMIDsByName, workingPath);
+    this.acceleoParams = new LinkedHashMap<>();
+    this.acceleoParams.put("modelName", this.input.model.getName());
+    this.acceleoParams.put("sanitizeRegexp", ToLean.LEAN_SANITIZE_REGEXP);
     // static lean files
     var bundlePath = MIDTypeRegistry.getBundlePath(this.getMetatype(), ToLean.LEAN_BUNDLE_DIR);
     FileUtils.copyDirectory(bundlePath, false, workingPath + IPath.SEPARATOR, true);
-  }
-
-  public static String getSanitizeRegexp(EObject acceleoWorkaround) {
-    return ToLean.LEAN_SANITIZE_REGEXP;
   }
 
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
     init(inputsByName, outputMIDsByName);
-    runAcceleo();
+    this.acceleo.generate(new BasicMonitor());
 
     return this.output.packed();
   }

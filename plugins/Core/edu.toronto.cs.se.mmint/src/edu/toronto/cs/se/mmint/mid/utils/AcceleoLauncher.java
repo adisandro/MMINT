@@ -10,7 +10,7 @@
  * Contributors:
  *     Alessio Di Sandro - Implementation
  *******************************************************************************/
-package edu.toronto.cs.se.mmint.types.lts.operators;
+package edu.toronto.cs.se.mmint.mid.utils;
 
 //Start of user code imports
 
@@ -55,16 +55,15 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import edu.toronto.cs.se.mmint.types.lts.LTSPackage;
 
 //End of user code
 
 /**
- * Standalone launcher for edu::toronto::cs::se::mmint::types::lts::operators::LTSToLeanAcceleo.
+ * Standalone launcher for Acceleo files.
  *
  * @generated
  */
-public class LTSToLeanAcceleo {
+public class AcceleoLauncher {
 
   /**
    * The {@link List} of resources to load.
@@ -81,6 +80,21 @@ public class LTSToLeanAcceleo {
   protected final String target;
 
   /**
+   * @generated NOT
+   */
+  protected LinkedHashMap<String, Object> parameters;
+
+  /**
+   * @generated NOT
+   */
+  protected String moduleQualifiedName;
+
+  /**
+   * @generated NOT
+   */
+  protected ClassLoader classLoader;
+
+  /**
    * Constructor.
    *
    * @param resources
@@ -89,9 +103,20 @@ public class LTSToLeanAcceleo {
    *          the target folder for the generation
    * @generated
    */
-  public LTSToLeanAcceleo(List<String> resources, String target) {
+  public AcceleoLauncher(List<String> resources, String target) {
     this.resources = resources;
     this.target = target;
+  }
+
+  /**
+   * @generated NOT
+   */
+  public AcceleoLauncher(List<String> resources, String target, LinkedHashMap<String, Object> parameters,
+                         String moduleQualifiedName, ClassLoader classLoader) {
+    this(resources, target);
+    this.parameters = parameters;
+    this.moduleQualifiedName = moduleQualifiedName;
+    this.classLoader = classLoader;
   }
 
   /**
@@ -108,7 +133,7 @@ public class LTSToLeanAcceleo {
         resources.add(resource.trim());
       }
       final var target = args[1];
-      final LTSToLeanAcceleo generator = new LTSToLeanAcceleo(resources, target);
+      final AcceleoLauncher generator = new AcceleoLauncher(resources, target);
       generator.generate(getMonitor());
     }
     else {
@@ -142,7 +167,7 @@ public class LTSToLeanAcceleo {
    *
    * @param monitor
    *          the progress {@link Monitor}
-   * @generated
+   * @generated NOT
    */
   public void generate(Monitor monitor) {
     // inputs
@@ -187,7 +212,7 @@ public class LTSToLeanAcceleo {
                                                resourceSetForModels, modelResources, monitor);
 
         final var parameterName = template.getParameters().get(0).getName();
-        Map<String, Object> variables = new LinkedHashMap<>();
+        Map<String, Object> variables = new LinkedHashMap<>(this.parameters);
         for (EObject value : values) {
           variables.put(parameterName, value);
           AcceleoUtil.generate(template, variables, evaluator, queryEnvironment, strategy, targetURI, logURI, monitor);
@@ -267,10 +292,10 @@ public class LTSToLeanAcceleo {
    * Gets the module qualified name.
    *
    * @return the module qualified name
-   * @generated
+   * @generated NOT
    */
   protected String getModuleQualifiedName() {
-    return "edu::toronto::cs::se::mmint::types::lts::operators::LTSToLeanAcceleo";
+    return this.moduleQualifiedName;
   }
 
   /**
@@ -342,9 +367,6 @@ public class LTSToLeanAcceleo {
    * @generated
    */
   protected void standaloneInitialization(ResourceSet resourceSetForModels) {
-    // initialize EPackages
-    LTSPackage.eINSTANCE.getName();
-
     // register default XMI resource factory
     resourceSetForModels.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
                                                                                      Resource.Factory.Registry.DEFAULT_EXTENSION,
@@ -385,10 +407,10 @@ public class LTSToLeanAcceleo {
    * Creates the {@link IQualifiedNameResolver}.
    *
    * @return the created {@link IQualifiedNameResolver}
-   * @generated
+   * @generated NOT
    */
   protected IQualifiedNameResolver createResolver() {
-    final IQualifiedNameResolver resolver = new ClassLoaderQualifiedNameResolver(this.getClass().getClassLoader(),
+    final IQualifiedNameResolver resolver = new ClassLoaderQualifiedNameResolver(this.classLoader,
                                                                                  EPackage.Registry.INSTANCE,
                                                                                  AcceleoParser.QUALIFIER_SEPARATOR);
 

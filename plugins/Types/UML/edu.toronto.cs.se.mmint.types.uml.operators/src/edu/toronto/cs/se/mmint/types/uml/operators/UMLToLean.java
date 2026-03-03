@@ -15,18 +15,16 @@ package edu.toronto.cs.se.mmint.types.uml.operators;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Property;
 
 import edu.toronto.cs.se.mmint.lean.operators.ToLean;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.utils.AcceleoLauncher;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder;
 
 public class UMLToLean extends ToLean implements IGSNLeanEncoder {
-
-  private UMLToLeanAcceleo acceleo;
 
   @Override
   public List<String> getImportPaths() {
@@ -36,12 +34,9 @@ public class UMLToLean extends ToLean implements IGSNLeanEncoder {
   @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     super.init(inputsByName, outputMIDsByName);
-    this.acceleo = new UMLToLeanAcceleo(List.of(this.input.model.getUri()), this.output.leanFolder);
-  }
-
-  @Override
-  public void runAcceleo() {
-    this.acceleo.generate(new BasicMonitor());
+    this.acceleo = new AcceleoLauncher(List.of(this.input.model.getUri()), this.output.leanFolder, this.acceleoParams,
+                                       "edu::toronto::cs::se::mmint::types::uml::operators::UMLToLeanAcceleo",
+                                       this.getClass().getClassLoader());
   }
 
   @Override

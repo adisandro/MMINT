@@ -11,6 +11,7 @@
  */
 package edu.toronto.cs.se.mmint.operator.patch;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,13 +24,14 @@ import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.mid.operator.impl.OperatorImpl;
 import edu.toronto.cs.se.mmint.mid.relationship.ModelRel;
+import edu.toronto.cs.se.mmint.mid.utils.AcceleoLauncher;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 
 public class ModelRelToText extends OperatorImpl {
 
     private Input input;
     private Output output;
-    private ModelRelToTextAcceleo acceleo;
+    private AcceleoLauncher acceleo;
 
     private static class Input {
 
@@ -79,7 +81,9 @@ public class ModelRelToText extends OperatorImpl {
         this.output = new Output(outputMIDsByName);
         var folder = FileUtils.prependWorkspacePath(
           FileUtils.getAllButLastSegmentFromPath(this.input.firstModel.getUri()));
-        this.acceleo = new ModelRelToTextAcceleo(List.of(this.input.rel.getUri()), folder);
+        this.acceleo = new AcceleoLauncher(List.of(this.input.rel.getUri()), folder, new LinkedHashMap<>(),
+                                           "edu::toronto::cs::se::mmint::operator::patch::ModelRelToTextAcceleo",
+                                           this.getClass().getClassLoader());
     }
 
     @Override

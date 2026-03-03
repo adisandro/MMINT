@@ -24,14 +24,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import edu.toronto.cs.se.mmint.lean.operators.ToLean;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
+import edu.toronto.cs.se.mmint.mid.utils.AcceleoLauncher;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDRegistry;
 import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IGSNLeanEncoder;
@@ -45,7 +44,6 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
 
   private final static String LEAN_AUX_FILE = "auxi" + ToLean.LEAN_EXT;
   private final static int GROUP_THRESHOLD = 100;
-  private LTSToLeanAcceleo acceleo;
 
   @Override
   public List<String> getImportPaths() {
@@ -55,7 +53,10 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
   @Override
   protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
     super.init(inputsByName, outputMIDsByName);
-    this.acceleo = new LTSToLeanAcceleo(List.of(this.input.model.getUri()), this.output.leanFolder);
+    this.acceleoParams.put("groupThreshold", LTSToLean.GROUP_THRESHOLD);
+    this.acceleo = new AcceleoLauncher(List.of(this.input.model.getUri()), this.output.leanFolder, this.acceleoParams,
+                                       "edu::toronto::cs::se::mmint::types::lts::operators::LTSToLeanAcceleo",
+                                       this.getClass().getClassLoader());
     // auxiliary declarations
     //TODO MMINT[LEAN] Split model+property into model+libs+property, where libs is gsn stuff and aux belongs there
     var auxPath = FileUtils.replaceLastSegmentInPath(this.input.model.getUri(), LTSToLean.LEAN_AUX_FILE);
@@ -69,15 +70,6 @@ public class LTSToLean extends ToLean implements IGSNLeanEncoder {
   public static int getIndex(LabeledElement labeled) {
     var emfUri = EcoreUtil.getURI(labeled).toString();
     return Integer.valueOf(emfUri.substring(emfUri.lastIndexOf('.') + 1));
-  }
-
-  public static int getGroupThreshold(EObject acceleoWorkaround) {
-    return LTSToLean.GROUP_THRESHOLD;
-  }
-
-  @Override
-  public void runAcceleo() {
-    this.acceleo.generate(new BasicMonitor());
   }
 
   @Override
