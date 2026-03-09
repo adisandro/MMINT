@@ -43,4 +43,4 @@ Require-Bundle: org.eclipse.core.runtime,
  edu.toronto.cs.se.modelepedia.istar,
  edu.toronto.cs.se.modelepedia.istar.edit
 Bundle-ActivationPolicy: lazy
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=25))"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=26))"

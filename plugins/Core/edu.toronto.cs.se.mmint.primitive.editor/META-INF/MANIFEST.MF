@@ -8,7 +8,7 @@ Bundle-ClassPath: .
 Bundle-Activator: edu.toronto.cs.se.mmint.primitive.presentation.PrimitiveEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=25))"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=26))"
 Export-Package: edu.toronto.cs.se.mmint.primitive.boolean_.presentation,
  edu.toronto.cs.se.mmint.primitive.int_.presentation,
  edu.toronto.cs.se.mmint.primitive.presentation,

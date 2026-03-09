@@ -23,4 +23,4 @@ Require-Bundle: org.eclipse.emf.ecore,
 Automatic-Module-Name: FAC26
 Import-Package: org.apache.log4j
 Bundle-ActivationPolicy: lazy
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=25))"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=26))"

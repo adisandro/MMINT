@@ -28,5 +28,5 @@ Require-Bundle: org.eclipse.emf.ecore,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.viatra
 Bundle-ActivationPolicy: lazy
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=25))"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=26))"
 Automatic-Module-Name: edu.toronto.cs.se.mmint.productline
