@@ -89,7 +89,13 @@
             </firstModelOperations>
           </initialOperation>
         </controls>
-        <controls xsi:type="properties:TextAreaDescription" name="PLEventProbability" labelExpression="Probability:" isEnabledExpression="aql: self.attributes->exists(a | a.type.name = 'probability')" lineCount="3" valueExpression="aql: self.attributes->select(a | a.type.name = 'probability')->collect(a | a.value)"/>
+        <controls xsi:type="properties:TextDescription" name="PLEventProbability" labelExpression="Probability:" isEnabledExpression="aql: self.attributes->exists(a | a.type.name = 'probability')" valueExpression="aql: self.attributes->select(a | a.type.name = 'probability')->collect(a | a.value)">
+          <initialOperation>
+            <firstModelOperations xsi:type="tool_1:For" expression="aql: self.attributes->select(a | a.type.name = 'probability')" iteratorName="probAttr">
+              <subModelOperations xsi:type="tool_1:SetValue" featureName="value" valueExpression="aql: let i = probAttr.eContainer().attributes->select(a | a.type.name = 'probability')->indexOf(probAttr) in newValue.substring(2, newValue.size()-1).tokenize(', ')->at(i)"/>
+            </firstModelOperations>
+          </initialOperation>
+        </controls>
       </groups>
     </categories>
   </extensions>
