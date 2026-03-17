@@ -40,7 +40,7 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
                 <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateEvent" id="edu.toronto.cs.se.mmint.types.fta.productline.design.tools.PLFTACreateNode">
-                  <parameters name="type" value="Event"/>
+                  <parameters name="classType" value="Event"/>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
@@ -51,7 +51,7 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
                 <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="PLCreateGate" id="edu.toronto.cs.se.mmint.types.fta.productline.design.tools.PLFTACreateNode">
-                  <parameters name="type" value="Gate"/>
+                  <parameters name="classType" value="Gate"/>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>

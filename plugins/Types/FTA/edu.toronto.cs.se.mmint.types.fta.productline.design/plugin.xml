@@ -28,8 +28,8 @@
             id="edu.toronto.cs.se.mmint.types.fta.productline.design.tools.PLFTACreateNode">
       </javaActions>
       <javaActions
-            actionClass="edu.toronto.cs.se.mmint.types.fta.productline.design.tools.PLFTACreateNode"
-            id="edu.toronto.cs.se.mmint.types.fta.productline.design.tools.PLFTACreateNode">
+            actionClass="edu.toronto.cs.se.mmint.types.fta.productline.design.tools.PLFTACreateEdge"
+            id="edu.toronto.cs.se.mmint.types.fta.productline.design.tools.PLFTACreateEdge">
       </javaActions>
    </extension>
 

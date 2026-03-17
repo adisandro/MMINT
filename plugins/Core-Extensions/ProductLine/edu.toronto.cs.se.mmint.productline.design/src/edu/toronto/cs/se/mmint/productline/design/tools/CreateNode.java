@@ -48,19 +48,19 @@ public abstract class CreateNode extends AbstractExternalJavaAction {
   protected class CreateNodeCommand extends RecordingCommand {
     protected ProductLine pl;
     protected Class container;
-    protected EClass type;
+    protected EClass classType;
     protected PLBuilder builder;
 
     public CreateNodeCommand(TransactionalEditingDomain domain, EObject container, String classType) {
       super(domain);
       this.pl = (container instanceof ProductLine pl) ? pl : ((Class) container).getProductLine();
       this.container = (container instanceof ProductLine) ? this.pl.getRoot() : (Class) container;
-      this.type = (EClass) this.pl.getMetamodel().getEClassifier(classType);
+      this.classType = (EClass) this.pl.getMetamodel().getEClassifier(classType);
     }
 
     @Override
     protected void doExecute() {
-      this.builder.create(this.type, this.container);
+      this.builder.create(this.classType, this.container);
     }
   }
 }
