@@ -15,7 +15,7 @@ jobs:
       - name: Install Java
         uses: actions/setup-java@v5
         with:
-          java-version: '26-ea'
+          java-version: '26'
           distribution: 'temurin'
 
       - name: Install Maven
