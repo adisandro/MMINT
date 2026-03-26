@@ -13,12 +13,16 @@
 package edu.toronto.cs.se.mmint.types.gsn.templates.reasoning;
 
 import java.util.List;
+import java.util.Map;
 
 import edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate;
 import edu.toronto.cs.se.modelepedia.gsn.SafetyCase;
 import edu.toronto.cs.se.modelepedia.gsn.util.GSNChangeStep;
 
 public interface IAnalysis {
+  default boolean runsFirst() {
+    return true;
+  }
   default void import_(AnalyticTemplate template, SafetyCase safetyCase) throws Exception {}
   default void instantiate(AnalyticTemplate template) throws Exception {}
   default void validate(AnalyticTemplate template) throws Exception {}
@@ -34,7 +38,45 @@ public interface IAnalysis {
   default void repair(AnalyticTemplate template, GSNChangeStep step) throws Exception {
     step.baselineRepair();
   }
-  default boolean runsFirst() {
-    return true;
+  default <T, D extends IAnalysisData<T>> void dataLoop(String methodPrefix, List<D> oldData, List<D> newData,
+                                                        Map<String, T> templateElems, Object[] params)
+                                                       throws Exception {
+    if (newData.isEmpty()) {
+      return;
+    }
+    var dataClass = newData.get(0).getClass();
+    var new_ = dataClass.getMethod(methodPrefix + "New", int.class, Map.class, Object[].class);
+    var same = dataClass.getMethod(methodPrefix + "Same", IAnalysisData.class, int.class, int.class, Map.class,
+                                   Object[].class);
+    var del = dataClass.getMethod(methodPrefix + "Del", int.class, Map.class, Object[].class);
+    var o = 0; // old results counter
+    var n = 0; // new results counter
+    while (n < newData.size()) {
+      var newDatum = newData.get(n);
+      // new result
+      if (o >= oldData.size()) {
+        new_.invoke(newDatum, n, templateElems, params);
+        n++;
+        continue;
+      }
+      var oldDatum = oldData.get(o);
+      // same result
+      if (newDatum.isSame(oldDatum)) {
+        same.invoke(newDatum, oldDatum, o, n, templateElems, params);
+        o++;
+        n++;
+      }
+      // deleted result
+      else if (newDatum.isDel(oldData)) {
+        //TODO VQLQueryAnalysis has a loop here, check if it can be managed by the outer loop
+        del.invoke(oldDatum, o, templateElems, params);
+        o++;
+      }
+      // new result
+      else {
+        new_.invoke(newDatum, n, templateElems, params);
+        n++;
+      }
+    }
   }
 }
