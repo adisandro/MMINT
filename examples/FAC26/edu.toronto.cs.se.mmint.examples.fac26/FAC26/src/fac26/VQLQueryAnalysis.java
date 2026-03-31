@@ -13,10 +13,12 @@
 package fac26;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -44,6 +46,7 @@ import edu.toronto.cs.se.mmint.types.gsn.productline.util.PLGSNChangeStep;
 import edu.toronto.cs.se.mmint.types.gsn.templates.AnalyticTemplate;
 import edu.toronto.cs.se.mmint.types.gsn.templates.FilesContext;
 import edu.toronto.cs.se.mmint.types.gsn.templates.GSNTemplatesPackage;
+import edu.toronto.cs.se.mmint.types.gsn.templates.reasoning.IAnalysisData;
 import edu.toronto.cs.se.mmint.types.gsn.templates.util.GSNTemplatesBuilder;
 import edu.toronto.cs.se.modelepedia.gsn.Context;
 import edu.toronto.cs.se.modelepedia.gsn.GSNPackage;
@@ -62,6 +65,7 @@ import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 @NonNullByDefault
 public class VQLQueryAnalysis implements IPLGSNAnalysis {
   protected GSNPackage gsn;
+  protected static GSNPackage GSN = GSNPackage.eINSTANCE;
 
   public VQLQueryAnalysis() {
     this.gsn = GSNPackage.eINSTANCE;
@@ -69,24 +73,50 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
 
   public static ResultPrinter PL_NAME_PRINTER = result -> {
     if (result instanceof Class plClass) {
-      // try finding a name
+      // try finding a name attribute
       var name = plClass.getAttributes().stream()
-        .filter(a -> a.getType().getName().equals("name"))
-        .map(Attribute::getValue)
-        .collect(Collectors.joining(", "));
-      if (!name.isEmpty()) {
-        return name;
+        .map(Attribute::getType)
+        .filter(t -> t.getName().equals("name"))
+        .findFirst()
+        .map(t -> plClass.getAttribute(t));
+      if (name.isPresent()) {
+        return name.get();
       }
     }
     return SiriusEvaluateQuery.NAME_PRINTER.prettyPrint(result);
   };
 
-  protected List<String> getResults(List<Object> queryResults) {
-    return queryResults.stream()
-      .map(r -> SiriusEvaluateQuery.queryResultToString(r, SiriusEvaluateQuery.NAME_PRINTER, null, null))
-      .filter(r -> r.startsWith("Alrm_"))
-      .sorted() // for reproducibility
-      .collect(Collectors.toList());
+  public record QueryResult(String result, Optional<String> presenceCondition)
+                implements IAnalysisData<PLGSNArgumentElement> {
+
+    public QueryResult(Object queryResult) {
+      var result = SiriusEvaluateQuery.queryResultToString(queryResult, VQLQueryAnalysis.PL_NAME_PRINTER, null, null);
+      var pc = Optional.ofNullable(
+        (queryResult instanceof PLElement plResult) ? plResult.getPresenceCondition() : null);
+      this(result, pc);
+    }
+
+    public QueryResult(PLGSNArgumentElement resultGoal) {
+      var name = resultGoal.getAttribute(VQLQueryAnalysis.GSN.getArgumentElement_Description()).split("'")[1];
+      this(name, Optional.of(resultGoal.getPresenceCondition()));
+    }
+
+    public static List<QueryResult> fromQuery(QuerySpec querySpec, EObject rootModelObj) throws Exception {
+      var queryResults = querySpec.evaluateQuery(rootModelObj, List.of());
+      return queryResults.stream()
+        .map(QueryResult::new)
+        .filter(r -> r.result().startsWith("Alrm_"))
+        .sorted(Comparator.comparing(QueryResult::result))
+        .toList();
+    }
+
+    public static List<QueryResult> fromGSN(Map<String, PLGSNArgumentElement> templateElems) {
+      return templateElems.entrySet().stream()
+        .filter(e -> e.getKey().startsWith("resultGoal"))
+        .sorted(Comparator.comparing(Entry::getKey))
+        .map(e -> new QueryResult(e.getValue()))
+        .toList();
+    }
   }
 
   @Override
@@ -111,7 +141,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var modelPath = FileUtils.prependWorkspacePath(MIDDialogs.selectModelToImport(false));
     var rootModelObj = FileUtils.readModelFile(modelPath, null, false);
     var querySpec = SiriusEvaluateQuery.selectQuery(rootModelObj);
-    var queryResults = querySpec.evaluateQuery(rootModelObj, List.of());
+    var results = QueryResult.fromQuery(querySpec, rootModelObj);
     template.getElements().remove(resultGoal);
     safetyCase.getGoals().remove(resultGoal);
     resultStrategy.getSupportedBy().remove(0);
@@ -121,7 +151,6 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
               .replace(GSNBuilder.placeholder("model"), FileUtils.getLastSegmentFromPath(modelPath)));
     filesCtx.getPaths().add(querySpec.filePath());
     filesCtx.getPaths().add(modelPath);
-    var results = getResults(queryResults);
     var resultCtxDesc = (results.isEmpty()) ? "No results" : "Query results:";
     var i = 0;
     for (var result : results) {
@@ -149,16 +178,6 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
       this.gsn.getArgumentElement_TemplateId(), "liftedGoal"));
     plBuilder.support(queryStrategy, liftedGoal);
     plTemplate.addReference(this.gsn.getTemplate_Elements(), liftedGoal);
-  }
-
-  protected List<Map.Entry<String, String>> getPLResults(List<Object> queryResults) {
-    return queryResults.stream()
-      .map(r -> Map.entry(
-        SiriusEvaluateQuery.queryResultToString(r, VQLQueryAnalysis.PL_NAME_PRINTER, null, null),
-        (r instanceof PLElement plResult) ? plResult.getPresenceCondition() : null))
-      .filter(r -> r.getKey().startsWith("Alrm_"))
-      .sorted(Map.Entry.comparingByKey()) // for impact analysis
-      .collect(Collectors.toList());
   }
 
   protected PLGSNArgumentElement createPLResultGoal(PLGSNAnalyticTemplate plTemplate, PLGSNBuilder plBuilder,
@@ -201,7 +220,8 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
                             "There are no Product Line models in the workspace", Set.of("productline")));
     var rootModelObj = FileUtils.readModelFile(modelPath, null, false);
     var querySpec = SiriusEvaluateQuery.selectQuery(rootModelObj);
-    var queryResults = querySpec.evaluateQuery(rootModelObj, List.of());
+    var results = QueryResult.fromQuery(querySpec, rootModelObj);
+    //TODO here make template use decorator
     resultGoal.delete();
     for (var supportedBy : resultGoal.getReference(this.gsn.getSupporter_Supports())) {
       supportedBy.delete();
@@ -212,14 +232,13 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     filesCtx.setAttribute(this.gsn.getArgumentElement_Description(), filesDesc);
     filesCtx.setManyAttribute(GSNTemplatesPackage.eINSTANCE.getFilesContext_Paths(),
                               ECollections.asEList(querySpec.filePath(), modelPath));
-    var results = getPLResults(queryResults);
     var resultCtxDesc = (results.isEmpty()) ? "No results" : "Query results:";
     var i = 0;
     for (var result : results) {
-      resultCtxDesc += "\n'" + result.getKey() + "'";
+      resultCtxDesc += "\n'" + result.result() + "'";
       createPLResultGoal(plTemplate, plBuilder, resultStrategy, resultId.replace("X", String.valueOf(i)),
-                         resultDesc.replace(GSNBuilder.placeholder("X"), "'" + result.getKey() + "'"),
-                         result.getValue(), "resultGoal" + i);
+                         resultDesc.replace(GSNBuilder.placeholder("X"), "'" + result.result() + "'"),
+                         result.presenceCondition().orElse(null), "resultGoal" + i);
       i++;
     }
     resultCtx.setAttribute(this.gsn.getArgumentElement_Description(), resultCtxDesc);
@@ -240,23 +259,20 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var rootModelObj = FileUtils.readModelFile(modelPath, null, false);
     var plVQLReasoner = (IQueryTrait) MMINT.getReasoner("Viatra for Product Lines");
     var querySpec = new QuerySpec(plVQLReasoner, queryFilePath, query);
-    var queryResults = querySpec.evaluateQuery(rootModelObj, List.of());
+    var newResults = QueryResult.fromQuery(querySpec, rootModelObj);
     // compare results
-    var results = getPLResults(queryResults);
     var propsKey = getClass().getName() + "_RESULTS_" + modelPath + "_" + queryFilePath + "_" + query;
-    ChangeStep.getData().put(propsKey, results);
-    var resultCtx = templateElems.get("resultCtx");
-    var oldResults = resultCtx.getAttribute(this.gsn.getArgumentElement_Description()).lines()
-      .filter(l -> l.startsWith("'"))
-      .map(l -> l.substring(1, l.length()-1))
-      .collect(Collectors.toList());
+    ChangeStep.getData().put(propsKey, newResults);
     var o = 0; // old results counter
     var n = 0; // new results counter
     var revise = false;
     var newPCs = new HashSet<String>();
-    while (n < results.size()) {
-      var result = results.get(n);
-      var pc = result.getValue();
+    var params = new Object[] {};
+    var oldResults = QueryResult.fromGSN(templateElems);
+    dataLoop("impact", oldResults, newResults, templateElems, params);
+    while (n < newResults.size()) {
+      var result = newResults.get(n);
+      var pc = result.presenceCondition().orElse(null);
       // new result
       if (o >= oldResults.size()) {
         revise = true;
@@ -265,7 +281,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
       }
       var oldResult = oldResults.get(o);
       // same result, continue impact downstream
-      if (oldResult.equals(result.getKey())) {
+      if (oldResult.result().equals(result.result())) {
         var resultGoal = templateElems.get("resultGoal" + o);
         var oldPC = resultGoal.getPresenceCondition();
         // same presence condition, notify downstream with full reuse
@@ -299,9 +315,9 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
         n++;
       }
       // obsolete result, notify downstream with full revise
-      else if (oldResults.contains(result.getKey())) {
+      else if (oldResults.contains(result.result())) {
         revise = true;
-        while (!oldResult.equals(result.getKey())) {
+        while (!oldResult.result().equals(result.result())) {
           var resultGoal = templateElems.get("resultGoal" + o);
           resultGoal.setImpact(ImpactType.REVISE);
           var templateTrace = new LinkedHashSet<EObject>();
@@ -348,7 +364,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var propsKey = getClass().getName() + "_REVISE_" + modelPath + "_" + queryFilePath + "_" + query;
     var revise = (Boolean) ChangeStep.getData().get(propsKey);
     propsKey = getClass().getName() + "_RESULTS_" + modelPath + "_" + queryFilePath + "_" + query;
-    var results = (List<Map.Entry<String, String>>) ChangeStep.getData().get(propsKey);
+    var results = (List<QueryResult>) ChangeStep.getData().get(propsKey);
     // bottom up impact
     var impacts = new ArrayList<Map<ImpactType, Optional<String>>>();
     var impactPCs = new ArrayList<String>();
@@ -362,7 +378,7 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
       var result = resultGoal.getAttribute(this.gsn.getArgumentElement_Description()).split("'")[1];
       if (resultImpact.get(ImpactType.REVISE).isPresent() && resultImpact.get(ImpactType.REUSE).isEmpty() &&
           resultImpact.get(ImpactType.RECHECK).isEmpty() &&
-          results.stream().noneMatch(r -> result.equals(r.getKey()))) {
+          results.stream().noneMatch(r -> result.equals(r.result()))) {
         // do not participate if obsolete result
         continue;
       }
@@ -395,8 +411,8 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var modelPath = paths.get(1);
     var query = filesCtx.getAttribute(this.gsn.getArgumentElement_Description()).split("'")[1];
     var propsKey = getClass().getName() + "_RESULTS_" + modelPath + "_" + queryFilePath + "_" + query;
-    var results = (List<Map.Entry<String, String>>) ChangeStep.getData().get(propsKey);
-    var resultCtxDesc = (results.isEmpty()) ? "No results" : "Query results:";
+    var newResults = (List<QueryResult>) ChangeStep.getData().get(propsKey);
+    var resultCtxDesc = (newResults.isEmpty()) ? "No results" : "Query results:";
     // compare results
     var safetyGoal = templateElems.get("safetyGoal");
     var safetyDesc = safetyGoal.getAttribute(this.gsn.getArgumentElement_Description());
@@ -404,36 +420,33 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     var resultStrategy = templateElems.get("resultStrategy");
     var resultId = templateElems.get("resultGoal0").getAttribute(this.gsn.getArgumentElement_Id())
                                 .split("\\.")[0] + ".";
-    var oldResults = resultCtx.getAttribute(this.gsn.getArgumentElement_Description()).lines()
-      .filter(l -> l.startsWith("'"))
-      .map(l -> l.substring(1, l.length()-1))
-      .collect(Collectors.toList());
+    var oldResults = QueryResult.fromGSN(templateElems);
     var o = 0; // old results counter
     var n = 0; // new results counter
     var x = 0; // extra results counter
     var revised = false;
-    while (n < results.size()) {
-      var result = results.get(n);
-      var pc = result.getValue();
+    while (n < newResults.size()) {
+      var result = newResults.get(n);
+      var pc = result.presenceCondition().orElse(null);
       // new result, add downstream branch
       if (o >= oldResults.size()) {
         revised = true;
         var resultGoal = createPLResultGoal(plTemplate, plBuilder, resultStrategy, resultId + (n+x),
-                                            "Query result '" + result.getKey() + "', " + safetyDesc, result.getValue(),
+                                            "Query result '" + result.result() + "', " + safetyDesc, pc,
                                             "resultGoal" + (n+x));
-        resultCtxDesc += "\n'" + result.getKey() + "'";
+        resultCtxDesc += "\n'" + result.result() + "'";
         resultGoal.setImpact(ImpactType.REVISE);
         n++;
         continue;
       }
       var oldResult = oldResults.get(o);
       // same result, continue repair downstream
-      if (oldResult.equals(result.getKey())) {
+      if (oldResult.result().equals(result.result())) {
         var resultGoal = templateElems.get("resultGoal" + o);
         var oldPC = resultGoal.getPresenceCondition();
         resultGoal.setAttribute(this.gsn.getArgumentElement_Id(), resultId + (n+x));
         resultGoal.setAttribute(this.gsn.getArgumentElement_TemplateId(), "resultGoal" + (n+x));
-        resultCtxDesc += "\n'" + result.getKey() + "'";
+        resultCtxDesc += "\n'" + result.result() + "'";
         var templateTrace = new LinkedHashSet<EObject>();
         templateTrace.add(plTemplate);
         templateTrace.add(step.getImpacted());
@@ -456,16 +469,16 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
             revised = true;
             x++;
             var resultGoalX = createPLResultGoal(plTemplate, plBuilder, resultStrategy, resultId + (n+x),
-                                                 "Query result '" + result.getKey() + "', " + safetyDesc,
+                                                 "Query result '" + result.result() + "', " + safetyDesc,
                                                  plReasoner.simplify(newPC), "resultGoal" + (n+x));
             resultGoalX.setImpact(ImpactType.REVISE);
           }
         }
       }
       // obsolete result, delete downstream branch
-      else if (oldResults.contains(result.getKey())) {
+      else if (oldResults.contains(result.result())) {
         revised = true;
-        while (!oldResult.equals(result.getKey())) {
+        while (!oldResult.result().equals(result.result())) {
           var resultGoal = templateElems.get("resultGoal" + o);
           PLGSNChangeStep.deleteDownstream(resultGoal);
           o++;
@@ -476,9 +489,9 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
       else {
         revised = true;
         var resultGoal = createPLResultGoal(plTemplate, plBuilder, resultStrategy, resultId + (n+x),
-                                            "Query result '" + result.getKey() + "', " + safetyDesc, result.getValue(),
+                                            "Query result '" + result.result() + "', " + safetyDesc, pc,
                                             "resultGoal" + (n+x));
-        resultCtxDesc += "\n'" + result.getKey() + "'";
+        resultCtxDesc += "\n'" + result.result() + "'";
         resultGoal.setImpact(ImpactType.REVISE);
         n++;
       }
