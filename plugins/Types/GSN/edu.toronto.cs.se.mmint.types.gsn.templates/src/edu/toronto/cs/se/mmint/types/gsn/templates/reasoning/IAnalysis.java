@@ -38,6 +38,11 @@ public interface IAnalysis {
   default void repair(AnalyticTemplate template, GSNChangeStep step) throws Exception {
     step.baselineRepair();
   }
+  /**
+   * Requirements:
+   * 1) oldData and newData ordered by the same criterion
+   * 2) Underlying template used a decorator to instantiate multiple nodes
+   */
   default <T, D extends IAnalysisData<T>> void dataLoop(String methodPrefix, List<D> oldData, List<D> newData,
                                                         Map<String, T> templateElems, Object[] params)
                                                        throws Exception {
@@ -45,36 +50,37 @@ public interface IAnalysis {
       return;
     }
     var dataClass = newData.get(0).getClass();
-    var new_ = dataClass.getMethod(methodPrefix + "New", int.class, Map.class, Object[].class);
-    var same = dataClass.getMethod(methodPrefix + "Same", IAnalysisData.class, int.class, int.class, Map.class,
+    var new_ = dataClass.getMethod(methodPrefix + "New", String.class, Map.class, Object[].class);
+    var same = dataClass.getMethod(methodPrefix + "Same", IAnalysisData.class, String.class, String.class, Map.class,
                                    Object[].class);
-    var del = dataClass.getMethod(methodPrefix + "Del", int.class, Map.class, Object[].class);
+    var del = dataClass.getMethod(methodPrefix + "Del", String.class, Map.class, Object[].class);
     var o = 0; // old results counter
     var n = 0; // new results counter
     while (n < newData.size()) {
       var newDatum = newData.get(n);
+      var newSuffix = "." + (n + 1);
       // new result
       if (o >= oldData.size()) {
-        new_.invoke(newDatum, n, templateElems, params);
+        new_.invoke(newDatum, newSuffix, templateElems, params);
         n++;
         continue;
       }
       var oldDatum = oldData.get(o);
+      var oldSuffix = "." + (o + 1);
       // same result
       if (newDatum.isSame(oldDatum)) {
-        same.invoke(newDatum, oldDatum, o, n, templateElems, params);
+        same.invoke(newDatum, oldDatum, oldSuffix, newSuffix, templateElems, params);
         o++;
         n++;
       }
       // deleted result
       else if (newDatum.isDel(oldData)) {
-        //TODO VQLQueryAnalysis has a loop here, check if it can be managed by the outer loop
-        del.invoke(oldDatum, o, templateElems, params);
+        del.invoke(oldDatum, oldSuffix, templateElems, params);
         o++;
       }
       // new result
       else {
-        new_.invoke(newDatum, n, templateElems, params);
+        new_.invoke(newDatum, newSuffix, templateElems, params);
         n++;
       }
     }

@@ -16,18 +16,18 @@ import java.util.List;
 import java.util.Map;
 
 public interface IAnalysisData<T> {
-  default void impactNew(int newIndex, Map<String, T> templateElems, Object... params) {}
-  default void repairNew(int newIndex, Map<String, T> templateElems, Object... params) {}
+  default void impactNew(String newSuffix, Map<String, T> templateElems, Object... params) {}
+  default void repairNew(String newSuffix, Map<String, T> templateElems, Object... params) {}
   default boolean isSame(IAnalysisData<T> oldDatum) {
     return this.equals(oldDatum);
   }
-  default void impactSame(IAnalysisData<T> oldDatum, int oldIndex, int newIndex, Map<String, T> templateElems,
+  default void impactSame(IAnalysisData<T> oldDatum, String oldSuffix, String newSuffix, Map<String, T> templateElems,
                           Object... params) {}
-  default void repairSame(IAnalysisData<T> oldDatum, int oldIndex, int newIndex, Map<String, T> templateElems,
+  default void repairSame(IAnalysisData<T> oldDatum, String oldSuffix, String newSuffix, Map<String, T> templateElems,
                           Object... params) {}
   default boolean isDel(List<? extends IAnalysisData<T>> oldData) {
-    return oldData.stream().anyMatch(this::isSame); // counter intuitive but correct in changeLoop logic
+    return oldData.contains(this); // counter intuitive but correct in IAnalysis.dataLoop() logic
   }
-  default void impactDel(int oldIndex, Map<String, T> templateElems, Object... params) {}
-  default void repairDel(int oldIndex, Map<String, T> templateElems, Object... params) {}
+  default void impactDel(String oldSuffix, Map<String, T> templateElems, Object... params) {}
+  default void repairDel(String oldSuffix, Map<String, T> templateElems, Object... params) {}
 }
