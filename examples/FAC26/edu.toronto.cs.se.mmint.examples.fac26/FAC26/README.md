@@ -20,7 +20,7 @@ In critical software engineering, structured assurance cases (ACs) are used to d
 
 3. Model Checking AC template (Sec. 7.2)
     1. Right-click in the diagram background, select `MMINT > Import Template`, select the template `/FAC26/templates/ModelCheckingAnalysis.gsn`, select the analysis class `/FAC26/src/fac26/FTS4VMCAnalysis.java`.
-    2. (Ids refer to nodes from this template.) Click on the arrow between goal `G0` and strategy `S0`, press delete on your keyboard to delete it, click on the goal `G0`, press delete on your keyboard to delete it, from the palette on the right select `Create supported-by Link`, click on the goal `G3.1` with query result `Alrm_DoseRateHardLimitsViolationS`, click on the strategy `S0` to connect them.
+    2. (Ids refer to nodes from this template.) Click on the arrow between goal `G0` and strategy `S0`, press delete on your keyboard to delete it, click on the goal `G0`, press delete on your keyboard to delete it, from the palette on the right select `Create supported-by Link`, click on the goal `G3.2` with query result `Alrm_DoseRateHardLimitsViolationS`, click on the strategy `S0` to connect them.
     3. Right-click on any of the imported nodes from this template, select `MMINT > Instantiate Template`.
     4. (This step works only in Linux, requires Python installed, an internet connection, and takes a while to complete. It downloads and uses the FTS4VMC tool at https://github.com/fts4vmc/FTS4VMC.) Insert the property `AG[Alrm_DoseRateHardLimitsViolationS] AX{not Infusion_NormalOperationS}`. The check succeeds and the PL AC is populated with the results of the model checking analysis.
 

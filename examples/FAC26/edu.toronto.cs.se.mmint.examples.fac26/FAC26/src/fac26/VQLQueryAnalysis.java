@@ -18,7 +18,6 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -111,9 +110,10 @@ public class VQLQueryAnalysis implements IPLGSNAnalysis {
     }
 
     public static List<QueryResult> fromGSN(Map<String, PLGSNArgumentElement> templateElems) {
+      var resultKey = "resultGoal.";
       return templateElems.entrySet().stream()
-        .filter(e -> e.getKey().startsWith("resultGoal"))
-        .sorted(Comparator.comparing(Entry::getKey))
+        .filter(e -> e.getKey().startsWith(resultKey))
+        .sorted(Comparator.comparing(e -> Integer.parseInt(e.getKey().substring(resultKey.length()))))
         .map(e -> new QueryResult(e.getValue()))
         .toList();
     }
