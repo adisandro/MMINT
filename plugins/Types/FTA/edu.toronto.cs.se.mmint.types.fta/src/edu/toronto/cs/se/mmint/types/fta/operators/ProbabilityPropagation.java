@@ -29,16 +29,15 @@ import edu.toronto.cs.se.mmint.types.fta.FaultTree;
 
 public class ProbabilityPropagation extends OperatorImpl {
   public final static OperatorParameter IN0 = new OperatorParameter("fta", FTAPackage.eINSTANCE.eNS_URI);
-  public FaultTree in0;
+  public FaultTree fta;
   public final static OperatorParameter OUT0 = new OperatorParameter("ftaProp", FTAPackage.eINSTANCE.eNS_URI, null,
                                                                      "_prop");
-  public FaultTree out0;
+  public FaultTree ftaProp;
 
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
-    var ftaModel = inputsByName.get(ProbabilityPropagation.IN0.name());
-    this.in0 = (FaultTree) ftaModel.getEMFInstanceRoot();
-    this.out0 = EcoreUtil.copy(this.in0);
+    this.fta = (FaultTree) inputsByName.get(ProbabilityPropagation.IN0.name()).getEMFInstanceRoot();
+    this.ftaProp = EcoreUtil.copy(this.fta);
   }
 
   private BigDecimal propagate(Event event) {
@@ -59,8 +58,8 @@ public class ProbabilityPropagation extends OperatorImpl {
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
-    propagate(this.out0.getTopEvent());
+    propagate(this.ftaProp.getTopEvent());
 
-    return outputFromInput(0, 0, inputsByName, outputMIDsByName);
+    return outputFromInput(ProbabilityPropagation.IN0, ProbabilityPropagation.OUT0, inputsByName, outputMIDsByName);
   }
 }

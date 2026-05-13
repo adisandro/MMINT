@@ -44,9 +44,9 @@ import edu.toronto.cs.se.mmint.productline.util.PLBuilder;
 
 public class ToProductLine extends OperatorImpl {
   public final static OperatorParameter IN0 = new OperatorParameter("product", MMINTConstants.ROOT_MODEL_URI);
-  public EObject in0;
+  public EObject product;
   public final static OperatorParameter OUT0 = new OperatorParameter("productLine", PLPackage.eNS_URI);
-  public ProductLine out0;
+  public ProductLine productLine;
   public final static IJavaOperatorConstraint CONSTRAINT = new IJavaOperatorConstraint() {
     @Override
     public boolean checkInputs(Map<String, Model> inputsByName) {
@@ -76,11 +76,11 @@ public class ToProductLine extends OperatorImpl {
                                 "Insert the presence condition to annotate all model elements with",
                                 this.reasoner.getTrueLiteral());
     var productModel = inputsByName.get(ToProductLine.IN0.name());
-    this.in0 = productModel.getEMFInstanceRoot();
-    this.out0 = PLFactory.eINSTANCE.createProductLine();
-    this.out0.setMetamodel(productModel.getMetatype().getEMFTypeRoot());
-    this.out0.setReasonerName(this.reasoner.getName());
-    this.builder = new PLBuilder(this.out0);
+    this.product = productModel.getEMFInstanceRoot();
+    this.productLine = PLFactory.eINSTANCE.createProductLine();
+    this.productLine.setMetamodel(productModel.getMetatype().getEMFTypeRoot());
+    this.productLine.setReasonerName(this.reasoner.getName());
+    this.builder = new PLBuilder(this.productLine);
   }
 
   private void createPLClassAndAttributes(EObject pModelObj, Map<String, Class> plClasses) {
@@ -127,15 +127,15 @@ public class ToProductLine extends OperatorImpl {
 
   protected void toProductLine(Map<String, Model> inputsByName) throws Exception {
     var plClasses = new HashMap<String, Class>();
-    createPLClassAndAttributes(this.in0, plClasses);
+    createPLClassAndAttributes(this.product, plClasses);
     // pass 1: classes and attributes
-    for (var iter = this.in0.eAllContents(); iter.hasNext();) {
+    for (var iter = this.product.eAllContents(); iter.hasNext();) {
       createPLClassAndAttributes(iter.next(), plClasses);
     }
     // pass 2: references
     var pOpposites = new HashSet<EReference>();
-    createPLReferences(this.in0, plClasses, pOpposites);
-    for (var iter = this.in0.eAllContents(); iter.hasNext();) {
+    createPLReferences(this.product, plClasses, pOpposites);
+    for (var iter = this.product.eAllContents(); iter.hasNext();) {
       createPLReferences(iter.next(), plClasses, pOpposites);
     }
   }
@@ -145,6 +145,6 @@ public class ToProductLine extends OperatorImpl {
                                 Map<String, MID> outputMIDsByName) throws Exception {
     toProductLine(inputsByName);
 
-    return outputFromInput(0, 0, inputsByName, outputMIDsByName);
+    return outputFromInput(ToProductLine.IN0, ToProductLine.OUT0, inputsByName, outputMIDsByName);
   }
 }

@@ -45,7 +45,7 @@ import edu.toronto.cs.se.modelepedia.gsn.util.GSNBuilder;
 public class SocratesToGSN extends OperatorImpl {
   public final static OperatorParameter IN0 = new OperatorParameter("json", FilePackage.eNS_URI);
   public final static OperatorParameter OUT0 = new OperatorParameter("gsn", GSNPackage.eNS_URI, GSNPackage.eNAME, null);
-  public SafetyCase out0;
+  public SafetyCase gsn;
   public final static IJavaOperatorConstraint CONSTRAINT = new IJavaOperatorConstraint() {
     @Override
     public boolean checkInputs(Map<String, Model> inputsByName) {
@@ -67,7 +67,7 @@ public class SocratesToGSN extends OperatorImpl {
 
   @Override
   public void init(Properties inProps, Map<String, Model> inputsByName) throws Exception {
-    this.out0 = GSNFactory.eINSTANCE.createSafetyCase();
+    this.gsn = GSNFactory.eINSTANCE.createSafetyCase();
   }
 
   private void convert(Map<String, Model> inputsByName) throws Exception {
@@ -85,37 +85,37 @@ public class SocratesToGSN extends OperatorImpl {
         case "GOAL" -> {
           var goal = GSNFactory.eINSTANCE.createGoal();
           goal.setId("G" + id);
-          this.out0.getGoals().add(goal);
+          this.gsn.getGoals().add(goal);
           yield goal;
         }
         case "STRATEGY" -> {
           var strategy = GSNFactory.eINSTANCE.createStrategy();
           strategy.setId("S" + id);
-          this.out0.getStrategies().add(strategy);
+          this.gsn.getStrategies().add(strategy);
           yield strategy;
         }
         case "SOLUTION" -> {
           var solution = GSNFactory.eINSTANCE.createSolution();
           solution.setId("Sn" + id);
-          this.out0.getSolutions().add(solution);
+          this.gsn.getSolutions().add(solution);
           yield solution;
         }
         case "CONTEXT" -> {
           var context = GSNFactory.eINSTANCE.createContext();
           context.setId("C" + id);
-          this.out0.getContexts().add(context);
+          this.gsn.getContexts().add(context);
           yield context;
         }
         case "JUSTIFICATION" -> {
           var justification = GSNFactory.eINSTANCE.createJustification();
           justification.setId("J" + id);
-          this.out0.getJustifications().add(justification);
+          this.gsn.getJustifications().add(justification);
           yield justification;
         }
         case "ASSUMPTION" -> {
           var assumption = GSNFactory.eINSTANCE.createAssumption();
           assumption.setId("A" + id);
-          this.out0.getAssumptions().add(assumption);
+          this.gsn.getAssumptions().add(assumption);
           yield assumption;
         }
         case String type -> throw new MMINTException("Unsupported node " + type);
@@ -169,7 +169,7 @@ public class SocratesToGSN extends OperatorImpl {
     }
     if (isTemplate) {
       var template = GSNTemplatesFactory.eINSTANCE.createAnalyticTemplate();
-      this.out0.getTemplates().add(template);
+      this.gsn.getTemplates().add(template);
       template.setId(jsonObj.get(SocratesToGSN.NAME).getAsString());
       var templateElems = template.getElements();
       for (var templateElem : idToElem.values()) {
@@ -184,6 +184,6 @@ public class SocratesToGSN extends OperatorImpl {
                                 Map<String, MID> outputMIDsByName) throws Exception {
     convert(inputsByName);
 
-    return outputFromInput(0, 0, inputsByName, outputMIDsByName);
+    return outputFromInput(SocratesToGSN.IN0, SocratesToGSN.OUT0, inputsByName, outputMIDsByName);
   }
 }

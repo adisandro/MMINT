@@ -35,8 +35,8 @@ public class TextFileToSMProductLine extends ToProductLine {
     inputProperties.setProperty(ToProductLine.PROP_REASONERNAME, "LogicNG");
     inputProperties.setProperty(ToProductLine.PROP_PRESENCECONDITION, "$true");
     super.init(inputProperties, inputsByName);
-    this.out0.setMetamodel(StateMachinePackage.eINSTANCE);
-    this.builder = new PLStateMachineBuilder(this.out0);
+    this.productLine.setMetamodel(StateMachinePackage.eINSTANCE);
+    this.builder = new PLStateMachineBuilder(this.productLine);
   }
 
   @Override
@@ -56,7 +56,7 @@ public class TextFileToSMProductLine extends ToProductLine {
       if (line.startsWith("Feature model: ")) {
         // feature model
         var featuresConstraint = line.substring("Feature model: ".length());
-        this.out0.setFeaturesConstraint(featuresConstraint);
+        this.productLine.setFeaturesConstraint(featuresConstraint);
         continue;
       }
       if (line.startsWith("States:")) {

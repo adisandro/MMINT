@@ -44,41 +44,6 @@
                uri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive"
                class="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive">
          </type>
-         <constraint
-               implementation="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive$Constraint"
-               language="Java">
-         </constraint>
-         <inputs>
-            <parameter>
-               <type
-                     name="productLine"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/productLine">
-               </type>
-               <typeEndpoint
-                     targetTypeUri="model://edu.toronto.cs.se.mmint.productline">
-               </typeEndpoint>
-            </parameter>
-         </inputs>
-         <outputs>
-            <parameter>
-               <type
-                     name="product"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/product">
-               </type>
-               <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
-               </typeEndpoint>
-            </parameter>
-            <parameter>
-               <type
-                     name="trace"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.Derive/trace">
-               </type>
-               <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/mmint/ModelRel">
-               </typeEndpoint>
-            </parameter>
-         </outputs>
       </operatorType>
    </extension>
 
@@ -90,34 +55,6 @@
                uri="edu.toronto.cs.se.mmint.productline.operators.bridge.DeriveAll"
                class="edu.toronto.cs.se.mmint.productline.operators.bridge.DeriveAll">
          </type>
-         <constraint
-               implementation="edu.toronto.cs.se.mmint.productline.operators.bridge.DeriveAll$Constraints"
-               language="Java">
-         </constraint>
-         <inputs>
-            <parameter>
-               <type
-                     name="productLines"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.DeriveAll/productLines">
-               </type>
-               <typeEndpoint
-                     upperBound="-1"
-                     targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
-               </typeEndpoint>
-            </parameter>
-         </inputs>
-         <outputs>
-            <parameter>
-               <type
-                     name="products"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.bridge.DeriveAll/products">
-               </type>
-               <typeEndpoint
-                     upperBound="-1"
-                     targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
-               </typeEndpoint>
-            </parameter>
-         </outputs>
       </operatorType>
    </extension>
 

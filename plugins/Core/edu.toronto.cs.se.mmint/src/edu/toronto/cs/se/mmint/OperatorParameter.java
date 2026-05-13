@@ -40,6 +40,11 @@ public record OperatorParameter(
     this(name, type, 1, 1, Optional.ofNullable(ext), Optional.ofNullable(suffix));
   }
 
+  public OperatorParameter(String name, String type, int lower, int upper, @Nullable String ext,
+                           @Nullable String suffix) {
+    this(name, type, lower, upper, Optional.ofNullable(ext), Optional.ofNullable(suffix));
+  }
+
   public OperatorParameter specialize(String type) {
     return new OperatorParameter(name(), type, lower(), upper(), ext(), suffix());
   }

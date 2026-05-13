@@ -12,7 +12,6 @@
  *******************************************************************************/
 package edu.toronto.cs.se.mmint.productline.operators.bridge;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -22,7 +21,6 @@ import java.util.Properties;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.Nullable;
@@ -31,6 +29,7 @@ import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
 import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
+import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.java.reasoning.IJavaOperatorConstraint;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -41,93 +40,51 @@ import edu.toronto.cs.se.mmint.mid.ui.MIDDialogs;
 import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 import edu.toronto.cs.se.mmint.productline.Class;
-import edu.toronto.cs.se.mmint.productline.PLElement;
+import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 import edu.toronto.cs.se.mmint.productline.reasoning.IPLFeaturesTrait;
 
 public class Derive extends RandomOperatorImpl {
-  protected In in;
-  protected Out out;
-  protected IPLFeaturesTrait featureReasoner;
-  protected Map<String, Boolean> allFeatureValues;
-  protected Map<String, Boolean> presenceConditionCache;
-  protected Optional<Boolean> userAssigned;
-
-  public static class In {
-    public final static String PROP_USERASSIGNED = "userAssigned";
-    public final static String MODEL = "productLine";
-    public Model plModel;
-    public ProductLine pl;
-
-    public In(Map<String, Model> inputsByName) {
-      this.plModel = inputsByName.get(In.MODEL);
-      this.pl = (ProductLine) this.plModel.getEMFInstanceRoot();
-    }
-  }
-
-  public static class Constraint implements IJavaOperatorConstraint {
+  public final static OperatorParameter IN0 = new OperatorParameter("productLine", PLPackage.eNS_URI);
+  public ProductLine productLine;
+  public final static OperatorParameter OUT0 = new OperatorParameter("product", MMINTConstants.ROOT_MODEL_URI, null,
+                                                                     "_prod");
+  public EObject product;
+  public final static OperatorParameter OUT1 = new OperatorParameter("trace", MMINTConstants.ROOT_MODELREL_URI);
+  public ModelRel trace;
+  public final static IJavaOperatorConstraint CONSTRAINT = new IJavaOperatorConstraint() {
     @Override
     public Map<ModelRel, List<Model>> getOutputModelRelEndpoints(Map<String, GenericElement> genericsByName,
                                                                  Map<String, Model> inputsByName,
                                                                  Map<String, Model> outputsByName) {
-      var plModel = inputsByName.get(In.MODEL);
-      var productModel = outputsByName.get(Out.MODEL);
-      var traceRel = (ModelRel) outputsByName.get(Out.MODELREL);
+      var plModel = inputsByName.get(Derive.IN0.name());
+      var prodModel = outputsByName.get(Derive.OUT0.name());
+      var traceRel = (ModelRel) outputsByName.get(Derive.OUT1.name());
 
-      return Map.of(traceRel, List.of(plModel, productModel));
+      return Map.of(traceRel, List.of(plModel, prodModel));
     }
-  }
+  };
 
-  public static class Out {
-    public final static String MODEL = "product";
-    public final static String MODELREL = "trace";
-    public final static String PRODUCT_SUFFIX = "_prod";
-    public Derive operator;
-    public MID productMID;
-    public MID traceMID;
-    public EObject product;
-    public Map<Class, EObject> traceLinks;
+  public final static String PROP_USERASSIGNED = "userAssigned";
+  protected Optional<Boolean> userAssigned;
+  protected IPLFeaturesTrait featureReasoner;
+  protected Map<String, Boolean> allFeatureValues;
+  protected Map<String, Boolean> presenceConditionCache;
+  protected Map<Class, EObject> traceLinks;
 
-    public Out(Derive operator, Map<String, MID> outputMIDsByName) {
-      this.operator = operator;
-      this.productMID = outputMIDsByName.get(Out.MODEL);
-      this.traceMID = outputMIDsByName.get(Out.MODELREL);
-      this.traceLinks = new LinkedHashMap<>();
-    }
-
-    public Map<String, Model> packed() throws MMINTException, IOException {
-      var productModelType = MIDTypeRegistry.<Model>getType(this.operator.in.pl.getMetamodel().getNsURI());
-      var productPath = this.operator.getWorkingPath() + IPath.SEPARATOR + this.operator.in.plModel.getName() +
-                        Out.PRODUCT_SUFFIX + MMINTConstants.MODEL_FILEEXTENSION_SEPARATOR +
-                        productModelType.getFileExtension();
-      productPath = FileUtils.getUniquePath(productPath, true, false);
-      var productModel = productModelType.createInstanceAndEditor(this.product, productPath, this.productMID);
-      var traceRel = MIDTypeHierarchy.getRootModelRelType()
-        .createBinaryInstanceAndEndpoints(null, Out.MODELREL, this.operator.in.plModel, productModel, this.traceMID);
-      var tracePl = traceRel.getModelEndpointRefs().get(0);
-      var traceProduct = traceRel.getModelEndpointRefs().get(1);
-      var mappingType = MIDTypeHierarchy.getRootMappingType();
-      for (var traceLink : this.traceLinks.entrySet()) {
-        mappingType.createInstanceAndReferenceAndEndpointsAndReferences(true, ECollections.asEList(
-          tracePl.createModelElementInstanceAndReference(traceLink.getKey(), null),
-          traceProduct.createModelElementInstanceAndReference(traceLink.getValue(), null)));
-      }
-
-      return Map.of(Out.MODEL, productModel, Out.MODELREL, traceRel);
-    }
+  protected void init2(Properties inputProperties, ProductLine pl) throws MMINTException {
+    this.userAssigned = MIDOperatorIOUtils.getOptBoolProp(inputProperties, Derive.PROP_USERASSIGNED);
+    this.featureReasoner = pl.getReasoner();
+    this.allFeatureValues = new HashMap<>();
+    this.presenceConditionCache = new HashMap<>();
+    this.traceLinks = new LinkedHashMap<>();
   }
 
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws MMINTException {
-    this.userAssigned = MIDOperatorIOUtils.getOptBoolProp(inputProperties, In.PROP_USERASSIGNED);
-  }
-
-  protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
-    this.in = new In(inputsByName);
-    this.out = new Out(this, outputMIDsByName);
-    this.featureReasoner = this.in.pl.getReasoner();
-    this.allFeatureValues = new HashMap<>();
-    this.presenceConditionCache = new HashMap<>();
+    this.productLine = (ProductLine) inputsByName.get(Derive.IN0.name()).getEMFInstanceRoot();
+    this.product = null;
+    init2(inputProperties, this.productLine);
   }
 
   private boolean canInstantiateFeatures(@Nullable String plFormula) {
@@ -169,67 +126,72 @@ public class Derive extends RandomOperatorImpl {
     return canInstantiate;
   }
 
-  private boolean canInstantiateFeatures(ProductLine pl) {
-    return canInstantiateFeatures(pl.getFeaturesConstraint());
-  }
-
-  private boolean canInstantiateFeatures(PLElement plElement) {
-    return canInstantiateFeatures(plElement.getPresenceCondition());
-  }
-
-  protected EObject derive(ProductLine pl, Map<Class, EObject> traceLinks) throws MMINTException {
-    if (!canInstantiateFeatures(pl)) {
+  protected void derive() throws MMINTException {
+    if (!canInstantiateFeatures(this.productLine.getFeaturesConstraint())) {
       throw new MMINTException("The constraint on features is not satisfiable");
     }
 
-    EObject product = null;
-    for (var plClass : pl.getClasses()) {
-      if (!canInstantiateFeatures(plClass)) {
+    for (var plClass : this.productLine.getClasses()) {
+      if (!canInstantiateFeatures(plClass.getPresenceCondition())) {
         continue;
       }
-      var productModelObj = plClass.getType().getEPackage().getEFactoryInstance().create(plClass.getType());
-      traceLinks.put(plClass, productModelObj);
-      if (product == null) {
-        product = productModelObj;
+      var prodModelObj = plClass.getType().getEPackage().getEFactoryInstance().create(plClass.getType());
+      this.traceLinks.put(plClass, prodModelObj);
+      if (this.product == null) {
+        this.product = prodModelObj;
       }
       for (var plAttribute : plClass.getAttributes()) {
-        if (!canInstantiateFeatures(plAttribute)) {
+        if (!canInstantiateFeatures(plAttribute.getPresenceCondition())) {
           continue;
         }
         var value = FileUtils.convertStringToEType(plAttribute.getType(), plAttribute.getValue());
-        FileUtils.setModelObjectFeature(productModelObj, plAttribute.getType(), value);
+        FileUtils.setModelObjectFeature(prodModelObj, plAttribute.getType(), value);
       }
     }
-    for (var plClass : pl.getClasses()) {
+    for (var plClass : this.productLine.getClasses()) {
       for (var plReference : plClass.getReferences()) {
-        if (!canInstantiateFeatures(plReference)) {
+        if (!canInstantiateFeatures(plReference.getPresenceCondition())) {
           continue;
         }
-        var srcProductModelObj = traceLinks.get(plClass);
-        if (srcProductModelObj == null) {
+        var srcProdModelObj = this.traceLinks.get(plClass);
+        if (srcProdModelObj == null) {
           continue;
         }
-        var tgtProductModelObj = traceLinks.get(plReference.getTarget());
-        if (tgtProductModelObj == null) {
+        var tgtProdModelObj = this.traceLinks.get(plReference.getTarget());
+        if (tgtProdModelObj == null) {
           continue;
         }
-        FileUtils.setModelObjectFeature(srcProductModelObj, plReference.getType().getName(), tgtProductModelObj);
+        FileUtils.setModelObjectFeature(srcProdModelObj, plReference.getType().getName(), tgtProdModelObj);
       }
     }
-
-    return product;
   }
 
-  protected void derive() throws MMINTException {
-    this.out.product = derive(this.in.pl, this.out.traceLinks);
+  protected void trace() throws MMINTException {
+    var tracePL = this.trace.getModelEndpointRefs().get(0);
+    var traceProd = this.trace.getModelEndpointRefs().get(1);
+    var mappingType = MIDTypeHierarchy.getRootMappingType();
+    for (var traceLink : this.traceLinks.entrySet()) {
+      mappingType.createInstanceAndReferenceAndEndpointsAndReferences(true, ECollections.asEList(
+        tracePL.createModelElementInstanceAndReference(traceLink.getKey(), null),
+        traceProd.createModelElementInstanceAndReference(traceLink.getValue(), null)));
+    }
   }
 
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
-    init(inputsByName, outputMIDsByName);
+    var outputsByName = new HashMap<String, Model>();
     derive();
+    outputsByName.putAll(outputFromInput(Derive.IN0, Derive.OUT0.specialize(this.productLine.getMetamodel().getNsURI()),
+                                         inputsByName, outputMIDsByName));
 
-    return this.out.packed();
+    this.trace = MIDTypeRegistry.<ModelRel>getType(Derive.OUT1.type())
+      .createBinaryInstanceAndEndpoints(null, Derive.OUT1.name(), inputsByName.get(Derive.IN0.name()),
+                                        outputsByName.get(Derive.OUT0.name()),
+                                        outputMIDsByName.get(Derive.OUT1.name()));
+    outputsByName.put(Derive.OUT1.name(), this.trace);
+    trace();
+
+    return outputsByName;
   }
 }

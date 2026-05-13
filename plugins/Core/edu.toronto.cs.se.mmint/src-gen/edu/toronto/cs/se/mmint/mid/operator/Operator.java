@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.OperatorGeneric;
 import edu.toronto.cs.se.mmint.OperatorInput;
+import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -450,7 +451,7 @@ public interface Operator extends GenericElement {
    * @model required="true" exceptions="edu.toronto.cs.se.mmint.mid.operator.Exception" inIndexRequired="true" outIndexRequired="true" inputsByNameRequired="true" outputMIDsByNameRequired="true"
    * @generated
    */
-  Map<String, Model> outputFromInput(int inIndex, int outIndex, Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception;
+  Map<String, Model> outputFromInput(OperatorParameter in, OperatorParameter out, Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception;
 
     /**
    * <!-- begin-user-doc --> Creates and possibly adds an operator instance of this operator type to a Workflow MID.

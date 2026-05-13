@@ -41,17 +41,17 @@ import edu.toronto.cs.se.modelepedia.gsn.Supporter;
 
 public class GSNToSocrates extends OperatorImpl {
   public final static OperatorParameter IN0 = new OperatorParameter("gsn", GSNPackage.eNS_URI);
-  public SafetyCase in0;
+  public SafetyCase gsn;
   public final static OperatorParameter OUT0 = new OperatorParameter("json", FilePackage.eNS_URI, "json", null);
-  public EObject out0;
+  public EObject json;
   public final static String PROP_OWNER = "owner";
   protected String owner;
 
   @Override
   public void init(Properties inProps, Map<String, Model> inputsByName) throws Exception {
     this.owner = MIDOperatorIOUtils.getStringProp(inProps, GSNToSocrates.PROP_OWNER, Optional.empty());
-    this.in0 = (SafetyCase) inputsByName.get(GSNToSocrates.IN0.name()).getEMFInstanceRoot();
-    this.out0 = null; // do not create output model file
+    this.gsn = (SafetyCase) inputsByName.get(GSNToSocrates.IN0.name()).getEMFInstanceRoot();
+    this.json = null; // do not create output model file
   }
 
   private Integer getNodeId(ArgumentElement elem) {
@@ -80,7 +80,7 @@ public class GSNToSocrates extends OperatorImpl {
     var jsonObj = createRoot(inName);
     var nodes = new JsonArray();
     jsonObj.add(SocratesToGSN.NODES, nodes);
-    for (var iter = this.in0.eAllContents(); iter.hasNext();) {
+    for (var iter = this.gsn.eAllContents(); iter.hasNext();) {
       if (!(iter.next() instanceof ArgumentElement elem)) {
         continue;
       }
@@ -114,7 +114,7 @@ public class GSNToSocrates extends OperatorImpl {
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
     var json = convert(inputsByName.get(GSNToSocrates.IN0.name()).getName());
-    var outputMap = outputFromInput(0, 0, inputsByName, outputMIDsByName);
+    var outputMap = outputFromInput(GSNToSocrates.IN0, GSNToSocrates.OUT0, inputsByName, outputMIDsByName);
     FileUtils.createTextFile(outputMap.get(GSNToSocrates.OUT0.name()).getUri(), json, true);
 
     return outputMap;

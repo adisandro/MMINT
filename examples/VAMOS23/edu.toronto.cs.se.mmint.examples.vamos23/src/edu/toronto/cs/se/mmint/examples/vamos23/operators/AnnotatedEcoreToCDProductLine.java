@@ -35,12 +35,12 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
     inputProperties.setProperty(ToProductLine.PROP_REASONERNAME, "LogicNG");
     super.init(inputProperties, inputsByName);
-    this.out0.setMetamodel(edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE);
+    this.productLine.setMetamodel(edu.toronto.cs.se.modelepedia.classdiagram.ClassDiagramPackage.eINSTANCE);
   }
 
   protected Class createPLClass(EModelElement modelObj, EClass plType, Map<String, Class> plClasses) {
     var plClass = this.builder.createClass(plType);
-    this.out0.getClasses().add(plClass);
+    this.productLine.getClasses().add(plClass);
     var presenceCondition = this.reasoner.getTrueLiteral();
     var eAnnotation = modelObj.getEAnnotation("presence");
     if (eAnnotation != null) {
@@ -59,8 +59,8 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
   @Override
   protected void toProductLine(Map<String, Model> inputsByName) throws Exception {
     var plClasses = new HashMap<String, Class>();
-    var plEPackage = createPLClass((EModelElement) this.in0, ClassDiagramPackage.eINSTANCE.getClassDiagram(), plClasses);
-    for (var eClassifier : ((EPackage) this.in0).getEClassifiers()) {
+    var plEPackage = createPLClass((EModelElement) this.product, ClassDiagramPackage.eINSTANCE.getClassDiagram(), plClasses);
+    for (var eClassifier : ((EPackage) this.product).getEClassifiers()) {
       var plEClass = createPLClass(eClassifier, ClassDiagramPackage.eINSTANCE.getClass_(), plClasses);
       var plEClassPC = plEClass.getPresenceCondition();
       var classIsTrue = plEClass.isInAllProducts();
@@ -99,7 +99,7 @@ public class AnnotatedEcoreToCDProductLine extends ToProductLine {
       }
     }
 
-    for (var eClassifier : ((EPackage) this.in0).getEClassifiers()) {
+    for (var eClassifier : ((EPackage) this.product).getEClassifiers()) {
       if (!(eClassifier instanceof EClass eClass)) {
         continue;
       }

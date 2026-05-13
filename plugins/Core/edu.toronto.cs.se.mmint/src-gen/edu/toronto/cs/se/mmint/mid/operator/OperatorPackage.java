@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.mid.MIDPackage;
 
 /**
@@ -3450,11 +3451,11 @@ public interface OperatorPackage extends EPackage {
     EOperation getOperator__OpenInstance();
 
     /**
-   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#outputFromInput(int, int, java.util.Map, java.util.Map) <em>Output From Input</em>}' operation.
+   * Returns the meta object for the '{@link edu.toronto.cs.se.mmint.mid.operator.Operator#outputFromInput(OperatorParameter, OperatorParameter, java.util.Map, java.util.Map) <em>Output From Input</em>}' operation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the '<em>Output From Input</em>' operation.
-   * @see edu.toronto.cs.se.mmint.mid.operator.Operator#outputFromInput(int, int, java.util.Map, java.util.Map)
+   * @see edu.toronto.cs.se.mmint.mid.operator.Operator#outputFromInput(OperatorParameter, OperatorParameter, java.util.Map, java.util.Map)
    * @generated
    */
   EOperation getOperator__OutputFromInput__int_int_Map_Map();

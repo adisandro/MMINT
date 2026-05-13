@@ -60,11 +60,11 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 public class SiriusToProductLine extends OperatorImpl {
   public final static OperatorParameter IN0 = new OperatorParameter("siriusSpec",
                                                                     "http://www.eclipse.org/sirius/description/1.1.0");
-  public Group in0;
+  public Group siriusSpec;
   public final static OperatorParameter OUT0 = new OperatorParameter("plSiriusSpec",
                                                                      "http://www.eclipse.org/sirius/description/1.1.0",
                                                                      "odesign", ".productline");
-  public Group out0;
+  public Group plSiriusSpec;
   public final static String PROP_SERVICESJAVA = "servicesJava";
   public final static String PROP_SERVICESJAVA_DEFAULT = "edu.toronto.cs.se.mmint.productline.design.PLServices";
   protected String servicesJava;
@@ -93,7 +93,7 @@ public class SiriusToProductLine extends OperatorImpl {
     this.edgesJava = MIDOperatorIOUtils.getStringProp(inputProperties, SiriusToProductLine.PROP_EDGESJAVA,
                                                       Optional.of(SiriusToProductLine.PROP_EDGESJAVA_DEFAULT));
     var specModel = inputsByName.get(SiriusToProductLine.IN0.name());
-    this.in0 = (Group) specModel.getEMFInstanceRoot();
+    this.siriusSpec = (Group) specModel.getEMFInstanceRoot();
     var plBaseDiagram = MIDTypeRegistry.<Diagram>getType("edu.toronto.cs.se.mmint.productline.design");
     var plBaseSpecPath = MIDTypeRegistry.getBundlePath(plBaseDiagram, "description" + IPath.SEPARATOR +
                                                                       "productline.odesign");
@@ -107,18 +107,18 @@ public class SiriusToProductLine extends OperatorImpl {
     this.dStyleFactory = StyleFactory.eINSTANCE;
     this.vDescFactory = org.eclipse.sirius.viewpoint.description.DescriptionFactory.eINSTANCE;
     this.vToolFactory = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE;
-    this.out0 = this.vDescFactory.createGroup();
+    this.plSiriusSpec = this.vDescFactory.createGroup();
   }
 
   private void toProductLine() throws Exception {
     var plMappings = new HashMap<String, DiagramElementMapping>();
-    this.out0.setName(this.in0.getName() + ".productline");
+    this.plSiriusSpec.setName(this.siriusSpec.getName() + ".productline");
     // viewpoints
-    for (var viewpoint : this.in0.getOwnedViewpoints()) {
+    for (var viewpoint : this.siriusSpec.getOwnedViewpoints()) {
       var plViewpoint = this.vDescFactory.createViewpoint();
       addPLIdentifiedElement(viewpoint, plViewpoint, SiriusToProductLine.LABEL_PREFIX);
       plViewpoint.setModelFileExtension("productline");
-      this.out0.getOwnedViewpoints().add(plViewpoint);
+      this.plSiriusSpec.getOwnedViewpoints().add(plViewpoint);
       var plJavaExt = this.vDescFactory.createJavaExtension();
       plJavaExt.setQualifiedClassName(this.servicesJava);
       plViewpoint.getOwnedJavaExtensions().add(plJavaExt);
@@ -532,6 +532,6 @@ public class SiriusToProductLine extends OperatorImpl {
                                 Map<String, MID> outputMIDsByName) throws Exception {
     toProductLine();
 
-    return outputFromInput(0, 0, inputsByName, outputMIDsByName);
+    return outputFromInput(SiriusToProductLine.IN0, SiriusToProductLine.OUT0, inputsByName, outputMIDsByName);
   }
 }

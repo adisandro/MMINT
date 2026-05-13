@@ -27,6 +27,6 @@ public class GSNToProductLine extends ToProductLine {
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
     super.init(inputProperties, inputsByName);
-    this.builder = new PLGSNBuilder(this.out0);
+    this.builder = new PLGSNBuilder(this.productLine);
   }
 }

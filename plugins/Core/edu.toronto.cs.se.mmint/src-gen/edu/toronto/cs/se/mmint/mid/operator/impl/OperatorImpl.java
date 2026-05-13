@@ -597,7 +597,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         }
       case OperatorPackage.OPERATOR___OUTPUT_FROM_INPUT__INT_INT_MAP_MAP:
         try {
-          return outputFromInput((Integer)arguments.get(0), (Integer)arguments.get(1), (Map<String, Model>)arguments.get(2), (Map<String, MID>)arguments.get(3));
+          return outputFromInput((OperatorParameter)arguments.get(0), (OperatorParameter)arguments.get(1), (Map<String, Model>)arguments.get(2), (Map<String, MID>)arguments.get(3));
         }
         catch (Throwable throwable) {
           throw new InvocationTargetException(throwable);
@@ -1294,7 +1294,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
      */
     private Map<String, Model> getInputsByName(@NonNull List<OperatorInput> inputs) {
 
-        Map<String, Model> inputsByName = new HashMap<>();
+        var inputsByName = new HashMap<String, Model>();
         for (OperatorInput input : inputs) {
             this.addInputByName(input, inputsByName);
         }
@@ -1320,7 +1320,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
     private Map<String, Model> createInstanceInputs(@NonNull Operator newOperator, @NonNull List<OperatorInput> inputs) throws Exception {
 
         var coerced = false;
-        Map<String, Model> inputsByName = new HashMap<>();
+        var inputsByName = new HashMap<String, Model>();
         for (OperatorInput input : inputs) {
             var modelTypeEndpoint = input.modelTypeEndpoint();
             var modelEndpoint = modelTypeEndpoint.createInstance(
@@ -1484,18 +1484,14 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
         this.openInstanceMetatype();
     }
 
-    /**
+  /**
    * @generated NOT
    */
   @Override
-  public Map<String, Model> outputFromInput(int inIndex, int outIndex, Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
+  public Map<String, Model> outputFromInput(OperatorParameter in, OperatorParameter out, Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) throws Exception {
 
     MMINTException.mustBeInstance(this);
 
-    var outName = MMINTConstants.OPERATORS_OUTPUTS + inIndex;
-    var out = (OperatorParameter) getClass().getField(outName).get(this);
-    var inName = MMINTConstants.OPERATORS_INPUTS + inIndex;
-    var in = (OperatorParameter) getClass().getField(inName).get(this);
     // out model type
     var outModelType = MIDTypeRegistry.<Model>getType(out.type());
     if (outModelType == null) {
@@ -1510,7 +1506,7 @@ public class OperatorImpl extends GenericElementImpl implements Operator {
       getWorkingPath() + IPath.SEPARATOR + outModelName;
     outPath = FileUtils.getUniquePath(outPath, true, false);
     // out model
-    var outRoot = (EObject) getClass().getField(outName.toLowerCase()).get(this);
+    var outRoot = (EObject) getClass().getField(out.name()).get(this);
     var outModel = (outModelType.getEditors().size() == 0) ?
       outModelType.createInstance(outRoot, outPath, outputMIDsByName.get(out.name())) :
       outModelType.createInstanceAndEditor(outRoot, outPath, outputMIDsByName.get(out.name()));
