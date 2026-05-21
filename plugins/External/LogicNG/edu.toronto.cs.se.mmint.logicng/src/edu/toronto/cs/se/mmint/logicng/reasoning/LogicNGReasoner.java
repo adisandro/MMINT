@@ -145,7 +145,7 @@ public class LogicNGReasoner implements IPLFeaturesTrait {
     if (plFormula.isBlank()) {
       return Set.of();
     }
-    return Arrays.stream(plFormula.strip().split("[\\s\\(\\)\\|&~]|(?:\\$true\\b)"))
+    return Arrays.stream(plFormula.strip().split("[\\s()|&~]|\\$true\\b|=>"))
       .filter(v -> !v.isBlank())
       .collect(Collectors.toSet());
   }
