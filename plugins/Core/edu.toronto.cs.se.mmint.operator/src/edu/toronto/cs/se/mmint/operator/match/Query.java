@@ -17,7 +17,11 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 
+import org.eclipse.emf.ecore.EObject;
+
 import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
+import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.mid.GenericElement;
 import edu.toronto.cs.se.mmint.mid.MID;
 import edu.toronto.cs.se.mmint.mid.Model;
@@ -28,77 +32,49 @@ import edu.toronto.cs.se.mmint.mid.utils.FileUtils;
 import edu.toronto.cs.se.mmint.mid.utils.MIDOperatorIOUtils;
 
 public class Query extends OperatorImpl {
-  protected In in;
-  protected Out out;
-  private IQueryTrait reasoner;
+  public final static OperatorParameter IN0 = new OperatorParameter("model", MMINTConstants.ROOT_MODEL_URI);
+  public EObject model;
+
+  public final static String PROP_QUERYPATH = "queryPath";
   private String queryPath;
+  public final static String PROP_QUERYNAME = "queryName";
   private String queryName;
-
-  protected static class In {
-    public final static String PROP_REASONERNAME = "reasonerName";
-    public final static String PROP_QUERYPATH = "queryPath";
-    public final static String PROP_QUERYNAME = "queryName";
-    public final static String MODEL = "model";
-    public Model model;
-
-    public In(Map<String, Model> inputsByName) {
-      this.model = inputsByName.get(In.MODEL);
-    }
-  }
-
-  protected static class Out {
-    public final static String PROP_TIMEQUERY = "timeQuery";
-    public final static String PROP_NUMRESULTS = "numResults";
-    public Query operator;
-    public Properties props;
-    public long timeQuery;
-    public int numResults;
-
-    public Out(Query operator) {
-      this.operator = operator;
-      this.props = new Properties();
-      this.timeQuery = 0;
-      this.numResults = 0;
-    }
-
-    public Map<String, Model> packed() throws Exception {
-      this.props.setProperty(Out.PROP_TIMEQUERY, String.valueOf(this.timeQuery));
-      this.props.setProperty(Out.PROP_NUMRESULTS, String.valueOf(this.numResults));
-      MIDOperatorIOUtils.writeOutputProperties(this.operator, this.props);
-
-      return Map.of();
-    }
-  }
-
-  protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) {
-    this.in = new In(inputsByName);
-    this.out = new Out(this);
-  }
+  public final static String PROP_REASONERNAME = "reasonerName";
+  private IQueryTrait reasoner;
+  public final static String PROP_TIMEQUERY = "timeQuery";
+  private long timeQuery;
+  public final static String PROP_NUMRESULTS = "numResults";
+  private int numResults;
 
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
+    this.model = inputsByName.get(Query.IN0.name()).getEMFInstanceRoot();
     this.queryPath = FileUtils.prependWorkspacePath(
-      MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_QUERYPATH, Optional.empty()));
-    this.queryName = MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_QUERYNAME, Optional.empty());
+      MIDOperatorIOUtils.getStringProp(inputProperties, Query.PROP_QUERYPATH, Optional.empty()));
+    this.queryName = MIDOperatorIOUtils.getStringProp(inputProperties, Query.PROP_QUERYNAME, Optional.empty());
     this.reasoner = (IQueryTrait) MMINT.getReasoner(
-      MIDOperatorIOUtils.getStringProp(inputProperties, In.PROP_REASONERNAME, Optional.empty()));
+      MIDOperatorIOUtils.getStringProp(inputProperties, Query.PROP_REASONERNAME, Optional.empty()));
+    this.timeQuery = 0;
+    this.numResults = 0;
   }
 
   protected void runQuery() throws Exception {
-    var modelRootObj = this.in.model.getEMFInstanceRoot();
     var querySpec = new QuerySpec(this.reasoner, this.queryPath, this.queryName);
     var timeQueryStart = System.nanoTime();
-    var queryResults = querySpec.evaluateQuery(modelRootObj, List.of());
-    this.out.timeQuery = System.nanoTime() - timeQueryStart;
-    this.out.numResults = queryResults.size();
+    var queryResults = querySpec.evaluateQuery(this.model, List.of());
+    this.timeQuery = System.nanoTime() - timeQueryStart;
+    this.numResults = queryResults.size();
   }
 
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
-    init(inputsByName, outputMIDsByName);
     runQuery();
+    var props = new Properties();
+    props.setProperty(Query.PROP_TIMEQUERY, String.valueOf(this.timeQuery));
+    props.setProperty(Query.PROP_NUMRESULTS, String.valueOf(this.numResults));
+    MIDOperatorIOUtils.writeOutputProperties(this, props);
 
-    return this.out.packed();
+    return Map.of();
   }
 }

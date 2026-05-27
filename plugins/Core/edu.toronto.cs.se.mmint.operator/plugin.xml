@@ -1591,19 +1591,6 @@
                uri="edu.toronto.cs.se.mmint.operator.match.Query"
                class="edu.toronto.cs.se.mmint.operator.match.Query">
          </type>
-         <inputs>
-            <parameter>
-               <type
-                     name="model"
-                     uri="edu.toronto.cs.se.mmint.operator.match.Query/model">
-               </type>
-               <typeEndpoint
-                     targetTypeUri="http://se.cs.toronto.edu/mmint/Model">
-               </typeEndpoint>
-            </parameter>
-         </inputs>
-         <outputs>
-         </outputs>
       </operatorType>
    </extension>
 
