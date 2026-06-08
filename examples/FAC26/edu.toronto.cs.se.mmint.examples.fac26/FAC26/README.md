@@ -1,4 +1,4 @@
-## FAC 2026 paper
+## FAC Vol. 38-2 2026 paper
 
 [Assurance Case Development for Evolving Software Product Lines: A Formal Approach](https://doi.org/10.1145/3796233)
 
