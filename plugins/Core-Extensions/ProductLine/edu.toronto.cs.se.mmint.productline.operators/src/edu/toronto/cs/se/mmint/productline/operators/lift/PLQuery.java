@@ -13,50 +13,45 @@
 package edu.toronto.cs.se.mmint.productline.operators.lift;
 
 import java.util.Map;
+import java.util.Properties;
 
-import edu.toronto.cs.se.mmint.mid.MID;
+import edu.toronto.cs.se.mmint.OperatorParameter;
 import edu.toronto.cs.se.mmint.mid.Model;
 import edu.toronto.cs.se.mmint.operator.match.Query;
+import edu.toronto.cs.se.mmint.productline.PLPackage;
 import edu.toronto.cs.se.mmint.productline.ProductLine;
 
 public class PLQuery extends Query {
+  public final static OperatorParameter IN0 = Query.IN0.specialize(PLPackage.eNS_URI);
 
-  protected static class PLOut extends Out {
-    public final static String PROP_OUT_TIMESAT = "timeSat";
-    public final static String PROP_OUT_SATCALLS = "satCalls";
-    public long timeSat;
-    public int satCalls;
-
-    public PLOut(Query operator) {
-      super(operator);
-      this.timeSat = 0;
-      this.satCalls = 0;
-    }
-
-    @Override
-    public Map<String, Model> packed() throws Exception {
-      this.props.setProperty(PLOut.PROP_OUT_TIMESAT, String.valueOf(this.timeSat));
-      this.props.setProperty(PLOut.PROP_OUT_SATCALLS, String.valueOf(this.satCalls));
-
-      return super.packed();
-    }
-  }
+  public final static String PROP_TIMESAT = "timeSat";
+  protected long timeSat;
+  public final static String PROP_SATCALLS = "satCalls";
+  protected int satCalls;
 
   @Override
-  protected void init(Map<String, Model> inputsByName, Map<String, MID> outputMIDsByName) {
-    this.in = new In(inputsByName);
-    this.out = new PLOut(this);
+  public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
+    super.init(inputProperties, inputsByName);
+    this.timeSat = 0;
+    this.satCalls = 0;
   }
 
   @Override
   protected void runQuery() throws Exception {
-    var pl = (ProductLine) this.in.model.getEMFInstanceRoot();
+    var pl = (ProductLine) super.model;
     var satReasoner = pl.getReasoner();
     satReasoner.toggleStats(true);
     super.runQuery();
     var satStats = satReasoner.getStats();
-    ((PLOut) this.out).timeSat = satStats.time();
-    ((PLOut) this.out).satCalls = satStats.numCalls();
+    this.timeSat = satStats.time();
+    this.satCalls = satStats.numCalls();
     satReasoner.toggleStats(false);
+  }
+
+  @Override
+  protected void setOutputProperties(Properties outProps) {
+    super.setOutputProperties(outProps);
+    outProps.setProperty(PLQuery.PROP_TIMESAT, String.valueOf(this.timeSat));
+    outProps.setProperty(PLQuery.PROP_SATCALLS, String.valueOf(this.satCalls));
   }
 }

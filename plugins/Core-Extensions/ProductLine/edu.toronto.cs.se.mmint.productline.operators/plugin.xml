@@ -202,22 +202,6 @@
                   uri="edu.toronto.cs.se.mmint.operator.match.Query">
             </superType>
          </type>
-         <inputs>
-            <parameter>
-               <type
-                     name="model"
-                     uri="edu.toronto.cs.se.mmint.productline.operators.lift.PLQuery/model">
-                  <superType
-                        uri="edu.toronto.cs.se.mmint.operator.match.Query/model">
-                  </superType>
-               </type>
-               <typeEndpoint
-                     targetTypeUri="model://edu.toronto.cs.se.mmint.productline">
-               </typeEndpoint>
-            </parameter>
-         </inputs>
-         <outputs>
-         </outputs>
       </operatorType>
    </extension>
 

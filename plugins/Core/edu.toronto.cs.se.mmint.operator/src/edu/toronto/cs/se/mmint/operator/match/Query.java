@@ -36,15 +36,15 @@ public class Query extends OperatorImpl {
   public EObject model;
 
   public final static String PROP_QUERYPATH = "queryPath";
-  private String queryPath;
+  protected String queryPath;
   public final static String PROP_QUERYNAME = "queryName";
-  private String queryName;
+  protected String queryName;
   public final static String PROP_REASONERNAME = "reasonerName";
-  private IQueryTrait reasoner;
+  protected IQueryTrait reasoner;
   public final static String PROP_TIMEQUERY = "timeQuery";
-  private long timeQuery;
+  protected long timeQuery;
   public final static String PROP_NUMRESULTS = "numResults";
-  private int numResults;
+  protected int numResults;
 
   @Override
   public void init(Properties inputProperties, Map<String, Model> inputsByName) throws Exception {
@@ -66,13 +66,17 @@ public class Query extends OperatorImpl {
     this.numResults = queryResults.size();
   }
 
+  protected void setOutputProperties(Properties outProps) {
+    outProps.setProperty(Query.PROP_TIMEQUERY, String.valueOf(this.timeQuery));
+    outProps.setProperty(Query.PROP_NUMRESULTS, String.valueOf(this.numResults));
+  }
+
   @Override
   public Map<String, Model> run(Map<String, Model> inputsByName, Map<String, GenericElement> genericsByName,
                                 Map<String, MID> outputMIDsByName) throws Exception {
     runQuery();
     var props = new Properties();
-    props.setProperty(Query.PROP_TIMEQUERY, String.valueOf(this.timeQuery));
-    props.setProperty(Query.PROP_NUMRESULTS, String.valueOf(this.numResults));
+    setOutputProperties(props);
     MIDOperatorIOUtils.writeOutputProperties(this, props);
 
     return Map.of();
