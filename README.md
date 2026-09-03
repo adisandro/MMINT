@@ -38,7 +38,7 @@ Binary packages for the current development version of MMINT are similarly avail
 Add the following update sites to Eclipse (`Help > Install New Software > Available Software Sites`):
   * `https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/2026-09`
   * `https://download.eclipse.org/modeling/emft/henshin/updates/release`
-  * `https://download.eclipse.org/modeling/mdt/papyrus/papyrus-desktop/updates/releases/2025-06`
+  * `https://download.eclipse.org/modeling/mdt/papyrus/papyrus-desktop/updates/nightly/master`
   * `https://download.eclipse.org/viatra/updates/release/latest`
 
 Then, install the following components (`Help > Install New Software`):
