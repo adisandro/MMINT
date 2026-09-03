@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint.kotlin;singleton:=true
 Bundle-Vendor: %providerName
 Bundle-Version: 2.30.99.qualifier
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=26))"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=27))"
 Automatic-Module-Name: edu.toronto.cs.se.mmint.kotlin
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: target/dependency/kotlin-osgi-bundle.jar,

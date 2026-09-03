@@ -14,5 +14,5 @@ Require-Bundle: org.eclipse.ui,
  edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.modelepedia.sequencediagram
 Bundle-ActivationPolicy: lazy
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=26))"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=27))"
 Bundle-Vendor: %providerName
