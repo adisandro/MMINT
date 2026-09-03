@@ -21,4 +21,4 @@ Require-Bundle: org.eclipse.emf.ecore,
 Automatic-Module-Name: edu.toronto.cs.se.mmint.productline.tests
 Import-Package: org.apache.log4j
 Bundle-ActivationPolicy: lazy
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=26))"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=27))"
