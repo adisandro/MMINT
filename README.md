@@ -19,7 +19,7 @@ The easiest way of installing MMINT in Eclipse is using the [binary packages](#b
 ### Requirements
 
 * Java 27
-* [Eclipse Modeling Tools 2026-09](https://www.eclipse.org/downloads/packages/release/2026-09/r/eclipse-modeling-tools) with [Java 27 patch]()
+* [Eclipse Modeling Tools 2026-09](https://www.eclipse.org/downloads/packages/release/2026-09/r/eclipse-modeling-tools) with [Java 27 patch](https://marketplace.eclipse.org/content/java-27-support-eclipse-2026-09-441)
 * After downloading Eclipse, open the `eclipse.ini` file and change the line below `-vm` to point to your Java 27 installation (for example, on Debian Linux change it to `/lib/jvm/java-27-openjdk-amd64/bin`, on Windows change it to `C:\Program Files\Java\jdk-27\bin`)
 
 ### Binary Packages
