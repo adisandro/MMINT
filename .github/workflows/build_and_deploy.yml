@@ -15,7 +15,7 @@ jobs:
       - name: Install Java
         uses: actions/setup-java@v6
         with:
-          java-version: '27-ea'
+          java-version: '27'
           distribution: 'temurin'
 
       - name: Load Maven cache
